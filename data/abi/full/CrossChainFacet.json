@@ -628,7 +628,7 @@
         "type": "tuple"
       }
     ],
-    "name": "bridgeViaCrossChain",
+    "name": "bridge",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -730,7 +730,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "multiTokenBridgeViaCrossChain",
+    "name": "bridgeMultipleTokens",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -879,7 +879,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "swapAndBridgeViaCrossChain",
+    "name": "swapAndBridge",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

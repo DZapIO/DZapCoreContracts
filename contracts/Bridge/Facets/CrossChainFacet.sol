@@ -48,7 +48,7 @@ contract CrossChainFacet is
 
     /* ========= EXTERNAL ========= */
 
-    function bridgeViaCrossChain(
+    function bridge(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -80,7 +80,7 @@ contract CrossChainFacet is
         LibFees.accrueTokenFees(
             _transactionId,
             _integrator,
-            FeeType.SWAP,
+            FeeType.BRIDGE,
             _bridgeData.from,
             totalFee - dZapShare,
             dZapShare
@@ -95,7 +95,7 @@ contract CrossChainFacet is
         );
     }
 
-    function multiTokenBridgeViaCrossChain(
+    function bridgeMultipleTokens(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -147,7 +147,7 @@ contract CrossChainFacet is
         );
     }
 
-    function swapAndBridgeViaCrossChain(
+    function swapAndBridge(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -168,6 +168,7 @@ contract CrossChainFacet is
             uint256 dZapShare;
 
             if (bridgeData.hasSourceSwaps) {
+                // _swapData.to == _bridgeData.from
                 // src swap
                 (totalFee, dZapShare) = LibAsset.deposit(
                     _integrator,

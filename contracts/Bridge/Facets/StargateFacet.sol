@@ -116,7 +116,7 @@ contract StargateFacet is ReentrancyGuard, Swapper, Validatable {
 
     /* ========= EXTERNAL ========= */
 
-    function startBridgeTokensViaStargate(
+    function bridgeViaStargate(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -167,7 +167,7 @@ contract StargateFacet is ReentrancyGuard, Swapper, Validatable {
         );
     }
 
-    function swapAndStartBridgeTokensViaStargate(
+    function swapAndBridgeViaStargate(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,

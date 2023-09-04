@@ -170,7 +170,6 @@ contract Reciever is IReceiver, ReentrancyGuard, Ownable {
             }
         } else {
             // case 2: ERC20 asset
-
             IERC20 token = IERC20(_swapData.from);
             token.safeApprove(address(executor), 0);
             token.safeIncreaseAllowance(address(executor), amount);

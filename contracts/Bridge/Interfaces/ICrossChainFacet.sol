@@ -42,7 +42,7 @@ interface ICrossChainFacet {
 
     /* ========= EXTERNAL ========= */
 
-    function bridgeViaCrossChain(
+    function bridge(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -50,7 +50,7 @@ interface ICrossChainFacet {
         CrossChainData calldata _genericData
     ) external payable;
 
-    function multiTokenBridgeViaCrossChain(
+    function bridgeMultipleTokens(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,
@@ -58,7 +58,7 @@ interface ICrossChainFacet {
         CrossChainData[] calldata _genericData
     ) external payable;
 
-    function swapAndBridgeViaCrossChain(
+    function swapAndBridge(
         bytes32 _transactionId,
         address _integrator,
         address _refundee,

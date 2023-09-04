@@ -1,0 +1,8 @@
+[
+  "error AlreadyInitialized()",
+  "error FeeTooHigh()",
+  "error InvalidFee()",
+  "error OnlyContractOwner()",
+  "error ZeroAddress()",
+  "function initialize(address _permit2, address _protocolFeeVault, uint256 _maxTokenFee, uint256 _maxFixedNativeFeeAmount)"
+]

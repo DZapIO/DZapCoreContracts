@@ -1,0 +1,15 @@
+[
+  "constructor(address _contractOwner, address _diamondCutFacet) payable",
+  "error CalldataEmptyButInitNotZero()",
+  "error FacetAddressIsNotZero()",
+  "error FacetAddressIsZero()",
+  "error FacetContainsNoCode()",
+  "error FunctionAlreadyExists()",
+  "error FunctionDoesNotExist()",
+  "error FunctionIsImmutable()",
+  "error IncorrectFacetCutAction()",
+  "error InitReverted()",
+  "error InitZeroButCalldataNotEmpty()",
+  "error NoSelectorsInFace()",
+  "error ZeroAddress()"
+]

@@ -1,0 +1,6 @@
+[
+  "event ExecutionAllowed(address indexed account, bytes4 indexed method)",
+  "event ExecutionDenied(address indexed account, bytes4 indexed method)",
+  "function addressCanExecuteMethod(bytes4 _selector, address _executor) view returns (bool)",
+  "function setCanExecute(bytes4 _selector, address _executor, bool _canExecute)"
+]

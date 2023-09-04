@@ -1,0 +1,16 @@
+[
+  "error CalldataEmptyButInitNotZero()",
+  "error FacetAddressIsNotZero()",
+  "error FacetAddressIsZero()",
+  "error FacetContainsNoCode()",
+  "error FunctionAlreadyExists()",
+  "error FunctionDoesNotExist()",
+  "error FunctionIsImmutable()",
+  "error IncorrectFacetCutAction()",
+  "error InitReverted()",
+  "error InitZeroButCalldataNotEmpty()",
+  "error NoSelectorsInFace()",
+  "error OnlyContractOwner()",
+  "event DiamondCut(tuple(address facetAddress, uint8 action, bytes4[] functionSelectors)[] _diamondCut, address _init, bytes _calldata)",
+  "function diamondCut(tuple(address facetAddress, uint8 action, bytes4[] functionSelectors)[] _diamondCut, address _init, bytes _calldata)"
+]

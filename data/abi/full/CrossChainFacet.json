@@ -53,6 +53,11 @@
   },
   {
     "inputs": [],
+    "name": "InvalidContract",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "InvalidPermit",
     "type": "error"
   },
@@ -64,6 +69,11 @@
   {
     "inputs": [],
     "name": "InvalidReceiver",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidSwapDetails",
     "type": "error"
   },
   {
@@ -94,11 +104,6 @@
   {
     "inputs": [],
     "name": "NullAddrIsNotAnERC20Token",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "OnlyContractOwner",
     "type": "error"
   },
   {
@@ -152,6 +157,11 @@
       }
     ],
     "name": "SwapCallFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UnAuthorized",
     "type": "error"
   },
   {
@@ -352,7 +362,7 @@
         ],
         "indexed": false,
         "internalType": "struct CallToFunctionInfo[]",
-        "name": "infos",
+        "name": "info",
         "type": "tuple[]"
       }
     ],

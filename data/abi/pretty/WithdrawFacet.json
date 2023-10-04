@@ -7,6 +7,6 @@
   "error UnAuthorized()",
   "error WithdrawFailed()",
   "event LogWithdraw(address indexed tokenAddress, address to, uint256 amount)",
-  "function executeCallAndWithdraw(address _callTo, bytes _callData, address _tokenAddress, address _to, uint256 _amount)",
-  "function withdraw(address _tokenAddress, address _to, uint256 _amount)"
+  "function executeCallAndWithdraw(address _callTo, bytes _callData, address _token, address _to, uint256 _amount)",
+  "function withdraw(address _token, address _to, uint256 _amount)"
 ]

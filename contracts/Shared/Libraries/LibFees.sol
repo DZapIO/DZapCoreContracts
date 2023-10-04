@@ -60,6 +60,7 @@ library LibFees {
 
         FeeInfo memory feeInfo = integratorInfo.feeInfo[_feeType];
         uint256 fixedNativeFeeAmount = feeInfo.fixedNativeFeeAmount;
+
         uint256 dzapShare;
         if (fixedNativeFeeAmount > 0) {
             dzapShare =

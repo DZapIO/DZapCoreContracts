@@ -7,7 +7,7 @@
   "error FunctionDoesNotExist()",
   "error FunctionIsImmutable()",
   "error IncorrectFacetCutAction()",
-  "error InitReverted()",
+  "error InitReverted(bytes reason)",
   "error InitZeroButCalldataNotEmpty()",
   "error NoSelectorsInFace()",
   "error OnlyContractOwner()",

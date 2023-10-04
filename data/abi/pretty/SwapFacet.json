@@ -4,6 +4,7 @@
   "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error IntegratorNotAllowed()",
   "error InvalidAmount()",
+  "error InvalidContract()",
   "error InvalidPermit()",
   "error InvalidPermitData()",
   "error NativeTransferFailed()",
@@ -21,7 +22,7 @@
   "event MultiSwapped(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount)[] swapInfo)",
   "event Swapped(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount) swapInfo)",
   "event SwappedTokens(bytes32 transactionId, address dex, address fromAssetId, address toAssetId, uint256 fromAmount, uint256 toAmount, uint256 leftoverFromAmount, uint256 timestamp)",
-  "function multiSwap(bytes32 _transactionId, address _refundee, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
+  "function multiSwap(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
   "function multiSwapWithoutRevert(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
-  "function swap(bytes32 _transactionId, address _refundee, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
+  "function swap(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
 ]

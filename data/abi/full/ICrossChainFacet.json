@@ -187,7 +187,7 @@
         ],
         "indexed": false,
         "internalType": "struct CallToFunctionInfo[]",
-        "name": "infos",
+        "name": "info",
         "type": "tuple[]"
       }
     ],

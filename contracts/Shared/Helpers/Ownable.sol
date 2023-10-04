@@ -8,9 +8,9 @@ import { UnauthorizedCaller, ZeroAddress } from "../Errors.sol";
 abstract contract Ownable is Context {
     address private _owner;
 
-    event GovernanceChanged(
-        address indexed formerGov,
-        address indexed _newOwner
+    event OwnershipTransferred(
+        address indexed oldOwner,
+        address indexed newOwner
     );
 
     /**
@@ -24,10 +24,10 @@ abstract contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor(address _owner) {
-        if (_owner == address(0)) revert ZeroAddress();
-        _owner = _owner;
-        emit GovernanceChanged(address(0), _owner);
+    constructor(address _ownerAddr) {
+        if (_ownerAddr == address(0)) revert ZeroAddress();
+        _owner = _ownerAddr;
+        emit OwnershipTransferred(address(0), _ownerAddr);
     }
 
     /**
@@ -43,7 +43,7 @@ abstract contract Ownable is Context {
      */
     function transferOwnership(address _newOwner) external virtual onlyOwner {
         if (_newOwner == address(0)) revert ZeroAddress();
-        emit GovernanceChanged(_owner, _newOwner);
+        emit OwnershipTransferred(_owner, _newOwner);
         _owner = _newOwner;
     }
 }

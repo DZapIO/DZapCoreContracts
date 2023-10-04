@@ -4,6 +4,7 @@ pragma solidity 0.8.19;
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibFees } from "../../Shared/Libraries/LibFees.sol";
 import { LibUtil } from "../../Shared/Libraries/LibUtil.sol";
+import { LibAccess } from "../../Shared/Libraries/LibAccess.sol";
 import { LibDiamond } from "../../Shared/Libraries/LibDiamond.sol";
 
 import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
@@ -16,7 +17,7 @@ import { ICrossChainFacet } from "../Interfaces/ICrossChainFacet.sol";
 import { CrossChainData, BridgeData, CallToFunctionInfo, CrossChainStorage } from "../Types.sol";
 
 import { UnAuthorizedCallToFunction, BridgeCallFailed } from "../../Shared/Errors.sol";
-import { TokenInformationMismatch, SlippageTooHigh } from "../../Shared/Errors.sol";
+import { TokenInformationMismatch, SlippageTooHigh, InvalidSwapDetails } from "../../Shared/Errors.sol";
 import { FeeType, SwapData, SwapInfo } from "../../Shared/Types.sol";
 
 contract CrossChainFacet is
@@ -32,7 +33,9 @@ contract CrossChainFacet is
         bytes4[] calldata _selectors,
         CallToFunctionInfo[] calldata _infos
     ) external {
-        LibDiamond.enforceIsContractOwner();
+        if (msg.sender != LibDiamond.contractOwner()) {
+            LibAccess.enforceAccessControl();
+        }
 
         CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
 
@@ -64,8 +67,8 @@ contract CrossChainFacet is
             _bridgeData.minAmount,
             _genericData.permit
         );
-
         _bridgeData.minAmount -= totalFee;
+
         _startBridge(
             _bridgeData,
             _patchGenericCrossChainData(_genericData, _bridgeData.minAmount)
@@ -116,7 +119,16 @@ contract CrossChainFacet is
                 bridgeData.minAmount,
                 _genericData[i].permit
             );
+
             bridgeData.minAmount -= totalFee;
+
+            _startBridge(
+                bridgeData,
+                _patchGenericCrossChainData(
+                    _genericData[i],
+                    bridgeData.minAmount
+                )
+            );
 
             LibFees.accrueTokenFees(
                 _transactionId,
@@ -166,13 +178,18 @@ contract CrossChainFacet is
 
             uint256 totalFee;
             uint256 dZapShare;
+            address from;
 
             if (bridgeData.hasSourceSwaps) {
-                // _swapData.to == _bridgeData.from
+                if (_swapData[swapCount].to != bridgeData.from)
+                    revert InvalidSwapDetails();
+
+                from = _swapData[swapCount].from;
+
                 // src swap
                 (totalFee, dZapShare) = LibAsset.deposit(
                     _integrator,
-                    FeeType.SWAP,
+                    FeeType.BRIDGE,
                     _swapData[swapCount]
                 );
 
@@ -187,13 +204,6 @@ contract CrossChainFacet is
                         returnToAmount
                     );
                 bridgeData.minAmount = returnToAmount;
-                _startBridge(
-                    bridgeData,
-                    _patchGenericCrossChainData(
-                        _genericData[i],
-                        bridgeData.minAmount
-                    )
-                );
 
                 if (leftoverFromAmount > 0)
                     LibAsset.transferToken(
@@ -204,8 +214,8 @@ contract CrossChainFacet is
 
                 swapInfo[swapCount] = SwapInfo(
                     _swapData[swapCount].callTo,
-                    _swapData[swapCount].to,
                     _swapData[swapCount].from,
+                    _swapData[swapCount].to,
                     _swapData[swapCount].fromAmount,
                     leftoverFromAmount,
                     returnToAmount
@@ -213,7 +223,7 @@ contract CrossChainFacet is
 
                 ++swapCount;
             } else {
-                // dstSwap
+                // dstSwap or simple swap
                 (totalFee, dZapShare) = LibAsset.deposit(
                     _integrator,
                     FeeType.BRIDGE,
@@ -221,15 +231,15 @@ contract CrossChainFacet is
                     bridgeData.minAmount,
                     _genericData[i].permit
                 );
-
                 bridgeData.minAmount -= totalFee;
+                from = bridgeData.from;
             }
 
             LibFees.accrueTokenFees(
                 _transactionId,
                 _integrator,
                 FeeType.BRIDGE,
-                _swapData[swapCount].from,
+                from,
                 totalFee - dZapShare,
                 dZapShare
             );
@@ -265,7 +275,6 @@ contract CrossChainFacet is
         BridgeData memory _bridgeData,
         CrossChainData memory _genericData
     ) internal {
-        // bool isNative = LibAsset.isNativeToken(_bridgeData.from);
         uint256 nativeValue;
 
         if (LibAsset.isNativeToken(_bridgeData.from)) {
@@ -281,6 +290,7 @@ contract CrossChainFacet is
         (bool success, bytes memory res) = _genericData.callTo.call{
             value: nativeValue + _genericData.extraNative
         }(_genericData.callData);
+
         if (!success) {
             revert BridgeCallFailed(res);
         }
@@ -310,14 +320,7 @@ contract CrossChainFacet is
                         )
                     );
             } else {
-                return
-                    CrossChainData(
-                        _genericData.callTo,
-                        _genericData.approveTo,
-                        _genericData.extraNative,
-                        _genericData.permit,
-                        _genericData.callData
-                    );
+                return _genericData;
             }
         } else {
             revert UnAuthorizedCallToFunction();

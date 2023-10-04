@@ -1,13 +1,12 @@
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 import { LibFees } from "../Libraries/LibFees.sol";
 import { LibPermit } from "../Libraries/LibPermit.sol";
 
 import { FeeType, SwapData, PermitType } from "../Types.sol";
-
 import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, NullAddrIsNotAnERC20Token, InvalidAmount, IntegratorNotAllowed } from "../Errors.sol";
 
 library LibAsset {

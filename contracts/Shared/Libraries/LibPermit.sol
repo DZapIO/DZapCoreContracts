@@ -16,7 +16,7 @@ library LibPermit {
     error InvalidPermit();
 
     bytes32 internal constant _PERMIT_STORAGE_SLOT =
-        keccak256("dzap.storage.library.PERMIT");
+        keccak256("dzap.storage.library.Permit");
 
     function permitStorage() internal pure returns (PermitStorage storage ps) {
         bytes32 slot = _PERMIT_STORAGE_SLOT;

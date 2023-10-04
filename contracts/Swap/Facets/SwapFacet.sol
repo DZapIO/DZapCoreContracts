@@ -13,8 +13,6 @@ import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 import { SwapData, SwapInfo, FeeType, IntegratorInfo } from "../../Shared/Types.sol";
 import { ZeroAddress } from "../../Shared/Errors.sol";
 
-// import "hardhat/console.sol";
-
 contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
     /* ========= ERROR ========= */
 
@@ -24,12 +22,13 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
     function swap(
         bytes32 _transactionId,
-        address _refundee,
         address _integrator,
+        address _refundee,
         address _recipient,
         SwapData calldata _data
     ) external payable nonReentrant refundExcessNative(_refundee) {
-        if (_recipient == address(0)) revert ZeroAddress();
+        if (_recipient == address(0) || _refundee == address(0))
+            revert ZeroAddress();
 
         (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(
             _integrator,
@@ -67,12 +66,12 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
             _transactionId,
             _integrator,
             msg.sender,
-            _recipient,
             _refundee,
+            _recipient,
             SwapInfo(
                 _data.callTo,
-                _data.to,
                 _data.from,
+                _data.to,
                 _data.fromAmount,
                 leftoverFromAmount,
                 returnToAmount
@@ -82,12 +81,13 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
     function multiSwap(
         bytes32 _transactionId,
-        address _refundee,
         address _integrator,
+        address _refundee,
         address _recipient,
         SwapData[] calldata _data
     ) external payable nonReentrant refundExcessNative(_refundee) {
-        if (_recipient == address(0)) revert ZeroAddress();
+        if (_recipient == address(0) || _refundee == address(0))
+            revert ZeroAddress();
 
         uint256 length = _data.length;
         SwapInfo[] memory swapInfo = new SwapInfo[](length);
@@ -113,19 +113,20 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
                 dZapShare
             );
 
-            if (leftoverFromAmount > 0)
+            if (leftoverFromAmount > 0) {
                 LibAsset.transferToken(
                     _data[i].from,
                     _refundee,
                     leftoverFromAmount
                 );
+            }
 
             LibAsset.transferToken(_data[i].to, _recipient, returnToAmount);
 
             swapInfo[i] = SwapInfo(
                 _data[i].callTo,
-                _data[i].to,
                 _data[i].from,
+                _data[i].to,
                 _data[i].fromAmount,
                 leftoverFromAmount,
                 returnToAmount
@@ -155,13 +156,14 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
         address _recipient,
         SwapData[] calldata _data
     ) external payable nonReentrant refundExcessNative(_refundee) {
-        if (_recipient == address(0)) revert ZeroAddress();
+        if (_recipient == address(0) || _refundee == address(0))
+            revert ZeroAddress();
 
         uint256 length = _data.length;
         SwapInfo[] memory swapInfo = new SwapInfo[](length);
-        uint256 successfulSwap;
+        uint256 failedSwaps;
 
-        for (uint256 i = 0; i < length; ) {
+        for (uint256 i = 0; i < length; ++i) {
             (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(
                 _integrator,
                 FeeType.SWAP,
@@ -176,8 +178,8 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
             if (returnToAmount == 0) {
                 swapInfo[i] = SwapInfo(
                     _data[i].callTo,
-                    _data[i].to,
                     _data[i].from,
+                    _data[i].to,
                     _data[i].fromAmount,
                     0,
                     0
@@ -185,9 +187,11 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
                 LibAsset.transferToken(
                     _data[i].from,
-                    _recipient,
+                    _refundee,
                     _data[i].fromAmount
                 );
+
+                ++failedSwaps;
             } else {
                 LibFees.accrueTokenFees(
                     _transactionId,
@@ -213,24 +217,16 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
                 swapInfo[i] = SwapInfo(
                     _data[i].callTo,
-                    _data[i].to,
                     _data[i].from,
+                    _data[i].to,
                     _data[i].fromAmount,
                     leftoverFromAmount,
                     returnToAmount
                 );
-
-                unchecked {
-                    ++successfulSwap;
-                }
             }
-
-            // unchecked {
-            //     ++i;
-            // }
         }
 
-        if (successfulSwap == 0) {
+        if (failedSwaps == length) {
             revert AllSwapsFailed();
         }
 

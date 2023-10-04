@@ -2,10 +2,15 @@ import * as dotenv from 'dotenv'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
-import '@nomiclabs/hardhat-waffle'
-import 'hardhat-gas-reporter'
+import '@nomiclabs/hardhat-etherscan'
+import '@nomicfoundation/hardhat-chai-matchers'
+import '@openzeppelin/hardhat-upgrades'
 import '@typechain/hardhat'
+import 'hardhat-gas-reporter'
 import 'hardhat-contract-sizer'
+import 'solidity-coverage'
+import 'hardhat-deploy'
+import 'hardhat-deploy-ethers'
 import 'hardhat-abi-exporter'
 
 import './tasks/accounts'
@@ -19,6 +24,7 @@ const dummyKey =
 
 const mainnetKey: string = process.env.MAINNET_KEY || dummyKey
 const testnetKey: string = process.env.TESTNET_KEY || dummyKey
+const testnetKeyOld: string = process.env.TESTNET_KEY_OLD || dummyKey
 const alchemyApiKey: string = process.env.ALCHEMY_API_KEY || dummyApiKey
 const scanApiKey: string = process.env.BSCSCAN_API_KEY || dummyApiKey
 
@@ -33,6 +39,16 @@ const config: HardhatUserConfig = {
     polygonTestnet: {
       chainId: 80001,
       url: 'https://polygon-mumbai.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
+      accounts: [testnetKey],
+    },
+    arbitrum: {
+      chainId: 42161,
+      url: 'https://arb-mainnet.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
+      accounts: [testnetKey],
+    },
+    optimism: {
+      chainId: 10,
+      url: 'https://opt-mainnet.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
       accounts: [testnetKey],
     },
   },
@@ -83,6 +99,8 @@ const config: HardhatUserConfig = {
         'WithdrawFacet',
         'SwapFacet',
         'CrossChainFacet',
+        'Executor',
+        'Receiver',
       ],
       flat: true,
       clear: true,
@@ -103,6 +121,8 @@ const config: HardhatUserConfig = {
         'WithdrawFacet',
         'SwapFacet',
         'CrossChainFacet',
+        'Executor',
+        'Receiver',
       ],
       flat: true,
       clear: true,

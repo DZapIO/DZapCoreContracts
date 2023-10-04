@@ -59,7 +59,6 @@ contract AccessManagerFacet is IAccessManagerFacet {
         }
     }
 
-    /// @inheritdoc IAccessManagerFacet
     function addressCanExecuteMethod(
         bytes4 _selector,
         address _executor

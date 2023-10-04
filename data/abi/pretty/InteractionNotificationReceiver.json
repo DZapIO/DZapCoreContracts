@@ -1,0 +1,3 @@
+[
+  "function fillOrderInteraction(address taker, uint256 makingAmount, uint256 takingAmount, bytes interactiveData) returns (uint256 offeredTakingAmount)"
+]

@@ -22,7 +22,7 @@ library LibDiamond {
     error FunctionIsImmutable();
     error InitZeroButCalldataNotEmpty();
     error CalldataEmptyButInitNotZero();
-    error InitReverted();
+    error InitReverted(bytes reason);
 
     // ----------------
 
@@ -332,12 +332,7 @@ library LibDiamond {
             // solhint-disable-next-line avoid-low-level-calls
             (bool success, bytes memory error) = _init.delegatecall(_calldata);
             if (!success) {
-                if (error.length > 0) {
-                    // bubble up the error
-                    revert(string(error));
-                } else {
-                    revert InitReverted();
-                }
+                revert InitReverted(error);
             }
         }
     }

@@ -1,9 +1,6 @@
 [
-  "error AlreadyInitialized()",
   "error FeeTooHigh()",
   "error IntegratorNotActive()",
-  "error InvalidFee()",
-  "error OnlyContractOwner()",
   "error ShareTooHigh()",
   "error UnAuthorized()",
   "error ZeroAddress()",
@@ -15,7 +12,6 @@
   "event SetPlatformFee(uint256 fee)",
   "function calcFixedNativeFees(address _integrator, uint8 _feeType) view returns (uint256 fixedNativeFeeAmount, uint256 dzapShare)",
   "function calcTokenFees(address _integrator, uint8 _feeType, uint256 _amount) view returns (uint256 totalFee, uint256 dzapShare)",
-  "function initialize(address _protocolFeeVault, uint256 _maxTokenFee, uint256 _maxFixedNativeFeeAmount)",
   "function integratorFeeInfo(address _integrator, uint8 _feeType) view returns (tuple(uint256 tokenFee, uint256 fixedNativeFeeAmount, uint256 dzapTokenShare, uint256 dzapFixedNativeShare))",
   "function isIntegratorAllowed(address _integrator) view returns (bool)",
   "function maxFixedNativeFeeAmount() view returns (uint256 _maxFixedNativeFee)",

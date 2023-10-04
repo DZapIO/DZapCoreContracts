@@ -29,8 +29,8 @@ interface ISwapFacet {
 
     function swap(
         bytes32 _transactionId,
-        address _refundee,
         address _integrator,
+        address _refundee,
         address _recipient,
         SwapData calldata _data
     ) external payable;

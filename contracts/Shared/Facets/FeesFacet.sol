@@ -13,6 +13,8 @@ contract FeesFacet is IFeesFacet {
     error ShareTooHigh();
     error IntegratorNotActive();
 
+    /* ========= MODIFIER ========= */
+
     modifier onlyAuthorized() {
         if (msg.sender != LibDiamond.contractOwner()) {
             LibAccess.enforceAccessControl();
@@ -21,35 +23,6 @@ contract FeesFacet is IFeesFacet {
     }
 
     /* ========= RESTRICTED ========= */
-
-    function initialize(
-        address _protocolFeeVault,
-        uint256 _maxTokenFee,
-        uint256 _maxFixedNativeFeeAmount
-    ) external {
-        LibDiamond.enforceIsContractOwner();
-
-        if (_protocolFeeVault == address(0)) {
-            revert ZeroAddress();
-        }
-        if (_maxTokenFee == 0) {
-            revert InvalidFee();
-        }
-        if (_maxTokenFee > LibFees._BPS_DENOMINATOR) {
-            revert FeeTooHigh();
-        }
-
-        FeesStorage storage fs = LibFees.feesStorage();
-
-        if (fs.initialized) {
-            revert AlreadyInitialized();
-        }
-
-        fs.protocolFeeVault = _protocolFeeVault;
-        fs.maxTokenFee = _maxTokenFee;
-        fs.maxFixedNativeFeeAmount = _maxFixedNativeFeeAmount;
-        fs.initialized = true;
-    }
 
     function setProtocolFeeVault(
         address _protocolFeeVault

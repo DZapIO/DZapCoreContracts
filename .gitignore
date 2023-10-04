@@ -4,3 +4,8 @@ node_modules
 cache
 artifacts
 .env
+
+temp
+.vscode
+.DS_Store
+typechain

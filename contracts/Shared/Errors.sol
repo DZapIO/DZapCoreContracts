@@ -44,3 +44,5 @@ error FeeTooHigh();
 
 error NotInitialized();
 error UnauthorizedCaller();
+
+error InvalidSwapDetails();

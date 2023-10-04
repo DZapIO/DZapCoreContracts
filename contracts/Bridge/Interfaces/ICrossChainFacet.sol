@@ -12,7 +12,7 @@ interface ICrossChainFacet {
     event SelectorToInfoUpdated(
         address[] routers,
         bytes4[] selectors,
-        CallToFunctionInfo[] infos
+        CallToFunctionInfo[] info
     );
 
     event BridgeTransferStarted(

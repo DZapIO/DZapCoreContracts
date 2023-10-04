@@ -1,6 +1,6 @@
 import { BigNumber, BigNumberish } from 'ethers'
 import { ethers } from 'hardhat'
-import { ZERO } from './constant'
+import { ZERO } from '../../constants'
 
 export async function advanceBlock() {
   return ethers.provider.send('evm_mine', [])

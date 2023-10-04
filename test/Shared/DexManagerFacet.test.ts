@@ -1,25 +1,14 @@
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
-import { BigNumber, BigNumberish, Contract, ContractFactory } from 'ethers'
 
 import {
-  BPS_MULTIPLIER,
   CONTRACTS,
   ERRORS,
   EVENTS,
-  ZERO,
+  MAX_FIXED_FEE_AMOUNT,
+  MAX_TOKEN_FEE,
 } from '../../constants'
-import {
-  ADDRESS_ZERO,
-  BPS_DENOMINATOR,
-  snapshot,
-  updateBalance,
-} from '../utils'
-import {
-  getFeeData,
-  getRandomBytes32,
-  getRevertMsg,
-} from '../../scripts/core/helper'
+import { snapshot, updateBalance } from '../utils'
 
 import {
   AccessManagerFacet,
@@ -41,20 +30,13 @@ import {
   Executor,
   Receiver,
 } from '../../typechain-types'
-import {
-  DiamondCut,
-  FacetCutAction,
-  FeeInfo,
-  FeeType,
-  PermitType,
-} from '../types'
+import { DiamondCut, FacetCutAction } from '../../types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import {
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
   getSighash,
 } from '../../scripts/utils/diamond'
-import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE, decodeAscii } from '../common'
 import { parseUnits } from 'ethers/lib/utils'
 
 let dZapDiamond: DZapDiamond

@@ -14,15 +14,11 @@ import {
   ZERO,
   MAX_FIXED_FEE_AMOUNT,
   MAX_TOKEN_FEE,
-} from '../../constants'
-import {
   ADDRESS_ZERO,
   BPS_DENOMINATOR,
-  DEFAULT_BYTES as DEFAULT_BYTES,
-  convertBNToNegative,
-  snapshot,
-  updateBalance,
-} from '../utils'
+  DEFAULT_BYTES,
+} from '../../constants'
+import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 import {
   getFeeData,
   encodePermitData,
@@ -60,7 +56,7 @@ import {
   FeeInfo,
   FeeType,
   PermitType,
-} from '../types'
+} from '../../types'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

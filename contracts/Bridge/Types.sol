@@ -6,11 +6,6 @@ struct CallToFunctionInfo {
     uint256 offset;
 }
 
-struct StargateStorage {
-    mapping(uint256 => uint16) layerZeroChainId;
-    bool initialized;
-}
-
 struct CrossChainStorage {
     mapping(address => mapping(bytes4 => CallToFunctionInfo)) selectorToInfo;
 }

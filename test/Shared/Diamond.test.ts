@@ -1,19 +1,16 @@
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
-import { BigNumberish, Contract, ContractFactory } from 'ethers'
 
-import { CONTRACTS, ERRORS, ZERO } from '../../constants'
 import {
+  CONTRACTS,
+  ERRORS,
+  ZERO,
   ADDRESS_ZERO,
   BPS_DENOMINATOR,
-  snapshot,
-  updateBalance,
-} from '../utils'
-import {
-  getFeeData,
-  getRandomBytes32,
-  getRevertMsg,
-} from '../../scripts/core/helper'
+  MAX_FIXED_FEE_AMOUNT,
+  MAX_TOKEN_FEE,
+} from '../../constants'
+import { snapshot, updateBalance } from '../utils'
 
 import {
   AccessManagerFacet,
@@ -35,17 +32,11 @@ import {
   Executor,
   Receiver,
 } from '../../typechain-types'
-import {
-  DiamondCut,
-  FacetCutAction,
-  FeeInfo,
-  FeeType,
-  PermitType,
-} from '../types'
+import { DiamondCut, FacetCutAction } from '../../types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
-import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE, decodeAscii } from '../common'
 import { parseUnits } from 'ethers/lib/utils'
+import { BigNumber } from 'ethers'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -471,7 +462,7 @@ describe('Diamond.test.ts', async () => {
         await diamondInit.populateTransaction.initialize(
           permit2.address,
           protoFeeVault.address,
-          BPS_DENOMINATOR.add(1),
+          BigNumber.from(BPS_DENOMINATOR).add(1),
           MAX_FIXED_FEE_AMOUNT
         )
 

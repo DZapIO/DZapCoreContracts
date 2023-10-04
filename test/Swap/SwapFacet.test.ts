@@ -15,9 +15,9 @@ import {
   ZERO_ADDRESS,
   MAX_FIXED_FEE_AMOUNT,
   MAX_TOKEN_FEE,
+  BPS_DENOMINATOR,
 } from '../../constants'
 import {
-  BPS_DENOMINATOR,
   duration,
   generateRandomWallet,
   getPermit2SignatureAndCalldataForApprove,
@@ -59,7 +59,7 @@ import {
   FeeInfo,
   FeeType,
   PermitType,
-} from '../types'
+} from '../../types'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

@@ -19,7 +19,7 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const diamondAddress = '0x45f4883c5777dFA2e905F55f095554B1a20E23B7'
+  const diamondAddress = ''
 
   const swapFacet = (await ethers.getContractAt(
     CONTRACTS.SwapFacet,
@@ -251,28 +251,17 @@ async function main() {
     }
   })
 
-  // console.log(selectorMap)
-
   // --------------------------------------
 
   console.log('Adding Dex...')
 
-  // await dexManagerFacet.connect(deployer).estimateGas.batchAddDex(dex[chainId])
-  // await dexManagerFacet
-  //   .connect(deployer)
-  //   .estimateGas.batchSetFunctionApprovalBySignature(
-  //     sigDex,
-  //     selectors,
-  //     approval
-  //   )
-
-  // const tx1 = await dexManagerFacet.connect(deployer).batchAddDex(dex[chainId])
-  // console.log('batchAddDex Tx', tx1.hash)
-  // const receipt1 = await tx1.wait()
-  // if (!receipt1.status) {
-  //   throw Error(`Adding Dex failed: ${tx1.hash}`)
-  // }
-  // console.log('Completed Adding Dex')
+  const tx1 = await dexManagerFacet.connect(deployer).batchAddDex(dex[chainId])
+  console.log('batchAddDex Tx', tx1.hash)
+  const receipt1 = await tx1.wait()
+  if (!receipt1.status) {
+    throw Error(`Adding Dex failed: ${tx1.hash}`)
+  }
+  console.log('Completed Adding Dex')
 
   // --------------------------------------
 
@@ -286,34 +275,6 @@ async function main() {
     throw Error(`Adding Dex Signatures failed: ${tx2.hash}`)
   }
   console.log('Completed Adding Dex Signatures')
-
-  // let err
-  // try {
-  //   await dexManagerFacet
-  //     .connect(deployer)
-  //     .batchSetFunctionApprovalBySignature(sigDex, selectors, approval)
-  // } catch (error: any) {
-  //   err = error
-  //   console.log('err', err)
-  //   try {
-  //     if (error.data) {
-  //       const decodedError = dexManagerFacet.interface.parseError(error.data)
-  //       console.log('decodedError', decodedError)
-
-  //       if (decodedError.args.reason) {
-  //         const revertMessage = getRevertMsg(decodedError.args.reason)
-  //         console.log('revertMessage', revertMessage)
-  //         throw revertMessage
-  //       } else {
-  //         throw decodedError
-  //       }
-  //     } else {
-  //       throw err
-  //     }
-  //   } catch (error) {
-  //     throw err
-  //   }
-  // }
 }
 
 main().catch((error) => {

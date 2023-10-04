@@ -16,7 +16,7 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const diamondAddress = '0xDE74A179Bfb939533cAa344B402F11855AFC6fF5'
+  const diamondAddress = ''
 
   const Executor = await ethers.getContractFactory(CONTRACTS.Executor)
   const executor = await Executor.deploy(diamondAddress)

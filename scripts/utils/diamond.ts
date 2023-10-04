@@ -12,37 +12,6 @@ export function getSelectorsUsingFunSig(func: string[]) {
   )
 }
 
-export async function deployFacetsToReplace(facetNames: string[]) {
-  const cutData: DiamondCut[] = []
-  console.log('')
-  console.log('Deploying NewFacets:')
-  for (let i = 0; i < facetNames.length; i++) {
-    const facetName = facetNames[i]
-    const Facet = await ethers.getContractFactory(facetName)
-    const facet = await Facet.deploy()
-    await facet.deployed()
-    console.log(`${facetName} deployed: ${facet.address}`)
-
-    if (facetName == CONTRACTS.FeesFacet) {
-      cutData.push({
-        facetAddress: facet.address,
-        action: FacetCutAction.Replace,
-        functionSelectors: getSelectorsUsingContract(facet, CONTRACTS.FeesFacet)
-          .selectors,
-      })
-    } else {
-      cutData.push({
-        facetAddress: facet.address,
-        action: FacetCutAction.Replace,
-        functionSelectors: getSelectorsUsingContract(facet, facetName)
-          .selectors,
-      })
-    }
-  }
-
-  return { cutData }
-}
-
 export function getSelectorsUsingContract(contract, facetName) {
   const signatures = Object.keys(contract.interface.functions)
   const selectors = signatures.reduce((acc, val) => {
@@ -100,6 +69,8 @@ export function get(faceCutData: DiamondCutData, functionNames: string[]) {
   return faceCutData
 }
 
+// -------------------------------------
+
 export async function upgradeDiamond(
   owner: SignerWithAddress,
   cutData: DiamondCut[],
@@ -130,4 +101,35 @@ export async function upgradeDiamond(
     throw Error(`Diamond upgrade failed: ${tx.hash}`)
   }
   console.log('Completed diamond cut')
+}
+
+export async function deployFacetsToReplace(facetNames: string[]) {
+  const cutData: DiamondCut[] = []
+  console.log('')
+  console.log('Deploying NewFacets:')
+  for (let i = 0; i < facetNames.length; i++) {
+    const facetName = facetNames[i]
+    const Facet = await ethers.getContractFactory(facetName)
+    const facet = await Facet.deploy()
+    await facet.deployed()
+    console.log(`${facetName} deployed: ${facet.address}`)
+
+    if (facetName == CONTRACTS.FeesFacet) {
+      cutData.push({
+        facetAddress: facet.address,
+        action: FacetCutAction.Replace,
+        functionSelectors: getSelectorsUsingContract(facet, CONTRACTS.FeesFacet)
+          .selectors,
+      })
+    } else {
+      cutData.push({
+        facetAddress: facet.address,
+        action: FacetCutAction.Replace,
+        functionSelectors: getSelectorsUsingContract(facet, facetName)
+          .selectors,
+      })
+    }
+  }
+
+  return { cutData }
 }

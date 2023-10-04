@@ -1,19 +1,11 @@
-import { BigNumber, BigNumberish } from 'ethers'
+import { BigNumber } from 'ethers'
 import { ethers } from 'hardhat'
-import { parseUnits } from 'ethers/lib/utils'
-import {
-  BASE_TEN,
-  TOKEN_A_DECIMAL,
-  TOKEN_B_DECIMAL,
-  TOKEN_C_DECIMAL,
-  USDT_DECIMAL,
-} from './constant'
 
 /* ----------------------------------------- */
 /* Big Number Helpers */
 // Defaults to e18 using amount * 10^18
 export function getBigNumber(amount: string | number, decimals = 18) {
-  return BigNumber.from(amount).mul(BigNumber.from(BASE_TEN).pow(decimals))
+  return BigNumber.from(amount).mul(BigNumber.from(10).pow(decimals))
 }
 
 export function convertBNToNegative(amount: BigNumber) {
@@ -64,22 +56,6 @@ export function bnSqrt(x: BigNumber) {
 
 export const bnConsoleLog = (a: string, b: BigNumber) => {
   console.log(a, b.toString())
-}
-
-export const parseTokenA = (value: BigNumberish) => {
-  return parseUnits(value.toString(), TOKEN_A_DECIMAL)
-}
-
-export const parseTokenB = (value: BigNumberish) => {
-  return parseUnits(value.toString(), TOKEN_B_DECIMAL)
-}
-
-export const parseTokenC = (value: BigNumberish) => {
-  return parseUnits(value.toString(), TOKEN_C_DECIMAL)
-}
-
-export const parseUSDT = (value: BigNumberish) => {
-  return parseUnits(value.toString(), USDT_DECIMAL)
 }
 
 /* ----------------------------------------- */

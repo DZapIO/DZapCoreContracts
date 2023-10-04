@@ -1,6 +1,6 @@
 import { ethers } from 'hardhat'
 import { CONTRACTS, ZERO } from '../constants'
-import { deployFacetsToReplace, upgradeDiamond } from './utils/diamond'
+import { FeeInfo, FeeType } from '../types'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
@@ -27,18 +27,50 @@ async function main() {
     dZapDiamondAddress
   )
 
+  const feesFacet = await ethers.getContractAt(
+    CONTRACTS.FeesFacet,
+    dZapDiamond.address
+  )
+
   /* ------------------------------------------- */
-  // replace facets
+
+  const feeInfo: FeeInfo[] = [
+    {
+      tokenFee: ZERO,
+      fixedNativeFeeAmount: ZERO,
+      dzapTokenShare: ZERO,
+      dzapFixedNativeShare: ZERO,
+    },
+    {
+      tokenFee: ZERO,
+      fixedNativeFeeAmount: ZERO,
+      dzapTokenShare: ZERO,
+      dzapFixedNativeShare: ZERO,
+    },
+  ]
+
+  const integratorAddress = ''
+
+  /* ------------------------------------------- */
+  // setting facets
   console.log('')
-  console.log('Replacing Facets...')
-  const { cutData } = await deployFacetsToReplace([CONTRACTS.CrossChainFacet])
+  console.log('Setting Fee...')
 
-  const initData = {
-    address: ethers.constants.AddressZero,
-    data: '0x',
+  const tx = await feesFacet
+    .connect(deployer)
+    .setIntegratorInfo(
+      integratorAddress,
+      [FeeType.SWAP, FeeType.BRIDGE],
+      feeInfo
+    )
+
+  console.log('tx:', tx.hash)
+
+  const receipt = await tx.wait()
+  if (!receipt.status) {
+    throw Error(`Setting Fee failed: ${tx.hash}`)
   }
-
-  await upgradeDiamond(deployer, cutData, dZapDiamond, initData)
+  console.log('Completed Setting Fee')
 }
 
 main().catch((error) => {

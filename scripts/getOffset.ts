@@ -1669,11 +1669,6 @@ async function main() {
   )
 
   console.log(info)
-
-  //   const iface = new ethers.utils.Interface(abi)
-
-  //   console.log(iface.format(FormatTypes.minimal).slice(0, 24))
-  //   console.log(iface.format(FormatTypes.minimal).slice(24))
 }
 
 main().catch((error) => {

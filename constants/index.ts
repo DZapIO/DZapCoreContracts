@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers'
-import { ethers } from 'hardhat'
+import { ethers, network } from 'hardhat'
 
 export const CONTRACTS = {
   DiamondCutFacet: 'DiamondCutFacet',
@@ -77,6 +77,12 @@ export const ZERO_ADDRESS = ethers.constants.AddressZero
 export const NATIVE_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 export const DZAP_NATIVE = ZERO_ADDRESS
 export const ZERO = BigNumber.from(0)
+
+export const DEFAULT_BYTES = '0x'
+export const ADDRESS_ZERO = ethers.constants.AddressZero
+export const MAX_DEADLINE = ethers.constants.MaxInt256
+export const DEFAULT_ERC20_PERMIT_VERSION = '1'
+export const HARDHAT_CHAIN_ID = network.config.chainId as number
 
 export const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
 export const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')

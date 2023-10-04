@@ -13,8 +13,9 @@ import {
   ZERO,
   MAX_FIXED_FEE_AMOUNT,
   MAX_TOKEN_FEE,
+  BPS_DENOMINATOR,
 } from '../../constants'
-import { BPS_DENOMINATOR, latest, snapshot, updateBalance } from '../utils'
+import { latest, snapshot, updateBalance } from '../utils'
 import { encodePermitData } from '../../scripts/core/helper'
 import {
   getSelectorsUsingContract,
@@ -40,7 +41,7 @@ import {
   Executor,
   Receiver,
 } from '../../typechain-types'
-import { DiamondCut, FacetCutAction, PermitType } from '../types'
+import { DiamondCut, FacetCutAction, PermitType } from '../../types'
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6

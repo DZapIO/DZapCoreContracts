@@ -1,8 +1,15 @@
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
 
-import { CONTRACTS, ERRORS, EVENTS } from '../../constants'
-import { ADDRESS_ZERO, snapshot, updateBalance } from '../utils'
+import {
+  CONTRACTS,
+  ERRORS,
+  EVENTS,
+  MAX_FIXED_FEE_AMOUNT,
+  MAX_TOKEN_FEE,
+  ADDRESS_ZERO,
+} from '../../constants'
+import { snapshot, updateBalance } from '../utils'
 
 import {
   AccessManagerFacet,
@@ -14,19 +21,14 @@ import {
   OwnershipFacet,
   SwapFacet,
   WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
   DiamondInit,
   Permit2,
   CrossChainFacet,
-  BridgeMock,
 } from '../../typechain-types'
-import { DiamondCut, FacetCutAction } from '../types'
+import { DiamondCut, FacetCutAction } from '../../types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
-import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common'
-import { parseUnits } from 'ethers/lib/utils'
+import {} from '../common'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

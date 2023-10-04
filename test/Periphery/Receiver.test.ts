@@ -40,7 +40,7 @@ import {
   Executor,
   Receiver,
 } from '../../typechain-types'
-import { DiamondCut, FacetCutAction, PermitType } from '../types'
+import { DiamondCut, FacetCutAction, PermitType } from '../../types'
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6

@@ -19,8 +19,9 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const diamondAddress = '0xDE74A179Bfb939533cAa344B402F11855AFC6fF5'
-  //   const diamondAddress = '0x45f4883c5777dFA2e905F55f095554B1a20E23B7'
+  const diamondAddress = ''
+  // const diamondAddress = '0xDE74A179Bfb939533cAa344B402F11855AFC6fF5'
+  // const diamondAddress = '0x45f4883c5777dFA2e905F55f095554B1a20E23B7'
 
   const swapFacet = (await ethers.getContractAt(
     CONTRACTS.SwapFacet,
@@ -29,16 +30,15 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const data = '0xf32bec2f'
+  // const data = ''
 
-  const OneInchRouter = await ethers.getContractFactory('AggregationRouterV5')
-  const decodedError = OneInchRouter.interface.parseError(data)
-  console.log('decodedError', decodedError)
+  // const OneInchRouter = await ethers.getContractFactory('AggregationRouterV5')
+  // const decodedError = OneInchRouter.interface.parseError(data)
+  // console.log('decodedError', decodedError)
 
   /* ------------------------------------------- */
 
-  //   const decodedData =
-  //     '0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001b52657475726e20616d6f756e74206973206e6f7420656e6f7567680000000000'
+  // const decodedData = ''
 
   // const decodedData = swapFacet.interface.decodeFunctionData(
   //   'multiSwap',

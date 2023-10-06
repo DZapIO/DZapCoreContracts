@@ -151,6 +151,7 @@ export interface ICrossChainFacetInterface extends utils.Interface {
   functions: {
     "bridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool),(address,address,uint256,bytes,bytes))": FunctionFragment;
     "bridgeMultipleTokens(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
+    "getSelectorInfo(address,bytes4)": FunctionFragment;
     "swapAndBridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,address,address,uint256,uint256,bytes,bytes)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
     "updateSelectorInfo(address[],bytes4[],(bool,uint256)[])": FunctionFragment;
   };
@@ -159,6 +160,7 @@ export interface ICrossChainFacetInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "bridge"
       | "bridgeMultipleTokens"
+      | "getSelectorInfo"
       | "swapAndBridge"
       | "updateSelectorInfo"
   ): FunctionFragment;
@@ -184,6 +186,10 @@ export interface ICrossChainFacetInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
+    functionFragment: "getSelectorInfo",
+    values: [PromiseOrValue<string>, PromiseOrValue<BytesLike>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "swapAndBridge",
     values: [
       PromiseOrValue<BytesLike>,
@@ -206,6 +212,10 @@ export interface ICrossChainFacetInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "bridgeMultipleTokens",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getSelectorInfo",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -343,6 +353,12 @@ export interface ICrossChainFacet extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    getSelectorInfo(
+      _router: PromiseOrValue<string>,
+      _selector: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<[CallToFunctionInfoStructOutput]>;
+
     swapAndBridge(
       _transactionId: PromiseOrValue<BytesLike>,
       _integrator: PromiseOrValue<string>,
@@ -379,6 +395,12 @@ export interface ICrossChainFacet extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  getSelectorInfo(
+    _router: PromiseOrValue<string>,
+    _selector: PromiseOrValue<BytesLike>,
+    overrides?: CallOverrides
+  ): Promise<CallToFunctionInfoStructOutput>;
+
   swapAndBridge(
     _transactionId: PromiseOrValue<BytesLike>,
     _integrator: PromiseOrValue<string>,
@@ -414,6 +436,12 @@ export interface ICrossChainFacet extends BaseContract {
       _genericData: CrossChainDataStruct[],
       overrides?: CallOverrides
     ): Promise<void>;
+
+    getSelectorInfo(
+      _router: PromiseOrValue<string>,
+      _selector: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<CallToFunctionInfoStructOutput>;
 
     swapAndBridge(
       _transactionId: PromiseOrValue<BytesLike>,
@@ -512,6 +540,12 @@ export interface ICrossChainFacet extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    getSelectorInfo(
+      _router: PromiseOrValue<string>,
+      _selector: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     swapAndBridge(
       _transactionId: PromiseOrValue<BytesLike>,
       _integrator: PromiseOrValue<string>,
@@ -547,6 +581,12 @@ export interface ICrossChainFacet extends BaseContract {
       _bridgeData: BridgeDataStruct[],
       _genericData: CrossChainDataStruct[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    getSelectorInfo(
+      _router: PromiseOrValue<string>,
+      _selector: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     swapAndBridge(

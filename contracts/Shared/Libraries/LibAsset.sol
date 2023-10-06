@@ -14,8 +14,8 @@ import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, Nul
 ///         of assets, including accounting for the native asset `assetId`
 ///         conventions and any noncompliant ERC20 transfers
 library LibAsset {
-    address internal constant _NULL_ADDRESS = address(0);
-    address internal constant _NATIVE_TOKEN = _NULL_ADDRESS;
+    address internal constant _NATIVE_TOKEN =
+        0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
     /// @notice Gets the balance of the inheriting contract for the given asset
     function getOwnBalance(address _token) internal view returns (uint256) {
@@ -32,7 +32,7 @@ library LibAsset {
         uint256 _amount
     ) internal {
         if (_token == _NATIVE_TOKEN) return;
-        if (_spender == _NULL_ADDRESS) revert NullAddrIsNotAValidSpender();
+        if (_spender == address(0)) revert NullAddrIsNotAValidSpender();
 
         uint256 allowance = IERC20(_token).allowance(address(this), _spender);
 
@@ -49,7 +49,7 @@ library LibAsset {
         address _recipient,
         uint256 _amount
     ) internal {
-        if (_recipient == _NULL_ADDRESS) revert NoTransferToNullAddress();
+        if (_recipient == address(0)) revert NoTransferToNullAddress();
         if (_amount > address(this).balance)
             revert InsufficientBalance(_amount, address(this).balance);
 
@@ -81,7 +81,7 @@ library LibAsset {
         uint256 _amount
     ) internal {
         if (_token == _NATIVE_TOKEN) revert NullAddrIsNotAnERC20Token();
-        if (_to == _NULL_ADDRESS) revert NoTransferToNullAddress();
+        if (_to == address(0)) revert NoTransferToNullAddress();
 
         IERC20 token = IERC20(_token);
 

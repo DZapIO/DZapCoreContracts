@@ -20,26 +20,17 @@ interface IFeesFacet {
 
     /* ========= RESTRICTED ========= */
 
-    // /**
-    //  * @dev Initializes the FeesFacet with treasury address and max fee amount
-    //  * No need to check initialized status because if max fee is 0 than there is no token fees
-    //  * @param _protocolFeeVault Address to send fees to
-    //  * @param _maxFixedNativeFee Max value of token fees
-    //  */
-    // function initialize(
-    //     address _protocolFeeVault,
-    //     uint256 _maxFixedNativeFee,
-    //     uint256 _maxNativeFee
-    // ) external;
-
+    /// @dev Sets address of the protocols fee vault
     function setProtocolFeeVault(address _protocolFeeVault) external;
 
+    /// @dev Sets fee info associated with an integrator
     function setIntegratorInfo(
         address _integrator,
         FeeType[] calldata _feeTypes,
         FeeInfo[] calldata _feeInfo
     ) external;
 
+    /// @dev Remove integrator
     function removeIntegrator(address _integrator) external;
 
     /* ========= VIEW FUNCTIONS ========= */

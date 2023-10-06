@@ -15,9 +15,11 @@ struct FeesStorage {
     bool initialized;
 }
 
+/// @title LibFees
+/// @notice This library contains helpers for calculating and transferring fees
 library LibFees {
     bytes32 internal constant _FEE_STORAGE_SLOT =
-        keccak256("dzap.storage.library.Fees");
+        keccak256("dzap.storage.library.fees");
     uint256 internal constant _BPS_DENOMINATOR = 1e6; // 4 basis points
 
     event TokenFee(

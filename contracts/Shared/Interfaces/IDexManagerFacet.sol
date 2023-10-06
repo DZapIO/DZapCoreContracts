@@ -26,10 +26,19 @@ interface IDexManagerFacet {
     /// @param _dexs The addresses of the DEX contracts to be unregistered.
     function batchRemoveDex(address[] calldata _dexs) external;
 
+    /// @notice checks if function is approved or not
     function isFunctionApproved(
         address _dex,
         bytes4 _signature
     ) external returns (bool approved);
 
+    /// @notice checks if dex is approved or not
     function isContractApproved(address _dex) external returns (bool approved);
+
+    /// @notice Approve/Disapprove dex function signature
+    function setFunctionApprovalBySignature(
+        address _dex,
+        bytes4 _signature,
+        bool _approval
+    ) external;
 }

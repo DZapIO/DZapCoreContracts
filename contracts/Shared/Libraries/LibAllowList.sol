@@ -11,8 +11,7 @@ struct AllowListStorage {
 /// @title Lib Allow List
 /// @notice Library for managing and accessing the conract address allow list
 library LibAllowList {
-    bytes32 internal constant NAMESPACE =
-        keccak256("com.dzap.library.allow.list");
+    bytes32 internal constant NAMESPACE = keccak256("dzap.library.allow.list");
 
     /// @dev Adds a contract address to the allow list
     /// @param _contract the contract address to add

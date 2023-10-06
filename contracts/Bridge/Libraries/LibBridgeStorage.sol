@@ -6,7 +6,7 @@ import { CallToFunctionInfo, CrossChainStorage } from "../Types.sol";
 /// @notice Provides mappings for all facets that may need them
 library LibBridgeStorage {
     bytes32 internal constant CROSS_CHAIN_NAMESAPCE =
-        keccak256("com.dzap.library.mappings.cross.chain");
+        keccak256("dzap.library.cross.chain");
 
     /// @dev Fetch local storage for Generic Cross Chain
     function getCrossChainStorage()

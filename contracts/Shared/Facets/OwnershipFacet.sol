@@ -4,6 +4,8 @@ pragma solidity 0.8.19;
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { IERC173 } from "../Interfaces/IERC173.sol";
 
+/// @title Ownership Facet
+/// @notice Provides functionality for transferring ownership
 contract OwnershipFacet is IERC173 {
     function transferOwnership(address _newOwner) external override {
         LibDiamond.enforceIsContractOwner();

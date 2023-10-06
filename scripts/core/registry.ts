@@ -25,4 +25,7 @@ export const tokenAddress = {
     wBnb: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     usd: '0x55d398326f99059ff775485246999027b3197955',
   },
+  [chainIds.arbitrum]: {
+    usdt: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9',
+  },
 }

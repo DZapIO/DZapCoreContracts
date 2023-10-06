@@ -15,6 +15,8 @@ import { IReceiver } from "../Shared/Interfaces/IReceiver.sol";
 
 import { UnAuthorized } from "../Shared/Errors.sol";
 
+/// @title Receiver
+/// @notice Arbitrary execution contract used for cross-chain swaps and message passing
 contract Receiver is IReceiver, ReentrancyGuard, Ownable {
     using SafeERC20 for IERC20;
 
@@ -34,11 +36,13 @@ contract Receiver is IReceiver, ReentrancyGuard, Ownable {
 
     /* ========= RESTRICTED ========= */
 
+    /// @notice set Executor
     function setExecutor(address _executor) external onlyOwner {
         executor = IExecutor(_executor);
         emit ExecutorSet(_executor);
     }
 
+    /// @notice recover tokens which are transferred mistakenly
     function recoverToken(
         address _token,
         address _receiver,
@@ -55,6 +59,10 @@ contract Receiver is IReceiver, ReentrancyGuard, Ownable {
 
     /* ========= EXTERNAL ========= */
 
+    /// @notice Performs a swap before completing a cross-chain transaction
+    /// @param _transactionId the transaction id for the swap
+    /// @param _receiver address that will receive tokens in the end
+    /// @param _swapData array of data needed for swaps
     function swapAndCompleteBridgeTokens(
         bytes32 _transactionId,
         address payable _receiver,

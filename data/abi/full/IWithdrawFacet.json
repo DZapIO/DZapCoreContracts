@@ -38,7 +38,7 @@
       },
       {
         "internalType": "address",
-        "name": "_tokenAddress",
+        "name": "_token",
         "type": "address"
       },
       {
@@ -61,7 +61,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_tokenAddress",
+        "name": "_token",
         "type": "address"
       },
       {

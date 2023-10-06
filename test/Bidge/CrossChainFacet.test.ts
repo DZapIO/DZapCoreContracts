@@ -586,6 +586,19 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
 
       // -------------------------------------
+
+      expect(
+        await crossChainFacet.getSelectorInfo(routers[0], selectors[0])
+      ).eql([
+        selectorInfo[0].isAvailable,
+        BigNumber.from(selectorInfo[0].offset),
+      ])
+      expect(
+        await crossChainFacet.getSelectorInfo(routers[1], selectors[1])
+      ).eql([
+        selectorInfo[1].isAvailable,
+        BigNumber.from(selectorInfo[1].offset),
+      ])
     })
 
     it('1.2 Should allow owner/crossChainManager to update selector info', async () => {

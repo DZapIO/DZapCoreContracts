@@ -111,14 +111,14 @@ export interface IWithdrawFacet extends BaseContract {
     executeCallAndWithdraw(
       _callTo: PromiseOrValue<string>,
       _callData: PromiseOrValue<BytesLike>,
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     withdraw(
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -128,14 +128,14 @@ export interface IWithdrawFacet extends BaseContract {
   executeCallAndWithdraw(
     _callTo: PromiseOrValue<string>,
     _callData: PromiseOrValue<BytesLike>,
-    _tokenAddress: PromiseOrValue<string>,
+    _token: PromiseOrValue<string>,
     _to: PromiseOrValue<string>,
     _amount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   withdraw(
-    _tokenAddress: PromiseOrValue<string>,
+    _token: PromiseOrValue<string>,
     _to: PromiseOrValue<string>,
     _amount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -145,14 +145,14 @@ export interface IWithdrawFacet extends BaseContract {
     executeCallAndWithdraw(
       _callTo: PromiseOrValue<string>,
       _callData: PromiseOrValue<BytesLike>,
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     withdraw(
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -176,14 +176,14 @@ export interface IWithdrawFacet extends BaseContract {
     executeCallAndWithdraw(
       _callTo: PromiseOrValue<string>,
       _callData: PromiseOrValue<BytesLike>,
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     withdraw(
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -194,14 +194,14 @@ export interface IWithdrawFacet extends BaseContract {
     executeCallAndWithdraw(
       _callTo: PromiseOrValue<string>,
       _callData: PromiseOrValue<BytesLike>,
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     withdraw(
-      _tokenAddress: PromiseOrValue<string>,
+      _token: PromiseOrValue<string>,
       _to: PromiseOrValue<string>,
       _amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }

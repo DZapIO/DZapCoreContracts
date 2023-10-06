@@ -9,10 +9,15 @@ import { LibPermit } from "../Libraries/LibPermit.sol";
 import { FeeType, SwapData, PermitType } from "../Types.sol";
 import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, NullAddrIsNotAnERC20Token, InvalidAmount, IntegratorNotAllowed } from "../Errors.sol";
 
+/// @title LibAsset
+/// @notice This library contains helpers for dealing with onchain transfers
+///         of assets, including accounting for the native asset `assetId`
+///         conventions and any noncompliant ERC20 transfers
 library LibAsset {
     address internal constant _NULL_ADDRESS = address(0);
     address internal constant _NATIVE_TOKEN = _NULL_ADDRESS;
 
+    /// @notice Gets the balance of the inheriting contract for the given asset
     function getOwnBalance(address _token) internal view returns (uint256) {
         return
             _token == _NATIVE_TOKEN
@@ -20,6 +25,7 @@ library LibAsset {
                 : IERC20(_token).balanceOf(address(this));
     }
 
+    /// @notice If the current allowance is insufficient, the allowance for a given spender
     function approveERC20(
         address _token,
         address _spender,
@@ -38,6 +44,7 @@ library LibAsset {
             );
     }
 
+    /// @notice Transfers ether from the inheriting contract to a given recipient
     function transferNativeToken(
         address _recipient,
         uint256 _amount
@@ -52,6 +59,7 @@ library LibAsset {
         if (!success) revert NativeTransferFailed();
     }
 
+    /// @notice Transfers tokens from the inheriting contract to a given recipient
     function transferERC20(
         address _token,
         address _recipient,
@@ -65,6 +73,7 @@ library LibAsset {
         SafeERC20.safeTransfer(IERC20(_token), _recipient, _amount);
     }
 
+    /// @notice Transfers tokens from a sender to a given recipient
     function transferFromERC20(
         address _token,
         address _from,
@@ -83,6 +92,9 @@ library LibAsset {
         }
     }
 
+    /// @notice Wrapper function to transfer a given asset (native or erc20) to
+    ///         some recipient. Should handle all non-compliant return value
+    ///         tokens as well by using the SafeERC20 contract by open zeppelin.
     function transferToken(
         address _token,
         address _recipient,
@@ -94,6 +106,7 @@ library LibAsset {
                 : transferERC20(_token, _recipient, _amount);
     }
 
+    /// @dev Use permit2 to approve token
     function permitAndTransferFromErc20(
         address _token,
         address _from,
@@ -122,6 +135,7 @@ library LibAsset {
         }
     }
 
+    /// @dev Deposits token and accrues fixed and token fees
     function deposit(
         address _integrator,
         FeeType _feeType,
@@ -149,6 +163,7 @@ library LibAsset {
         );
     }
 
+    /// @dev Deposits token for each swap that requires and accrues fixed and token fees
     function deposit(
         address _integrator,
         FeeType _feeType,
@@ -174,6 +189,7 @@ library LibAsset {
         );
     }
 
+    // @notice Determines whether the given token is the native token
     function isNativeToken(address _token) internal pure returns (bool) {
         return _token == _NATIVE_TOKEN;
     }

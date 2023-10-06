@@ -11,12 +11,14 @@ struct PermitStorage {
     bool initialized;
 }
 
+/// @title LibPermit
+/// @notice This library contains helpers for using permit and permit2
 library LibPermit {
     error InvalidPermitData();
     error InvalidPermit();
 
     bytes32 internal constant _PERMIT_STORAGE_SLOT =
-        keccak256("dzap.storage.library.Permit");
+        keccak256("dzap.storage.library.permit");
 
     function permitStorage() internal pure returns (PermitStorage storage ps) {
         bytes32 slot = _PERMIT_STORAGE_SLOT;

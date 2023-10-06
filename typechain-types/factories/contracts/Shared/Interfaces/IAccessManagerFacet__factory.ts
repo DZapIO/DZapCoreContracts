@@ -75,6 +75,29 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "bytes4[]",
+        name: "_selector",
+        type: "bytes4[]",
+      },
+      {
+        internalType: "address[]",
+        name: "_executor",
+        type: "address[]",
+      },
+      {
+        internalType: "bool[]",
+        name: "_canExecute",
+        type: "bool[]",
+      },
+    ],
+    name: "setBatchCanExecute",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "bytes4",
         name: "_selector",
         type: "bytes4",

@@ -8,6 +8,8 @@ import { LibFees, FeesStorage } from "../Libraries/LibFees.sol";
 import { InvalidFee, ZeroAddress, AlreadyInitialized, InvalidFixedNativeFee } from "../Errors.sol";
 import { IntegratorInfo, FeeType, FeeInfo } from "../Types.sol";
 
+/// @title Fees Facet
+/// @notice Provides functionality for managing fees
 contract FeesFacet is IFeesFacet {
     error FeeTooHigh();
     error ShareTooHigh();
@@ -24,6 +26,7 @@ contract FeesFacet is IFeesFacet {
 
     /* ========= RESTRICTED ========= */
 
+    /// @inheritdoc IFeesFacet
     function setProtocolFeeVault(
         address _protocolFeeVault
     ) external onlyAuthorized {
@@ -35,6 +38,7 @@ contract FeesFacet is IFeesFacet {
         fs.protocolFeeVault = _protocolFeeVault;
     }
 
+    /// @inheritdoc IFeesFacet
     function setIntegratorInfo(
         address _integrator,
         FeeType[] calldata _feeTypes,
@@ -78,6 +82,7 @@ contract FeesFacet is IFeesFacet {
         emit SetIntegrator(_integrator, _feeTypes, _feeInfo);
     }
 
+    /// @inheritdoc IFeesFacet
     function removeIntegrator(address _integrator) external onlyAuthorized {
         IntegratorInfo storage integratorInfo = LibFees
             .feesStorage()

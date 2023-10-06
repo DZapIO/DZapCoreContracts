@@ -15,6 +15,16 @@ interface IAccessManagerFacet {
         bool _canExecute
     ) external;
 
+    /// @notice Sets in batches whether a specific address can call a method
+    /// @param _selector The method selector to set access for
+    /// @param _executor The address to set method access for
+    /// @param _canExecute Whether or not the address can execute the specified method
+    function setBatchCanExecute(
+        bytes4[] calldata _selector,
+        address[] calldata _executor,
+        bool[] calldata _canExecute
+    ) external;
+
     /// @notice Check if a method can be executed by a specific address
     /// @param _selector The method selector to check
     /// @param _executor The address to check

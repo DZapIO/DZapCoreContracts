@@ -4,11 +4,12 @@ pragma solidity 0.8.19;
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { LibAccess } from "../Libraries/LibAccess.sol";
 import { LibAsset } from "../Libraries/LibAsset.sol";
-import { LibUtil } from "../Libraries/LibUtil.sol";
 import { IWithdrawFacet } from "../Interfaces/IWithdrawFacet.sol";
 
 import { NotAContract, NoTransferToNullAddress } from "../Errors.sol";
 
+/// @title Withdraw Facet
+/// @notice Provides functionality for withdrawing assets
 contract WithdrawFacet is IWithdrawFacet {
     error WithdrawFailed();
 
@@ -23,12 +24,7 @@ contract WithdrawFacet is IWithdrawFacet {
 
     /* ========= EXTERNAL ========= */
 
-    /// @notice Execute call data and withdraw asset.
-    /// @param _callTo The address to execute the calldata on.
-    /// @param _callData The data to execute.
-    /// @param _token Asset to be withdrawn.
-    /// @param _to address to withdraw to.
-    /// @param _amount amount of asset to withdraw.
+    /// @inheritdoc IWithdrawFacet
     function executeCallAndWithdraw(
         address payable _callTo,
         bytes calldata _callData,
@@ -51,10 +47,7 @@ contract WithdrawFacet is IWithdrawFacet {
         }
     }
 
-    /// @notice Withdraw asset.
-    /// @param _token Asset to be withdrawn.
-    /// @param _to address to withdraw to.
-    /// @param _amount amount of asset to withdraw.
+    /// @inheritdoc IWithdrawFacet
     function withdraw(
         address _token,
         address _to,
@@ -65,10 +58,6 @@ contract WithdrawFacet is IWithdrawFacet {
 
     /* ========= INTERNAL ========= */
 
-    /// @notice Withdraw asset.
-    /// @param _token Asset to be withdrawn.
-    /// @param _to address to withdraw to.
-    /// @param _amount amount of asset to withdraw.
     function _withdrawToken(
         address _token,
         address _to,

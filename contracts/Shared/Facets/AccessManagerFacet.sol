@@ -9,6 +9,8 @@ import { CannotAuthorizeSelf } from "../Errors.sol";
 /// @title Access Manager Facet
 /// @notice Provides functionality for managing method level access control
 contract AccessManagerFacet is IAccessManagerFacet {
+    /* ========= EXTERNAL ========= */
+
     /// @inheritdoc IAccessManagerFacet
     function setCanExecute(
         bytes4 _selector,
@@ -29,6 +31,7 @@ contract AccessManagerFacet is IAccessManagerFacet {
         }
     }
 
+    /// @inheritdoc IAccessManagerFacet
     function setBatchCanExecute(
         bytes4[] calldata _selector,
         address[] calldata _executor,
@@ -59,6 +62,7 @@ contract AccessManagerFacet is IAccessManagerFacet {
         }
     }
 
+    /// @inheritdoc IAccessManagerFacet
     function addressCanExecuteMethod(
         bytes4 _selector,
         address _executor

@@ -9,10 +9,11 @@ struct AccessStorage {
 
 /// @title Access Library
 /// @notice Provides functionality for managing method level access control
+/// https://github.com/Cryptorubic/multi-proxy-rubic/blob/master/src/Libraries/LibAccess.sol
 library LibAccess {
     /// Types ///
     bytes32 internal constant _ACCESS_STORAGE_SLOT =
-        keccak256("com.dzap.library.access.management");
+        keccak256("dzap.library.access.management");
 
     /// Events ///
     event AccessGranted(address indexed account, bytes4 indexed method);

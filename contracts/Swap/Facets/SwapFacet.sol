@@ -13,6 +13,9 @@ import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 import { SwapData, SwapInfo, FeeType, IntegratorInfo } from "../../Shared/Types.sol";
 import { ZeroAddress } from "../../Shared/Errors.sol";
 
+/// @title Swap Facet
+/// @notice Provides functionality for swapping through ANY APPROVED DEX
+/// @dev Uses calldata to execute APPROVED arbitrary methods on DEXs
 contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
     /* ========= ERROR ========= */
 
@@ -20,6 +23,7 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
     /* ========= EXTERNAL ========= */
 
+    /// @inheritdoc ISwapFacet
     function swap(
         bytes32 _transactionId,
         address _integrator,
@@ -79,6 +83,7 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
         );
     }
 
+    /// @inheritdoc ISwapFacet
     function multiSwap(
         bytes32 _transactionId,
         address _integrator,
@@ -149,6 +154,7 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
         );
     }
 
+    /// @inheritdoc ISwapFacet
     function multiSwapWithoutRevert(
         bytes32 _transactionId,
         address _integrator,

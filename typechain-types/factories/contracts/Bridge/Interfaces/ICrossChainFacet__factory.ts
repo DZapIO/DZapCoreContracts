@@ -675,6 +675,41 @@ const _abi = [
     stateMutability: "payable",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "_routers",
+        type: "address[]",
+      },
+      {
+        internalType: "bytes4[]",
+        name: "_selectors",
+        type: "bytes4[]",
+      },
+      {
+        components: [
+          {
+            internalType: "bool",
+            name: "isAvailable",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "offset",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct CallToFunctionInfo[]",
+        name: "_infos",
+        type: "tuple[]",
+      },
+    ],
+    name: "updateSelectorInfo",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ] as const;
 
 export class ICrossChainFacet__factory {

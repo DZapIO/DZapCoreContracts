@@ -369,7 +369,7 @@ describe('Diamond.test.ts', async () => {
 
       {
         const permitStorageSlot = ethers.utils.keccak256(
-          ethers.utils.toUtf8Bytes('dzap.storage.library.Permit')
+          ethers.utils.toUtf8Bytes('dzap.storage.library.permit')
         )
         const storageValue = await ethers.provider.getStorageAt(
           dZapDiamond.address,

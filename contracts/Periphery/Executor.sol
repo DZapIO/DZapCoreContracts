@@ -12,6 +12,8 @@ import { ReentrancyGuard } from "../Shared/Helpers/ReentrancyGuard.sol";
 import { IExecutor } from "../Shared/Interfaces/IExecutor.sol";
 import { ContractCallNotAllowed, ZeroAddress, SlippageTooHigh } from "../Shared/Errors.sol";
 
+/// @title Executor
+/// @notice Arbitrary execution contract used for cross-chain swaps and message passing
 contract Executor is IExecutor, ReentrancyGuard {
     /* ========= STORAGE ========= */
 
@@ -50,6 +52,10 @@ contract Executor is IExecutor, ReentrancyGuard {
     // solhint-disable-next-line no-empty-blocks
     receive() external payable {}
 
+    /// @notice Performs a swap before completing a cross-chain transaction
+    /// @param _transactionId the transaction id for the swap
+    /// @param _receiver address that will receive tokens in the end
+    /// @param _swapData array of data needed for swaps
     function swapAndCompleteBridgeTokens(
         bytes32 _transactionId,
         address payable _receiver,

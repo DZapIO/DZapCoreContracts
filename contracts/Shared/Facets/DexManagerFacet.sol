@@ -21,8 +21,7 @@ contract DexManagerFacet is IDexManagerFacet {
 
     /* ========= EXTERNAL ========= */
 
-    /// @notice Register the address of a DEX contract to be approved for swapping.
-    /// @param _dex The address of the DEX contract to be approved.
+    /// @inheritdoc IDexManagerFacet
     function addDex(address _dex) external onlyAuthorized {
         if (_dex == address(this)) {
             revert CannotAuthorizeSelf();
@@ -31,8 +30,7 @@ contract DexManagerFacet is IDexManagerFacet {
         emit DexAdded(_dex);
     }
 
-    /// @notice Batch register the address of DEX contracts to be approved for swapping.
-    /// @param _dexs The addresses of the DEX contracts to be approved.
+    /// @inheritdoc IDexManagerFacet
     function batchAddDex(address[] calldata _dexs) external onlyAuthorized {
         uint256 length = _dexs.length;
 
@@ -49,15 +47,13 @@ contract DexManagerFacet is IDexManagerFacet {
         }
     }
 
-    /// @notice Unregister the address of a DEX contract approved for swapping.
-    /// @param _dex The address of the DEX contract to be unregistered.
+    /// @inheritdoc IDexManagerFacet
     function removeDex(address _dex) external onlyAuthorized {
         LibAllowList.removeAllowedContract(_dex);
         emit DexRemoved(_dex);
     }
 
-    /// @notice Batch unregister the addresses of DEX contracts approved for swapping.
-    /// @param _dexs The addresses of the DEX contracts to be unregistered.
+    /// @inheritdoc IDexManagerFacet
     function batchRemoveDex(address[] calldata _dexs) external onlyAuthorized {
         uint256 length = _dexs.length;
         for (uint256 i = 0; i < length; ) {
@@ -69,9 +65,7 @@ contract DexManagerFacet is IDexManagerFacet {
         }
     }
 
-    /// @notice Adds/removes a specific function signature to/from the allowlist
-    /// @param _signature the function signature to allow/disallow
-    /// @param _approval whether the function signature should be allowed
+    /// @inheritdoc IDexManagerFacet
     function setFunctionApprovalBySignature(
         address _dex,
         bytes4 _signature,

@@ -7,6 +7,8 @@ import { LibAsset } from "../Libraries/LibAsset.sol";
 import { LibUtil } from "../Libraries/LibUtil.sol";
 import { InvalidContract, NoSwapFromZeroBalance, SwapCallFailed, SlippageTooHigh } from "../Errors.sol";
 
+/// @title LibPermit
+/// @notice This library contains helpers for doing swap
 library LibSwap {
     function swap(
         SwapData calldata _swapData,
@@ -35,11 +37,6 @@ library LibSwap {
         (bool success, bytes memory res) = _swapData.callTo.call{
             value: nativeValue
         }(_swapData.swapCallData);
-
-        // if (!success) {
-        //     LibUtil.getRevertMsg(res);
-        //     revert SwapCallFailed(res);
-        // }
 
         if (!success) {
             if (_withoutRevert) {

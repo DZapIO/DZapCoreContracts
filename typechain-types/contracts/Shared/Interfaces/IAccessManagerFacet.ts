@@ -29,16 +29,28 @@ import type {
 export interface IAccessManagerFacetInterface extends utils.Interface {
   functions: {
     "addressCanExecuteMethod(bytes4,address)": FunctionFragment;
+    "setBatchCanExecute(bytes4[],address[],bool[])": FunctionFragment;
     "setCanExecute(bytes4,address,bool)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "addressCanExecuteMethod" | "setCanExecute"
+    nameOrSignatureOrTopic:
+      | "addressCanExecuteMethod"
+      | "setBatchCanExecute"
+      | "setCanExecute"
   ): FunctionFragment;
 
   encodeFunctionData(
     functionFragment: "addressCanExecuteMethod",
     values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setBatchCanExecute",
+    values: [
+      PromiseOrValue<BytesLike>[],
+      PromiseOrValue<string>[],
+      PromiseOrValue<boolean>[]
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "setCanExecute",
@@ -51,6 +63,10 @@ export interface IAccessManagerFacetInterface extends utils.Interface {
 
   decodeFunctionResult(
     functionFragment: "addressCanExecuteMethod",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setBatchCanExecute",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -123,6 +139,13 @@ export interface IAccessManagerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    setBatchCanExecute(
+      _selector: PromiseOrValue<BytesLike>[],
+      _executor: PromiseOrValue<string>[],
+      _canExecute: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     setCanExecute(
       _selector: PromiseOrValue<BytesLike>,
       _executor: PromiseOrValue<string>,
@@ -137,6 +160,13 @@ export interface IAccessManagerFacet extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  setBatchCanExecute(
+    _selector: PromiseOrValue<BytesLike>[],
+    _executor: PromiseOrValue<string>[],
+    _canExecute: PromiseOrValue<boolean>[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   setCanExecute(
     _selector: PromiseOrValue<BytesLike>,
     _executor: PromiseOrValue<string>,
@@ -150,6 +180,13 @@ export interface IAccessManagerFacet extends BaseContract {
       _executor: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    setBatchCanExecute(
+      _selector: PromiseOrValue<BytesLike>[],
+      _executor: PromiseOrValue<string>[],
+      _canExecute: PromiseOrValue<boolean>[],
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     setCanExecute(
       _selector: PromiseOrValue<BytesLike>,
@@ -186,6 +223,13 @@ export interface IAccessManagerFacet extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    setBatchCanExecute(
+      _selector: PromiseOrValue<BytesLike>[],
+      _executor: PromiseOrValue<string>[],
+      _canExecute: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     setCanExecute(
       _selector: PromiseOrValue<BytesLike>,
       _executor: PromiseOrValue<string>,
@@ -199,6 +243,13 @@ export interface IAccessManagerFacet extends BaseContract {
       _selector: PromiseOrValue<BytesLike>,
       _executor: PromiseOrValue<string>,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    setBatchCanExecute(
+      _selector: PromiseOrValue<BytesLike>[],
+      _executor: PromiseOrValue<string>[],
+      _canExecute: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     setCanExecute(

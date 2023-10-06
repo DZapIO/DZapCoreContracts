@@ -8,6 +8,7 @@ import type {
   BytesLike,
   CallOverrides,
   ContractTransaction,
+  Overrides,
   PayableOverrides,
   PopulatedTransaction,
   Signer,
@@ -151,10 +152,15 @@ export interface ICrossChainFacetInterface extends utils.Interface {
     "bridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool),(address,address,uint256,bytes,bytes))": FunctionFragment;
     "bridgeMultipleTokens(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
     "swapAndBridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,address,address,uint256,uint256,bytes,bytes)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
+    "updateSelectorInfo(address[],bytes4[],(bool,uint256)[])": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "bridge" | "bridgeMultipleTokens" | "swapAndBridge"
+    nameOrSignatureOrTopic:
+      | "bridge"
+      | "bridgeMultipleTokens"
+      | "swapAndBridge"
+      | "updateSelectorInfo"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -188,6 +194,14 @@ export interface ICrossChainFacetInterface extends utils.Interface {
       CrossChainDataStruct[]
     ]
   ): string;
+  encodeFunctionData(
+    functionFragment: "updateSelectorInfo",
+    values: [
+      PromiseOrValue<string>[],
+      PromiseOrValue<BytesLike>[],
+      CallToFunctionInfoStruct[]
+    ]
+  ): string;
 
   decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
   decodeFunctionResult(
@@ -196,6 +210,10 @@ export interface ICrossChainFacetInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "swapAndBridge",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "updateSelectorInfo",
     data: BytesLike
   ): Result;
 
@@ -334,6 +352,13 @@ export interface ICrossChainFacet extends BaseContract {
       _genericData: CrossChainDataStruct[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    updateSelectorInfo(
+      _routers: PromiseOrValue<string>[],
+      _selectors: PromiseOrValue<BytesLike>[],
+      _infos: CallToFunctionInfoStruct[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
   bridge(
@@ -364,6 +389,13 @@ export interface ICrossChainFacet extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  updateSelectorInfo(
+    _routers: PromiseOrValue<string>[],
+    _selectors: PromiseOrValue<BytesLike>[],
+    _infos: CallToFunctionInfoStruct[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     bridge(
       _transactionId: PromiseOrValue<BytesLike>,
@@ -390,6 +422,13 @@ export interface ICrossChainFacet extends BaseContract {
       _bridgeData: BridgeDataStruct[],
       _swapData: SwapDataStruct[],
       _genericData: CrossChainDataStruct[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateSelectorInfo(
+      _routers: PromiseOrValue<string>[],
+      _selectors: PromiseOrValue<BytesLike>[],
+      _infos: CallToFunctionInfoStruct[],
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -482,6 +521,13 @@ export interface ICrossChainFacet extends BaseContract {
       _genericData: CrossChainDataStruct[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    updateSelectorInfo(
+      _routers: PromiseOrValue<string>[],
+      _selectors: PromiseOrValue<BytesLike>[],
+      _infos: CallToFunctionInfoStruct[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -511,6 +557,13 @@ export interface ICrossChainFacet extends BaseContract {
       _swapData: SwapDataStruct[],
       _genericData: CrossChainDataStruct[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    updateSelectorInfo(
+      _routers: PromiseOrValue<string>[],
+      _selectors: PromiseOrValue<BytesLike>[],
+      _infos: CallToFunctionInfoStruct[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

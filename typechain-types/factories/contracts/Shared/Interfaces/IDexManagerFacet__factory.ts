@@ -156,6 +156,29 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_dex",
+        type: "address",
+      },
+      {
+        internalType: "bytes4",
+        name: "_signature",
+        type: "bytes4",
+      },
+      {
+        internalType: "bool",
+        name: "_approval",
+        type: "bool",
+      },
+    ],
+    name: "setFunctionApprovalBySignature",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ] as const;
 
 export class IDexManagerFacet__factory {

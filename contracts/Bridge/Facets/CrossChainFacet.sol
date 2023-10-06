@@ -3,7 +3,6 @@ pragma solidity 0.8.19;
 
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibFees } from "../../Shared/Libraries/LibFees.sol";
-import { LibUtil } from "../../Shared/Libraries/LibUtil.sol";
 import { LibAccess } from "../../Shared/Libraries/LibAccess.sol";
 import { LibDiamond } from "../../Shared/Libraries/LibDiamond.sol";
 
@@ -20,14 +19,29 @@ import { UnAuthorizedCallToFunction, BridgeCallFailed } from "../../Shared/Error
 import { TokenInformationMismatch, SlippageTooHigh, InvalidSwapDetails } from "../../Shared/Errors.sol";
 import { FeeType, SwapData, SwapInfo } from "../../Shared/Types.sol";
 
+/// @title CrossChain Facet
+/// @notice Provides functionality for bridging tokens across chains
 contract CrossChainFacet is
     ICrossChainFacet,
     ReentrancyGuard,
     Swapper,
     Validatable
 {
+    /* ========= VIEWS ========= */
+
+    /// @inheritdoc ICrossChainFacet
+    function getSelectorInfo(
+        address _router,
+        bytes4 _selector
+    ) external view returns (CallToFunctionInfo memory) {
+        CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
+
+        return sm.selectorToInfo[_router][_selector];
+    }
+
     /* ========= RESTRICTED ========= */
 
+    /// @inheritdoc ICrossChainFacet
     function updateSelectorInfo(
         address[] calldata _routers,
         bytes4[] calldata _selectors,
@@ -51,6 +65,7 @@ contract CrossChainFacet is
 
     /* ========= EXTERNAL ========= */
 
+    /// @inheritdoc ICrossChainFacet
     function bridge(
         bytes32 _transactionId,
         address _integrator,
@@ -98,6 +113,7 @@ contract CrossChainFacet is
         );
     }
 
+    /// @inheritdoc ICrossChainFacet
     function bridgeMultipleTokens(
         bytes32 _transactionId,
         address _integrator,
@@ -159,6 +175,7 @@ contract CrossChainFacet is
         );
     }
 
+    /// @inheritdoc ICrossChainFacet
     function swapAndBridge(
         bytes32 _transactionId,
         address _integrator,

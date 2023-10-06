@@ -49,7 +49,7 @@ const _abi = [
       },
       {
         internalType: "address",
-        name: "_tokenAddress",
+        name: "_token",
         type: "address",
       },
       {
@@ -72,7 +72,7 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_tokenAddress",
+        name: "_token",
         type: "address",
       },
       {

@@ -34,6 +34,7 @@ export interface IDexManagerFacetInterface extends utils.Interface {
     "isContractApproved(address)": FunctionFragment;
     "isFunctionApproved(address,bytes4)": FunctionFragment;
     "removeDex(address)": FunctionFragment;
+    "setFunctionApprovalBySignature(address,bytes4,bool)": FunctionFragment;
   };
 
   getFunction(
@@ -44,6 +45,7 @@ export interface IDexManagerFacetInterface extends utils.Interface {
       | "isContractApproved"
       | "isFunctionApproved"
       | "removeDex"
+      | "setFunctionApprovalBySignature"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -70,6 +72,14 @@ export interface IDexManagerFacetInterface extends utils.Interface {
     functionFragment: "removeDex",
     values: [PromiseOrValue<string>]
   ): string;
+  encodeFunctionData(
+    functionFragment: "setFunctionApprovalBySignature",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<BytesLike>,
+      PromiseOrValue<boolean>
+    ]
+  ): string;
 
   decodeFunctionResult(functionFragment: "addDex", data: BytesLike): Result;
   decodeFunctionResult(
@@ -89,6 +99,10 @@ export interface IDexManagerFacetInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "removeDex", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setFunctionApprovalBySignature",
+    data: BytesLike
+  ): Result;
 
   events: {
     "DexAdded(address)": EventFragment;
@@ -187,6 +201,13 @@ export interface IDexManagerFacet extends BaseContract {
       _dex: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    setFunctionApprovalBySignature(
+      _dex: PromiseOrValue<string>,
+      _signature: PromiseOrValue<BytesLike>,
+      _approval: PromiseOrValue<boolean>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
   addDex(
@@ -220,6 +241,13 @@ export interface IDexManagerFacet extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  setFunctionApprovalBySignature(
+    _dex: PromiseOrValue<string>,
+    _signature: PromiseOrValue<BytesLike>,
+    _approval: PromiseOrValue<boolean>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     addDex(
       _dex: PromiseOrValue<string>,
@@ -249,6 +277,13 @@ export interface IDexManagerFacet extends BaseContract {
 
     removeDex(
       _dex: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setFunctionApprovalBySignature(
+      _dex: PromiseOrValue<string>,
+      _signature: PromiseOrValue<BytesLike>,
+      _approval: PromiseOrValue<boolean>,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -309,6 +344,13 @@ export interface IDexManagerFacet extends BaseContract {
       _dex: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    setFunctionApprovalBySignature(
+      _dex: PromiseOrValue<string>,
+      _signature: PromiseOrValue<BytesLike>,
+      _approval: PromiseOrValue<boolean>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -340,6 +382,13 @@ export interface IDexManagerFacet extends BaseContract {
 
     removeDex(
       _dex: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setFunctionApprovalBySignature(
+      _dex: PromiseOrValue<string>,
+      _signature: PromiseOrValue<BytesLike>,
+      _approval: PromiseOrValue<boolean>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };

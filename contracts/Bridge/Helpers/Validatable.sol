@@ -9,56 +9,19 @@ import { InvalidReceiver, InformationMismatch, InvalidSendingToken, InvalidAmoun
 import { CrossChainData, BridgeData } from "../Types.sol";
 
 contract Validatable {
-    // multi token Bridge
-    function _validateData(
-        BridgeData memory _bridgeData,
-        CrossChainData calldata _genericData
-    ) internal view {
-        // validateBridgeData
-        if (LibUtil.isZeroAddress(_bridgeData.receiver)) {
-            revert InvalidReceiver();
-        }
-        if (_bridgeData.minAmount == 0) {
-            revert InvalidAmount();
-        }
-        if (_bridgeData.destinationChainId == block.chainid) {
-            revert CannotBridgeToSameNetwork();
-        }
-        // validateGenericCrossChainData
+    function _validateData(BridgeData memory _bridgeData, CrossChainData calldata _genericData) internal view {
+        if (LibUtil.isZeroAddress(_bridgeData.receiver)) revert InvalidReceiver();
+        if (_bridgeData.minAmount == 0) revert InvalidAmount();
+        if (_bridgeData.destinationChainId == block.chainid) revert CannotBridgeToSameNetwork();
         if (!LibAsset.isContract(_genericData.callTo)) revert NotAContract();
-        // doesNotContainSourceSwaps
-        if (_bridgeData.hasSourceSwaps) {
-            revert InformationMismatch();
-        }
-        // doesNotContainDestinationCalls
-        if (_bridgeData.hasDestinationCall) {
-            revert InformationMismatch();
-        }
+        if (_bridgeData.hasSourceSwaps) revert InformationMismatch();
+        if (_bridgeData.hasDestinationCall) revert InformationMismatch();
     }
 
-    // multi token Bridge
-    function _validateBridgeSwapData(
-        BridgeData memory _bridgeData,
-        CrossChainData calldata _genericData
-    ) internal view {
-        // validateBridgeData
-        if (LibUtil.isZeroAddress(_bridgeData.receiver)) {
-            revert InvalidReceiver();
-        }
-
-        if (_bridgeData.minAmount == 0) {
-            revert InvalidAmount();
-        }
-        if (_bridgeData.destinationChainId == block.chainid) {
-            revert CannotBridgeToSameNetwork();
-        }
-
-        // validateGenericCrossChainData
+    function _validateBridgeSwapData(BridgeData memory _bridgeData, CrossChainData calldata _genericData) internal view {
+        if (LibUtil.isZeroAddress(_bridgeData.receiver)) revert InvalidReceiver();
+        if (_bridgeData.minAmount == 0) revert InvalidAmount();
+        if (_bridgeData.destinationChainId == block.chainid) revert CannotBridgeToSameNetwork();
         if (!LibAsset.isContract(_genericData.callTo)) revert NotAContract();
-
-        // contains sourceSwaps or destinationCall
-        // if (!_bridgeData.hasSourceSwaps && !_bridgeData.hasDestinationCall) {
-        //     revert InformationMismatch();
-        // }
     }
 }

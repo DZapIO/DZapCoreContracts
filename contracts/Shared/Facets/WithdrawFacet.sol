@@ -25,13 +25,7 @@ contract WithdrawFacet is IWithdrawFacet {
     /* ========= EXTERNAL ========= */
 
     /// @inheritdoc IWithdrawFacet
-    function executeCallAndWithdraw(
-        address payable _callTo,
-        bytes calldata _callData,
-        address _token,
-        address _to,
-        uint256 _amount
-    ) external onlyAuthorized {
+    function executeCallAndWithdraw(address payable _callTo, bytes calldata _callData, address _token, address _to, uint256 _amount) external onlyAuthorized {
         // Check if the _callTo is a contract
         bool success;
         bool isContract = LibAsset.isContract(_callTo);
@@ -40,32 +34,19 @@ contract WithdrawFacet is IWithdrawFacet {
         // solhint-disable-next-line avoid-low-level-calls
         (success, ) = _callTo.call(_callData);
 
-        if (success) {
-            _withdrawToken(_token, _to, _amount);
-        } else {
-            revert WithdrawFailed();
-        }
+        if (success) _withdrawToken(_token, _to, _amount);
+        else revert WithdrawFailed();
     }
 
     /// @inheritdoc IWithdrawFacet
-    function withdraw(
-        address _token,
-        address _to,
-        uint256 _amount
-    ) external onlyAuthorized {
+    function withdraw(address _token, address _to, uint256 _amount) external onlyAuthorized {
         _withdrawToken(_token, _to, _amount);
     }
 
     /* ========= INTERNAL ========= */
 
-    function _withdrawToken(
-        address _token,
-        address _to,
-        uint256 _amount
-    ) internal {
-        if (_to == address(0)) {
-            revert NoTransferToNullAddress();
-        }
+    function _withdrawToken(address _token, address _to, uint256 _amount) internal {
+        if (_to == address(0)) revert NoTransferToNullAddress();
 
         LibAsset.transferToken(_token, _to, _amount);
         emit LogWithdraw(_token, _to, _amount);

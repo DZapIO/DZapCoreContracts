@@ -13,10 +13,7 @@ library LibBytes {
 
     // -------------------------
 
-    function concat(
-        bytes memory _preBytes,
-        bytes memory _postBytes
-    ) internal pure returns (bytes memory) {
+    function concat(bytes memory _preBytes, bytes memory _postBytes) internal pure returns (bytes memory) {
         bytes memory tempBytes;
 
         assembly {
@@ -90,10 +87,7 @@ library LibBytes {
         return tempBytes;
     }
 
-    function concatStorage(
-        bytes storage _preBytes,
-        bytes memory _postBytes
-    ) internal {
+    function concatStorage(bytes storage _preBytes, bytes memory _postBytes) internal {
         assembly {
             // Read the first 32 bytes of _preBytes storage, which is the length
             // of the array. (We don't need to use the offset into the slot
@@ -106,10 +100,7 @@ library LibBytes {
             // If the slot is even, bitwise and the slot with 255 and divide by
             // two to get the length. If the slot is odd, bitwise and the slot
             // with -1 and divide by two.
-            let slength := div(
-                and(fslot, sub(mul(0x100, iszero(and(fslot, 1))), 1)),
-                2
-            )
+            let slength := div(and(fslot, sub(mul(0x100, iszero(and(fslot, 1))), 1)), 2)
             let mlength := mload(_postBytes)
             let newlength := add(slength, mlength)
             // slength can contain both the length and contents of the array
@@ -171,16 +162,7 @@ library LibBytes {
                 let end := add(_postBytes, mlength)
                 let mask := sub(exp(0x100, submod), 1)
 
-                sstore(
-                    sc,
-                    add(
-                        and(
-                            fslot,
-                            0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00
-                        ),
-                        and(mload(mc), mask)
-                    )
-                )
+                sstore(sc, add(and(fslot, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00), and(mload(mc), mask)))
 
                 for {
                     mc := add(mc, 0x20)
@@ -232,11 +214,7 @@ library LibBytes {
         }
     }
 
-    function slice(
-        bytes memory _bytes,
-        uint256 _start,
-        uint256 _length
-    ) internal pure returns (bytes memory) {
+    function slice(bytes memory _bytes, uint256 _start, uint256 _length) internal pure returns (bytes memory) {
         if (_length + 31 < _length) revert SliceOverflow();
         if (_bytes.length < _start + _length) revert SliceOutOfBounds();
 
@@ -263,22 +241,13 @@ library LibBytes {
                 // because when slicing multiples of 32 bytes (lengthmod == 0)
                 // the following copy loop was copying the origin's length
                 // and then ending prematurely not copying everything it should.
-                let mc := add(
-                    add(tempBytes, lengthmod),
-                    mul(0x20, iszero(lengthmod))
-                )
+                let mc := add(add(tempBytes, lengthmod), mul(0x20, iszero(lengthmod)))
                 let end := add(mc, _length)
 
                 for {
                     // The multiplication in the next line has the same exact purpose
                     // as the one above.
-                    let cc := add(
-                        add(
-                            add(_bytes, lengthmod),
-                            mul(0x20, iszero(lengthmod))
-                        ),
-                        _start
-                    )
+                    let cc := add(add(add(_bytes, lengthmod), mul(0x20, iszero(lengthmod))), _start)
                 } lt(mc, end) {
                     mc := add(mc, 0x20)
                     cc := add(cc, 0x20)
@@ -306,29 +275,20 @@ library LibBytes {
         return tempBytes;
     }
 
-    function toAddress(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (address) {
+    function toAddress(bytes memory _bytes, uint256 _start) internal pure returns (address) {
         if (_bytes.length < _start + 20) {
             revert AddressOutOfBounds();
         }
         address tempAddress;
 
         assembly {
-            tempAddress := div(
-                mload(add(add(_bytes, 0x20), _start)),
-                0x1000000000000000000000000
-            )
+            tempAddress := div(mload(add(add(_bytes, 0x20), _start)), 0x1000000000000000000000000)
         }
 
         return tempAddress;
     }
 
-    function toUint8(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint8) {
+    function toUint8(bytes memory _bytes, uint256 _start) internal pure returns (uint8) {
         if (_bytes.length < _start + 1) {
             revert UintOutOfBounds();
         }
@@ -341,10 +301,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint16(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint16) {
+    function toUint16(bytes memory _bytes, uint256 _start) internal pure returns (uint16) {
         if (_bytes.length < _start + 2) {
             revert UintOutOfBounds();
         }
@@ -357,10 +314,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint32(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint32) {
+    function toUint32(bytes memory _bytes, uint256 _start) internal pure returns (uint32) {
         if (_bytes.length < _start + 4) {
             revert UintOutOfBounds();
         }
@@ -373,10 +327,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint64(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint64) {
+    function toUint64(bytes memory _bytes, uint256 _start) internal pure returns (uint64) {
         if (_bytes.length < _start + 8) {
             revert UintOutOfBounds();
         }
@@ -389,10 +340,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint96(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint96) {
+    function toUint96(bytes memory _bytes, uint256 _start) internal pure returns (uint96) {
         if (_bytes.length < _start + 12) {
             revert UintOutOfBounds();
         }
@@ -405,10 +353,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint128(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint128) {
+    function toUint128(bytes memory _bytes, uint256 _start) internal pure returns (uint128) {
         if (_bytes.length < _start + 16) {
             revert UintOutOfBounds();
         }
@@ -421,10 +366,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toUint256(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (uint256) {
+    function toUint256(bytes memory _bytes, uint256 _start) internal pure returns (uint256) {
         if (_bytes.length < _start + 32) {
             revert UintOutOfBounds();
         }
@@ -437,10 +379,7 @@ library LibBytes {
         return tempUint;
     }
 
-    function toBytes32(
-        bytes memory _bytes,
-        uint256 _start
-    ) internal pure returns (bytes32) {
+    function toBytes32(bytes memory _bytes, uint256 _start) internal pure returns (bytes32) {
         if (_bytes.length < _start + 32) {
             revert UintOutOfBounds();
         }
@@ -453,10 +392,7 @@ library LibBytes {
         return tempBytes32;
     }
 
-    function equal(
-        bytes memory _preBytes,
-        bytes memory _postBytes
-    ) internal pure returns (bool) {
+    function equal(bytes memory _preBytes, bytes memory _postBytes) internal pure returns (bool) {
         bool success = true;
 
         assembly {
@@ -499,20 +435,14 @@ library LibBytes {
         return success;
     }
 
-    function equalStorage(
-        bytes storage _preBytes,
-        bytes memory _postBytes
-    ) internal view returns (bool) {
+    function equalStorage(bytes storage _preBytes, bytes memory _postBytes) internal view returns (bool) {
         bool success = true;
 
         assembly {
             // we know _preBytes_offset is 0
             let fslot := sload(_preBytes.slot)
             // Decode the length of the stored array like in concatStorage().
-            let slength := div(
-                and(fslot, sub(mul(0x100, iszero(and(fslot, 1))), 1)),
-                2
-            )
+            let slength := div(and(fslot, sub(mul(0x100, iszero(and(fslot, 1))), 1)), 2)
             let mlength := mload(_postBytes)
 
             // if lengths don't match the arrays are not equal
@@ -573,9 +503,7 @@ library LibBytes {
         return success;
     }
 
-    function getFirst4Bytes(
-        bytes memory data
-    ) internal pure returns (bytes4 outBytes4) {
+    function getFirst4Bytes(bytes memory data) internal pure returns (bytes4 outBytes4) {
         if (data.length == 0) {
             return 0x0;
         }

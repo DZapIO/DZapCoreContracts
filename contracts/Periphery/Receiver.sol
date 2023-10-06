@@ -43,16 +43,9 @@ contract Receiver is IReceiver, ReentrancyGuard, Ownable {
     }
 
     /// @notice recover tokens which are transferred mistakenly
-    function recoverToken(
-        address _token,
-        address _receiver,
-        uint256 _amount
-    ) external onlyOwner {
-        if (LibAsset.isNativeToken(_token)) {
-            _receiver.call{ value: _amount }("");
-        } else {
-            IERC20(_token).safeTransfer(_receiver, _amount);
-        }
+    function recoverToken(address _token, address _receiver, uint256 _amount) external onlyOwner {
+        if (LibAsset.isNativeToken(_token)) _receiver.call{ value: _amount }("");
+        else IERC20(_token).safeTransfer(_receiver, _amount);
 
         emit TokensRecovered(_token, _receiver, _amount);
     }
@@ -63,86 +56,32 @@ contract Receiver is IReceiver, ReentrancyGuard, Ownable {
     /// @param _transactionId the transaction id for the swap
     /// @param _receiver address that will receive tokens in the end
     /// @param _swapData array of data needed for swaps
-    function swapAndCompleteBridgeTokens(
-        bytes32 _transactionId,
-        address payable _receiver,
-        SwapData calldata _swapData
-    ) external payable {
-        if (LibAsset.isNativeToken(_swapData.from)) {
-            _swapAndCompleteBridgeTokens(
-                _transactionId,
-                _swapData,
-                _receiver,
-                msg.value
-            );
-        } else {
-            uint256 allowance = IERC20(_swapData.from).allowance(
-                msg.sender,
-                address(this)
-            );
-
-            LibAsset.transferFromERC20(
-                _swapData.from,
-                msg.sender,
-                address(this),
-                allowance
-            );
-
-            _swapAndCompleteBridgeTokens(
-                _transactionId,
-                _swapData,
-                _receiver,
-                allowance
-            );
+    function swapAndCompleteBridgeTokens(bytes32 _transactionId, address payable _receiver, SwapData calldata _swapData) external payable {
+        if (LibAsset.isNativeToken(_swapData.from)) _swapAndCompleteBridgeTokens(_transactionId, _swapData, _receiver, msg.value);
+        else {
+            uint256 allowance = IERC20(_swapData.from).allowance(msg.sender, address(this));
+            LibAsset.transferFromERC20(_swapData.from, msg.sender, address(this), allowance);
+            _swapAndCompleteBridgeTokens(_transactionId, _swapData, _receiver, allowance);
         }
     }
 
     /* ========= PRIVATE ========= */
 
-    function _swapAndCompleteBridgeTokens(
-        bytes32 _transactionId,
-        SwapData calldata _swapData,
-        address payable _receiver,
-        uint256 amount
-    ) private {
+    function _swapAndCompleteBridgeTokens(bytes32 _transactionId, SwapData calldata _swapData, address payable _receiver, uint256 amount) private {
         if (LibAsset.isNativeToken(_swapData.from)) {
-            try
-                executor.swapAndCompleteBridgeTokens{ value: amount }(
-                    _transactionId,
-                    _receiver,
-                    _swapData
-                )
-            {} catch {
+            try executor.swapAndCompleteBridgeTokens{ value: amount }(_transactionId, _receiver, _swapData) {} catch {
                 _receiver.call{ value: amount }("");
 
-                emit DZapTransferRecovered(
-                    _transactionId,
-                    _swapData.from,
-                    _receiver,
-                    amount,
-                    block.timestamp
-                );
+                emit DZapTransferRecovered(_transactionId, _swapData.from, _receiver, amount, block.timestamp);
             }
         } else {
             // case 2: ERC20 asset
             IERC20 token = IERC20(_swapData.from);
             token.safeApprove(address(executor), 0);
             token.safeIncreaseAllowance(address(executor), amount);
-            try
-                executor.swapAndCompleteBridgeTokens(
-                    _transactionId,
-                    _receiver,
-                    _swapData
-                )
-            {} catch {
+            try executor.swapAndCompleteBridgeTokens(_transactionId, _receiver, _swapData) {} catch {
                 token.safeTransfer(_receiver, amount);
-                emit DZapTransferRecovered(
-                    _transactionId,
-                    _swapData.from,
-                    _receiver,
-                    amount,
-                    block.timestamp
-                );
+                emit DZapTransferRecovered(_transactionId, _swapData.from, _receiver, amount, block.timestamp);
             }
             token.safeApprove(address(executor), 0);
         }

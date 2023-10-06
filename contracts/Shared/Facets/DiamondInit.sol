@@ -11,38 +11,19 @@ import { ZeroAddress, FeeTooHigh, InvalidFee, AlreadyInitialized } from "../Erro
 /// @title DiamondInit Facet
 /// @notice Initialize the init variables
 contract DiamondInit is IDiamondInit {
-    function initialize(
-        address _permit2,
-        address _protocolFeeVault,
-        uint256 _maxTokenFee,
-        uint256 _maxFixedNativeFeeAmount
-    ) external {
+    function initialize(address _permit2, address _protocolFeeVault, uint256 _maxTokenFee, uint256 _maxFixedNativeFeeAmount) external {
         LibDiamond.enforceIsContractOwner();
 
-        if (_permit2 == address(0)) {
-            revert ZeroAddress();
-        }
-
-        if (_protocolFeeVault == address(0)) {
-            revert ZeroAddress();
-        }
-        if (_maxTokenFee == 0) {
-            revert InvalidFee();
-        }
-        if (_maxTokenFee > LibFees._BPS_DENOMINATOR) {
-            revert FeeTooHigh();
-        }
+        if (_permit2 == address(0)) revert ZeroAddress();
+        if (_protocolFeeVault == address(0)) revert ZeroAddress();
+        if (_maxTokenFee == 0) revert InvalidFee();
+        if (_maxTokenFee > LibFees._BPS_DENOMINATOR) revert FeeTooHigh();
 
         PermitStorage storage ps = LibPermit.permitStorage();
         FeesStorage storage fs = LibFees.feesStorage();
 
-        if (ps.initialized) {
-            revert AlreadyInitialized();
-        }
-
-        if (fs.initialized) {
-            revert AlreadyInitialized();
-        }
+        if (ps.initialized) revert AlreadyInitialized();
+        if (fs.initialized) revert AlreadyInitialized();
 
         ps.permit2 = _permit2;
         ps.initialized = true;

@@ -47,38 +47,24 @@ library LibAllowList {
 
     /// @dev Removes a selector from the allow list
     /// @param _selector the selector to remove
-    function removeAllowedSelector(
-        address _contract,
-        bytes4 _selector
-    ) internal {
-        _getStorage().allowlist[_contract].selectorAllowList[
-            _selector
-        ] = false;
+    function removeAllowedSelector(address _contract, bytes4 _selector) internal {
+        _getStorage().allowlist[_contract].selectorAllowList[_selector] = false;
     }
 
     /// @dev Checks whether a contract address has been added to the allow list
     /// @param _contract the contract address to check
-    function contractIsAllowed(
-        address _contract
-    ) internal view returns (bool) {
+    function contractIsAllowed(address _contract) internal view returns (bool) {
         return _getStorage().allowlist[_contract].isAllowed;
     }
 
     /// @dev Returns if selector has been added to the allow list
     /// @param _selector the selector to check
-    function selectorIsAllowed(
-        address _contract,
-        bytes4 _selector
-    ) internal view returns (bool) {
+    function selectorIsAllowed(address _contract, bytes4 _selector) internal view returns (bool) {
         return _getStorage().allowlist[_contract].selectorAllowList[_selector];
     }
 
     /// @dev Fetch local storage struct
-    function _getStorage()
-        internal
-        pure
-        returns (AllowListStorage storage als)
-    {
+    function _getStorage() internal pure returns (AllowListStorage storage als) {
         bytes32 position = NAMESPACE;
         // solhint-disable-next-line no-inline-assembly
         assembly {
@@ -89,7 +75,6 @@ library LibAllowList {
     /// @dev Contains business logic for validating a contract address.
     /// @param _contract address of the dex to check
     function _checkAddress(address _contract) private view {
-        if (_contract == address(0) || _contract.code.length == 0)
-            revert InvalidContract();
+        if (_contract == address(0) || _contract.code.length == 0) revert InvalidContract();
     }
 }

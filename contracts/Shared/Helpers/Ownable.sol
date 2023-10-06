@@ -8,10 +8,7 @@ import { UnauthorizedCaller, ZeroAddress } from "../Errors.sol";
 abstract contract Ownable is Context {
     address private _owner;
 
-    event OwnershipTransferred(
-        address indexed oldOwner,
-        address indexed newOwner
-    );
+    event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
 
     /// @dev Throws if called by any account other than the owner.
     modifier onlyOwner() {

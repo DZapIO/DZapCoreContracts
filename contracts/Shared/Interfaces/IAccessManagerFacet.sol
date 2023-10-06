@@ -9,27 +9,16 @@ interface IAccessManagerFacet {
     /// @param _selector The method selector to set access for
     /// @param _executor The address to set method access for
     /// @param _canExecute Whether or not the address can execute the specified method
-    function setCanExecute(
-        bytes4 _selector,
-        address _executor,
-        bool _canExecute
-    ) external;
+    function setCanExecute(bytes4 _selector, address _executor, bool _canExecute) external;
 
     /// @notice Sets in batches whether a specific address can call a method
     /// @param _selector The method selector to set access for
     /// @param _executor The address to set method access for
     /// @param _canExecute Whether or not the address can execute the specified method
-    function setBatchCanExecute(
-        bytes4[] calldata _selector,
-        address[] calldata _executor,
-        bool[] calldata _canExecute
-    ) external;
+    function setBatchCanExecute(bytes4[] calldata _selector, address[] calldata _executor, bool[] calldata _canExecute) external;
 
     /// @notice Check if a method can be executed by a specific address
     /// @param _selector The method selector to check
     /// @param _executor The address to check
-    function addressCanExecuteMethod(
-        bytes4 _selector,
-        address _executor
-    ) external view returns (bool);
+    function addressCanExecuteMethod(bytes4 _selector, address _executor) external view returns (bool);
 }

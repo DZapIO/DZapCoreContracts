@@ -12,19 +12,14 @@ struct AccessStorage {
 /// https://github.com/Cryptorubic/multi-proxy-rubic/blob/master/src/Libraries/LibAccess.sol
 library LibAccess {
     /// Types ///
-    bytes32 internal constant _ACCESS_STORAGE_SLOT =
-        keccak256("dzap.library.access.management");
+    bytes32 internal constant _ACCESS_STORAGE_SLOT = keccak256("dzap.library.access.management");
 
     /// Events ///
     event AccessGranted(address indexed account, bytes4 indexed method);
     event AccessRevoked(address indexed account, bytes4 indexed method);
 
     /// @dev Fetch local storage
-    function accessStorage()
-        internal
-        pure
-        returns (AccessStorage storage accStor)
-    {
+    function accessStorage() internal pure returns (AccessStorage storage accStor) {
         bytes32 position = _ACCESS_STORAGE_SLOT;
         // solhint-disable-next-line no-inline-assembly
         assembly {
@@ -57,7 +52,6 @@ library LibAccess {
     ///     has not been given permission to execute `msg.sig`
     function enforceAccessControl() internal view {
         AccessStorage storage accStor = accessStorage();
-        if (accStor.execAccess[msg.sig][msg.sender] != true)
-            revert UnAuthorized();
+        if (accStor.execAccess[msg.sig][msg.sender] != true) revert UnAuthorized();
     }
 }

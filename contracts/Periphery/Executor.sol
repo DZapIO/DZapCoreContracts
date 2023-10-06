@@ -42,7 +42,6 @@ contract Executor is IExecutor, ReentrancyGuard {
 
     constructor(address _diamond) {
         if (_diamond == address(0)) revert ZeroAddress();
-
         diamond = IDexManagerFacet(_diamond);
     }
 
@@ -56,36 +55,13 @@ contract Executor is IExecutor, ReentrancyGuard {
     /// @param _transactionId the transaction id for the swap
     /// @param _receiver address that will receive tokens in the end
     /// @param _swapData array of data needed for swaps
-    function swapAndCompleteBridgeTokens(
-        bytes32 _transactionId,
-        address payable _receiver,
-        SwapData calldata _swapData
-    ) external payable nonReentrant {
-        if (!LibAsset.isNativeToken(_swapData.from)) {
-            LibAsset.transferFromERC20(
-                _swapData.from,
-                msg.sender,
-                address(this),
-                _swapData.fromAmount
-            );
-        }
+    function swapAndCompleteBridgeTokens(bytes32 _transactionId, address payable _receiver, SwapData calldata _swapData) external payable nonReentrant {
+        if (!LibAsset.isNativeToken(_swapData.from)) LibAsset.transferFromERC20(_swapData.from, msg.sender, address(this), _swapData.fromAmount);
 
-        // swap
-        (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(
-            _swapData
-        );
+        (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(_swapData);
 
-        if (leftoverFromAmount > 0) {
-            LibAsset.transferToken(
-                _swapData.from,
-                _receiver,
-                leftoverFromAmount
-            );
-        }
-
-        if (returnToAmount > 0) {
-            LibAsset.transferToken(_swapData.to, _receiver, returnToAmount);
-        }
+        if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData.from, _receiver, leftoverFromAmount);
+        if (returnToAmount > 0) LibAsset.transferToken(_swapData.to, _receiver, returnToAmount);
 
         emit TokenSwapped(
             _transactionId,
@@ -102,24 +78,13 @@ contract Executor is IExecutor, ReentrancyGuard {
 
     /* ========= INTERNAL ========= */
 
-    function _executeSwaps(
-        SwapData calldata _swapData
-    ) private returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
+    function _executeSwaps(SwapData calldata _swapData) private returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
         if (
-            !((LibAsset.isNativeToken(_swapData.from) ||
-                diamond.isContractApproved(_swapData.approveTo)) &&
+            !((LibAsset.isNativeToken(_swapData.from) || diamond.isContractApproved(_swapData.approveTo)) &&
                 diamond.isContractApproved(_swapData.callTo) &&
-                diamond.isFunctionApproved(
-                    _swapData.callTo,
-                    LibBytes.getFirst4Bytes(_swapData.swapCallData)
-                ))
+                diamond.isFunctionApproved(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))
         ) revert ContractCallNotAllowed();
 
-        // swap
-        (leftoverFromAmount, returnToAmount) = LibSwap.swap(
-            _swapData,
-            0,
-            false
-        );
+        (leftoverFromAmount, returnToAmount) = LibSwap.swap(_swapData, 0, false);
     }
 }

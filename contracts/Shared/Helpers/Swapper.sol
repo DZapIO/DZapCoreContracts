@@ -41,12 +41,8 @@ contract Swapper {
 
         uint256 finalBalance = address(this).balance;
 
-        uint256 excess = finalBalance > initialBalance
-            ? finalBalance - initialBalance
-            : 0;
-        if (excess > 0) {
-            LibAsset.transferToken(LibAsset._NATIVE_TOKEN, _refundee, excess);
-        }
+        uint256 excess = finalBalance > initialBalance ? finalBalance - initialBalance : 0;
+        if (excess > 0) LibAsset.transferToken(LibAsset._NATIVE_TOKEN, _refundee, excess);
     }
 
     /* ========= INTERNAL ========= */
@@ -57,19 +53,11 @@ contract Swapper {
         bool _withoutRevert
     ) internal returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
         if (
-            !((LibAsset.isNativeToken(_swapData.from) ||
-                LibAllowList.contractIsAllowed(_swapData.approveTo)) &&
+            !((LibAsset.isNativeToken(_swapData.from) || LibAllowList.contractIsAllowed(_swapData.approveTo)) &&
                 LibAllowList.contractIsAllowed(_swapData.callTo) &&
-                LibAllowList.selectorIsAllowed(
-                    _swapData.callTo,
-                    LibBytes.getFirst4Bytes(_swapData.swapCallData)
-                ))
+                LibAllowList.selectorIsAllowed(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))
         ) revert ContractCallNotAllowed();
 
-        (leftoverFromAmount, returnToAmount) = LibSwap.swap(
-            _swapData,
-            _totalTokenFees,
-            _withoutRevert
-        );
+        (leftoverFromAmount, returnToAmount) = LibSwap.swap(_swapData, _totalTokenFees, _withoutRevert);
     }
 }

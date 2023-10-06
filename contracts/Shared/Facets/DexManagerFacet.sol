@@ -13,9 +13,7 @@ contract DexManagerFacet is IDexManagerFacet {
     /* ========= MODIFIER ========= */
 
     modifier onlyAuthorized() {
-        if (msg.sender != LibDiamond.contractOwner()) {
-            LibAccess.enforceAccessControl();
-        }
+        if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();
         _;
     }
 
@@ -23,9 +21,8 @@ contract DexManagerFacet is IDexManagerFacet {
 
     /// @inheritdoc IDexManagerFacet
     function addDex(address _dex) external onlyAuthorized {
-        if (_dex == address(this)) {
-            revert CannotAuthorizeSelf();
-        }
+        if (_dex == address(this)) revert CannotAuthorizeSelf();
+
         LibAllowList.addAllowedContract(_dex);
         emit DexAdded(_dex);
     }
@@ -36,9 +33,8 @@ contract DexManagerFacet is IDexManagerFacet {
 
         for (uint256 i = 0; i < length; ) {
             address dex = _dexs[i];
-            if (dex == address(this)) {
-                revert CannotAuthorizeSelf();
-            }
+            if (dex == address(this)) revert CannotAuthorizeSelf();
+
             LibAllowList.addAllowedContract(dex);
             emit DexAdded(dex);
             unchecked {
@@ -66,23 +62,12 @@ contract DexManagerFacet is IDexManagerFacet {
     }
 
     /// @inheritdoc IDexManagerFacet
-    function setFunctionApprovalBySignature(
-        address _dex,
-        bytes4 _signature,
-        bool _approval
-    ) external onlyAuthorized {
-        if (msg.sender != LibDiamond.contractOwner()) {
-            LibAccess.enforceAccessControl();
-        }
-        if (_dex == address(this)) {
-            revert CannotAuthorizeSelf();
-        }
+    function setFunctionApprovalBySignature(address _dex, bytes4 _signature, bool _approval) external onlyAuthorized {
+        if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();
+        if (_dex == address(this)) revert CannotAuthorizeSelf();
 
-        if (_approval) {
-            LibAllowList.addAllowedSelector(_dex, _signature);
-        } else {
-            LibAllowList.removeAllowedSelector(_dex, _signature);
-        }
+        if (_approval) LibAllowList.addAllowedSelector(_dex, _signature);
+        else LibAllowList.removeAllowedSelector(_dex, _signature);
 
         emit FunctionSignatureApprovalChanged(_dex, _signature, _approval);
     }
@@ -90,29 +75,17 @@ contract DexManagerFacet is IDexManagerFacet {
     /// @notice Batch Adds/removes a specific function signature to/from the allowlist
     /// @param _signatures the function signatures to allow/disallow
     /// @param _approval whether the function signatures should be allowed
-    function batchSetFunctionApprovalBySignature(
-        address[] calldata _dexs,
-        bytes4[] calldata _signatures,
-        bool[] calldata _approval
-    ) external onlyAuthorized {
+    function batchSetFunctionApprovalBySignature(address[] calldata _dexs, bytes4[] calldata _signatures, bool[] calldata _approval) external onlyAuthorized {
         uint256 length = _signatures.length;
         for (uint256 i = 0; i < length; ) {
             address dex = _dexs[i];
-            if (dex == address(this)) {
-                revert CannotAuthorizeSelf();
-            }
+            if (dex == address(this)) revert CannotAuthorizeSelf();
 
             bytes4 _signature = _signatures[i];
-            if (_approval[i]) {
-                LibAllowList.addAllowedSelector(dex, _signature);
-            } else {
-                LibAllowList.removeAllowedSelector(dex, _signature);
-            }
-            emit FunctionSignatureApprovalChanged(
-                dex,
-                _signature,
-                _approval[i]
-            );
+            if (_approval[i]) LibAllowList.addAllowedSelector(dex, _signature);
+            else LibAllowList.removeAllowedSelector(dex, _signature);
+
+            emit FunctionSignatureApprovalChanged(dex, _signature, _approval[i]);
             unchecked {
                 ++i;
             }
@@ -121,19 +94,14 @@ contract DexManagerFacet is IDexManagerFacet {
 
     /// @notice Returns whether a dex is approved
     /// @return approved Approved or not
-    function isContractApproved(
-        address _dex
-    ) public view returns (bool approved) {
+    function isContractApproved(address _dex) public view returns (bool approved) {
         return LibAllowList.contractIsAllowed(_dex);
     }
 
     /// @notice Returns whether a function signature is approved
     /// @param _signature the function signature to query
     /// @return approved Approved or not
-    function isFunctionApproved(
-        address _dex,
-        bytes4 _signature
-    ) public view returns (bool approved) {
+    function isFunctionApproved(address _dex, bytes4 _signature) public view returns (bool approved) {
         return LibAllowList.selectorIsAllowed(_dex, _signature);
     }
 }

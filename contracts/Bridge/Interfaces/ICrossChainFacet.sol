@@ -9,27 +9,11 @@ import { SwapInfo, SwapData } from "../../Shared/Types.sol";
 interface ICrossChainFacet {
     /* ========= EVENTS ========= */
 
-    event SelectorToInfoUpdated(
-        address[] routers,
-        bytes4[] selectors,
-        CallToFunctionInfo[] info
-    );
+    event SelectorToInfoUpdated(address[] routers, bytes4[] selectors, CallToFunctionInfo[] info);
 
-    event BridgeTransferStarted(
-        bytes32 transactionId,
-        address indexed integrator,
-        address indexed sender,
-        address refundee,
-        BridgeData bridgeData
-    );
+    event BridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, BridgeData bridgeData);
 
-    event MultiTokenBridgeTransferStarted(
-        bytes32 transactionId,
-        address indexed integrator,
-        address indexed sender,
-        address refundee,
-        BridgeData[] bridgeData
-    );
+    event MultiTokenBridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, BridgeData[] bridgeData);
 
     event SwapBridgeTransferStarted(
         bytes32 transactionId,
@@ -46,11 +30,7 @@ interface ICrossChainFacet {
     /// @param _routers Array of provider's routers
     /// @param _selectors Array of function selectors
     /// @param _infos Array of params associated with specified function
-    function updateSelectorInfo(
-        address[] calldata _routers,
-        bytes4[] calldata _selectors,
-        CallToFunctionInfo[] calldata _infos
-    ) external;
+    function updateSelectorInfo(address[] calldata _routers, bytes4[] calldata _selectors, CallToFunctionInfo[] calldata _infos) external;
 
     /// @notice Bridges tokens via arbitrary cross-chain provider
     /// @param _bridgeData the core information needed for bridging
@@ -88,8 +68,5 @@ interface ICrossChainFacet {
     ) external payable;
 
     /// @notice Returns selector info
-    function getSelectorInfo(
-        address _router,
-        bytes4 _selector
-    ) external view returns (CallToFunctionInfo memory);
+    function getSelectorInfo(address _router, bytes4 _selector) external view returns (CallToFunctionInfo memory);
 }

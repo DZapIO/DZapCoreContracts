@@ -27,16 +27,10 @@ library LibSwap {
         if (LibAsset.isNativeToken(_swapData.from)) {
             nativeValue = fromAmount;
         } else {
-            LibAsset.approveERC20(
-                _swapData.from,
-                _swapData.approveTo,
-                fromAmount
-            );
+            LibAsset.approveERC20(_swapData.from, _swapData.approveTo, fromAmount);
         }
 
-        (bool success, bytes memory res) = _swapData.callTo.call{
-            value: nativeValue
-        }(_swapData.swapCallData);
+        (bool success, bytes memory res) = _swapData.callTo.call{ value: nativeValue }(_swapData.swapCallData);
 
         if (!success) {
             if (_withoutRevert) {
@@ -46,15 +40,10 @@ library LibSwap {
             revert SwapCallFailed(res);
         }
 
-        returnToAmount =
-            LibAsset.getOwnBalance(_swapData.to) -
-            initialToBalance;
+        returnToAmount = LibAsset.getOwnBalance(_swapData.to) - initialToBalance;
 
-        if (returnToAmount < _swapData.minToAmount)
-            revert SlippageTooHigh(_swapData.minToAmount, returnToAmount);
+        if (returnToAmount < _swapData.minToAmount) revert SlippageTooHigh(_swapData.minToAmount, returnToAmount);
 
-        leftoverFromAmount =
-            LibAsset.getOwnBalance(_swapData.from) -
-            (initialFromBalance - fromAmount);
+        leftoverFromAmount = LibAsset.getOwnBalance(_swapData.from) - (initialFromBalance - fromAmount);
     }
 }

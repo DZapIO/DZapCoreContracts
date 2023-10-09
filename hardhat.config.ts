@@ -36,19 +36,24 @@ const config: HardhatUserConfig = {
       url: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
       accounts: [testnetKey],
     },
+    arbitrumTestnet: {
+      chainId: 421613,
+      url: `https://goerli-rollup.arbitrum.io/rpc`,
+      accounts: [testnetKey],
+    },
     polygonTestnet: {
       chainId: 80001,
-      url: 'https://polygon-mumbai.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
+      url: `https://polygon-mumbai.g.alchemy.com/v2/${alchemyApiKey}`,
       accounts: [testnetKey],
     },
     arbitrum: {
       chainId: 42161,
-      url: 'https://arb-mainnet.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
+      url: `https://arb-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
       accounts: [testnetKey],
     },
     optimism: {
       chainId: 10,
-      url: 'https://opt-mainnet.g.alchemy.com/v2/xOgHYlzhaxkYwc3BUv_ut5J4JoOsldhN',
+      url: `https://opt-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
       accounts: [testnetKey],
     },
   },

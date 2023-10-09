@@ -69,7 +69,11 @@ library LibAsset {
     ///         some recipient. Should handle all non-compliant return value
     ///         tokens as well by using the SafeERC20 contract by open zeppelin.
     function transferToken(address _token, address _recipient, uint256 _amount) internal {
-        if (_amount > 0) (_token == _NATIVE_TOKEN) ? transferNativeToken(_recipient, _amount) : transferERC20(_token, _recipient, _amount);
+        // if (_amount > 0) (_token == _NATIVE_TOKEN) ? transferNativeToken(_recipient, _amount) : transferERC20(_token, _recipient, _amount);
+        if (_amount > 0) {
+            if (_token == _NATIVE_TOKEN) transferNativeToken(_recipient, _amount);
+            else transferERC20(_token, _recipient, _amount);
+        }
     }
 
     /// @dev Use permit2 to approve token
@@ -87,13 +91,7 @@ library LibAsset {
     }
 
     /// @dev Deposits token and accrues fixed and token fees
-    function deposit(
-        address _integrator,
-        FeeType _feeType,
-        address _token,
-        uint256 _amount,
-        bytes calldata _permit
-    ) internal returns (uint256 totalFee, uint256 dZapShare) {
+    function deposit(address _integrator, FeeType _feeType, address _token, uint256 _amount, bytes calldata _permit) internal returns (uint256 totalFee, uint256 dZapShare) {
         if (!LibFees.isIntegratorAllowed(_integrator)) revert IntegratorNotAllowed();
 
         if (!LibAsset.isNativeToken(_token)) {

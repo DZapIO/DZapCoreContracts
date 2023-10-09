@@ -51,13 +51,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
     /* ========= EXTERNAL ========= */
 
     /// @inheritdoc ICrossChainFacet
-    function bridge(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData memory _bridgeData,
-        CrossChainData calldata _genericData
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function bridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
         _validateData(_bridgeData, _genericData);
 
         (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, _bridgeData.from, _bridgeData.minAmount, _genericData.permit);
@@ -73,13 +67,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
     }
 
     /// @inheritdoc ICrossChainFacet
-    function bridgeMultipleTokens(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData[] memory _bridgeData,
-        CrossChainData[] calldata _genericData
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
         uint256 length = _bridgeData.length;
 
         for (uint256 i = 0; i < length; ) {
@@ -87,13 +75,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
             _validateData(bridgeData, _genericData[i]);
 
-            (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(
-                _integrator,
-                FeeType.BRIDGE,
-                bridgeData.from,
-                bridgeData.minAmount,
-                _genericData[i].permit
-            );
+            (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, bridgeData.from, bridgeData.minAmount, _genericData[i].permit);
 
             bridgeData.minAmount -= totalFee;
 
@@ -112,14 +94,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
     }
 
     /// @inheritdoc ICrossChainFacet
-    function swapAndBridge(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData[] memory _bridgeData,
-        SwapData[] calldata _swapData, // src swap data
-        CrossChainData[] calldata _genericData //  = _swapBridgeData.length
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function swapAndBridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
         uint256 length = _bridgeData.length;
         uint256 swapCount;
         SwapInfo[] memory swapInfo = new SwapInfo[](_swapData.length);
@@ -148,14 +123,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
                 if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData[swapCount].from, _refundee, leftoverFromAmount);
 
-                swapInfo[swapCount] = SwapInfo(
-                    _swapData[swapCount].callTo,
-                    _swapData[swapCount].from,
-                    _swapData[swapCount].to,
-                    _swapData[swapCount].fromAmount,
-                    leftoverFromAmount,
-                    returnToAmount
-                );
+                swapInfo[swapCount] = SwapInfo(_swapData[swapCount].callTo, _swapData[swapCount].from, _swapData[swapCount].to, _swapData[swapCount].fromAmount, leftoverFromAmount, returnToAmount);
 
                 ++swapCount;
             } else {
@@ -199,14 +167,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
         if (info.isAvailable) {
             if (info.offset > 0) {
-                return
-                    CrossChainData(
-                        _genericData.callTo,
-                        _genericData.approveTo,
-                        _genericData.extraNative,
-                        _genericData.permit,
-                        bytes.concat(_genericData.callData[:info.offset], abi.encode(amount), _genericData.callData[info.offset + 32:])
-                    );
+                return CrossChainData(_genericData.callTo, _genericData.approveTo, _genericData.extraNative, _genericData.permit, bytes.concat(_genericData.callData[:info.offset], abi.encode(amount), _genericData.callData[info.offset + 32:]));
             } else return _genericData;
         } else revert UnAuthorizedCallToFunction();
     }

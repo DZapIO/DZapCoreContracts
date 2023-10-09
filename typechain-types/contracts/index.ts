@@ -11,4 +11,5 @@ import type * as swap from "./Swap";
 export type { swap };
 import type * as test from "./Test";
 export type { test };
+export type { Create2Deployer } from "./Create2Deployer";
 export type { DZapDiamond } from "./DZapDiamond";

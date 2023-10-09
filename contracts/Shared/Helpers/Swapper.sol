@@ -18,16 +18,7 @@ import { ContractCallNotAllowed, NoSwapFromZeroBalance, SlippageTooHigh, ZeroAdd
 contract Swapper {
     error PartialSwap(uint256 leftOverAmount);
 
-    event SwappedTokens(
-        bytes32 transactionId,
-        address dex,
-        address fromAssetId,
-        address toAssetId,
-        uint256 fromAmount,
-        uint256 toAmount,
-        uint256 leftoverFromAmount,
-        uint256 timestamp
-    );
+    event SwappedTokens(bytes32 transactionId, address dex, address fromAssetId, address toAssetId, uint256 fromAmount, uint256 toAmount, uint256 leftoverFromAmount, uint256 timestamp);
 
     /* ========= INTERNAL ========= */
 
@@ -47,16 +38,8 @@ contract Swapper {
 
     /* ========= INTERNAL ========= */
 
-    function _executeSwaps(
-        SwapData calldata _swapData,
-        uint256 _totalTokenFees,
-        bool _withoutRevert
-    ) internal returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
-        if (
-            !((LibAsset.isNativeToken(_swapData.from) || LibAllowList.contractIsAllowed(_swapData.approveTo)) &&
-                LibAllowList.contractIsAllowed(_swapData.callTo) &&
-                LibAllowList.selectorIsAllowed(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))
-        ) revert ContractCallNotAllowed();
+    function _executeSwaps(SwapData calldata _swapData, uint256 _totalTokenFees, bool _withoutRevert) internal returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
+        if (!((LibAsset.isNativeToken(_swapData.from) || LibAllowList.contractIsAllowed(_swapData.approveTo)) && LibAllowList.contractIsAllowed(_swapData.callTo) && LibAllowList.selectorIsAllowed(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))) revert ContractCallNotAllowed();
 
         (leftoverFromAmount, returnToAmount) = LibSwap.swap(_swapData, _totalTokenFees, _withoutRevert);
     }

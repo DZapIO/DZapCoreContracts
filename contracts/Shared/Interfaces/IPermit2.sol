@@ -35,10 +35,5 @@ interface IPermit2 {
 
     function transferFrom(address from, address to, uint160 amount, address token) external;
 
-    function permitTransferFrom(
-        PermitTransferFrom memory permit,
-        SignatureTransferDetails calldata transferDetails,
-        address owner,
-        bytes calldata signature
-    ) external;
+    function permitTransferFrom(PermitTransferFrom memory permit, SignatureTransferDetails calldata transferDetails, address owner, bytes calldata signature) external;
 }

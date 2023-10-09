@@ -21,17 +21,7 @@ contract Executor is IExecutor, ReentrancyGuard {
 
     /* ========= EVENTS ========= */
 
-    event TokenSwapped(
-        bytes32 transactionId,
-        address callTo,
-        address receiver,
-        address fromAssetId,
-        address toAssetId,
-        uint256 fromAmount,
-        uint256 toAmount,
-        uint256 leftoverFromAmount,
-        uint256 timestamp
-    );
+    event TokenSwapped(bytes32 transactionId, address callTo, address receiver, address fromAssetId, address toAssetId, uint256 fromAmount, uint256 toAmount, uint256 leftoverFromAmount, uint256 timestamp);
 
     /* ========= ERRORS ========= */
 
@@ -56,34 +46,22 @@ contract Executor is IExecutor, ReentrancyGuard {
     /// @param _receiver address that will receive tokens in the end
     /// @param _swapData array of data needed for swaps
     function swapAndCompleteBridgeTokens(bytes32 _transactionId, address payable _receiver, SwapData calldata _swapData) external payable nonReentrant {
-        if (!LibAsset.isNativeToken(_swapData.from)) LibAsset.transferFromERC20(_swapData.from, msg.sender, address(this), _swapData.fromAmount);
+        if (!LibAsset.isNativeToken(_swapData.from)) {
+            LibAsset.transferFromERC20(_swapData.from, msg.sender, address(this), _swapData.fromAmount);
+        }
 
         (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(_swapData);
 
         if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData.from, _receiver, leftoverFromAmount);
         if (returnToAmount > 0) LibAsset.transferToken(_swapData.to, _receiver, returnToAmount);
 
-        emit TokenSwapped(
-            _transactionId,
-            _swapData.callTo,
-            _receiver,
-            _swapData.from,
-            _swapData.to,
-            _swapData.fromAmount,
-            returnToAmount,
-            leftoverFromAmount,
-            block.timestamp
-        );
+        emit TokenSwapped(_transactionId, _swapData.callTo, _receiver, _swapData.from, _swapData.to, _swapData.fromAmount, returnToAmount, leftoverFromAmount, block.timestamp);
     }
 
     /* ========= INTERNAL ========= */
 
     function _executeSwaps(SwapData calldata _swapData) private returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
-        if (
-            !((LibAsset.isNativeToken(_swapData.from) || diamond.isContractApproved(_swapData.approveTo)) &&
-                diamond.isContractApproved(_swapData.callTo) &&
-                diamond.isFunctionApproved(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))
-        ) revert ContractCallNotAllowed();
+        if (!((LibAsset.isNativeToken(_swapData.from) || diamond.isContractApproved(_swapData.approveTo)) && diamond.isContractApproved(_swapData.callTo) && diamond.isFunctionApproved(_swapData.callTo, LibBytes.getFirst4Bytes(_swapData.swapCallData)))) revert ContractCallNotAllowed();
 
         (leftoverFromAmount, returnToAmount) = LibSwap.swap(_swapData, 0, false);
     }

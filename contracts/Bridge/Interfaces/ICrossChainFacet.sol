@@ -15,14 +15,7 @@ interface ICrossChainFacet {
 
     event MultiTokenBridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, BridgeData[] bridgeData);
 
-    event SwapBridgeTransferStarted(
-        bytes32 transactionId,
-        address indexed integrator,
-        address indexed sender,
-        address refundee,
-        BridgeData[] bridgeData,
-        SwapInfo[] swapInfo
-    );
+    event SwapBridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, address refundee, BridgeData[] bridgeData, SwapInfo[] swapInfo);
 
     /* ========= EXTERNAL ========= */
 
@@ -35,37 +28,18 @@ interface ICrossChainFacet {
     /// @notice Bridges tokens via arbitrary cross-chain provider
     /// @param _bridgeData the core information needed for bridging
     /// @param _genericData data specific to CrossChainFacet
-    function bridge(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData memory _bridgeData,
-        CrossChainData calldata _genericData
-    ) external payable;
+    function bridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable;
 
     /// @notice Bridges multiple tokens via arbitrary cross-chain provider
     /// @param _bridgeData the core information needed for bridging
     /// @param _genericData data specific to CrossChainFacet
-    function bridgeMultipleTokens(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData[] memory _bridgeData,
-        CrossChainData[] calldata _genericData
-    ) external payable;
+    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable;
 
     /// @notice Bridges multiple tokens via arbitrary cross-chain provider with swaps on src or dst chain
     /// @param _bridgeData the core information needed for bridging
     /// @param _swapData an array of swap related data for performing swaps before bridging
     /// @param _genericData data specific to GenericCrossChainFacet
-    function swapAndBridge(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        BridgeData[] memory _bridgeData,
-        SwapData[] calldata _swapData, // src swap data
-        CrossChainData[] calldata _genericData //  = _swapBridgeData.length
-    ) external payable;
+    function swapAndBridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable;
 
     /// @notice Returns selector info
     function getSelectorInfo(address _router, bytes4 _selector) external view returns (CallToFunctionInfo memory);

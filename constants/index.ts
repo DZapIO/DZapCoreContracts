@@ -75,7 +75,7 @@ export const BPS_MULTIPLIER = 10000
 export const BPS_DENOMINATOR = 100 * BPS_MULTIPLIER
 export const ZERO_ADDRESS = ethers.constants.AddressZero
 export const NATIVE_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
-export const DZAP_NATIVE = NATIVE_ADDRESS
+export const DZAP_NATIVE = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 export const ZERO = BigNumber.from(0)
 
 export const DEFAULT_BYTES = '0x'

@@ -74,6 +74,10 @@ export interface LifiParams {
   fromAmount: BigNumber
   slippage: number
   enableSlippageProtection: boolean
+  toContractCallData?: string
+  toContractGasLimit?: string
+  toApprovalAddress?: string
+  toFallbackAddress?: string
   allowBridges?: string[]
 }
 

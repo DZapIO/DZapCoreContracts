@@ -81,36 +81,11 @@ interface IClipperExchangeInterface {
         bytes32 s;
     }
 
-    function sellEthForToken(
-        address outputToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        address destinationAddress,
-        Signature calldata theSignature,
-        bytes calldata auxiliaryData
-    ) external payable;
+    function sellEthForToken(address outputToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, address destinationAddress, Signature calldata theSignature, bytes calldata auxiliaryData) external payable;
 
-    function sellTokenForEth(
-        address inputToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        address destinationAddress,
-        Signature calldata theSignature,
-        bytes calldata auxiliaryData
-    ) external;
+    function sellTokenForEth(address inputToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, address destinationAddress, Signature calldata theSignature, bytes calldata auxiliaryData) external;
 
-    function swap(
-        address inputToken,
-        address outputToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        address destinationAddress,
-        Signature calldata theSignature,
-        bytes calldata auxiliaryData
-    ) external;
+    function swap(address inputToken, address outputToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, address destinationAddress, Signature calldata theSignature, bytes calldata auxiliaryData) external;
 }
 
 // File contracts/helpers/RouterErrors.sol
@@ -153,11 +128,7 @@ interface IERC20 {
      * @dev Emitted when the allowance of a `spender` for an `owner` is set by
      * a call to {approve}. `value` is the new allowance.
      */
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 
     /**
      * @dev Returns the amount of tokens in existence.
@@ -185,10 +156,7 @@ interface IERC20 {
      *
      * This value changes when {approve} or {transferFrom} are called.
      */
-    function allowance(
-        address owner,
-        address spender
-    ) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
@@ -215,11 +183,7 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
 }
 
 // File @1inch/solidity-utils/contracts/Interfaces/IDaiLikePermit.sol@v2.1.1
@@ -227,16 +191,7 @@ interface IERC20 {
 pragma solidity ^0.8.0;
 
 interface IDaiLikePermit {
-    function permit(
-        address holder,
-        address spender,
-        uint256 nonce,
-        uint256 expiry,
-        bool allowed,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external;
+    function permit(address holder, address spender, uint256 nonce, uint256 expiry, bool allowed, uint8 v, bytes32 r, bytes32 s) external;
 }
 
 // File @1inch/solidity-utils/contracts/Libraries/RevertReasonForwarder.sol@v2.1.1
@@ -292,15 +247,7 @@ interface IERC20Permit {
      * https://eips.ethereum.org/EIPS/eip-2612#specification[relevant EIP
      * section].
      */
-    function permit(
-        address owner,
-        address spender,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external;
+    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
 
     /**
      * @dev Returns the current nonce for `owner`. This value must be
@@ -331,12 +278,7 @@ library SafeERC20 {
     error SafePermitBadLength();
 
     // Ensures method do not revert or return boolean `true`, admits call to non-smart-contract
-    function safeTransferFrom(
-        IERC20 token,
-        address from,
-        address to,
-        uint256 amount
-    ) internal {
+    function safeTransferFrom(IERC20 token, address from, address to, uint256 amount) internal {
         bytes4 selector = token.transferFrom.selector;
         bool success;
         /// @solidity memory-safe-assembly
@@ -370,37 +312,21 @@ library SafeERC20 {
     }
 
     // If `approve(from, to, amount)` fails, try to `approve(from, to, 0)` before retry
-    function forceApprove(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function forceApprove(IERC20 token, address spender, uint256 value) internal {
         if (!_makeCall(token, token.approve.selector, spender, value)) {
-            if (
-                !_makeCall(token, token.approve.selector, spender, 0) ||
-                !_makeCall(token, token.approve.selector, spender, value)
-            ) {
+            if (!_makeCall(token, token.approve.selector, spender, 0) || !_makeCall(token, token.approve.selector, spender, value)) {
                 revert ForceApproveFailed();
             }
         }
     }
 
-    function safeIncreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function safeIncreaseAllowance(IERC20 token, address spender, uint256 value) internal {
         uint256 allowance = token.allowance(address(this), spender);
-        if (value > type(uint256).max - allowance)
-            revert SafeIncreaseAllowanceFailed();
+        if (value > type(uint256).max - allowance) revert SafeIncreaseAllowanceFailed();
         forceApprove(token, spender, allowance + value);
     }
 
-    function safeDecreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function safeDecreaseAllowance(IERC20 token, address spender, uint256 value) internal {
         uint256 allowance = token.allowance(address(this), spender);
         if (value > allowance) revert SafeDecreaseAllowanceFailed();
         forceApprove(token, spender, allowance - value);
@@ -409,29 +335,16 @@ library SafeERC20 {
     function safePermit(IERC20 token, bytes calldata permit) internal {
         bool success;
         if (permit.length == 32 * 7) {
-            success = _makeCalldataCall(
-                token,
-                IERC20Permit.permit.selector,
-                permit
-            );
+            success = _makeCalldataCall(token, IERC20Permit.permit.selector, permit);
         } else if (permit.length == 32 * 8) {
-            success = _makeCalldataCall(
-                token,
-                IDaiLikePermit.permit.selector,
-                permit
-            );
+            success = _makeCalldataCall(token, IDaiLikePermit.permit.selector, permit);
         } else {
             revert SafePermitBadLength();
         }
         if (!success) RevertReasonForwarder.reRevert();
     }
 
-    function _makeCall(
-        IERC20 token,
-        bytes4 selector,
-        address to,
-        uint256 amount
-    ) private returns (bool success) {
+    function _makeCall(IERC20 token, bytes4 selector, address to, uint256 amount) private returns (bool success) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -453,11 +366,7 @@ library SafeERC20 {
         }
     }
 
-    function _makeCalldataCall(
-        IERC20 token,
-        bytes4 selector,
-        bytes calldata args
-    ) private returns (bool success) {
+    function _makeCalldataCall(IERC20 token, bytes4 selector, bytes calldata args) private returns (bool success) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -498,8 +407,7 @@ pragma solidity 0.8.19;
 contract ClipperRouter is EthReceiver {
     using SafeERC20 for IERC20;
 
-    uint256 private constant _SIGNATURE_S_MASK =
-        0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
+    uint256 private constant _SIGNATURE_S_MASK = 0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     uint256 private constant _SIGNATURE_V_SHIFT = 255;
     bytes6 private constant _INCH_TAG_WITH_LENGTH_PREFIX = "\x051INCH";
     IERC20 private constant _ETH = IERC20(address(0));
@@ -522,31 +430,9 @@ contract ClipperRouter is EthReceiver {
     /// @param vs Clipper order signature (vs part)
     /// @param permit Should contain valid permit that can be used in `IERC20Permit.permit` calls.
     /// @return returnAmount Amount of destination tokens received
-    function clipperSwapToWithPermit(
-        IClipperExchangeInterface clipperExchange,
-        address payable recipient,
-        IERC20 srcToken,
-        IERC20 dstToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        bytes32 r,
-        bytes32 vs,
-        bytes calldata permit
-    ) external returns (uint256 returnAmount) {
+    function clipperSwapToWithPermit(IClipperExchangeInterface clipperExchange, address payable recipient, IERC20 srcToken, IERC20 dstToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, bytes32 r, bytes32 vs, bytes calldata permit) external returns (uint256 returnAmount) {
         srcToken.safePermit(permit);
-        return
-            clipperSwapTo(
-                clipperExchange,
-                recipient,
-                srcToken,
-                dstToken,
-                inputAmount,
-                outputAmount,
-                goodUntil,
-                r,
-                vs
-            );
+        return clipperSwapTo(clipperExchange, recipient, srcToken, dstToken, inputAmount, outputAmount, goodUntil, r, vs);
     }
 
     /// @notice Same as `clipperSwapTo` but uses `msg.sender` as recipient
@@ -558,28 +444,8 @@ contract ClipperRouter is EthReceiver {
     /// @param r Clipper order signature (r part)
     /// @param vs Clipper order signature (vs part)
     /// @return returnAmount Amount of destination tokens received
-    function clipperSwap(
-        IClipperExchangeInterface clipperExchange,
-        IERC20 srcToken,
-        IERC20 dstToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        bytes32 r,
-        bytes32 vs
-    ) external payable returns (uint256 returnAmount) {
-        return
-            clipperSwapTo(
-                clipperExchange,
-                payable(msg.sender),
-                srcToken,
-                dstToken,
-                inputAmount,
-                outputAmount,
-                goodUntil,
-                r,
-                vs
-            );
+    function clipperSwap(IClipperExchangeInterface clipperExchange, IERC20 srcToken, IERC20 dstToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, bytes32 r, bytes32 vs) external payable returns (uint256 returnAmount) {
+        return clipperSwapTo(clipperExchange, payable(msg.sender), srcToken, dstToken, inputAmount, outputAmount, goodUntil, r, vs);
     }
 
     /// @notice Performs swap using Clipper exchange. Wraps and unwraps ETH if required.
@@ -593,21 +459,10 @@ contract ClipperRouter is EthReceiver {
     /// @param r Clipper order signature (r part)
     /// @param vs Clipper order signature (vs part)
     /// @return returnAmount Amount of destination tokens received
-    function clipperSwapTo(
-        IClipperExchangeInterface clipperExchange,
-        address payable recipient,
-        IERC20 srcToken,
-        IERC20 dstToken,
-        uint256 inputAmount,
-        uint256 outputAmount,
-        uint256 goodUntil,
-        bytes32 r,
-        bytes32 vs
-    ) public payable returns (uint256 returnAmount) {
+    function clipperSwapTo(IClipperExchangeInterface clipperExchange, address payable recipient, IERC20 srcToken, IERC20 dstToken, uint256 inputAmount, uint256 outputAmount, uint256 goodUntil, bytes32 r, bytes32 vs) public payable returns (uint256 returnAmount) {
         bool srcETH = srcToken == _ETH;
         if (srcETH) {
-            if (msg.value != inputAmount)
-                revert RouterErrors.InvalidMsgValue();
+            if (msg.value != inputAmount) revert RouterErrors.InvalidMsgValue();
         } else if (srcToken == _WETH) {
             srcETH = true;
             if (msg.value != 0) revert RouterErrors.InvalidMsgValue();
@@ -639,11 +494,7 @@ contract ClipperRouter is EthReceiver {
             }
         } else {
             if (msg.value != 0) revert RouterErrors.InvalidMsgValue();
-            srcToken.safeTransferFrom(
-                msg.sender,
-                address(clipperExchange),
-                inputAmount
-            );
+            srcToken.safeTransferFrom(msg.sender, address(clipperExchange), inputAmount);
         }
 
         if (srcETH) {
@@ -666,9 +517,7 @@ contract ClipperRouter is EthReceiver {
                 mstore(add(ptr, 0xe4), and(vs, _SIGNATURE_S_MASK))
                 mstore(add(ptr, 0x104), 0x120)
                 mstore(add(ptr, 0x143), _INCH_TAG_WITH_LENGTH_PREFIX)
-                if iszero(
-                    call(gas(), clipper, inputAmount, ptr, 0x149, 0, 0)
-                ) {
+                if iszero(call(gas(), clipper, inputAmount, ptr, 0x149, 0, 0)) {
                     returndatacopy(ptr, 0, returndatasize())
                     revert(ptr, returndatasize())
                 }
@@ -717,9 +566,7 @@ contract ClipperRouter is EthReceiver {
                     let ptr := mload(0x40)
 
                     mstore(ptr, depositSelector)
-                    if iszero(
-                        call(gas(), weth, outputAmount, ptr, 0x04, 0, 0)
-                    ) {
+                    if iszero(call(gas(), weth, outputAmount, ptr, 0x04, 0, 0)) {
                         returndatacopy(ptr, 0, returndatasize())
                         revert(ptr, returndatasize())
                     }
@@ -799,97 +646,20 @@ library StringUtil {
         return toHex(abi.encodePacked(value));
     }
 
-    function toHex(
-        bytes memory data
-    ) internal pure returns (string memory result) {
+    function toHex(bytes memory data) internal pure returns (string memory result) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
             function _toHex16(input) -> output {
-                output := or(
-                    and(
-                        input,
-                        0xFFFFFFFFFFFFFFFF000000000000000000000000000000000000000000000000
-                    ),
-                    shr(
-                        64,
-                        and(
-                            input,
-                            0x0000000000000000FFFFFFFFFFFFFFFF00000000000000000000000000000000
-                        )
-                    )
-                )
-                output := or(
-                    and(
-                        output,
-                        0xFFFFFFFF000000000000000000000000FFFFFFFF000000000000000000000000
-                    ),
-                    shr(
-                        32,
-                        and(
-                            output,
-                            0x00000000FFFFFFFF000000000000000000000000FFFFFFFF0000000000000000
-                        )
-                    )
-                )
-                output := or(
-                    and(
-                        output,
-                        0xFFFF000000000000FFFF000000000000FFFF000000000000FFFF000000000000
-                    ),
-                    shr(
-                        16,
-                        and(
-                            output,
-                            0x0000FFFF000000000000FFFF000000000000FFFF000000000000FFFF00000000
-                        )
-                    )
-                )
-                output := or(
-                    and(
-                        output,
-                        0xFF000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000
-                    ),
-                    shr(
-                        8,
-                        and(
-                            output,
-                            0x00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
-                        )
-                    )
-                )
-                output := or(
-                    shr(
-                        4,
-                        and(
-                            output,
-                            0xF000F000F000F000F000F000F000F000F000F000F000F000F000F000F000F000
-                        )
-                    ),
-                    shr(
-                        8,
-                        and(
-                            output,
-                            0x0F000F000F000F000F000F000F000F000F000F000F000F000F000F000F000F00
-                        )
-                    )
-                )
+                output := or(and(input, 0xFFFFFFFFFFFFFFFF000000000000000000000000000000000000000000000000), shr(64, and(input, 0x0000000000000000FFFFFFFFFFFFFFFF00000000000000000000000000000000)))
+                output := or(and(output, 0xFFFFFFFF000000000000000000000000FFFFFFFF000000000000000000000000), shr(32, and(output, 0x00000000FFFFFFFF000000000000000000000000FFFFFFFF0000000000000000)))
+                output := or(and(output, 0xFFFF000000000000FFFF000000000000FFFF000000000000FFFF000000000000), shr(16, and(output, 0x0000FFFF000000000000FFFF000000000000FFFF000000000000FFFF00000000)))
+                output := or(and(output, 0xFF000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000), shr(8, and(output, 0x00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000)))
+                output := or(shr(4, and(output, 0xF000F000F000F000F000F000F000F000F000F000F000F000F000F000F000F000)), shr(8, and(output, 0x0F000F000F000F000F000F000F000F000F000F000F000F000F000F000F000F00)))
                 output := add(
-                    add(
-                        0x3030303030303030303030303030303030303030303030303030303030303030,
-                        output
-                    ),
+                    add(0x3030303030303030303030303030303030303030303030303030303030303030, output),
                     mul(
-                        and(
-                            shr(
-                                4,
-                                add(
-                                    output,
-                                    0x0606060606060606060606060606060606060606060606060606060606060606
-                                )
-                            ),
-                            0x0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F
-                        ),
+                        and(shr(4, add(output, 0x0606060606060606060606060606060606060606060606060606060606060606)), 0x0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F),
                         7 // Change 7 to 39 for lower case output
                     )
                 )
@@ -964,18 +734,14 @@ library UniERC20 {
     error ToIsNotThis();
     error ETHTransferFailed();
 
-    IERC20 private constant _ETH_ADDRESS =
-        IERC20(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
+    IERC20 private constant _ETH_ADDRESS = IERC20(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
     IERC20 private constant _ZERO_ADDRESS = IERC20(address(0));
 
     function isETH(IERC20 token) internal pure returns (bool) {
         return (token == _ZERO_ADDRESS || token == _ETH_ADDRESS);
     }
 
-    function uniBalanceOf(
-        IERC20 token,
-        address account
-    ) internal view returns (uint256) {
+    function uniBalanceOf(IERC20 token, address account) internal view returns (uint256) {
         if (isETH(token)) {
             return account.balance;
         } else {
@@ -984,15 +750,10 @@ library UniERC20 {
     }
 
     /// @dev note that this function does nothing in case of zero amount
-    function uniTransfer(
-        IERC20 token,
-        address payable to,
-        uint256 amount
-    ) internal {
+    function uniTransfer(IERC20 token, address payable to, uint256 amount) internal {
         if (amount > 0) {
             if (isETH(token)) {
-                if (address(this).balance < amount)
-                    revert InsufficientBalance();
+                if (address(this).balance < amount) revert InsufficientBalance();
                 // solhint-disable-next-line avoid-low-level-calls
                 (bool success, ) = to.call{ value: amount }("");
                 if (!success) revert ETHTransferFailed();
@@ -1003,12 +764,7 @@ library UniERC20 {
     }
 
     /// @dev note that this function does nothing in case of zero amount
-    function uniTransferFrom(
-        IERC20 token,
-        address payable from,
-        address to,
-        uint256 amount
-    ) internal {
+    function uniTransferFrom(IERC20 token, address payable from, address to, uint256 amount) internal {
         if (amount > 0) {
             if (isETH(token)) {
                 if (msg.value < amount) revert NotEnoughValue();
@@ -1018,9 +774,7 @@ library UniERC20 {
                     // Return remainder if exist
                     unchecked {
                         // solhint-disable-next-line avoid-low-level-calls
-                        (bool success, ) = from.call{
-                            value: msg.value - amount
-                        }("");
+                        (bool success, ) = from.call{ value: msg.value - amount }("");
                         if (!success) revert ETHTransferFailed();
                     }
                 }
@@ -1031,21 +785,11 @@ library UniERC20 {
     }
 
     function uniSymbol(IERC20 token) internal view returns (string memory) {
-        return
-            _uniDecode(
-                token,
-                IERC20Metadata.symbol.selector,
-                IERC20MetadataUppercase.SYMBOL.selector
-            );
+        return _uniDecode(token, IERC20Metadata.symbol.selector, IERC20MetadataUppercase.SYMBOL.selector);
     }
 
     function uniName(IERC20 token) internal view returns (string memory) {
-        return
-            _uniDecode(
-                token,
-                IERC20Metadata.name.selector,
-                IERC20MetadataUppercase.NAME.selector
-            );
+        return _uniDecode(token, IERC20Metadata.name.selector, IERC20MetadataUppercase.NAME.selector);
     }
 
     function uniApprove(IERC20 token, address to, uint256 amount) internal {
@@ -1056,29 +800,18 @@ library UniERC20 {
 
     /// 20K gas is provided to account for possible implementations of name/symbol
     /// (token implementation might be behind proxy or store the value in storage)
-    function _uniDecode(
-        IERC20 token,
-        bytes4 lowerCaseSelector,
-        bytes4 upperCaseSelector
-    ) private view returns (string memory result) {
+    function _uniDecode(IERC20 token, bytes4 lowerCaseSelector, bytes4 upperCaseSelector) private view returns (string memory result) {
         if (isETH(token)) {
             return "ETH";
         }
 
-        (bool success, bytes memory data) = address(token).staticcall{
-            gas: 20000
-        }(abi.encodeWithSelector(lowerCaseSelector));
+        (bool success, bytes memory data) = address(token).staticcall{ gas: 20000 }(abi.encodeWithSelector(lowerCaseSelector));
         if (!success) {
-            (success, data) = address(token).staticcall{ gas: 20000 }(
-                abi.encodeWithSelector(upperCaseSelector)
-            );
+            (success, data) = address(token).staticcall{ gas: 20000 }(abi.encodeWithSelector(upperCaseSelector));
         }
 
         if (success && data.length >= 0x40) {
-            (uint256 offset, uint256 len) = abi.decode(
-                data,
-                (uint256, uint256)
-            );
+            (uint256 offset, uint256 len) = abi.decode(data, (uint256, uint256));
             if (offset == 0x20 && len > 0 && data.length == 0x40 + len) {
                 /// @solidity memory-safe-assembly
                 assembly {
@@ -1091,9 +824,7 @@ library UniERC20 {
 
         if (success && data.length == 32) {
             uint256 len = 0;
-            while (
-                len < data.length && data[len] >= 0x20 && data[len] <= 0x7E
-            ) {
+            while (len < data.length && data[len] >= 0x20 && data[len] <= 0x7E) {
                 unchecked {
                     len++;
                 }
@@ -1145,12 +876,7 @@ contract GenericRouter is EthReceiver {
     /// @param data Encoded calls that `caller` should execute in between of swaps
     /// @return returnAmount Resulting token amount
     /// @return spentAmount Source token amount
-    function swap(
-        IAggregationExecutor executor,
-        SwapDescription calldata desc,
-        bytes calldata permit,
-        bytes calldata data
-    ) external payable returns (uint256 returnAmount, uint256 spentAmount) {
+    function swap(IAggregationExecutor executor, SwapDescription calldata desc, bytes calldata permit, bytes calldata data) external payable returns (uint256 returnAmount, uint256 spentAmount) {
         if (desc.minReturnAmount == 0) revert ZeroMinReturn();
 
         IERC20 srcToken = desc.srcToken;
@@ -1158,22 +884,16 @@ contract GenericRouter is EthReceiver {
 
         bool srcETH = srcToken.isETH();
         if (desc.flags & _REQUIRES_EXTRA_ETH != 0) {
-            if (msg.value <= (srcETH ? desc.amount : 0))
-                revert RouterErrors.InvalidMsgValue();
+            if (msg.value <= (srcETH ? desc.amount : 0)) revert RouterErrors.InvalidMsgValue();
         } else {
-            if (msg.value != (srcETH ? desc.amount : 0))
-                revert RouterErrors.InvalidMsgValue();
+            if (msg.value != (srcETH ? desc.amount : 0)) revert RouterErrors.InvalidMsgValue();
         }
 
         if (!srcETH) {
             if (permit.length > 0) {
                 srcToken.safePermit(permit);
             }
-            srcToken.safeTransferFrom(
-                msg.sender,
-                desc.srcReceiver,
-                desc.amount
-            );
+            srcToken.safeTransferFrom(msg.sender, desc.srcReceiver, desc.amount);
         }
 
         _execute(executor, msg.sender, desc.amount, data);
@@ -1196,26 +916,16 @@ contract GenericRouter is EthReceiver {
                 spentAmount -= unspentAmount;
                 srcToken.uniTransfer(payable(msg.sender), unspentAmount);
             }
-            if (
-                returnAmount * desc.amount < desc.minReturnAmount * spentAmount
-            ) revert RouterErrors.ReturnAmountIsNotEnough();
+            if (returnAmount * desc.amount < desc.minReturnAmount * spentAmount) revert RouterErrors.ReturnAmountIsNotEnough();
         } else {
-            if (returnAmount < desc.minReturnAmount)
-                revert RouterErrors.ReturnAmountIsNotEnough();
+            if (returnAmount < desc.minReturnAmount) revert RouterErrors.ReturnAmountIsNotEnough();
         }
 
-        address payable dstReceiver = (desc.dstReceiver == address(0))
-            ? payable(msg.sender)
-            : desc.dstReceiver;
+        address payable dstReceiver = (desc.dstReceiver == address(0)) ? payable(msg.sender) : desc.dstReceiver;
         dstToken.uniTransfer(dstReceiver, returnAmount);
     }
 
-    function _execute(
-        IAggregationExecutor executor,
-        address srcTokenOwner,
-        uint256 inputAmount,
-        bytes calldata data
-    ) private {
+    function _execute(IAggregationExecutor executor, address srcTokenOwner, uint256 inputAmount, bytes calldata data) private {
         bytes4 executeSelector = executor.execute.selector;
         /// @solidity memory-safe-assembly
         assembly {
@@ -1227,17 +937,7 @@ contract GenericRouter is EthReceiver {
             calldatacopy(add(ptr, 0x24), data.offset, data.length)
             mstore(add(add(ptr, 0x24), data.length), inputAmount)
 
-            if iszero(
-                call(
-                    gas(),
-                    executor,
-                    callvalue(),
-                    ptr,
-                    add(0x44, data.length),
-                    0,
-                    0
-                )
-            ) {
+            if iszero(call(gas(), executor, callvalue(), ptr, add(0x44, data.length), 0, 0)) {
                 returndatacopy(ptr, 0, returndatasize())
                 revert(ptr, returndatasize())
             }
@@ -1259,18 +959,13 @@ contract UnoswapRouter is EthReceiver {
     bytes4 private constant _WETH_DEPOSIT_CALL_SELECTOR = 0xd0e30db0;
     bytes4 private constant _WETH_WITHDRAW_CALL_SELECTOR = 0x2e1a7d4d;
     bytes4 private constant _ERC20_TRANSFER_CALL_SELECTOR = 0xa9059cbb;
-    uint256 private constant _ADDRESS_MASK =
-        0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff;
-    uint256 private constant _REVERSE_MASK =
-        0x8000000000000000000000000000000000000000000000000000000000000000;
-    uint256 private constant _WETH_MASK =
-        0x4000000000000000000000000000000000000000000000000000000000000000;
-    uint256 private constant _NUMERATOR_MASK =
-        0x0000000000000000ffffffff0000000000000000000000000000000000000000;
+    uint256 private constant _ADDRESS_MASK = 0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff;
+    uint256 private constant _REVERSE_MASK = 0x8000000000000000000000000000000000000000000000000000000000000000;
+    uint256 private constant _WETH_MASK = 0x4000000000000000000000000000000000000000000000000000000000000000;
+    uint256 private constant _NUMERATOR_MASK = 0x0000000000000000ffffffff0000000000000000000000000000000000000000;
     /// @dev WETH address is network-specific and needs to be changed before deployment.
     /// It can not be moved to immutable as immutables are not supported in assembly
-    address private constant _WETH =
-        0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91;
+    address private constant _WETH = 0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91;
     bytes4 private constant _UNISWAP_PAIR_RESERVES_CALL_SELECTOR = 0x0902f1ac;
     bytes4 private constant _UNISWAP_PAIR_SWAP_CALL_SELECTOR = 0x022c0d9f;
     uint256 private constant _DENOMINATOR = 1e9;
@@ -1286,14 +981,7 @@ contract UnoswapRouter is EthReceiver {
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
     /// @param permit Should contain valid permit that can be used in `IERC20Permit.permit` calls.
     /// See tests for examples
-    function unoswapToWithPermit(
-        address payable recipient,
-        IERC20 srcToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools,
-        bytes calldata permit
-    ) external returns (uint256 returnAmount) {
+    function unoswapToWithPermit(address payable recipient, IERC20 srcToken, uint256 amount, uint256 minReturn, uint256[] calldata pools, bytes calldata permit) external returns (uint256 returnAmount) {
         srcToken.safePermit(permit);
         return _unoswap(recipient, srcToken, amount, minReturn, pools);
     }
@@ -1305,13 +993,7 @@ contract UnoswapRouter is EthReceiver {
     /// @param amount Amount of source tokens to swap
     /// @param minReturn Minimal allowed returnAmount to make transaction commit
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
-    function unoswapTo(
-        address payable recipient,
-        IERC20 srcToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) external payable returns (uint256 returnAmount) {
+    function unoswapTo(address payable recipient, IERC20 srcToken, uint256 amount, uint256 minReturn, uint256[] calldata pools) external payable returns (uint256 returnAmount) {
         return _unoswap(recipient, srcToken, amount, minReturn, pools);
     }
 
@@ -1321,23 +1003,11 @@ contract UnoswapRouter is EthReceiver {
     /// @param amount Amount of source tokens to swap
     /// @param minReturn Minimal allowed returnAmount to make transaction commit
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
-    function unoswap(
-        IERC20 srcToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) external payable returns (uint256 returnAmount) {
-        return
-            _unoswap(payable(msg.sender), srcToken, amount, minReturn, pools);
+    function unoswap(IERC20 srcToken, uint256 amount, uint256 minReturn, uint256[] calldata pools) external payable returns (uint256 returnAmount) {
+        return _unoswap(payable(msg.sender), srcToken, amount, minReturn, pools);
     }
 
-    function _unoswap(
-        address payable recipient,
-        IERC20 srcToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) private returns (uint256 returnAmount) {
+    function _unoswap(address payable recipient, IERC20 srcToken, uint256 amount, uint256 minReturn, uint256[] calldata pools) private returns (uint256 returnAmount) {
         assembly {
             // solhint-disable-line no-inline-assembly
             function reRevert() {
@@ -1354,28 +1024,18 @@ contract UnoswapRouter is EthReceiver {
                     and(gt(returndatasize(), 31), eq(mload(0), 1)) // true in return data
                 )
                 if iszero(success) {
-                    mstore(
-                        0,
-                        0xf27f64e400000000000000000000000000000000000000000000000000000000
-                    ) // ERC20TransferFailed()
+                    mstore(0, 0xf27f64e400000000000000000000000000000000000000000000000000000000) // ERC20TransferFailed()
                     revert(0, 4)
                 }
             }
 
-            function swap(emptyPtr, swapAmount, pair, reversed, numerator, to)
-                -> ret
-            {
+            function swap(emptyPtr, swapAmount, pair, reversed, numerator, to) -> ret {
                 mstore(emptyPtr, _UNISWAP_PAIR_RESERVES_CALL_SELECTOR)
-                if iszero(
-                    staticcall(gas(), pair, emptyPtr, 0x4, emptyPtr, 0x40)
-                ) {
+                if iszero(staticcall(gas(), pair, emptyPtr, 0x4, emptyPtr, 0x40)) {
                     reRevert()
                 }
                 if iszero(eq(returndatasize(), 0x60)) {
-                    mstore(
-                        0,
-                        0x85cd58dc00000000000000000000000000000000000000000000000000000000
-                    ) // ReservesCallFailed()
+                    mstore(0, 0x85cd58dc00000000000000000000000000000000000000000000000000000000) // ReservesCallFailed()
                     revert(0, 4)
                 }
 
@@ -1388,10 +1048,7 @@ contract UnoswapRouter is EthReceiver {
                 }
                 // this will not overflow as reserve0, reserve1 and ret fit to 112 bit and numerator and _DENOMINATOR fit to 32 bit
                 ret := mul(swapAmount, numerator)
-                ret := div(
-                    mul(ret, reserve1),
-                    add(ret, mul(reserve0, _DENOMINATOR))
-                )
+                ret := div(mul(ret, reserve1), add(ret, mul(reserve0, _DENOMINATOR)))
 
                 mstore(emptyPtr, _UNISWAP_PAIR_SWAP_CALL_SELECTOR)
                 reversed := iszero(reversed)
@@ -1407,10 +1064,7 @@ contract UnoswapRouter is EthReceiver {
 
             // make sure that input amount fits in 112 bit
             if gt(amount, _MAX_SWAP_AMOUNT) {
-                mstore(
-                    0,
-                    0xcf0b4d3a00000000000000000000000000000000000000000000000000000000
-                ) // SwapAmountTooLarge()
+                mstore(0, 0xcf0b4d3a00000000000000000000000000000000000000000000000000000000) // SwapAmountTooLarge()
                 revert(0, 4)
             }
 
@@ -1422,10 +1076,7 @@ contract UnoswapRouter is EthReceiver {
             switch srcToken
             case 0 {
                 if iszero(eq(amount, callvalue())) {
-                    mstore(
-                        0,
-                        0x1841b4e100000000000000000000000000000000000000000000000000000000
-                    ) // InvalidMsgValue()
+                    mstore(0, 0x1841b4e100000000000000000000000000000000000000000000000000000000) // InvalidMsgValue()
                     revert(0, 4)
                 }
 
@@ -1443,10 +1094,7 @@ contract UnoswapRouter is EthReceiver {
             }
             default {
                 if callvalue() {
-                    mstore(
-                        0,
-                        0x1841b4e100000000000000000000000000000000000000000000000000000000
-                    ) // InvalidMsgValue()
+                    mstore(0, 0x1841b4e100000000000000000000000000000000000000000000000000000000) // InvalidMsgValue()
                     revert(0, 4)
                 }
 
@@ -1454,9 +1102,7 @@ contract UnoswapRouter is EthReceiver {
                 mstore(add(emptyPtr, 0x4), caller())
                 mstore(add(emptyPtr, 0x24), and(rawPair, _ADDRESS_MASK))
                 mstore(add(emptyPtr, 0x44), amount)
-                validateERC20Transfer(
-                    call(gas(), srcToken, 0, emptyPtr, 0x64, 0, 0x20)
-                )
+                validateERC20Transfer(call(gas(), srcToken, 0, emptyPtr, 0x64, 0, 0x20))
             }
 
             returnAmount := amount
@@ -1468,38 +1114,17 @@ contract UnoswapRouter is EthReceiver {
             } {
                 let nextRawPair := calldataload(i)
 
-                returnAmount := swap(
-                    emptyPtr,
-                    returnAmount,
-                    and(rawPair, _ADDRESS_MASK),
-                    and(rawPair, _REVERSE_MASK),
-                    shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)),
-                    and(nextRawPair, _ADDRESS_MASK)
-                )
+                returnAmount := swap(emptyPtr, returnAmount, and(rawPair, _ADDRESS_MASK), and(rawPair, _REVERSE_MASK), shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)), and(nextRawPair, _ADDRESS_MASK))
 
                 rawPair := nextRawPair
             }
 
             switch and(rawPair, _WETH_MASK)
             case 0 {
-                returnAmount := swap(
-                    emptyPtr,
-                    returnAmount,
-                    and(rawPair, _ADDRESS_MASK),
-                    and(rawPair, _REVERSE_MASK),
-                    shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)),
-                    recipient
-                )
+                returnAmount := swap(emptyPtr, returnAmount, and(rawPair, _ADDRESS_MASK), and(rawPair, _REVERSE_MASK), shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)), recipient)
             }
             default {
-                returnAmount := swap(
-                    emptyPtr,
-                    returnAmount,
-                    and(rawPair, _ADDRESS_MASK),
-                    and(rawPair, _REVERSE_MASK),
-                    shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)),
-                    address()
-                )
+                returnAmount := swap(emptyPtr, returnAmount, and(rawPair, _ADDRESS_MASK), and(rawPair, _REVERSE_MASK), shr(_NUMERATOR_OFFSET, and(rawPair, _NUMERATOR_MASK)), address())
 
                 mstore(emptyPtr, _WETH_WITHDRAW_CALL_SELECTOR)
                 mstore(add(emptyPtr, 0x04), returnAmount)
@@ -1512,8 +1137,7 @@ contract UnoswapRouter is EthReceiver {
                 }
             }
         }
-        if (returnAmount < minReturn)
-            revert RouterErrors.ReturnAmountIsNotEnough();
+        if (returnAmount < minReturn) revert RouterErrors.ReturnAmountIsNotEnough();
     }
 }
 
@@ -1532,13 +1156,7 @@ interface IUniswapV3Pool {
     /// @param data Any data to be passed through to the callback
     /// @return amount0 The delta of the balance of token0 of the pool, exact when negative, minimum when positive
     /// @return amount1 The delta of the balance of token1 of the pool, exact when negative, minimum when positive
-    function swap(
-        address recipient,
-        bool zeroForOne,
-        int256 amountSpecified,
-        uint160 sqrtPriceLimitX96,
-        bytes calldata data
-    ) external returns (int256 amount0, int256 amount1);
+    function swap(address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes calldata data) external returns (int256 amount0, int256 amount1);
 
     /// @notice The first of the two tokens of the pool, sorted by address
     /// @return The token contract address
@@ -1569,11 +1187,7 @@ interface IUniswapV3SwapCallback {
     /// @param amount1Delta The amount of token1 that was sent (negative) or must be received (positive) by the pool by
     /// the end of the swap. If positive, the callback must send that amount of token1 to the pool.
     /// @param data Any data passed through by the caller via the IUniswapV3PoolActions#swap call
-    function uniswapV3SwapCallback(
-        int256 amount0Delta,
-        int256 amount1Delta,
-        bytes calldata data
-    ) external;
+    function uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes calldata data) external;
 }
 
 // File @openzeppelin/contracts/utils/Address.sol@v4.7.3
@@ -1637,16 +1251,10 @@ library Address {
      * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
      */
     function sendValue(address payable recipient, uint256 amount) internal {
-        require(
-            address(this).balance >= amount,
-            "Address: insufficient balance"
-        );
+        require(address(this).balance >= amount, "Address: insufficient balance");
 
         (bool success, ) = recipient.call{ value: amount }("");
-        require(
-            success,
-            "Address: unable to send value, recipient may have reverted"
-        );
+        require(success, "Address: unable to send value, recipient may have reverted");
     }
 
     /**
@@ -1667,10 +1275,7 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(
-        address target,
-        bytes memory data
-    ) internal returns (bytes memory) {
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
         return functionCall(target, data, "Address: low-level call failed");
     }
 
@@ -1680,11 +1285,7 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
+    function functionCall(address target, bytes memory data, string memory errorMessage) internal returns (bytes memory) {
         return functionCallWithValue(target, data, 0, errorMessage);
     }
 
@@ -1699,18 +1300,8 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 value
-    ) internal returns (bytes memory) {
-        return
-            functionCallWithValue(
-                target,
-                data,
-                value,
-                "Address: low-level call with value failed"
-            );
+    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
     }
 
     /**
@@ -1719,21 +1310,11 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 value,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
-        require(
-            address(this).balance >= value,
-            "Address: insufficient balance for call"
-        );
+    function functionCallWithValue(address target, bytes memory data, uint256 value, string memory errorMessage) internal returns (bytes memory) {
+        require(address(this).balance >= value, "Address: insufficient balance for call");
         require(isContract(target), "Address: call to non-contract");
 
-        (bool success, bytes memory returndata) = target.call{ value: value }(
-            data
-        );
+        (bool success, bytes memory returndata) = target.call{ value: value }(data);
         return verifyCallResult(success, returndata, errorMessage);
     }
 
@@ -1743,16 +1324,8 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(
-        address target,
-        bytes memory data
-    ) internal view returns (bytes memory) {
-        return
-            functionStaticCall(
-                target,
-                data,
-                "Address: low-level static call failed"
-            );
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
     }
 
     /**
@@ -1761,11 +1334,7 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal view returns (bytes memory) {
+    function functionStaticCall(address target, bytes memory data, string memory errorMessage) internal view returns (bytes memory) {
         require(isContract(target), "Address: static call to non-contract");
 
         (bool success, bytes memory returndata) = target.staticcall(data);
@@ -1778,16 +1347,8 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(
-        address target,
-        bytes memory data
-    ) internal returns (bytes memory) {
-        return
-            functionDelegateCall(
-                target,
-                data,
-                "Address: low-level delegate call failed"
-            );
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
     }
 
     /**
@@ -1796,11 +1357,7 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
+    function functionDelegateCall(address target, bytes memory data, string memory errorMessage) internal returns (bytes memory) {
         require(isContract(target), "Address: delegate call to non-contract");
 
         (bool success, bytes memory returndata) = target.delegatecall(data);
@@ -1813,11 +1370,7 @@ library Address {
      *
      * _Available since v4.3._
      */
-    function verifyCallResult(
-        bool success,
-        bytes memory returndata,
-        string memory errorMessage
-    ) internal pure returns (bytes memory) {
+    function verifyCallResult(bool success, bytes memory returndata, string memory errorMessage) internal pure returns (bytes memory) {
         if (success) {
             return returndata;
         } else {
@@ -1871,10 +1424,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint248(uint256 value) internal pure returns (uint248) {
-        require(
-            value <= type(uint248).max,
-            "SafeCast: value doesn't fit in 248 bits"
-        );
+        require(value <= type(uint248).max, "SafeCast: value doesn't fit in 248 bits");
         return uint248(value);
     }
 
@@ -1891,10 +1441,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint240(uint256 value) internal pure returns (uint240) {
-        require(
-            value <= type(uint240).max,
-            "SafeCast: value doesn't fit in 240 bits"
-        );
+        require(value <= type(uint240).max, "SafeCast: value doesn't fit in 240 bits");
         return uint240(value);
     }
 
@@ -1911,10 +1458,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint232(uint256 value) internal pure returns (uint232) {
-        require(
-            value <= type(uint232).max,
-            "SafeCast: value doesn't fit in 232 bits"
-        );
+        require(value <= type(uint232).max, "SafeCast: value doesn't fit in 232 bits");
         return uint232(value);
     }
 
@@ -1931,10 +1475,7 @@ library SafeCast {
      * _Available since v4.2._
      */
     function toUint224(uint256 value) internal pure returns (uint224) {
-        require(
-            value <= type(uint224).max,
-            "SafeCast: value doesn't fit in 224 bits"
-        );
+        require(value <= type(uint224).max, "SafeCast: value doesn't fit in 224 bits");
         return uint224(value);
     }
 
@@ -1951,10 +1492,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint216(uint256 value) internal pure returns (uint216) {
-        require(
-            value <= type(uint216).max,
-            "SafeCast: value doesn't fit in 216 bits"
-        );
+        require(value <= type(uint216).max, "SafeCast: value doesn't fit in 216 bits");
         return uint216(value);
     }
 
@@ -1971,10 +1509,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint208(uint256 value) internal pure returns (uint208) {
-        require(
-            value <= type(uint208).max,
-            "SafeCast: value doesn't fit in 208 bits"
-        );
+        require(value <= type(uint208).max, "SafeCast: value doesn't fit in 208 bits");
         return uint208(value);
     }
 
@@ -1991,10 +1526,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint200(uint256 value) internal pure returns (uint200) {
-        require(
-            value <= type(uint200).max,
-            "SafeCast: value doesn't fit in 200 bits"
-        );
+        require(value <= type(uint200).max, "SafeCast: value doesn't fit in 200 bits");
         return uint200(value);
     }
 
@@ -2011,10 +1543,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint192(uint256 value) internal pure returns (uint192) {
-        require(
-            value <= type(uint192).max,
-            "SafeCast: value doesn't fit in 192 bits"
-        );
+        require(value <= type(uint192).max, "SafeCast: value doesn't fit in 192 bits");
         return uint192(value);
     }
 
@@ -2031,10 +1560,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint184(uint256 value) internal pure returns (uint184) {
-        require(
-            value <= type(uint184).max,
-            "SafeCast: value doesn't fit in 184 bits"
-        );
+        require(value <= type(uint184).max, "SafeCast: value doesn't fit in 184 bits");
         return uint184(value);
     }
 
@@ -2051,10 +1577,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint176(uint256 value) internal pure returns (uint176) {
-        require(
-            value <= type(uint176).max,
-            "SafeCast: value doesn't fit in 176 bits"
-        );
+        require(value <= type(uint176).max, "SafeCast: value doesn't fit in 176 bits");
         return uint176(value);
     }
 
@@ -2071,10 +1594,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint168(uint256 value) internal pure returns (uint168) {
-        require(
-            value <= type(uint168).max,
-            "SafeCast: value doesn't fit in 168 bits"
-        );
+        require(value <= type(uint168).max, "SafeCast: value doesn't fit in 168 bits");
         return uint168(value);
     }
 
@@ -2091,10 +1611,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint160(uint256 value) internal pure returns (uint160) {
-        require(
-            value <= type(uint160).max,
-            "SafeCast: value doesn't fit in 160 bits"
-        );
+        require(value <= type(uint160).max, "SafeCast: value doesn't fit in 160 bits");
         return uint160(value);
     }
 
@@ -2111,10 +1628,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint152(uint256 value) internal pure returns (uint152) {
-        require(
-            value <= type(uint152).max,
-            "SafeCast: value doesn't fit in 152 bits"
-        );
+        require(value <= type(uint152).max, "SafeCast: value doesn't fit in 152 bits");
         return uint152(value);
     }
 
@@ -2131,10 +1645,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint144(uint256 value) internal pure returns (uint144) {
-        require(
-            value <= type(uint144).max,
-            "SafeCast: value doesn't fit in 144 bits"
-        );
+        require(value <= type(uint144).max, "SafeCast: value doesn't fit in 144 bits");
         return uint144(value);
     }
 
@@ -2151,10 +1662,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint136(uint256 value) internal pure returns (uint136) {
-        require(
-            value <= type(uint136).max,
-            "SafeCast: value doesn't fit in 136 bits"
-        );
+        require(value <= type(uint136).max, "SafeCast: value doesn't fit in 136 bits");
         return uint136(value);
     }
 
@@ -2171,10 +1679,7 @@ library SafeCast {
      * _Available since v2.5._
      */
     function toUint128(uint256 value) internal pure returns (uint128) {
-        require(
-            value <= type(uint128).max,
-            "SafeCast: value doesn't fit in 128 bits"
-        );
+        require(value <= type(uint128).max, "SafeCast: value doesn't fit in 128 bits");
         return uint128(value);
     }
 
@@ -2191,10 +1696,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint120(uint256 value) internal pure returns (uint120) {
-        require(
-            value <= type(uint120).max,
-            "SafeCast: value doesn't fit in 120 bits"
-        );
+        require(value <= type(uint120).max, "SafeCast: value doesn't fit in 120 bits");
         return uint120(value);
     }
 
@@ -2211,10 +1713,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint112(uint256 value) internal pure returns (uint112) {
-        require(
-            value <= type(uint112).max,
-            "SafeCast: value doesn't fit in 112 bits"
-        );
+        require(value <= type(uint112).max, "SafeCast: value doesn't fit in 112 bits");
         return uint112(value);
     }
 
@@ -2231,10 +1730,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint104(uint256 value) internal pure returns (uint104) {
-        require(
-            value <= type(uint104).max,
-            "SafeCast: value doesn't fit in 104 bits"
-        );
+        require(value <= type(uint104).max, "SafeCast: value doesn't fit in 104 bits");
         return uint104(value);
     }
 
@@ -2251,10 +1747,7 @@ library SafeCast {
      * _Available since v4.2._
      */
     function toUint96(uint256 value) internal pure returns (uint96) {
-        require(
-            value <= type(uint96).max,
-            "SafeCast: value doesn't fit in 96 bits"
-        );
+        require(value <= type(uint96).max, "SafeCast: value doesn't fit in 96 bits");
         return uint96(value);
     }
 
@@ -2271,10 +1764,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint88(uint256 value) internal pure returns (uint88) {
-        require(
-            value <= type(uint88).max,
-            "SafeCast: value doesn't fit in 88 bits"
-        );
+        require(value <= type(uint88).max, "SafeCast: value doesn't fit in 88 bits");
         return uint88(value);
     }
 
@@ -2291,10 +1781,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint80(uint256 value) internal pure returns (uint80) {
-        require(
-            value <= type(uint80).max,
-            "SafeCast: value doesn't fit in 80 bits"
-        );
+        require(value <= type(uint80).max, "SafeCast: value doesn't fit in 80 bits");
         return uint80(value);
     }
 
@@ -2311,10 +1798,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint72(uint256 value) internal pure returns (uint72) {
-        require(
-            value <= type(uint72).max,
-            "SafeCast: value doesn't fit in 72 bits"
-        );
+        require(value <= type(uint72).max, "SafeCast: value doesn't fit in 72 bits");
         return uint72(value);
     }
 
@@ -2331,10 +1815,7 @@ library SafeCast {
      * _Available since v2.5._
      */
     function toUint64(uint256 value) internal pure returns (uint64) {
-        require(
-            value <= type(uint64).max,
-            "SafeCast: value doesn't fit in 64 bits"
-        );
+        require(value <= type(uint64).max, "SafeCast: value doesn't fit in 64 bits");
         return uint64(value);
     }
 
@@ -2351,10 +1832,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint56(uint256 value) internal pure returns (uint56) {
-        require(
-            value <= type(uint56).max,
-            "SafeCast: value doesn't fit in 56 bits"
-        );
+        require(value <= type(uint56).max, "SafeCast: value doesn't fit in 56 bits");
         return uint56(value);
     }
 
@@ -2371,10 +1849,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint48(uint256 value) internal pure returns (uint48) {
-        require(
-            value <= type(uint48).max,
-            "SafeCast: value doesn't fit in 48 bits"
-        );
+        require(value <= type(uint48).max, "SafeCast: value doesn't fit in 48 bits");
         return uint48(value);
     }
 
@@ -2391,10 +1866,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint40(uint256 value) internal pure returns (uint40) {
-        require(
-            value <= type(uint40).max,
-            "SafeCast: value doesn't fit in 40 bits"
-        );
+        require(value <= type(uint40).max, "SafeCast: value doesn't fit in 40 bits");
         return uint40(value);
     }
 
@@ -2411,10 +1883,7 @@ library SafeCast {
      * _Available since v2.5._
      */
     function toUint32(uint256 value) internal pure returns (uint32) {
-        require(
-            value <= type(uint32).max,
-            "SafeCast: value doesn't fit in 32 bits"
-        );
+        require(value <= type(uint32).max, "SafeCast: value doesn't fit in 32 bits");
         return uint32(value);
     }
 
@@ -2431,10 +1900,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toUint24(uint256 value) internal pure returns (uint24) {
-        require(
-            value <= type(uint24).max,
-            "SafeCast: value doesn't fit in 24 bits"
-        );
+        require(value <= type(uint24).max, "SafeCast: value doesn't fit in 24 bits");
         return uint24(value);
     }
 
@@ -2451,10 +1917,7 @@ library SafeCast {
      * _Available since v2.5._
      */
     function toUint16(uint256 value) internal pure returns (uint16) {
-        require(
-            value <= type(uint16).max,
-            "SafeCast: value doesn't fit in 16 bits"
-        );
+        require(value <= type(uint16).max, "SafeCast: value doesn't fit in 16 bits");
         return uint16(value);
     }
 
@@ -2471,10 +1934,7 @@ library SafeCast {
      * _Available since v2.5._
      */
     function toUint8(uint256 value) internal pure returns (uint8) {
-        require(
-            value <= type(uint8).max,
-            "SafeCast: value doesn't fit in 8 bits"
-        );
+        require(value <= type(uint8).max, "SafeCast: value doesn't fit in 8 bits");
         return uint8(value);
     }
 
@@ -2506,10 +1966,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt248(int256 value) internal pure returns (int248) {
-        require(
-            value >= type(int248).min && value <= type(int248).max,
-            "SafeCast: value doesn't fit in 248 bits"
-        );
+        require(value >= type(int248).min && value <= type(int248).max, "SafeCast: value doesn't fit in 248 bits");
         return int248(value);
     }
 
@@ -2527,10 +1984,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt240(int256 value) internal pure returns (int240) {
-        require(
-            value >= type(int240).min && value <= type(int240).max,
-            "SafeCast: value doesn't fit in 240 bits"
-        );
+        require(value >= type(int240).min && value <= type(int240).max, "SafeCast: value doesn't fit in 240 bits");
         return int240(value);
     }
 
@@ -2548,10 +2002,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt232(int256 value) internal pure returns (int232) {
-        require(
-            value >= type(int232).min && value <= type(int232).max,
-            "SafeCast: value doesn't fit in 232 bits"
-        );
+        require(value >= type(int232).min && value <= type(int232).max, "SafeCast: value doesn't fit in 232 bits");
         return int232(value);
     }
 
@@ -2569,10 +2020,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt224(int256 value) internal pure returns (int224) {
-        require(
-            value >= type(int224).min && value <= type(int224).max,
-            "SafeCast: value doesn't fit in 224 bits"
-        );
+        require(value >= type(int224).min && value <= type(int224).max, "SafeCast: value doesn't fit in 224 bits");
         return int224(value);
     }
 
@@ -2590,10 +2038,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt216(int256 value) internal pure returns (int216) {
-        require(
-            value >= type(int216).min && value <= type(int216).max,
-            "SafeCast: value doesn't fit in 216 bits"
-        );
+        require(value >= type(int216).min && value <= type(int216).max, "SafeCast: value doesn't fit in 216 bits");
         return int216(value);
     }
 
@@ -2611,10 +2056,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt208(int256 value) internal pure returns (int208) {
-        require(
-            value >= type(int208).min && value <= type(int208).max,
-            "SafeCast: value doesn't fit in 208 bits"
-        );
+        require(value >= type(int208).min && value <= type(int208).max, "SafeCast: value doesn't fit in 208 bits");
         return int208(value);
     }
 
@@ -2632,10 +2074,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt200(int256 value) internal pure returns (int200) {
-        require(
-            value >= type(int200).min && value <= type(int200).max,
-            "SafeCast: value doesn't fit in 200 bits"
-        );
+        require(value >= type(int200).min && value <= type(int200).max, "SafeCast: value doesn't fit in 200 bits");
         return int200(value);
     }
 
@@ -2653,10 +2092,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt192(int256 value) internal pure returns (int192) {
-        require(
-            value >= type(int192).min && value <= type(int192).max,
-            "SafeCast: value doesn't fit in 192 bits"
-        );
+        require(value >= type(int192).min && value <= type(int192).max, "SafeCast: value doesn't fit in 192 bits");
         return int192(value);
     }
 
@@ -2674,10 +2110,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt184(int256 value) internal pure returns (int184) {
-        require(
-            value >= type(int184).min && value <= type(int184).max,
-            "SafeCast: value doesn't fit in 184 bits"
-        );
+        require(value >= type(int184).min && value <= type(int184).max, "SafeCast: value doesn't fit in 184 bits");
         return int184(value);
     }
 
@@ -2695,10 +2128,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt176(int256 value) internal pure returns (int176) {
-        require(
-            value >= type(int176).min && value <= type(int176).max,
-            "SafeCast: value doesn't fit in 176 bits"
-        );
+        require(value >= type(int176).min && value <= type(int176).max, "SafeCast: value doesn't fit in 176 bits");
         return int176(value);
     }
 
@@ -2716,10 +2146,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt168(int256 value) internal pure returns (int168) {
-        require(
-            value >= type(int168).min && value <= type(int168).max,
-            "SafeCast: value doesn't fit in 168 bits"
-        );
+        require(value >= type(int168).min && value <= type(int168).max, "SafeCast: value doesn't fit in 168 bits");
         return int168(value);
     }
 
@@ -2737,10 +2164,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt160(int256 value) internal pure returns (int160) {
-        require(
-            value >= type(int160).min && value <= type(int160).max,
-            "SafeCast: value doesn't fit in 160 bits"
-        );
+        require(value >= type(int160).min && value <= type(int160).max, "SafeCast: value doesn't fit in 160 bits");
         return int160(value);
     }
 
@@ -2758,10 +2182,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt152(int256 value) internal pure returns (int152) {
-        require(
-            value >= type(int152).min && value <= type(int152).max,
-            "SafeCast: value doesn't fit in 152 bits"
-        );
+        require(value >= type(int152).min && value <= type(int152).max, "SafeCast: value doesn't fit in 152 bits");
         return int152(value);
     }
 
@@ -2779,10 +2200,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt144(int256 value) internal pure returns (int144) {
-        require(
-            value >= type(int144).min && value <= type(int144).max,
-            "SafeCast: value doesn't fit in 144 bits"
-        );
+        require(value >= type(int144).min && value <= type(int144).max, "SafeCast: value doesn't fit in 144 bits");
         return int144(value);
     }
 
@@ -2800,10 +2218,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt136(int256 value) internal pure returns (int136) {
-        require(
-            value >= type(int136).min && value <= type(int136).max,
-            "SafeCast: value doesn't fit in 136 bits"
-        );
+        require(value >= type(int136).min && value <= type(int136).max, "SafeCast: value doesn't fit in 136 bits");
         return int136(value);
     }
 
@@ -2821,10 +2236,7 @@ library SafeCast {
      * _Available since v3.1._
      */
     function toInt128(int256 value) internal pure returns (int128) {
-        require(
-            value >= type(int128).min && value <= type(int128).max,
-            "SafeCast: value doesn't fit in 128 bits"
-        );
+        require(value >= type(int128).min && value <= type(int128).max, "SafeCast: value doesn't fit in 128 bits");
         return int128(value);
     }
 
@@ -2842,10 +2254,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt120(int256 value) internal pure returns (int120) {
-        require(
-            value >= type(int120).min && value <= type(int120).max,
-            "SafeCast: value doesn't fit in 120 bits"
-        );
+        require(value >= type(int120).min && value <= type(int120).max, "SafeCast: value doesn't fit in 120 bits");
         return int120(value);
     }
 
@@ -2863,10 +2272,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt112(int256 value) internal pure returns (int112) {
-        require(
-            value >= type(int112).min && value <= type(int112).max,
-            "SafeCast: value doesn't fit in 112 bits"
-        );
+        require(value >= type(int112).min && value <= type(int112).max, "SafeCast: value doesn't fit in 112 bits");
         return int112(value);
     }
 
@@ -2884,10 +2290,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt104(int256 value) internal pure returns (int104) {
-        require(
-            value >= type(int104).min && value <= type(int104).max,
-            "SafeCast: value doesn't fit in 104 bits"
-        );
+        require(value >= type(int104).min && value <= type(int104).max, "SafeCast: value doesn't fit in 104 bits");
         return int104(value);
     }
 
@@ -2905,10 +2308,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt96(int256 value) internal pure returns (int96) {
-        require(
-            value >= type(int96).min && value <= type(int96).max,
-            "SafeCast: value doesn't fit in 96 bits"
-        );
+        require(value >= type(int96).min && value <= type(int96).max, "SafeCast: value doesn't fit in 96 bits");
         return int96(value);
     }
 
@@ -2926,10 +2326,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt88(int256 value) internal pure returns (int88) {
-        require(
-            value >= type(int88).min && value <= type(int88).max,
-            "SafeCast: value doesn't fit in 88 bits"
-        );
+        require(value >= type(int88).min && value <= type(int88).max, "SafeCast: value doesn't fit in 88 bits");
         return int88(value);
     }
 
@@ -2947,10 +2344,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt80(int256 value) internal pure returns (int80) {
-        require(
-            value >= type(int80).min && value <= type(int80).max,
-            "SafeCast: value doesn't fit in 80 bits"
-        );
+        require(value >= type(int80).min && value <= type(int80).max, "SafeCast: value doesn't fit in 80 bits");
         return int80(value);
     }
 
@@ -2968,10 +2362,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt72(int256 value) internal pure returns (int72) {
-        require(
-            value >= type(int72).min && value <= type(int72).max,
-            "SafeCast: value doesn't fit in 72 bits"
-        );
+        require(value >= type(int72).min && value <= type(int72).max, "SafeCast: value doesn't fit in 72 bits");
         return int72(value);
     }
 
@@ -2989,10 +2380,7 @@ library SafeCast {
      * _Available since v3.1._
      */
     function toInt64(int256 value) internal pure returns (int64) {
-        require(
-            value >= type(int64).min && value <= type(int64).max,
-            "SafeCast: value doesn't fit in 64 bits"
-        );
+        require(value >= type(int64).min && value <= type(int64).max, "SafeCast: value doesn't fit in 64 bits");
         return int64(value);
     }
 
@@ -3010,10 +2398,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt56(int256 value) internal pure returns (int56) {
-        require(
-            value >= type(int56).min && value <= type(int56).max,
-            "SafeCast: value doesn't fit in 56 bits"
-        );
+        require(value >= type(int56).min && value <= type(int56).max, "SafeCast: value doesn't fit in 56 bits");
         return int56(value);
     }
 
@@ -3031,10 +2416,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt48(int256 value) internal pure returns (int48) {
-        require(
-            value >= type(int48).min && value <= type(int48).max,
-            "SafeCast: value doesn't fit in 48 bits"
-        );
+        require(value >= type(int48).min && value <= type(int48).max, "SafeCast: value doesn't fit in 48 bits");
         return int48(value);
     }
 
@@ -3052,10 +2434,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt40(int256 value) internal pure returns (int40) {
-        require(
-            value >= type(int40).min && value <= type(int40).max,
-            "SafeCast: value doesn't fit in 40 bits"
-        );
+        require(value >= type(int40).min && value <= type(int40).max, "SafeCast: value doesn't fit in 40 bits");
         return int40(value);
     }
 
@@ -3073,10 +2452,7 @@ library SafeCast {
      * _Available since v3.1._
      */
     function toInt32(int256 value) internal pure returns (int32) {
-        require(
-            value >= type(int32).min && value <= type(int32).max,
-            "SafeCast: value doesn't fit in 32 bits"
-        );
+        require(value >= type(int32).min && value <= type(int32).max, "SafeCast: value doesn't fit in 32 bits");
         return int32(value);
     }
 
@@ -3094,10 +2470,7 @@ library SafeCast {
      * _Available since v4.7._
      */
     function toInt24(int256 value) internal pure returns (int24) {
-        require(
-            value >= type(int24).min && value <= type(int24).max,
-            "SafeCast: value doesn't fit in 24 bits"
-        );
+        require(value >= type(int24).min && value <= type(int24).max, "SafeCast: value doesn't fit in 24 bits");
         return int24(value);
     }
 
@@ -3115,10 +2488,7 @@ library SafeCast {
      * _Available since v3.1._
      */
     function toInt16(int256 value) internal pure returns (int16) {
-        require(
-            value >= type(int16).min && value <= type(int16).max,
-            "SafeCast: value doesn't fit in 16 bits"
-        );
+        require(value >= type(int16).min && value <= type(int16).max, "SafeCast: value doesn't fit in 16 bits");
         return int16(value);
     }
 
@@ -3136,10 +2506,7 @@ library SafeCast {
      * _Available since v3.1._
      */
     function toInt8(int256 value) internal pure returns (int8) {
-        require(
-            value >= type(int8).min && value <= type(int8).max,
-            "SafeCast: value doesn't fit in 8 bits"
-        );
+        require(value >= type(int8).min && value <= type(int8).max, "SafeCast: value doesn't fit in 8 bits");
         return int8(value);
     }
 
@@ -3154,10 +2521,7 @@ library SafeCast {
      */
     function toInt256(uint256 value) internal pure returns (int256) {
         // Note: Unsafe cast below is okay because `type(int256).max` is guaranteed to be positive
-        require(
-            value <= uint256(type(int256).max),
-            "SafeCast: value doesn't fit in an int256"
-        );
+        require(value <= uint256(type(int256).max), "SafeCast: value doesn't fit in an int256");
         return int256(value);
     }
 }
@@ -3175,20 +2539,15 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
 
     uint256 private constant _ONE_FOR_ZERO_MASK = 1 << 255;
     uint256 private constant _WETH_UNWRAP_MASK = 1 << 253;
-    bytes32 private constant _POOL_INIT_CODE_HASH =
-        0xe34f199b19b2b4f47f68442619d555527d244f78a3297ea89325f843f87b8b54;
-    bytes32 private constant _FF_FACTORY =
-        0xff1F98431c8aD98523631AE4a59f267346ea31F9840000000000000000000000;
+    bytes32 private constant _POOL_INIT_CODE_HASH = 0xe34f199b19b2b4f47f68442619d555527d244f78a3297ea89325f843f87b8b54;
+    bytes32 private constant _FF_FACTORY = 0xff1F98431c8aD98523631AE4a59f267346ea31F9840000000000000000000000;
     // concatenation of token0(), token1() fee(), transfer() and transferFrom() selectors
-    bytes32 private constant _SELECTORS =
-        0x0dfe1681d21220a7ddca3f43a9059cbb23b872dd000000000000000000000000;
-    uint256 private constant _ADDRESS_MASK =
-        0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff;
+    bytes32 private constant _SELECTORS = 0x0dfe1681d21220a7ddca3f43a9059cbb23b872dd000000000000000000000000;
+    uint256 private constant _ADDRESS_MASK = 0x000000000000000000000000ffffffffffffffffffffffffffffffffffffffff;
     /// @dev The minimum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MIN_TICK)
     uint160 private constant _MIN_SQRT_RATIO = 4295128739 + 1;
     /// @dev The maximum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MAX_TICK)
-    uint160 private constant _MAX_SQRT_RATIO =
-        1461446703485210103287273052203988822378723970342 - 1;
+    uint160 private constant _MAX_SQRT_RATIO = 1461446703485210103287273052203988822378723970342 - 1;
     IWETH private immutable _WETH; // solhint-disable-line var-name-mixedcase
 
     constructor(IWETH weth) {
@@ -3204,14 +2563,7 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
     /// @param permit Should contain valid permit that can be used in `IERC20Permit.permit` calls.
     /// See tests for examples
-    function uniswapV3SwapToWithPermit(
-        address payable recipient,
-        IERC20 srcToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools,
-        bytes calldata permit
-    ) external returns (uint256 returnAmount) {
+    function uniswapV3SwapToWithPermit(address payable recipient, IERC20 srcToken, uint256 amount, uint256 minReturn, uint256[] calldata pools, bytes calldata permit) external returns (uint256 returnAmount) {
         srcToken.safePermit(permit);
         return _uniswapV3Swap(recipient, amount, minReturn, pools);
     }
@@ -3220,11 +2572,7 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
     /// @param amount Amount of source tokens to swap
     /// @param minReturn Minimal allowed returnAmount to make transaction commit
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
-    function uniswapV3Swap(
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) external payable returns (uint256 returnAmount) {
+    function uniswapV3Swap(uint256 amount, uint256 minReturn, uint256[] calldata pools) external payable returns (uint256 returnAmount) {
         return _uniswapV3Swap(payable(msg.sender), amount, minReturn, pools);
     }
 
@@ -3234,21 +2582,11 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
     /// @param amount Amount of source tokens to swap
     /// @param minReturn Minimal allowed returnAmount to make transaction commit
     /// @param pools Pools chain used for swaps. Pools src and dst tokens should match to make swap happen
-    function uniswapV3SwapTo(
-        address payable recipient,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) external payable returns (uint256 returnAmount) {
+    function uniswapV3SwapTo(address payable recipient, uint256 amount, uint256 minReturn, uint256[] calldata pools) external payable returns (uint256 returnAmount) {
         return _uniswapV3Swap(recipient, amount, minReturn, pools);
     }
 
-    function _uniswapV3Swap(
-        address payable recipient,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] calldata pools
-    ) private returns (uint256 returnAmount) {
+    function _uniswapV3Swap(address payable recipient, uint256 amount, uint256 minReturn, uint256[] calldata pools) private returns (uint256 returnAmount) {
         unchecked {
             uint256 len = pools.length;
             if (len == 0) revert EmptyPools();
@@ -3261,38 +2599,17 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
                 _WETH.deposit{ value: amount }();
             }
             if (len > 1) {
-                returnAmount = _makeSwap(
-                    address(this),
-                    wrapWeth ? address(this) : msg.sender,
-                    pools[0],
-                    returnAmount
-                );
+                returnAmount = _makeSwap(address(this), wrapWeth ? address(this) : msg.sender, pools[0], returnAmount);
 
                 for (uint256 i = 1; i < lastIndex; i++) {
-                    returnAmount = _makeSwap(
-                        address(this),
-                        address(this),
-                        pools[i],
-                        returnAmount
-                    );
+                    returnAmount = _makeSwap(address(this), address(this), pools[i], returnAmount);
                 }
-                returnAmount = _makeSwap(
-                    unwrapWeth ? address(this) : recipient,
-                    address(this),
-                    pools[lastIndex],
-                    returnAmount
-                );
+                returnAmount = _makeSwap(unwrapWeth ? address(this) : recipient, address(this), pools[lastIndex], returnAmount);
             } else {
-                returnAmount = _makeSwap(
-                    unwrapWeth ? address(this) : recipient,
-                    wrapWeth ? address(this) : msg.sender,
-                    pools[0],
-                    returnAmount
-                );
+                returnAmount = _makeSwap(unwrapWeth ? address(this) : recipient, wrapWeth ? address(this) : msg.sender, pools[0], returnAmount);
             }
 
-            if (returnAmount < minReturn)
-                revert RouterErrors.ReturnAmountIsNotEnough();
+            if (returnAmount < minReturn) revert RouterErrors.ReturnAmountIsNotEnough();
 
             if (unwrapWeth) {
                 _WETH.withdraw(returnAmount);
@@ -3302,11 +2619,7 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
     }
 
     /// @inheritdoc IUniswapV3SwapCallback
-    function uniswapV3SwapCallback(
-        int256 amount0Delta,
-        int256 amount1Delta,
-        bytes calldata /* data */
-    ) external override {
+    function uniswapV3SwapCallback(int256 amount0Delta, int256 amount1Delta, bytes calldata /* data */) external override {
         assembly {
             // solhint-disable-line no-inline-assembly
             function reRevert() {
@@ -3323,10 +2636,7 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
                     and(gt(returndatasize(), 31), eq(mload(0), 1)) // true in return data
                 )
                 if iszero(success) {
-                    mstore(
-                        0,
-                        0xf27f64e400000000000000000000000000000000000000000000000000000000
-                    ) // ERC20TransferFailed()
+                    mstore(0, 0xf27f64e400000000000000000000000000000000000000000000000000000000) // ERC20TransferFailed()
                     revert(0, 4)
                 }
             }
@@ -3335,33 +2645,13 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
             let resultPtr := add(emptyPtr, 0x15) // 0x15 = _FF_FACTORY size
 
             mstore(emptyPtr, _SELECTORS)
-            if iszero(
-                staticcall(gas(), caller(), emptyPtr, 0x4, resultPtr, 0x20)
-            ) {
+            if iszero(staticcall(gas(), caller(), emptyPtr, 0x4, resultPtr, 0x20)) {
                 reRevert()
             }
-            if iszero(
-                staticcall(
-                    gas(),
-                    caller(),
-                    add(emptyPtr, 0x4),
-                    0x4,
-                    add(resultPtr, 0x20),
-                    0x20
-                )
-            ) {
+            if iszero(staticcall(gas(), caller(), add(emptyPtr, 0x4), 0x4, add(resultPtr, 0x20), 0x20)) {
                 reRevert()
             }
-            if iszero(
-                staticcall(
-                    gas(),
-                    caller(),
-                    add(emptyPtr, 0x8),
-                    0x4,
-                    add(resultPtr, 0x40),
-                    0x20
-                )
-            ) {
+            if iszero(staticcall(gas(), caller(), add(emptyPtr, 0x8), 0x4, add(resultPtr, 0x40), 0x20)) {
                 reRevert()
             }
 
@@ -3382,10 +2672,7 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
             mstore(add(resultPtr, 0x20), _POOL_INIT_CODE_HASH)
             let pool := and(keccak256(emptyPtr, 0x55), _ADDRESS_MASK)
             if xor(pool, caller()) {
-                mstore(
-                    0,
-                    0xb2c0272200000000000000000000000000000000000000000000000000000000
-                ) // BadPool()
+                mstore(0, 0xb2c0272200000000000000000000000000000000000000000000000000000000) // BadPool()
                 revert(0, 4)
             }
 
@@ -3396,46 +2683,25 @@ contract UnoswapV3Router is EthReceiver, IUniswapV3SwapCallback {
                 // token.safeTransfer(msg.sender,amount)
                 mstore(add(emptyPtr, 0x10), caller())
                 mstore(add(emptyPtr, 0x30), amount)
-                validateERC20Transfer(
-                    call(gas(), token, 0, add(emptyPtr, 0x0c), 0x44, 0, 0x20)
-                )
+                validateERC20Transfer(call(gas(), token, 0, add(emptyPtr, 0x0c), 0x44, 0, 0x20))
             }
             default {
                 // token.safeTransferFrom(payer, msg.sender, amount);
                 mstore(add(emptyPtr, 0x14), payer)
                 mstore(add(emptyPtr, 0x34), caller())
                 mstore(add(emptyPtr, 0x54), amount)
-                validateERC20Transfer(
-                    call(gas(), token, 0, add(emptyPtr, 0x10), 0x64, 0, 0x20)
-                )
+                validateERC20Transfer(call(gas(), token, 0, add(emptyPtr, 0x10), 0x64, 0, 0x20))
             }
         }
     }
 
-    function _makeSwap(
-        address recipient,
-        address payer,
-        uint256 pool,
-        uint256 amount
-    ) private returns (uint256) {
+    function _makeSwap(address recipient, address payer, uint256 pool, uint256 amount) private returns (uint256) {
         bool zeroForOne = pool & _ONE_FOR_ZERO_MASK == 0;
         if (zeroForOne) {
-            (, int256 amount1) = IUniswapV3Pool(address(uint160(pool))).swap(
-                recipient,
-                zeroForOne,
-                SafeCast.toInt256(amount),
-                _MIN_SQRT_RATIO,
-                abi.encode(payer)
-            );
+            (, int256 amount1) = IUniswapV3Pool(address(uint160(pool))).swap(recipient, zeroForOne, SafeCast.toInt256(amount), _MIN_SQRT_RATIO, abi.encode(payer));
             return SafeCast.toUint256(-amount1);
         } else {
-            (int256 amount0, ) = IUniswapV3Pool(address(uint160(pool))).swap(
-                recipient,
-                zeroForOne,
-                SafeCast.toInt256(amount),
-                _MAX_SQRT_RATIO,
-                abi.encode(payer)
-            );
+            (int256 amount0, ) = IUniswapV3Pool(address(uint160(pool))).swap(recipient, zeroForOne, SafeCast.toInt256(amount), _MAX_SQRT_RATIO, abi.encode(payer));
             return SafeCast.toUint256(-amount0);
         }
     }
@@ -3459,10 +2725,7 @@ interface IERC1271 {
      * @param hash      Hash of the data to be signed
      * @param signature Signature byte array associated with _data
      */
-    function isValidSignature(
-        bytes32 hash,
-        bytes memory signature
-    ) external view returns (bytes4 magicValue);
+    function isValidSignature(bytes32 hash, bytes memory signature) external view returns (bytes4 magicValue);
 }
 
 // File @1inch/solidity-utils/contracts/Libraries/ECDSA.sol@v2.1.1
@@ -3479,18 +2742,11 @@ library ECDSA {
     // with 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141 - s1 and flip v from 27 to 28 or
     // vice versa. If your library also generates signatures with 0/1 for v instead 27/28, add 27 to v to accept
     // these malleable signatures as well.
-    uint256 private constant _S_BOUNDARY =
-        0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0 + 1;
-    uint256 private constant _COMPACT_S_MASK =
-        0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
+    uint256 private constant _S_BOUNDARY = 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0 + 1;
+    uint256 private constant _COMPACT_S_MASK = 0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
     uint256 private constant _COMPACT_V_SHIFT = 255;
 
-    function recover(
-        bytes32 hash,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) internal view returns (address signer) {
+    function recover(bytes32 hash, uint8 v, bytes32 r, bytes32 s) internal view returns (address signer) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -3508,11 +2764,7 @@ library ECDSA {
         }
     }
 
-    function recover(
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (address signer) {
+    function recover(bytes32 hash, bytes32 r, bytes32 vs) internal view returns (address signer) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -3538,10 +2790,7 @@ library ECDSA {
     /// As the standard and compact representations are interchangeable any invalidation logic that relies on
     /// signature uniqueness will get rekt.
     /// More info: https://github.com/OpenZeppelin/openzeppelin-contracts/security/advisories/GHSA-4h98-2769-gh6h
-    function recover(
-        bytes32 hash,
-        bytes calldata signature
-    ) internal view returns (address signer) {
+    function recover(bytes32 hash, bytes calldata signature) internal view returns (address signer) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -3551,10 +2800,7 @@ library ECDSA {
             switch signature.length
             case 65 {
                 // memory[ptr+0x20:ptr+0x80] = (v, r, s)
-                mstore(
-                    add(ptr, 0x20),
-                    byte(0, calldataload(add(signature.offset, 0x40)))
-                )
+                mstore(add(ptr, 0x20), byte(0, calldataload(add(signature.offset, 0x40))))
                 calldatacopy(add(ptr, 0x40), signature.offset, 0x40)
             }
             case 64 {
@@ -3581,28 +2827,15 @@ library ECDSA {
         }
     }
 
-    function recoverOrIsValidSignature(
-        address signer,
-        bytes32 hash,
-        bytes calldata signature
-    ) internal view returns (bool success) {
+    function recoverOrIsValidSignature(address signer, bytes32 hash, bytes calldata signature) internal view returns (bool success) {
         if (signer == address(0)) return false;
-        if (
-            (signature.length == 64 || signature.length == 65) &&
-            recover(hash, signature) == signer
-        ) {
+        if ((signature.length == 64 || signature.length == 65) && recover(hash, signature) == signer) {
             return true;
         }
         return isValidSignature(signer, hash, signature);
     }
 
-    function recoverOrIsValidSignature(
-        address signer,
-        bytes32 hash,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) internal view returns (bool success) {
+    function recoverOrIsValidSignature(address signer, bytes32 hash, uint8 v, bytes32 r, bytes32 s) internal view returns (bool success) {
         if (signer == address(0)) return false;
         if (recover(hash, v, r, s) == signer) {
             return true;
@@ -3610,12 +2843,7 @@ library ECDSA {
         return isValidSignature(signer, hash, v, r, s);
     }
 
-    function recoverOrIsValidSignature(
-        address signer,
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (bool success) {
+    function recoverOrIsValidSignature(address signer, bytes32 hash, bytes32 r, bytes32 vs) internal view returns (bool success) {
         if (signer == address(0)) return false;
         if (recover(hash, r, vs) == signer) {
             return true;
@@ -3623,12 +2851,7 @@ library ECDSA {
         return isValidSignature(signer, hash, r, vs);
     }
 
-    function recoverOrIsValidSignature65(
-        address signer,
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (bool success) {
+    function recoverOrIsValidSignature65(address signer, bytes32 hash, bytes32 r, bytes32 vs) internal view returns (bool success) {
         if (signer == address(0)) return false;
         if (recover(hash, r, vs) == signer) {
             return true;
@@ -3636,11 +2859,7 @@ library ECDSA {
         return isValidSignature65(signer, hash, r, vs);
     }
 
-    function isValidSignature(
-        address signer,
-        bytes32 hash,
-        bytes calldata signature
-    ) internal view returns (bool success) {
+    function isValidSignature(address signer, bytes32 hash, bytes calldata signature) internal view returns (bool success) {
         // (bool success, bytes memory data) = signer.staticcall(abi.encodeWithSelector(IERC1271.isValidSignature.selector, hash, signature));
         // return success && data.length >= 4 && abi.decode(data, (bytes4)) == IERC1271.isValidSignature.selector;
         bytes4 selector = IERC1271.isValidSignature.selector;
@@ -3654,29 +2873,13 @@ library ECDSA {
             mstore(add(ptr, 0x24), 0x40)
             mstore(add(ptr, 0x44), signature.length)
             calldatacopy(add(ptr, 0x64), signature.offset, signature.length)
-            if staticcall(
-                gas(),
-                signer,
-                ptr,
-                add(0x64, signature.length),
-                0,
-                0x20
-            ) {
-                success := and(
-                    eq(selector, mload(0)),
-                    eq(returndatasize(), 0x20)
-                )
+            if staticcall(gas(), signer, ptr, add(0x64, signature.length), 0, 0x20) {
+                success := and(eq(selector, mload(0)), eq(returndatasize(), 0x20))
             }
         }
     }
 
-    function isValidSignature(
-        address signer,
-        bytes32 hash,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) internal view returns (bool success) {
+    function isValidSignature(address signer, bytes32 hash, uint8 v, bytes32 r, bytes32 s) internal view returns (bool success) {
         bytes4 selector = IERC1271.isValidSignature.selector;
         /// @solidity memory-safe-assembly
         assembly {
@@ -3691,20 +2894,12 @@ library ECDSA {
             mstore(add(ptr, 0x84), s)
             mstore8(add(ptr, 0xa4), v)
             if staticcall(gas(), signer, ptr, 0xa5, 0, 0x20) {
-                success := and(
-                    eq(selector, mload(0)),
-                    eq(returndatasize(), 0x20)
-                )
+                success := and(eq(selector, mload(0)), eq(returndatasize(), 0x20))
             }
         }
     }
 
-    function isValidSignature(
-        address signer,
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (bool success) {
+    function isValidSignature(address signer, bytes32 hash, bytes32 r, bytes32 vs) internal view returns (bool success) {
         // (bool success, bytes memory data) = signer.staticcall(abi.encodeWithSelector(IERC1271.isValidSignature.selector, hash, abi.encodePacked(r, vs)));
         // return success && data.length >= 4 && abi.decode(data, (bytes4)) == IERC1271.isValidSignature.selector;
         bytes4 selector = IERC1271.isValidSignature.selector;
@@ -3720,20 +2915,12 @@ library ECDSA {
             mstore(add(ptr, 0x64), r)
             mstore(add(ptr, 0x84), vs)
             if staticcall(gas(), signer, ptr, 0xa4, 0, 0x20) {
-                success := and(
-                    eq(selector, mload(0)),
-                    eq(returndatasize(), 0x20)
-                )
+                success := and(eq(selector, mload(0)), eq(returndatasize(), 0x20))
             }
         }
     }
 
-    function isValidSignature65(
-        address signer,
-        bytes32 hash,
-        bytes32 r,
-        bytes32 vs
-    ) internal view returns (bool success) {
+    function isValidSignature65(address signer, bytes32 hash, bytes32 r, bytes32 vs) internal view returns (bool success) {
         // (bool success, bytes memory data) = signer.staticcall(abi.encodeWithSelector(IERC1271.isValidSignature.selector, hash, abi.encodePacked(r, vs & ~uint256(1 << 255), uint8(vs >> 255))));
         // return success && data.length >= 4 && abi.decode(data, (bytes4)) == IERC1271.isValidSignature.selector;
         bytes4 selector = IERC1271.isValidSignature.selector;
@@ -3750,44 +2937,30 @@ library ECDSA {
             mstore(add(ptr, 0x84), and(vs, _COMPACT_S_MASK))
             mstore8(add(ptr, 0xa4), add(27, shr(_COMPACT_V_SHIFT, vs)))
             if staticcall(gas(), signer, ptr, 0xa5, 0, 0x20) {
-                success := and(
-                    eq(selector, mload(0)),
-                    eq(returndatasize(), 0x20)
-                )
+                success := and(eq(selector, mload(0)), eq(returndatasize(), 0x20))
             }
         }
     }
 
-    function toEthSignedMessageHash(
-        bytes32 hash
-    ) internal pure returns (bytes32 res) {
+    function toEthSignedMessageHash(bytes32 hash) internal pure returns (bytes32 res) {
         // 32 is the length in bytes of hash, enforced by the type signature above
         // return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", hash));
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
-            mstore(
-                0,
-                0x19457468657265756d205369676e6564204d6573736167653a0a333200000000
-            ) // "\x19Ethereum Signed Message:\n32"
+            mstore(0, 0x19457468657265756d205369676e6564204d6573736167653a0a333200000000) // "\x19Ethereum Signed Message:\n32"
             mstore(28, hash)
             res := keccak256(0, 60)
         }
     }
 
-    function toTypedDataHash(
-        bytes32 domainSeparator,
-        bytes32 structHash
-    ) internal pure returns (bytes32 res) {
+    function toTypedDataHash(bytes32 domainSeparator, bytes32 structHash) internal pure returns (bytes32 res) {
         // return keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
             let ptr := mload(0x40)
-            mstore(
-                ptr,
-                0x1901000000000000000000000000000000000000000000000000000000000000
-            ) // "\x19\x01"
+            mstore(ptr, 0x1901000000000000000000000000000000000000000000000000000000000000) // "\x19\x01"
             mstore(add(ptr, 0x02), domainSeparator)
             mstore(add(ptr, 0x22), structHash)
             res := keccak256(ptr, 66)
@@ -3823,10 +2996,7 @@ library OrderRFQLib {
             ")"
         );
 
-    function hash(
-        OrderRFQ memory order,
-        bytes32 domainSeparator
-    ) internal pure returns (bytes32 result) {
+    function hash(OrderRFQ memory order, bytes32 domainSeparator) internal pure returns (bytes32 result) {
         bytes32 typehash = _LIMIT_ORDER_RFQ_TYPEHASH;
         bytes32 orderHash;
         // this assembly is memory unsafe :(
@@ -3901,10 +3071,7 @@ library Strings {
     /**
      * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
      */
-    function toHexString(
-        uint256 value,
-        uint256 length
-    ) internal pure returns (string memory) {
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
         bytes memory buffer = new bytes(2 * length + 2);
         buffer[0] = "0";
         buffer[1] = "x";
@@ -3978,17 +3145,11 @@ abstract contract EIP712 {
     constructor(string memory name, string memory version) {
         bytes32 hashedName = keccak256(bytes(name));
         bytes32 hashedVersion = keccak256(bytes(version));
-        bytes32 typeHash = keccak256(
-            "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
-        );
+        bytes32 typeHash = keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
         _HASHED_NAME = hashedName;
         _HASHED_VERSION = hashedVersion;
         _CACHED_CHAIN_ID = block.chainid;
-        _CACHED_DOMAIN_SEPARATOR = _buildDomainSeparator(
-            typeHash,
-            hashedName,
-            hashedVersion
-        );
+        _CACHED_DOMAIN_SEPARATOR = _buildDomainSeparator(typeHash, hashedName, hashedVersion);
         _CACHED_THIS = address(this);
         _TYPE_HASH = typeHash;
     }
@@ -3997,35 +3158,15 @@ abstract contract EIP712 {
      * @dev Returns the domain separator for the current chain.
      */
     function _domainSeparatorV4() internal view returns (bytes32) {
-        if (
-            address(this) == _CACHED_THIS && block.chainid == _CACHED_CHAIN_ID
-        ) {
+        if (address(this) == _CACHED_THIS && block.chainid == _CACHED_CHAIN_ID) {
             return _CACHED_DOMAIN_SEPARATOR;
         } else {
-            return
-                _buildDomainSeparator(
-                    _TYPE_HASH,
-                    _HASHED_NAME,
-                    _HASHED_VERSION
-                );
+            return _buildDomainSeparator(_TYPE_HASH, _HASHED_NAME, _HASHED_VERSION);
         }
     }
 
-    function _buildDomainSeparator(
-        bytes32 typeHash,
-        bytes32 nameHash,
-        bytes32 versionHash
-    ) private view returns (bytes32) {
-        return
-            keccak256(
-                abi.encode(
-                    typeHash,
-                    nameHash,
-                    versionHash,
-                    block.chainid,
-                    address(this)
-                )
-            );
+    function _buildDomainSeparator(bytes32 typeHash, bytes32 nameHash, bytes32 versionHash) private view returns (bytes32) {
+        return keccak256(abi.encode(typeHash, nameHash, versionHash, block.chainid, address(this)));
     }
 
     /**
@@ -4043,9 +3184,7 @@ abstract contract EIP712 {
      * address signer = ECDSA.recover(digest, signature);
      * ```
      */
-    function _hashTypedDataV4(
-        bytes32 structHash
-    ) internal view virtual returns (bytes32) {
+    function _hashTypedDataV4(bytes32 structHash) internal view virtual returns (bytes32) {
         return ECDSA.toTypedDataHash(_domainSeparatorV4(), structHash);
     }
 }
@@ -4067,24 +3206,14 @@ pragma solidity 0.8.19;
 library AmountCalculator {
     /// @notice Calculates maker amount
     /// @return Result Floored maker amount
-    function getMakingAmount(
-        uint256 orderMakerAmount,
-        uint256 orderTakerAmount,
-        uint256 swapTakerAmount
-    ) internal pure returns (uint256) {
+    function getMakingAmount(uint256 orderMakerAmount, uint256 orderTakerAmount, uint256 swapTakerAmount) internal pure returns (uint256) {
         return (swapTakerAmount * orderMakerAmount) / orderTakerAmount;
     }
 
     /// @notice Calculates taker amount
     /// @return Result Ceiled taker amount
-    function getTakingAmount(
-        uint256 orderMakerAmount,
-        uint256 orderTakerAmount,
-        uint256 swapMakerAmount
-    ) internal pure returns (uint256) {
-        return
-            (swapMakerAmount * orderTakerAmount + orderMakerAmount - 1) /
-            orderMakerAmount;
+    function getTakingAmount(uint256 orderMakerAmount, uint256 orderTakerAmount, uint256 swapMakerAmount) internal pure returns (uint256) {
+        return (swapMakerAmount * orderTakerAmount + orderMakerAmount - 1) / orderMakerAmount;
     }
 }
 
@@ -4117,11 +3246,7 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
     uint256 private constant _SIGNER_SMART_CONTRACT_HINT = 1 << 254;
     uint256 private constant _IS_VALID_SIGNATURE_65_BYTES = 1 << 253;
     uint256 private constant _UNWRAP_WETH_FLAG = 1 << 252;
-    uint256 private constant _AMOUNT_MASK =
-        ~(_MAKER_AMOUNT_FLAG |
-            _SIGNER_SMART_CONTRACT_HINT |
-            _IS_VALID_SIGNATURE_65_BYTES |
-            _UNWRAP_WETH_FLAG);
+    uint256 private constant _AMOUNT_MASK = ~(_MAKER_AMOUNT_FLAG | _SIGNER_SMART_CONTRACT_HINT | _IS_VALID_SIGNATURE_65_BYTES | _UNWRAP_WETH_FLAG);
 
     IWETH private immutable _WETH; // solhint-disable-line var-name-mixedcase
     mapping(address => mapping(uint256 => uint256)) private _invalidator;
@@ -4136,10 +3261,7 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
      * @param slot Slot number to return bitmask for
      * @return result Each bit represents whether corresponding was already invalidated
      */
-    function invalidatorForOrderRFQ(
-        address maker,
-        uint256 slot
-    ) external view returns (uint256 /* result */) {
+    function invalidatorForOrderRFQ(address maker, uint256 slot) external view returns (uint256 /* result */) {
         return _invalidator[maker][slot];
     }
 
@@ -4152,10 +3274,7 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
     }
 
     /// @notice Cancels multiple order's quotes
-    function cancelOrderRFQ(
-        uint256 orderInfo,
-        uint256 additionalMask
-    ) external {
+    function cancelOrderRFQ(uint256 orderInfo, uint256 additionalMask) external {
         _invalidateOrder(msg.sender, orderInfo, additionalMask);
     }
 
@@ -4168,19 +3287,7 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
      * @return filledTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrderRFQ(
-        OrderRFQLib.OrderRFQ memory order,
-        bytes calldata signature,
-        uint256 flagsAndAmount
-    )
-        external
-        payable
-        returns (
-            uint256 /* filledMakingAmount */,
-            uint256 /* filledTakingAmount */,
-            bytes32 /* orderHash */
-        )
-    {
+    function fillOrderRFQ(OrderRFQLib.OrderRFQ memory order, bytes calldata signature, uint256 flagsAndAmount) external payable returns (uint256 /* filledMakingAmount */, uint256 /* filledTakingAmount */, bytes32 /* orderHash */) {
         return fillOrderRFQTo(order, signature, flagsAndAmount, msg.sender);
     }
 
@@ -4198,40 +3305,19 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
      * @return filledTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrderRFQCompact(
-        OrderRFQLib.OrderRFQ memory order,
-        bytes32 r,
-        bytes32 vs,
-        uint256 flagsAndAmount
-    )
-        external
-        payable
-        returns (
-            uint256 filledMakingAmount,
-            uint256 filledTakingAmount,
-            bytes32 orderHash
-        )
-    {
+    function fillOrderRFQCompact(OrderRFQLib.OrderRFQ memory order, bytes32 r, bytes32 vs, uint256 flagsAndAmount) external payable returns (uint256 filledMakingAmount, uint256 filledTakingAmount, bytes32 orderHash) {
         orderHash = order.hash(_domainSeparatorV4());
         if (flagsAndAmount & _SIGNER_SMART_CONTRACT_HINT != 0) {
             if (flagsAndAmount & _IS_VALID_SIGNATURE_65_BYTES != 0) {
-                if (!ECDSA.isValidSignature65(order.maker, orderHash, r, vs))
-                    revert RFQBadSignature();
+                if (!ECDSA.isValidSignature65(order.maker, orderHash, r, vs)) revert RFQBadSignature();
             } else {
-                if (!ECDSA.isValidSignature(order.maker, orderHash, r, vs))
-                    revert RFQBadSignature();
+                if (!ECDSA.isValidSignature(order.maker, orderHash, r, vs)) revert RFQBadSignature();
             }
         } else {
-            if (
-                !ECDSA.recoverOrIsValidSignature(order.maker, orderHash, r, vs)
-            ) revert RFQBadSignature();
+            if (!ECDSA.recoverOrIsValidSignature(order.maker, orderHash, r, vs)) revert RFQBadSignature();
         }
 
-        (filledMakingAmount, filledTakingAmount) = _fillOrderRFQTo(
-            order,
-            flagsAndAmount,
-            msg.sender
-        );
+        (filledMakingAmount, filledTakingAmount) = _fillOrderRFQTo(order, flagsAndAmount, msg.sender);
         emit OrderFilledRFQ(orderHash, filledMakingAmount);
     }
 
@@ -4249,20 +3335,7 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
      * @return orderHash Hash of the filled order
      * @dev See tests for examples
      */
-    function fillOrderRFQToWithPermit(
-        OrderRFQLib.OrderRFQ memory order,
-        bytes calldata signature,
-        uint256 flagsAndAmount,
-        address target,
-        bytes calldata permit
-    )
-        external
-        returns (
-            uint256 /* filledMakingAmount */,
-            uint256 /* filledTakingAmount */,
-            bytes32 /* orderHash */
-        )
-    {
+    function fillOrderRFQToWithPermit(OrderRFQLib.OrderRFQ memory order, bytes calldata signature, uint256 flagsAndAmount, address target, bytes calldata permit) external returns (uint256 /* filledMakingAmount */, uint256 /* filledTakingAmount */, bytes32 /* orderHash */) {
         IERC20(order.takerAsset).safePermit(permit);
         return fillOrderRFQTo(order, signature, flagsAndAmount, target);
     }
@@ -4277,67 +3350,32 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
      * @return filledTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrderRFQTo(
-        OrderRFQLib.OrderRFQ memory order,
-        bytes calldata signature,
-        uint256 flagsAndAmount,
-        address target
-    )
-        public
-        payable
-        returns (
-            uint256 filledMakingAmount,
-            uint256 filledTakingAmount,
-            bytes32 orderHash
-        )
-    {
+    function fillOrderRFQTo(OrderRFQLib.OrderRFQ memory order, bytes calldata signature, uint256 flagsAndAmount, address target) public payable returns (uint256 filledMakingAmount, uint256 filledTakingAmount, bytes32 orderHash) {
         orderHash = order.hash(_domainSeparatorV4());
         if (flagsAndAmount & _SIGNER_SMART_CONTRACT_HINT != 0) {
-            if (
-                flagsAndAmount & _IS_VALID_SIGNATURE_65_BYTES != 0 &&
-                signature.length != 65
-            ) revert RFQBadSignature();
-            if (!ECDSA.isValidSignature(order.maker, orderHash, signature))
-                revert RFQBadSignature();
+            if (flagsAndAmount & _IS_VALID_SIGNATURE_65_BYTES != 0 && signature.length != 65) revert RFQBadSignature();
+            if (!ECDSA.isValidSignature(order.maker, orderHash, signature)) revert RFQBadSignature();
         } else {
-            if (
-                !ECDSA.recoverOrIsValidSignature(
-                    order.maker,
-                    orderHash,
-                    signature
-                )
-            ) revert RFQBadSignature();
+            if (!ECDSA.recoverOrIsValidSignature(order.maker, orderHash, signature)) revert RFQBadSignature();
         }
-        (filledMakingAmount, filledTakingAmount) = _fillOrderRFQTo(
-            order,
-            flagsAndAmount,
-            target
-        );
+        (filledMakingAmount, filledTakingAmount) = _fillOrderRFQTo(order, flagsAndAmount, target);
         emit OrderFilledRFQ(orderHash, filledMakingAmount);
     }
 
-    function _fillOrderRFQTo(
-        OrderRFQLib.OrderRFQ memory order,
-        uint256 flagsAndAmount,
-        address target
-    ) private returns (uint256 makingAmount, uint256 takingAmount) {
+    function _fillOrderRFQTo(OrderRFQLib.OrderRFQ memory order, uint256 flagsAndAmount, address target) private returns (uint256 makingAmount, uint256 takingAmount) {
         if (target == address(0)) revert RFQZeroTargetIsForbidden();
 
         address maker = order.maker;
 
         // Validate order
-        if (
-            order.allowedSender != address(0) &&
-            order.allowedSender != msg.sender
-        ) revert RFQPrivateOrder();
+        if (order.allowedSender != address(0) && order.allowedSender != msg.sender) revert RFQPrivateOrder();
 
         {
             // Stack too deep
             uint256 info = order.info;
             // Check time expiration
             uint256 expiration = uint128(info) >> 64;
-            if (expiration != 0 && block.timestamp > expiration)
-                revert OrderExpired(); // solhint-disable-line not-rely-on-time
+            if (expiration != 0 && block.timestamp > expiration) revert OrderExpired(); // solhint-disable-line not-rely-on-time
             _invalidateOrder(maker, info, 0);
         }
 
@@ -4354,41 +3392,25 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
             } else if (flagsAndAmount & _MAKER_AMOUNT_FLAG != 0) {
                 if (amount > orderMakingAmount) revert MakingAmountExceeded();
                 makingAmount = amount;
-                takingAmount = AmountCalculator.getTakingAmount(
-                    orderMakingAmount,
-                    orderTakingAmount,
-                    makingAmount
-                );
+                takingAmount = AmountCalculator.getTakingAmount(orderMakingAmount, orderTakingAmount, makingAmount);
             } else {
                 if (amount > orderTakingAmount) revert TakingAmountExceeded();
                 takingAmount = amount;
-                makingAmount = AmountCalculator.getMakingAmount(
-                    orderMakingAmount,
-                    orderTakingAmount,
-                    takingAmount
-                );
+                makingAmount = AmountCalculator.getMakingAmount(orderMakingAmount, orderTakingAmount, takingAmount);
             }
         }
 
-        if (makingAmount == 0 || takingAmount == 0)
-            revert RFQSwapWithZeroAmount();
+        if (makingAmount == 0 || takingAmount == 0) revert RFQSwapWithZeroAmount();
 
         // Maker => Taker
-        if (
-            order.makerAsset == address(_WETH) &&
-            flagsAndAmount & _UNWRAP_WETH_FLAG != 0
-        ) {
+        if (order.makerAsset == address(_WETH) && flagsAndAmount & _UNWRAP_WETH_FLAG != 0) {
             _WETH.transferFrom(maker, address(this), makingAmount);
             _WETH.withdraw(makingAmount);
             // solhint-disable-next-line avoid-low-level-calls
             (bool success, ) = target.call{ value: makingAmount }("");
             if (!success) revert Errors.ETHTransferFailed();
         } else {
-            IERC20(order.makerAsset).safeTransferFrom(
-                maker,
-                target,
-                makingAmount
-            );
+            IERC20(order.makerAsset).safeTransferFrom(maker, target, makingAmount);
         }
 
         // Taker => Maker
@@ -4398,27 +3420,16 @@ abstract contract OrderRFQMixin is EIP712, EthReceiver {
             _WETH.transfer(maker, takingAmount);
         } else {
             if (msg.value != 0) revert Errors.InvalidMsgValue();
-            IERC20(order.takerAsset).safeTransferFrom(
-                msg.sender,
-                maker,
-                takingAmount
-            );
+            IERC20(order.takerAsset).safeTransferFrom(msg.sender, maker, takingAmount);
         }
     }
 
-    function _invalidateOrder(
-        address maker,
-        uint256 orderInfo,
-        uint256 additionalMask
-    ) private {
+    function _invalidateOrder(address maker, uint256 orderInfo, uint256 additionalMask) private {
         uint256 invalidatorSlot = uint64(orderInfo) >> 8;
         uint256 invalidatorBits = (1 << uint8(orderInfo)) | additionalMask;
-        mapping(uint256 => uint256) storage invalidatorStorage = _invalidator[
-            maker
-        ];
+        mapping(uint256 => uint256) storage invalidatorStorage = _invalidator[maker];
         uint256 invalidator = invalidatorStorage[invalidatorSlot];
-        if (invalidator & invalidatorBits == invalidatorBits)
-            revert InvalidatedOrder();
+        if (invalidator & invalidatorBits == invalidatorBits) revert InvalidatedOrder();
         invalidatorStorage[invalidatorSlot] = invalidator | invalidatorBits;
     }
 }
@@ -4476,75 +3487,48 @@ library OrderLib {
         PostInteraction
     }
 
-    function getterIsFrozen(
-        bytes calldata getter
-    ) internal pure returns (bool) {
+    function getterIsFrozen(bytes calldata getter) internal pure returns (bool) {
         return getter.length == 1 && getter[0] == "x";
     }
 
-    function _get(
-        Order calldata order,
-        DynamicField field
-    ) private pure returns (bytes calldata) {
+    function _get(Order calldata order, DynamicField field) private pure returns (bytes calldata) {
         uint256 bitShift = uint256(field) << 5; // field * 32
-        return
-            order.interactions[uint32(
-                (order.offsets << 32) >> bitShift
-            ):uint32(order.offsets >> bitShift)];
+        return order.interactions[uint32((order.offsets << 32) >> bitShift):uint32(order.offsets >> bitShift)];
     }
 
-    function makerAssetData(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function makerAssetData(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.MakerAssetData);
     }
 
-    function takerAssetData(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function takerAssetData(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.TakerAssetData);
     }
 
-    function getMakingAmount(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function getMakingAmount(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.GetMakingAmount);
     }
 
-    function getTakingAmount(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function getTakingAmount(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.GetTakingAmount);
     }
 
-    function predicate(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function predicate(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.Predicate);
     }
 
-    function permit(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function permit(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.Permit);
     }
 
-    function preInteraction(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function preInteraction(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.PreInteraction);
     }
 
-    function postInteraction(
-        Order calldata order
-    ) internal pure returns (bytes calldata) {
+    function postInteraction(Order calldata order) internal pure returns (bytes calldata) {
         return _get(order, DynamicField.PostInteraction);
     }
 
-    function hash(
-        Order calldata order,
-        bytes32 domainSeparator
-    ) internal pure returns (bytes32 result) {
+    function hash(Order calldata order, bytes32 domainSeparator) internal pure returns (bytes32 result) {
         bytes calldata interactions = order.interactions;
         bytes32 typehash = _LIMIT_ORDER_TYPEHASH;
         /// @solidity memory-safe-assembly
@@ -4571,10 +3555,7 @@ pragma solidity 0.8.19;
 library ArgumentsDecoder {
     error IncorrectDataLength();
 
-    function decodeUint256(
-        bytes calldata data,
-        uint256 offset
-    ) internal pure returns (uint256 value) {
+    function decodeUint256(bytes calldata data, uint256 offset) internal pure returns (uint256 value) {
         unchecked {
             if (data.length < offset + 32) revert IncorrectDataLength();
         }
@@ -4585,9 +3566,7 @@ library ArgumentsDecoder {
         }
     }
 
-    function decodeSelector(
-        bytes calldata data
-    ) internal pure returns (bytes4 value) {
+    function decodeSelector(bytes calldata data) internal pure returns (bytes4 value) {
         if (data.length < 4) revert IncorrectDataLength();
         // no memory ops inside so this insertion is automatically memory safe
         assembly {
@@ -4596,10 +3575,7 @@ library ArgumentsDecoder {
         }
     }
 
-    function decodeTailCalldata(
-        bytes calldata data,
-        uint256 tailOffset
-    ) internal pure returns (bytes calldata args) {
+    function decodeTailCalldata(bytes calldata data, uint256 tailOffset) internal pure returns (bytes calldata args) {
         if (data.length < tailOffset) revert IncorrectDataLength();
         // no memory ops inside so this insertion is automatically memory safe
         assembly {
@@ -4609,9 +3585,7 @@ library ArgumentsDecoder {
         }
     }
 
-    function decodeTargetAndCalldata(
-        bytes calldata data
-    ) internal pure returns (address target, bytes calldata args) {
+    function decodeTargetAndCalldata(bytes calldata data) internal pure returns (address target, bytes calldata args) {
         if (data.length < 20) revert IncorrectDataLength();
         // no memory ops inside so this insertion is automatically memory safe
         assembly {
@@ -4649,10 +3623,7 @@ contract NonceManager {
 
     /// @notice Checks if `makerAddress` has specified `makerNonce`
     /// @return Result True if `makerAddress` has specified nonce. Otherwise, false
-    function nonceEquals(
-        address makerAddress,
-        uint256 makerNonce
-    ) public view returns (bool) {
+    function nonceEquals(address makerAddress, uint256 makerNonce) public view returns (bool) {
         return nonce[makerAddress] == makerNonce;
     }
 }
@@ -4669,16 +3640,11 @@ contract PredicateHelper is NonceManager {
 
     /// @notice Calls every target with corresponding data
     /// @return Result True if call to any target returned True. Otherwise, false
-    function or(
-        uint256 offsets,
-        bytes calldata data
-    ) public view returns (bool) {
+    function or(uint256 offsets, bytes calldata data) public view returns (bool) {
         uint256 current;
         uint256 previous;
         for (uint256 i = 0; (current = uint32(offsets >> i)) != 0; i += 32) {
-            (bool success, uint256 res) = _selfStaticCall(
-                data[previous:current]
-            );
+            (bool success, uint256 res) = _selfStaticCall(data[previous:current]);
             if (success && res == 1) {
                 return true;
             }
@@ -4689,16 +3655,11 @@ contract PredicateHelper is NonceManager {
 
     /// @notice Calls every target with corresponding data
     /// @return Result True if calls to all targets returned True. Otherwise, false
-    function and(
-        uint256 offsets,
-        bytes calldata data
-    ) public view returns (bool) {
+    function and(uint256 offsets, bytes calldata data) public view returns (bool) {
         uint256 current;
         uint256 previous;
         for (uint256 i = 0; (current = uint32(offsets >> i)) != 0; i += 32) {
-            (bool success, uint256 res) = _selfStaticCall(
-                data[previous:current]
-            );
+            (bool success, uint256 res) = _selfStaticCall(data[previous:current]);
             if (!success || res != 1) {
                 return false;
             }
@@ -4710,10 +3671,7 @@ contract PredicateHelper is NonceManager {
     /// @notice Calls target with specified data and tests if it's equal to the value
     /// @param value Value to test
     /// @return Result True if call to target returns the same value as `value`. Otherwise, false
-    function eq(
-        uint256 value,
-        bytes calldata data
-    ) public view returns (bool) {
+    function eq(uint256 value, bytes calldata data) public view returns (bool) {
         (bool success, uint256 res) = _selfStaticCall(data);
         return success && res == value;
     }
@@ -4721,10 +3679,7 @@ contract PredicateHelper is NonceManager {
     /// @notice Calls target with specified data and tests if it's lower than value
     /// @param value Value to test
     /// @return Result True if call to target returns value which is lower than `value`. Otherwise, false
-    function lt(
-        uint256 value,
-        bytes calldata data
-    ) public view returns (bool) {
+    function lt(uint256 value, bytes calldata data) public view returns (bool) {
         (bool success, uint256 res) = _selfStaticCall(data);
         return success && res < value;
     }
@@ -4732,10 +3687,7 @@ contract PredicateHelper is NonceManager {
     /// @notice Calls target with specified data and tests if it's bigger than value
     /// @param value Value to test
     /// @return Result True if call to target returns value which is bigger than `value`. Otherwise, false
-    function gt(
-        uint256 value,
-        bytes calldata data
-    ) public view returns (bool) {
+    function gt(uint256 value, bytes calldata data) public view returns (bool) {
         (bool success, uint256 res) = _selfStaticCall(data);
         return success && res > value;
     }
@@ -4748,27 +3700,20 @@ contract PredicateHelper is NonceManager {
 
     /// @notice Performs an arbitrary call to target with data
     /// @return Result Bytes transmuted to uint256
-    function arbitraryStaticCall(
-        address target,
-        bytes calldata data
-    ) public view returns (uint256) {
+    function arbitraryStaticCall(address target, bytes calldata data) public view returns (uint256) {
         (bool success, uint256 res) = _staticcallForUint(target, data);
         if (!success) revert ArbitraryStaticCallFailed();
         return res;
     }
 
-    function timestampBelowAndNonceEquals(
-        uint256 timeNonceAccount
-    ) public view returns (bool) {
+    function timestampBelowAndNonceEquals(uint256 timeNonceAccount) public view returns (bool) {
         uint256 _time = uint48(timeNonceAccount >> 208);
         uint256 _nonce = uint48(timeNonceAccount >> 160);
         address _account = address(uint160(timeNonceAccount));
         return timestampBelow(_time) && nonceEquals(_account, _nonce);
     }
 
-    function _selfStaticCall(
-        bytes calldata data
-    ) internal view returns (bool, uint256) {
+    function _selfStaticCall(bytes calldata data) internal view returns (bool, uint256) {
         uint256 selector = uint32(data.decodeSelector());
         uint256 arg = data.decodeUint256(4);
 
@@ -4784,10 +3729,7 @@ contract PredicateHelper is NonceManager {
                 // 0x6fe7b0ba
                 if (selector == uint32(this.gt.selector)) {
                     // 0x4f38e2b8
-                    return (
-                        true,
-                        gt(arg, data.decodeTailCalldata(100)) ? 1 : 0
-                    );
+                    return (true, gt(arg, data.decodeTailCalldata(100)) ? 1 : 0);
                 } else if (selector == uint32(this.timestampBelow.selector)) {
                     // 0x63592c2b
                     return (true, timestampBelow(arg) ? 1 : 0);
@@ -4795,16 +3737,10 @@ contract PredicateHelper is NonceManager {
             } else {
                 if (selector == uint32(this.eq.selector)) {
                     // 0x6fe7b0ba
-                    return (
-                        true,
-                        eq(arg, data.decodeTailCalldata(100)) ? 1 : 0
-                    );
+                    return (true, eq(arg, data.decodeTailCalldata(100)) ? 1 : 0);
                 } else if (selector == uint32(this.or.selector)) {
                     // 0x74261145
-                    return (
-                        true,
-                        or(arg, data.decodeTailCalldata(100)) ? 1 : 0
-                    );
+                    return (true, or(arg, data.decodeTailCalldata(100)) ? 1 : 0);
                 }
             }
         } else {
@@ -4812,38 +3748,18 @@ contract PredicateHelper is NonceManager {
                 // 0xca4ece22
                 if (selector == uint32(this.arbitraryStaticCall.selector)) {
                     // 0xbf15fcd8
-                    return (
-                        true,
-                        arbitraryStaticCall(
-                            address(uint160(arg)),
-                            data.decodeTailCalldata(100)
-                        )
-                    );
+                    return (true, arbitraryStaticCall(address(uint160(arg)), data.decodeTailCalldata(100)));
                 } else if (selector == uint32(this.and.selector)) {
                     // 0xbfa75143
-                    return (
-                        true,
-                        and(arg, data.decodeTailCalldata(100)) ? 1 : 0
-                    );
+                    return (true, and(arg, data.decodeTailCalldata(100)) ? 1 : 0);
                 }
             } else {
                 if (selector == uint32(this.lt.selector)) {
                     // 0xca4ece22
-                    return (
-                        true,
-                        lt(arg, data.decodeTailCalldata(100)) ? 1 : 0
-                    );
+                    return (true, lt(arg, data.decodeTailCalldata(100)) ? 1 : 0);
                 } else if (selector == uint32(this.nonceEquals.selector)) {
                     // 0xcf6fc6e3
-                    return (
-                        true,
-                        nonceEquals(
-                            address(uint160(arg)),
-                            data.decodeUint256(0x24)
-                        )
-                            ? 1
-                            : 0
-                    );
+                    return (true, nonceEquals(address(uint160(arg)), data.decodeUint256(0x24)) ? 1 : 0);
                 }
             }
         }
@@ -4851,10 +3767,7 @@ contract PredicateHelper is NonceManager {
         return _staticcallForUint(address(this), data);
     }
 
-    function _staticcallForUint(
-        address target,
-        bytes calldata input
-    ) private view returns (bool success, uint256 res) {
+    function _staticcallForUint(address target, bytes calldata input) private view returns (bool success, uint256 res) {
         /// @solidity memory-safe-assembly
         assembly {
             // solhint-disable-line no-inline-assembly
@@ -4880,45 +3793,35 @@ interface IOrderMixin {
      * @param orderHash Order's hash. Can be obtained by the `hashOrder` function
      * @return amount Unfilled amount
      */
-    function remaining(
-        bytes32 orderHash
-    ) external view returns (uint256 amount);
+    function remaining(bytes32 orderHash) external view returns (uint256 amount);
 
     /**
      * @notice Returns unfilled amount for order
      * @param orderHash Order's hash. Can be obtained by the `hashOrder` function
      * @return rawAmount Unfilled amount of order plus one if order exists. Otherwise 0
      */
-    function remainingRaw(
-        bytes32 orderHash
-    ) external view returns (uint256 rawAmount);
+    function remainingRaw(bytes32 orderHash) external view returns (uint256 rawAmount);
 
     /**
      * @notice Same as `remainingRaw` but for multiple orders
      * @param orderHashes Array of hashes
      * @return rawAmounts Array of amounts for each order plus one if order exists or 0 otherwise
      */
-    function remainingsRaw(
-        bytes32[] memory orderHashes
-    ) external view returns (uint256[] memory rawAmounts);
+    function remainingsRaw(bytes32[] memory orderHashes) external view returns (uint256[] memory rawAmounts);
 
     /**
      * @notice Checks order predicate
      * @param order Order to check predicate for
      * @return result Predicate evaluation result. True if predicate allows to fill the order, false otherwise
      */
-    function checkPredicate(
-        OrderLib.Order calldata order
-    ) external view returns (bool result);
+    function checkPredicate(OrderLib.Order calldata order) external view returns (bool result);
 
     /**
      * @notice Returns order hash according to EIP712 standard
      * @param order Order to get hash for
      * @return orderHash Hash of the order
      */
-    function hashOrder(
-        OrderLib.Order calldata order
-    ) external view returns (bytes32);
+    function hashOrder(OrderLib.Order calldata order) external view returns (bytes32);
 
     /**
      * @notice Delegates execution to custom implementation. Could be used to validate if `transferFrom` works properly
@@ -4935,9 +3838,7 @@ interface IOrderMixin {
      * @return orderRemaining Unfilled amount of order before cancellation
      * @return orderHash Hash of the filled order
      */
-    function cancelOrder(
-        OrderLib.Order calldata order
-    ) external returns (uint256 orderRemaining, bytes32 orderHash);
+    function cancelOrder(OrderLib.Order calldata order) external returns (uint256 orderRemaining, bytes32 orderHash);
 
     /**
      * @notice Fills an order. If one doesn't exist (first fill) it will be created using order.makerAssetData
@@ -4951,21 +3852,7 @@ interface IOrderMixin {
      * @return actualTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrder(
-        OrderLib.Order calldata order,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount
-    )
-        external
-        payable
-        returns (
-            uint256 actualMakingAmount,
-            uint256 actualTakingAmount,
-            bytes32 orderHash
-        );
+    function fillOrder(OrderLib.Order calldata order, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount) external payable returns (uint256 actualMakingAmount, uint256 actualTakingAmount, bytes32 orderHash);
 
     /**
      * @notice Same as `fillOrderTo` but calls permit first,
@@ -4984,22 +3871,7 @@ interface IOrderMixin {
      * @return actualTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrderToWithPermit(
-        OrderLib.Order calldata order,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount,
-        address target,
-        bytes calldata permit
-    )
-        external
-        returns (
-            uint256 actualMakingAmount,
-            uint256 actualTakingAmount,
-            bytes32 orderHash
-        );
+    function fillOrderToWithPermit(OrderLib.Order calldata order, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount, address target, bytes calldata permit) external returns (uint256 actualMakingAmount, uint256 actualTakingAmount, bytes32 orderHash);
 
     /**
      * @notice Same as `fillOrder` but allows to specify funds destination instead of `msg.sender`
@@ -5014,22 +3886,7 @@ interface IOrderMixin {
      * @return actualTakingAmount Actual amount transferred from taker to maker
      * @return orderHash Hash of the filled order
      */
-    function fillOrderTo(
-        OrderLib.Order calldata order_,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount,
-        address target
-    )
-        external
-        payable
-        returns (
-            uint256 actualMakingAmount,
-            uint256 actualTakingAmount,
-            bytes32 orderHash
-        );
+    function fillOrderTo(OrderLib.Order calldata order_, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount, address target) external payable returns (uint256 actualMakingAmount, uint256 actualTakingAmount, bytes32 orderHash);
 }
 
 // File @1inch/limit-order-protocol/contracts/Interfaces/NotificationReceiver.sol@v0.3.0-prerelease
@@ -5038,38 +3895,17 @@ pragma solidity 0.8.19;
 
 /// @title Interface for interactor which acts between `maker => taker` and `taker => maker` transfers.
 interface PreInteractionNotificationReceiver {
-    function fillOrderPreInteraction(
-        bytes32 orderHash,
-        address maker,
-        address taker,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 remainingAmount,
-        bytes memory interactiveData
-    ) external;
+    function fillOrderPreInteraction(bytes32 orderHash, address maker, address taker, uint256 makingAmount, uint256 takingAmount, uint256 remainingAmount, bytes memory interactiveData) external;
 }
 
 interface PostInteractionNotificationReceiver {
     /// @notice Callback method that gets called after taker transferred funds to maker but before
     /// the opposite transfer happened
-    function fillOrderPostInteraction(
-        bytes32 orderHash,
-        address maker,
-        address taker,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 remainingAmount,
-        bytes memory interactiveData
-    ) external;
+    function fillOrderPostInteraction(bytes32 orderHash, address maker, address taker, uint256 makingAmount, uint256 takingAmount, uint256 remainingAmount, bytes memory interactiveData) external;
 }
 
 interface InteractionNotificationReceiver {
-    function fillOrderInteraction(
-        address taker,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        bytes memory interactiveData
-    ) external returns (uint256 offeredTakingAmount);
+    function fillOrderInteraction(address taker, uint256 makingAmount, uint256 takingAmount, bytes memory interactiveData) external returns (uint256 offeredTakingAmount);
 }
 
 // File @1inch/limit-order-protocol/contracts/OrderMixin.sol@v0.3.0-prerelease
@@ -5105,18 +3941,10 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     error SimulationResults(bool success, bytes res);
 
     /// @notice Emitted every time order gets filled, including partial fills
-    event OrderFilled(
-        address indexed maker,
-        bytes32 orderHash,
-        uint256 remaining
-    );
+    event OrderFilled(address indexed maker, bytes32 orderHash, uint256 remaining);
 
     /// @notice Emitted when order gets cancelled
-    event OrderCanceled(
-        address indexed maker,
-        bytes32 orderHash,
-        uint256 remainingRaw
-    );
+    event OrderCanceled(address indexed maker, bytes32 orderHash, uint256 remainingRaw);
 
     uint256 private constant _ORDER_DOES_NOT_EXIST = 0;
     uint256 private constant _ORDER_FILLED = 1;
@@ -5135,9 +3963,7 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     /**
      * @notice See {IOrderMixin-remaining}.
      */
-    function remaining(
-        bytes32 orderHash
-    ) external view returns (uint256 /* amount */) {
+    function remaining(bytes32 orderHash) external view returns (uint256 /* amount */) {
         uint256 amount = _remaining[orderHash];
         if (amount == _ORDER_DOES_NOT_EXIST) revert UnknownOrder();
         unchecked {
@@ -5148,18 +3974,14 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     /**
      * @notice See {IOrderMixin-remainingRaw}.
      */
-    function remainingRaw(
-        bytes32 orderHash
-    ) external view returns (uint256 /* rawAmount */) {
+    function remainingRaw(bytes32 orderHash) external view returns (uint256 /* rawAmount */) {
         return _remaining[orderHash];
     }
 
     /**
      * @notice See {IOrderMixin-remainingsRaw}.
      */
-    function remainingsRaw(
-        bytes32[] memory orderHashes
-    ) external view returns (uint256[] memory /* rawAmounts */) {
+    function remainingsRaw(bytes32[] memory orderHashes) external view returns (uint256[] memory /* rawAmounts */) {
         uint256[] memory results = new uint256[](orderHashes.length);
         for (uint256 i = 0; i < orderHashes.length; i++) {
             results[i] = _remaining[orderHashes[i]];
@@ -5179,9 +4001,7 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     /**
      * @notice See {IOrderMixin-cancelOrder}.
      */
-    function cancelOrder(
-        OrderLib.Order calldata order
-    ) external returns (uint256 orderRemaining, bytes32 orderHash) {
+    function cancelOrder(OrderLib.Order calldata order) external returns (uint256 orderRemaining, bytes32 orderHash) {
         if (order.maker != msg.sender) revert AccessDenied();
 
         orderHash = hashOrder(order);
@@ -5194,93 +4014,27 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     /**
      * @notice See {IOrderMixin-fillOrder}.
      */
-    function fillOrder(
-        OrderLib.Order calldata order,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount
-    )
-        external
-        payable
-        returns (
-            uint256 /* actualMakingAmount */,
-            uint256 /* actualTakingAmount */,
-            bytes32 /* orderHash */
-        )
-    {
-        return
-            fillOrderTo(
-                order,
-                signature,
-                interaction,
-                makingAmount,
-                takingAmount,
-                skipPermitAndThresholdAmount,
-                msg.sender
-            );
+    function fillOrder(OrderLib.Order calldata order, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount) external payable returns (uint256 /* actualMakingAmount */, uint256 /* actualTakingAmount */, bytes32 /* orderHash */) {
+        return fillOrderTo(order, signature, interaction, makingAmount, takingAmount, skipPermitAndThresholdAmount, msg.sender);
     }
 
     /**
      * @notice See {IOrderMixin-fillOrderToWithPermit}.
      */
-    function fillOrderToWithPermit(
-        OrderLib.Order calldata order,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount,
-        address target,
-        bytes calldata permit
-    )
-        external
-        returns (
-            uint256 /* actualMakingAmount */,
-            uint256 /* actualTakingAmount */,
-            bytes32 /* orderHash */
-        )
-    {
+    function fillOrderToWithPermit(OrderLib.Order calldata order, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount, address target, bytes calldata permit) external returns (uint256 /* actualMakingAmount */, uint256 /* actualTakingAmount */, bytes32 /* orderHash */) {
         if (permit.length < 20) revert PermitLengthTooLow();
         {
             // Stack too deep
-            (address token, bytes calldata permitData) = permit
-                .decodeTargetAndCalldata();
+            (address token, bytes calldata permitData) = permit.decodeTargetAndCalldata();
             IERC20(token).safePermit(permitData);
         }
-        return
-            fillOrderTo(
-                order,
-                signature,
-                interaction,
-                makingAmount,
-                takingAmount,
-                skipPermitAndThresholdAmount,
-                target
-            );
+        return fillOrderTo(order, signature, interaction, makingAmount, takingAmount, skipPermitAndThresholdAmount, target);
     }
 
     /**
      * @notice See {IOrderMixin-fillOrderTo}.
      */
-    function fillOrderTo(
-        OrderLib.Order calldata order_,
-        bytes calldata signature,
-        bytes calldata interaction,
-        uint256 makingAmount,
-        uint256 takingAmount,
-        uint256 skipPermitAndThresholdAmount,
-        address target
-    )
-        public
-        payable
-        returns (
-            uint256 actualMakingAmount,
-            uint256 actualTakingAmount,
-            bytes32 orderHash
-        )
-    {
+    function fillOrderTo(OrderLib.Order calldata order_, bytes calldata signature, bytes calldata interaction, uint256 makingAmount, uint256 takingAmount, uint256 skipPermitAndThresholdAmount, address target) public payable returns (uint256 actualMakingAmount, uint256 actualTakingAmount, bytes32 orderHash) {
         if (target == address(0)) revert ZeroTargetIsForbidden();
         orderHash = hashOrder(order_);
 
@@ -5289,34 +4043,19 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
         actualTakingAmount = takingAmount;
 
         uint256 remainingMakingAmount = _remaining[orderHash];
-        if (remainingMakingAmount == _ORDER_FILLED)
-            revert RemainingAmountIsZero();
-        if (
-            order.allowedSender != address(0) &&
-            order.allowedSender != msg.sender
-        ) revert PrivateOrder();
+        if (remainingMakingAmount == _ORDER_FILLED) revert RemainingAmountIsZero();
+        if (order.allowedSender != address(0) && order.allowedSender != msg.sender) revert PrivateOrder();
         if (remainingMakingAmount == _ORDER_DOES_NOT_EXIST) {
             // First fill: validate order and permit maker asset
-            if (
-                !ECDSA.recoverOrIsValidSignature(
-                    order.maker,
-                    orderHash,
-                    signature
-                )
-            ) revert BadSignature();
+            if (!ECDSA.recoverOrIsValidSignature(order.maker, orderHash, signature)) revert BadSignature();
             remainingMakingAmount = order.makingAmount;
 
             bytes calldata permit = order.permit();
-            if (
-                skipPermitAndThresholdAmount & _SKIP_PERMIT_FLAG == 0 &&
-                permit.length >= 20
-            ) {
+            if (skipPermitAndThresholdAmount & _SKIP_PERMIT_FLAG == 0 && permit.length >= 20) {
                 // proceed only if taker is willing to execute permit and its length is enough to store address
-                (address token, bytes calldata permitCalldata) = permit
-                    .decodeTargetAndCalldata();
+                (address token, bytes calldata permitCalldata) = permit.decodeTargetAndCalldata();
                 IERC20(token).safePermit(permitCalldata);
-                if (_remaining[orderHash] != _ORDER_DOES_NOT_EXIST)
-                    revert ReentrancyDetected();
+                if (_remaining[orderHash] != _ORDER_DOES_NOT_EXIST) revert ReentrancyDetected();
             }
         } else {
             unchecked {
@@ -5336,56 +4075,25 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
             if (actualMakingAmount > remainingMakingAmount) {
                 actualMakingAmount = remainingMakingAmount;
             }
-            actualTakingAmount = _getTakingAmount(
-                order.getTakingAmount(),
-                order.makingAmount,
-                actualMakingAmount,
-                order.takingAmount,
-                remainingMakingAmount,
-                orderHash
-            );
-            uint256 thresholdAmount = skipPermitAndThresholdAmount &
-                _THRESHOLD_MASK;
+            actualTakingAmount = _getTakingAmount(order.getTakingAmount(), order.makingAmount, actualMakingAmount, order.takingAmount, remainingMakingAmount, orderHash);
+            uint256 thresholdAmount = skipPermitAndThresholdAmount & _THRESHOLD_MASK;
             // check that actual rate is not worse than what was expected
             // actualTakingAmount / actualMakingAmount <= thresholdAmount / makingAmount
-            if (
-                actualTakingAmount * makingAmount >
-                thresholdAmount * actualMakingAmount
-            ) revert TakingAmountTooHigh();
+            if (actualTakingAmount * makingAmount > thresholdAmount * actualMakingAmount) revert TakingAmountTooHigh();
         } else {
-            actualMakingAmount = _getMakingAmount(
-                order.getMakingAmount(),
-                order.takingAmount,
-                actualTakingAmount,
-                order.makingAmount,
-                remainingMakingAmount,
-                orderHash
-            );
+            actualMakingAmount = _getMakingAmount(order.getMakingAmount(), order.takingAmount, actualTakingAmount, order.makingAmount, remainingMakingAmount, orderHash);
             if (actualMakingAmount > remainingMakingAmount) {
                 actualMakingAmount = remainingMakingAmount;
-                actualTakingAmount = _getTakingAmount(
-                    order.getTakingAmount(),
-                    order.makingAmount,
-                    actualMakingAmount,
-                    order.takingAmount,
-                    remainingMakingAmount,
-                    orderHash
-                );
-                if (actualTakingAmount > takingAmount)
-                    revert TakingAmountIncreased();
+                actualTakingAmount = _getTakingAmount(order.getTakingAmount(), order.makingAmount, actualMakingAmount, order.takingAmount, remainingMakingAmount, orderHash);
+                if (actualTakingAmount > takingAmount) revert TakingAmountIncreased();
             }
-            uint256 thresholdAmount = skipPermitAndThresholdAmount &
-                _THRESHOLD_MASK;
+            uint256 thresholdAmount = skipPermitAndThresholdAmount & _THRESHOLD_MASK;
             // check that actual rate is not worse than what was expected
             // actualMakingAmount / actualTakingAmount >= thresholdAmount / takingAmount
-            if (
-                actualMakingAmount * takingAmount <
-                thresholdAmount * actualTakingAmount
-            ) revert MakingAmountTooLow();
+            if (actualMakingAmount * takingAmount < thresholdAmount * actualTakingAmount) revert MakingAmountTooLow();
         }
 
-        if (actualMakingAmount == 0 || actualTakingAmount == 0)
-            revert SwapWithZeroAmount();
+        if (actualMakingAmount == 0 || actualTakingAmount == 0) revert SwapWithZeroAmount();
 
         // Update remaining amount in storage
         unchecked {
@@ -5397,113 +4105,51 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
         // Maker can handle funds interactively
         if (order.preInteraction().length >= 20) {
             // proceed only if interaction length is enough to store address
-            (address interactionTarget, bytes calldata interactionData) = order
-                .preInteraction()
-                .decodeTargetAndCalldata();
-            PreInteractionNotificationReceiver(interactionTarget)
-                .fillOrderPreInteraction(
-                    orderHash,
-                    order.maker,
-                    msg.sender,
-                    actualMakingAmount,
-                    actualTakingAmount,
-                    remainingMakingAmount,
-                    interactionData
-                );
+            (address interactionTarget, bytes calldata interactionData) = order.preInteraction().decodeTargetAndCalldata();
+            PreInteractionNotificationReceiver(interactionTarget).fillOrderPreInteraction(orderHash, order.maker, msg.sender, actualMakingAmount, actualTakingAmount, remainingMakingAmount, interactionData);
         }
 
         // Maker => Taker
-        if (
-            !_callTransferFrom(
-                order.makerAsset,
-                order.maker,
-                target,
-                actualMakingAmount,
-                order.makerAssetData()
-            )
-        ) revert TransferFromMakerToTakerFailed();
+        if (!_callTransferFrom(order.makerAsset, order.maker, target, actualMakingAmount, order.makerAssetData())) revert TransferFromMakerToTakerFailed();
 
         if (interaction.length >= 20) {
             // proceed only if interaction length is enough to store address
-            (
-                address interactionTarget,
-                bytes calldata interactionData
-            ) = interaction.decodeTargetAndCalldata();
-            uint256 offeredTakingAmount = InteractionNotificationReceiver(
-                interactionTarget
-            ).fillOrderInteraction(
-                    msg.sender,
-                    actualMakingAmount,
-                    actualTakingAmount,
-                    interactionData
-                );
+            (address interactionTarget, bytes calldata interactionData) = interaction.decodeTargetAndCalldata();
+            uint256 offeredTakingAmount = InteractionNotificationReceiver(interactionTarget).fillOrderInteraction(msg.sender, actualMakingAmount, actualTakingAmount, interactionData);
 
-            if (
-                offeredTakingAmount > actualTakingAmount &&
-                !OrderLib.getterIsFrozen(order.getMakingAmount()) &&
-                !OrderLib.getterIsFrozen(order.getTakingAmount())
-            ) {
+            if (offeredTakingAmount > actualTakingAmount && !OrderLib.getterIsFrozen(order.getMakingAmount()) && !OrderLib.getterIsFrozen(order.getTakingAmount())) {
                 actualTakingAmount = offeredTakingAmount;
             }
         }
 
         // Taker => Maker
         if (order.takerAsset == address(_WETH) && msg.value > 0) {
-            if (msg.value < actualTakingAmount)
-                revert Errors.InvalidMsgValue();
+            if (msg.value < actualTakingAmount) revert Errors.InvalidMsgValue();
             if (msg.value > actualTakingAmount) {
                 unchecked {
-                    (bool success, ) = msg.sender.call{
-                        value: msg.value - actualTakingAmount
-                    }(""); // solhint-disable-line avoid-low-level-calls
+                    (bool success, ) = msg.sender.call{ value: msg.value - actualTakingAmount }(""); // solhint-disable-line avoid-low-level-calls
                     if (!success) revert Errors.ETHTransferFailed();
                 }
             }
             _WETH.deposit{ value: actualTakingAmount }();
-            _WETH.transfer(
-                order.receiver == address(0) ? order.maker : order.receiver,
-                actualTakingAmount
-            );
+            _WETH.transfer(order.receiver == address(0) ? order.maker : order.receiver, actualTakingAmount);
         } else {
             if (msg.value != 0) revert Errors.InvalidMsgValue();
-            if (
-                !_callTransferFrom(
-                    order.takerAsset,
-                    msg.sender,
-                    order.receiver == address(0)
-                        ? order.maker
-                        : order.receiver,
-                    actualTakingAmount,
-                    order.takerAssetData()
-                )
-            ) revert TransferFromTakerToMakerFailed();
+            if (!_callTransferFrom(order.takerAsset, msg.sender, order.receiver == address(0) ? order.maker : order.receiver, actualTakingAmount, order.takerAssetData())) revert TransferFromTakerToMakerFailed();
         }
 
         // Maker can handle funds interactively
         if (order.postInteraction().length >= 20) {
             // proceed only if interaction length is enough to store address
-            (address interactionTarget, bytes calldata interactionData) = order
-                .postInteraction()
-                .decodeTargetAndCalldata();
-            PostInteractionNotificationReceiver(interactionTarget)
-                .fillOrderPostInteraction(
-                    orderHash,
-                    order.maker,
-                    msg.sender,
-                    actualMakingAmount,
-                    actualTakingAmount,
-                    remainingMakingAmount,
-                    interactionData
-                );
+            (address interactionTarget, bytes calldata interactionData) = order.postInteraction().decodeTargetAndCalldata();
+            PostInteractionNotificationReceiver(interactionTarget).fillOrderPostInteraction(orderHash, order.maker, msg.sender, actualMakingAmount, actualTakingAmount, remainingMakingAmount, interactionData);
         }
     }
 
     /**
      * @notice See {IOrderMixin-checkPredicate}.
      */
-    function checkPredicate(
-        OrderLib.Order calldata order
-    ) public view returns (bool) {
+    function checkPredicate(OrderLib.Order calldata order) public view returns (bool) {
         (bool success, uint256 res) = _selfStaticCall(order.predicate());
         return success && res == 1;
     }
@@ -5511,19 +4157,11 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
     /**
      * @notice See {IOrderMixin-hashOrder}.
      */
-    function hashOrder(
-        OrderLib.Order calldata order
-    ) public view returns (bytes32) {
+    function hashOrder(OrderLib.Order calldata order) public view returns (bytes32) {
         return order.hash(_domainSeparatorV4());
     }
 
-    function _callTransferFrom(
-        address asset,
-        address from,
-        address to,
-        uint256 amount,
-        bytes calldata input
-    ) private returns (bool success) {
+    function _callTransferFrom(address asset, address from, address to, uint256 amount, bytes calldata input) private returns (bool success) {
         bytes4 selector = IERC20.transferFrom.selector;
         /// @solidity memory-safe-assembly
         assembly {
@@ -5535,109 +4173,39 @@ abstract contract OrderMixin is IOrderMixin, EIP712, PredicateHelper {
             mstore(add(data, 0x24), to)
             mstore(add(data, 0x44), amount)
             calldatacopy(add(data, 0x64), input.offset, input.length)
-            let status := call(
-                gas(),
-                asset,
-                0,
-                data,
-                add(0x64, input.length),
-                0x0,
-                0x20
-            )
-            success := and(
-                status,
-                or(
-                    iszero(returndatasize()),
-                    and(gt(returndatasize(), 31), eq(mload(0), 1))
-                )
-            )
+            let status := call(gas(), asset, 0, data, add(0x64, input.length), 0x0, 0x20)
+            success := and(status, or(iszero(returndatasize()), and(gt(returndatasize(), 31), eq(mload(0), 1))))
         }
     }
 
-    function _getMakingAmount(
-        bytes calldata getter,
-        uint256 orderTakingAmount,
-        uint256 requestedTakingAmount,
-        uint256 orderMakingAmount,
-        uint256 remainingMakingAmount,
-        bytes32 orderHash
-    ) private view returns (uint256) {
+    function _getMakingAmount(bytes calldata getter, uint256 orderTakingAmount, uint256 requestedTakingAmount, uint256 orderMakingAmount, uint256 remainingMakingAmount, bytes32 orderHash) private view returns (uint256) {
         if (getter.length == 0) {
             // Linear proportion
-            return
-                AmountCalculator.getMakingAmount(
-                    orderMakingAmount,
-                    orderTakingAmount,
-                    requestedTakingAmount
-                );
+            return AmountCalculator.getMakingAmount(orderMakingAmount, orderTakingAmount, requestedTakingAmount);
         }
-        return
-            _callGetter(
-                getter,
-                orderTakingAmount,
-                requestedTakingAmount,
-                orderMakingAmount,
-                remainingMakingAmount,
-                orderHash
-            );
+        return _callGetter(getter, orderTakingAmount, requestedTakingAmount, orderMakingAmount, remainingMakingAmount, orderHash);
     }
 
-    function _getTakingAmount(
-        bytes calldata getter,
-        uint256 orderMakingAmount,
-        uint256 requestedMakingAmount,
-        uint256 orderTakingAmount,
-        uint256 remainingMakingAmount,
-        bytes32 orderHash
-    ) private view returns (uint256) {
+    function _getTakingAmount(bytes calldata getter, uint256 orderMakingAmount, uint256 requestedMakingAmount, uint256 orderTakingAmount, uint256 remainingMakingAmount, bytes32 orderHash) private view returns (uint256) {
         if (getter.length == 0) {
             // Linear proportion
-            return
-                AmountCalculator.getTakingAmount(
-                    orderMakingAmount,
-                    orderTakingAmount,
-                    requestedMakingAmount
-                );
+            return AmountCalculator.getTakingAmount(orderMakingAmount, orderTakingAmount, requestedMakingAmount);
         }
-        return
-            _callGetter(
-                getter,
-                orderMakingAmount,
-                requestedMakingAmount,
-                orderTakingAmount,
-                remainingMakingAmount,
-                orderHash
-            );
+        return _callGetter(getter, orderMakingAmount, requestedMakingAmount, orderTakingAmount, remainingMakingAmount, orderHash);
     }
 
-    function _callGetter(
-        bytes calldata getter,
-        uint256 orderExpectedAmount,
-        uint256 requestedAmount,
-        uint256 orderResultAmount,
-        uint256 remainingMakingAmount,
-        bytes32 orderHash
-    ) private view returns (uint256) {
+    function _callGetter(bytes calldata getter, uint256 orderExpectedAmount, uint256 requestedAmount, uint256 orderResultAmount, uint256 remainingMakingAmount, bytes32 orderHash) private view returns (uint256) {
         if (getter.length == 1) {
             if (OrderLib.getterIsFrozen(getter)) {
                 // On "x" getter calldata only exact amount is allowed
-                if (requestedAmount != orderExpectedAmount)
-                    revert WrongAmount();
+                if (requestedAmount != orderExpectedAmount) revert WrongAmount();
                 return orderResultAmount;
             } else {
                 revert WrongGetter();
             }
         } else {
-            (address target, bytes calldata data) = getter
-                .decodeTargetAndCalldata();
-            (bool success, bytes memory result) = target.staticcall(
-                abi.encodePacked(
-                    data,
-                    requestedAmount,
-                    remainingMakingAmount,
-                    orderHash
-                )
-            );
+            (address target, bytes calldata data) = getter.decodeTargetAndCalldata();
+            (bool success, bytes memory result) = target.staticcall(abi.encodePacked(data, requestedAmount, remainingMakingAmount, orderHash));
             if (!success || result.length != 32) revert GetAmountCallFailed();
             return abi.decode(result, (uint256));
         }
@@ -5665,10 +4233,7 @@ pragma solidity ^0.8.0;
 abstract contract Ownable {
     address private _owner;
 
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
@@ -5715,10 +4280,7 @@ abstract contract Ownable {
      * Can only be called by the current owner.
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(
-            newOwner != address(0),
-            "Ownable: new owner is the zero address"
-        );
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
         _transferOwnership(newOwner);
     }
 
@@ -5738,16 +4300,7 @@ abstract contract Ownable {
 pragma solidity 0.8.19;
 
 /// @notice Main contract incorporates a number of routers to perform swaps and limit orders protocol to fill limit orders
-contract AggregationRouterV5 is
-    EIP712("1inch Aggregation Router", "5"),
-    Ownable,
-    ClipperRouter,
-    GenericRouter,
-    UnoswapRouter,
-    UnoswapV3Router,
-    OrderMixin,
-    OrderRFQMixin
-{
+contract AggregationRouterV5 is EIP712("1inch Aggregation Router", "5"), Ownable, ClipperRouter, GenericRouter, UnoswapRouter, UnoswapV3Router, OrderMixin, OrderRFQMixin {
     using UniERC20 for IERC20;
 
     error ZeroAddress();
@@ -5757,14 +4310,7 @@ contract AggregationRouterV5 is
      * Both values are immutable: they can only be set once during
      * construction.
      */
-    constructor(
-        IWETH weth
-    )
-        UnoswapV3Router(weth)
-        ClipperRouter(weth)
-        OrderMixin(weth)
-        OrderRFQMixin(weth)
-    {
+    constructor(IWETH weth) UnoswapV3Router(weth) ClipperRouter(weth) OrderMixin(weth) OrderRFQMixin(weth) {
         if (address(weth) == address(0)) revert ZeroAddress();
     }
 

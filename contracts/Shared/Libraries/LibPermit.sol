@@ -41,15 +41,8 @@ library LibPermit {
     function permit2Approve(address _token, bytes memory _data) internal {
         IPermit2 _permit2 = IPermit2(permit2());
         if (_data.length > 0) {
-            (uint160 allowanceAmount, uint48 nonce, uint48 expiration, uint256 sigDeadline, bytes memory signature) = abi.decode(
-                _data,
-                (uint160, uint48, uint48, uint256, bytes)
-            );
-            _permit2.permit(
-                msg.sender,
-                IPermit2.PermitSingle(IPermit2.PermitDetails(_token, allowanceAmount, expiration, nonce), address(this), sigDeadline),
-                signature
-            );
+            (uint160 allowanceAmount, uint48 nonce, uint48 expiration, uint256 sigDeadline, bytes memory signature) = abi.decode(_data, (uint160, uint48, uint48, uint256, bytes));
+            _permit2.permit(msg.sender, IPermit2.PermitSingle(IPermit2.PermitDetails(_token, allowanceAmount, expiration, nonce), address(this), sigDeadline), signature);
         }
     }
 
@@ -57,12 +50,7 @@ library LibPermit {
         IPermit2 _permit2 = IPermit2(permit2());
 
         (uint256 nonce, uint256 deadline, bytes memory signature) = abi.decode(_data, (uint256, uint256, bytes));
-        _permit2.permitTransferFrom(
-            IPermit2.PermitTransferFrom(IPermit2.TokenPermissions(_token, amount_), nonce, deadline),
-            IPermit2.SignatureTransferDetails(address(this), amount_),
-            msg.sender,
-            signature
-        );
+        _permit2.permitTransferFrom(IPermit2.PermitTransferFrom(IPermit2.TokenPermissions(_token, amount_), nonce, deadline), IPermit2.SignatureTransferDetails(address(this), amount_), msg.sender, signature);
     }
 
     function permit(address _token, bytes memory _data) internal {

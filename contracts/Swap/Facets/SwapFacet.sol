@@ -24,13 +24,7 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
     /* ========= EXTERNAL ========= */
 
     /// @inheritdoc ISwapFacet
-    function swap(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        address _recipient,
-        SwapData calldata _data
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function swap(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, SwapData calldata _data) external payable nonReentrant refundExcessNative(_refundee) {
         if (_recipient == address(0) || _refundee == address(0)) revert ZeroAddress();
 
         (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_integrator, FeeType.SWAP, _data);
@@ -45,24 +39,11 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
 
         LibAsset.transferToken(_data.to, _recipient, returnToAmount);
 
-        emit Swapped(
-            _transactionId,
-            _integrator,
-            msg.sender,
-            _refundee,
-            _recipient,
-            SwapInfo(_data.callTo, _data.from, _data.to, _data.fromAmount, leftoverFromAmount, returnToAmount)
-        );
+        emit Swapped(_transactionId, _integrator, msg.sender, _refundee, _recipient, SwapInfo(_data.callTo, _data.from, _data.to, _data.fromAmount, leftoverFromAmount, returnToAmount));
     }
 
     /// @inheritdoc ISwapFacet
-    function multiSwap(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        address _recipient,
-        SwapData[] calldata _data
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function multiSwap(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, SwapData[] calldata _data) external payable nonReentrant refundExcessNative(_refundee) {
         if (_recipient == address(0) || _refundee == address(0)) revert ZeroAddress();
 
         uint256 length = _data.length;
@@ -88,13 +69,7 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
     }
 
     /// @inheritdoc ISwapFacet
-    function multiSwapWithoutRevert(
-        bytes32 _transactionId,
-        address _integrator,
-        address _refundee,
-        address _recipient,
-        SwapData[] calldata _data
-    ) external payable nonReentrant refundExcessNative(_refundee) {
+    function multiSwapWithoutRevert(bytes32 _transactionId, address _integrator, address _refundee, address _recipient, SwapData[] calldata _data) external payable nonReentrant refundExcessNative(_refundee) {
         if (_recipient == address(0) || _refundee == address(0)) revert ZeroAddress();
 
         uint256 length = _data.length;
@@ -126,10 +101,6 @@ contract SwapFacet is ISwapFacet, ReentrancyGuard, Swapper {
         if (failedSwaps == length) revert AllSwapsFailed();
 
         LibFees.accrueFixedNativeFees(_transactionId, _integrator, FeeType.SWAP);
-
-        // uint256 fixedNativeFee = successfulSwap >= length / 2
-        //     ? LibFees.accrueFixedNativeFees(FeeType.SWAP, _integrator)
-        //     : 0;
 
         emit MultiSwapped(_transactionId, _integrator, msg.sender, _refundee, _recipient, swapInfo);
     }

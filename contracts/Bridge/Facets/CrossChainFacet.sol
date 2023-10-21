@@ -81,7 +81,7 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
             _startBridge(bridgeData, _patchGenericCrossChainData(_genericData[i], bridgeData.minAmount));
 
-            LibFees.accrueTokenFees(_transactionId, _integrator, FeeType.SWAP, bridgeData.from, totalFee - dZapShare, dZapShare);
+            LibFees.accrueTokenFees(_transactionId, _integrator, FeeType.BRIDGE, bridgeData.from, totalFee - dZapShare, dZapShare);
 
             unchecked {
                 ++i;

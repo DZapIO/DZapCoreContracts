@@ -63,7 +63,6 @@ contract DexManagerFacet is IDexManagerFacet {
 
     /// @inheritdoc IDexManagerFacet
     function setFunctionApprovalBySignature(address _dex, bytes4 _signature, bool _approval) external onlyAuthorized {
-        if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();
         if (_dex == address(this)) revert CannotAuthorizeSelf();
 
         if (_approval) LibAllowList.addAllowedSelector(_dex, _signature);

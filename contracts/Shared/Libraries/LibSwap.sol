@@ -32,7 +32,6 @@ library LibSwap {
             if (_withoutRevert) {
                 return (0, 0);
             }
-            LibUtil.getRevertMsg(res);
             revert SwapCallFailed(res);
         }
 

@@ -1,34 +1,27 @@
-import { ethers } from 'hardhat'
 import { expect } from 'chai'
+import { ethers } from 'hardhat'
 
-import {
-  CONTRACTS,
-  ERRORS,
-  EVENTS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
-  ADDRESS_ZERO,
-} from '../../constants'
-import { snapshot, updateBalance } from '../utils'
+import { ADDRESS_ZERO, CONTRACTS, ERRORS, EVENTS } from '../../constants'
+import { snapshot } from '../utils'
 
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
 import {
   AccessManagerFacet,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
   FeesFacet,
   OwnershipFacet,
+  Permit2,
   SwapFacet,
   WithdrawFacet,
-  DiamondInit,
-  Permit2,
-  CrossChainFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction } from '../../types'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
-import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
-import {} from '../common'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

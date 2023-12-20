@@ -34,10 +34,10 @@ export type { CrossChainFacet } from "./contracts/Bridge/Facets/CrossChainFacet"
 export { CrossChainFacet__factory } from "./factories/contracts/Bridge/Facets/CrossChainFacet__factory";
 export type { ICrossChainFacet } from "./contracts/Bridge/Interfaces/ICrossChainFacet";
 export { ICrossChainFacet__factory } from "./factories/contracts/Bridge/Interfaces/ICrossChainFacet__factory";
-export type { Create2Deployer } from "./contracts/Create2Deployer";
-export { Create2Deployer__factory } from "./factories/contracts/Create2Deployer__factory";
 export type { DZapDiamond } from "./contracts/DZapDiamond";
 export { DZapDiamond__factory } from "./factories/contracts/DZapDiamond__factory";
+export type { IDZapDiamond } from "./contracts/IDZapDiamond";
+export { IDZapDiamond__factory } from "./factories/contracts/IDZapDiamond__factory";
 export type { Executor } from "./contracts/Periphery/Executor";
 export { Executor__factory } from "./factories/contracts/Periphery/Executor__factory";
 export type { Receiver } from "./contracts/Periphery/Receiver";
@@ -160,6 +160,8 @@ export type { UnoswapV3Router } from "./contracts/Test/AggregationRouterV5.sol/U
 export { UnoswapV3Router__factory } from "./factories/contracts/Test/AggregationRouterV5.sol/UnoswapV3Router__factory";
 export type { BridgeMock } from "./contracts/Test/BridgeMock";
 export { BridgeMock__factory } from "./factories/contracts/Test/BridgeMock__factory";
+export type { Create2Deployer } from "./contracts/Test/Create2Deployer";
+export { Create2Deployer__factory } from "./factories/contracts/Test/Create2Deployer__factory";
 export type { ERC20Mock } from "./contracts/Test/ERC20Mock";
 export { ERC20Mock__factory } from "./factories/contracts/Test/ERC20Mock__factory";
 export type { ExchangeMock } from "./contracts/Test/ExchangeMock";

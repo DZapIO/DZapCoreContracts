@@ -1,0 +1,397 @@
+{
+  "137": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0x4e3288c9ca110bcc82bf38f09a7b425c095d92bf",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "paraswap": {
+      "address": "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+      "tokenProxy": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "functions": [
+        "function simpleSwap(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable returns (uint256)",
+        "function simpleBuy(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable"
+      ],
+      "sigArr": ["0xa94e78ef", "0x46c67b6d", "0xa6886da9"]
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "42161": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0xa669e7A0d4b3e4Fa48af2dE86BD4CD7126Be4e13",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "paraswap": {
+      "address": "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+      "tokenProxy": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "functions": [
+        "function simpleSwap(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable returns (uint256)",
+        "function simpleBuy(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable"
+      ],
+      "sigArr": ["0xa94e78ef", "0x46c67b6d", "0xa6886da9"]
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "functions": [],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "10": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0xCa423977156BB05b13A2BA3b76Bc5419E2fE9680",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "paraswap": {
+      "address": "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+      "tokenProxy": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "functions": [
+        "function simpleSwap(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable returns (uint256)",
+        "function simpleBuy(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable"
+      ],
+      "sigArr": ["0xa94e78ef", "0x46c67b6d", "0xa6886da9"]
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1abe32c034e558cdd535791643c58a13acc10",
+      "functions": [],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "56": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0x89b8AA89FDd0507a99d334CBe3C808fAFC7d850E",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "paraswap": {
+      "address": "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+      "tokenProxy": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "functions": [
+        "function simpleSwap(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable returns (uint256)",
+        "function simpleBuy(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable"
+      ],
+      "sigArr": ["0xa94e78ef", "0x46c67b6d", "0xa6886da9"]
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "functions": [],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "43114": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "paraswap": {
+      "address": "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+      "tokenProxy": "0x216b4b4ba9f3e719726886d34a177484278bfcae",
+      "functions": [
+        "function simpleSwap(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable returns (uint256)",
+        "function simpleBuy(tuple(address,address,uint256,uint256,uint256,address[],bytes,uint256[],uint256[],address,address,uint256,bytes,uint256,bytes16)) payable"
+      ],
+      "sigArr": ["0xa94e78ef", "0x46c67b6d", "0xa6886da9"]
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "functions": [],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "8453": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "oneInch": {
+      "address": "0x1111111254eeb25477b68fb85ed929f73a960582",
+      "functions": [],
+      "sigArr": [
+        "0x12aa3caf",
+        "0x3c15fd91",
+        "0xf78dc253",
+        "0x0502b1c5",
+        "0x2521b930",
+        "0xe449022e",
+        "0xbc80f1a8",
+        "0x84bd6d29",
+        "0x093d4fa5",
+        "0xc805a666"
+      ]
+    },
+    "lifi": {
+      "address": "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE",
+      "functions": [
+        "function swapTokensGeneric(bytes32,string,string,address,uint256,tuple(address,address,address,address,uint256,bytes,bool)[]) payable"
+      ],
+      "sigArr": []
+    },
+    "odos": {
+      "address": "0x19cEeAd7105607Cd444F5ad10dd51356436095a1",
+      "functions": [
+        "function swap(tuple(address,uint256,address,address,uint256,uint256,address),bytes,address,uint32) payable returns (uint256)",
+        "function swapCompact() payable returns (uint256)",
+        "function swapMultiCompact() payable returns (uint256[])"
+      ],
+      "sigArr": []
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "0x": {
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "functions": [],
+      "sigArr": ["0x415565b0", "0x3d8d4082"]
+    }
+  },
+  "534352": {
+    "kyber": {
+      "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+      "functions": [
+        "function swap(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapGeneric(tuple(address,address,bytes,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes)) payable returns (uint256, uint256)",
+        "function swapSimpleMode(address,tuple(address,address,address[],uint256[],address[],uint256[],address,uint256,uint256,uint256,bytes),bytes,bytes) returns (uint256, uint256)"
+      ],
+      "sigArr": []
+    },
+    "openOcean": {
+      "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
+      "functions": [
+        "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    }
+  }
+}

@@ -6,5 +6,5 @@ export * as periphery from "./Periphery";
 export * as shared from "./Shared";
 export * as swap from "./Swap";
 export * as test from "./Test";
-export { Create2Deployer__factory } from "./Create2Deployer__factory";
 export { DZapDiamond__factory } from "./DZapDiamond__factory";
+export { IDZapDiamond__factory } from "./IDZapDiamond__factory";

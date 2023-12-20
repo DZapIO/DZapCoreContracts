@@ -12,8 +12,6 @@
   "error NullAddrIsNotAValidSpender()",
   "error NullAddrIsNotAnERC20Token()",
   "error ReentrancyError()",
-  "error SliceOutOfBounds()",
-  "error SliceOverflow()",
   "error SlippageTooHigh(uint256 minAmount, uint256 returnAmount)",
   "error SwapCallFailed(bytes reason)",
   "error ZeroAddress()",

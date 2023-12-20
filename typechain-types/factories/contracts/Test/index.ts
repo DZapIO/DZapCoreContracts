@@ -4,6 +4,7 @@
 export * as aggregationRouterV5Sol from "./AggregationRouterV5.sol";
 export * as permit2MockSol from "./Permit2Mock.sol";
 export { BridgeMock__factory } from "./BridgeMock__factory";
+export { Create2Deployer__factory } from "./Create2Deployer__factory";
 export { ERC20Mock__factory } from "./ERC20Mock__factory";
 export { ExchangeMock__factory } from "./ExchangeMock__factory";
 export { WNATIVE__factory } from "./WNATIVE__factory";

@@ -6,6 +6,7 @@ export type { aggregationRouterV5Sol };
 import type * as permit2MockSol from "./Permit2Mock.sol";
 export type { permit2MockSol };
 export type { BridgeMock } from "./BridgeMock";
+export type { Create2Deployer } from "./Create2Deployer";
 export type { ERC20Mock } from "./ERC20Mock";
 export type { ExchangeMock } from "./ExchangeMock";
 export type { WNATIVE } from "./WNATIVE";

@@ -22,6 +22,7 @@ export const CONTRACTS = {
   Permit2: 'Permit2',
   Executor: 'Executor',
   Receiver: 'Receiver',
+  Create2Deployer: 'Create2Deployer',
 }
 
 export const ERRORS = {
@@ -84,5 +85,18 @@ export const MAX_DEADLINE = ethers.constants.MaxInt256
 export const DEFAULT_ERC20_PERMIT_VERSION = '1'
 export const HARDHAT_CHAIN_ID = network.config.chainId as number
 
-export const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
-export const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
+export const MAX_TOKEN_FEE = 5 * BPS_MULTIPLIER
+
+export const MAX_FIXED_FEE_AMOUNT = {
+  137: '200',
+  42161: '0.1',
+  10: '0.1',
+  56: '1',
+  43114: '10',
+  8453: '0.1',
+  534352: '0.1',
+}
+
+export const PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3'
+export const PROTOCOL_FEE_VAULT = '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad'
+export const DZAP_INTEGRATOR = '0x545044020ffa4611fb0f2b7ede12d13becfceca3'

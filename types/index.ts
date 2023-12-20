@@ -43,14 +43,19 @@ export interface DiamondCut {
 }
 
 export interface OneInchSwapParams {
-  fromTokenAddress: string
-  toTokenAddress: string
+  src: string
+  dst: string
   amount: BigNumberish
-  fromAddress: string
+  from: string
   slippage: number
-  destReceiver: string
   disableEstimate: boolean
-  compatibility: boolean
+}
+
+export interface kyberSwapParams {
+  srcToken: string
+  dstToken: string
+  amount: BigNumberish
+  sender: string
 }
 
 export interface DzapSwapData {
@@ -59,7 +64,7 @@ export interface DzapSwapData {
   from: string
   to: string
   fromAmount: BigNumber
-  minToAmount: BigNumber
+  minToAmount: BigNumberish
   swapCallData: string
   permit: string
 }

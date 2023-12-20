@@ -1,5 +1,5 @@
 import { ethers } from 'hardhat'
-import { CONTRACTS, ZERO } from '../constants'
+import { CONTRACTS, PROTOCOL_FEE_VAULT, ZERO } from '../constants'
 import { FeeInfo, FeeType } from '../types'
 
 async function main() {
@@ -7,7 +7,7 @@ async function main() {
   const [deployer] = await ethers.getSigners()
 
   console.log({
-    name: 'executor',
+    name: 'fee',
     chainId,
     deployer: deployer.address,
     balance: ethers.utils.formatUnits(
@@ -18,9 +18,6 @@ async function main() {
   /* ------------------------------------------- */
 
   const dZapDiamondAddress = ''
-  // const dZapDiamondAddress = '0x45f4883c5777dFA2e905F55f095554B1a20E23B7' // opt
-  // const dZapDiamondAddress = '0x45f4883c5777dFA2e905F55f095554B1a20E23B7' // arb
-  // const dZapDiamondAddress = '0xDE74A179Bfb939533cAa344B402F11855AFC6fF5' // polygon
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -49,10 +46,10 @@ async function main() {
     },
   ]
 
-  const integratorAddress = ''
+  const integratorAddress = PROTOCOL_FEE_VAULT
 
   /* ------------------------------------------- */
-  // setting facets
+
   console.log('')
   console.log('Setting Fee...')
 

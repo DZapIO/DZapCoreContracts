@@ -1,43 +1,38 @@
-import { ethers } from 'hardhat'
 import { expect } from 'chai'
+import { ethers } from 'hardhat'
 
-import {
-  CONTRACTS,
-  ERRORS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
-} from '../../constants'
+import { CONTRACTS, ERRORS } from '../../constants'
 import { snapshot, updateBalance } from '../utils'
 
-import {
-  AccessManagerFacet,
-  DZapDiamond,
-  DexManagerFacet,
-  DiamondCutFacet,
-  DiamondLoupeFacet,
-  FeesFacet,
-  OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
-  Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
-  Receiver,
-} from '../../typechain-types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { parseUnits } from 'ethers/lib/utils'
+import { FacetCutAction } from 'hardhat-deploy/dist/types'
 import {
   getSelectorsUsingContract,
   getSighash,
 } from '../../scripts/utils/diamond'
-import { parseUnits } from 'ethers/lib/utils'
-import { equal } from 'assert'
+import {
+  AccessManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
+  DZapDiamond,
+  DexManagerFacet,
+  DiamondCutFacet,
+  DiamondInit,
+  DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
+  FeesFacet,
+  OwnershipFacet,
+  Permit2,
+  Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
+} from '../../typechain-types'
 import { DiamondCut } from '../../types'
-import { FacetCutAction } from 'hardhat-deploy/dist/types'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -696,7 +691,7 @@ describe('AccessManagerFacet.test.ts', async () => {
       ).revertedWithCustomError(accessManagerFacet, ERRORS.OnlyContractOwner)
     })
 
-    it('1.3 Should revert if executor address is same as diamond address', async () => {
+    it('1.4 Should revert if executor address is same as diamond address', async () => {
       const selector = getSighash(
         [
           dexManagerFacet.interface.functions['addDex(address)'],

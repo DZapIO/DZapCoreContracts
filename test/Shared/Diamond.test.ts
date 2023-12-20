@@ -1,42 +1,41 @@
-import { ethers } from 'hardhat'
 import { expect } from 'chai'
+import { ethers } from 'hardhat'
 
 import {
+  ADDRESS_ZERO,
+  BPS_DENOMINATOR,
   CONTRACTS,
   ERRORS,
   ZERO,
-  ADDRESS_ZERO,
-  BPS_DENOMINATOR,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
 } from '../../constants'
 import { snapshot, updateBalance } from '../utils'
 
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { BigNumber } from 'ethers'
+import { parseUnits } from 'ethers/lib/utils'
+import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
 import {
   AccessManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
   FeesFacet,
   OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
   Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
   Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction } from '../../types'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
-import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
-import { parseUnits } from 'ethers/lib/utils'
-import { BigNumber } from 'ethers'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

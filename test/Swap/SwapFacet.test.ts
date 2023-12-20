@@ -1,10 +1,11 @@
-import { ethers } from 'hardhat'
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai'
 import { BigNumber } from 'ethers'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { ethers } from 'hardhat'
 
 import {
+  BPS_DENOMINATOR,
   BPS_MULTIPLIER,
   CONTRACTS,
   DZAP_NATIVE,
@@ -13,10 +14,14 @@ import {
   NATIVE_ADDRESS,
   ZERO,
   ZERO_ADDRESS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
-  BPS_DENOMINATOR,
 } from '../../constants'
+import { encodePermitData, getFeeData } from '../../scripts/core/helper'
+import {
+  getSelectorsUsingContract,
+  getSelectorsUsingFunSig,
+  getSighash,
+} from '../../scripts/utils/diamond'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 import {
   duration,
   generateRandomWallet,
@@ -26,32 +31,26 @@ import {
   snapshot,
   updateBalance,
 } from '../utils'
-import { getFeeData, encodePermitData } from '../../scripts/core/helper'
-import {
-  getSelectorsUsingContract,
-  getSelectorsUsingFunSig,
-  getSighash,
-} from '../../scripts/utils/diamond'
 
 import {
   AccessManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
   FeesFacet,
   OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
   Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
   Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
 } from '../../typechain-types'
 import {
   DiamondCut,
@@ -495,10 +494,12 @@ describe('SwapFacet.test.ts', async () => {
     // ----------------------------------------
     // dex manger
     {
-      const selectors = getSelectorsUsingFunSig([
-        'function swap(address,address,address,uint256,bool,bool)',
-        'function bridgeAndSwap(address,address,uint256,bytes)',
-      ])
+      const selectors = Object.keys(
+        getSelectorsUsingFunSig([
+          'function swap(address,address,address,uint256,bool,bool)',
+          'function bridgeAndSwap(address,address,uint256,bytes)',
+        ])
+      )
       const dexs = selectors.map(() => mockExchange.address)
       const approval = selectors.map(() => true)
 

@@ -1,13 +1,13 @@
 import { ethers } from 'hardhat'
 import { CONTRACTS } from '../constants'
-import { deployFacetsToReplace, upgradeDiamond } from './utils/diamond'
+import { OwnershipFacet } from '../typechain-types'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
   const [deployer] = await ethers.getSigners()
 
   console.log({
-    name: 'executor',
+    name: 'transferOwnership',
     chainId,
     deployer: deployer.address,
     balance: ethers.utils.formatUnits(
@@ -19,23 +19,18 @@ async function main() {
 
   const dZapDiamondAddress = ''
 
-  const dZapDiamond = await ethers.getContractAt(
-    CONTRACTS.DZapDiamond,
-    dZapDiamondAddress
-  )
+  const dZapDiamond = (await ethers.getContractAt(
+    CONTRACTS.OwnershipFacet,
+    dZapDiamondAddress,
+    deployer
+  )) as OwnershipFacet
 
   /* ------------------------------------------- */
-  // replace facets
-  console.log('')
-  console.log('Replacing Facets...')
-  const { cutData } = await deployFacetsToReplace([CONTRACTS.CrossChainFacet])
 
-  const initData = {
-    address: ethers.constants.AddressZero,
-    data: '0x',
-  }
-
-  await upgradeDiamond(deployer, cutData, dZapDiamond, initData)
+  const newOwner = ''
+  const tx = await dZapDiamond.transferOwnership(newOwner)
+  console.log(tx.hash)
+  await tx.wait()
 }
 
 main().catch((error) => {

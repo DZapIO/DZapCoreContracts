@@ -1,43 +1,38 @@
-import { ethers } from 'hardhat'
 import { expect } from 'chai'
+import { ethers } from 'hardhat'
 
-import {
-  CONTRACTS,
-  ERRORS,
-  EVENTS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
-} from '../../constants'
+import { CONTRACTS, ERRORS, EVENTS } from '../../constants'
 import { snapshot, updateBalance } from '../utils'
 
-import {
-  AccessManagerFacet,
-  DZapDiamond,
-  DexManagerFacet,
-  DiamondCutFacet,
-  DiamondLoupeFacet,
-  FeesFacet,
-  OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
-  Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
-  Receiver,
-} from '../../typechain-types'
-import { DiamondCut, FacetCutAction } from '../../types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { parseUnits } from 'ethers/lib/utils'
 import {
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
   getSighash,
 } from '../../scripts/utils/diamond'
-import { parseUnits } from 'ethers/lib/utils'
+import {
+  AccessManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
+  DZapDiamond,
+  DexManagerFacet,
+  DiamondCutFacet,
+  DiamondInit,
+  DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
+  FeesFacet,
+  OwnershipFacet,
+  Permit2,
+  Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
+} from '../../typechain-types'
+import { DiamondCut, FacetCutAction } from '../../types'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -633,10 +628,12 @@ describe('DexManagerFacet.test.ts', async () => {
   })
 
   describe('1.5 setFunctionApprovalBySignature', async () => {
-    const selectors = getSelectorsUsingFunSig([
-      'function swap(address,address,address,uint256,bool,bool)',
-      'function bridgeAndSwap(address,address,uint256,bytes)',
-    ])
+    const selectors = Object.keys(
+      getSelectorsUsingFunSig([
+        'function swap(address,address,address,uint256,bool,bool)',
+        'function bridgeAndSwap(address,address,uint256,bytes)',
+      ])
+    )
 
     it('1.5.1 Should allow owner/dexManager to whitelist dex selectors', async () => {
       // --------------------
@@ -716,10 +713,12 @@ describe('DexManagerFacet.test.ts', async () => {
   })
 
   describe('1.6 batchSetFunctionApprovalBySignature', async () => {
-    const selectors = getSelectorsUsingFunSig([
-      'function swap(address,address,address,uint256,bool,bool)',
-      'function bridgeAndSwap(address,address,uint256,bytes)',
-    ])
+    const selectors = Object.keys(
+      getSelectorsUsingFunSig([
+        'function swap(address,address,address,uint256,bool,bool)',
+        'function bridgeAndSwap(address,address,uint256,bytes)',
+      ])
+    )
 
     it('1.6.1 Should allow owner/dexManager to whitelist dex selectors', async () => {
       // --------------------

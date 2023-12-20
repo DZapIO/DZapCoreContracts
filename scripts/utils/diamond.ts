@@ -7,9 +7,16 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 
 export function getSelectorsUsingFunSig(func: string[]) {
   const abiInterface = new ethers.utils.Interface(func)
-  return func.map((fun) =>
-    abiInterface.getSighash(ethers.utils.Fragment.from(fun))
-  )
+
+  const obj = {}
+  func.forEach((fun) => {
+    const sig = abiInterface.getSighash(ethers.utils.Fragment.from(fun))
+    obj[sig] = fun
+  })
+  return obj
+  // return func.map((fun) =>
+  //   abiInterface.getSighash(ethers.utils.Fragment.from(fun))
+  // )
 }
 
 export function getSelectorsUsingContract(contract, facetName) {

@@ -1,13 +1,20 @@
 import { ethers } from 'hardhat'
-import { CONTRACTS, BPS_MULTIPLIER } from '../constants'
-import { getSelectorsUsingContract, upgradeDiamond } from './utils/diamond'
+import {
+  CONTRACTS,
+  MAX_FIXED_FEE_AMOUNT,
+  MAX_TOKEN_FEE,
+  PERMIT2_ADDRESS,
+  DZAP_INTEGRATOR,
+} from '../constants'
 import { DiamondCut, FacetCutAction } from '../types'
+import { getSelectorsUsingContract, upgradeDiamond } from './utils/diamond'
 
-async function init() {
+async function main() {
   const { chainId } = await ethers.provider.getNetwork()
   const [deployer] = await ethers.getSigners()
 
   console.log({
+    name: 'executor',
     chainId,
     deployer: deployer.address,
     balance: ethers.utils.formatUnits(
@@ -15,48 +22,38 @@ async function init() {
     ),
   })
 
-  // --------------------------------------
+  /* ------------------------------------------- */
 
-  const owner = deployer
-  const protocolFeeVaultAddress = deployer.address
-  const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
-  const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
-  const permit2Address = '0x000000000022D473030F116dDEE9F6B43aC78BA3'
+  const dZapDiamondAddress = ''
 
+  const dZapDiamond = await ethers.getContractAt(
+    CONTRACTS.DZapDiamond,
+    dZapDiamondAddress
+  )
+
+  /* ------------------------------------------- */
+
+  console.log('')
+  console.log('Deploying DiamondInit...')
+  const DiamondInit = await ethers.getContractFactory(CONTRACTS.DiamondInit)
+  const diamondInit = await DiamondInit.deploy()
+  await diamondInit.deployed()
+  console.log('DiamondInit deployed:', diamondInit.address)
+
+  /* ------------------------------------------- */
+
+  const protocolFeeVaultAddress = DZAP_INTEGRATOR
+
+  const MAX_FIXED_FEE = ethers.utils.parseUnits(MAX_FIXED_FEE_AMOUNT[chainId])
   const initArgs = {
-    permit2: permit2Address,
+    permit2: PERMIT2_ADDRESS,
     protocolFeeVault: protocolFeeVaultAddress,
     maxTokenFee: MAX_TOKEN_FEE,
-    maxFixedNativeFeeAmount: MAX_FIXED_FEE_AMOUNT,
+    maxFixedNativeFeeAmount: MAX_FIXED_FEE,
   }
 
-  // --------------------------------------
-  // deploy DiamondCutFacet
-  const { diamondCutFacet } = await deployDiamondCut()
-  // const diamondCutFacet = await ethers.getContractAt(CONTRACTS.DZapDiamond, '')
+  /* ------------------------------------------- */
 
-  // --------------------------------------
-  // deploy Diamond
-  const { dZapDiamond } = await deployDiamond(
-    owner.address,
-    diamondCutFacet.address
-  )
-  // const dZapDiamond = await ethers.getContractAt(
-  //   CONTRACTS.DZapDiamond,
-  //   ''
-  // )
-
-  // --------------------------------------
-  // deploy DiamondInit
-  // DiamondInit provides a function that is called when the diamond is upgraded to initialize state variables
-  const { diamondInit } = await deployDiamondInit()
-  // const diamondInit = await ethers.getContractAt(
-  //   CONTRACTS.DiamondInit,
-  //   ''
-  // )
-
-  // --------------------------------------
-  // deploy facets
   const { cutData } = await deployFacets()
 
   // --------------------------------------
@@ -69,48 +66,7 @@ async function init() {
       )
     ).data as string,
   }
-  await upgradeDiamond(owner, cutData, dZapDiamond, initData)
-
-  // --------------------------------------
-}
-
-async function deployDiamondCut() {
-  console.log('')
-  console.log('Deploying diamondCutFacet...')
-  const DiamondCutFacet = await ethers.getContractFactory('DiamondCutFacet')
-  const diamondCutFacet = await DiamondCutFacet.deploy()
-  await diamondCutFacet.deployed()
-  console.log('DiamondCutFacet deployed:', diamondCutFacet.address)
-
-  return { diamondCutFacet }
-}
-
-async function deployDiamondInit() {
-  console.log('')
-  console.log('Deploying DiamondInit...')
-  const DiamondInit = await ethers.getContractFactory(CONTRACTS.DiamondInit)
-  const diamondInit = await DiamondInit.deploy()
-  await diamondInit.deployed()
-  console.log('DiamondInit deployed:', diamondInit.address)
-
-  return { diamondInit }
-}
-
-async function deployDiamond(
-  contractOwner: string,
-  diamondCutFacetAddress: string
-) {
-  console.log('')
-  console.log('Deploying dZapDiamond...')
-  const Diamond = await ethers.getContractFactory('DZapDiamond')
-  const dZapDiamond = await Diamond.deploy(
-    contractOwner,
-    diamondCutFacetAddress
-  )
-  await dZapDiamond.deployed()
-  console.log('DZapDiamond deployed:', dZapDiamond.address)
-
-  return { dZapDiamond }
+  await upgradeDiamond(deployer, cutData, dZapDiamond, initData)
 }
 
 async function deployFacets() {
@@ -167,41 +123,6 @@ async function deployFacets() {
   await crossChainFacet.deployed()
   console.log(`CrossChainFacet deployed: ${crossChainFacet.address}`)
 
-  /* 
-  const diamondLoupeFacet = await ethers.getContractAt(
-    CONTRACTS.DiamondLoupeFacet,
-    '0x77b02b7DCAeea6d2C1503211c80BF466Fd28b772'
-  )
-  const ownershipFacet = await ethers.getContractAt(
-    CONTRACTS.OwnershipFacet,
-    '0x7c48359C5E77420eFD353D53221032347185f39e'
-  )
-  const accessManagerFacet = await ethers.getContractAt(
-    'AccessManagerFacet',
-    '0x92cc4CeEE7450377B2De1b0b9192B41520d9B6F9'
-  )
-  const dexManagerFacet = await ethers.getContractAt(
-    CONTRACTS.DexManagerFacet,
-    '0x26E3eD863606e2cb110C4f112819B3605D82bd8D'
-  )
-  const feesFacet = await ethers.getContractAt(
-    CONTRACTS.FeesFacet,
-    '0xc6BB92a1454BCB1AF921955DE1873b4e23b52CB5'
-  )
-  const withdrawFacet = await ethers.getContractAt(
-    CONTRACTS.WithdrawFacet,
-    '0x9505F36b63320AF377183F252962f8F397544C66'
-  )
-  const swapFacet = await ethers.getContractAt(
-    CONTRACTS.SwapFacet,
-    '0xf37848d6BEA6f32f5584C987853A05291CEb64D9'
-  )
-  const crossChainFacet = await ethers.getContractAt(
-    CONTRACTS.CrossChainFacet,
-    '0xEC5F822DbD177F575eE5420C7cA7cD2C10e56F67'
-  )
- */
-
   const cutData: DiamondCut[] = [
     {
       facetAddress: diamondLoupeFacet.address,
@@ -224,7 +145,7 @@ async function deployFacets() {
       action: FacetCutAction.Add,
       functionSelectors: getSelectorsUsingContract(
         accessManagerFacet,
-        'AccessManagerFacet'
+        CONTRACTS.AccessManagerFacet
       ).selectors,
     },
     {
@@ -272,24 +193,10 @@ async function deployFacets() {
 
   return {
     cutData,
-    diamondLoupeFacet,
-    ownershipFacet,
-    accessManagerFacet,
-    dexManagerFacet,
-    withdrawFacet,
-    feesFacet,
-    swapFacet,
-    crossChainFacet,
   }
 }
 
-if (require.main === module) {
-  init()
-    .then(() => process.exit(0))
-    .catch((error) => {
-      console.error(error)
-      process.exit(1)
-    })
-}
-
-exports.deployDiamond = deployDiamond
+main().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
+})

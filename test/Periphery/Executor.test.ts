@@ -1,47 +1,46 @@
-import { ethers } from 'hardhat'
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai'
 import { ContractFactory } from 'ethers'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { ethers } from 'hardhat'
 
 import {
+  BPS_DENOMINATOR,
   BPS_MULTIPLIER,
   CONTRACTS,
   DZAP_NATIVE,
   ERRORS,
   EVENTS,
   ZERO,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
-  BPS_DENOMINATOR,
 } from '../../constants'
-import { latest, snapshot, updateBalance } from '../utils'
 import { encodePermitData } from '../../scripts/core/helper'
 import {
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
 } from '../../scripts/utils/diamond'
+import { latest, snapshot, updateBalance } from '../utils'
 
 import {
   AccessManagerFacet,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
   FeesFacet,
   OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
   Permit2,
-  CrossChainFacet,
-  Executor,
   Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, PermitType } from '../../types'
+import { MAX_FIXED_FEE_AMOUNT, MAX_TOKEN_FEE } from '../common/constants'
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
@@ -377,9 +376,11 @@ describe('Executor.test.ts', async () => {
 
   describe('2) swapAndCompleteBridgeTokens', async () => {
     beforeEach(async () => {
-      const selectors = getSelectorsUsingFunSig([
-        'function swap(address,address,address,uint256,bool,bool)',
-      ])
+      const selectors = Object.keys(
+        getSelectorsUsingFunSig([
+          'function swap(address,address,address,uint256,bool,bool)',
+        ])
+      )
       const dexs = selectors.map(() => mockExchange.address)
       const approval = selectors.map(() => true)
 
@@ -897,9 +898,11 @@ describe('Executor.test.ts', async () => {
         .connect(owner)
         .setFunctionApprovalBySignature(
           mockExchange.address,
-          getSelectorsUsingFunSig([
-            'function swap(address,address,address,uint256,bool,bool)',
-          ])[0],
+          Object.keys(
+            getSelectorsUsingFunSig([
+              'function swap(address,address,address,uint256,bool,bool)',
+            ])
+          )[0],
           false
         )
 

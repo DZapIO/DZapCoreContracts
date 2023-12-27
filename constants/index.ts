@@ -98,5 +98,5 @@ export const MAX_FIXED_FEE_AMOUNT = {
 }
 
 export const PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3'
-export const PROTOCOL_FEE_VAULT = '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad'
-export const DZAP_INTEGRATOR = '0x545044020ffa4611fb0f2b7ede12d13becfceca3'
+export const DZAP_INTEGRATOR = '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad'
+export const PROTOCOL_FEE_VAULT = '0x545044020ffa4611fb0f2b7ede12d13becfceca3'

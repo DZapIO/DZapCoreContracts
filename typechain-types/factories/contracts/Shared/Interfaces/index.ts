@@ -11,6 +11,7 @@ export { IERC165__factory } from "./IERC165__factory";
 export { IERC173__factory } from "./IERC173__factory";
 export { IExecutor__factory } from "./IExecutor__factory";
 export { IFeesFacet__factory } from "./IFeesFacet__factory";
+export { IOwnershipFacet__factory } from "./IOwnershipFacet__factory";
 export { IPermit2__factory } from "./IPermit2__factory";
 export { IReceiver__factory } from "./IReceiver__factory";
 export { IWNative__factory } from "./IWNative__factory";

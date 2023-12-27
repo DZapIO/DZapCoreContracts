@@ -103,6 +103,29 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address[]",
+        name: "_dexs",
+        type: "address[]",
+      },
+      {
+        internalType: "bytes4[]",
+        name: "_signatures",
+        type: "bytes4[]",
+      },
+      {
+        internalType: "bool[]",
+        name: "_approval",
+        type: "bool[]",
+      },
+    ],
+    name: "batchSetFunctionApprovalBySignature",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "_dex",
         type: "address",

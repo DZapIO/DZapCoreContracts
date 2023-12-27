@@ -63,6 +63,14 @@
         "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
       ],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "42161": {
@@ -127,6 +135,14 @@
       "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
       "functions": [],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "10": {
@@ -191,6 +207,14 @@
       "address": "0xdef1abe32c034e558cdd535791643c58a13acc10",
       "functions": [],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0x4200000000000000000000000000000000000006",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "56": {
@@ -255,6 +279,14 @@
       "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
       "functions": [],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "43114": {
@@ -319,6 +351,14 @@
       "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
       "functions": [],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "8453": {
@@ -374,6 +414,14 @@
       "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
       "functions": [],
       "sigArr": ["0x415565b0", "0x3d8d4082"]
+    },
+    "wNative": {
+      "address": "0x4200000000000000000000000000000000000006",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
+      ],
+      "sigArr": []
     }
   },
   "534352": {
@@ -390,6 +438,14 @@
       "address": "0x6352a56caadc4f1e25cd6c75970fa768a3304e64",
       "functions": [
         "function swap(address,tuple(address,address,address,address,uint256,uint256,uint256,uint256,address,bytes),tuple(uint256,uint256,uint256,bytes)[]) payable returns (uint256)"
+      ],
+      "sigArr": []
+    },
+    "wNative": {
+      "address": "0x5300000000000000000000000000000000000004",
+      "functions": [
+        "function deposit() public payable",
+        "function withdraw(uint256)"
       ],
       "sigArr": []
     }

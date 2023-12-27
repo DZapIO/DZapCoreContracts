@@ -172,6 +172,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
     "addressCanExecuteMethod(bytes4,address)": FunctionFragment;
     "batchAddDex(address[])": FunctionFragment;
     "batchRemoveDex(address[])": FunctionFragment;
+    "batchSetFunctionApprovalBySignature(address[],bytes4[],bool[])": FunctionFragment;
     "bridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool),(address,address,uint256,bytes,bytes))": FunctionFragment;
     "bridgeMultipleTokens(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
     "calcFixedNativeFees(address,uint8)": FunctionFragment;
@@ -185,6 +186,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
     "maxTokenFee()": FunctionFragment;
     "multiSwap(bytes32,address,address,address,(address,address,address,address,uint256,uint256,bytes,bytes)[])": FunctionFragment;
     "multiSwapWithoutRevert(bytes32,address,address,address,(address,address,address,address,uint256,uint256,bytes,bytes)[])": FunctionFragment;
+    "owner()": FunctionFragment;
     "protocolFeeVault()": FunctionFragment;
     "removeDex(address)": FunctionFragment;
     "removeIntegrator(address)": FunctionFragment;
@@ -195,6 +197,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
     "setProtocolFeeVault(address)": FunctionFragment;
     "swap(bytes32,address,address,address,(address,address,address,address,uint256,uint256,bytes,bytes))": FunctionFragment;
     "swapAndBridge(bytes32,address,address,(string,address,address,address,uint256,uint256,bool,bool)[],(address,address,address,address,uint256,uint256,bytes,bytes)[],(address,address,uint256,bytes,bytes)[])": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
     "updateSelectorInfo(address[],bytes4[],(bool,uint256)[])": FunctionFragment;
   };
 
@@ -204,6 +207,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
       | "addressCanExecuteMethod"
       | "batchAddDex"
       | "batchRemoveDex"
+      | "batchSetFunctionApprovalBySignature"
       | "bridge"
       | "bridgeMultipleTokens"
       | "calcFixedNativeFees"
@@ -217,6 +221,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
       | "maxTokenFee"
       | "multiSwap"
       | "multiSwapWithoutRevert"
+      | "owner"
       | "protocolFeeVault"
       | "removeDex"
       | "removeIntegrator"
@@ -227,6 +232,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
       | "setProtocolFeeVault"
       | "swap"
       | "swapAndBridge"
+      | "transferOwnership"
       | "updateSelectorInfo"
   ): FunctionFragment;
 
@@ -245,6 +251,14 @@ export interface IDZapDiamondInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "batchRemoveDex",
     values: [PromiseOrValue<string>[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchSetFunctionApprovalBySignature",
+    values: [
+      PromiseOrValue<string>[],
+      PromiseOrValue<BytesLike>[],
+      PromiseOrValue<boolean>[]
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "bridge",
@@ -326,6 +340,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
       SwapDataStruct[]
     ]
   ): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "protocolFeeVault",
     values?: undefined
@@ -396,6 +411,10 @@ export interface IDZapDiamondInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
+    functionFragment: "transferOwnership",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "updateSelectorInfo",
     values: [
       PromiseOrValue<string>[],
@@ -415,6 +434,10 @@ export interface IDZapDiamondInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "batchRemoveDex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchSetFunctionApprovalBySignature",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "bridge", data: BytesLike): Result;
@@ -463,6 +486,7 @@ export interface IDZapDiamondInterface extends utils.Interface {
     functionFragment: "multiSwapWithoutRevert",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "protocolFeeVault",
     data: BytesLike
@@ -495,6 +519,10 @@ export interface IDZapDiamondInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "swap", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "swapAndBridge",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -806,6 +834,13 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     bridge(
       _transactionId: PromiseOrValue<BytesLike>,
       _integrator: PromiseOrValue<string>,
@@ -896,6 +931,8 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    owner(overrides?: CallOverrides): Promise<[string] & { owner_: string }>;
+
     protocolFeeVault(overrides?: CallOverrides): Promise<[string]>;
 
     removeDex(
@@ -960,6 +997,11 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    transferOwnership(
+      _newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     updateSelectorInfo(
       _routers: PromiseOrValue<string>[],
       _selectors: PromiseOrValue<BytesLike>[],
@@ -986,6 +1028,13 @@ export interface IDZapDiamond extends BaseContract {
 
   batchRemoveDex(
     _dexs: PromiseOrValue<string>[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  batchSetFunctionApprovalBySignature(
+    _dexs: PromiseOrValue<string>[],
+    _signatures: PromiseOrValue<BytesLike>[],
+    _approval: PromiseOrValue<boolean>[],
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1077,6 +1126,8 @@ export interface IDZapDiamond extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  owner(overrides?: CallOverrides): Promise<string>;
+
   protocolFeeVault(overrides?: CallOverrides): Promise<string>;
 
   removeDex(
@@ -1141,6 +1192,11 @@ export interface IDZapDiamond extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  transferOwnership(
+    _newOwner: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   updateSelectorInfo(
     _routers: PromiseOrValue<string>[],
     _selectors: PromiseOrValue<BytesLike>[],
@@ -1167,6 +1223,13 @@ export interface IDZapDiamond extends BaseContract {
 
     batchRemoveDex(
       _dexs: PromiseOrValue<string>[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1258,6 +1321,8 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    owner(overrides?: CallOverrides): Promise<string>;
+
     protocolFeeVault(overrides?: CallOverrides): Promise<string>;
 
     removeDex(
@@ -1319,6 +1384,11 @@ export interface IDZapDiamond extends BaseContract {
       _bridgeData: BridgeDataStruct[],
       _swapData: SwapDataStruct[],
       _genericData: CrossChainDataStruct[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    transferOwnership(
+      _newOwner: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1517,6 +1587,13 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     bridge(
       _transactionId: PromiseOrValue<BytesLike>,
       _integrator: PromiseOrValue<string>,
@@ -1598,6 +1675,8 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
     protocolFeeVault(overrides?: CallOverrides): Promise<BigNumber>;
 
     removeDex(
@@ -1662,6 +1741,11 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    transferOwnership(
+      _newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     updateSelectorInfo(
       _routers: PromiseOrValue<string>[],
       _selectors: PromiseOrValue<BytesLike>[],
@@ -1689,6 +1773,13 @@ export interface IDZapDiamond extends BaseContract {
 
     batchRemoveDex(
       _dexs: PromiseOrValue<string>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1775,6 +1866,8 @@ export interface IDZapDiamond extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     protocolFeeVault(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeDex(
@@ -1837,6 +1930,11 @@ export interface IDZapDiamond extends BaseContract {
       _swapData: SwapDataStruct[],
       _genericData: CrossChainDataStruct[],
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    transferOwnership(
+      _newOwner: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     updateSelectorInfo(

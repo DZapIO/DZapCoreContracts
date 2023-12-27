@@ -11,6 +11,7 @@ export type { IERC165 } from "./IERC165";
 export type { IERC173 } from "./IERC173";
 export type { IExecutor } from "./IExecutor";
 export type { IFeesFacet } from "./IFeesFacet";
+export type { IOwnershipFacet } from "./IOwnershipFacet";
 export type { IPermit2 } from "./IPermit2";
 export type { IReceiver } from "./IReceiver";
 export type { IWNative } from "./IWNative";

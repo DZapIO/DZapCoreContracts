@@ -82,6 +82,8 @@ export type { IExecutor } from "./contracts/Shared/Interfaces/IExecutor";
 export { IExecutor__factory } from "./factories/contracts/Shared/Interfaces/IExecutor__factory";
 export type { IFeesFacet } from "./contracts/Shared/Interfaces/IFeesFacet";
 export { IFeesFacet__factory } from "./factories/contracts/Shared/Interfaces/IFeesFacet__factory";
+export type { IOwnershipFacet } from "./contracts/Shared/Interfaces/IOwnershipFacet";
+export { IOwnershipFacet__factory } from "./factories/contracts/Shared/Interfaces/IOwnershipFacet__factory";
 export type { IPermit2 } from "./contracts/Shared/Interfaces/IPermit2";
 export { IPermit2__factory } from "./factories/contracts/Shared/Interfaces/IPermit2__factory";
 export type { IReceiver } from "./contracts/Shared/Interfaces/IReceiver";

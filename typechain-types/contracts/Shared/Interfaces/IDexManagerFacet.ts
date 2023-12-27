@@ -31,6 +31,7 @@ export interface IDexManagerFacetInterface extends utils.Interface {
     "addDex(address)": FunctionFragment;
     "batchAddDex(address[])": FunctionFragment;
     "batchRemoveDex(address[])": FunctionFragment;
+    "batchSetFunctionApprovalBySignature(address[],bytes4[],bool[])": FunctionFragment;
     "isContractApproved(address)": FunctionFragment;
     "isFunctionApproved(address,bytes4)": FunctionFragment;
     "removeDex(address)": FunctionFragment;
@@ -42,6 +43,7 @@ export interface IDexManagerFacetInterface extends utils.Interface {
       | "addDex"
       | "batchAddDex"
       | "batchRemoveDex"
+      | "batchSetFunctionApprovalBySignature"
       | "isContractApproved"
       | "isFunctionApproved"
       | "removeDex"
@@ -59,6 +61,14 @@ export interface IDexManagerFacetInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "batchRemoveDex",
     values: [PromiseOrValue<string>[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "batchSetFunctionApprovalBySignature",
+    values: [
+      PromiseOrValue<string>[],
+      PromiseOrValue<BytesLike>[],
+      PromiseOrValue<boolean>[]
+    ]
   ): string;
   encodeFunctionData(
     functionFragment: "isContractApproved",
@@ -88,6 +98,10 @@ export interface IDexManagerFacetInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "batchRemoveDex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "batchSetFunctionApprovalBySignature",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -186,6 +200,13 @@ export interface IDexManagerFacet extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     isContractApproved(
       _dex: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -225,6 +246,13 @@ export interface IDexManagerFacet extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  batchSetFunctionApprovalBySignature(
+    _dexs: PromiseOrValue<string>[],
+    _signatures: PromiseOrValue<BytesLike>[],
+    _approval: PromiseOrValue<boolean>[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   isContractApproved(
     _dex: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -261,6 +289,13 @@ export interface IDexManagerFacet extends BaseContract {
 
     batchRemoveDex(
       _dexs: PromiseOrValue<string>[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -329,6 +364,13 @@ export interface IDexManagerFacet extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     isContractApproved(
       _dex: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -366,6 +408,13 @@ export interface IDexManagerFacet extends BaseContract {
 
     batchRemoveDex(
       _dexs: PromiseOrValue<string>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    batchSetFunctionApprovalBySignature(
+      _dexs: PromiseOrValue<string>[],
+      _signatures: PromiseOrValue<BytesLike>[],
+      _approval: PromiseOrValue<boolean>[],
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

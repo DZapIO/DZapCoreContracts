@@ -30,4 +30,7 @@ interface IDexManagerFacet {
 
     /// @notice Approve/Disapprove dex function signature
     function setFunctionApprovalBySignature(address _dex, bytes4 _signature, bool _approval) external;
+
+    /// @notice Approve/Disapprove dex function signature in batches
+    function batchSetFunctionApprovalBySignature(address[] calldata _dexs, bytes4[] calldata _signatures, bool[] calldata _approval) external;
 }

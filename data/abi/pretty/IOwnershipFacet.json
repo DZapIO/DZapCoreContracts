@@ -1,0 +1,4 @@
+[
+  "function owner() view returns (address owner_)",
+  "function transferOwnership(address _newOwner)"
+]

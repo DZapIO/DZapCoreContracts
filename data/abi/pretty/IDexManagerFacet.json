@@ -5,6 +5,7 @@
   "function addDex(address _dex)",
   "function batchAddDex(address[] _dexs)",
   "function batchRemoveDex(address[] _dexs)",
+  "function batchSetFunctionApprovalBySignature(address[] _dexs, bytes4[] _signatures, bool[] _approval)",
   "function isContractApproved(address _dex) returns (bool approved)",
   "function isFunctionApproved(address _dex, bytes4 _signature) returns (bool approved)",
   "function removeDex(address _dex)",

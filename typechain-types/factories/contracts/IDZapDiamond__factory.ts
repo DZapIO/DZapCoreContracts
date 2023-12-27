@@ -11,6 +11,225 @@ import type {
 
 const _abi = [
   {
+    inputs: [],
+    name: "AllSwapsFailed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "AlreadyInitialized",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes",
+        name: "reason",
+        type: "bytes",
+      },
+    ],
+    name: "BridgeCallFailed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "CannotAuthorizeSelf",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "CannotBridgeToSameNetwork",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ContractCallNotAllowed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "FeeTooHigh",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InformationMismatch",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "contractBalance",
+        type: "uint256",
+      },
+    ],
+    name: "InsufficientBalance",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "IntegratorNotActive",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "IntegratorNotAllowed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidAmount",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidContract",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidDestinationChain",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidFee",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidFixedNativeFee",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidReceiver",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidSendingToken",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidSwapDetails",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NativeTokenNotSupported",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NativeTransferFailed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NoSwapFromZeroBalance",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NoTransferToNullAddress",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NotAContract",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NotInitialized",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NullAddrIsNotAValidSpender",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NullAddrIsNotAnERC20Token",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "OnlyContractOwner",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ShareTooHigh",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "minAmount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "returnAmount",
+        type: "uint256",
+      },
+    ],
+    name: "SlippageTooHigh",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes",
+        name: "reason",
+        type: "bytes",
+      },
+    ],
+    name: "SwapCallFailed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "TokenInformationMismatch",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "UnAuthorized",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "UnAuthorizedCallToFunction",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "UnauthorizedCaller",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "WithdrawFailed",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ZeroAddress",
+    type: "error",
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -739,6 +958,29 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address[]",
+        name: "_dexs",
+        type: "address[]",
+      },
+      {
+        internalType: "bytes4[]",
+        name: "_signatures",
+        type: "bytes4[]",
+      },
+      {
+        internalType: "bool[]",
+        name: "_approval",
+        type: "bool[]",
+      },
+    ],
+    name: "batchSetFunctionApprovalBySignature",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "bytes32",
         name: "_transactionId",
         type: "bytes32",
@@ -1325,6 +1567,19 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "owner_",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "protocolFeeVault",
     outputs: [
       {
@@ -1711,6 +1966,19 @@ const _abi = [
     name: "swapAndBridge",
     outputs: [],
     stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_newOwner",
+        type: "address",
+      },
+    ],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {

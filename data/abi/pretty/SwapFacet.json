@@ -14,8 +14,6 @@
   "error NullAddrIsNotAnERC20Token()",
   "error PartialSwap(uint256 leftOverAmount)",
   "error ReentrancyError()",
-  "error SliceOutOfBounds()",
-  "error SliceOverflow()",
   "error SlippageTooHigh(uint256 minAmount, uint256 returnAmount)",
   "error SwapCallFailed(bytes reason)",
   "error ZeroAddress()",

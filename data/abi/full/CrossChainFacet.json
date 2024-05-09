@@ -123,16 +123,6 @@
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "SliceOutOfBounds",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "SliceOverflow",
-    "type": "error"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",

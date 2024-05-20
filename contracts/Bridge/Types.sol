@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-struct CallToFunctionInfo {
-    bool isAvailable;
-    uint256 offset;
+struct CrossChainAllowedList {
+    mapping(bytes4 => uint256) selectorToInfo;
+    bool isWhitelisted;
 }
 
 struct CrossChainStorage {
-    mapping(address => mapping(bytes4 => CallToFunctionInfo)) selectorToInfo;
+    mapping(address => CrossChainAllowedList) allowlist;
 }
 
 struct CrossChainData {

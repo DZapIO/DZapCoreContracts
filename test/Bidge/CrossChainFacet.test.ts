@@ -49,6 +49,7 @@ import {
   BridgeMock,
   Executor,
   Receiver,
+  BridgeManagerFacet,
 } from '../../typechain-types'
 import {
   DiamondCut,
@@ -75,8 +76,10 @@ let swapFacetImp: SwapFacet
 let swapFacet: SwapFacet
 let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
+let bridgeManagerFacetImp: BridgeManagerFacet
 let executor: Executor
 let receiver: Receiver
+let bridgeManagerFacet: BridgeManagerFacet
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
@@ -131,7 +134,7 @@ const feeInfo2: FeeInfo[] = [
   },
 ]
 
-describe('CrossChainFacet.test.ts', async () => {
+describe.only('CrossChainFacet.test.ts', async () => {
   beforeEach(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]
@@ -254,6 +257,10 @@ describe('CrossChainFacet.test.ts', async () => {
         CONTRACTS.CrossChainFacet,
         dZapDiamond.address
       )) as CrossChainFacet
+      bridgeManagerFacet = (await ethers.getContractAt(
+        CONTRACTS.BridgeManagerFacet,
+        dZapDiamond.address
+      )) as BridgeManagerFacet
     }
 
     // -----------------------------------------
@@ -315,6 +322,14 @@ describe('CrossChainFacet.test.ts', async () => {
       )
       crossChainFacetImp = (await CrossChainFacet.deploy()) as CrossChainFacet
       await crossChainFacetImp.deployed()
+
+      const BridgeManagerFacet = await ethers.getContractFactory(
+        CONTRACTS.BridgeManagerFacet,
+        deployer
+      )
+      bridgeManagerFacetImp =
+        (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
+      await bridgeManagerFacetImp.deployed()
     }
 
     // -----------------------------------------
@@ -385,6 +400,14 @@ describe('CrossChainFacet.test.ts', async () => {
             CONTRACTS.CrossChainFacet
           ).selectors,
         },
+        {
+          facetAddress: bridgeManagerFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            bridgeManagerFacetImp,
+            CONTRACTS.BridgeManagerFacet
+          ).selectors,
+        },
       ]
 
       const { data: initData } =
@@ -436,11 +459,17 @@ describe('CrossChainFacet.test.ts', async () => {
 
       const crossChainSelectors = getSighash(
         [
-          crossChainFacet.interface.functions[
-            'updateSelectorInfo(address[],bytes4[],(bool,uint256)[])'
+          bridgeManagerFacet.interface.functions[
+            'updateSelectorInfo(address[],bytes4[],uint256[])'
+          ],
+          bridgeManagerFacet.interface.functions[
+            'addAggregatorsAndBridges(address[])'
+          ],
+          bridgeManagerFacet.interface.functions[
+            'removeAggregatorsAndBridges(address[])'
           ],
         ],
-        dexManagerFacet.interface
+        bridgeManagerFacet.interface
       )
 
       const crossChainCanExecute = crossChainSelectors.map(() => true)
@@ -511,154 +540,7 @@ describe('CrossChainFacet.test.ts', async () => {
     await snapshot.revert(snapshotId)
   })
 
-  describe('1) updateSelectorInfo', async () => {
-    let routers: string[]
-    let selectors: string[]
-    let selectorInfo: {
-      isAvailable: boolean
-      offset: number
-    }[]
-
-    beforeEach(async () => {
-      const parameterTypes1 = ['address', 'address', 'uint256']
-      const parameterTypes2 = ['address', 'address', 'uint256', 'bytes']
-      const parameterIndex = 2 // amount position
-
-      const parameters1 = [ADDRESS_ZERO, ADDRESS_ZERO, ZERO]
-      const parameters2 = [ADDRESS_ZERO, ADDRESS_ZERO, ZERO, DEFAULT_BYTES]
-
-      const { offsetByBytes: offsetByBytes1 } = calculateOffset(
-        parameterIndex,
-        parameterTypes1,
-        parameters1
-      )
-      const { offsetByBytes: offsetByBytes2 } = calculateOffset(
-        parameterIndex,
-        parameterTypes2,
-        parameters2
-      )
-
-      selectors = getSighash(
-        [
-          mockBridge.interface.functions[
-            'bridge(address,address,uint256,bool)'
-          ],
-          mockBridge.interface.functions[
-            'bridgeAndSwap(address,address,uint256,bytes,bool)'
-          ],
-        ],
-        mockBridge.interface
-      )
-      selectorInfo = [
-        {
-          isAvailable: true,
-          offset: offsetByBytes1,
-        },
-        {
-          isAvailable: true,
-          offset: offsetByBytes2,
-        },
-      ]
-
-      routers = [mockBridge.address, mockBridge.address]
-    })
-
-    it('1.1 Should allow owner/crossChainManager to add selector info', async () => {
-      // -------------------------------------
-
-      await expect(
-        crossChainFacet
-          .connect(crossChainManager)
-          .updateSelectorInfo(routers, selectors, selectorInfo)
-      ).emit(crossChainFacet, EVENTS.SelectorToInfoUpdated)
-
-      // -------------------------------------
-
-      const eventFilter = crossChainFacet.filters.SelectorToInfoUpdated()
-      const data = await crossChainFacet.queryFilter(eventFilter)
-      const args = data[data.length - 1].args
-
-      expect(args.routers).eql(routers)
-      expect(args.selectors).eql(selectors)
-      expect(args.info).eql([
-        [selectorInfo[0].isAvailable, BigNumber.from(selectorInfo[0].offset)],
-        [selectorInfo[1].isAvailable, BigNumber.from(selectorInfo[1].offset)],
-      ])
-
-      // -------------------------------------
-
-      expect(
-        await crossChainFacet.getSelectorInfo(routers[0], selectors[0])
-      ).eql([
-        selectorInfo[0].isAvailable,
-        BigNumber.from(selectorInfo[0].offset),
-      ])
-      expect(
-        await crossChainFacet.getSelectorInfo(routers[1], selectors[1])
-      ).eql([
-        selectorInfo[1].isAvailable,
-        BigNumber.from(selectorInfo[1].offset),
-      ])
-    })
-
-    it('1.2 Should allow owner/crossChainManager to update selector info', async () => {
-      // -------------------------------------
-
-      await expect(
-        crossChainFacet
-          .connect(owner)
-          .updateSelectorInfo(routers, selectors, selectorInfo)
-      ).emit(crossChainFacet, EVENTS.SelectorToInfoUpdated)
-
-      {
-        const eventFilter = crossChainFacet.filters.SelectorToInfoUpdated()
-        const data = await crossChainFacet.queryFilter(eventFilter)
-        const args = data[data.length - 1].args
-
-        expect(args.routers).eql(routers)
-        expect(args.selectors).eql(selectors)
-        expect(args.info).eql([
-          [selectorInfo[0].isAvailable, BigNumber.from(selectorInfo[0].offset)],
-          [selectorInfo[1].isAvailable, BigNumber.from(selectorInfo[1].offset)],
-        ])
-      }
-
-      // -------------------------------------
-
-      const newSelectorInfo = {
-        isAvailable: false,
-        offset: 0,
-      }
-
-      await expect(
-        crossChainFacet
-          .connect(crossChainManager)
-          .updateSelectorInfo([routers[0]], [selectors[0]], [newSelectorInfo])
-      ).emit(crossChainFacet, EVENTS.SelectorToInfoUpdated)
-
-      {
-        const eventFilter = crossChainFacet.filters.SelectorToInfoUpdated()
-        const data = await crossChainFacet.queryFilter(eventFilter)
-        const args = data[data.length - 1].args
-
-        expect(args.routers).eql([routers[0]])
-        expect(args.selectors).eql([selectors[0]])
-        expect(args.info).eql([
-          [newSelectorInfo.isAvailable, BigNumber.from(newSelectorInfo.offset)],
-        ])
-      }
-    })
-
-    it('1.3 Should revert if caller is not owner/feeManger', async () => {
-      await expect(
-        crossChainFacet
-          .connect(deployer)
-          .updateSelectorInfo(routers, selectors, selectorInfo)
-      ).revertedWithCustomError(feesFacet, ERRORS.UnAuthorized)
-    })
-  })
-
-  describe('2) bridge', async () => {
+  describe('1) bridge', async () => {
     const destinationChainId = 56
 
     beforeEach(async () => {
@@ -693,24 +575,18 @@ describe('CrossChainFacet.test.ts', async () => {
       )
 
       const selectorInfo = [
-        {
-          isAvailable: true,
-          offset: offsetByBytes1,
-        },
-        {
-          isAvailable: true,
-          offset: offsetByBytes2,
-        },
+        BigNumber.from(offsetByBytes1),
+        BigNumber.from(offsetByBytes2),
       ]
 
       const routers = [mockBridge.address, mockBridge.address]
 
-      await crossChainFacet
+      await bridgeManagerFacet
         .connect(crossChainManager)
         .updateSelectorInfo(routers, selectors, selectorInfo)
     })
 
-    it('2.1 Should allow user to bridge token from one chain to other chain', async () => {
+    it('1.1 Should allow user to bridge token from one chain to other chain', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
 
@@ -805,7 +681,7 @@ describe('CrossChainFacet.test.ts', async () => {
         )
     })
 
-    it('2.2 Should allow user to bridge token from one chain to other chain, and refund extra native', async () => {
+    it('1.2 Should allow user to bridge token from one chain to other chain, and refund extra native', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
 
@@ -956,9 +832,9 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('2.3 Should allow user to bridge token from one chain to other chain (without chaining offset)', async () => {
+    it('1.3 Should allow user to bridge token from one chain to other chain (without chaining offset)', async () => {
       {
-        await crossChainFacet
+        await bridgeManagerFacet
           .connect(crossChainManager)
           .updateSelectorInfo(
             [mockBridge.address],
@@ -970,12 +846,7 @@ describe('CrossChainFacet.test.ts', async () => {
               ],
               mockBridge.interface
             ),
-            [
-              {
-                isAvailable: true,
-                offset: 0,
-              },
-            ]
+            [ZERO]
           )
       }
 
@@ -1109,7 +980,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(routerAfterN).equal(routerBeforeN.add(routerNativeFeeAmount))
     })
 
-    it('2.4 Should should revert if receiver is zero address', async () => {
+    it('1.4 Should should revert if receiver is zero address', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1183,7 +1054,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidReceiver)
     })
 
-    it('2.5 Should should revert if amount is zero', async () => {
+    it('1.5 Should should revert if amount is zero', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1257,7 +1128,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidAmount)
     })
 
-    it('2.6 Should should revert if destination chainId is same', async () => {
+    it('1.6 Should should revert if destination chainId is same', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1336,7 +1207,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('2.7 Should should revert if it has source or dst swap', async () => {
+    it('1.7 Should should revert if it has source or dst swap', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1431,7 +1302,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InformationMismatch)
     })
 
-    it('2.8 Should should revert if callTo is not a contract', async () => {
+    it('1.8 Should should revert if callTo is not a contract', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1505,27 +1376,11 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.NotAContract)
     })
 
-    it('2.9 Should should revert if callTo is not authorized', async () => {
+    it('1.9 Should should revert if callTo is not authorized', async () => {
       {
-        await crossChainFacet
+        await bridgeManagerFacet
           .connect(crossChainManager)
-          .updateSelectorInfo(
-            [mockBridge.address],
-            getSighash(
-              [
-                mockBridge.interface.functions[
-                  'bridge(address,address,uint256,bool)'
-                ],
-              ],
-              mockBridge.interface
-            ),
-            [
-              {
-                isAvailable: false,
-                offset: 0,
-              },
-            ]
-          )
+          .removeAggregatorsAndBridges([mockBridge.address])
       }
 
       // -------------------------------------
@@ -1595,13 +1450,12 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridge(transactionId, integratorAddress, bridgeData, genericData, {
             value,
           })
-      ).revertedWithCustomError(
-        crossChainFacet,
-        ERRORS.UnAuthorizedCallToFunction
       )
+        .revertedWithCustomError(crossChainFacet, ERRORS.UnAuthorizedCall)
+        .withArgs(mockBridge.address)
     })
 
-    it('2.10 Should should revert if router call fails', async () => {
+    it('1.10 Should should revert if router call fails', async () => {
       // -------------------------------------
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
@@ -1674,7 +1528,7 @@ describe('CrossChainFacet.test.ts', async () => {
         .withArgs(mockBridge.interface.getSighash('BridgeCallFailedFromRouter'))
     })
 
-    it('2.11 Should should revert if user has not transfer correct amount of native tokens', async () => {
+    it('1.11 Should should revert if user has not transfer correct amount of native tokens', async () => {
       // -------------------------------------
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
@@ -1762,7 +1616,7 @@ describe('CrossChainFacet.test.ts', async () => {
     })
   })
 
-  describe('3) bridgeMultipleTokens', async () => {
+  describe('2) bridgeMultipleTokens', async () => {
     const destinationChainId = 56
     const destinationChainId2 = 10
 
@@ -1798,24 +1652,18 @@ describe('CrossChainFacet.test.ts', async () => {
       )
 
       const selectorInfo = [
-        {
-          isAvailable: true,
-          offset: offsetByBytes1,
-        },
-        {
-          isAvailable: true,
-          offset: offsetByBytes2,
-        },
+        BigNumber.from(offsetByBytes1),
+        BigNumber.from(offsetByBytes2),
       ]
 
       const routers = [mockBridge.address, mockBridge.address]
 
-      await crossChainFacet
+      await bridgeManagerFacet
         .connect(crossChainManager)
         .updateSelectorInfo(routers, selectors, selectorInfo)
     })
 
-    it('3.1 Should allow user to bridge multiple token from one chain to other chain', async () => {
+    it('2.1 Should allow user to bridge multiple token from one chain to other chain', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
 
@@ -2030,7 +1878,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('3.2 Should allow user to bridge multiple token from one chain to other chain, and refund extra native', async () => {
+    it('2.2 Should allow user to bridge multiple token from one chain to other chain, and refund extra native', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
 
@@ -2254,7 +2102,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('3.3 Should should revert if receiver is zero address', async () => {
+    it('2.3 Should should revert if receiver is zero address', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2337,7 +2185,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidReceiver)
     })
 
-    it('3.4 Should should revert if amount is zero', async () => {
+    it('2.4 Should should revert if amount is zero', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2420,7 +2268,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidAmount)
     })
 
-    it('3.5 Should should revert if destination chainId is same', async () => {
+    it('2.5 Should should revert if destination chainId is same', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2508,7 +2356,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('3.6 Should should revert if it has source or dst swap', async () => {
+    it('2.6 Should should revert if it has source or dst swap', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2624,7 +2472,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InformationMismatch)
     })
 
-    it('3.7 Should should revert if callTo is not a contract', async () => {
+    it('2.7 Should should revert if callTo is not a contract', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2707,27 +2555,11 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.NotAContract)
     })
 
-    it('3.8 Should should revert if callTo is not authorized', async () => {
+    it('2.8 Should should revert if callTo is not authorized', async () => {
       {
-        await crossChainFacet
+        await bridgeManagerFacet
           .connect(crossChainManager)
-          .updateSelectorInfo(
-            [mockBridge.address],
-            getSighash(
-              [
-                mockBridge.interface.functions[
-                  'bridge(address,address,uint256,bool)'
-                ],
-              ],
-              mockBridge.interface
-            ),
-            [
-              {
-                isAvailable: false,
-                offset: 0,
-              },
-            ]
-          )
+          .removeAggregatorsAndBridges([mockBridge.address])
       }
 
       // -------------------------------------
@@ -2805,13 +2637,10 @@ describe('CrossChainFacet.test.ts', async () => {
               value,
             }
           )
-      ).revertedWithCustomError(
-        crossChainFacet,
-        ERRORS.UnAuthorizedCallToFunction
-      )
+      ).revertedWithCustomError(crossChainFacet, ERRORS.UnAuthorizedCall)
     })
 
-    it('3.9 Should revert if even a single router call fails', async () => {
+    it('2.9 Should revert if even a single router call fails', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -2928,7 +2757,7 @@ describe('CrossChainFacet.test.ts', async () => {
         .withArgs(mockBridge.interface.getSighash('BridgeCallFailedFromRouter'))
     })
 
-    it('3.10 Should should revert if user has not transfer correct amount of native tokens', async () => {
+    it('2.10 Should should revert if user has not transfer correct amount of native tokens', async () => {
       // -------------------------------------
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
@@ -3036,7 +2865,7 @@ describe('CrossChainFacet.test.ts', async () => {
     })
   })
 
-  describe('4) swapAndBridge', async () => {
+  describe('3) swapAndBridge', async () => {
     const destinationChainId = 56
     const destinationChainId2 = 10
 
@@ -3108,18 +2937,9 @@ describe('CrossChainFacet.test.ts', async () => {
         )
 
         const selectorInfo = [
-          {
-            isAvailable: true,
-            offset: offsetByBytes1,
-          },
-          {
-            isAvailable: true,
-            offset: offsetByBytes2,
-          },
-          {
-            isAvailable: true,
-            offset: 0,
-          },
+          BigNumber.from(offsetByBytes1),
+          BigNumber.from(offsetByBytes2),
+          ZERO,
         ]
 
         const routers = [
@@ -3128,7 +2948,7 @@ describe('CrossChainFacet.test.ts', async () => {
           mockBridge.address,
         ]
 
-        await crossChainFacet
+        await bridgeManagerFacet
           .connect(crossChainManager)
           .updateSelectorInfo(routers, selectors, selectorInfo)
       }
@@ -3152,7 +2972,7 @@ describe('CrossChainFacet.test.ts', async () => {
       }
     })
 
-    it('4.1 Should allow user to swap src token then bridge them to destination chain', async () => {
+    it('3.1 Should allow user to swap src token then bridge them to destination chain', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3403,7 +3223,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
     })
 
-    it('4.2 Should allow user to bridge token to destination chain then swap them on dst chain', async () => {
+    it('3.2 Should allow user to bridge token to destination chain then swap them on dst chain', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3652,7 +3472,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.swapInfo).eql([])
     })
 
-    it('4.3 Should allow user to swap src token, return leftOver then bridge them to destination chain', async () => {
+    it('3.3 Should allow user to swap src token, return leftOver then bridge them to destination chain', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3907,7 +3727,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
     })
 
-    it('4.4 Should allow user to swap src token,then bridge them to destination chain and return extra native tokens', async () => {
+    it('3.4 Should allow user to swap src token,then bridge them to destination chain and return extra native tokens', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -4160,7 +3980,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
     })
 
-    // it('4.5 Should revert if swap return amount is not enough', async () => {
+    // it('3.5 Should revert if swap return amount is not enough', async () => {
     //   const rate = await mockExchange.rate()
     //   const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
@@ -4330,7 +4150,7 @@ describe('CrossChainFacet.test.ts', async () => {
     //   }
     // })
 
-    it('4.6 Should revert if recipient is zero address', async () => {
+    it('3.6 Should revert if recipient is zero address', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -4415,7 +4235,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidReceiver)
     })
 
-    it('4.7 Should revert if amount is zero', async () => {
+    it('3.7 Should revert if amount is zero', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -4500,7 +4320,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidAmount)
     })
 
-    it('4.8 Should should revert if destination chainId is same', async () => {
+    it('3.8 Should should revert if destination chainId is same', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -4590,7 +4410,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('4.9 Should should revert if callTo is not a contract', async () => {
+    it('3.9 Should should revert if callTo is not a contract', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -4675,27 +4495,11 @@ describe('CrossChainFacet.test.ts', async () => {
       ).revertedWithCustomError(crossChainFacet, ERRORS.NotAContract)
     })
 
-    it('4.10 Should should revert if callTo is not authorized', async () => {
+    it('3.10 Should should revert if callTo is not authorized', async () => {
       {
-        await crossChainFacet
+        await bridgeManagerFacet
           .connect(crossChainManager)
-          .updateSelectorInfo(
-            [mockBridge.address],
-            getSighash(
-              [
-                mockBridge.interface.functions[
-                  'bridge(address,address,uint256,bool)'
-                ],
-              ],
-              mockBridge.interface
-            ),
-            [
-              {
-                isAvailable: false,
-                offset: 0,
-              },
-            ]
-          )
+          .removeAggregatorsAndBridges([mockBridge.address])
       }
 
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
@@ -4777,13 +4581,10 @@ describe('CrossChainFacet.test.ts', async () => {
               value,
             }
           )
-      ).revertedWithCustomError(
-        crossChainFacet,
-        ERRORS.UnAuthorizedCallToFunction
-      )
+      ).revertedWithCustomError(crossChainFacet, ERRORS.UnAuthorizedCall)
     })
 
-    it('4.11 Should should revert if user has not transfer correct amount of native tokens', async () => {
+    it('3.11 Should should revert if user has not transfer correct amount of native tokens', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -4866,7 +4667,7 @@ describe('CrossChainFacet.test.ts', async () => {
       ).reverted
     })
 
-    it('4.12 Should should revert if user has not transfer correct amount of native tokens', async () => {
+    it('3.12 Should should revert if user has not transfer correct amount of native tokens', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------

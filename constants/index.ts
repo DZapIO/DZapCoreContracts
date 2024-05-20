@@ -22,6 +22,7 @@ export const CONTRACTS = {
   Permit2: 'Permit2',
   Executor: 'Executor',
   Receiver: 'Receiver',
+  BridgeManagerFacet: 'BridgeManagerFacet',
 }
 
 export const ERRORS = {
@@ -49,6 +50,8 @@ export const ERRORS = {
   SlippageTooHigh: 'SlippageTooHigh',
   UnauthorizedCaller: 'UnauthorizedCaller',
   SwapCallFailed: 'SwapCallFailed',
+  BridgeNotAdded: 'BridgeNotAdded',
+  UnAuthorizedCall: 'UnAuthorizedCall',
 }
 
 export const EVENTS = {
@@ -69,6 +72,8 @@ export const EVENTS = {
   DZapTransferRecovered: 'DZapTransferRecovered',
   TokensRecovered: 'TokensRecovered',
   TokenSwapped: 'TokenSwapped',
+  BridgeAdded: 'BridgeAdded',
+  BridgeRemoved: 'BridgeRemoved',
 }
 
 export const BPS_MULTIPLIER = 10000

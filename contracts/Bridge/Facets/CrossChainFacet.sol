@@ -12,39 +12,14 @@ import { Validatable } from "../Helpers/Validatable.sol";
 import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 import { ICrossChainFacet } from "../Interfaces/ICrossChainFacet.sol";
 
-import { CrossChainData, BridgeData, CallToFunctionInfo, CrossChainStorage } from "../Types.sol";
+import { CrossChainData, BridgeData, CrossChainAllowedList } from "../Types.sol";
 
-import { UnAuthorizedCallToFunction, BridgeCallFailed } from "../../Shared/Errors.sol";
-import { TokenInformationMismatch, SlippageTooHigh, InvalidSwapDetails } from "../../Shared/Errors.sol";
+import { UnAuthorizedCall, BridgeCallFailed, SlippageTooHigh, InvalidSwapDetails } from "../../Shared/Errors.sol";
 import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
 
 /// @title CrossChain Facet
 /// @notice Provides functionality for bridging tokens across chains
 contract CrossChainFacet is ICrossChainFacet, Swapper, Validatable {
-    /* ========= VIEWS ========= */
-
-    function getSelectorInfo(address _router, bytes4 _selector) external view returns (CallToFunctionInfo memory) {
-        CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
-        return sm.selectorToInfo[_router][_selector];
-    }
-
-    /* ========= RESTRICTED ========= */
-
-    function updateSelectorInfo(address[] calldata _routers, bytes4[] calldata _selectors, CallToFunctionInfo[] calldata _infos) external {
-        if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();
-
-        CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
-
-        for (uint64 i; i < _routers.length; ) {
-            sm.selectorToInfo[_routers[i]][_selectors[i]] = _infos[i];
-            unchecked {
-                ++i;
-            }
-        }
-
-        emit SelectorToInfoUpdated(_routers, _selectors, _infos);
-    }
-
     /* ========= EXTERNAL ========= */
 
     function bridge(bytes32 _transactionId, address _integrator, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable refundExcessNative(msg.sender) {
@@ -163,12 +138,14 @@ contract CrossChainFacet is ICrossChainFacet, Swapper, Validatable {
     }
 
     function _patchGenericCrossChainData(CrossChainData calldata _genericData, uint256 amount) private view returns (CrossChainData memory) {
-        CallToFunctionInfo memory info = LibBridgeStorage.getCrossChainStorage().selectorToInfo[_genericData.callTo][bytes4(_genericData.callData)];
+        CrossChainAllowedList storage bridgeInfo = LibBridgeStorage.getCrossChainStorage().allowlist[_genericData.callTo];
+        bytes4 funSig = bytes4(_genericData.callData);
+        uint256 offset = bridgeInfo.selectorToInfo[funSig];
 
-        if (!info.isAvailable) revert UnAuthorizedCallToFunction();
-        if (info.offset > 0) {
-            return CrossChainData(_genericData.callTo, _genericData.approveTo, _genericData.extraNative, _genericData.permit, bytes.concat(_genericData.callData[:info.offset], abi.encode(amount), _genericData.callData[info.offset + 32:]));
-        }
-        return _genericData;
+        if (bridgeInfo.isWhitelisted) {
+            if (offset > 0) {
+                return CrossChainData(_genericData.callTo, _genericData.approveTo, _genericData.extraNative, _genericData.permit, bytes.concat(_genericData.callData[:offset], abi.encode(amount), _genericData.callData[offset + 32:]));
+            } else return _genericData;
+        } else revert UnAuthorizedCall(_genericData.callTo);
     }
 }

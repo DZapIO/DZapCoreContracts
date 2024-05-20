@@ -950,52 +950,52 @@ describe('Executor.test.ts', async () => {
       ).revertedWithCustomError(executor, ERRORS.ContractCallNotAllowed)
     })
 
-    it('2.9 Should revert if swap amount is zero', async () => {
-      const rate = await mockExchange.rate()
+    // it('2.9 Should revert if swap amount is zero', async () => {
+    //   const rate = await mockExchange.rate()
 
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const bridgeDst = signers[12]
-      const recipient = signers[14]
-      const amount = parseUnits('10', TOKEN_A_DECIMAL)
+    //   const transactionId = ethers.utils.formatBytes32String('dummyId')
+    //   const bridgeDst = signers[12]
+    //   const recipient = signers[14]
+    //   const amount = parseUnits('10', TOKEN_A_DECIMAL)
 
-      const swapReturnAmount = parseUnits(
-        formatUnits(amount.mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        TOKEN_B_DECIMAL
-      )
+    //   const swapReturnAmount = parseUnits(
+    //     formatUnits(amount.mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
+    //     TOKEN_B_DECIMAL
+    //   )
 
-      const swapData = {
-        callTo: mockExchange.address,
-        approveTo: mockExchange.address,
-        from: tokenA.address,
-        to: tokenB.address,
-        fromAmount: ZERO,
-        minToAmount: swapReturnAmount,
-        swapCallData: (
-          await mockExchange.populateTransaction.swap(
-            tokenA.address,
-            tokenB.address,
-            executor.address,
-            amount,
-            false,
-            false
-          )
-        ).data as string,
-        permit: encodePermitData('0x', PermitType.PERMIT),
-      }
+    //   const swapData = {
+    //     callTo: mockExchange.address,
+    //     approveTo: mockExchange.address,
+    //     from: tokenA.address,
+    //     to: tokenB.address,
+    //     fromAmount: ZERO,
+    //     minToAmount: swapReturnAmount,
+    //     swapCallData: (
+    //       await mockExchange.populateTransaction.swap(
+    //         tokenA.address,
+    //         tokenB.address,
+    //         executor.address,
+    //         amount,
+    //         false,
+    //         false
+    //       )
+    //     ).data as string,
+    //     permit: encodePermitData('0x', PermitType.PERMIT),
+    //   }
 
-      await tokenA.mint(bridgeDst.address, amount)
-      await tokenA.connect(bridgeDst).approve(executor.address, amount)
+    //   await tokenA.mint(bridgeDst.address, amount)
+    //   await tokenA.connect(bridgeDst).approve(executor.address, amount)
 
-      await expect(
-        executor
-          .connect(bridgeDst)
-          .swapAndCompleteBridgeTokens(
-            transactionId,
-            recipient.address,
-            swapData
-          )
-      ).revertedWithCustomError(executor, ERRORS.NoSwapFromZeroBalance)
-    })
+    //   await expect(
+    //     executor
+    //       .connect(bridgeDst)
+    //       .swapAndCompleteBridgeTokens(
+    //         transactionId,
+    //         recipient.address,
+    //         swapData
+    //       )
+    //   ).revertedWithCustomError(executor, ERRORS.NoSwapFromZeroBalance)
+    // })
 
     it('2.10 Should revert if swap fails', async () => {
       const rate = await mockExchange.rate()

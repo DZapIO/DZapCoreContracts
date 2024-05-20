@@ -19,12 +19,12 @@ struct CrossChainData {
 }
 
 struct BridgeData {
-    string bridge;
     address from;
     address to;
     address receiver;
-    uint256 minAmount; // amount after swap, swap -> bridge
-    uint256 destinationChainId;
     bool hasSourceSwaps;
     bool hasDestinationCall;
+    uint256 minAmountIn;
+    uint256 destinationChainId;
+    string bridge;
 }

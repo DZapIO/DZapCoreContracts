@@ -9,19 +9,30 @@ import { InvalidReceiver, InformationMismatch, InvalidSendingToken, InvalidAmoun
 import { CrossChainData, BridgeData } from "../Types.sol";
 
 contract Validatable {
-    function _validateData(BridgeData memory _bridgeData, CrossChainData calldata _genericData) internal view {
+    function _validateData(BridgeData memory _bridgeData) internal view {
         if (LibUtil.isZeroAddress(_bridgeData.receiver)) revert InvalidReceiver();
-        if (_bridgeData.minAmount == 0) revert InvalidAmount();
+        if (_bridgeData.minAmountIn == 0) revert InvalidAmount();
         if (_bridgeData.destinationChainId == block.chainid) revert CannotBridgeToSameNetwork();
+    }
+
+    function _validateCrossChainData(CrossChainData calldata _genericData) internal view {
         if (!LibAsset.isContract(_genericData.callTo)) revert NotAContract();
+    }
+
+    function _hasSourceSwaps(BridgeData memory _bridgeData) internal pure {
+        if (!_bridgeData.hasSourceSwaps) revert InformationMismatch();
+    }
+
+    function _doesNotContainSourceSwaps(BridgeData memory _bridgeData) internal pure {
         if (_bridgeData.hasSourceSwaps) revert InformationMismatch();
+    }
+
+    function _doesNotContainDestinationCall(BridgeData memory _bridgeData) internal pure {
         if (_bridgeData.hasDestinationCall) revert InformationMismatch();
     }
 
-    function _validateBridgeSwapData(BridgeData memory _bridgeData, CrossChainData calldata _genericData) internal view {
-        if (LibUtil.isZeroAddress(_bridgeData.receiver)) revert InvalidReceiver();
-        if (_bridgeData.minAmount == 0) revert InvalidAmount();
-        if (_bridgeData.destinationChainId == block.chainid) revert CannotBridgeToSameNetwork();
-        if (!LibAsset.isContract(_genericData.callTo)) revert NotAContract();
+    function _doesNotContainSourceSwapOrDestinationCall(BridgeData memory _bridgeData) internal pure {
+        if (_bridgeData.hasSourceSwaps) revert InformationMismatch();
+        if (_bridgeData.hasDestinationCall) revert InformationMismatch();
     }
 }

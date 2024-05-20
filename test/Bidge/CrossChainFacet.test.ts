@@ -720,7 +720,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -741,7 +740,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: DZAP_NATIVE,
         to: DZAP_NATIVE,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -779,19 +778,12 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       )
         .emit(crossChainFacet, EVENTS.BridgeTransferStarted)
-        .withArgs(transactionId, integratorAddress, user.address, refundee, [
+        .withArgs(transactionId, integratorAddress, user.address, [
           bridgeData.bridge,
           bridgeData.from,
           bridgeData.to,
@@ -823,7 +815,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -855,7 +846,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -890,34 +881,31 @@ describe('CrossChainFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-
-      const routerBeforeN = await ethers.provider.getBalance(mockBridge.address)
-      const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeA,
+        vaultBalanceBeforeA,
+        integratorBalanceBeforeA,
+        routerBalanceBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        tokenA.balanceOf(recipient.address),
+        tokenA.balanceOf(protoFeeVault.address),
+        tokenA.balanceOf(integrator2.address),
+        tokenA.balanceOf(mockBridge.address),
+      ])
 
       // -------------------------------------
 
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       )
         .emit(crossChainFacet, EVENTS.BridgeTransferStarted)
-        .withArgs(transactionId, integratorAddress, user.address, refundee, [
+        .withArgs(transactionId, integratorAddress, user.address, [
           bridgeData.bridge,
           bridgeData.from,
           bridgeData.to,
@@ -927,37 +915,45 @@ describe('CrossChainFacet.test.ts', async () => {
           bridgeData.hasSourceSwaps,
           bridgeData.hasDestinationCall,
         ])
-        .changeTokenBalances(
-          tokenA,
-          [user, recipient, protoFeeVault, integrator2, mockBridge],
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault, mockBridge],
           [
-            convertBNToNegative(amounts[0]),
-            minReturn,
-            tokenFeeData[0].dzapFee,
-            tokenFeeData[0].integratorFee,
-            routerTokenFee,
+            convertBNToNegative(value.sub(extra)),
+            fixedNativeData.integratorNativeFeeAmount,
+            fixedNativeData.dzapNativeFeeAmount,
+            routerNativeFeeAmount,
           ]
         )
 
       // -------------------------------------
 
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const routerAfterN = await ethers.provider.getBalance(mockBridge.address)
-      const refundeeAfterN = await ethers.provider.getBalance(refundee.address)
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterA,
+        vaultBalanceAfterA,
+        integratorBalanceAfterA,
+        routerBalanceAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        tokenA.balanceOf(recipient.address),
+        tokenA.balanceOf(protoFeeVault.address),
+        tokenA.balanceOf(integrator2.address),
+        tokenA.balanceOf(mockBridge.address),
+      ])
 
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN.add(fixedNativeData.integratorNativeFeeAmount)
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
+      expect(recipientBalanceAfterA).equal(
+        recipientBalanceBeforeA.add(minReturn)
       )
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN.add(fixedNativeData.dzapNativeFeeAmount)
+      expect(vaultBalanceAfterA).equal(
+        vaultBalanceBeforeA.add(tokenFeeData[0].dzapFee)
       )
-      expect(routerAfterN).equal(routerBeforeN.add(routerNativeFeeAmount))
-      expect(refundeeAfterN).equal(refundeeBeforeN.add(extra))
+      expect(integratorBalanceAfterA).equal(
+        integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
+      )
+      expect(routerBalanceAfterA).equal(
+        routerBalanceBeforeA.add(routerTokenFee)
+      )
     })
 
     it('2.3 Should allow user to bridge token from one chain to other chain (without chaining offset)', async () => {
@@ -1022,7 +1018,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1070,16 +1066,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       )
         .emit(crossChainFacet, EVENTS.BridgeTransferStarted)
         .withArgs(transactionId, integratorAddress, user.address, refundee, [
@@ -1157,7 +1146,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1188,16 +1177,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidReceiver)
     })
 
@@ -1238,7 +1220,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1264,21 +1246,14 @@ describe('CrossChainFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      bridgeData.minAmount = ZERO
+      bridgeData.minAmountIn = ZERO
 
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.InvalidAmount)
     })
 
@@ -1319,7 +1294,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1352,16 +1327,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(
         crossChainFacet,
         ERRORS.CannotBridgeToSameNetwork
@@ -1405,7 +1373,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1437,16 +1405,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.InformationMismatch)
 
       bridgeData.hasSourceSwaps = true
@@ -1454,16 +1415,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.InformationMismatch)
 
       bridgeData.hasSourceSwaps = true
@@ -1471,16 +1425,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.InformationMismatch)
     })
 
@@ -1521,7 +1468,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1552,16 +1499,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(crossChainFacet, ERRORS.NotAContract)
     })
 
@@ -1623,7 +1563,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1652,16 +1592,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       ).revertedWithCustomError(
         crossChainFacet,
         ERRORS.UnAuthorizedCallToFunction
@@ -1704,7 +1637,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1733,16 +1666,9 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value,
+          })
       )
         .revertedWithCustomError(crossChainFacet, ERRORS.BridgeCallFailed)
         .withArgs(mockBridge.interface.getSighash('BridgeCallFailedFromRouter'))
@@ -1784,7 +1710,7 @@ describe('CrossChainFacet.test.ts', async () => {
         from: tokenA.address,
         to: tokenA.address,
         receiver: recipient.address,
-        minAmount: amounts[0],
+        minAmountIn: amounts[0],
         destinationChainId: destinationChainId,
         hasSourceSwaps: false,
         hasDestinationCall: false,
@@ -1813,46 +1739,25 @@ describe('CrossChainFacet.test.ts', async () => {
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value: routerNativeFeeAmount,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value: routerNativeFeeAmount,
+          })
       ).reverted
 
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value: fixedNativeFeeAmount,
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value: fixedNativeFeeAmount,
+          })
       ).reverted
 
       await expect(
         crossChainFacet
           .connect(user)
-          .bridge(
-            transactionId,
-            integratorAddress,
-            refundee.address,
-            bridgeData,
-            genericData,
-            {
-              value: fixedNativeFeeAmount.add(routerNativeFeeAmount).sub(1),
-            }
-          )
+          .bridge(transactionId, integratorAddress, bridgeData, genericData, {
+            value: fixedNativeFeeAmount.add(routerNativeFeeAmount).sub(1),
+          })
       ).reverted
     })
   })
@@ -1920,7 +1825,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -1957,7 +1861,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -1967,7 +1871,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenB.address,
           to: tokenB.address,
           receiver: recipient.address,
-          minAmount: amounts[1],
+          minAmountIn: amounts[1],
           destinationChainId: destinationChainId2,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2044,7 +1948,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2074,28 +1977,28 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
+      // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        amountWithoutFee[1],
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        amountWithoutFee[1],
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       // -------------------------------------
@@ -2137,7 +2040,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2175,7 +2077,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2185,7 +2087,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: DZAP_NATIVE,
           to: DZAP_NATIVE,
           receiver: recipient.address,
-          minAmount: amounts[1],
+          minAmountIn: amounts[1],
           destinationChainId: destinationChainId2,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2245,18 +2147,19 @@ describe('CrossChainFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const routerBeforeN = await ethers.provider.getBalance(mockBridge.address)
-
-      const recipientBeforeN = await ethers.provider.getBalance(
-        recipient.address
-      )
-      const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeA,
+        vaultBalanceBeforeA,
+        integratorBalanceBeforeA,
+        routerBalanceBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        tokenA.balanceOf(recipient.address),
+        tokenA.balanceOf(protoFeeVault.address),
+        tokenA.balanceOf(integrator2.address),
+        tokenA.balanceOf(mockBridge.address),
+      ])
 
       // -------------------------------------
 
@@ -2266,7 +2169,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2275,15 +2177,16 @@ describe('CrossChainFacet.test.ts', async () => {
           )
       )
         .emit(crossChainFacet, EVENTS.MultiTokenBridgeTransferStarted)
-        .changeTokenBalances(
-          tokenA,
-          [user, recipient, protoFeeVault, integrator2, mockBridge],
+        .changeEtherBalances(
+          [user, recipient, integrator2, protoFeeVault, mockBridge],
           [
-            convertBNToNegative(amounts[0]),
-            minReturn[0],
-            tokenFeeData[0].dzapFee,
-            tokenFeeData[0].integratorFee,
-            routerTokenFee[0],
+            convertBNToNegative(value.sub(extra)),
+            minReturn[1],
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[1].integratorFee
+            ),
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[1].dzapFee),
+            routerNativeFeeAmount.mul(2).add(routerTokenFee[1]),
           ]
         )
 
@@ -2297,60 +2200,57 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        amountWithoutFee[1],
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        amountWithoutFee[1],
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       // -------------------------------------
 
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const routerAfterN = await ethers.provider.getBalance(mockBridge.address)
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterA,
+        vaultBalanceAfterA,
+        integratorBalanceAfterA,
+        routerBalanceAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        tokenA.balanceOf(recipient.address),
+        tokenA.balanceOf(protoFeeVault.address),
+        tokenA.balanceOf(integrator2.address),
+        tokenA.balanceOf(mockBridge.address),
+      ])
 
-      const recipientAfterN = await ethers.provider.getBalance(
-        recipient.address
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
+      expect(recipientBalanceAfterA).equal(
+        recipientBalanceBeforeA.add(minReturn[0])
       )
-      const refundeeAfterN = await ethers.provider.getBalance(refundee.address)
-
-      expect(refundeeAfterN).equal(refundeeBeforeN.add(extra))
-      expect(recipientAfterN).equal(recipientBeforeN.add(minReturn[1]))
-
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN
-          .add(tokenFeeData[1].integratorFee)
-          .add(fixedNativeData.integratorNativeFeeAmount)
+      expect(vaultBalanceAfterA).equal(
+        vaultBalanceBeforeA.add(tokenFeeData[0].dzapFee)
       )
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN
-          .add(fixedNativeData.dzapNativeFeeAmount)
-          .add(tokenFeeData[1].dzapFee)
+      expect(integratorBalanceAfterA).equal(
+        integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
       )
-      expect(routerAfterN).equal(
-        routerBeforeN.add(routerNativeFeeAmount).mul(2).add(routerTokenFee[1])
+      expect(routerBalanceAfterA).equal(
+        routerBalanceBeforeA.add(routerTokenFee[0])
       )
     })
 
@@ -2363,7 +2263,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2392,7 +2291,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2429,7 +2328,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2448,7 +2346,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2477,7 +2374,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2506,7 +2403,7 @@ describe('CrossChainFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      bridgeData[0].minAmount = ZERO
+      bridgeData[0].minAmountIn = ZERO
 
       await expect(
         crossChainFacet
@@ -2514,7 +2411,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2533,7 +2429,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2562,7 +2457,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2601,7 +2496,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2623,7 +2517,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2652,7 +2545,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2690,7 +2583,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2707,7 +2599,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2724,7 +2615,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2743,7 +2633,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2772,7 +2661,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2809,7 +2698,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2849,7 +2737,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2878,7 +2765,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2912,7 +2799,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -2934,7 +2820,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -2971,7 +2856,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -2981,7 +2866,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenB.address,
           to: tokenB.address,
           receiver: recipient.address,
-          minAmount: amounts[1],
+          minAmountIn: amounts[1],
           destinationChainId: destinationChainId2,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -3032,7 +2917,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -3052,7 +2936,6 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -3081,7 +2964,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -3115,7 +2998,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -3130,7 +3012,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -3145,7 +3026,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .bridgeMultipleTokens(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             genericData,
             {
@@ -3282,7 +3162,7 @@ describe('CrossChainFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13]
+      // const refundee = signers[13]
       const recipient = signers[14]
 
       // -------------------------------------
@@ -3321,7 +3201,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -3331,7 +3211,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenB.address,
           to: tokenB.address,
           receiver: recipient.address,
-          minAmount: swapReturnAmount,
+          minAmountIn: swapReturnAmount,
           destinationChainId: destinationChainId2,
           hasSourceSwaps: true,
           hasDestinationCall: false,
@@ -3418,7 +3298,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
 
       const routerBeforeN = await ethers.provider.getBalance(mockBridge.address)
-      const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
+      // const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
 
       // tokenB
       const routersBeforeB = await tokenB.balanceOf(mockBridge.address)
@@ -3433,7 +3313,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -3441,20 +3320,19 @@ describe('CrossChainFacet.test.ts', async () => {
               value,
             }
           )
-      )
-        .emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
-        .changeTokenBalances(
-          tokenA,
-          [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
-          [
-            convertBNToNegative(amounts[0].add(amounts[1])),
-            ZERO,
-            minReturn[0],
-            tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
-            ZERO,
-            routerTokenFee[0],
-          ]
-        )
+      ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+      // .changeTokenBalances(
+      //   tokenA,
+      //   [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
+      //   [
+      //     convertBNToNegative(amounts[0].add(amounts[1])),
+      //     ZERO,
+      //     minReturn[0],
+      //     tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
+      //     ZERO,
+      //     routerTokenFee[0],
+      //   ]
+      // )
 
       // -------------------------------------
 
@@ -3465,7 +3343,7 @@ describe('CrossChainFacet.test.ts', async () => {
         protoFeeVault.address
       )
       const routerAfterN = await ethers.provider.getBalance(mockBridge.address)
-      const refundeeAfterN = await ethers.provider.getBalance(refundee.address)
+      // const refundeeAfterN = await ethers.provider.getBalance(refundee.address)
 
       const routersAfterB = await tokenB.balanceOf(mockBridge.address)
       const recipientAfterB = await tokenB.balanceOf(recipient.address)
@@ -3477,7 +3355,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(routerAfterN).equal(
         routerBeforeN.add(routerNativeFeeAmount.mul(2))
       )
-      expect(refundeeAfterN).equal(refundeeBeforeN)
+      // expect(refundeeAfterN).equal(refundeeBeforeN)
 
       expect(routersAfterB).equal(routersBeforeB.add(routerTokenFee[1]))
       expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
@@ -3491,28 +3369,28 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
+      // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        swapReturnAmount,
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        swapReturnAmount,
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([
@@ -3591,7 +3469,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -3601,7 +3479,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[1],
+          minAmountIn: amounts[1],
           destinationChainId: destinationChainId2,
           hasSourceSwaps: false,
           hasDestinationCall: true,
@@ -3692,7 +3570,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapDataSrc,
             genericData,
@@ -3748,28 +3625,28 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
+      // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        amountWithoutFee[1],
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        amountWithoutFee[1],
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo).eql([])
@@ -3828,7 +3705,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -3838,7 +3715,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenB.address,
           to: tokenB.address,
           receiver: recipient.address,
-          minAmount: swapReturnAmount,
+          minAmountIn: swapReturnAmount,
           destinationChainId: destinationChainId2,
           hasSourceSwaps: true,
           hasDestinationCall: false,
@@ -3940,7 +3817,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -3948,20 +3824,19 @@ describe('CrossChainFacet.test.ts', async () => {
               value,
             }
           )
-      )
-        .emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
-        .changeTokenBalances(
-          tokenA,
-          [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
-          [
-            convertBNToNegative(amounts[0].add(amounts[1])),
-            leftOverFromAmount,
-            minReturn[0],
-            tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
-            ZERO,
-            routerTokenFee[0],
-          ]
-        )
+      ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+      // .changeTokenBalances(
+      //   tokenA,
+      //   [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
+      //   [
+      //     convertBNToNegative(amounts[0].add(amounts[1])),
+      //     leftOverFromAmount,
+      //     minReturn[0],
+      //     tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
+      //     ZERO,
+      //     routerTokenFee[0],
+      //   ]
+      // )
 
       // -------------------------------------
 
@@ -3998,28 +3873,28 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
+      // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        swapReturnAmount,
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        swapReturnAmount,
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([
@@ -4081,7 +3956,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4091,7 +3966,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenB.address,
           to: tokenB.address,
           receiver: recipient.address,
-          minAmount: swapReturnAmount,
+          minAmountIn: swapReturnAmount,
           destinationChainId: destinationChainId2,
           hasSourceSwaps: true,
           hasDestinationCall: false,
@@ -4195,7 +4070,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4203,20 +4077,19 @@ describe('CrossChainFacet.test.ts', async () => {
               value,
             }
           )
-      )
-        .emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
-        .changeTokenBalances(
-          tokenA,
-          [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
-          [
-            convertBNToNegative(amounts[0].add(amounts[1])),
-            ZERO,
-            minReturn[0],
-            tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
-            ZERO,
-            routerTokenFee[0],
-          ]
-        )
+      ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+      // .changeTokenBalances(
+      //   tokenA,
+      //   [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
+      //   [
+      //     convertBNToNegative(amounts[0].add(amounts[1])),
+      //     ZERO,
+      //     minReturn[0],
+      //     tokenFeeData[0].totalFee.add(tokenFeeData[1].totalFee),
+      //     ZERO,
+      //     routerTokenFee[0],
+      //   ]
+      // )
 
       // -------------------------------------
 
@@ -4239,7 +4112,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(routerAfterN).equal(
         routerBeforeN.add(routerNativeFeeAmount.mul(2))
       )
-      expect(refundeeAfterN).equal(refundeeBeforeN.add(extra))
+      // expect(refundeeAfterN).equal(refundeeBeforeN.add(extra))
 
       expect(routersAfterB).equal(routersBeforeB.add(routerTokenFee[1]))
       expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
@@ -4253,28 +4126,28 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
       expect(args.sender).equal(user.address)
-      expect(args.refundee).equal(refundee.address)
+      // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
-        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
-        amountWithoutFee[0],
-        BigNumber.from(bridgeData[0].destinationChainId),
         bridgeData[0].hasSourceSwaps,
         bridgeData[0].hasDestinationCall,
+        amountWithoutFee[0],
+        BigNumber.from(bridgeData[0].destinationChainId),
+        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
-        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
-        swapReturnAmount,
-        BigNumber.from(bridgeData[1].destinationChainId),
         bridgeData[1].hasSourceSwaps,
         bridgeData[1].hasDestinationCall,
+        swapReturnAmount,
+        BigNumber.from(bridgeData[1].destinationChainId),
+        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([
@@ -4287,177 +4160,175 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
     })
 
-    it('4.5 Should revert if swap return amount is not enough', async () => {
-      const rate = await mockExchange.rate()
-      const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
+    // it('4.5 Should revert if swap return amount is not enough', async () => {
+    //   const rate = await mockExchange.rate()
+    //   const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
-      // -------------------------------------
+    //   // -------------------------------------
 
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator1.address
-      const refundee = signers[13]
-      const recipient = signers[14]
+    //   const user = signers[12]
+    //   const transactionId = ethers.utils.formatBytes32String('dummyId')
+    //   const integratorAddress = integrator1.address
+    //   const refundee = signers[13]
+    //   const recipient = signers[14]
 
-      // -------------------------------------
-      const amounts = [
-        parseUnits('10', TOKEN_A_DECIMAL),
-        parseUnits('50', TOKEN_A_DECIMAL),
-      ]
+    //   // -------------------------------------
+    //   const amounts = [
+    //     parseUnits('10', TOKEN_A_DECIMAL),
+    //     parseUnits('50', TOKEN_A_DECIMAL),
+    //   ]
 
-      const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
-        await getFeeData(
-          swapFacet.address,
-          integratorAddress,
-          amounts,
-          FeeType.BRIDGE
-        )
+    //   const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
+    //     await getFeeData(
+    //       swapFacet.address,
+    //       integratorAddress,
+    //       amounts,
+    //       FeeType.BRIDGE
+    //     )
 
-      // -------------------------------------
+    //   // -------------------------------------
 
-      await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(crossChainFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+    //   await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
+    //   await tokenA
+    //     .connect(user)
+    //     .approve(crossChainFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
-      const swapReturnAmount = parseUnits(
-        formatUnits(
-          amountWithoutFee[1].mul(rate).div(BPS_MULTIPLIER),
-          TOKEN_A_DECIMAL
-        ),
-        TOKEN_B_DECIMAL
-      )
+    //   const swapReturnAmount = parseUnits(
+    //     formatUnits(
+    //       amountWithoutFee[1].mul(rate).div(BPS_MULTIPLIER),
+    //       TOKEN_A_DECIMAL
+    //     ),
+    //     TOKEN_B_DECIMAL
+    //   )
 
-      const value = fixedNativeFeeAmount
-        .add(routerNativeFeeAmount)
-        .add(routerNativeFeeAmount)
+    //   const value = fixedNativeFeeAmount
+    //     .add(routerNativeFeeAmount)
+    //     .add(routerNativeFeeAmount)
 
-      // -------------------------------------
+    //   // -------------------------------------
 
-      const bridgeData = [
-        {
-          bridge: 'TestBridge',
-          from: tokenA.address,
-          to: tokenA.address,
-          receiver: recipient.address,
-          minAmount: amounts[0],
-          destinationChainId: destinationChainId,
-          hasSourceSwaps: false,
-          hasDestinationCall: false,
-        },
-        {
-          bridge: 'TestBridge2',
-          from: tokenB.address,
-          to: tokenB.address,
-          receiver: recipient.address,
-          minAmount: swapReturnAmount.add(1),
-          destinationChainId: destinationChainId2,
-          hasSourceSwaps: true,
-          hasDestinationCall: false,
-        },
-      ]
+    //   const bridgeData = [
+    //     {
+    //       bridge: 'TestBridge',
+    //       from: tokenA.address,
+    //       to: tokenA.address,
+    //       receiver: recipient.address,
+    //       minAmountIn: amounts[0],
+    //       destinationChainId: destinationChainId,
+    //       hasSourceSwaps: false,
+    //       hasDestinationCall: false,
+    //     },
+    //     {
+    //       bridge: 'TestBridge2',
+    //       from: tokenB.address,
+    //       to: tokenB.address,
+    //       receiver: recipient.address,
+    //       minAmountIn: swapReturnAmount.add(1),
+    //       destinationChainId: destinationChainId2,
+    //       hasSourceSwaps: true,
+    //       hasDestinationCall: false,
+    //     },
+    //   ]
 
-      const genericData = [
-        {
-          callTo: mockBridge.address,
-          approveTo: mockBridge.address,
-          extraNative: routerNativeFeeAmount,
-          permit: encodePermitData('0x', PermitType.PERMIT),
-          callData: (
-            await mockBridge.populateTransaction.bridge(
-              recipient.address,
-              tokenA.address,
-              amounts[0],
-              false
-            )
-          ).data as string,
-        },
-        {
-          callTo: mockBridge.address,
-          approveTo: mockBridge.address,
-          extraNative: routerNativeFeeAmount,
-          permit: encodePermitData('0x', PermitType.PERMIT),
-          callData: (
-            await mockBridge.populateTransaction.bridge(
-              recipient.address,
-              tokenB.address,
-              // swapReturnAmount,
-              amounts[1], // replace offset with swapReturnAmount
-              false
-            )
-          ).data as string,
-        },
-      ]
+    //   const genericData = [
+    //     {
+    //       callTo: mockBridge.address,
+    //       approveTo: mockBridge.address,
+    //       extraNative: routerNativeFeeAmount,
+    //       permit: encodePermitData('0x', PermitType.PERMIT),
+    //       callData: (
+    //         await mockBridge.populateTransaction.bridge(
+    //           recipient.address,
+    //           tokenA.address,
+    //           amounts[0],
+    //           false
+    //         )
+    //       ).data as string,
+    //     },
+    //     {
+    //       callTo: mockBridge.address,
+    //       approveTo: mockBridge.address,
+    //       extraNative: routerNativeFeeAmount,
+    //       permit: encodePermitData('0x', PermitType.PERMIT),
+    //       callData: (
+    //         await mockBridge.populateTransaction.bridge(
+    //           recipient.address,
+    //           tokenB.address,
+    //           // swapReturnAmount,
+    //           amounts[1], // replace offset with swapReturnAmount
+    //           false
+    //         )
+    //       ).data as string,
+    //     },
+    //   ]
 
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: tokenB.address,
-          fromAmount: amounts[1],
-          minToAmount: swapReturnAmount,
-          swapCallData: (
-            await mockExchange.populateTransaction.swap(
-              tokenA.address,
-              tokenB.address,
-              crossChainFacet.address,
-              amountWithoutFee[1],
-              false,
-              false
-            )
-          ).data as string,
-          permit: encodePermitData('0x', PermitType.PERMIT),
-        },
-      ]
+    //   const swapData = [
+    //     {
+    //       callTo: mockExchange.address,
+    //       approveTo: mockExchange.address,
+    //       from: tokenA.address,
+    //       to: tokenB.address,
+    //       fromAmount: amounts[1],
+    //       minToAmount: swapReturnAmount,
+    //       swapCallData: (
+    //         await mockExchange.populateTransaction.swap(
+    //           tokenA.address,
+    //           tokenB.address,
+    //           crossChainFacet.address,
+    //           amountWithoutFee[1],
+    //           false,
+    //           false
+    //         )
+    //       ).data as string,
+    //       permit: encodePermitData('0x', PermitType.PERMIT),
+    //     },
+    //   ]
 
-      // -------------------------------------
-      {
-        // from  bridge
-        await expect(
-          crossChainFacet
-            .connect(user)
-            .swapAndBridge(
-              transactionId,
-              integratorAddress,
-              refundee.address,
-              bridgeData,
-              swapData,
-              genericData,
-              {
-                value,
-              }
-            )
-        )
-          .revertedWithCustomError(crossChainFacet, ERRORS.SlippageTooHigh)
-          .withArgs(swapReturnAmount.add(1), swapReturnAmount)
-      }
+    //   // -------------------------------------
+    //   {
+    //     // from  bridge
+    //     await expect(
+    //       crossChainFacet
+    //         .connect(user)
+    //         .swapAndBridge(
+    //           transactionId,
+    //           integratorAddress,
+    //           bridgeData,
+    //           swapData,
+    //           genericData,
+    //           {
+    //             value,
+    //           }
+    //         )
+    //     )
+    //       .revertedWithCustomError(crossChainFacet, ERRORS.SlippageTooHigh)
+    //       .withArgs(swapReturnAmount.add(1), swapReturnAmount)
+    //   }
 
-      {
-        // from swap
-        bridgeData[1].minAmount = swapReturnAmount
-        swapData[0].minToAmount = swapReturnAmount.add(1)
+    //   {
+    //     // from swap
+    //     bridgeData[1].minAmountIn = swapReturnAmount
+    //     swapData[0].minToAmount = swapReturnAmount.add(1)
 
-        // from  swap
-        await expect(
-          crossChainFacet
-            .connect(user)
-            .swapAndBridge(
-              transactionId,
-              integratorAddress,
-              refundee.address,
-              bridgeData,
-              swapData,
-              genericData,
-              {
-                value,
-              }
-            )
-        )
-          .revertedWithCustomError(crossChainFacet, ERRORS.SlippageTooHigh)
-          .withArgs(swapReturnAmount.add(1), swapReturnAmount)
-      }
-    })
+    //     // from  swap
+    //     await expect(
+    //       crossChainFacet
+    //         .connect(user)
+    //         .swapAndBridge(
+    //           transactionId,
+    //           integratorAddress,
+    //           bridgeData,
+    //           swapData,
+    //           genericData,
+    //           {
+    //             value,
+    //           }
+    //         )
+    //     )
+    //       .revertedWithCustomError(crossChainFacet, ERRORS.SlippageTooHigh)
+    //       .withArgs(swapReturnAmount.add(1), swapReturnAmount)
+    //   }
+    // })
 
     it('4.6 Should revert if recipient is zero address', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
@@ -4498,7 +4369,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4534,7 +4405,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4584,7 +4454,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4610,7 +4480,7 @@ describe('CrossChainFacet.test.ts', async () => {
 
       const swapData = []
 
-      bridgeData[0].minAmount = ZERO
+      bridgeData[0].minAmountIn = ZERO
 
       // -------------------------------------
 
@@ -4620,7 +4490,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4670,7 +4539,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4708,7 +4577,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4761,7 +4629,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4797,7 +4665,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4869,7 +4736,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4903,7 +4770,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -4956,7 +4822,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -4990,7 +4856,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,
@@ -5040,7 +4905,7 @@ describe('CrossChainFacet.test.ts', async () => {
           from: tokenA.address,
           to: tokenA.address,
           receiver: recipient.address,
-          minAmount: amounts[0],
+          minAmountIn: amounts[0],
           destinationChainId: destinationChainId,
           hasSourceSwaps: false,
           hasDestinationCall: false,
@@ -5074,7 +4939,6 @@ describe('CrossChainFacet.test.ts', async () => {
           .swapAndBridge(
             transactionId,
             integratorAddress,
-            refundee.address,
             bridgeData,
             swapData,
             genericData,

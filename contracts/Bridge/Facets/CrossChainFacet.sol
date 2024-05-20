@@ -6,7 +6,6 @@ import { LibFees } from "../../Shared/Libraries/LibFees.sol";
 import { LibAccess } from "../../Shared/Libraries/LibAccess.sol";
 import { LibDiamond } from "../../Shared/Libraries/LibDiamond.sol";
 
-import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 import { Swapper } from "../../Shared/Helpers/Swapper.sol";
 
 import { Validatable } from "../Helpers/Validatable.sol";
@@ -17,14 +16,13 @@ import { CrossChainData, BridgeData, CallToFunctionInfo, CrossChainStorage } fro
 
 import { UnAuthorizedCallToFunction, BridgeCallFailed } from "../../Shared/Errors.sol";
 import { TokenInformationMismatch, SlippageTooHigh, InvalidSwapDetails } from "../../Shared/Errors.sol";
-import { FeeType, SwapData, SwapInfo } from "../../Shared/Types.sol";
+import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
 
 /// @title CrossChain Facet
 /// @notice Provides functionality for bridging tokens across chains
-contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validatable {
+contract CrossChainFacet is ICrossChainFacet, Swapper, Validatable {
     /* ========= VIEWS ========= */
 
-    /// @inheritdoc ICrossChainFacet
     function getSelectorInfo(address _router, bytes4 _selector) external view returns (CallToFunctionInfo memory) {
         CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
         return sm.selectorToInfo[_router][_selector];
@@ -32,7 +30,6 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
     /* ========= RESTRICTED ========= */
 
-    /// @inheritdoc ICrossChainFacet
     function updateSelectorInfo(address[] calldata _routers, bytes4[] calldata _selectors, CallToFunctionInfo[] calldata _infos) external {
         if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();
 
@@ -50,97 +47,101 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
 
     /* ========= EXTERNAL ========= */
 
-    /// @inheritdoc ICrossChainFacet
-    function bridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
-        _validateData(_bridgeData, _genericData);
+    function bridge(bytes32 _transactionId, address _integrator, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable refundExcessNative(msg.sender) {
+        _validateData(_bridgeData);
+        _validateCrossChainData(_genericData);
+        _doesNotContainSourceSwapOrDestinationCall(_bridgeData);
 
-        (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, _bridgeData.from, _bridgeData.minAmount, _genericData.permit);
-        _bridgeData.minAmount -= totalFee;
+        (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE), _bridgeData.from, _bridgeData.minAmountIn, _genericData.permit);
+        _bridgeData.minAmountIn -= totalFee;
 
-        _startBridge(_bridgeData, _patchGenericCrossChainData(_genericData, _bridgeData.minAmount));
+        _startBridge(_bridgeData, _patchGenericCrossChainData(_genericData, _bridgeData.minAmountIn));
 
-        LibFees.accrueFixedNativeFees(_transactionId, _integrator, FeeType.BRIDGE);
+        LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
+        LibFees.accrueTokenFees(_integrator, _bridgeData.from, totalFee - dZapShare, dZapShare);
 
-        LibFees.accrueTokenFees(_transactionId, _integrator, FeeType.BRIDGE, _bridgeData.from, totalFee - dZapShare, dZapShare);
-
-        emit BridgeTransferStarted(_transactionId, _integrator, msg.sender, _refundee, _bridgeData);
+        emit BridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData);
     }
 
-    /// @inheritdoc ICrossChainFacet
-    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
+    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
         uint256 length = _bridgeData.length;
+        FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
 
-        for (uint256 i = 0; i < length; ) {
+        for (uint256 i; i < length; ) {
             BridgeData memory bridgeData = _bridgeData[i];
 
-            _validateData(bridgeData, _genericData[i]);
+            _validateData(bridgeData);
+            _doesNotContainSourceSwapOrDestinationCall(bridgeData);
+            _validateCrossChainData(_genericData[i]);
 
-            (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, bridgeData.from, bridgeData.minAmount, _genericData[i].permit);
+            (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, bridgeData.from, bridgeData.minAmountIn, _genericData[i].permit);
+            bridgeData.minAmountIn -= totalFee;
 
-            bridgeData.minAmount -= totalFee;
+            _startBridge(bridgeData, _patchGenericCrossChainData(_genericData[i], bridgeData.minAmountIn));
 
-            _startBridge(bridgeData, _patchGenericCrossChainData(_genericData[i], bridgeData.minAmount));
-
-            LibFees.accrueTokenFees(_transactionId, _integrator, FeeType.BRIDGE, bridgeData.from, totalFee - dZapShare, dZapShare);
+            LibFees.accrueTokenFees(_integrator, bridgeData.from, totalFee - dZapShare, dZapShare);
 
             unchecked {
                 ++i;
             }
         }
 
-        LibFees.accrueFixedNativeFees(_transactionId, _integrator, FeeType.BRIDGE);
+        LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
 
-        emit MultiTokenBridgeTransferStarted(_transactionId, _integrator, msg.sender, _refundee, _bridgeData);
+        emit MultiTokenBridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData);
     }
 
-    /// @inheritdoc ICrossChainFacet
-    function swapAndBridge(bytes32 _transactionId, address _integrator, address _refundee, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable nonReentrant refundExcessNative(_refundee) {
+    function swapAndBridge(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
         uint256 length = _bridgeData.length;
         uint256 swapCount;
         SwapInfo[] memory swapInfo = new SwapInfo[](_swapData.length);
+        FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
 
-        for (uint256 i = 0; i < length; i++) {
+        for (uint256 i = 0; i < length; ) {
             BridgeData memory bridgeData = _bridgeData[i];
 
-            _validateBridgeSwapData(bridgeData, _genericData[i]);
-
-            uint256 totalFee;
-            uint256 dZapShare;
-            address from;
+            _validateData(bridgeData);
+            _validateCrossChainData(_genericData[i]);
 
             if (bridgeData.hasSourceSwaps) {
+                _hasSourceSwaps(bridgeData);
+
                 if (_swapData[swapCount].to != bridgeData.from) revert InvalidSwapDetails();
 
-                from = _swapData[swapCount].from;
-
                 // src swap
-                (totalFee, dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, _swapData[swapCount]);
-
+                (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, _swapData[swapCount].from, _swapData[swapCount].fromAmount, _swapData[swapCount].permit);
                 (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(_swapData[swapCount], totalFee, false);
 
-                if (returnToAmount < bridgeData.minAmount) revert SlippageTooHigh(bridgeData.minAmount, returnToAmount);
-                bridgeData.minAmount = returnToAmount;
+                if (returnToAmount < bridgeData.minAmountIn) revert SlippageTooHigh(bridgeData.minAmountIn, returnToAmount);
 
-                if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData[swapCount].from, _refundee, leftoverFromAmount);
+                bridgeData.minAmountIn = returnToAmount;
 
                 swapInfo[swapCount] = SwapInfo(_swapData[swapCount].callTo, _swapData[swapCount].from, _swapData[swapCount].to, _swapData[swapCount].fromAmount, leftoverFromAmount, returnToAmount);
 
-                ++swapCount;
+                LibFees.accrueTokenFees(_integrator, _swapData[swapCount].from, totalFee - dZapShare, dZapShare);
+
+                if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData[swapCount].from, msg.sender, leftoverFromAmount);
+
+                unchecked {
+                    ++swapCount;
+                }
             } else {
                 // dstSwap or simple swap
-                (totalFee, dZapShare) = LibAsset.deposit(_integrator, FeeType.BRIDGE, bridgeData.from, bridgeData.minAmount, _genericData[i].permit);
-                bridgeData.minAmount -= totalFee;
-                from = bridgeData.from;
+                (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, bridgeData.from, bridgeData.minAmountIn, _genericData[i].permit);
+                bridgeData.minAmountIn -= totalFee;
+                LibFees.accrueTokenFees(_integrator, bridgeData.from, totalFee - dZapShare, dZapShare);
             }
 
-            LibFees.accrueTokenFees(_transactionId, _integrator, FeeType.BRIDGE, from, totalFee - dZapShare, dZapShare);
+            _startBridge(bridgeData, _patchGenericCrossChainData(_genericData[i], bridgeData.minAmountIn));
 
-            _startBridge(bridgeData, _patchGenericCrossChainData(_genericData[i], bridgeData.minAmount));
+            unchecked {
+                ++i;
+            }
         }
 
-        LibFees.accrueFixedNativeFees(_transactionId, _integrator, FeeType.BRIDGE);
+        LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
 
-        emit SwapBridgeTransferStarted(_transactionId, _integrator, msg.sender, _refundee, _bridgeData, swapInfo);
+        emit SwapBridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData, swapInfo);
     }
 
     /* ========= INTERNAL ========= */
@@ -149,9 +150,9 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
         uint256 nativeValue;
 
         if (LibAsset.isNativeToken(_bridgeData.from)) {
-            nativeValue = _bridgeData.minAmount;
+            nativeValue = _bridgeData.minAmountIn;
         } else {
-            LibAsset.approveERC20(_bridgeData.from, _genericData.approveTo, _bridgeData.minAmount);
+            LibAsset.approveERC20(_bridgeData.from, _genericData.approveTo, _bridgeData.minAmountIn);
         }
 
         (bool success, bytes memory res) = _genericData.callTo.call{ value: nativeValue + _genericData.extraNative }(_genericData.callData);
@@ -162,13 +163,12 @@ contract CrossChainFacet is ICrossChainFacet, ReentrancyGuard, Swapper, Validata
     }
 
     function _patchGenericCrossChainData(CrossChainData calldata _genericData, uint256 amount) private view returns (CrossChainData memory) {
-        CrossChainStorage storage sm = LibBridgeStorage.getCrossChainStorage();
-        CallToFunctionInfo memory info = sm.selectorToInfo[_genericData.callTo][bytes4(_genericData.callData[:4])];
+        CallToFunctionInfo memory info = LibBridgeStorage.getCrossChainStorage().selectorToInfo[_genericData.callTo][bytes4(_genericData.callData)];
 
-        if (info.isAvailable) {
-            if (info.offset > 0) {
-                return CrossChainData(_genericData.callTo, _genericData.approveTo, _genericData.extraNative, _genericData.permit, bytes.concat(_genericData.callData[:info.offset], abi.encode(amount), _genericData.callData[info.offset + 32:]));
-            } else return _genericData;
-        } else revert UnAuthorizedCallToFunction();
+        if (!info.isAvailable) revert UnAuthorizedCallToFunction();
+        if (info.offset > 0) {
+            return CrossChainData(_genericData.callTo, _genericData.approveTo, _genericData.extraNative, _genericData.permit, bytes.concat(_genericData.callData[:info.offset], abi.encode(amount), _genericData.callData[info.offset + 32:]));
+        }
+        return _genericData;
     }
 }

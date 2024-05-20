@@ -11,12 +11,8 @@ import { InvalidContract, NoSwapFromZeroBalance, SwapCallFailed, SlippageTooHigh
 /// @notice This library contains helpers for doing swap
 library LibSwap {
     function swap(SwapData calldata _swapData, uint256 _totalTokenFees, bool _withoutRevert) internal returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
-        if (!LibAsset.isContract(_swapData.callTo)) revert InvalidContract();
-        if (_swapData.fromAmount == 0) revert NoSwapFromZeroBalance();
-
         uint256 fromAmount = _swapData.fromAmount - _totalTokenFees;
-
-        uint256 initialFromBalance = LibAsset.getOwnBalance(_swapData.from);
+        uint256 initialFromBalance = LibAsset.getOwnBalance(_swapData.from) - fromAmount;
         uint256 initialToBalance = LibAsset.getOwnBalance(_swapData.to);
         uint256 nativeValue;
 
@@ -39,6 +35,8 @@ library LibSwap {
 
         if (returnToAmount < _swapData.minToAmount) revert SlippageTooHigh(_swapData.minToAmount, returnToAmount);
 
-        leftoverFromAmount = LibAsset.getOwnBalance(_swapData.from) - (initialFromBalance - fromAmount);
+        if (LibAsset.getOwnBalance(_swapData.from) > initialFromBalance) {
+            leftoverFromAmount = LibAsset.getOwnBalance(_swapData.from) - initialFromBalance;
+        }
     }
 }

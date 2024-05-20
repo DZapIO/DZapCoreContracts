@@ -3,7 +3,6 @@
 pragma solidity 0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
-import "../Interfaces/IDAIPermit.sol";
 import "../Interfaces/IPermit2.sol";
 
 struct PermitStorage {
@@ -27,15 +26,12 @@ library LibPermit {
     }
 
     function permit2() internal view returns (address) {
-        PermitStorage storage ps = permitStorage();
-        return ps.permit2;
+        return permitStorage().permit2;
     }
 
     function permit2ApproveAndTransfer(address _from, address _to, uint160 _amount, address _token, bytes memory data) internal {
-        IPermit2 _permit2 = IPermit2(permit2());
-
         permit2Approve(_token, data);
-        _permit2.transferFrom(_from, _to, uint160(_amount), _token);
+        IPermit2(permit2()).transferFrom(_from, _to, uint160(_amount), _token);
     }
 
     function permit2Approve(address _token, bytes memory _data) internal {
@@ -47,21 +43,14 @@ library LibPermit {
     }
 
     function permit2TransferFrom(address _token, bytes memory _data, uint256 amount_) internal {
-        IPermit2 _permit2 = IPermit2(permit2());
-
         (uint256 nonce, uint256 deadline, bytes memory signature) = abi.decode(_data, (uint256, uint256, bytes));
-        _permit2.permitTransferFrom(IPermit2.PermitTransferFrom(IPermit2.TokenPermissions(_token, amount_), nonce, deadline), IPermit2.SignatureTransferDetails(address(this), amount_), msg.sender, signature);
+        IPermit2(permit2()).permitTransferFrom(IPermit2.PermitTransferFrom(IPermit2.TokenPermissions(_token, amount_), nonce, deadline), IPermit2.SignatureTransferDetails(address(this), amount_), msg.sender, signature);
     }
 
     function permit(address _token, bytes memory _data) internal {
-        if (_data.length > 0) {
-            bool success;
-
-            if (_data.length == 32 * 7) (success, ) = _token.call(abi.encodePacked(IERC20Permit.permit.selector, _data));
-            else if (_data.length == 32 * 8) (success, ) = _token.call(abi.encodePacked(IDAIPermit.permit.selector, _data));
-            else revert InvalidPermitData();
-
+        if (_data.length == 32 * 7) {
+            (bool success, ) = _token.call(abi.encodePacked(IERC20Permit.permit.selector, _data));
             if (!success) revert InvalidPermit();
-        }
+        } else revert InvalidPermitData();
     }
 }

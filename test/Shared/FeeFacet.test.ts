@@ -32,6 +32,7 @@ import {
   BridgeMock,
   Executor,
   Receiver,
+  BridgeManagerFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
@@ -60,6 +61,8 @@ let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
 let executor: Executor
 let receiver: Receiver
+let bridgeManagerFacet: BridgeManagerFacet
+let bridgeManagerFacetImp: BridgeManagerFacet
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
@@ -207,6 +210,10 @@ describe('FeeFacet.test.ts', async () => {
         CONTRACTS.CrossChainFacet,
         dZapDiamond.address
       )) as CrossChainFacet
+      bridgeManagerFacet = (await ethers.getContractAt(
+        CONTRACTS.BridgeManagerFacet,
+        dZapDiamond.address
+      )) as BridgeManagerFacet
     }
 
     // -----------------------------------------
@@ -267,6 +274,14 @@ describe('FeeFacet.test.ts', async () => {
         deployer
       )
       crossChainFacetImp = (await CrossChainFacet.deploy()) as CrossChainFacet
+      await crossChainFacetImp.deployed()
+
+      const BridgeManagerFacet = await ethers.getContractFactory(
+        CONTRACTS.BridgeManagerFacet,
+        deployer
+      )
+      bridgeManagerFacetImp =
+        (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
       await crossChainFacetImp.deployed()
     }
 
@@ -338,6 +353,14 @@ describe('FeeFacet.test.ts', async () => {
             CONTRACTS.CrossChainFacet
           ).selectors,
         },
+        {
+          facetAddress: bridgeManagerFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            bridgeManagerFacetImp,
+            CONTRACTS.BridgeManagerFacet
+          ).selectors,
+        },
       ]
 
       const { data: initData } =
@@ -389,8 +412,8 @@ describe('FeeFacet.test.ts', async () => {
 
       const crossChainSelectors = getSighash(
         [
-          crossChainFacet.interface.functions[
-            'updateSelectorInfo(address[],bytes4[],(bool,uint256)[])'
+          bridgeManagerFacet.interface.functions[
+            'updateSelectorInfo(address[],bytes4[],uint256[])'
           ],
         ],
         dexManagerFacet.interface

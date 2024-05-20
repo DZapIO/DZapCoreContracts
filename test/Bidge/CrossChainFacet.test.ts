@@ -134,7 +134,7 @@ const feeInfo2: FeeInfo[] = [
   },
 ]
 
-describe.only('CrossChainFacet.test.ts', async () => {
+describe('CrossChainFacet.test.ts', async () => {
   beforeEach(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]

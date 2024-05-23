@@ -17,9 +17,17 @@ interface IBridgeManagerFacet {
 
     /* ========= EXTERNAL ========= */
 
+    /// @notice Whitelist bridges and aggregators
+    /// @param _bridgeAddresses address of bridges and aggregator to whitelist
     function addAggregatorsAndBridges(address[] calldata _bridgeAddresses) external;
 
+    /// @notice Remove whitelisted bridges and aggregators
+    /// @param _bridgeAddresses address of bridges and aggregator to remove
     function removeAggregatorsAndBridges(address[] calldata _bridgeAddresses) external;
 
+    /// @notice Updates the amount offset of the specific function of the specific provider's router
+    /// @param _bridgeAddresses Array of provider's routers
+    /// @param _selectors Array of function selectors
+    /// @param _offset Array of offsets
     function updateSelectorInfo(address[] calldata _bridgeAddresses, bytes4[] calldata _selectors, uint256[] calldata _offset) external;
 }

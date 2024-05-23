@@ -13,7 +13,13 @@ interface IBridgeDynamicTransferFacet {
 
     /* ========= EXTERNAL ========= */
 
+    /// @notice Bridges tokens via arbitrary cross-chain provider
+    /// @param _bridgeData the core information needed for bridging (support nonEvm addresses)
+    /// @param _transferData contains address to which tokens are to be transferred
     function bridgeViaTransfer(bytes32 _transactionId, address _integrator, GenericBridgeData memory _bridgeData, TransferData calldata _transferData) external payable;
 
+    /// @notice Bridges tokens via arbitrary cross-chain provider
+    /// @param _bridgeData the core information needed for bridging (support nonEvm addresses)
+    /// @param _transferData contains address to which tokens are to be transferred
     function bridgeMultipleTokensViaTransfer(bytes32 _transactionId, address _integrator, GenericBridgeData[] memory _bridgeData, TransferData[] calldata _transferData) external payable;
 }

@@ -18,17 +18,17 @@ interface ICrossChainFacet {
 
     /// @notice Bridges tokens via arbitrary cross-chain provider
     /// @param _bridgeData the core information needed for bridging
-    /// @param _genericData data specific to CrossChainFacet
+    /// @param _genericData contains bridge contract call data
     function bridge(bytes32 _transactionId, address _integrator, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable;
 
     /// @notice Bridges multiple tokens via arbitrary cross-chain provider
     /// @param _bridgeData the core information needed for bridging
-    /// @param _genericData data specific to CrossChainFacet
+    /// @param _genericData contains bridge contract call data
     function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable;
 
     /// @notice Bridges multiple tokens via arbitrary cross-chain provider with swaps on src or dst chain
     /// @param _bridgeData the core information needed for bridging
     /// @param _swapData an array of swap related data for performing swaps before bridging
-    /// @param _genericData data specific to GenericCrossChainFacet
+    /// @param _genericData contains bridge contract call data
     function swapAndBridge(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable;
 }

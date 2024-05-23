@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import { LibDiamond } from "../../Shared/Libraries/LibDiamond.sol";
 import { LibFees } from "../../Shared/Libraries/LibFees.sol";
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibAllowList } from "../../Shared/Libraries/LibAllowList.sol";
@@ -10,18 +9,15 @@ import { ISwapFacet } from "../Interfaces/ISwapFacet.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import { Swapper } from "../../Shared/Helpers/Swapper.sol";
+import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
 
 import { SwapData, SwapInfo, FeeType, FeeInfo } from "../../Shared/Types.sol";
-import { ZeroAddress, SwapCallFailed, SlippageTooHigh, ContractCallNotAllowed, IntegratorNotAllowed, InvalidAmount } from "../../Shared/Errors.sol";
+import { ZeroAddress, SwapCallFailed, SlippageTooHigh, ContractCallNotAllowed, IntegratorNotAllowed, InvalidAmount, AllSwapsFailed } from "../../Shared/Errors.sol";
 
 /// @title Swap Facet
 /// @notice Provides functionality for swapping through ANY APPROVED DEX
 /// @dev Uses calldata to execute APPROVED arbitrary methods on DEXs
-contract SwapFacet is ISwapFacet, Swapper {
-    /* ========= ERROR ========= */
-
-    error AllSwapsFailed();
-
+contract SwapFacet is ISwapFacet, Swapper, RefundNative {
     /* ========= EXTERNAL ========= */
 
     function swap(bytes32 _transactionId, address _integrator, address _recipient, SwapData calldata _data) external payable refundExcessNative(msg.sender) {

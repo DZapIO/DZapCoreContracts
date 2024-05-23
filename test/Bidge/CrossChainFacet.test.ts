@@ -23,6 +23,7 @@ import {
   getFeeData,
   encodePermitData,
   calculateOffset,
+  getRevertMsg,
 } from '../../scripts/core/helper'
 import {
   getSelectorsUsingContract,
@@ -1828,6 +1829,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -1835,10 +1837,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -1846,7 +1848,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         amountWithoutFee[1],
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       // -------------------------------------
@@ -2050,6 +2051,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.sender).equal(user.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -2057,10 +2059,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -2068,7 +2070,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         amountWithoutFee[1],
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       // -------------------------------------
@@ -3127,6 +3128,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // -------------------------------------
       // tokenA
       // tokenA -> tokenB
+
       await expect(
         crossChainFacet
           .connect(user)
@@ -3141,6 +3143,7 @@ describe('CrossChainFacet.test.ts', async () => {
             }
           )
       ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+
       // .changeTokenBalances(
       //   tokenA,
       //   [user, refundee, recipient, protoFeeVault, integrator1, mockBridge],
@@ -3192,6 +3195,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -3199,10 +3203,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -3210,7 +3214,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         swapReturnAmount,
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([
@@ -3448,6 +3451,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -3455,10 +3459,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -3466,7 +3470,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         amountWithoutFee[1],
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo).eql([])
@@ -3696,6 +3699,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -3703,10 +3707,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -3714,7 +3718,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         swapReturnAmount,
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([
@@ -3949,6 +3952,7 @@ describe('CrossChainFacet.test.ts', async () => {
       // expect(args.refundee).equal(refundee.address)
 
       expect(args.bridgeData[0]).eql([
+        bridgeData[0].bridge,
         bridgeData[0].from,
         bridgeData[0].to,
         bridgeData[0].receiver,
@@ -3956,10 +3960,10 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[0].hasDestinationCall,
         amountWithoutFee[0],
         BigNumber.from(bridgeData[0].destinationChainId),
-        bridgeData[0].bridge,
       ])
 
       expect(args.bridgeData[1]).eql([
+        bridgeData[1].bridge,
         bridgeData[1].from,
         bridgeData[1].to,
         bridgeData[1].receiver,
@@ -3967,7 +3971,6 @@ describe('CrossChainFacet.test.ts', async () => {
         bridgeData[1].hasDestinationCall,
         swapReturnAmount,
         BigNumber.from(bridgeData[1].destinationChainId),
-        bridgeData[1].bridge,
       ])
 
       expect(args.swapInfo[0]).eql([

@@ -1,0 +1,10 @@
+[
+  "event BridgeAdded(address[] bridges)",
+  "event BridgeRemoved(address[] bridges)",
+  "event SelectorToInfoUpdated(address[] bridges, bytes4[] selectors, uint256[] info)",
+  "function addAggregatorsAndBridges(address[] _bridgeAddresses)",
+  "function getSelectorInfo(address _bridge, bytes4 _selector) view returns (bool, uint256)",
+  "function isWhitelisted(address _bridge) view returns (bool)",
+  "function removeAggregatorsAndBridges(address[] _bridgeAddresses)",
+  "function updateSelectorInfo(address[] _bridgeAddresses, bytes4[] _selectors, uint256[] _offset)"
+]

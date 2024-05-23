@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+import { LibAsset } from "../Libraries/LibAsset.sol";
+
 import { SwapData } from "../Types.sol";
 
-import { LibAsset } from "../Libraries/LibAsset.sol";
-import { LibUtil } from "../Libraries/LibUtil.sol";
-import { InvalidContract, NoSwapFromZeroBalance, SwapCallFailed, SlippageTooHigh } from "../Errors.sol";
+import { SwapCallFailed, SlippageTooHigh } from "../Errors.sol";
 
 /// @title LibPermit
 /// @notice This library contains helpers for doing swap

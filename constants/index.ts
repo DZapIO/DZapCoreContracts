@@ -23,6 +23,9 @@ export const CONTRACTS = {
   Executor: 'Executor',
   Receiver: 'Receiver',
   BridgeManagerFacet: 'BridgeManagerFacet',
+  BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
+  GenericCrossChainFacet: 'GenericCrossChainFacet',
+  BatchBridgeCallFacet: 'BatchBridgeCallFacet',
 }
 
 export const ERRORS = {
@@ -74,6 +77,7 @@ export const EVENTS = {
   TokenSwapped: 'TokenSwapped',
   BridgeAdded: 'BridgeAdded',
   BridgeRemoved: 'BridgeRemoved',
+  BatchBridgeTransferStart: 'BatchBridgeTransferStart',
 }
 
 export const BPS_MULTIPLIER = 10000

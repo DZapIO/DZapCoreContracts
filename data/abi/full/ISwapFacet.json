@@ -23,12 +23,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "recipient",
         "type": "address"
       },
@@ -98,12 +92,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "recipient",
         "type": "address"
       },
@@ -159,11 +147,6 @@
       {
         "internalType": "address",
         "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_refundee",
         "type": "address"
       },
       {
@@ -238,11 +221,6 @@
       },
       {
         "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
         "name": "_recipient",
         "type": "address"
       },
@@ -309,11 +287,6 @@
       {
         "internalType": "address",
         "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_refundee",
         "type": "address"
       },
       {

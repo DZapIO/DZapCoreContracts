@@ -4,15 +4,12 @@ pragma solidity 0.8.19;
 import { LibAccess } from "../../Shared/Libraries/LibAccess.sol";
 import { LibDiamond } from "../../Shared/Libraries/LibDiamond.sol";
 import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
+import { IBridgeManagerFacet } from "../Interfaces/IBridgeManagerFacet.sol";
 
 import { CrossChainStorage, CrossChainAllowedList } from "../Types.sol";
 import { CannotAuthorizeSelf, BridgeNotAdded } from "../../Shared/Errors.sol";
 
-contract BridgeManagerFacet {
-    event BridgeAdded(address[] bridges);
-    event BridgeRemoved(address[] bridges);
-    event SelectorToInfoUpdated(address[] bridges, bytes4[] selectors, uint256[] info);
-
+contract BridgeManagerFacet is IBridgeManagerFacet {
     /* ========= MODIFIER ========= */
 
     modifier onlyAuthorized() {
@@ -22,11 +19,11 @@ contract BridgeManagerFacet {
 
     /* ========= VIEWS ========= */
 
-    function isWhitelisted(address _bridge) public view returns (bool) {
+    function isWhitelisted(address _bridge) external view returns (bool) {
         return LibBridgeStorage.getCrossChainStorage().allowlist[_bridge].isWhitelisted;
     }
 
-    function getSelectorInfo(address _bridge, bytes4 _selector) public view returns (bool, uint256) {
+    function getSelectorInfo(address _bridge, bytes4 _selector) external view returns (bool, uint256) {
         CrossChainAllowedList storage storageInfo = LibBridgeStorage.getCrossChainStorage().allowlist[_bridge];
 
         return (storageInfo.isWhitelisted, storageInfo.selectorToInfo[_selector]);

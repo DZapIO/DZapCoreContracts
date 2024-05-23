@@ -21,12 +21,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -49,16 +43,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -67,6 +51,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
@@ -100,12 +94,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -128,16 +116,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -146,6 +124,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
@@ -155,43 +143,6 @@
       }
     ],
     "name": "MultiTokenBridgeTransferStarted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "routers",
-        "type": "address[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes4[]",
-        "name": "selectors",
-        "type": "bytes4[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "indexed": false,
-        "internalType": "struct CallToFunctionInfo[]",
-        "name": "info",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "SelectorToInfoUpdated",
     "type": "event"
   },
   {
@@ -216,12 +167,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -244,16 +189,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -262,6 +197,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
@@ -324,11 +269,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -351,16 +291,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -369,6 +299,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "internalType": "struct BridgeData",
@@ -426,11 +366,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -453,16 +388,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -471,6 +396,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "internalType": "struct BridgeData[]",
@@ -518,42 +453,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_router",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes4",
-        "name": "_selector",
-        "type": "bytes4"
-      }
-    ],
-    "name": "getSelectorInfo",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct CallToFunctionInfo",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "bytes32",
         "name": "_transactionId",
         "type": "bytes32"
@@ -561,11 +460,6 @@
       {
         "internalType": "address",
         "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_refundee",
         "type": "address"
       },
       {
@@ -591,16 +485,6 @@
             "type": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          },
-          {
             "internalType": "bool",
             "name": "hasSourceSwaps",
             "type": "bool"
@@ -609,6 +493,16 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "internalType": "struct BridgeData[]",
@@ -698,41 +592,6 @@
     "name": "swapAndBridge",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address[]",
-        "name": "_routers",
-        "type": "address[]"
-      },
-      {
-        "internalType": "bytes4[]",
-        "name": "_selectors",
-        "type": "bytes4[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct CallToFunctionInfo[]",
-        "name": "_infos",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "updateSelectorInfo",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

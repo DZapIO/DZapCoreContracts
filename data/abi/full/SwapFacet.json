@@ -79,22 +79,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "leftOverAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "PartialSwap",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "ReentrancyError",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "minAmount",
         "type": "uint256"
       },
@@ -142,12 +126,6 @@
         "indexed": true,
         "internalType": "address",
         "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
         "type": "address"
       },
       {
@@ -222,12 +200,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "recipient",
         "type": "address"
       },
@@ -274,61 +246,6 @@
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "bytes32",
-        "name": "transactionId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "dex",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "fromAssetId",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "toAssetId",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "fromAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "toAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "leftoverFromAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "SwappedTokens",
-    "type": "event"
-  },
-  {
     "inputs": [
       {
         "internalType": "bytes32",
@@ -338,11 +255,6 @@
       {
         "internalType": "address",
         "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_refundee",
         "type": "address"
       },
       {
@@ -417,11 +329,6 @@
       },
       {
         "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
         "name": "_recipient",
         "type": "address"
       },
@@ -488,11 +395,6 @@
       {
         "internalType": "address",
         "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_refundee",
         "type": "address"
       },
       {

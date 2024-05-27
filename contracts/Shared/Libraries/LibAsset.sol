@@ -62,7 +62,7 @@ library LibAsset {
     ///         some recipient. Should handle all non-compliant return value
     ///         tokens as well by using the SafeERC20 contract by open zeppelin.
     function transferToken(address _token, address _recipient, uint256 _amount) internal {
-        if (_amount > 0) {
+        if (_amount != 0) {
             if (_token == _NATIVE_TOKEN) transferNativeToken(_recipient, _amount);
             else transferERC20(_token, _recipient, _amount);
         }
@@ -75,7 +75,7 @@ library LibAsset {
         if (permitType == PermitType.PERMIT2_APPROVE) {
             LibPermit.permit2ApproveAndTransfer(_from, _to, uint160(_amount), _token, data);
         } else if (permitType == PermitType.PERMIT) {
-            if (data.length > 0) LibPermit.permit(_token, data);
+            if (data.length != 0) LibPermit.permit(_token, data);
             transferFromERC20(_token, _from, _to, _amount);
         } else {
             LibPermit.permit2TransferFrom(_token, data, _amount);
@@ -110,7 +110,7 @@ library LibAsset {
         assembly {
             size := extcodesize(_contractAddr)
         }
-        return size > 0;
+        return size != 0;
     }
 
     /* ========= INTERNAL ========= */

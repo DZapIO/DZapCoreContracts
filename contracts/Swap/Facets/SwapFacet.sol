@@ -3,10 +3,8 @@ pragma solidity 0.8.19;
 
 import { LibFees } from "../../Shared/Libraries/LibFees.sol";
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
-import { LibAllowList } from "../../Shared/Libraries/LibAllowList.sol";
 
 import { ISwapFacet } from "../Interfaces/ISwapFacet.sol";
-import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import { Swapper } from "../../Shared/Helpers/Swapper.sol";
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
@@ -30,7 +28,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         LibFees.accrueFixedNativeFees(_integrator, FeeType.SWAP);
         LibFees.accrueTokenFees(_integrator, _data.from, totalFee - dZapShare, dZapShare);
 
-        if (leftoverFromAmount > 0 && !LibAsset.isNativeToken(_data.from)) LibAsset.transferERC20(_data.from, msg.sender, leftoverFromAmount);
+        if (leftoverFromAmount != 0 && !LibAsset.isNativeToken(_data.from)) LibAsset.transferERC20(_data.from, msg.sender, leftoverFromAmount);
         LibAsset.transferToken(_data.to, _recipient, returnToAmount);
 
         emit Swapped(_transactionId, _integrator, msg.sender, _recipient, SwapInfo(_data.callTo, _data.from, _data.to, _data.fromAmount, leftoverFromAmount, returnToAmount));
@@ -43,17 +41,20 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         SwapInfo[] memory swapInfo = new SwapInfo[](length);
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.SWAP);
 
-        for (uint256 i = 0; i < length; ++i) {
+        for (uint256 i = 0; i < length; ) {
             (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, _data[i]);
             (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(_data[i], totalFee, false);
 
             LibFees.accrueTokenFees(_integrator, _data[i].from, totalFee - dZapShare, dZapShare);
 
-            if (leftoverFromAmount > 0 && !LibAsset.isNativeToken(_data[i].from)) LibAsset.transferToken(_data[i].from, msg.sender, leftoverFromAmount);
+            if (leftoverFromAmount != 0 && !LibAsset.isNativeToken(_data[i].from)) LibAsset.transferToken(_data[i].from, msg.sender, leftoverFromAmount);
 
             LibAsset.transferToken(_data[i].to, _recipient, returnToAmount);
 
             swapInfo[i] = SwapInfo(_data[i].callTo, _data[i].from, _data[i].to, _data[i].fromAmount, leftoverFromAmount, returnToAmount);
+            unchecked {
+                ++i;
+            }
         }
 
         LibFees.accrueFixedNativeFees(_integrator, FeeType.SWAP);
@@ -83,7 +84,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
             } else {
                 LibFees.accrueTokenFees(_integrator, _data[i].from, totalFee - dZapShare, dZapShare);
 
-                if (leftoverFromAmount > 0 && !LibAsset.isNativeToken(_data[i].from)) LibAsset.transferToken(_data[i].from, msg.sender, leftoverFromAmount);
+                if (leftoverFromAmount != 0 && !LibAsset.isNativeToken(_data[i].from)) LibAsset.transferToken(_data[i].from, msg.sender, leftoverFromAmount);
                 LibAsset.transferToken(_data[i].to, _recipient, returnToAmount);
 
                 swapInfo[i] = SwapInfo(_data[i].callTo, _data[i].from, _data[i].to, _data[i].fromAmount, leftoverFromAmount, returnToAmount);

@@ -68,7 +68,7 @@ library LibBridge {
 
         LibFees.accrueTokenFees(_integrator, _swapData.from, totalFee - dZapShare, dZapShare);
 
-        if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData.from, msg.sender, leftoverFromAmount);
+        if (leftoverFromAmount != 0) LibAsset.transferToken(_swapData.from, msg.sender, leftoverFromAmount);
 
         _startBridge(_bridgeData.from, _bridgeData.minAmountIn, _patchGenericCrossChainData(_crossChainData, _bridgeData.minAmountIn));
 
@@ -109,7 +109,7 @@ library LibBridge {
         uint256 offset = bridgeInfo.selectorToInfo[funSig];
 
         if (bridgeInfo.isWhitelisted) {
-            if (offset > 0) {
+            if (offset != 0) {
                 return CrossChainData(_crossChainData.callTo, _crossChainData.approveTo, _crossChainData.extraNative, _crossChainData.permit, bytes.concat(_crossChainData.callData[:offset], abi.encode(amount), _crossChainData.callData[offset + 32:]));
             } else return _crossChainData;
         } else revert UnAuthorizedCall(_crossChainData.callTo);

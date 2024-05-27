@@ -4,13 +4,13 @@ pragma solidity 0.8.19;
 import { IDexManagerFacet } from "../Shared/Interfaces/IDexManagerFacet.sol";
 
 import { SwapData } from "../Shared/Types.sol";
-import { LibAsset, IERC20 } from "../Shared/Libraries/LibAsset.sol";
+import { LibAsset } from "../Shared/Libraries/LibAsset.sol";
 import { LibBytes } from "../Shared/Libraries/LibBytes.sol";
 import { LibSwap } from "../Shared/Libraries/LibSwap.sol";
 import { ReentrancyGuard } from "../Shared/Helpers/ReentrancyGuard.sol";
 
 import { IExecutor } from "../Shared/Interfaces/IExecutor.sol";
-import { ContractCallNotAllowed, ZeroAddress, SlippageTooHigh } from "../Shared/Errors.sol";
+import { ContractCallNotAllowed, ZeroAddress } from "../Shared/Errors.sol";
 
 /// @title Executor
 /// @notice Arbitrary execution contract used for cross-chain swaps and message passing
@@ -52,8 +52,8 @@ contract Executor is IExecutor, ReentrancyGuard {
 
         (uint256 leftoverFromAmount, uint256 returnToAmount) = _executeSwaps(_swapData);
 
-        if (leftoverFromAmount > 0) LibAsset.transferToken(_swapData.from, _receiver, leftoverFromAmount);
-        if (returnToAmount > 0) LibAsset.transferToken(_swapData.to, _receiver, returnToAmount);
+        if (leftoverFromAmount != 0) LibAsset.transferToken(_swapData.from, _receiver, leftoverFromAmount);
+        if (returnToAmount != 0) LibAsset.transferToken(_swapData.to, _receiver, returnToAmount);
 
         emit TokenSwapped(_transactionId, _swapData.callTo, _receiver, _swapData.from, _swapData.to, _swapData.fromAmount, returnToAmount, leftoverFromAmount, block.timestamp);
     }

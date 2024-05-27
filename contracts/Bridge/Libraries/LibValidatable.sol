@@ -5,9 +5,9 @@ import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibUtil } from "../../Shared/Libraries/LibUtil.sol";
 import { LibAllowList } from "../../Shared/Libraries/LibAllowList.sol";
 
-import { InvalidReceiver, InformationMismatch, InvalidSendingToken, InvalidAmount, NativeTokenNotSupported, InvalidDestinationChain, CannotBridgeToSameNetwork, NotAContract, InvalidContract, InvalidLength, ContractCallNotAllowed, NoSwapFromZeroBalance } from "../../Shared/Errors.sol";
+import { InvalidReceiver, InformationMismatch, CannotBridgeToSameNetwork, InvalidAmount, NotAContract, InvalidContract, InvalidLength, ContractCallNotAllowed, NoSwapFromZeroBalance } from "../../Shared/Errors.sol";
 
-import { CrossChainData, BridgeData, GenericBridgeData } from "../Types.sol";
+import { BridgeData, GenericBridgeData } from "../Types.sol";
 import { SwapData } from "../../Shared/Types.sol";
 
 library LibValidatable {

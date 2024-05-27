@@ -6,11 +6,13 @@ import { LibAccess } from "../Libraries/LibAccess.sol";
 import { LibAsset } from "../Libraries/LibAsset.sol";
 import { IWithdrawFacet } from "../Interfaces/IWithdrawFacet.sol";
 
+import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
+
 import { NotAContract, NoTransferToNullAddress } from "../Errors.sol";
 
 /// @title Withdraw Facet
 /// @notice Provides functionality for withdrawing assets
-contract WithdrawFacet is IWithdrawFacet {
+contract WithdrawFacet is IWithdrawFacet, ReentrancyGuard {
     error WithdrawFailed();
 
     /* ========= MODIFIER ========= */
@@ -25,7 +27,7 @@ contract WithdrawFacet is IWithdrawFacet {
     /* ========= EXTERNAL ========= */
 
     /// @inheritdoc IWithdrawFacet
-    function executeCallAndWithdraw(address payable _callTo, bytes calldata _callData, address _token, address _to, uint256 _amount) external onlyAuthorized {
+    function executeCallAndWithdraw(address payable _callTo, bytes calldata _callData, address _token, address _to, uint256 _amount) external onlyAuthorized nonReentrant {
         // Check if the _callTo is a contract
         bool success;
         bool isContract = LibAsset.isContract(_callTo);

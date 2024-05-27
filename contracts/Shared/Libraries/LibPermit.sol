@@ -36,7 +36,7 @@ library LibPermit {
 
     function permit2Approve(address _token, bytes memory _data) internal {
         IPermit2 _permit2 = IPermit2(permit2());
-        if (_data.length > 0) {
+        if (_data.length != 0) {
             (uint160 allowanceAmount, uint48 nonce, uint48 expiration, uint256 sigDeadline, bytes memory signature) = abi.decode(_data, (uint160, uint48, uint48, uint256, bytes));
             _permit2.permit(msg.sender, IPermit2.PermitSingle(IPermit2.PermitDetails(_token, allowanceAmount, expiration, nonce), address(this), sigDeadline), signature);
         }

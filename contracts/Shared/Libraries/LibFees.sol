@@ -37,27 +37,27 @@ library LibFees {
         FeeInfo memory feeInfo = fs.integratorInfo[_integrator].feeInfo[_feeType];
         uint256 fixedNativeFeeAmount = feeInfo.fixedNativeFeeAmount;
 
-        if (fixedNativeFeeAmount > 0) {
+        if (fixedNativeFeeAmount != 0) {
             uint256 dzapShare = (fixedNativeFeeAmount * feeInfo.dzapFixedNativeShare) / _BPS_DENOMINATOR;
             if (fixedNativeFeeAmount > dzapShare) LibAsset.transferNativeToken(_integrator, fixedNativeFeeAmount - dzapShare);
-            if (dzapShare > 0) LibAsset.transferNativeToken(fs.protocolFeeVault, dzapShare);
+            if (dzapShare != 0) LibAsset.transferNativeToken(fs.protocolFeeVault, dzapShare);
         }
     }
 
     function accrueTokenFees(address _integrator, address _token, uint256 _integratorFee, uint256 _dZapFee) internal {
-        if (_integratorFee > 0) LibAsset.transferToken(_token, _integrator, _integratorFee);
-        if (_dZapFee > 0) LibAsset.transferToken(_token, feesStorage().protocolFeeVault, _dZapFee);
+        if (_integratorFee != 0) LibAsset.transferToken(_token, _integrator, _integratorFee);
+        if (_dZapFee != 0) LibAsset.transferToken(_token, feesStorage().protocolFeeVault, _dZapFee);
     }
 
     function calcFixedNativeFees(FeeType _feeType, address _integrator) internal view returns (uint256 fixedNativeFeeAmount, uint256 dzapShare) {
         FeeInfo memory feeInfo = feesStorage().integratorInfo[_integrator].feeInfo[_feeType];
 
         fixedNativeFeeAmount = feeInfo.fixedNativeFeeAmount;
-        if (fixedNativeFeeAmount > 0) dzapShare = (fixedNativeFeeAmount * feeInfo.dzapFixedNativeShare) / _BPS_DENOMINATOR;
+        if (fixedNativeFeeAmount != 0) dzapShare = (fixedNativeFeeAmount * feeInfo.dzapFixedNativeShare) / _BPS_DENOMINATOR;
     }
 
     function calculateTokenFees(uint256 _amountWithFee, FeeInfo memory _feeInfo) internal pure returns (uint256 totalFee, uint256 dZapShare) {
-        if (_feeInfo.tokenFee > 0) {
+        if (_feeInfo.tokenFee != 0) {
             totalFee = FullMath.mulDiv(_amountWithFee, _feeInfo.tokenFee, _BPS_DENOMINATOR);
 
             dZapShare = FullMath.mulDiv(totalFee, _feeInfo.dzapTokenShare, _BPS_DENOMINATOR);

@@ -14,33 +14,22 @@ import { GenericBridgeData, CrossChainData, BridgeData, TransferData } from "../
 /// @title BatchBridgeCallFacet Facet
 /// @notice Batches multiple bridge facets
 contract BatchBridgeCallFacet is IBatchBridgeCallFacet, RefundNative {
-    function batchBridgeCall(bytes32 _transactionId, address _integrator, CrossChainData[] calldata _crossChainData, BridgeData[] memory _bridgeData, GenericBridgeData[] memory _genericBridgeData, TransferData[] calldata _transferData) external payable refundExcessNative(msg.sender) {
+    function batchBridgeCall(bytes32 _transactionId, address _integrator, CrossChainData[] calldata _crossChainData, GenericBridgeData[] memory _bridgeData, TransferData[] calldata _transferData) external payable refundExcessNative(msg.sender) {
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
-        uint256 length = _bridgeData.length;
-        uint256 count;
+        uint256 length = _crossChainData.length;
+        uint256 i;
 
-        for (uint256 i; i < length; ) {
-            LibBridge.bridge(_integrator, feeInfo, _bridgeData[i], _crossChainData[count]);
-
-            unchecked {
-                ++i;
-                ++count;
-            }
-        }
-
-        uint256 j = _crossChainData.length - length;
-        for (uint256 i; i < j; ) {
-            LibBridge.genericBridge(_integrator, feeInfo, _genericBridgeData[i], _crossChainData[count]);
+        for (i; i < length; ) {
+            LibBridge.bridge(_integrator, feeInfo, _bridgeData[i], _crossChainData[i]);
 
             unchecked {
                 ++i;
-                ++count;
             }
         }
 
         length = _transferData.length;
-        for (uint256 i; i < length; ) {
-            LibBridge.transferBridge(_integrator, feeInfo, _genericBridgeData[j], _transferData[i]);
+        for (uint256 j; j < length; ) {
+            LibBridge.transferBridge(_integrator, feeInfo, _bridgeData[i], _transferData[j]);
 
             unchecked {
                 ++i;
@@ -49,7 +38,6 @@ contract BatchBridgeCallFacet is IBatchBridgeCallFacet, RefundNative {
         }
 
         LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
-
-        emit BatchBridgeTransferStart(_transactionId, _integrator, msg.sender, _bridgeData, _genericBridgeData);
+        emit BatchBridgeTransferStart(_transactionId, _integrator, msg.sender, _bridgeData);
     }
 }

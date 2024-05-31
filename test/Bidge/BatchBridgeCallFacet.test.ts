@@ -38,7 +38,6 @@ import {
   ExchangeMock,
   Executor,
   FeesFacet,
-  GenericCrossChainFacet,
   OwnershipFacet,
   Permit2,
   Receiver,
@@ -77,8 +76,6 @@ let receiver: Receiver
 let bridgeManagerFacet: BridgeManagerFacet
 let bridgeDynamicTransferFacet: BridgeDynamicTransferFacet
 let bridgeDynamicTransferFacetImp: BridgeDynamicTransferFacet
-let genericCrossChainFacet: GenericCrossChainFacet
-let genericCrossChainFacetImp: GenericCrossChainFacet
 let batchBridgeCallFacet: BatchBridgeCallFacet
 let batchBridgeCallFacetImp: BatchBridgeCallFacet
 
@@ -134,6 +131,23 @@ const feeInfo2: FeeInfo[] = [
     dzapFixedNativeShare: BigNumber.from(50 * BPS_MULTIPLIER),
   },
 ]
+
+const validateMultiBridgeEventData = (
+  eventBridgeData,
+  bridgeData,
+  minAmountIn
+) => {
+  expect(eventBridgeData[0]).equal(bridgeData.bridge)
+  expect(ethers.utils.getAddress(eventBridgeData[1])).equal(bridgeData.to)
+  expect(ethers.utils.getAddress(eventBridgeData[2])).equal(bridgeData.receiver)
+  expect(ethers.utils.getAddress(eventBridgeData[3])).equal(bridgeData.from)
+  expect(eventBridgeData[4]).equal(bridgeData.hasSourceSwaps)
+  expect(eventBridgeData[5]).equal(bridgeData.hasDestinationCall)
+  expect(eventBridgeData[6]).equal(minAmountIn)
+  expect(eventBridgeData[7]).equal(
+    BigNumber.from(bridgeData.destinationChainId)
+  )
+}
 
 describe('BatchBridgeCallFacet.test.ts', async () => {
   beforeEach(async () => {
@@ -266,10 +280,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
         CONTRACTS.BridgeDynamicTransferFacet,
         dZapDiamond.address
       )) as BridgeDynamicTransferFacet
-      genericCrossChainFacet = (await ethers.getContractAt(
-        CONTRACTS.GenericCrossChainFacet,
-        dZapDiamond.address
-      )) as GenericCrossChainFacet
       batchBridgeCallFacet = (await ethers.getContractAt(
         CONTRACTS.BatchBridgeCallFacet,
         dZapDiamond.address
@@ -343,14 +353,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       bridgeManagerFacetImp =
         (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
       await bridgeManagerFacetImp.deployed()
-
-      const GenericCrossChainFacet = await ethers.getContractFactory(
-        CONTRACTS.GenericCrossChainFacet,
-        deployer
-      )
-      genericCrossChainFacetImp =
-        (await GenericCrossChainFacet.deploy()) as GenericCrossChainFacet
-      await genericCrossChainFacetImp.deployed()
 
       const BridgeDynamicTransferFacet = await ethers.getContractFactory(
         CONTRACTS.BridgeDynamicTransferFacet,
@@ -443,14 +445,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           functionSelectors: getSelectorsUsingContract(
             bridgeManagerFacetImp,
             CONTRACTS.BridgeManagerFacet
-          ).selectors,
-        },
-        {
-          facetAddress: genericCrossChainFacetImp.address,
-          action: FacetCutAction.Add,
-          functionSelectors: getSelectorsUsingContract(
-            genericCrossChainFacetImp,
-            CONTRACTS.GenericCrossChainFacet
           ).selectors,
         },
         {
@@ -767,7 +761,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             [crossChainData1, crossChainData2, crossChainData3],
             [bridgeData1, bridgeData2, bridgeData3],
             [],
-            [],
             {
               value,
             }
@@ -799,40 +792,22 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
       expect(args.bridgeData.length).eql(3)
-      expect(args.genericBridgeData.length).eql(0)
 
-      expect(args.bridgeData[0]).eql([
-        bridgeData1.bridge,
-        bridgeData1.from,
-        bridgeData1.to,
-        bridgeData1.receiver,
-        bridgeData1.hasSourceSwaps,
-        bridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        bridgeData1.destinationChainId,
-      ])
-
-      expect(args.bridgeData[1]).eql([
-        bridgeData2.bridge,
-        bridgeData2.from,
-        bridgeData2.to,
-        bridgeData2.receiver,
-        bridgeData2.hasSourceSwaps,
-        bridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        bridgeData2.destinationChainId,
-      ])
-
-      expect(args.bridgeData[2]).eql([
-        bridgeData3.bridge,
-        bridgeData3.from,
-        bridgeData3.to,
-        bridgeData3.receiver,
-        bridgeData3.hasSourceSwaps,
-        bridgeData3.hasDestinationCall,
-        amountWithoutFee[2],
-        bridgeData3.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData2,
+        amountWithoutFee[1]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[2],
+        bridgeData3,
+        amountWithoutFee[2]
+      )
 
       // -------------------------------------
 
@@ -988,7 +963,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             transactionId,
             integratorAddress,
             [genericCrossChainData1, genericCrossChainData2],
-            [],
             [genericBridgeData1, genericBridgeData2],
             [],
             {
@@ -1016,30 +990,18 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(0)
-      expect(args.genericBridgeData.length).eql(2)
+      expect(args.bridgeData.length).eql(2)
 
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeData1.bridge,
-        ethers.utils.getAddress(genericBridgeData1.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData1.receiver).toLowerCase(),
-        genericBridgeData1.from,
-        genericBridgeData1.hasSourceSwaps,
-        genericBridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        genericBridgeData1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeData2.bridge,
-        ethers.utils.getAddress(genericBridgeData2.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData2.receiver).toLowerCase(),
-        genericBridgeData2.from,
-        genericBridgeData2.hasSourceSwaps,
-        genericBridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        genericBridgeData2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        genericBridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        genericBridgeData2,
+        amountWithoutFee[1]
+      )
 
       // -------------------------------------
 
@@ -1311,8 +1273,13 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
               genericCrossChainData1,
               genericCrossChainData2,
             ],
-            [bridgeData1, bridgeData2, bridgeData3],
-            [genericBridgeData1, genericBridgeData2],
+            [
+              bridgeData1,
+              bridgeData2,
+              bridgeData3,
+              genericBridgeData1,
+              genericBridgeData2,
+            ],
             [],
             {
               value,
@@ -1348,63 +1315,35 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(3)
-      expect(args.genericBridgeData.length).eql(2)
+      expect(args.bridgeData.length).eql(5)
 
-      expect(args.bridgeData[0]).eql([
-        bridgeData1.bridge,
-        bridgeData1.from,
-        bridgeData1.to,
-        bridgeData1.receiver,
-        bridgeData1.hasSourceSwaps,
-        bridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        bridgeData1.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData2,
+        amountWithoutFee[1]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[2],
+        bridgeData3,
+        amountWithoutFee[2]
+      )
 
-      expect(args.bridgeData[1]).eql([
-        bridgeData2.bridge,
-        bridgeData2.from,
-        bridgeData2.to,
-        bridgeData2.receiver,
-        bridgeData2.hasSourceSwaps,
-        bridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        bridgeData2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[3],
+        genericBridgeData1,
+        amountWithoutFee[3]
+      )
 
-      expect(args.bridgeData[2]).eql([
-        bridgeData3.bridge,
-        bridgeData3.from,
-        bridgeData3.to,
-        bridgeData3.receiver,
-        bridgeData3.hasSourceSwaps,
-        bridgeData3.hasDestinationCall,
-        amountWithoutFee[2],
-        bridgeData3.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeData1.bridge,
-        ethers.utils.getAddress(genericBridgeData1.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData1.receiver).toLowerCase(),
-        genericBridgeData1.from,
-        genericBridgeData1.hasSourceSwaps,
-        genericBridgeData1.hasDestinationCall,
-        amountWithoutFee[3],
-        genericBridgeData1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeData2.bridge,
-        ethers.utils.getAddress(genericBridgeData2.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData2.receiver).toLowerCase(),
-        genericBridgeData2.from,
-        genericBridgeData2.hasSourceSwaps,
-        genericBridgeData2.hasDestinationCall,
-        amountWithoutFee[4],
-        genericBridgeData2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[4],
+        genericBridgeData2,
+        amountWithoutFee[4]
+      )
 
       // -------------------------------------
 
@@ -1551,7 +1490,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             transactionId,
             integratorAddress,
             [],
-            [],
             [genericBridgeDataForTransfer1, genericBridgeDataForTransfer2],
             [transferData1, transferData2],
             {
@@ -1579,34 +1517,18 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(0)
-      expect(args.genericBridgeData.length).eql(2)
+      expect(args.bridgeData.length).eql(2)
 
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeDataForTransfer1.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer1.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer1.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer1.from,
-        genericBridgeDataForTransfer1.hasSourceSwaps,
-        genericBridgeDataForTransfer1.hasDestinationCall,
-        amountWithoutFee[0],
-        genericBridgeDataForTransfer1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeDataForTransfer2.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer2.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer2.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer2.from,
-        genericBridgeDataForTransfer2.hasSourceSwaps,
-        genericBridgeDataForTransfer2.hasDestinationCall,
-        amountWithoutFee[1],
-        genericBridgeDataForTransfer2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        genericBridgeDataForTransfer1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        genericBridgeDataForTransfer2,
+        amountWithoutFee[1]
+      )
 
       // -------------------------------------
 
@@ -1836,8 +1758,13 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             transactionId,
             integratorAddress,
             [crossChainData1, crossChainData2, crossChainData3],
-            [bridgeData1, bridgeData2, bridgeData3],
-            [genericBridgeDataForTransfer1, genericBridgeDataForTransfer2],
+            [
+              bridgeData1,
+              bridgeData2,
+              bridgeData3,
+              genericBridgeDataForTransfer1,
+              genericBridgeDataForTransfer2,
+            ],
             [transferData1, transferData2],
             {
               value,
@@ -1880,67 +1807,33 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(3)
-      expect(args.genericBridgeData.length).eql(2)
+      expect(args.bridgeData.length).eql(5)
 
-      expect(args.bridgeData[0]).eql([
-        bridgeData1.bridge,
-        bridgeData1.from,
-        bridgeData1.to,
-        bridgeData1.receiver,
-        bridgeData1.hasSourceSwaps,
-        bridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        bridgeData1.destinationChainId,
-      ])
-
-      expect(args.bridgeData[1]).eql([
-        bridgeData2.bridge,
-        bridgeData2.from,
-        bridgeData2.to,
-        bridgeData2.receiver,
-        bridgeData2.hasSourceSwaps,
-        bridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        bridgeData2.destinationChainId,
-      ])
-
-      expect(args.bridgeData[2]).eql([
-        bridgeData3.bridge,
-        bridgeData3.from,
-        bridgeData3.to,
-        bridgeData3.receiver,
-        bridgeData3.hasSourceSwaps,
-        bridgeData3.hasDestinationCall,
-        amountWithoutFee[2],
-        bridgeData3.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeDataForTransfer1.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer1.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer1.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer1.from,
-        genericBridgeDataForTransfer1.hasSourceSwaps,
-        genericBridgeDataForTransfer1.hasDestinationCall,
-        amountWithoutFee[3],
-        genericBridgeDataForTransfer1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeDataForTransfer2.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer2.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer2.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer2.from,
-        genericBridgeDataForTransfer2.hasSourceSwaps,
-        genericBridgeDataForTransfer2.hasDestinationCall,
-        amountWithoutFee[4],
-        genericBridgeDataForTransfer2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData2,
+        amountWithoutFee[1]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[2],
+        bridgeData3,
+        amountWithoutFee[2]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[3],
+        genericBridgeDataForTransfer1,
+        amountWithoutFee[3]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[4],
+        genericBridgeDataForTransfer2,
+        amountWithoutFee[4]
+      )
 
       // -------------------------------------
 
@@ -2167,7 +2060,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             transactionId,
             integratorAddress,
             [genericCrossChainData1, genericCrossChainData2],
-            [],
             [
               genericBridgeData1,
               genericBridgeData2,
@@ -2210,56 +2102,29 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(0)
-      expect(args.genericBridgeData.length).eql(4)
+      expect(args.bridgeData.length).eql(4)
 
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeData1.bridge,
-        ethers.utils.getAddress(genericBridgeData1.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData1.receiver).toLowerCase(),
-        genericBridgeData1.from,
-        genericBridgeData1.hasSourceSwaps,
-        genericBridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        genericBridgeData1.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        genericBridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        genericBridgeData2,
+        amountWithoutFee[1]
+      )
 
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeData2.bridge,
-        ethers.utils.getAddress(genericBridgeData2.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData2.receiver).toLowerCase(),
-        genericBridgeData2.from,
-        genericBridgeData2.hasSourceSwaps,
-        genericBridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        genericBridgeData2.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[2]).eql([
-        genericBridgeDataForTransfer1.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer1.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer1.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer1.from,
-        genericBridgeDataForTransfer1.hasSourceSwaps,
-        genericBridgeDataForTransfer1.hasDestinationCall,
-        amountWithoutFee[2],
-        genericBridgeDataForTransfer1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[3]).eql([
-        genericBridgeDataForTransfer2.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer2.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer2.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer2.from,
-        genericBridgeDataForTransfer2.hasSourceSwaps,
-        genericBridgeDataForTransfer2.hasDestinationCall,
-        amountWithoutFee[3],
-        genericBridgeDataForTransfer2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[2],
+        genericBridgeDataForTransfer1,
+        amountWithoutFee[2]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[3],
+        genericBridgeDataForTransfer2,
+        amountWithoutFee[3]
+      )
 
       // -------------------------------------
 
@@ -2597,8 +2462,10 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
               genericCrossChainData1,
               genericCrossChainData2,
             ],
-            [bridgeData1, bridgeData2, bridgeData3],
             [
+              bridgeData1,
+              bridgeData2,
+              bridgeData3,
               genericBridgeData1,
               genericBridgeData2,
               genericBridgeDataForTransfer1,
@@ -2649,89 +2516,44 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
       expect(args.transactionId).eql(transactionId)
       expect(args.integrator).eql(integratorAddress)
       expect(args.sender).eql(user.address)
-      expect(args.bridgeData.length).eql(3)
-      expect(args.genericBridgeData.length).eql(4)
+      expect(args.bridgeData.length).eql(7)
 
-      expect(args.bridgeData[0]).eql([
-        bridgeData1.bridge,
-        bridgeData1.from,
-        bridgeData1.to,
-        bridgeData1.receiver,
-        bridgeData1.hasSourceSwaps,
-        bridgeData1.hasDestinationCall,
-        amountWithoutFee[0],
-        bridgeData1.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData1,
+        amountWithoutFee[0]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData2,
+        amountWithoutFee[1]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[2],
+        bridgeData3,
+        amountWithoutFee[2]
+      )
 
-      expect(args.bridgeData[1]).eql([
-        bridgeData2.bridge,
-        bridgeData2.from,
-        bridgeData2.to,
-        bridgeData2.receiver,
-        bridgeData2.hasSourceSwaps,
-        bridgeData2.hasDestinationCall,
-        amountWithoutFee[1],
-        bridgeData2.destinationChainId,
-      ])
-
-      expect(args.bridgeData[2]).eql([
-        bridgeData3.bridge,
-        bridgeData3.from,
-        bridgeData3.to,
-        bridgeData3.receiver,
-        bridgeData3.hasSourceSwaps,
-        bridgeData3.hasDestinationCall,
-        amountWithoutFee[2],
-        bridgeData3.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[0]).eql([
-        genericBridgeData1.bridge,
-        ethers.utils.getAddress(genericBridgeData1.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData1.receiver).toLowerCase(),
-        genericBridgeData1.from,
-        genericBridgeData1.hasSourceSwaps,
-        genericBridgeData1.hasDestinationCall,
-        amountWithoutFee[3],
-        genericBridgeData1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[1]).eql([
-        genericBridgeData2.bridge,
-        ethers.utils.getAddress(genericBridgeData2.to).toLowerCase(),
-        ethers.utils.getAddress(genericBridgeData2.receiver).toLowerCase(),
-        genericBridgeData2.from,
-        genericBridgeData2.hasSourceSwaps,
-        genericBridgeData2.hasDestinationCall,
-        amountWithoutFee[4],
-        genericBridgeData2.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[2]).eql([
-        genericBridgeDataForTransfer1.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer1.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer1.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer1.from,
-        genericBridgeDataForTransfer1.hasSourceSwaps,
-        genericBridgeDataForTransfer1.hasDestinationCall,
-        amountWithoutFee[5],
-        genericBridgeDataForTransfer1.destinationChainId,
-      ])
-
-      expect(args.genericBridgeData[3]).eql([
-        genericBridgeDataForTransfer2.bridge,
-        ethers.utils.getAddress(genericBridgeDataForTransfer2.to).toLowerCase(),
-        ethers.utils
-          .getAddress(genericBridgeDataForTransfer2.receiver)
-          .toLowerCase(),
-        genericBridgeDataForTransfer2.from,
-        genericBridgeDataForTransfer2.hasSourceSwaps,
-        genericBridgeDataForTransfer2.hasDestinationCall,
-        amountWithoutFee[6],
-        genericBridgeDataForTransfer2.destinationChainId,
-      ])
+      validateMultiBridgeEventData(
+        args.bridgeData[3],
+        genericBridgeData1,
+        amountWithoutFee[3]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[4],
+        genericBridgeData2,
+        amountWithoutFee[4]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[5],
+        genericBridgeDataForTransfer1,
+        amountWithoutFee[5]
+      )
+      validateMultiBridgeEventData(
+        args.bridgeData[6],
+        genericBridgeDataForTransfer2,
+        amountWithoutFee[6]
+      )
 
       // -------------------------------------
 

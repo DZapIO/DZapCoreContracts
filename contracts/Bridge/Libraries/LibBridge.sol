@@ -8,32 +8,19 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 
 import { FeeInfo, SwapInfo, SwapData } from "../../Shared/Types.sol";
-import { GenericBridgeData, CrossChainData, CrossChainAllowedList, BridgeData, TransferData } from "../Types.sol";
+import { GenericBridgeData, CrossChainData, CrossChainAllowedList, TransferData } from "../Types.sol";
 import { UnAuthorizedCall, BridgeCallFailed, InvalidSwapDetails, SlippageTooHigh } from "../../Shared/Errors.sol";
 
 /// @notice Provides mappings for all facets that may need them
 library LibBridge {
-    function bridge(address _integrator, FeeInfo memory _feeInfo, BridgeData memory _bridgeData, CrossChainData calldata _crossChainData) internal {
+    function bridge(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, CrossChainData calldata _crossChainData) internal {
         LibValidatable.doesNotContainSourceSwapOrDestinationCall(_bridgeData.hasSourceSwaps, _bridgeData.hasDestinationCall);
 
         _bridge(_integrator, _feeInfo, _bridgeData, _crossChainData);
     }
 
-    function bridgeWithoutSwapAndCallCheck(address _integrator, FeeInfo memory _feeInfo, BridgeData memory _bridgeData, CrossChainData calldata _crossChainData) internal {
+    function bridgeWithoutSwapAndCallCheck(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, CrossChainData calldata _crossChainData) internal {
         _bridge(_integrator, _feeInfo, _bridgeData, _crossChainData);
-    }
-
-    function genericBridge(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, CrossChainData calldata _crossChainData) internal {
-        LibValidatable.validateData(_bridgeData);
-        LibValidatable.validateCrossChainData(_crossChainData.callTo);
-        LibValidatable.doesNotContainSourceSwapOrDestinationCall(_bridgeData.hasSourceSwaps, _bridgeData.hasDestinationCall);
-
-        (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_feeInfo, _bridgeData.from, _bridgeData.minAmountIn, _crossChainData.permit);
-        _bridgeData.minAmountIn -= totalFee;
-
-        _startBridge(_bridgeData.from, _bridgeData.minAmountIn, _patchGenericCrossChainData(_crossChainData, _bridgeData.minAmountIn));
-
-        LibFees.accrueTokenFees(_integrator, _bridgeData.from, totalFee - dZapShare, dZapShare);
     }
 
     function transferBridge(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, TransferData calldata _transferData) internal {
@@ -52,7 +39,7 @@ library LibBridge {
         LibFees.accrueTokenFees(_integrator, _bridgeData.from, totalFee - dZapShare, dZapShare);
     }
 
-    function swapAndBridge(address _integrator, FeeInfo memory _feeInfo, BridgeData memory _bridgeData, CrossChainData calldata _crossChainData, SwapData calldata _swapData) internal returns (SwapInfo memory) {
+    function swapAndBridge(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, CrossChainData calldata _crossChainData, SwapData calldata _swapData) internal returns (SwapInfo memory) {
         LibValidatable.validateData(_bridgeData);
         LibValidatable.validateCrossChainData(_crossChainData.callTo);
 
@@ -91,7 +78,7 @@ library LibBridge {
         }
     }
 
-    function _bridge(address _integrator, FeeInfo memory _feeInfo, BridgeData memory _bridgeData, CrossChainData calldata _crossChainData) private {
+    function _bridge(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, CrossChainData calldata _crossChainData) private {
         LibValidatable.validateData(_bridgeData);
         LibValidatable.validateCrossChainData(_crossChainData.callTo);
 

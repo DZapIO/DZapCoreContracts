@@ -24,8 +24,8 @@ export const CONTRACTS = {
   Receiver: 'Receiver',
   BridgeManagerFacet: 'BridgeManagerFacet',
   BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
-  GenericCrossChainFacet: 'GenericCrossChainFacet',
   BatchBridgeCallFacet: 'BatchBridgeCallFacet',
+  Create2Deployer: 'Create2Deployer',
 }
 
 export const ERRORS = {
@@ -78,6 +78,37 @@ export const EVENTS = {
   BridgeAdded: 'BridgeAdded',
   BridgeRemoved: 'BridgeRemoved',
   BatchBridgeTransferStart: 'BatchBridgeTransferStart',
+}
+
+export const INTEGRATORS = {
+  DZAP: 'DZAP',
+}
+
+export const BRIDGES = {
+  ALL: 'ALL',
+  socket: 'socket',
+  unizen: 'unizen',
+  xyFinance: 'xyFinance',
+  dbridge: 'dbridge',
+  mayanFinance: 'mayanFinance',
+  symbios: 'symbios',
+}
+
+export const SWAP_DEXES = {
+  kyber: 'kyber',
+  oneInch: 'oneInch',
+  lifi: 'lifi',
+  odos: 'odos',
+  paraswap: 'paraswap',
+  openOcean: 'openOcean',
+  zeroX: 'zeroX',
+  wNative: 'wNative',
+  bebop: 'bebop',
+  uniswap: 'uniswap',
+  unizen: 'unizen',
+  xyFinance: 'xyFinance',
+  socket: 'socket',
+  conveyor: 'conveyor',
 }
 
 export const BPS_MULTIPLIER = 10000

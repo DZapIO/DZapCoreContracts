@@ -19,12 +19,6 @@ library LibValidatable {
         if (_swapData.fromAmount == 0) revert NoSwapFromZeroBalance();
     }
 
-    function validateData(BridgeData memory _bridgeData) internal view {
-        if (LibUtil.isZeroAddress(_bridgeData.receiver)) revert InvalidReceiver();
-        if (_bridgeData.minAmountIn == 0) revert InvalidAmount();
-        if (_bridgeData.destinationChainId == block.chainid) revert CannotBridgeToSameNetwork();
-    }
-
     function validateData(GenericBridgeData memory _bridgeData) internal view {
         if (_bridgeData.to.length > _MAX_ADDRESS_LENGTH || _bridgeData.receiver.length > _MAX_ADDRESS_LENGTH) revert InvalidLength();
         if (_bridgeData.minAmountIn == 0) revert InvalidAmount();

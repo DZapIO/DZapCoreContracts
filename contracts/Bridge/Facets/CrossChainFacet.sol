@@ -8,7 +8,7 @@ import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
 
 import { ICrossChainFacet } from "../Interfaces/ICrossChainFacet.sol";
 
-import { CrossChainData, BridgeData } from "../Types.sol";
+import { CrossChainData, GenericBridgeData } from "../Types.sol";
 import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
 
 /// @title CrossChain Facet
@@ -16,7 +16,7 @@ import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
 contract CrossChainFacet is ICrossChainFacet, RefundNative {
     /* ========= EXTERNAL ========= */
 
-    function bridge(bytes32 _transactionId, address _integrator, BridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable refundExcessNative(msg.sender) {
+    function bridge(bytes32 _transactionId, address _integrator, GenericBridgeData memory _bridgeData, CrossChainData calldata _genericData) external payable refundExcessNative(msg.sender) {
         LibBridge.bridge(_integrator, LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE), _bridgeData, _genericData);
 
         LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
@@ -24,7 +24,7 @@ contract CrossChainFacet is ICrossChainFacet, RefundNative {
         emit BridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData);
     }
 
-    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
+    function bridgeMultipleTokens(bytes32 _transactionId, address _integrator, GenericBridgeData[] memory _bridgeData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
         uint256 length = _bridgeData.length;
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
 
@@ -41,14 +41,14 @@ contract CrossChainFacet is ICrossChainFacet, RefundNative {
         emit MultiTokenBridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData);
     }
 
-    function swapAndBridge(bytes32 _transactionId, address _integrator, BridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
+    function swapAndBridge(bytes32 _transactionId, address _integrator, GenericBridgeData[] memory _bridgeData, SwapData[] calldata _swapData, CrossChainData[] calldata _genericData) external payable refundExcessNative(msg.sender) {
         uint256 length = _bridgeData.length;
         uint256 swapCount;
         SwapInfo[] memory swapInfo = new SwapInfo[](_swapData.length);
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
 
-        for (uint256 i = 0; i < length; ) {
-            BridgeData memory bridgeData = _bridgeData[i];
+        for (uint256 i; i < length; ) {
+            GenericBridgeData memory bridgeData = _bridgeData[i];
 
             if (bridgeData.hasSourceSwaps) {
                 swapInfo[swapCount] = LibBridge.swapAndBridge(_integrator, feeInfo, bridgeData, _genericData[i], _swapData[swapCount]);

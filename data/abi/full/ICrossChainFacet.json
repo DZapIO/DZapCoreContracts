@@ -28,18 +28,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -64,7 +64,7 @@
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData",
+        "internalType": "struct GenericBridgeData",
         "name": "bridgeData",
         "type": "tuple"
       }
@@ -101,18 +101,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -137,7 +137,7 @@
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "bridgeData",
         "type": "tuple[]"
       }
@@ -174,18 +174,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -210,7 +210,7 @@
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "bridgeData",
         "type": "tuple[]"
       },
@@ -276,18 +276,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -311,7 +311,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData",
+        "internalType": "struct GenericBridgeData",
         "name": "_bridgeData",
         "type": "tuple"
       },
@@ -373,18 +373,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -408,7 +408,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "_bridgeData",
         "type": "tuple[]"
       },
@@ -470,18 +470,18 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
             "type": "address"
           },
           {
@@ -505,7 +505,7 @@
             "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "_bridgeData",
         "type": "tuple[]"
       },

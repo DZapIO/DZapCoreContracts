@@ -63,11 +63,6 @@
   },
   {
     "inputs": [],
-    "name": "InvalidReceiver",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "NativeTransferFailed",
     "type": "error"
   },
@@ -131,54 +126,6 @@
             "type": "string"
           },
           {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          }
-        ],
-        "indexed": false,
-        "internalType": "struct BridgeData[]",
-        "name": "bridgeData",
-        "type": "tuple[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
             "internalType": "bytes",
             "name": "to",
             "type": "bytes"
@@ -216,7 +163,7 @@
         ],
         "indexed": false,
         "internalType": "struct GenericBridgeData[]",
-        "name": "genericBridgeData",
+        "name": "bridgeData",
         "type": "tuple[]"
       }
     ],
@@ -275,53 +222,6 @@
             "type": "string"
           },
           {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct BridgeData[]",
-        "name": "_bridgeData",
-        "type": "tuple[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
             "internalType": "bytes",
             "name": "to",
             "type": "bytes"
@@ -358,7 +258,7 @@
           }
         ],
         "internalType": "struct GenericBridgeData[]",
-        "name": "_genericBridgeData",
+        "name": "_bridgeData",
         "type": "tuple[]"
       },
       {

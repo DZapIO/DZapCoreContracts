@@ -1,0 +1,378 @@
+[
+  {
+    "inputs": [],
+    "name": "CannotBridgeToSameNetwork",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InformationMismatch",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "contractBalance",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "IntegratorNotAllowed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidAmount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidLength",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidPermit",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidPermitData",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NativeTransferFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoTransferToNullAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NullAddrIsNotAnERC20Token",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "transactionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "integrator",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct GenericBridgeData",
+        "name": "bridgeData",
+        "type": "tuple"
+      }
+    ],
+    "name": "BridgeTransferStarted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "transactionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "integrator",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct GenericBridgeData[]",
+        "name": "bridgeData",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "MultiTokenBridgeTransferStarted",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct GenericBridgeData[]",
+        "name": "_bridgeData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "transferTo",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransferData[]",
+        "name": "_transferData",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "bridgeMultipleTokensViaTransfer",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct GenericBridgeData",
+        "name": "_bridgeData",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "transferTo",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransferData",
+        "name": "_transferData",
+        "type": "tuple"
+      }
+    ],
+    "name": "bridgeViaTransfer",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

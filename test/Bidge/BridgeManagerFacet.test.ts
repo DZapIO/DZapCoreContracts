@@ -1,46 +1,49 @@
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { BigNumber } from 'ethers'
+import { parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
-import { expect } from 'chai'
-import { BigNumber, BigNumberish, Contract, ContractFactory } from 'ethers'
 
 import {
+  ADDRESS_ZERO,
   BPS_MULTIPLIER,
   CONTRACTS,
+  DEFAULT_BYTES,
   ERRORS,
-  ZERO,
-  ADDRESS_ZERO,
+  EVENTS,
   MAX_FIXED_FEE_AMOUNT,
   MAX_TOKEN_FEE,
+  ZERO,
 } from '../../constants'
-import { snapshot, updateBalance } from '../utils'
-
-import {
-  AccessManagerFacet,
-  DZapDiamond,
-  DexManagerFacet,
-  DiamondCutFacet,
-  DiamondLoupeFacet,
-  FeesFacet,
-  OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
-  Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
-  Receiver,
-  BridgeManagerFacet,
-} from '../../typechain-types'
-import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import {
   getSelectorsUsingContract,
   getSighash,
 } from '../../scripts/utils/diamond'
-import { parseUnits } from 'ethers/lib/utils'
+import { snapshot, updateBalance } from '../utils'
+
+import { expect } from 'chai'
+import { calculateOffset } from '../../scripts/core/helper'
+import {
+  AccessManagerFacet,
+  BridgeManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
+  DZapDiamond,
+  DexManagerFacet,
+  DiamondCutFacet,
+  DiamondInit,
+  DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
+  FeesFacet,
+  OwnershipFacet,
+  Permit2,
+  Receiver,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
+} from '../../typechain-types'
+import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -59,16 +62,17 @@ let swapFacetImp: SwapFacet
 let swapFacet: SwapFacet
 let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
+let bridgeManagerFacetImp: BridgeManagerFacet
 let executor: Executor
 let receiver: Receiver
 let bridgeManagerFacet: BridgeManagerFacet
-let bridgeManagerFacetImp: BridgeManagerFacet
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
 let permit2: Permit2
 let mockExchange: ExchangeMock
-let mockBridge: BridgeMock
+let mockBridge1: BridgeMock
+let mockBridge2: BridgeMock
 let tokenA: ERC20Mock
 let tokenB: ERC20Mock
 let wNative: WNATIVE
@@ -87,7 +91,37 @@ let withdrawManager: SignerWithAddress
 
 let snapshotId: string
 
-describe('FeeFacet.test.ts', async () => {
+const feeInfo1: FeeInfo[] = [
+  {
+    tokenFee: BigNumber.from(1 * BPS_MULTIPLIER),
+    fixedNativeFeeAmount: ZERO,
+    dzapTokenShare: BigNumber.from(100 * BPS_MULTIPLIER),
+    dzapFixedNativeShare: ZERO,
+  },
+  {
+    tokenFee: BigNumber.from(2 * BPS_MULTIPLIER),
+    fixedNativeFeeAmount: parseUnits('.5'),
+    dzapTokenShare: BigNumber.from(100 * BPS_MULTIPLIER),
+    dzapFixedNativeShare: BigNumber.from(100 * BPS_MULTIPLIER),
+  },
+]
+
+const feeInfo2: FeeInfo[] = [
+  {
+    tokenFee: BigNumber.from(1 * BPS_MULTIPLIER),
+    fixedNativeFeeAmount: parseUnits('0.5'),
+    dzapTokenShare: BigNumber.from(50 * BPS_MULTIPLIER),
+    dzapFixedNativeShare: BigNumber.from(50 * BPS_MULTIPLIER),
+  },
+  {
+    tokenFee: BigNumber.from(2 * BPS_MULTIPLIER),
+    fixedNativeFeeAmount: parseUnits('1'),
+    dzapTokenShare: BigNumber.from(50 * BPS_MULTIPLIER),
+    dzapFixedNativeShare: BigNumber.from(50 * BPS_MULTIPLIER),
+  },
+]
+
+describe('BridgeManagerFacet.test.ts', async () => {
   beforeEach(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]
@@ -138,7 +172,8 @@ describe('FeeFacet.test.ts', async () => {
         CONTRACTS.BridgeMock,
         deployer
       )
-      mockBridge = (await BridgeMock.connect(deployer).deploy()) as BridgeMock
+      mockBridge1 = (await BridgeMock.connect(deployer).deploy()) as BridgeMock
+      mockBridge2 = (await BridgeMock.connect(deployer).deploy()) as BridgeMock
     }
 
     // -----------------------------------------
@@ -282,7 +317,7 @@ describe('FeeFacet.test.ts', async () => {
       )
       bridgeManagerFacetImp =
         (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
-      await crossChainFacetImp.deployed()
+      await bridgeManagerFacetImp.deployed()
     }
 
     // -----------------------------------------
@@ -415,8 +450,14 @@ describe('FeeFacet.test.ts', async () => {
           bridgeManagerFacet.interface.functions[
             'updateSelectorInfo(address[],bytes4[],uint256[])'
           ],
+          bridgeManagerFacet.interface.functions[
+            'addAggregatorsAndBridges(address[])'
+          ],
+          bridgeManagerFacet.interface.functions[
+            'removeAggregatorsAndBridges(address[])'
+          ],
         ],
-        dexManagerFacet.interface
+        bridgeManagerFacet.interface
       )
 
       const crossChainCanExecute = crossChainSelectors.map(() => true)
@@ -446,6 +487,26 @@ describe('FeeFacet.test.ts', async () => {
     }
 
     // ----------------------------------------
+    // set integrator
+    {
+      await feesFacet
+        .connect(feeManager)
+        .setIntegratorInfo(
+          integrator1.address,
+          [FeeType.SWAP, FeeType.BRIDGE],
+          feeInfo1
+        )
+
+      await feesFacet
+        .connect(feeManager)
+        .setIntegratorInfo(
+          integrator2.address,
+          [FeeType.SWAP, FeeType.BRIDGE],
+          feeInfo2
+        )
+    }
+
+    // ----------------------------------------
     // deploy executor and receiver
     {
       const Executor = await ethers.getContractFactory(CONTRACTS.Executor)
@@ -467,315 +528,293 @@ describe('FeeFacet.test.ts', async () => {
     await snapshot.revert(snapshotId)
   })
 
-  describe('1 setProtocolFeeVault', async () => {
-    it('1.1 Should allow owner/feeManger to update protocol fee', async () => {
-      expect(await feesFacet.protocolFeeVault()).equal(protoFeeVault.address)
+  let routers: string[]
+  let selectors: string[]
+  let selectorInfo: BigNumber[]
 
-      await feesFacet.connect(owner).setProtocolFeeVault(signers[11].address)
+  beforeEach(async () => {
+    const parameterTypes1 = ['address', 'address', 'uint256']
+    const parameterTypes2 = ['address', 'address', 'uint256', 'bytes']
+    const parameterIndex = 2 // amount position
 
-      expect(await feesFacet.protocolFeeVault()).equal(signers[11].address)
+    const parameters1 = [ADDRESS_ZERO, ADDRESS_ZERO, ZERO]
+    const parameters2 = [ADDRESS_ZERO, ADDRESS_ZERO, ZERO, DEFAULT_BYTES]
 
-      await feesFacet
-        .connect(feeManager)
-        .setProtocolFeeVault(protoFeeVault.address)
+    const { offsetByBytes: offsetByBytes1 } = calculateOffset(
+      parameterIndex,
+      parameterTypes1,
+      parameters1
+    )
+    const { offsetByBytes: offsetByBytes2 } = calculateOffset(
+      parameterIndex,
+      parameterTypes2,
+      parameters2
+    )
 
-      expect(await feesFacet.protocolFeeVault()).equal(protoFeeVault.address)
+    selectors = getSighash(
+      [
+        mockBridge1.interface.functions['bridge(address,address,uint256,bool)'],
+        mockBridge2.interface.functions[
+          'bridgeAndSwap(address,address,uint256,bytes,bool)'
+        ],
+      ],
+      mockBridge1.interface
+    )
+    selectorInfo = [
+      BigNumber.from(offsetByBytes1),
+      BigNumber.from(offsetByBytes2),
+    ]
+
+    routers = [mockBridge1.address, mockBridge2.address]
+  })
+
+  describe('1) addAggregatorsAndBridges', () => {
+    it('1.1 Should allow owner to whitelist bridge', async () => {
+      // -------------------------------------
+
+      await expect(
+        bridgeManagerFacet.connect(owner).addAggregatorsAndBridges(routers)
+      )
+        .emit(bridgeManagerFacet, EVENTS.BridgeAdded)
+        .withArgs(routers)
+
+      // -------------------------------------
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        true
+      )
     })
 
-    it('1.2 Should revert if caller is not owner/feeManger', async () => {
+    it('1.2 Should allow crossChainManager to whitelist bridge', async () => {
+      // -------------------------------------
+
       await expect(
-        feesFacet.connect(deployer).setProtocolFeeVault(signers[11].address)
-      ).revertedWithCustomError(feesFacet, ERRORS.UnAuthorized)
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .addAggregatorsAndBridges(routers)
+      )
+        .emit(bridgeManagerFacet, EVENTS.BridgeAdded)
+        .withArgs(routers)
+
+      // -------------------------------------
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        true
+      )
     })
 
-    it('1.3 Should revert if protocol vault is zero address', async () => {
+    it('1.3 Should revert if caller is not owner/crossChainManager', async () => {
       await expect(
-        feesFacet.connect(owner).setProtocolFeeVault(ADDRESS_ZERO)
-      ).revertedWithCustomError(feesFacet, ERRORS.ZeroAddress)
+        bridgeManagerFacet.connect(dexManager).addAggregatorsAndBridges(routers)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.UnAuthorized)
+    })
+
+    it('1.4 Should revert if bridge address is same as dzap address', async () => {
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .addAggregatorsAndBridges([bridgeManagerFacet.address])
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.CannotAuthorizeSelf)
     })
   })
 
-  describe('2 setIntegratorInfo', async () => {
-    const feeInfo: FeeInfo[] = [
-      {
-        tokenFee: BigNumber.from(1 * BPS_MULTIPLIER),
-        fixedNativeFeeAmount: BigNumber.from(0),
-        dzapTokenShare: BigNumber.from(100 * BPS_MULTIPLIER),
-        dzapFixedNativeShare: BigNumber.from(0),
-      },
-      {
-        tokenFee: BigNumber.from(2 * BPS_MULTIPLIER),
-        fixedNativeFeeAmount: parseUnits('.5'),
-        dzapTokenShare: BigNumber.from(60 * BPS_MULTIPLIER),
-        dzapFixedNativeShare: BigNumber.from(100 * BPS_MULTIPLIER),
-      },
-    ]
+  describe('2) updateSelectorInfo', () => {
+    it('2.1 Should allow owner to updateSelectorInfo (bridge is not whitelisted)', async () => {
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        false
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        false
+      )
+      // -------------------------------------
+      await expect(
+        bridgeManagerFacet
+          .connect(owner)
+          .updateSelectorInfo(routers, selectors, selectorInfo)
+      )
+        .emit(bridgeManagerFacet, EVENTS.SelectorToInfoUpdated)
+        .withArgs(routers, selectors, selectorInfo)
 
-    it('2.1 Should allow owner/feeManger to set integrator info', async () => {
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
+      // -------------------------------------
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        true
+      )
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
+      ).eql([true, selectorInfo[0]])
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[1])
+      ).eql([true, ZERO])
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[1])
+      ).eql([true, selectorInfo[1]])
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[0])
+      ).eql([true, ZERO])
+    })
+
+    it('2.2 Should allow crossChainManger to updateSelectorInfo (bridge is whitelisted)', async () => {
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .addAggregatorsAndBridges([mockBridge1.address])
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
         false
       )
 
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.SWAP)
-      ).eql([ZERO, ZERO, ZERO, ZERO])
+      // -------------------------------------
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .updateSelectorInfo(routers, selectors, selectorInfo)
+      )
+        .emit(bridgeManagerFacet, EVENTS.SelectorToInfoUpdated)
+        .withArgs(routers, selectors, selectorInfo)
 
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.BRIDGE)
-      ).eql([ZERO, ZERO, ZERO, ZERO])
+      // -------------------------------------
 
-      await feesFacet
-        .connect(feeManager)
-        .setIntegratorInfo(
-          integrator1.address,
-          [FeeType.SWAP, FeeType.BRIDGE],
-          feeInfo
-        )
-
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
         true
       )
-
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.SWAP)
-      ).eql([
-        feeInfo[0].tokenFee,
-        feeInfo[0].fixedNativeFeeAmount,
-        feeInfo[0].dzapTokenShare,
-        feeInfo[0].dzapFixedNativeShare,
-      ])
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.BRIDGE)
-      ).eql([
-        feeInfo[1].tokenFee,
-        feeInfo[1].fixedNativeFeeAmount,
-        feeInfo[1].dzapTokenShare,
-        feeInfo[1].dzapFixedNativeShare,
-      ])
-    })
-
-    it('2.2 Should allow owner/feeManger to update integrator info', async () => {
-      await feesFacet
-        .connect(feeManager)
-        .setIntegratorInfo(
-          integrator1.address,
-          [FeeType.SWAP, FeeType.BRIDGE],
-          feeInfo
-        )
-
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
         true
       )
-
       expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.SWAP)
-      ).eql([
-        feeInfo[0].tokenFee,
-        feeInfo[0].fixedNativeFeeAmount,
-        feeInfo[0].dzapTokenShare,
-        feeInfo[0].dzapFixedNativeShare,
-      ])
+        await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
+      ).eql([true, selectorInfo[0]])
       expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.BRIDGE)
-      ).eql([
-        feeInfo[1].tokenFee,
-        feeInfo[1].fixedNativeFeeAmount,
-        feeInfo[1].dzapTokenShare,
-        feeInfo[1].dzapFixedNativeShare,
-      ])
-
-      // ----------------
-
-      const newFeeInfo = {
-        tokenFee: feeInfo[1].tokenFee,
-        fixedNativeFeeAmount: feeInfo[1].fixedNativeFeeAmount,
-        dzapTokenShare: BigNumber.from(100 * BPS_MULTIPLIER),
-        dzapFixedNativeShare: feeInfo[1].dzapFixedNativeShare,
-      }
-
-      await feesFacet
-        .connect(feeManager)
-        .setIntegratorInfo(integrator1.address, [FeeType.BRIDGE], [newFeeInfo])
-
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
-        true
-      )
-
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.SWAP)
-      ).eql([
-        feeInfo[0].tokenFee,
-        feeInfo[0].fixedNativeFeeAmount,
-        feeInfo[0].dzapTokenShare,
-        feeInfo[0].dzapFixedNativeShare,
-      ])
-      expect(
-        await feesFacet.integratorFeeInfo(integrator1.address, FeeType.BRIDGE)
-      ).eql([
-        feeInfo[1].tokenFee,
-        feeInfo[1].fixedNativeFeeAmount,
-        newFeeInfo.dzapTokenShare,
-        feeInfo[1].dzapFixedNativeShare,
-      ])
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[1])
+      ).eql([true, selectorInfo[1]])
     })
 
-    it('2.3 Should revert if caller is not owner/feeManger', async () => {
+    it('2.3 Should revert if caller is not owner/crossChainManager', async () => {
       await expect(
-        feesFacet
-          .connect(deployer)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            feeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.UnAuthorized)
+        bridgeManagerFacet
+          .connect(dexManager)
+          .updateSelectorInfo(routers, selectors, selectorInfo)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.UnAuthorized)
     })
 
-    it('2.4 Should revert if integrator is zero address', async () => {
+    it('2.4 Should revert if bridge address is same as dzap address', async () => {
       await expect(
-        feesFacet
-          .connect(owner)
-          .setIntegratorInfo(
-            ADDRESS_ZERO,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            feeInfo
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .updateSelectorInfo(
+            [bridgeManagerFacet.address],
+            [selectors[0]],
+            [selectorInfo[0]]
           )
-      ).revertedWithCustomError(feesFacet, ERRORS.ZeroAddress)
-    })
-
-    it('2.5 Should revert if share is higher than 100%', async () => {
-      const newFeeInfo = JSON.parse(JSON.stringify(feeInfo))
-      newFeeInfo[1].dzapTokenShare = BigNumber.from(101 * BPS_MULTIPLIER)
-
-      await expect(
-        feesFacet
-          .connect(owner)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            newFeeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.ShareTooHigh)
-
-      newFeeInfo[1].dzapTokenShare = BigNumber.from(100 * BPS_MULTIPLIER)
-      newFeeInfo[1].dzapFixedNativeShare = BigNumber.from(101 * BPS_MULTIPLIER)
-
-      await expect(
-        feesFacet
-          .connect(feeManager)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            newFeeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.ShareTooHigh)
-    })
-
-    it('2.6 Should revert if fee is greater than 100%', async () => {
-      const newFeeInfo = JSON.parse(JSON.stringify(feeInfo))
-      newFeeInfo[1].tokenFee = BigNumber.from(101 * BPS_MULTIPLIER)
-
-      await expect(
-        feesFacet
-          .connect(owner)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            newFeeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.FeeTooHigh)
-    })
-
-    it('2.7 Should revert if fee is greater than max token fee', async () => {
-      const newFeeInfo = JSON.parse(JSON.stringify(feeInfo))
-      newFeeInfo[1].tokenFee = BigNumber.from(MAX_TOKEN_FEE + 1)
-
-      await expect(
-        feesFacet
-          .connect(owner)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            newFeeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.FeeTooHigh)
-    })
-
-    it('2.9 Should revert if native fee amount is higher than fixed native amount', async () => {
-      const newFeeInfo = JSON.parse(JSON.stringify(feeInfo))
-
-      newFeeInfo[1].fixedNativeFeeAmount = MAX_FIXED_FEE_AMOUNT.add(1)
-
-      await expect(
-        feesFacet
-          .connect(owner)
-          .setIntegratorInfo(
-            integrator1.address,
-            [FeeType.SWAP, FeeType.BRIDGE],
-            newFeeInfo
-          )
-      ).revertedWithCustomError(feesFacet, ERRORS.FeeTooHigh)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.CannotAuthorizeSelf)
     })
   })
 
-  describe('3 removeIntegrator', async () => {
-    const feeInfo: FeeInfo[] = [
-      {
-        tokenFee: BigNumber.from(1 * BPS_MULTIPLIER),
-        fixedNativeFeeAmount: BigNumber.from(0),
-        dzapTokenShare: BigNumber.from(100 * BPS_MULTIPLIER),
-        dzapFixedNativeShare: BigNumber.from(0),
-      },
-      {
-        tokenFee: BigNumber.from(2 * BPS_MULTIPLIER),
-        fixedNativeFeeAmount: parseUnits('.5'),
-        dzapTokenShare: BigNumber.from(60 * BPS_MULTIPLIER),
-        dzapFixedNativeShare: BigNumber.from(100 * BPS_MULTIPLIER),
-      },
-    ]
+  describe('3) removeAggregatorsAndBridges', () => {
+    it('3.1 Should allow owner to blacklist bridge', async () => {
+      // -------------------------------------
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .updateSelectorInfo(routers, selectors, selectorInfo)
 
-    beforeEach(async () => {
-      await feesFacet
-        .connect(owner)
-        .setIntegratorInfo(
-          integrator1.address,
-          [FeeType.SWAP, FeeType.BRIDGE],
-          feeInfo
-        )
-
-      await feesFacet
-        .connect(feeManager)
-        .setIntegratorInfo(
-          integrator2.address,
-          [FeeType.SWAP, FeeType.BRIDGE],
-          feeInfo
-        )
-    })
-
-    it('3.1 Should allow owner/feeManger to remove integrator', async () => {
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
         true
       )
 
-      await feesFacet.connect(feeManager).removeIntegrator(integrator1.address)
+      // -------------------------------------
 
-      expect(await feesFacet.isIntegratorAllowed(integrator1.address)).equal(
+      await expect(
+        bridgeManagerFacet
+          .connect(owner)
+          .removeAggregatorsAndBridges([mockBridge2.address])
+      )
+        .emit(bridgeManagerFacet, EVENTS.BridgeRemoved)
+        .withArgs([mockBridge2.address])
+
+      // -------------------------------------
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
         false
       )
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[1])
+      ).eql([false, selectorInfo[0]])
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[0])
+      ).eql([false, ZERO])
     })
 
-    it('3.2 Should revert if caller is not owner/feeManger', async () => {
+    it('3.2 Should allow crossChainManager to blacklist bridge', async () => {
+      // -------------------------------------
+
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .updateSelectorInfo(routers, selectors, selectorInfo)
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        true
+      )
+
+      // -------------------------------------
+
       await expect(
-        feesFacet.connect(deployer).removeIntegrator(integrator1.address)
-      ).revertedWithCustomError(feesFacet, ERRORS.UnAuthorized)
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .removeAggregatorsAndBridges([mockBridge2.address])
+      )
+        .emit(bridgeManagerFacet, EVENTS.BridgeRemoved)
+        .withArgs([mockBridge2.address])
+
+      // -------------------------------------
+
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
+        true
+      )
+      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
+        false
+      )
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
+      ).eql([true, selectorInfo[0]])
+      expect(
+        await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[1])
+      ).eql([false, selectorInfo[1]])
     })
 
-    it('3.3 Should revert if integrator is already inactive', async () => {
-      await feesFacet.connect(feeManager).removeIntegrator(integrator1.address)
-
+    it('3.3 Should revert if caller is not owner/crossChainManager', async () => {
       await expect(
-        feesFacet.connect(owner).removeIntegrator(integrator1.address)
-      ).revertedWithCustomError(feesFacet, ERRORS.IntegratorNotActive)
+        bridgeManagerFacet
+          .connect(dexManager)
+          .removeAggregatorsAndBridges(routers)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.UnAuthorized)
+    })
+
+    it('3.4 Should revert if bridge address is same as dzap address', async () => {
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .removeAggregatorsAndBridges([mockBridge1.address])
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.BridgeNotAdded)
     })
   })
 })

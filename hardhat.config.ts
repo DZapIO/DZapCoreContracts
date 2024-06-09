@@ -31,19 +31,19 @@ const scanApiKey: string = process.env.BSCSCAN_API_KEY || dummyApiKey
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   networks: {
+    mainnet: {
+      chainId: 1,
+      url: `https://eth-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
+      accounts: [testnetKey],
+    },
     polygonMainnet: {
       chainId: 137,
       url: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
       accounts: [testnetKey],
     },
-    arbitrumTestnet: {
-      chainId: 421613,
-      url: `https://goerli-rollup.arbitrum.io/rpc`,
-      accounts: [testnetKey],
-    },
     polygonTestnet: {
       chainId: 80001,
-      url: `https://polygon-mumbai.g.alchemy.com/v2/${alchemyApiKey}`,
+      url: `https://rpc-mumbai.maticvigil.com`,
       accounts: [testnetKey],
     },
     arbitrum: {
@@ -54,6 +54,46 @@ const config: HardhatUserConfig = {
     optimism: {
       chainId: 10,
       url: `https://opt-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
+      accounts: [testnetKey],
+    },
+    bscMainnet: {
+      chainId: 56,
+      url: 'https://bscrpc.com',
+      accounts: [testnetKey],
+    },
+    avalanche: {
+      chainId: 43114,
+      url: `https://api.avax.network/ext/bc/C/rpc`,
+      accounts: [testnetKey],
+    },
+    scroll: {
+      chainId: 534352,
+      url: `https://rpc.scroll.io`,
+      accounts: [testnetKey],
+    },
+    base: {
+      chainId: 8453,
+      url: `https://mainnet.base.org`,
+      accounts: [testnetKey],
+    },
+    zk: {
+      chainId: 324,
+      url: `https://mainnet.era.zksync.io`,
+      accounts: [testnetKey],
+    },
+    mantel: {
+      chainId: 5000,
+      url: `https://mantle-rpc.publicnode.com`,
+      accounts: [testnetKey],
+    },
+    manta: {
+      chainId: 169,
+      url: `https://pacific-rpc.manta.network/http`,
+      accounts: [testnetKey],
+    },
+    blast: {
+      chainId: 81457,
+      url: `https://mantle-rpc.publicnode.com`,
       accounts: [testnetKey],
     },
   },
@@ -104,8 +144,9 @@ const config: HardhatUserConfig = {
         'WithdrawFacet',
         'SwapFacet',
         'CrossChainFacet',
-        'Executor',
-        'Receiver',
+        'BatchBridgeCallFacet',
+        'BridgeDynamicTransferFacet',
+        'BridgeManagerFacet',
       ],
       flat: true,
       clear: true,
@@ -126,8 +167,9 @@ const config: HardhatUserConfig = {
         'WithdrawFacet',
         'SwapFacet',
         'CrossChainFacet',
-        'Executor',
-        'Receiver',
+        'BatchBridgeCallFacet',
+        'BridgeDynamicTransferFacet',
+        'BridgeManagerFacet',
       ],
       flat: true,
       clear: true,

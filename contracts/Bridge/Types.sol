@@ -1,13 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-struct CallToFunctionInfo {
-    bool isAvailable;
-    uint256 offset;
+struct CrossChainAllowedList {
+    mapping(bytes4 => uint256) selectorToInfo;
+    bool isWhitelisted;
 }
 
 struct CrossChainStorage {
-    mapping(address => mapping(bytes4 => CallToFunctionInfo)) selectorToInfo;
+    mapping(address => CrossChainAllowedList) allowlist;
+}
+
+struct TransferData {
+    address transferTo;
+    bytes permit;
 }
 
 struct CrossChainData {
@@ -23,8 +28,19 @@ struct BridgeData {
     address from;
     address to;
     address receiver;
-    uint256 minAmount; // amount after swap, swap -> bridge
-    uint256 destinationChainId;
     bool hasSourceSwaps;
     bool hasDestinationCall;
+    uint256 minAmountIn;
+    uint256 destinationChainId;
+}
+
+struct GenericBridgeData {
+    string bridge;
+    bytes to;
+    bytes receiver;
+    address from;
+    bool hasSourceSwaps;
+    bool hasDestinationCall;
+    uint256 minAmountIn;
+    uint256 destinationChainId;
 }

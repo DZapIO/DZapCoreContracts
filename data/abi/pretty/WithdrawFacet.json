@@ -4,6 +4,7 @@
   "error NoTransferToNullAddress()",
   "error NotAContract()",
   "error NullAddrIsNotAnERC20Token()",
+  "error ReentrancyError()",
   "error UnAuthorized()",
   "error WithdrawFailed()",
   "event LogWithdraw(address indexed tokenAddress, address to, uint256 amount)",

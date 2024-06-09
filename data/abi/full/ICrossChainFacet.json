@@ -21,12 +21,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -34,29 +28,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -67,10 +51,20 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData",
+        "internalType": "struct GenericBridgeData",
         "name": "bridgeData",
         "type": "tuple"
       }
@@ -100,12 +94,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -113,29 +101,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -146,52 +124,25 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "bridgeData",
         "type": "tuple[]"
       }
     ],
     "name": "MultiTokenBridgeTransferStarted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "routers",
-        "type": "address[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes4[]",
-        "name": "selectors",
-        "type": "bytes4[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "indexed": false,
-        "internalType": "struct CallToFunctionInfo[]",
-        "name": "info",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "SelectorToInfoUpdated",
     "type": "event"
   },
   {
@@ -216,12 +167,6 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -229,29 +174,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -262,10 +197,20 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
         "indexed": false,
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "bridgeData",
         "type": "tuple[]"
       },
@@ -324,11 +269,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -336,29 +276,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -369,9 +299,19 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData",
+        "internalType": "struct GenericBridgeData",
         "name": "_bridgeData",
         "type": "tuple"
       },
@@ -426,11 +366,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -438,29 +373,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -471,9 +396,19 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "_bridgeData",
         "type": "tuple[]"
       },
@@ -518,42 +453,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_router",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes4",
-        "name": "_selector",
-        "type": "bytes4"
-      }
-    ],
-    "name": "getSelectorInfo",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct CallToFunctionInfo",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "bytes32",
         "name": "_transactionId",
         "type": "bytes32"
@@ -564,11 +463,6 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_refundee",
-        "type": "address"
-      },
-      {
         "components": [
           {
             "internalType": "string",
@@ -576,29 +470,19 @@
             "type": "string"
           },
           {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
             "internalType": "address",
             "name": "from",
             "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
           },
           {
             "internalType": "bool",
@@ -609,9 +493,19 @@
             "internalType": "bool",
             "name": "hasDestinationCall",
             "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct BridgeData[]",
+        "internalType": "struct GenericBridgeData[]",
         "name": "_bridgeData",
         "type": "tuple[]"
       },
@@ -698,41 +592,6 @@
     "name": "swapAndBridge",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address[]",
-        "name": "_routers",
-        "type": "address[]"
-      },
-      {
-        "internalType": "bytes4[]",
-        "name": "_selectors",
-        "type": "bytes4[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "bool",
-            "name": "isAvailable",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "offset",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct CallToFunctionInfo[]",
-        "name": "_infos",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "updateSelectorInfo",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

@@ -11,6 +11,11 @@
   },
   {
     "inputs": [],
+    "name": "IntegratorNotAllowed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "ShareTooHigh",
     "type": "error"
   },

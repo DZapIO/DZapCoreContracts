@@ -18,6 +18,7 @@ import {
   BPS_DENOMINATOR,
 } from '../../constants'
 import {
+  convertBNToNegative,
   duration,
   generateRandomWallet,
   getPermit2SignatureAndCalldataForApprove,
@@ -52,6 +53,7 @@ import {
   BridgeMock,
   Executor,
   Receiver,
+  BridgeManagerFacet,
 } from '../../typechain-types'
 import {
   DiamondCut,
@@ -80,6 +82,8 @@ let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
 let executor: Executor
 let receiver: Receiver
+let bridgeManagerFacet: BridgeManagerFacet
+let bridgeManagerFacetImp: BridgeManagerFacet
 
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
@@ -257,6 +261,10 @@ describe('SwapFacet.test.ts', async () => {
         CONTRACTS.CrossChainFacet,
         dZapDiamond.address
       )) as CrossChainFacet
+      bridgeManagerFacet = (await ethers.getContractAt(
+        CONTRACTS.BridgeManagerFacet,
+        dZapDiamond.address
+      )) as BridgeManagerFacet
     }
 
     // -----------------------------------------
@@ -317,6 +325,14 @@ describe('SwapFacet.test.ts', async () => {
         deployer
       )
       crossChainFacetImp = (await CrossChainFacet.deploy()) as CrossChainFacet
+      await crossChainFacetImp.deployed()
+
+      const BridgeManagerFacet = await ethers.getContractFactory(
+        CONTRACTS.BridgeManagerFacet,
+        deployer
+      )
+      bridgeManagerFacetImp =
+        (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
       await crossChainFacetImp.deployed()
     }
 
@@ -388,6 +404,14 @@ describe('SwapFacet.test.ts', async () => {
             CONTRACTS.CrossChainFacet
           ).selectors,
         },
+        {
+          facetAddress: bridgeManagerFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            bridgeManagerFacetImp,
+            CONTRACTS.BridgeManagerFacet
+          ).selectors,
+        },
       ]
 
       const { data: initData } =
@@ -439,8 +463,8 @@ describe('SwapFacet.test.ts', async () => {
 
       const crossChainSelectors = getSighash(
         [
-          crossChainFacet.interface.functions[
-            'updateSelectorInfo(address[],bytes4[],(bool,uint256)[])'
+          bridgeManagerFacet.interface.functions[
+            'updateSelectorInfo(address[],bytes4[],uint256[])'
           ],
         ],
         dexManagerFacet.interface
@@ -543,7 +567,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -593,48 +616,32 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(
-          transactionId,
-          integratorAddress,
-          user.address,
-          refundee,
-          recipient,
-          [
-            mockExchange.address,
-            swapData[0].from,
-            swapData[0].to,
-            swapData[0].fromAmount,
-            ZERO,
-            minAmount,
-          ]
-        )
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          ZERO,
+          minAmount,
+        ])
         .changeTokenBalance(tokenA, recipient, minAmount)
 
-      //   const eventFilter = swapFacet.filters.Swapped()
-      //   const data = await swapFacet.queryFilter(eventFilter)
-      //   const args = data[data.length - 1].args
-      //   console.log(args)
+      const eventFilter = swapFacet.filters.Swapped()
+      const data = await swapFacet.queryFilter(eventFilter)
+      const args = data[data.length - 1].args
 
-      //   expect(args.transactionId).equal(transactionId)
-      //   expect(args.integrator).equal(integratorAddress)
-      //   expect(args.refundee).equal(refundee)
-      //   expect(args.recipient).equal(recipient)
-      //   expect(args.swapInfo.dex).equal(mockExchange.address)
-      //   expect(args.swapInfo.fromAmount).equal(swapData[0].fromAmount)
-      //   expect(args.swapInfo.leftOverFromAmount).equal(ZERO)
-      //   expect(args.swapInfo.returnToAmount).equal(minAmount)
+      expect(args.transactionId).equal(transactionId)
+      expect(args.integrator).equal(integratorAddress)
+      expect(args.recipient).equal(recipient)
+      expect(args.swapInfo.dex).equal(mockExchange.address)
+      expect(args.swapInfo.fromAmount).equal(swapData[0].fromAmount)
+      expect(args.swapInfo.leftOverFromAmount).equal(ZERO)
+      expect(args.swapInfo.returnToAmount).equal(minAmount)
 
       // ----------------------------------------------------------------
     })
@@ -648,7 +655,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -700,69 +706,40 @@ describe('SwapFacet.test.ts', async () => {
       ]
 
       const recipientBalanceBefore = await tokenA.balanceOf(recipient)
-      const integratorBalanceBefore = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultBefore = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
 
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(
-          transactionId,
-          integratorAddress,
-          user.address,
-          refundee,
-          recipient,
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          leftOverFromAmount,
+          minAmount,
+        ])
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
           [
-            mockExchange.address,
-            swapData[0].from,
-            swapData[0].to,
-            swapData[0].fromAmount,
-            leftOverFromAmount,
-            minAmount,
+            convertBNToNegative(value.sub(leftOverFromAmount.add(extra))),
+            tokenFeeData[0].integratorFee.add(
+              fixedNativeData.integratorNativeFeeAmount
+            ),
+            tokenFeeData[0].dzapFee.add(fixedNativeData.dzapNativeFeeAmount),
           ]
         )
-        .changeEtherBalance(refundee, leftOverFromAmount.add(extra))
-      // .changeTokenBalance(tokenA, recipient, minAmount)
 
       // ----------------------------------------------------------------
 
       const recipientBalanceAfter = await tokenA.balanceOf(recipient)
-      const integratorBalanceAfter = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const protoFeeVaultAfter = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-
       expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-      expect(integratorBalanceAfter).equal(
-        integratorBalanceBefore
-          .add(tokenFeeData[0].integratorFee)
-          .add(fixedNativeData.integratorNativeFeeAmount)
-      )
-      expect(protoFeeVaultAfter).equal(
-        protoFeeVaultBefore.add(
-          tokenFeeData[0].dzapFee.add(fixedNativeData.dzapNativeFeeAmount)
-        )
-      )
     })
 
     it('1.3 Should allow user to swap single token, return excess eth sent, and left over (tokenB -> tokenA)', async () => {
@@ -774,7 +751,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -830,17 +806,141 @@ describe('SwapFacet.test.ts', async () => {
         },
       ]
 
-      const recipientBalanceBefore = await tokenA.balanceOf(recipient)
-      const refundeeBalanceBeforeB = await tokenB.balanceOf(refundee)
-      const integratorBalanceBeforeT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
+      // ----------------------------------------------------------------
+
+      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
+      await tokenB
+        .connect(user)
+        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
+
+      const [
+        userBalanceBeforeB,
+        recipientBalanceBeforeA,
+        integratorBalanceBeforeB,
+        vaultBeforeB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
+
+      // ----------------------------------------------------------------
+
+      await expect(
+        swapFacet
+          .connect(user)
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
+      )
+        .emit(swapFacet, EVENTS.Swapped)
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          leftOverFromAmount,
+          minAmount,
+        ])
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
+          [
+            convertBNToNegative(fixedNativeFeeAmount),
+            fixedNativeData.integratorNativeFeeAmount,
+            fixedNativeData.dzapNativeFeeAmount,
+          ]
+        )
+
+      // ----------------------------------------------------------------
+
+      const [
+        userBalanceAfterB,
+        recipientBalanceAfterA,
+        integratorBalanceAfterB,
+        vaultAfterB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterB).equal(
+        userBalanceBeforeB.sub(amounts[0].sub(leftOverFromAmount))
+      )
+      expect(recipientBalanceAfterA).equal(
+        recipientBalanceBeforeA.add(minAmount)
+      )
+      expect(integratorBalanceAfterB).equal(
+        integratorBalanceBeforeB.add(tokenFeeData[0].integratorFee)
+      )
+      expect(vaultAfterB).equal(vaultBeforeB.add(tokenFeeData[0].dzapFee))
+    })
+
+    it('1.4 Should allow user to swap single token, return excess eth sent, and left over (tokenB -> tokenA)', async () => {
+      const rate = await mockExchange.rate()
+      const leftOverPercent = await mockExchange.leftOverPercent()
+
+      // ----------------------------------------------------------------
+      // native to tokenA
+      const user = signers[12]
+      const transactionId = ethers.utils.formatBytes32String('dummyId')
+      const integratorAddress = integrator2.address
+      const recipient = signers[14].address
+      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
+
+      // ----------------------------------------------------------------
+
+      const from = tokenB.address
+      const to = DZAP_NATIVE
+      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
+      const {
+        amountWithoutFee,
+        fixedNativeFeeAmount,
+        fixedNativeData,
+        tokenFeeData,
+      } = await getFeeData(swapFacet.address, integratorAddress, amounts)
+      const extra = parseUnits('5')
+      const value = fixedNativeFeeAmount.add(extra)
+
+      // ----------------------------------------------------------------
+
+      const callData = (
+        await mockExchange.populateTransaction.swap(
+          from,
+          to,
+          dZapDiamond.address,
+          amountWithoutFee[0],
+          true,
+          false
+        )
+      ).data as string
+
+      const minAmount = parseUnits(
+        formatUnits(
+          amountWithoutFee[0].mul(rate).div(BPS_MULTIPLIER),
+          TOKEN_B_DECIMAL
+        ),
+        TOKEN_A_DECIMAL
       )
 
-      const protoFeeVaultBeforeT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
+      const leftOverFromAmount = amountWithoutFee[0]
+        .mul(leftOverPercent)
+        .div(BPS_DENOMINATOR)
+
+      const swapData = [
+        {
+          callTo: mockExchange.address,
+          approveTo: mockExchange.address,
+          from: from,
+          to: to,
+          fromAmount: amounts[0],
+          minToAmount: minAmount,
+          swapCallData: callData,
+          permit: encodedPermitData,
+        },
+      ]
 
       // ----------------------------------------------------------------
 
@@ -849,76 +949,72 @@ describe('SwapFacet.test.ts', async () => {
         .connect(user)
         .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
+      const [
+        userBalanceBeforeB,
+        recipientBalanceBeforeA,
+        integratorBalanceBeforeB,
+        vaultBeforeB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
+
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(
-          transactionId,
-          integratorAddress,
-          user.address,
-          refundee,
-          recipient,
-          [
-            mockExchange.address,
-            swapData[0].from,
-            swapData[0].to,
-            swapData[0].fromAmount,
-            leftOverFromAmount,
-            minAmount,
-          ]
-        )
-        .changeEtherBalance(refundee, extra)
-      // .changeTokenBalance(tokenB, refundee, leftOverFromAmount)
-      // .changeTokenBalance(tokenA, recipient, minAmount)
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          leftOverFromAmount,
+          minAmount,
+        ])
+      // .changeEtherBalances(
+      //   [user, integrator2, protoFeeVault],
+      //   [
+      //     convertBNToNegative(fixedNativeFeeAmount),
+      //     fixedNativeData.integratorNativeFeeAmount,
+      //     fixedNativeData.dzapNativeFeeAmount,
+      //   ]
+      // )
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceAfter = await tokenA.balanceOf(recipient)
-      const integratorBalanceAfterT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const refundeeBalanceAfterB = await tokenB.balanceOf(refundee)
+      // const [
+      //   userBalanceAfterB,
+      //   recipientBalanceAfterA,
+      //   integratorBalanceAfterB,
+      //   vaultAfterB,
+      // ] = await Promise.all([
+      //   tokenB.balanceOf(user.address),
+      //   tokenA.balanceOf(recipient),
+      //   tokenB.balanceOf(integratorAddress),
+      //   tokenB.balanceOf(protoFeeVault.address),
+      // ])
 
-      const protoFeeVaultAfterT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-
-      expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-      expect(refundeeBalanceAfterB).equal(
-        refundeeBalanceBeforeB.add(leftOverFromAmount)
-      )
-      expect(integratorBalanceAfterT).equal(
-        integratorBalanceBeforeT.add(tokenFeeData[0].integratorFee)
-      )
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN.add(fixedNativeData.integratorNativeFeeAmount)
-      )
-
-      expect(protoFeeVaultAfterT).equal(
-        protoFeeVaultBeforeT.add(tokenFeeData[0].dzapFee)
-      )
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN.add(fixedNativeData.dzapNativeFeeAmount)
-      )
+      // expect(userBalanceAfterB).equal(
+      //   userBalanceBeforeB.sub(amounts[0].sub(leftOverFromAmount))
+      // )
+      // expect(recipientBalanceAfterA).equal(
+      //   recipientBalanceBeforeA.add(minAmount)
+      // )
+      // expect(integratorBalanceAfterB).equal(
+      //   integratorBalanceBeforeB.add(tokenFeeData[0].integratorFee)
+      // )
+      // expect(vaultAfterB).equal(vaultBeforeB.add(tokenFeeData[0].dzapFee))
     })
 
-    it('1.4 Should allow user to swap single token, using permit approve (tokenB -> tokenA)', async () => {
+    it('1.5 Should allow user to swap single token, using permit approve (tokenB -> tokenA)', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -926,7 +1022,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = await generateRandomWallet()
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -989,18 +1084,6 @@ describe('SwapFacet.test.ts', async () => {
         },
       ]
 
-      const recipientBalanceBefore = await tokenA.balanceOf(recipient)
-      const refundeeBalanceBeforeB = await tokenB.balanceOf(refundee)
-      const integratorBalanceBeforeT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-
-      const protoFeeVaultBeforeT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-
       // ----------------------------------------------------------------
 
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
@@ -1008,73 +1091,70 @@ describe('SwapFacet.test.ts', async () => {
         .connect(user)
         .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
+      const [
+        userBalanceBeforeB,
+        recipientBalanceBeforeA,
+        integratorBalanceBeforeB,
+        vaultBeforeB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
+
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(
-          transactionId,
-          integratorAddress,
-          user.address,
-          refundee,
-          recipient,
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          0,
+          minAmount,
+        ])
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
           [
-            mockExchange.address,
-            swapData[0].from,
-            swapData[0].to,
-            swapData[0].fromAmount,
-            0,
-            minAmount,
+            convertBNToNegative(fixedNativeFeeAmount),
+            fixedNativeData.integratorNativeFeeAmount,
+            fixedNativeData.dzapNativeFeeAmount,
           ]
         )
-        .changeTokenBalance(tokenA, recipient, minAmount)
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceAfter = await tokenA.balanceOf(recipient)
-      const integratorBalanceAfterT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const refundeeBalanceAfterB = await tokenB.balanceOf(refundee)
+      const [
+        userBalanceAfterB,
+        recipientBalanceAfterA,
+        integratorBalanceAfterB,
+        vaultAfterB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
 
-      const protoFeeVaultAfterT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
+      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
+      expect(recipientBalanceAfterA).equal(
+        recipientBalanceBeforeA.add(minAmount)
       )
-
-      expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-      expect(refundeeBalanceAfterB).equal(refundeeBalanceBeforeB)
-
-      expect(integratorBalanceAfterT).equal(
-        integratorBalanceBeforeT.add(tokenFeeData[0].integratorFee)
+      expect(integratorBalanceAfterB).equal(
+        integratorBalanceBeforeB.add(tokenFeeData[0].integratorFee)
       )
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN.add(fixedNativeData.integratorNativeFeeAmount)
-      )
-
-      expect(protoFeeVaultAfterT).equal(
-        protoFeeVaultBeforeT.add(tokenFeeData[0].dzapFee)
-      )
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN.add(fixedNativeData.dzapNativeFeeAmount)
-      )
+      expect(vaultAfterB).equal(vaultBeforeB.add(tokenFeeData[0].dzapFee))
     })
 
-    it('1.5 Should allow user to swap single token, using permit2 approve (tokenB -> tokenA)', async () => {
+    it('1.6 Should allow user to swap single token, using permit2 approve (tokenB -> tokenA)', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -1160,18 +1240,6 @@ describe('SwapFacet.test.ts', async () => {
         },
       ]
 
-      const recipientBalanceBefore = await tokenA.balanceOf(recipient)
-      const refundeeBalanceBeforeB = await tokenB.balanceOf(refundee)
-      const integratorBalanceBeforeT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-
-      const protoFeeVaultBeforeT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-
       // ----------------------------------------------------------------
 
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
@@ -1179,80 +1247,76 @@ describe('SwapFacet.test.ts', async () => {
         .connect(user)
         .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
+      const [
+        userBalanceBeforeB,
+        recipientBalanceBeforeA,
+        integratorBalanceBeforeB,
+        vaultBeforeB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
+
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(
-          transactionId,
-          integratorAddress,
-          user.address,
-          refundee,
-          recipient,
+        .withArgs(transactionId, integratorAddress, user.address, recipient, [
+          mockExchange.address,
+          swapData[0].from,
+          swapData[0].to,
+          swapData[0].fromAmount,
+          0,
+          minAmount,
+        ])
+        .changeTokenBalance(tokenA, recipient, minAmount)
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
           [
-            mockExchange.address,
-            swapData[0].from,
-            swapData[0].to,
-            swapData[0].fromAmount,
-            0,
-            minAmount,
+            convertBNToNegative(fixedNativeFeeAmount),
+            fixedNativeData.integratorNativeFeeAmount,
+            fixedNativeData.dzapNativeFeeAmount,
           ]
         )
-        .changeTokenBalance(tokenA, recipient, minAmount)
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceAfter = await tokenA.balanceOf(recipient)
-      const integratorBalanceAfterT = await tokenB.balanceOf(integratorAddress)
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const refundeeBalanceAfterB = await tokenB.balanceOf(refundee)
+      const [
+        userBalanceAfterB,
+        recipientBalanceAfterA,
+        integratorBalanceAfterB,
+        vaultAfterB,
+      ] = await Promise.all([
+        tokenB.balanceOf(user.address),
+        tokenA.balanceOf(recipient),
+        tokenB.balanceOf(integratorAddress),
+        tokenB.balanceOf(protoFeeVault.address),
+      ])
 
-      const protoFeeVaultAfterT = await tokenB.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
+      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
+      expect(recipientBalanceAfterA).equal(
+        recipientBalanceBeforeA.add(minAmount)
       )
-
-      expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-      expect(refundeeBalanceAfterB).equal(refundeeBalanceBeforeB)
-
-      expect(integratorBalanceAfterT).equal(
-        integratorBalanceBeforeT.add(tokenFeeData[0].integratorFee)
+      expect(integratorBalanceAfterB).equal(
+        integratorBalanceBeforeB.add(tokenFeeData[0].integratorFee)
       )
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN.add(fixedNativeData.integratorNativeFeeAmount)
-      )
-
-      expect(protoFeeVaultAfterT).equal(
-        protoFeeVaultBeforeT.add(tokenFeeData[0].dzapFee)
-      )
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN.add(fixedNativeData.dzapNativeFeeAmount)
-      )
+      expect(vaultAfterB).equal(vaultBeforeB.add(tokenFeeData[0].dzapFee))
     })
 
-    it('1.6 Should revert if recipient is zero address', async () => {
+    it('1.7 Should revert if recipient is zero address', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
       // ----------------------------------------------------------------
@@ -1260,35 +1324,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, refundee, ZERO_ADDRESS, {
-            callTo: mockExchange.address,
-            approveTo: mockExchange.address,
-            from: DZAP_NATIVE,
-            to: tokenB.address,
-            fromAmount: 100,
-            minToAmount: 100,
-            swapCallData: '0x',
-            permit: encodedPermitData,
-          })
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('1.7 Should revert if refundee is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swap(transactionId, integratorAddress, ZERO_ADDRESS, recipient, {
+          .swap(transactionId, integratorAddress, ZERO_ADDRESS, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: DZAP_NATIVE,
@@ -1305,12 +1341,10 @@ describe('SwapFacet.test.ts', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
-
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1360,16 +1394,9 @@ describe('SwapFacet.test.ts', async () => {
       expect(
         await swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       ).reverted
     })
 
@@ -1378,8 +1405,6 @@ describe('SwapFacet.test.ts', async () => {
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1388,7 +1413,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swap(transactionId, signers[10].address, refundee, recipient, {
+          .swap(transactionId, signers[10].address, recipient, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: DZAP_NATIVE,
@@ -1407,26 +1432,36 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
+
+      const callData = (
+        await mockExchange.populateTransaction.swap(
+          tokenA.address,
+          tokenB.address,
+          dZapDiamond.address,
+          parseUnits('1'),
+          false,
+          false
+        )
+      ).data as string
 
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, refundee, recipient, {
+          .swap(transactionId, integratorAddress, recipient, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: tokenA.address,
             to: tokenB.address,
             fromAmount: 0,
             minToAmount: 100,
-            swapCallData: '0x',
+            swapCallData: callData,
             permit: encodedPermitData,
           })
-      ).revertedWithCustomError(swapFacet, ERRORS.InvalidAmount)
+      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
     it('1.11 Should revert if callTo(dex) is not approved', async () => {
@@ -1435,7 +1470,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1445,7 +1479,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).swap(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           {
             callTo: executor.address,
@@ -1468,7 +1501,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1478,7 +1510,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).swap(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           {
             callTo: mockExchange.address,
@@ -1495,43 +1526,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
     })
 
-    it('1.13 Should revert if dex selector is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const callData = (await mockExchange.populateTransaction.changeRate(10))
-        .data as string
-
-      await expect(
-        swapFacet.connect(user).swap(
-          transactionId,
-          integratorAddress,
-          refundee,
-          recipient,
-          {
-            callTo: mockExchange.address,
-            approveTo: mockExchange.address,
-            from: DZAP_NATIVE,
-            to: tokenB.address,
-            fromAmount: 100,
-            minToAmount: 100,
-            swapCallData: callData,
-            permit: encodedPermitData,
-          },
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('1.14 Should revert if swap call fails', async () => {
+    it('1.13 Should revert if swap call fails', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -1540,7 +1535,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1590,22 +1584,15 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
         .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
     })
 
-    it('1.15 Should revert if slippage is too high', async () => {
+    it('1.14 Should revert if slippage is too high', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -1614,7 +1601,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -1664,16 +1650,9 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData[0],
-            {
-              value,
-            }
-          )
+          .swap(transactionId, integratorAddress, recipient, swapData[0], {
+            value,
+          })
       )
         .revertedWithCustomError(swapFacet, ERRORS.SlippageTooHigh)
         .withArgs(swapData[0].minToAmount, minAmount)
@@ -1690,7 +1669,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -1772,30 +1750,23 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeN = await ethers.provider.getBalance(
-        recipient
-      )
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceBeforeWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceBeforeWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
+      const [
+        userBalanceBeforeA,
+        userBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        integratorBalanceBeforeWN,
+        protoFeeVaultBeforeA,
+        protoFeeVaultBeforeWN,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        wNative.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+        wNative.balanceOf(protoFeeVault.address),
+      ])
 
       // ----------------------------------------------------------------
       // tokenA -> eth
@@ -1804,17 +1775,12 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalance(recipient, minAmount[0])
 
       // ----------------------------------------------------------------
 
@@ -1822,34 +1788,8 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterN = await ethers.provider.getBalance(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceAfterWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceAfterWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
-
-      // ----------------------------------------------------------------
-
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -1870,29 +1810,42 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      expect(recipientBalanceAfterN).equal(
-        recipientBalanceBeforeN.add(minAmount[0])
-      )
+      const [
+        userBalanceAfterA,
+        userBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        integratorBalanceAfterWN,
+        protoFeeVaultAfterA,
+        protoFeeVaultAfterWN,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        wNative.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+        wNative.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
+      expect(userBalanceAfterWN).equal(userBalanceBeforeWN.sub(amounts[1]))
       expect(recipientBalanceAfterB).equal(
         recipientBalanceBeforeB.add(minAmount[1])
       )
 
-      expect(refundeeBalanceAfterN).equal(refundeeBalanceBeforeN.add(ZERO))
-      expect(refundeeBalanceAfterA).equal(refundeeBalanceBeforeA.add(ZERO))
-      expect(refundeeBalanceAfterWN).equal(refundeeBalanceBeforeWN.add(ZERO))
-
-      expect(integratorBalanceAfterN).equal(integratorBalanceBeforeN.add(ZERO))
-      expect(integratorBalanceAfterA).equal(integratorBalanceBeforeA.add(ZERO))
+      expect(integratorBalanceAfterA).equal(
+        integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
+      )
       expect(integratorBalanceAfterWN).equal(
-        integratorBalanceBeforeWN.add(ZERO)
+        integratorBalanceBeforeWN.add(tokenFeeData[1].integratorFee)
       )
 
-      expect(protoFeeVaultAfterN).equal(protoFeeVaultBeforeN.add(ZERO))
       expect(protoFeeVaultAfterA).equal(
-        protoFeeVaultBeforeA.add(tokenFeeData[0].totalFee)
+        protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
       )
       expect(protoFeeVaultAfterWN).equal(
-        protoFeeVaultBeforeWN.add(tokenFeeData[1].totalFee)
+        protoFeeVaultBeforeWN.add(tokenFeeData[1].dzapFee)
       )
     })
 
@@ -1905,7 +1858,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -1986,21 +1938,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeWN = await wNative.balanceOf(recipient)
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        protoFeeVaultBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
 
       // ----------------------------------------------------------------
       // tokenA -> wNative
@@ -2009,17 +1959,23 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
+          [
+            convertBNToNegative(
+              amounts[1].add(fixedNativeData.totalNativeFeeAmount)
+            ),
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[1].integratorFee
+            ),
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[1].dzapFee),
+          ]
+        )
 
       // ----------------------------------------------------------------
 
@@ -2027,27 +1983,10 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterWN = await wNative.balanceOf(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -2068,6 +2007,21 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        protoFeeVaultAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
       expect(recipientBalanceAfterWN).equal(
         recipientBalanceBeforeWN.add(minAmount[0])
       )
@@ -2075,32 +2029,12 @@ describe('SwapFacet.test.ts', async () => {
         recipientBalanceBeforeB.add(minAmount[1])
       )
 
-      expect(refundeeBalanceAfterN).equal(refundeeBalanceBeforeN.add(ZERO))
-      expect(refundeeBalanceAfterA).equal(refundeeBalanceBeforeA.add(ZERO))
-
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN
-          .add(fixedNativeData.integratorNativeFeeAmount)
-          .add(tokenFeeData[1].integratorFee)
-      )
       expect(integratorBalanceAfterA).equal(
         integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
-      )
-
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN
-          .add(fixedNativeData.dzapNativeFeeAmount)
-          .add(tokenFeeData[1].dzapFee)
       )
       expect(protoFeeVaultAfterA).equal(
         protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
       )
-
-      expect(fixedNativeData.integratorNativeFeeAmount).gt(ZERO)
-      expect(fixedNativeData.dzapNativeFeeAmount).gt(ZERO)
-
-      expect(tokenFeeData[0].integratorFee).gt(ZERO)
-      expect(tokenFeeData[0].dzapFee).gt(ZERO)
     })
 
     it('2.3 Should allow user to swap multiple tokens and return leftover and extra native', async () => {
@@ -2113,7 +2047,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -2199,21 +2132,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeWN = await wNative.balanceOf(recipient)
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        protoFeeVaultBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
 
       // ----------------------------------------------------------------
       // tokenA -> wNative
@@ -2222,17 +2153,21 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
+          [
+            convertBNToNegative(value.sub(leftOverFromAmount[1].add(extra))),
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[1].integratorFee
+            ),
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[1].dzapFee),
+          ]
+        )
 
       // ----------------------------------------------------------------
 
@@ -2240,27 +2175,10 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterWN = await wNative.balanceOf(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -2281,43 +2199,36 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      expect(recipientBalanceAfterWN).equal(
-        recipientBalanceBeforeWN.add(minAmount[0])
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        protoFeeVaultAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(
+        userBalanceBeforeA.sub(amounts[0]).add(leftOverFromAmount[0])
       )
       expect(recipientBalanceAfterB).equal(
         recipientBalanceBeforeB.add(minAmount[1])
       )
-
-      expect(refundeeBalanceAfterN).equal(
-        refundeeBalanceBeforeN.add(leftOverFromAmount[1]).add(extra)
-      )
-      expect(refundeeBalanceAfterA).equal(
-        refundeeBalanceBeforeA.add(leftOverFromAmount[0])
+      expect(recipientBalanceAfterWN).equal(
+        recipientBalanceBeforeWN.add(minAmount[0])
       )
 
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN
-          .add(fixedNativeData.integratorNativeFeeAmount)
-          .add(tokenFeeData[1].integratorFee)
-      )
       expect(integratorBalanceAfterA).equal(
         integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
-      )
-
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN
-          .add(fixedNativeData.dzapNativeFeeAmount)
-          .add(tokenFeeData[1].dzapFee)
       )
       expect(protoFeeVaultAfterA).equal(
         protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
       )
-
-      expect(fixedNativeData.integratorNativeFeeAmount).gt(ZERO)
-      expect(fixedNativeData.dzapNativeFeeAmount).gt(ZERO)
-
-      expect(tokenFeeData[0].integratorFee).gt(ZERO)
-      expect(tokenFeeData[0].dzapFee).gt(ZERO)
     })
 
     it('2.4 Should revert if recipient is zero address', async () => {
@@ -2326,8 +2237,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
       // ----------------------------------------------------------------
@@ -2335,7 +2244,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, refundee, ZERO_ADDRESS, [
+          .multiSwap(transactionId, integratorAddress, ZERO_ADDRESS, [
             {
               callTo: mockExchange.address,
               approveTo: mockExchange.address,
@@ -2350,43 +2259,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
     })
 
-    it('2.5 Should revert if refundee is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            ZERO_ADDRESS,
-            recipient,
-            [
-              {
-                callTo: mockExchange.address,
-                approveTo: mockExchange.address,
-                from: DZAP_NATIVE,
-                to: tokenB.address,
-                fromAmount: 100,
-                minToAmount: 100,
-                swapCallData: '0x',
-                permit: encodedPermitData,
-              },
-            ]
-          )
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('2.6 Should revert if native fee is not transfers', async () => {
+    it('2.5 Should revert if native fee is not transfers', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -2395,7 +2268,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -2445,26 +2317,17 @@ describe('SwapFacet.test.ts', async () => {
       expect(
         await swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
       ).reverted
     })
 
-    it('2.7 Should revert if integrator is not allowed', async () => {
+    it('2.6 Should revert if integrator is not allowed', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -2473,7 +2336,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(transactionId, signers[10].address, refundee, recipient, [
+          .multiSwap(transactionId, signers[10].address, recipient, [
             {
               callTo: mockExchange.address,
               approveTo: mockExchange.address,
@@ -2488,22 +2351,32 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.IntegratorNotAllowed)
     })
 
-    it('2.8 Should revert if from amount is zero', async () => {
+    it('2.7 Should revert if from amount is zero', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
+
+      const callData = (
+        await mockExchange.populateTransaction.swap(
+          tokenA.address,
+          tokenB.address,
+          dZapDiamond.address,
+          parseUnits('1'),
+          false,
+          false
+        )
+      ).data as string
 
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, refundee, recipient, [
+          .multiSwap(transactionId, integratorAddress, recipient, [
             {
               callTo: mockExchange.address,
               approveTo: mockExchange.address,
@@ -2511,20 +2384,19 @@ describe('SwapFacet.test.ts', async () => {
               to: tokenB.address,
               fromAmount: 0,
               minToAmount: 100,
-              swapCallData: '0x',
+              swapCallData: callData,
               permit: encodedPermitData,
             },
           ])
-      ).revertedWithCustomError(swapFacet, ERRORS.InvalidAmount)
+      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
-    it('2.9 Should revert if callTo(dex) is not approved', async () => {
+    it('2.8 Should revert if callTo(dex) is not approved', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -2534,7 +2406,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).multiSwap(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           [
             {
@@ -2553,13 +2424,12 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
     })
 
-    it('2.10 Should revert if approveTo(dex) is not approved', async () => {
+    it('2.9 Should revert if approveTo(dex) is not approved', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -2569,7 +2439,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).multiSwap(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           [
             {
@@ -2588,45 +2457,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
     })
 
-    it('2.11 Should revert if dex selector is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const callData = (await mockExchange.populateTransaction.changeRate(10))
-        .data as string
-
-      await expect(
-        swapFacet.connect(user).multiSwap(
-          transactionId,
-          integratorAddress,
-          refundee,
-          recipient,
-          [
-            {
-              callTo: mockExchange.address,
-              approveTo: mockExchange.address,
-              from: DZAP_NATIVE,
-              to: tokenB.address,
-              fromAmount: 100,
-              minToAmount: 100,
-              swapCallData: callData,
-              permit: encodedPermitData,
-            },
-          ],
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('2.12 Should revert if swap call fails', async () => {
+    it('2.10 Should revert if swap call fails', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -2635,7 +2466,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -2719,22 +2549,15 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
       )
         .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
         .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
     })
 
-    it('2.13 Should revert if slippage is too high', async () => {
+    it('2.11 Should revert if slippage is too high', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -2743,7 +2566,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
@@ -2793,16 +2615,9 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .multiSwap(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            swapData,
-            {
-              value,
-            }
-          )
+          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
+            value,
+          })
       )
         .revertedWithCustomError(swapFacet, ERRORS.SlippageTooHigh)
         .withArgs(swapData[0].minToAmount, minAmount)
@@ -2901,30 +2716,23 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeN = await ethers.provider.getBalance(
-        recipient
-      )
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceBeforeWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceBeforeWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
+      const [
+        userBalanceBeforeA,
+        userBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        integratorBalanceBeforeWN,
+        protoFeeVaultBeforeA,
+        protoFeeVaultBeforeWN,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        wNative.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+        wNative.balanceOf(protoFeeVault.address),
+      ])
 
       // ----------------------------------------------------------------
       // tokenA -> eth
@@ -2936,14 +2744,15 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
               value,
             }
           )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalance(recipient, minAmount[0])
 
       // ----------------------------------------------------------------
 
@@ -2951,34 +2760,10 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterN = await ethers.provider.getBalance(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceAfterWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceAfterWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -2999,29 +2784,42 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      expect(recipientBalanceAfterN).equal(
-        recipientBalanceBeforeN.add(minAmount[0])
-      )
+      const [
+        userBalanceAfterA,
+        userBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        integratorBalanceAfterWN,
+        protoFeeVaultAfterA,
+        protoFeeVaultAfterWN,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        wNative.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+        wNative.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
+      expect(userBalanceAfterWN).equal(userBalanceBeforeWN.sub(amounts[1]))
       expect(recipientBalanceAfterB).equal(
         recipientBalanceBeforeB.add(minAmount[1])
       )
 
-      expect(refundeeBalanceAfterN).equal(refundeeBalanceBeforeN.add(ZERO))
-      expect(refundeeBalanceAfterA).equal(refundeeBalanceBeforeA.add(ZERO))
-      expect(refundeeBalanceAfterWN).equal(refundeeBalanceBeforeWN.add(ZERO))
-
-      expect(integratorBalanceAfterN).equal(integratorBalanceBeforeN.add(ZERO))
-      expect(integratorBalanceAfterA).equal(integratorBalanceBeforeA.add(ZERO))
+      expect(integratorBalanceAfterA).equal(
+        integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
+      )
       expect(integratorBalanceAfterWN).equal(
-        integratorBalanceBeforeWN.add(ZERO)
+        integratorBalanceBeforeWN.add(tokenFeeData[1].integratorFee)
       )
 
-      expect(protoFeeVaultAfterN).equal(protoFeeVaultBeforeN.add(ZERO))
       expect(protoFeeVaultAfterA).equal(
-        protoFeeVaultBeforeA.add(tokenFeeData[0].totalFee)
+        protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
       )
       expect(protoFeeVaultAfterWN).equal(
-        protoFeeVaultBeforeWN.add(tokenFeeData[1].totalFee)
+        protoFeeVaultBeforeWN.add(tokenFeeData[1].dzapFee)
       )
     })
 
@@ -3034,7 +2832,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator2.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -3114,23 +2911,19 @@ describe('SwapFacet.test.ts', async () => {
       const value = fixedNativeFeeAmount.add(amounts[1])
 
       // ----------------------------------------------------------------
-
-      const recipientBalanceBeforeWN = await wNative.balanceOf(recipient)
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
-
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        protoFeeVaultBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
       // ----------------------------------------------------------------
       // tokenA -> wNative
       // eth -> tokenB
@@ -3141,14 +2934,26 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
               value,
             }
           )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
+          [
+            convertBNToNegative(
+              amounts[1].add(fixedNativeData.totalNativeFeeAmount)
+            ),
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[1].integratorFee
+            ),
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[1].dzapFee),
+          ]
+        )
 
       // ----------------------------------------------------------------
 
@@ -3156,27 +2961,10 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterWN = await wNative.balanceOf(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -3197,6 +2985,21 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        protoFeeVaultAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
       expect(recipientBalanceAfterWN).equal(
         recipientBalanceBeforeWN.add(minAmount[0])
       )
@@ -3204,22 +3007,8 @@ describe('SwapFacet.test.ts', async () => {
         recipientBalanceBeforeB.add(minAmount[1])
       )
 
-      expect(refundeeBalanceAfterN).equal(refundeeBalanceBeforeN.add(ZERO))
-      expect(refundeeBalanceAfterA).equal(refundeeBalanceBeforeA.add(ZERO))
-
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN
-          .add(fixedNativeData.integratorNativeFeeAmount)
-          .add(tokenFeeData[1].integratorFee)
-      )
       expect(integratorBalanceAfterA).equal(
         integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
-      )
-
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN
-          .add(fixedNativeData.dzapNativeFeeAmount)
-          .add(tokenFeeData[1].dzapFee)
       )
       expect(protoFeeVaultAfterA).equal(
         protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
@@ -3328,22 +3117,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeWN = await wNative.balanceOf(recipient)
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
-
+      const [
+        userBalanceBeforeA,
+        recipientBalanceBeforeWN,
+        recipientBalanceBeforeB,
+        integratorBalanceBeforeA,
+        protoFeeVaultBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
       // ----------------------------------------------------------------
       // tokenA -> wNative
       // eth -> tokenB
@@ -3354,14 +3140,24 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
               value,
             }
           )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalances(
+          [user, integrator2, protoFeeVault],
+          [
+            convertBNToNegative(value.sub(leftOverFromAmount[1].add(extra))),
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[1].integratorFee
+            ),
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[1].dzapFee),
+          ]
+        )
 
       // ----------------------------------------------------------------
 
@@ -3369,27 +3165,10 @@ describe('SwapFacet.test.ts', async () => {
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterWN = await wNative.balanceOf(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -3410,33 +3189,32 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      expect(recipientBalanceAfterWN).equal(
-        recipientBalanceBeforeWN.add(minAmount[0])
+      const [
+        userBalanceAfterA,
+        recipientBalanceAfterWN,
+        recipientBalanceAfterB,
+        integratorBalanceAfterA,
+        protoFeeVaultAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(recipient),
+        tokenB.balanceOf(recipient),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
+
+      expect(userBalanceAfterA).equal(
+        userBalanceBeforeA.sub(amounts[0]).add(leftOverFromAmount[0])
       )
       expect(recipientBalanceAfterB).equal(
         recipientBalanceBeforeB.add(minAmount[1])
       )
-
-      expect(refundeeBalanceAfterN).equal(
-        refundeeBalanceBeforeN.add(leftOverFromAmount[1]).add(extra)
-      )
-      expect(refundeeBalanceAfterA).equal(
-        refundeeBalanceBeforeA.add(leftOverFromAmount[0])
+      expect(recipientBalanceAfterWN).equal(
+        recipientBalanceBeforeWN.add(minAmount[0])
       )
 
-      expect(integratorBalanceAfterN).equal(
-        integratorBalanceBeforeN
-          .add(fixedNativeData.integratorNativeFeeAmount)
-          .add(tokenFeeData[1].integratorFee)
-      )
       expect(integratorBalanceAfterA).equal(
         integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
-      )
-
-      expect(protoFeeVaultAfterN).equal(
-        protoFeeVaultBeforeN
-          .add(fixedNativeData.dzapNativeFeeAmount)
-          .add(tokenFeeData[1].dzapFee)
       )
       expect(protoFeeVaultAfterA).equal(
         protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
@@ -3458,7 +3236,6 @@ describe('SwapFacet.test.ts', async () => {
       const user = signers[12]
       const transactionId = ethers.utils.formatBytes32String('dummyId')
       const integratorAddress = integrator1.address
-      const refundee = signers[13].address
       const recipient = signers[14].address
 
       // ----------------------------------------------------------------
@@ -3495,30 +3272,17 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const recipientBalanceBeforeN = await ethers.provider.getBalance(
-        recipient
-      )
-      const recipientBalanceBeforeB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceBeforeN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceBeforeA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceBeforeWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceBeforeN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceBeforeA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceBeforeWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultBeforeA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultBeforeWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
+      const [
+        userBalanceBeforeA,
+        userBalanceBeforeWN,
+        integratorBalanceBeforeA,
+        protoFeeVaultBeforeA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
 
       // ----------------------------------------------------------------
 
@@ -3566,53 +3330,33 @@ describe('SwapFacet.test.ts', async () => {
       const value = fixedNativeFeeAmount
 
       // ----------------------------------------------------------------
+
       await expect(
         swapFacet
           .connect(user)
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
               value,
             }
           )
-      ).emit(swapFacet, EVENTS.MultiSwapped)
+      )
+        .emit(swapFacet, EVENTS.MultiSwapped)
+        .changeEtherBalance(recipient, minAmount[0])
+
+      // ----------------------------------------------------------------
 
       const eventFilter = swapFacet.filters.MultiSwapped()
       const data = await swapFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
-      const recipientBalanceAfterN = await ethers.provider.getBalance(recipient)
-      const recipientBalanceAfterB = await tokenB.balanceOf(recipient)
-
-      const refundeeBalanceAfterN = await ethers.provider.getBalance(refundee)
-      const refundeeBalanceAfterA = await tokenA.balanceOf(refundee)
-      const refundeeBalanceAfterWN = await wNative.balanceOf(refundee)
-
-      const integratorBalanceAfterN = await ethers.provider.getBalance(
-        integratorAddress
-      )
-      const integratorBalanceAfterA = await tokenA.balanceOf(integratorAddress)
-      const integratorBalanceAfterWN = await wNative.balanceOf(
-        integratorAddress
-      )
-
-      const protoFeeVaultAfterN = await ethers.provider.getBalance(
-        protoFeeVault.address
-      )
-      const protoFeeVaultAfterA = await tokenA.balanceOf(protoFeeVault.address)
-      const protoFeeVaultAfterWN = await wNative.balanceOf(
-        protoFeeVault.address
-      )
-
       // ----------------------------------------------------------------
 
       expect(args.transactionId).equal(transactionId)
       expect(args.integrator).equal(integratorAddress)
-      expect(args.refundee).equal(refundee)
       expect(args.recipient).equal(recipient)
 
       // swap 0
@@ -3632,29 +3376,26 @@ describe('SwapFacet.test.ts', async () => {
       expect(args.swapInfo[1].returnToAmount).equal(ZERO)
 
       // ----------------------------------------------------------------
+      const [
+        userBalanceAfterA,
+        userBalanceAfterWN,
+        integratorBalanceAfterA,
+        protoFeeVaultAfterA,
+      ] = await Promise.all([
+        tokenA.balanceOf(user.address),
+        wNative.balanceOf(user.address),
+        tokenA.balanceOf(integratorAddress),
+        tokenA.balanceOf(protoFeeVault.address),
+      ])
 
-      expect(recipientBalanceAfterN).equal(
-        recipientBalanceBeforeN.add(minAmount[0])
+      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
+      expect(userBalanceAfterWN).equal(userBalanceBeforeWN)
+      expect(integratorBalanceAfterA).equal(
+        integratorBalanceBeforeA.add(tokenFeeData[0].integratorFee)
       )
-      expect(recipientBalanceAfterB).equal(recipientBalanceBeforeB.add(ZERO))
-
-      expect(refundeeBalanceAfterN).equal(refundeeBalanceBeforeN.add(ZERO))
-      expect(refundeeBalanceAfterA).equal(refundeeBalanceBeforeA.add(ZERO))
-      expect(refundeeBalanceAfterWN).equal(
-        refundeeBalanceBeforeWN.add(swapData[1].fromAmount)
-      )
-
-      expect(integratorBalanceAfterN).equal(integratorBalanceBeforeN.add(ZERO))
-      expect(integratorBalanceAfterA).equal(integratorBalanceBeforeA.add(ZERO))
-      expect(integratorBalanceAfterWN).equal(
-        integratorBalanceBeforeWN.add(ZERO)
-      )
-
-      expect(protoFeeVaultAfterN).equal(protoFeeVaultBeforeN.add(ZERO))
       expect(protoFeeVaultAfterA).equal(
-        protoFeeVaultBeforeA.add(tokenFeeData[0].totalFee)
+        protoFeeVaultBeforeA.add(tokenFeeData[0].dzapFee)
       )
-      expect(protoFeeVaultAfterWN).equal(protoFeeVaultBeforeWN.add(ZERO))
     })
 
     it('3.5 Should revert if recipient is zero address', async () => {
@@ -3675,7 +3416,6 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             ZERO_ADDRESS,
             [
               {
@@ -3693,43 +3433,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
     })
 
-    it('3.6 Should revert if refundee is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .multiSwapWithoutRevert(
-            transactionId,
-            integratorAddress,
-            ZERO_ADDRESS,
-            recipient,
-            [
-              {
-                callTo: mockExchange.address,
-                approveTo: mockExchange.address,
-                from: DZAP_NATIVE,
-                to: tokenB.address,
-                fromAmount: 100,
-                minToAmount: 100,
-                swapCallData: '0x',
-                permit: encodedPermitData,
-              },
-            ]
-          )
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('3.7 Should revert if native fee is not transfers', async () => {
+    it('3.6 Should revert if native fee is not transfers', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -3791,7 +3495,6 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
@@ -3801,7 +3504,7 @@ describe('SwapFacet.test.ts', async () => {
       ).reverted
     })
 
-    it('3.8 Should revert if integrator is not allowed', async () => {
+    it('3.7 Should revert if integrator is not allowed', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
@@ -3819,7 +3522,6 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             signers[10].address,
-            refundee,
             recipient,
             [
               {
@@ -3837,7 +3539,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.IntegratorNotAllowed)
     })
 
-    it('3.9 Should revert if from amount is zero', async () => {
+    it('3.8 Should revert if from amount is zero', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
@@ -3847,33 +3549,38 @@ describe('SwapFacet.test.ts', async () => {
       const recipient = signers[14].address
       const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
+      const callData = (
+        await mockExchange.populateTransaction.swap(
+          tokenA.address,
+          tokenB.address,
+          dZapDiamond.address,
+          parseUnits('1'),
+          false,
+          false
+        )
+      ).data as string
+
       // ----------------------------------------------------------------
 
       await expect(
         swapFacet
           .connect(user)
-          .multiSwapWithoutRevert(
-            transactionId,
-            integratorAddress,
-            refundee,
-            recipient,
-            [
-              {
-                callTo: mockExchange.address,
-                approveTo: mockExchange.address,
-                from: tokenA.address,
-                to: tokenB.address,
-                fromAmount: 0,
-                minToAmount: 100,
-                swapCallData: '0x',
-                permit: encodedPermitData,
-              },
-            ]
-          )
-      ).revertedWithCustomError(swapFacet, ERRORS.InvalidAmount)
+          .multiSwapWithoutRevert(transactionId, integratorAddress, recipient, [
+            {
+              callTo: mockExchange.address,
+              approveTo: mockExchange.address,
+              from: tokenA.address,
+              to: tokenB.address,
+              fromAmount: 0,
+              minToAmount: 100,
+              swapCallData: callData,
+              permit: encodedPermitData,
+            },
+          ])
+      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
-    it('3.10 Should revert if callTo(dex) is not approved', async () => {
+    it('3.9 Should revert if callTo(dex) is not approved', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
@@ -3889,7 +3596,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).multiSwapWithoutRevert(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           [
             {
@@ -3908,7 +3614,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
     })
 
-    it('3.11 Should revert if approveTo(dex) is not approved', async () => {
+    it('3.10 Should revert if approveTo(dex) is not approved', async () => {
       // ----------------------------------------------------------------
       // native to tokenA
       const user = signers[12]
@@ -3924,7 +3630,6 @@ describe('SwapFacet.test.ts', async () => {
         swapFacet.connect(user).multiSwapWithoutRevert(
           transactionId,
           integratorAddress,
-          refundee,
           recipient,
           [
             {
@@ -3943,45 +3648,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
     })
 
-    it('3.12 Should revert if dex selector is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator2.address
-      const refundee = signers[13].address
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const callData = (await mockExchange.populateTransaction.changeRate(10))
-        .data as string
-
-      await expect(
-        swapFacet.connect(user).multiSwapWithoutRevert(
-          transactionId,
-          integratorAddress,
-          refundee,
-          recipient,
-          [
-            {
-              callTo: mockExchange.address,
-              approveTo: mockExchange.address,
-              from: DZAP_NATIVE,
-              to: tokenB.address,
-              fromAmount: 100,
-              minToAmount: 100,
-              swapCallData: callData,
-              permit: encodedPermitData,
-            },
-          ],
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('3.13 Should revert if all swap swap call fails', async () => {
+    it('3.11 Should revert if all swap swap call fails', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -4043,7 +3710,6 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
@@ -4053,7 +3719,7 @@ describe('SwapFacet.test.ts', async () => {
       ).revertedWithCustomError(swapFacet, EVENTS.AllSwapsFailed)
     })
 
-    it('3.14 Should revert if slippage is too high', async () => {
+    it('3.12 Should revert if slippage is too high', async () => {
       const rate = await mockExchange.rate()
 
       // ----------------------------------------------------------------
@@ -4115,7 +3781,6 @@ describe('SwapFacet.test.ts', async () => {
           .multiSwapWithoutRevert(
             transactionId,
             integratorAddress,
-            refundee,
             recipient,
             swapData,
             {
@@ -4127,4 +3792,8 @@ describe('SwapFacet.test.ts', async () => {
         .withArgs(swapData[0].minToAmount, minAmount)
     })
   })
+
+  // describe('4) swapSingleTokenFromErc20', async () => {
+  //   it('1.3 Should allow user to swap single token, return excess eth sent, and left over (tokenB -> tokenA)', async () => {})
+  // })
 })

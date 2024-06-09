@@ -2,10 +2,13 @@ node_modules
 
 #Hardhat files
 cache
+cache-zk
 artifacts
+artifacts-zk
 .env
 
 temp
 .vscode
 .DS_Store
 typechain
+typechain-types

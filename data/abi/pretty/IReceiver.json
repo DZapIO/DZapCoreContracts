@@ -1,9 +1,0 @@
-[
-  "event DZapTransferRecovered(bytes32 indexed transactionId, address receivingAssetId, address receiver, uint256 amount, uint256 timestamp)",
-  "event ExecutorSet(address indexed executor)",
-  "event RecoverGasSet(uint256 indexed recoverGas)",
-  "event TokensRecovered(address token, address indexed receiver, uint256 amount)",
-  "function recoverToken(address token, address receiver, uint256 amount)",
-  "function setExecutor(address _executor)",
-  "function swapAndCompleteBridgeTokens(bytes32 _transactionId, address _receiver, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _swapData) payable"
-]

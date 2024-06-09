@@ -22,6 +22,10 @@ export const CONTRACTS = {
   Permit2: 'Permit2',
   Executor: 'Executor',
   Receiver: 'Receiver',
+  BridgeManagerFacet: 'BridgeManagerFacet',
+  BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
+  BatchBridgeCallFacet: 'BatchBridgeCallFacet',
+  Create2Deployer: 'Create2Deployer',
 }
 
 export const ERRORS = {
@@ -49,6 +53,8 @@ export const ERRORS = {
   SlippageTooHigh: 'SlippageTooHigh',
   UnauthorizedCaller: 'UnauthorizedCaller',
   SwapCallFailed: 'SwapCallFailed',
+  BridgeNotAdded: 'BridgeNotAdded',
+  UnAuthorizedCall: 'UnAuthorizedCall',
 }
 
 export const EVENTS = {
@@ -69,6 +75,40 @@ export const EVENTS = {
   DZapTransferRecovered: 'DZapTransferRecovered',
   TokensRecovered: 'TokensRecovered',
   TokenSwapped: 'TokenSwapped',
+  BridgeAdded: 'BridgeAdded',
+  BridgeRemoved: 'BridgeRemoved',
+  BatchBridgeTransferStart: 'BatchBridgeTransferStart',
+}
+
+export const INTEGRATORS = {
+  DZAP: 'DZAP',
+}
+
+export const BRIDGES = {
+  ALL: 'ALL',
+  socket: 'socket',
+  unizen: 'unizen',
+  xyFinance: 'xyFinance',
+  dbridge: 'dbridge',
+  mayanFinance: 'mayanFinance',
+  symbios: 'symbios',
+}
+
+export const SWAP_DEXES = {
+  kyber: 'kyber',
+  oneInch: 'oneInch',
+  lifi: 'lifi',
+  odos: 'odos',
+  paraswap: 'paraswap',
+  openOcean: 'openOcean',
+  zeroX: 'zeroX',
+  wNative: 'wNative',
+  bebop: 'bebop',
+  uniswap: 'uniswap',
+  unizen: 'unizen',
+  xyFinance: 'xyFinance',
+  socket: 'socket',
+  conveyor: 'conveyor',
 }
 
 export const BPS_MULTIPLIER = 10000

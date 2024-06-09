@@ -1,6 +1,7 @@
 [
   "error FeeTooHigh()",
   "error IntegratorNotActive()",
+  "error IntegratorNotAllowed()",
   "error ShareTooHigh()",
   "error UnAuthorized()",
   "error ZeroAddress()",

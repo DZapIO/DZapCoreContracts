@@ -46,3 +46,9 @@ error NotInitialized();
 error UnauthorizedCaller();
 
 error InvalidSwapDetails();
+
+error UnAuthorizedCall(address);
+error BridgeNotAdded(address);
+error InvalidLength();
+
+error AllSwapsFailed();

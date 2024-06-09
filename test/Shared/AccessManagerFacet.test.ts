@@ -28,6 +28,7 @@ import {
   BridgeMock,
   Executor,
   Receiver,
+  BridgeManagerFacet,
 } from '../../typechain-types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import {
@@ -56,6 +57,8 @@ let swapFacetImp: SwapFacet
 let swapFacet: SwapFacet
 let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
+let bridgeManagerFacet: BridgeManagerFacet
+let bridgeManagerFacetImp: BridgeManagerFacet
 let executor: Executor
 let receiver: Receiver
 
@@ -205,6 +208,10 @@ describe('AccessManagerFacet.test.ts', async () => {
         CONTRACTS.CrossChainFacet,
         dZapDiamond.address
       )) as CrossChainFacet
+      bridgeManagerFacet = (await ethers.getContractAt(
+        CONTRACTS.BridgeManagerFacet,
+        dZapDiamond.address
+      )) as BridgeManagerFacet
     }
 
     // -----------------------------------------
@@ -265,6 +272,14 @@ describe('AccessManagerFacet.test.ts', async () => {
         deployer
       )
       crossChainFacetImp = (await CrossChainFacet.deploy()) as CrossChainFacet
+      await crossChainFacetImp.deployed()
+
+      const BridgeManagerFacet = await ethers.getContractFactory(
+        CONTRACTS.BridgeManagerFacet,
+        deployer
+      )
+      bridgeManagerFacetImp =
+        (await BridgeManagerFacet.deploy()) as BridgeManagerFacet
       await crossChainFacetImp.deployed()
     }
 
@@ -334,6 +349,14 @@ describe('AccessManagerFacet.test.ts', async () => {
           functionSelectors: getSelectorsUsingContract(
             crossChainFacetImp,
             CONTRACTS.CrossChainFacet
+          ).selectors,
+        },
+        {
+          facetAddress: bridgeManagerFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            bridgeManagerFacetImp,
+            CONTRACTS.BridgeManagerFacet
           ).selectors,
         },
       ]
@@ -523,11 +546,11 @@ describe('AccessManagerFacet.test.ts', async () => {
       {
         const selector = getSighash(
           [
-            crossChainFacet.interface.functions[
-              'updateSelectorInfo(address[],bytes4[],(bool,uint256)[])'
+            bridgeManagerFacet.interface.functions[
+              'updateSelectorInfo(address[],bytes4[],uint256[])'
             ],
           ],
-          crossChainFacet.interface
+          bridgeManagerFacet.interface
         )[0]
 
         expect(
@@ -602,11 +625,11 @@ describe('AccessManagerFacet.test.ts', async () => {
 
         const crossChainSelectors = getSighash(
           [
-            crossChainFacet.interface.functions[
-              'updateSelectorInfo(address[],bytes4[],(bool,uint256)[])'
+            bridgeManagerFacet.interface.functions[
+              'updateSelectorInfo(address[],bytes4[],uint256[])'
             ],
           ],
-          dexManagerFacet.interface
+          bridgeManagerFacet.interface
         )
 
         const crossChainCanExecute = crossChainSelectors.map(() => true)

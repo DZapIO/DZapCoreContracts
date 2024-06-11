@@ -9,7 +9,7 @@ import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 
 import { FeeInfo, SwapInfo, SwapData } from "../../Shared/Types.sol";
 import { GenericBridgeData, CrossChainData, CrossChainAllowedList, TransferData } from "../Types.sol";
-import { UnAuthorizedCall, BridgeCallFailed, InvalidSwapDetails, SlippageTooHigh } from "../../Shared/Errors.sol";
+import { UnAuthorizedCall, BridgeCallFailed, InvalidSwapDetails, SlippageTooLow } from "../../Shared/Errors.sol";
 
 /// @notice Provides mappings for all facets that may need them
 library LibBridge {
@@ -50,7 +50,7 @@ library LibBridge {
         LibValidatable.validateSwapData(_swapData);
         (uint256 leftoverFromAmount, uint256 returnToAmount) = LibSwap.swap(_swapData, totalFee, false);
 
-        if (returnToAmount < _bridgeData.minAmountIn) revert SlippageTooHigh(_bridgeData.minAmountIn, returnToAmount);
+        if (returnToAmount < _bridgeData.minAmountIn) revert SlippageTooLow(_bridgeData.minAmountIn, returnToAmount);
         _bridgeData.minAmountIn = returnToAmount;
 
         LibFees.accrueTokenFees(_integrator, _swapData.from, totalFee - dZapShare, dZapShare);

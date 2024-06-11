@@ -7,7 +7,7 @@ import { LibAsset } from "../Libraries/LibAsset.sol";
 import { LibAllowList } from "../Libraries/LibAllowList.sol";
 import { LibSwap } from "../Libraries/LibSwap.sol";
 
-import { ContractCallNotAllowed, SlippageTooHigh, ZeroAddress, SwapCallFailed, ZeroAddress, NoSwapFromZeroBalance, InvalidContract } from "../Errors.sol";
+import { ContractCallNotAllowed, ZeroAddress, SwapCallFailed, ZeroAddress, NoSwapFromZeroBalance, InvalidContract } from "../Errors.sol";
 
 /// @title Swapper
 /// @notice Abstract contract to provide swap functionality
@@ -24,5 +24,12 @@ abstract contract Swapper {
         _validateSwapData(_swapData);
 
         (leftoverFromAmount, returnToAmount) = LibSwap.swap(_swapData, _totalTokenFees, _withoutRevert);
+    }
+
+    function _executeSwaps(SwapData calldata _swapData, address _recipient, bool _withoutRevert) internal returns (uint256 leftoverFromAmount, uint256 returnToAmount) {
+        _validateSwapData(_swapData);
+
+        (leftoverFromAmount, returnToAmount) = LibSwap.swapDirectTransfer(_swapData, _recipient, _withoutRevert);
+        (_swapData, _withoutRevert, _recipient);
     }
 }

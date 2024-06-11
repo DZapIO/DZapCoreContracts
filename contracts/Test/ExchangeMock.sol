@@ -3,6 +3,7 @@ pragma solidity 0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/interfaces/IERC20Metadata.sol";
+// import "hardhat/console.sol";
 
 contract ExchangeMock {
     using SafeERC20 for IERC20;
@@ -23,45 +24,25 @@ contract ExchangeMock {
     }
 
     function isNative(address token_) private pure returns (bool) {
-        return
-            token_ == address(0) ||
-            token_ == address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
+        return token_ == address(0) || token_ == address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
     }
 
     // solhint-disable-next-line
-    function swap(
-        address srcToken_,
-        address dstToken_,
-        address recipient_,
-        uint256 amount_,
-        bool testLeftOver_,
-        bool testRevert_
-    ) external payable returns (uint256 returnAmount, uint256 leftOverTokens) {
+    function swap(address srcToken_, address dstToken_, address recipient_, uint256 amount_, bool testLeftOver_, bool testRevert_) external payable returns (uint256 returnAmount, uint256 leftOverTokens) {
         if (testRevert_) {
             revert SwapFailedFromExchange();
         }
 
         if (isNative(srcToken_)) {
-            if (msg.value != amount_)
-                revert InvalidNativeSend(amount_, msg.value);
+            if (msg.value != amount_) revert InvalidNativeSend(amount_, msg.value);
         } else {
-            IERC20(srcToken_).safeTransferFrom(
-                msg.sender,
-                address(this),
-                amount_
-            );
+            IERC20(srcToken_).safeTransferFrom(msg.sender, address(this), amount_);
         }
 
-        uint256 srcDecimal = isNative(srcToken_)
-            ? 18
-            : IERC20Metadata(srcToken_).decimals();
-        uint256 dstDecimal = isNative(dstToken_)
-            ? 18
-            : IERC20Metadata(dstToken_).decimals();
+        uint256 srcDecimal = isNative(srcToken_) ? 18 : IERC20Metadata(srcToken_).decimals();
+        uint256 dstDecimal = isNative(dstToken_) ? 18 : IERC20Metadata(dstToken_).decimals();
 
-        returnAmount =
-            (((amount_ * 10 ** dstDecimal) / 10 ** srcDecimal) * rate) /
-            BPS_MULTIPLIER;
+        returnAmount = (((amount_ * 10 ** dstDecimal) / 10 ** srcDecimal) * rate) / BPS_MULTIPLIER;
 
         if (isNative(dstToken_)) {
             (bool success, ) = recipient_.call{ value: returnAmount }("");
@@ -74,15 +55,25 @@ contract ExchangeMock {
             leftOverTokens = (amount_ * leftOverPercent) / BPS_DENOMINATOR;
             if (leftOverTokens > 0) {
                 if (isNative(srcToken_)) {
-                    (bool success, ) = recipient_.call{
-                        value: leftOverTokens
-                    }("");
+                    (bool success, ) = msg.sender.call{ value: leftOverTokens }("");
                     if (!success) revert NativeTransferFailed();
                 } else {
-                    IERC20(srcToken_).safeTransfer(recipient_, leftOverTokens);
+                    IERC20(srcToken_).safeTransfer(msg.sender, leftOverTokens);
                 }
             }
         }
+
+        // if (testLeftOver_) {
+        //     leftOverTokens = (amount_ * leftOverPercent) / BPS_DENOMINATOR;
+        //     if (leftOverTokens > 0) {
+        //         if (isNative(srcToken_)) {
+        //             (bool success, ) = recipient_.call{ value: leftOverTokens }("");
+        //             if (!success) revert NativeTransferFailed();
+        //         } else {
+        //             IERC20(srcToken_).safeTransfer(recipient_, leftOverTokens);
+        //         }
+        //     }
+        // }
     }
 
     // Able to receive ether

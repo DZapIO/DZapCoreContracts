@@ -17,7 +17,7 @@
   "error NotAContract()",
   "error NullAddrIsNotAValidSpender()",
   "error NullAddrIsNotAnERC20Token()",
-  "error SlippageTooHigh(uint256 minAmount, uint256 returnAmount)",
+  "error SlippageTooLow(uint256 minAmount, uint256 returnAmount)",
   "error SwapCallFailed(bytes reason)",
   "error UnAuthorizedCall(address)",
   "event BridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, tuple(string bridge, bytes to, bytes receiver, address from, bool hasSourceSwaps, bool hasDestinationCall, uint256 minAmountIn, uint256 destinationChainId) bridgeData)",

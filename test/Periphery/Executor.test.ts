@@ -1091,7 +1091,7 @@ describe('Executor.test.ts', async () => {
             swapData
           )
       )
-        .revertedWithCustomError(executor, ERRORS.SlippageTooHigh)
+        .revertedWithCustomError(executor, ERRORS.SlippageTooLow)
         .withArgs(swapReturnAmount.add(1), swapReturnAmount)
     })
   })

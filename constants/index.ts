@@ -50,7 +50,7 @@ export const ERRORS = {
   InvalidReceiver: 'InvalidReceiver',
   UnAuthorizedCallToFunction: 'UnAuthorizedCallToFunction',
   BridgeCallFailed: 'BridgeCallFailed',
-  SlippageTooHigh: 'SlippageTooHigh',
+  SlippageTooLow: 'SlippageTooLow',
   UnauthorizedCaller: 'UnauthorizedCaller',
   SwapCallFailed: 'SwapCallFailed',
   BridgeNotAdded: 'BridgeNotAdded',
@@ -78,6 +78,7 @@ export const EVENTS = {
   BridgeAdded: 'BridgeAdded',
   BridgeRemoved: 'BridgeRemoved',
   BatchBridgeTransferStart: 'BatchBridgeTransferStart',
+  SwappedSingleToken: 'SwappedSingleToken',
 }
 
 export const INTEGRATORS = {
@@ -92,6 +93,7 @@ export const BRIDGES = {
   dbridge: 'dbridge',
   mayanFinance: 'mayanFinance',
   symbios: 'symbios',
+  changeNow: 'changeNow',
 }
 
 export const SWAP_DEXES = {
@@ -109,6 +111,8 @@ export const SWAP_DEXES = {
   xyFinance: 'xyFinance',
   socket: 'socket',
   conveyor: 'conveyor',
+  sushi: 'sushi',
+  iceCreamSwap: 'iceCreamSwap',
 }
 
 export const BPS_MULTIPLIER = 10000

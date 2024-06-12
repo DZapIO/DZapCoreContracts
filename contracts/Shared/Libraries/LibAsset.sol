@@ -21,6 +21,10 @@ library LibAsset {
         return _token == _NATIVE_TOKEN ? address(this).balance : IERC20(_token).balanceOf(address(this));
     }
 
+    function getBalance(address _token, address _recipient) internal view returns (uint256) {
+        return _token == _NATIVE_TOKEN ? _recipient.balance : IERC20(_token).balanceOf(_recipient);
+    }
+
     /// @notice If the current allowance is insufficient, the allowance for a given spender
     function approveERC20(address _token, address _spender, uint256 _amount) internal {
         if (_spender == address(0)) revert NullAddrIsNotAValidSpender();

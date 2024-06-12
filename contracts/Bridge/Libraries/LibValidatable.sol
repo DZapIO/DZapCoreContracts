@@ -2,7 +2,6 @@
 pragma solidity 0.8.19;
 
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
-import { LibUtil } from "../../Shared/Libraries/LibUtil.sol";
 import { LibAllowList } from "../../Shared/Libraries/LibAllowList.sol";
 
 import { InvalidReceiver, InformationMismatch, CannotBridgeToSameNetwork, InvalidAmount, NotAContract, InvalidContract, InvalidLength, ContractCallNotAllowed, NoSwapFromZeroBalance } from "../../Shared/Errors.sol";

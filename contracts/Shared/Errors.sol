@@ -33,7 +33,7 @@ error IntegratorNotAllowed();
 
 error ContractCallNotAllowed();
 error NoSwapFromZeroBalance();
-error SlippageTooHigh(uint256 minAmount, uint256 returnAmount);
+error SlippageTooLow(uint256 minAmount, uint256 returnAmount);
 error SwapCallFailed(bytes reason);
 
 error BridgeCallFailed(bytes reason);

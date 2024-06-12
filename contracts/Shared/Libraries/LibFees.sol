@@ -3,7 +3,6 @@ pragma solidity 0.8.19;
 
 import { FullMath } from "../Libraries/FullMath.sol";
 import { LibAsset } from "../Libraries/LibAsset.sol";
-import { LibAccess } from "../Libraries/LibAccess.sol";
 import { IntegratorInfo, FeeType, FeeInfo } from "../Types.sol";
 import { IntegratorNotAllowed } from "../Errors.sol";
 

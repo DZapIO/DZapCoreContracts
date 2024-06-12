@@ -12,12 +12,16 @@
   "error NoTransferToNullAddress()",
   "error NullAddrIsNotAValidSpender()",
   "error NullAddrIsNotAnERC20Token()",
-  "error SlippageTooHigh(uint256 minAmount, uint256 returnAmount)",
+  "error SlippageTooLow(uint256 minAmount, uint256 returnAmount)",
   "error SwapCallFailed(bytes reason)",
   "error ZeroAddress()",
   "event MultiSwapped(bytes32 transactionId, address indexed integrator, address indexed sender, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount)[] swapInfo)",
   "event Swapped(bytes32 transactionId, address indexed integrator, address indexed sender, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount) swapInfo)",
+  "event SwappedSingleToken(bytes32 transactionId, address indexed sender, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount) swapInfo)",
   "function multiSwap(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
   "function multiSwapWithoutRevert(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
-  "function swap(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
+  "function swap(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable",
+  "function swapErc20ToEc20(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data)",
+  "function swapErc20ToNative(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data)",
+  "function swapNativeToErc20(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
 ]

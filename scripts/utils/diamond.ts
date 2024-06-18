@@ -1,7 +1,12 @@
 import { ethers } from 'hardhat'
 import { Contract } from 'ethers'
 import { FunctionFragment, Interface } from 'ethers/lib/utils'
-import { DiamondCut, DiamondCutData, FacetCutAction } from '../../types'
+import {
+  DiamondCut,
+  DiamondCutData,
+  FacetCutAction,
+  FacetCuts,
+} from '../../types'
 import { CONTRACTS } from '../../constants'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 
@@ -114,22 +119,72 @@ export async function deployFacetsToReplace(facetNames: string[]) {
     await facet.deployed()
     console.log(`${facetName} deployed: ${facet.address}`)
 
-    if (facetName == CONTRACTS.FeesFacet) {
-      cutData.push({
-        facetAddress: facet.address,
-        action: FacetCutAction.Replace,
-        functionSelectors: getSelectorsUsingContract(facet, CONTRACTS.FeesFacet)
-          .selectors,
-      })
-    } else {
-      cutData.push({
-        facetAddress: facet.address,
-        action: FacetCutAction.Replace,
-        functionSelectors: getSelectorsUsingContract(facet, facetName)
-          .selectors,
-      })
-    }
+    // const facet = await ethers.getContractAt(
+    //   facetName,
+    //   '0x24b1fcBA7AA3c2213083362c3bd9Cf5F88c33598'
+    // )
+
+    cutData.push({
+      facetAddress: facet.address,
+      action: FacetCutAction.Replace,
+      functionSelectors: getSelectorsUsingContract(facet, facetName).selectors,
+    })
   }
 
+  console.log('cutData', JSON.stringify(cutData, null, 2))
+
   return { cutData }
+}
+
+export async function deployToAddFacets(facetNames: string[]) {
+  console.log('')
+  console.log('Deploying facets...')
+
+  const cutData: DiamondCut[] = []
+
+  for (let i = 0; i < facetNames.length; i++) {
+    console.log('')
+    console.log(`Deploying ${facetNames[i]}...`)
+    const ContractFactory = await ethers.getContractFactory(facetNames[i])
+    const contract = await ContractFactory.deploy()
+    console.log('hash', contract.deployTransaction.hash)
+    await contract.deployed()
+    const tempCutData = {
+      facetAddress: contract.address,
+      action: FacetCutAction.Add,
+      functionSelectors: getSelectorsUsingContract(contract, facetNames[i])
+        .selectors,
+    }
+
+    cutData.push(tempCutData)
+
+    console.log(`${facetNames[i]} deployed: ${contract.address}`)
+    console.log(facetNames[i], tempCutData)
+  }
+
+  return {
+    cutData,
+  }
+}
+
+export async function getCutData(data: FacetCuts) {
+  console.log('')
+  console.log('Deploying facets...')
+
+  const cutData: DiamondCut[] = []
+
+  for (const [address, { name, action }] of Object.entries(data)) {
+    const ContractFactory = await ethers.getContractFactory(name)
+
+    cutData.push({
+      facetAddress: address,
+      action: action,
+      functionSelectors: getSelectorsUsingContract(ContractFactory, name)
+        .selectors,
+    })
+  }
+
+  return {
+    cutData,
+  }
 }

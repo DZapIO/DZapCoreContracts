@@ -30,10 +30,10 @@ export interface FeeData {
 }
 
 export interface FeeInfo {
-  tokenFee: BigNumber // ex 1%
+  tokenFee: BigNumberish // ex 1%
   fixedNativeFeeAmount: BigNumber // ex 0.5 Matic
-  dzapTokenShare: BigNumber // 50%, 50% of the total 1% fee
-  dzapFixedNativeShare: BigNumber // 50%, 50% of the total fixedFeeAmount fee
+  dzapTokenShare: BigNumberish // 50%, 50% of the total 1% fee
+  dzapFixedNativeShare: BigNumberish // 50%, 50% of the total fixedFeeAmount fee
 }
 
 export interface DiamondCut {
@@ -96,4 +96,15 @@ export interface ParaswapParams {
   fromAmount: BigNumber
   sender: string
   receiver: string
+}
+
+// Step 2: Define the interface for the inner objects
+export interface FacetCut {
+  name: string
+  action: FacetCutAction
+}
+
+// Step 3: Define the interface for the main object with dynamic keys
+export interface FacetCuts {
+  [address: string]: FacetCut
 }

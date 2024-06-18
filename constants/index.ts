@@ -14,7 +14,8 @@ export const CONTRACTS = {
   SwapFacet: 'SwapFacet',
   CrossChainFacet: 'CrossChainFacet',
   StargateFacet: 'StargateFacet',
-  ERC20: 'ERC20',
+  // ERC20: 'ERC20',
+  ERC20: '@openzeppelin/contracts/token/ERC20/ERC20.sol:ERC20',
   WNATIVE: 'WNATIVE',
   ERC20Mock: 'ERC20Mock',
   ExchangeMock: 'ExchangeMock',
@@ -94,6 +95,8 @@ export const BRIDGES = {
   mayanFinance: 'mayanFinance',
   symbios: 'symbios',
   changeNow: 'changeNow',
+  omniBtc: 'omniBtc',
+  telosBridge: 'telosBridge',
 }
 
 export const SWAP_DEXES = {
@@ -113,6 +116,11 @@ export const SWAP_DEXES = {
   conveyor: 'conveyor',
   sushi: 'sushi',
   iceCreamSwap: 'iceCreamSwap',
+  omniBtc: 'omniBtc',
+  rocketX: 'rocketX',
+  swapsicle: 'swapsicle',
+  symmetric: 'symmetric',
+  vapourDex: 'vapourDex',
 }
 
 export const BPS_MULTIPLIER = 10000

@@ -23,8 +23,9 @@ const dummyKey =
   '0x0000000000000000000000000000000000000000000000000000000000000000'
 
 const mainnetKey: string = process.env.MAINNET_KEY || dummyKey
-const testnetKey: string = process.env.TESTNET_KEY || dummyKey
-const testnetKeyOld: string = process.env.TESTNET_KEY_OLD || dummyKey
+const testnetKey: string = process.env.STAGING_KEY || dummyKey
+// const testnetKey: string = process.env.TESTNET_KEY || dummyKey
+// const testnetKeyOld: string = process.env.TESTNET_KEY_OLD || dummyKey
 const alchemyApiKey: string = process.env.ALCHEMY_API_KEY || dummyApiKey
 const scanApiKey: string = process.env.BSCSCAN_API_KEY || dummyApiKey
 
@@ -61,6 +62,11 @@ const config: HardhatUserConfig = {
       url: 'https://bscrpc.com',
       accounts: [testnetKey],
     },
+    bscTestnet: {
+      chainId: 97,
+      url: 'https://bsc-testnet.public.blastapi.io',
+      accounts: [testnetKey],
+    },
     avalanche: {
       chainId: 43114,
       url: `https://api.avax.network/ext/bc/C/rpc`,
@@ -94,6 +100,21 @@ const config: HardhatUserConfig = {
     blast: {
       chainId: 81457,
       url: `https://mantle-rpc.publicnode.com`,
+      accounts: [testnetKey],
+    },
+    telos: {
+      chainId: 40,
+      url: `https://mainnet.telos.net/evm`,
+      accounts: [testnetKey],
+    },
+    core: {
+      chainId: 1116,
+      url: `https://rpc.coredao.org/`,
+      accounts: [testnetKey],
+    },
+    rootstock: {
+      chainId: 30,
+      url: `https://public-node.rsk.co`,
       accounts: [testnetKey],
     },
   },

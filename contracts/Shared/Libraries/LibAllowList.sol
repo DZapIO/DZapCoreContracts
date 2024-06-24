@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import { InvalidContract } from "../Errors.sol";
+import { InvalidContract } from "../ErrorsNew.sol";
 import { AllowList } from "../Types.sol";
 
 struct AllowListStorage {

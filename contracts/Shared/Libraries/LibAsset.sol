@@ -7,7 +7,7 @@ import { LibFees } from "../Libraries/LibFees.sol";
 import { LibPermit } from "../Libraries/LibPermit.sol";
 
 import { FeeType, SwapData, PermitType, FeeInfo } from "../Types.sol";
-import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, NullAddrIsNotAnERC20Token, InvalidAmount, IntegratorNotAllowed } from "../Errors.sol";
+import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, NullAddrIsNotAnERC20Token, InvalidAmount, IntegratorNotAllowed } from "../ErrorsNew.sol";
 
 /// @title LibAsset
 /// @notice This library contains helpers for dealing with onchain transfers

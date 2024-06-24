@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import { CannotAuthorizeSelf, UnAuthorized } from "../Errors.sol";
+import { CannotAuthorizeSelf, UnAuthorized } from "../ErrorsNew.sol";
 
 struct AccessStorage {
     mapping(bytes4 => mapping(address => bool)) execAccess;

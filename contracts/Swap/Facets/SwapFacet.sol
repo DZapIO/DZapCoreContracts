@@ -11,7 +11,7 @@ import { Swapper } from "../../Shared/Helpers/Swapper.sol";
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
 
 import { SwapData, SwapInfo, FeeType, FeeInfo } from "../../Shared/Types.sol";
-import { ZeroAddress, SwapCallFailed, ContractCallNotAllowed, IntegratorNotAllowed, InvalidAmount, AllSwapsFailed } from "../../Shared/Errors.sol";
+import { ZeroAddress, SwapCallFailed, ContractCallNotAllowed, IntegratorNotAllowed, InvalidAmount, AllSwapsFailed } from "../../Shared/ErrorsNew.sol";
 
 /// @title Swap Facet
 /// @notice Provides functionality for swapping through ANY APPROVED DEX

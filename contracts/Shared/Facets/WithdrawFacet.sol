@@ -8,7 +8,7 @@ import { IWithdrawFacet } from "../Interfaces/IWithdrawFacet.sol";
 
 import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
 
-import { NotAContract, NoTransferToNullAddress } from "../Errors.sol";
+import { NotAContract, NoTransferToNullAddress } from "../ErrorsNew.sol";
 
 /// @title Withdraw Facet
 /// @notice Provides functionality for withdrawing assets

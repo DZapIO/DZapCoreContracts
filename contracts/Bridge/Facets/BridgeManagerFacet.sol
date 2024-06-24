@@ -7,7 +7,7 @@ import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 import { IBridgeManagerFacet } from "../Interfaces/IBridgeManagerFacet.sol";
 
 import { CrossChainStorage, CrossChainAllowedList } from "../Types.sol";
-import { CannotAuthorizeSelf, BridgeNotAdded } from "../../Shared/Errors.sol";
+import { CannotAuthorizeSelf, BridgeNotAdded } from "../../Shared/ErrorsNew.sol";
 
 contract BridgeManagerFacet is IBridgeManagerFacet {
     /* ========= MODIFIER ========= */

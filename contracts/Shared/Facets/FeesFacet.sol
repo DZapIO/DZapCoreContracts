@@ -5,7 +5,7 @@ import { IFeesFacet } from "../Interfaces/IFeesFacet.sol";
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { LibAccess } from "../Libraries/LibAccess.sol";
 import { LibFees, FeesStorage } from "../Libraries/LibFees.sol";
-import { InvalidFee, ZeroAddress, AlreadyInitialized, InvalidFixedNativeFee } from "../Errors.sol";
+import { InvalidFee, ZeroAddress, AlreadyInitialized, InvalidFixedNativeFee } from "../ErrorsNew.sol";
 import { IntegratorInfo, FeeType, FeeInfo } from "../Types.sol";
 
 /// @title Fees Facet

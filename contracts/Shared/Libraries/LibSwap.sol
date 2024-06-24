@@ -6,7 +6,7 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import { SwapData } from "../Types.sol";
 
-import { SwapCallFailed, SlippageTooLow } from "../Errors.sol";
+import { SwapCallFailed, SlippageTooLow } from "../ErrorsNew.sol";
 
 /// @title LibSwap
 /// @notice This library contains helpers for doing swap

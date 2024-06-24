@@ -7,7 +7,7 @@ import { LibAsset } from "../Libraries/LibAsset.sol";
 import { LibAllowList } from "../Libraries/LibAllowList.sol";
 import { LibSwap } from "../Libraries/LibSwap.sol";
 
-import { ContractCallNotAllowed, ZeroAddress, SwapCallFailed, ZeroAddress, NoSwapFromZeroBalance, InvalidContract } from "../Errors.sol";
+import { ContractCallNotAllowed, ZeroAddress, SwapCallFailed, ZeroAddress, NoSwapFromZeroBalance, InvalidContract } from "../ErrorsNew.sol";
 
 /// @title Swapper
 /// @notice Abstract contract to provide swap functionality

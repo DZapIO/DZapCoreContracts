@@ -9,7 +9,7 @@ import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 
 import { FeeInfo, SwapInfo, SwapData } from "../../Shared/Types.sol";
 import { GenericBridgeData, CrossChainData, CrossChainAllowedList, TransferData } from "../Types.sol";
-import { UnAuthorizedCall, BridgeCallFailed, InvalidSwapDetails, SlippageTooLow } from "../../Shared/Errors.sol";
+import { UnAuthorizedCall, BridgeCallFailed, InvalidSwapDetails, SlippageTooLow } from "../../Shared/ErrorsNew.sol";
 
 /// @notice Provides mappings for all facets that may need them
 library LibBridge {

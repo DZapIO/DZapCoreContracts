@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { FullMath } from "../Libraries/FullMath.sol";
 import { LibAsset } from "../Libraries/LibAsset.sol";
 import { IntegratorInfo, FeeType, FeeInfo } from "../Types.sol";
-import { IntegratorNotAllowed } from "../Errors.sol";
+import { IntegratorNotAllowed } from "../ErrorsNew.sol";
 
 struct FeesStorage {
     mapping(address => IntegratorInfo) integratorInfo;

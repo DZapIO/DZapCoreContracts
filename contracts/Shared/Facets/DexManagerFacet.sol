@@ -5,7 +5,7 @@ import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { LibAccess } from "../Libraries/LibAccess.sol";
 import { LibAllowList } from "../Libraries/LibAllowList.sol";
 import { IDexManagerFacet } from "../Interfaces/IDexManagerFacet.sol";
-import { CannotAuthorizeSelf } from "../Errors.sol";
+import { CannotAuthorizeSelf } from "../ErrorsNew.sol";
 
 /// @title Dex Manager Facet
 /// @notice Facet contract for managing approved DEXs to be used in swaps.

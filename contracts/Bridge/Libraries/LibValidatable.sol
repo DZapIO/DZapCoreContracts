@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibAllowList } from "../../Shared/Libraries/LibAllowList.sol";
 
-import { InvalidReceiver, InformationMismatch, CannotBridgeToSameNetwork, InvalidAmount, NotAContract, InvalidContract, InvalidLength, ContractCallNotAllowed, NoSwapFromZeroBalance } from "../../Shared/Errors.sol";
+import { InvalidReceiver, InformationMismatch, CannotBridgeToSameNetwork, InvalidAmount, NotAContract, InvalidContract, InvalidLength, ContractCallNotAllowed, NoSwapFromZeroBalance } from "../../Shared/ErrorsNew.sol";
 
 import { BridgeData, GenericBridgeData } from "../Types.sol";
 import { SwapData } from "../../Shared/Types.sol";

@@ -21,7 +21,7 @@
   "function multiSwap(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
   "function multiSwapWithoutRevert(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
   "function swap(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable",
-  "function swapErc20ToEc20(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data)",
+  "function swapErc20ToErc20(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data)",
   "function swapErc20ToNative(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data)",
   "function swapNativeToErc20(bytes32 _transactionId, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
 ]

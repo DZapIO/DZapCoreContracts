@@ -26,7 +26,7 @@ interface ISwapFacet {
     /// @param _transactionId the transaction id associated with the operation
     /// @param _recipient the address of the recipient
     /// @param _data an object containing swap related data
-    function swapErc20ToEc20(bytes32 _transactionId, address _recipient, SwapData calldata _data) external;
+    function swapErc20ToErc20(bytes32 _transactionId, address _recipient, SwapData calldata _data) external;
 
     /// @notice Swap erc20 token to native token
     /// @param _transactionId the transaction id associated with the operation

@@ -4731,7 +4731,7 @@ describe('SwapFacet.test.ts', async () => {
     })
   })
 
-  describe('4) swapErc20ToEc20', async () => {
+  describe('4) swapErc20ToErc20', async () => {
     it('4.1 Should allow user to swap single token (Erc20 -> Erc20)', async () => {
       const rate = await mockExchange.rate()
 
@@ -4793,7 +4793,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0])
+          .swapErc20ToErc20(transactionId, recipient, swapData[0])
       )
         .emit(swapFacet, EVENTS.SwappedSingleToken)
         .withArgs(transactionId, user.address, recipient, [
@@ -4898,7 +4898,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0])
+          .swapErc20ToErc20(transactionId, recipient, swapData[0])
       )
         .emit(swapFacet, EVENTS.SwappedSingleToken)
         .withArgs(transactionId, user.address, recipient, [
@@ -5002,7 +5002,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0], {})
+          .swapErc20ToErc20(transactionId, recipient, swapData[0], {})
       )
         .emit(swapFacet, EVENTS.SwappedSingleToken)
         .withArgs(transactionId, user.address, recipient, [
@@ -5119,7 +5119,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0])
+          .swapErc20ToErc20(transactionId, recipient, swapData[0])
       )
         .emit(swapFacet, EVENTS.SwappedSingleToken)
         .withArgs(transactionId, user.address, recipient, [
@@ -5156,7 +5156,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swapErc20ToEc20(transactionId, ZERO_ADDRESS, {
+        swapFacet.connect(user).swapErc20ToErc20(transactionId, ZERO_ADDRESS, {
           callTo: mockExchange.address,
           approveTo: mockExchange.address,
           from: tokenA.address,
@@ -5191,7 +5191,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swapErc20ToEc20(transactionId, recipient, {
+        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
           callTo: mockExchange.address,
           approveTo: mockExchange.address,
           from: tokenA.address,
@@ -5222,7 +5222,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swapErc20ToEc20(transactionId, recipient, {
+        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
           callTo: executor.address,
           approveTo: mockExchange.address,
           from: tokenA.address,
@@ -5253,7 +5253,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swapErc20ToEc20(transactionId, recipient, {
+        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
           callTo: mockExchange.address,
           approveTo: executor.address,
           from: tokenA.address,
@@ -5324,7 +5324,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0])
+          .swapErc20ToErc20(transactionId, recipient, swapData[0])
       )
         .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
         .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
@@ -5388,7 +5388,7 @@ describe('SwapFacet.test.ts', async () => {
       await expect(
         swapFacet
           .connect(user)
-          .swapErc20ToEc20(transactionId, recipient, swapData[0], {})
+          .swapErc20ToErc20(transactionId, recipient, swapData[0], {})
       )
         .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
         .withArgs(swapData[0].minToAmount, minAmount)

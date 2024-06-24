@@ -34,7 +34,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         emit Swapped(_transactionId, _integrator, msg.sender, _recipient, SwapInfo(_data.callTo, _data.from, _data.to, _data.fromAmount, leftoverFromAmount, returnToAmount));
     }
 
-    function swapErc20ToEc20(bytes32 _transactionId, address _recipient, SwapData calldata _data) external {
+    function swapErc20ToErc20(bytes32 _transactionId, address _recipient, SwapData calldata _data) external {
         if (_recipient == address(0)) revert ZeroAddress();
         _validateSwapData(_data);
 

@@ -1233,7 +1233,7 @@
   },
   {
     "type": "function",
-    "name": "swapErc20ToEc20",
+    "name": "swapErc20ToErc20",
     "constant": false,
     "payable": false,
     "inputs": [

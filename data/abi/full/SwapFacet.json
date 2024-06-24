@@ -578,7 +578,7 @@
         "type": "tuple"
       }
     ],
-    "name": "swapErc20ToEc20",
+    "name": "swapErc20ToErc20",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

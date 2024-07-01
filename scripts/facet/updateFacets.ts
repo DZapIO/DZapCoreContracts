@@ -1,13 +1,12 @@
 import { ethers } from 'hardhat'
+import { FacetCutAction } from 'hardhat-deploy/dist/types'
+import { DZAP_ADDRESS } from '../../config/deployment'
+import { ADDRESS_ZERO, CONTRACTS } from '../../constants'
 import {
-  deployFacetsToReplace,
   deployToAddFacets,
   getSelector,
-  getSelectorsUsingContract,
   upgradeDiamond,
 } from '../utils/diamond'
-import { ADDRESS_ZERO, CONTRACTS } from '../../constants'
-import { FacetCutAction } from 'hardhat-deploy/dist/types'
 
 const oldAbi = []
 
@@ -26,7 +25,7 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const dZapDiamondAddress = ''
+  const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -46,13 +45,7 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const { cutData: cutDataNew } = await deployToAddFacets([
-    CONTRACTS.SwapFacet,
-    CONTRACTS.BridgeDynamicTransferFacet,
-    CONTRACTS.CrossChainFacet,
-    CONTRACTS.BatchBridgeCallFacet,
-    CONTRACTS.BridgeManagerFacet,
-  ])
+  const { cutData: cutDataNew } = await deployToAddFacets([CONTRACTS.SwapFacet])
 
   const cutData = [
     {

@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { ethers } from 'hardhat'
 import path from 'path'
-import { DZAP_PROTOCOL_CONFIG } from '../../config/protocols'
+import { DEXES, DZAP_PROTOCOL_CONFIG } from '../../config/protocols'
 import { CONTRACTS } from '../../constants'
 import { DexManagerFacet } from '../../typechain-types'
 import { DZAP_ADDRESS } from '../../config/deployment'
@@ -11,7 +11,7 @@ async function main() {
   const [deployer] = await ethers.getSigners()
 
   console.log({
-    name: 'addSwapDexes',
+    name: 'removeSwapDexes',
     chainId,
     deployer: deployer.address,
     balance: ethers.utils.formatUnits(
@@ -22,7 +22,7 @@ async function main() {
   /* ------------------------------------------- */
 
   const { dexes } = DZAP_PROTOCOL_CONFIG[chainId]
-  let dexesNames: string[] = []
+  let dexesNames: string[] = [DEXES.router]
   const dexAddress: string[] = []
   const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
@@ -49,7 +49,7 @@ async function main() {
     for (let j = 0; j < dex.length; j++) {
       const isApproved = await dexManagerFacet.isContractApproved(dex[j])
       console.log(dexesNames[i], dex[j], isApproved)
-      if (!isApproved) {
+      if (isApproved) {
         dexAddress.push(dex[j])
       }
     }
@@ -61,19 +61,19 @@ async function main() {
   /* ------------------------------------------- */
 
   console.log('')
-  console.log('Adding Dex...')
-  await dexManagerFacet.estimateGas.batchAddDex(dexAddress)
+  console.log('Removing Dex...')
+  await dexManagerFacet.estimateGas.batchRemoveDex(dexAddress)
   const tx =
     dexAddress.length == 1
-      ? await dexManagerFacet.addDex(dexAddress[0])
-      : await dexManagerFacet.batchAddDex(dexAddress)
+      ? await dexManagerFacet.removeDex(dexAddress[0])
+      : await dexManagerFacet.batchRemoveDex(dexAddress)
 
-  console.log('Adding dex Tx', tx.hash)
+  console.log('Removing dex Tx', tx.hash)
   const receipt1 = await tx.wait()
   if (!receipt1.status) {
-    throw Error(`Adding Dex failed: ${tx.hash}`)
+    throw Error(`Removing Dex failed: ${tx.hash}`)
   }
-  console.log('Completed Adding Dex')
+  console.log('Completed Removing Dex')
 
   /* ------------------------------------------- */
 
@@ -89,17 +89,15 @@ async function main() {
 
   for (let i = 0; i < dexesNames.length; i++) {
     const dexName = dexesNames[i]
+    let dexHistory = historyData[chainId]['dexes'][dexName]
 
-    if (!historyData[chainId]['dexes'][dexName]) {
-      historyData[chainId]['dexes'][dexName] = []
+    if (dexHistory) {
+      dexHistory = dexHistory.filter((item) => !dexAddress.includes(item))
     }
 
-    const uniqueDexAddress = new Set([
-      ...historyData[chainId]['dexes'][dexName],
-      ...dexes[dexName],
-    ])
-
-    historyData[chainId]['dexes'][dexName] = Array.from(uniqueDexAddress)
+    if (dexHistory.length > 0)
+      historyData[chainId]['dexes'][dexName] = dexHistory
+    else delete historyData[chainId]['dexes'][dexName]
   }
 
   // console.log('historyData', historyData)

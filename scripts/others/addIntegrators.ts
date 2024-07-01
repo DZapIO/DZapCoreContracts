@@ -1,9 +1,12 @@
-import { ethers } from 'hardhat'
-import { BPS_MULTIPLIER, CONTRACTS, INTEGRATORS, ZERO } from '../../constants'
-import { FeeInfo, FeeType } from '../../types'
-import { readFileSync, writeFileSync } from 'fs'
 import { parseUnits } from 'ethers/lib/utils'
+import { readFileSync, writeFileSync } from 'fs'
+import { ethers } from 'hardhat'
 import path from 'path'
+import { DZAP_ADDRESS } from '../../config/deployment'
+import { DZAP_FEE_CONFIG } from '../../config/feeConfig'
+import { INTEGRATOR_CONFIG } from '../../config/integrators'
+import { BPS_MULTIPLIER, CONTRACTS, ZERO } from '../../constants'
+import { FeeInfo, FeeType } from '../../types'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
@@ -20,22 +23,12 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const integrators = JSON.parse(
-    readFileSync(
-      path.join(__dirname + '../../../registry/integrators.json'),
-      'utf8'
-    )
-  )
-  const dZapConfig = JSON.parse(
-    readFileSync(
-      path.join(__dirname + '../../../registry/dZapConfig.json'),
-      'utf8'
-    )
-  )
+  const integrators = INTEGRATOR_CONFIG[chainId]
+  let integratorsNames: string[] = []
+  const dZapFeeConfig = DZAP_FEE_CONFIG[chainId]
+  const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
   /* ------------------------------------------- */
-
-  const dZapDiamondAddress = ''
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -49,10 +42,12 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const integratorsNames = [INTEGRATORS.DZAP]
+  if (integratorsNames.length == 0) {
+    integratorsNames = Object.keys(integrators)
+  }
 
   const info = integratorsNames.map((name) => {
-    const integratorInfo = integrators[chainId][name]
+    const integratorInfo = integrators[name]
     const feeTypes: FeeType[] = []
     const feeInfo: FeeInfo[] = []
 
@@ -64,10 +59,7 @@ async function main() {
         fixedNativeFeeAmount:
           fee.fixedNativeFeeAmount == 0
             ? ZERO
-            : parseUnits(
-                fee.fixedNativeFeeAmount,
-                dZapConfig[chainId].nativeDecimal
-              ),
+            : parseUnits(fee.fixedNativeFeeAmount, dZapFeeConfig.nativeDecimal),
         dzapTokenShare: fee.dzapTokenShare * BPS_MULTIPLIER,
         dzapFixedNativeShare: fee.dzapFixedNativeShare * BPS_MULTIPLIER,
       })

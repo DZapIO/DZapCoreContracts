@@ -11,6 +11,8 @@
   },
   "include": [
     "test/**/*",
+    "constants/**/*",
+    "config/**/*",
     "scripts/**/*",
     "tasks/**/*",
     "types/**/*",

@@ -3,6 +3,9 @@ import { ethers } from 'hardhat'
 import { BPS_MULTIPLIER, CONTRACTS } from '../../constants'
 import { deployToAddFacets, upgradeDiamond } from '../utils/diamond'
 import path from 'path'
+import { PERMIT2_ADDRESS } from '../../config/permit2'
+import { DZAP_FEE_CONFIG } from '../../config/feeConfig'
+import { DZAP_ADDRESS } from '../../config/deployment'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
@@ -19,23 +22,12 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const dZapConfig = JSON.parse(
-    readFileSync(
-      path.join(__dirname + '../../../registry/dZapConfig.json'),
-      'utf8'
-    )
-  )
-
-  const permit2 = JSON.parse(
-    readFileSync(
-      path.join(__dirname + '../../../registry/permit2.json'),
-      'utf8'
-    )
-  )
+  const dZapFeeConfig = DZAP_FEE_CONFIG[chainId]
+  const permit2 = PERMIT2_ADDRESS[chainId]
 
   /* ------------------------------------------- */
 
-  const dZapDiamondAddress = ''
+  const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -53,17 +45,15 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const config = dZapConfig[chainId]
-
-  const protocolFeeVaultAddress = config.protocolFeeVault
+  const protocolFeeVaultAddress = dZapFeeConfig.protocolFeeVault
   const MAX_FIXED_FEE = ethers.utils.parseUnits(
-    config.maxFixedFeeAmount,
-    config.nativeDecimal
+    dZapFeeConfig.maxFixedFeeAmount,
+    dZapFeeConfig.nativeDecimal
   )
   const initArgs = {
-    permit2: permit2[chainId],
+    permit2,
     protocolFeeVault: protocolFeeVaultAddress,
-    maxTokenFee: config.maxTokenFeePercent * BPS_MULTIPLIER,
+    maxTokenFee: dZapFeeConfig.maxTokenFeePercent * BPS_MULTIPLIER,
     maxFixedNativeFeeAmount: MAX_FIXED_FEE,
   }
 

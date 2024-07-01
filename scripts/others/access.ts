@@ -9,6 +9,7 @@ import {
 import { getSighash } from '../utils/diamond'
 import path from 'path'
 import { readFileSync, writeFileSync } from 'fs'
+import { DZAP_ADDRESS } from '../../config/deployment'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
@@ -25,7 +26,7 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const dZapDiamondAddress = ''
+  const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -53,7 +54,10 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const executor = ['0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453']
+  const executor = []
+  if (executor.length == 0) throw Error('Executor array length is 0')
+
+  /* ------------------------------------------- */
 
   const dexSelector = getSighash(
     [

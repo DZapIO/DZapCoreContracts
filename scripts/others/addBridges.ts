@@ -1,8 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { ethers } from 'hardhat'
 import path from 'path'
-import { CONTRACTS, BRIDGES } from '../../constants'
+import { CONTRACTS } from '../../constants'
 import { BridgeManagerFacet } from '../../typechain-types'
+import { DZAP_PROTOCOL_CONFIG } from '../../config/protocols'
+import { DZAP_ADDRESS } from '../../config/deployment'
 
 async function main() {
   const { chainId } = await ethers.provider.getNetwork()
@@ -19,19 +21,12 @@ async function main() {
 
   /* ------------------------------------------- */
 
-  const bridgeRegistry = JSON.parse(
-    readFileSync(
-      path.join(__dirname + '../../../registry/bridges.json'),
-      'utf8'
-    )
-  )
-
+  const { bridges } = DZAP_PROTOCOL_CONFIG[chainId]
   const bridgeNames: string[] = []
   const bridgeAddress: string[] = []
+  const dZapDiamondAddress = DZAP_ADDRESS[chainId]
 
   /* ------------------------------------------- */
-
-  const dZapDiamondAddress = ''
 
   const dZapDiamond = await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -46,15 +41,16 @@ async function main() {
   /* ------------------------------------------- */
 
   if (bridgeNames.length == 0) {
-    for (const key in bridgeRegistry[chainId]) {
-      if (bridgeRegistry[chainId].hasOwnProperty(key)) {
+    for (const key in bridges) {
+      if (bridges.hasOwnProperty(key)) {
         bridgeNames.push(key)
       }
     }
   }
 
   for (let i = 0; i < bridgeNames.length; i++) {
-    const bridge = bridgeRegistry[chainId][bridgeNames[i]].address
+    const bridge = bridges[bridgeNames[i]].address
+    // console.log({ bridge })
     for (let j = 0; j < bridge.length; j++) {
       const isWhitelisted = await bridgeManagerFacet.isWhitelisted(bridge[j])
       console.log(bridgeNames[i], bridge[j], isWhitelisted)
@@ -64,6 +60,7 @@ async function main() {
     }
   }
 
+  console.log({ bridgeAddress })
   if (bridgeAddress.length == 0) throw Error('Address array length is 0')
 
   /* ------------------------------------------- */
@@ -100,7 +97,7 @@ async function main() {
 
     const uniqueDexAddress = new Set([
       ...historyData[chainId]['bridge'][bridgeName],
-      ...bridgeRegistry[chainId][bridgeName].address,
+      ...bridges[bridgeName].address,
     ])
 
     historyData[chainId]['bridge'][bridgeName] = Array.from(uniqueDexAddress)

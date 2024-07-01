@@ -15,108 +15,30 @@ import 'hardhat-abi-exporter'
 
 import './tasks/accounts'
 import './tasks/clean'
+import { getNetworkConfig } from './utils/network'
+import { CHAIN_IDS } from './config/networks'
 
 dotenv.config()
-
-const dummyApiKey = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
-const dummyKey =
-  '0x0000000000000000000000000000000000000000000000000000000000000000'
-
-const mainnetKey: string = process.env.MAINNET_KEY || dummyKey
-const testnetKey: string = process.env.STAGING_KEY || dummyKey
-// const testnetKey: string = process.env.TESTNET_KEY || dummyKey
-// const testnetKeyOld: string = process.env.TESTNET_KEY_OLD || dummyKey
-const alchemyApiKey: string = process.env.ALCHEMY_API_KEY || dummyApiKey
-const scanApiKey: string = process.env.BSCSCAN_API_KEY || dummyApiKey
 
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   networks: {
-    mainnet: {
-      chainId: 1,
-      url: `https://eth-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    polygonMainnet: {
-      chainId: 137,
-      url: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    polygonTestnet: {
-      chainId: 80001,
-      url: `https://rpc-mumbai.maticvigil.com`,
-      accounts: [testnetKey],
-    },
-    arbitrum: {
-      chainId: 42161,
-      url: `https://arb-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    optimism: {
-      chainId: 10,
-      url: `https://opt-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    bscMainnet: {
-      chainId: 56,
-      url: 'https://bscrpc.com',
-      accounts: [testnetKey],
-    },
-    bscTestnet: {
-      chainId: 97,
-      url: 'https://bsc-testnet.public.blastapi.io',
-      accounts: [testnetKey],
-    },
-    avalanche: {
-      chainId: 43114,
-      url: `https://api.avax.network/ext/bc/C/rpc`,
-      accounts: [testnetKey],
-    },
-    scroll: {
-      chainId: 534352,
-      url: `https://rpc.scroll.io`,
-      accounts: [testnetKey],
-    },
-    base: {
-      chainId: 8453,
-      url: `https://mainnet.base.org`,
-      accounts: [testnetKey],
-    },
-    zk: {
-      chainId: 324,
-      url: `https://mainnet.era.zksync.io`,
-      accounts: [testnetKey],
-    },
-    mantel: {
-      chainId: 5000,
-      url: `https://mantle-rpc.publicnode.com`,
-      accounts: [testnetKey],
-    },
-    manta: {
-      chainId: 169,
-      url: `https://pacific-rpc.manta.network/http`,
-      accounts: [testnetKey],
-    },
-    blast: {
-      chainId: 81457,
-      url: `https://mantle-rpc.publicnode.com`,
-      accounts: [testnetKey],
-    },
-    telos: {
-      chainId: 40,
-      url: `https://mainnet.telos.net/evm`,
-      accounts: [testnetKey],
-    },
-    core: {
-      chainId: 1116,
-      url: `https://rpc.coredao.org/`,
-      accounts: [testnetKey],
-    },
-    rootstock: {
-      chainId: 30,
-      url: `https://public-node.rsk.co`,
-      accounts: [testnetKey],
-    },
+    mainnet: getNetworkConfig(CHAIN_IDS.ETH_MAINNET),
+    polygon: getNetworkConfig(CHAIN_IDS.POLYGON_MAINNET),
+    bsc: getNetworkConfig(CHAIN_IDS.BSC_MAINNET),
+    bscTestnet: getNetworkConfig(CHAIN_IDS.BSC_TESTNET),
+    arbitrumOne: getNetworkConfig(CHAIN_IDS.ARBITRUM_MAINNET),
+    optimisticEthereum: getNetworkConfig(CHAIN_IDS.OPTIMISM_MAINNET),
+    zk: getNetworkConfig(CHAIN_IDS.ZKSYNC_MAINNET),
+    avalanche: getNetworkConfig(CHAIN_IDS.AVALANCHE_MAINNET),
+    base: getNetworkConfig(CHAIN_IDS.BASE_MAINNET),
+    manta: getNetworkConfig(CHAIN_IDS.MANTA_MAINNET),
+    scroll: getNetworkConfig(CHAIN_IDS.SCROLL_MAINNET),
+    telos: getNetworkConfig(CHAIN_IDS.TELOS_MAINNET),
+    core: getNetworkConfig(CHAIN_IDS.CORE_MAINNET),
+    rootstock: getNetworkConfig(CHAIN_IDS.ROOTSTOCK_MAINNET),
+    mantle: getNetworkConfig(CHAIN_IDS.MANTLE_MAINNET),
+    blast: getNetworkConfig(CHAIN_IDS.BLAST_MAINNET),
   },
   solidity: {
     compilers: [
@@ -196,6 +118,44 @@ const config: HardhatUserConfig = {
       clear: true,
     },
   ],
+  etherscan: {
+    apiKey: {
+      mainnet: process.env.ETHERSCAN_API_KEY || '',
+      bsc: process.env.BSCSCAN_API_KEY || '',
+      polygon: process.env.POLYGONSCAN_API_KEY || '',
+      arbitrumOne: process.env.ARBITRUM_API_KEY || '',
+      optimisticEthereum: process.env.OPTIMISM_API_KEY || '',
+      base: process.env.BASE_API_KEY || '',
+      scroll: process.env.SCROLL_API_KEY || '',
+      core: process.env.CORE_API_KEY || '',
+    },
+    customChains: [
+      {
+        network: 'base',
+        chainId: 8453,
+        urls: {
+          apiURL: 'https://api.basescan.org/api',
+          browserURL: 'https://basescan.org/',
+        },
+      },
+      {
+        network: 'scroll',
+        chainId: 534352,
+        urls: {
+          apiURL: 'https://api.scrollscan.com/api',
+          browserURL: 'https://scrollscan.com/',
+        },
+      },
+      {
+        network: 'core',
+        chainId: 1116,
+        urls: {
+          apiURL: 'https://openapi.coredao.org/api',
+          browserURL: 'https://scan.coredao.org/',
+        },
+      },
+    ],
+  },
 }
 
 export default config

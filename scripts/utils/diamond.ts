@@ -119,11 +119,6 @@ export async function deployFacetsToReplace(facetNames: string[]) {
     await facet.deployed()
     console.log(`${facetName} deployed: ${facet.address}`)
 
-    // const facet = await ethers.getContractAt(
-    //   facetName,
-    //   '0x24b1fcBA7AA3c2213083362c3bd9Cf5F88c33598'
-    // )
-
     cutData.push({
       facetAddress: facet.address,
       action: FacetCutAction.Replace,

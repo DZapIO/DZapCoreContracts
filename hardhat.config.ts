@@ -2,7 +2,10 @@ import * as dotenv from 'dotenv'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
-import '@nomiclabs/hardhat-etherscan'
+import '@matterlabs/hardhat-zksync-verify'
+import '@matterlabs/hardhat-zksync-deploy'
+import '@matterlabs/hardhat-zksync-solc'
+import '@nomicfoundation/hardhat-verify'
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@openzeppelin/hardhat-upgrades'
 import '@typechain/hardhat'
@@ -15,13 +18,14 @@ import 'hardhat-abi-exporter'
 
 import './tasks/accounts'
 import './tasks/clean'
-import { getNetworkConfig } from './utils/network'
+import { getNetworkConfig, getRpcUrl } from './utils/network'
 import { CHAIN_IDS } from './config/networks'
 
 dotenv.config()
 
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
+  // defaultNetwork: 'zkTestnet',
   networks: {
     mainnet: getNetworkConfig(CHAIN_IDS.ETH_MAINNET),
     polygon: getNetworkConfig(CHAIN_IDS.POLYGON_MAINNET),
@@ -39,6 +43,18 @@ const config: HardhatUserConfig = {
     rootstock: getNetworkConfig(CHAIN_IDS.ROOTSTOCK_MAINNET),
     mantle: getNetworkConfig(CHAIN_IDS.MANTLE_MAINNET),
     blast: getNetworkConfig(CHAIN_IDS.BLAST_MAINNET),
+    xlayer: getNetworkConfig(CHAIN_IDS.X_LAYER_MAINNET),
+    zkSync: getNetworkConfig(CHAIN_IDS.ZKSYNC_MAINNET),
+    zkTestnet: {
+      url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),
+      ethNetwork: 'sepolia',
+      zksync: true,
+    },
+    zkMainnet: {
+      url: getRpcUrl(CHAIN_IDS.ZKSYNC_MAINNET),
+      ethNetwork: 'mainnet',
+      zksync: true,
+    },
   },
   solidity: {
     compilers: [
@@ -62,6 +78,16 @@ const config: HardhatUserConfig = {
         },
       },
     ],
+  },
+  zksolc: {
+    version: 'latest',
+    compilerSource: 'binary',
+    settings: {
+      optimizer: {
+        enabled: true,
+        mode: '3',
+      },
+    },
   },
   mocha: {
     timeout: 400000,

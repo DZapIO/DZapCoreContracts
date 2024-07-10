@@ -5,6 +5,7 @@ cache
 cache-zk
 artifacts
 artifacts-zk
+deployments-zk
 .env
 
 temp

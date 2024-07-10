@@ -112,6 +112,7 @@ export enum CHAIN_IDS {
   SCROLL_SEPOLIA = 534351,
   SEPOLIA_TESTNET = 11155111,
   ZKSYNC_MAINNET = 324,
+  ZKSYNC_SEPOLIA_TESTNET = 300,
   ARBITRUM_MAINNET = 42161,
   ARBITRUM_NOVA = 42170,
   OPTIMISM_MAINNET = 10,
@@ -229,6 +230,11 @@ export const NETWORKS = {
     rpcUrl: 'https://mainnet.era.zksync.io',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]: {
+    chainId: CHAIN_IDS.ZKSYNC_MAINNET,
+    rpcUrl: 'https://sepolia.era.zksync.dev',
+    rpcType: RPC_TYPE.OTHER,
+  },
   [CHAIN_IDS.MANTA_MAINNET]: {
     chainId: CHAIN_IDS.MANTA_MAINNET,
     rpcUrl: 'https://pacific-rpc.manta.network/http',
@@ -257,6 +263,11 @@ export const NETWORKS = {
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {
     chainId: CHAIN_IDS.ROOTSTOCK_MAINNET,
     rpcUrl: 'https://public-node.rsk.co',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.X_LAYER_MAINNET]: {
+    chainId: CHAIN_IDS.X_LAYER_MAINNET,
+    rpcUrl: 'https://xlayerrpc.okx.com',
     rpcType: RPC_TYPE.OTHER,
   },
 }

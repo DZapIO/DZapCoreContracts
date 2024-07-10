@@ -471,7 +471,8 @@
       ],
       "omniBtc": [
         "0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820",
-        "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
+        "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B",
+        "0xA0285339CefD73AB948614E0a45E03ED1882BD03"
       ],
       "symbiosis": [
         "0xa260E3732593E4EcF9DdC144fD6C4c5fe7077978",
@@ -596,6 +597,12 @@
       ],
       "routerNitro": [
         "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
+      ],
+      "router": [
+        "0x21c1e74caadf990e237920d5515955a024031109"
+      ],
+      "mayanFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ]
     },
     "dexes": {
@@ -608,6 +615,117 @@
       ],
       "routerNitro": [
         "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
+      ]
+    },
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    }
+  },
+  "196": {
+    "integrators": [
+      "DZAP"
+    ],
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "dexes": {
+      "okx": [
+        "0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE",
+        "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
+      ]
+    },
+    "bridge": {
+      "okx": [
+        "0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD",
+        "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ]
+    }
+  },
+  "324": {
+    "integrators": [
+      "DZAP"
+    ],
+    "bridge": {
+      "lifi": [
+        "0x341e94069f53234fE6DabeF707aD424830525715"
+      ],
+      "socket": [
+        "0xaDdE7028e7ec226777e5dea5D53F6457C21ec7D6"
+      ],
+      "xyFinance": [
+        "0x30E63157bD0bA74C814B786F6eA2ed9549507b46",
+        "0xe4e156167cc9C7AC4AbD8d39d203a5495F775547"
+      ],
+      "symbiosis": [
+        "0x8B791913eB07C32779a16750e3868aA8495F5964",
+        "0x38307CB291Af47Af9847c134a34E9477c939Ca28",
+        "0x8cA239448AdD34b057D1CB5934F12AC899DB66e1",
+        "0x51eE73BEC8521E88042b426F31864f456f2a866e",
+        "0xe004DE550074856bD64Cc1A89A8B3b56bD3eAf31"
+      ],
+      "mesonFinance": [
+        "0x2DcC88Fa6b6950EE28245C3238B8993BE5feeA42",
+        "0x4040bEC373F6e8be2F913324de94A7b9242E5E92"
+      ],
+      "okx": [
+        "0x4040bEC373F6e8be2F913324de94A7b9242E5E92",
+        "0xc67879F4065d3B9fe1C09EE990B891Aa8E3a4c2f"
+      ],
+      "routerNitro": [
+        "0x7E7D4185D9c3C44D5266eD974493b24811398049"
+      ]
+    },
+    "dexes": {
+      "kyber": [
+        "0x3F95eF3f2eAca871858dbE20A93c01daF6C2e923"
+      ],
+      "oneInch": [
+        "0x6e2B76966cbD9cF4cC2Fa0D76d24d5241E0ABC2F"
+      ],
+      "lifi": [
+        "0x341e94069f53234fE6DabeF707aD424830525715"
+      ],
+      "odos": [
+        "0x4bBa932E9792A2b917D47830C93a9BC79320E4f7"
+      ],
+      "openOcean": [
+        "0x36A1aCbbCAfca2468b85011DDD16E7Cb4d673230"
+      ],
+      "socket": [
+        "0xaDdE7028e7ec226777e5dea5D53F6457C21ec7D6"
+      ],
+      "bebop": [
+        "0x574d1fcF950eb48b11de5DF22A007703cbD2b129",
+        "0x10D7a281c39713B34751Fcc0830ea2AE56D64B2C"
+      ],
+      "xyFinance": [
+        "0x30E63157bD0bA74C814B786F6eA2ed9549507b46"
+      ],
+      "okx": [
+        "0xb9061E38FeE7d30134F56aEf7117E2F6d1580666",
+        "0xc67879F4065d3B9fe1C09EE990B891Aa8E3a4c2f"
+      ],
+      "routerNitro": [
+        "0x7E7D4185D9c3C44D5266eD974493b24811398049"
       ]
     },
     "executors": {
@@ -643,7 +761,8 @@
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
       "omniBtc": [
-        "0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66"
+        "0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66",
+        "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
       ]
     },
     "integrators": [
@@ -823,6 +942,9 @@
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "router": [
+        "0x60b483D521b844e13E3337D304929D0519Bd50C8"
       ]
     },
     "dexes": {
@@ -1065,6 +1187,9 @@
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "xyFinance": [
+        "0x778C974568e376146dbC64fF12aD55B2d1c4133f"
       ]
     }
   }

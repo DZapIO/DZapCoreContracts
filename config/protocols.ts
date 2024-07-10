@@ -257,6 +257,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: [
           '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
           '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+          '0xA0285339CefD73AB948614E0a45E03ED1882BD03',
         ],
         selectorInfo: [],
       },
@@ -530,6 +531,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.router]: {
+        address: ['0x60b483D521b844e13E3337D304929D0519Bd50C8'],
         selectorInfo: [],
       },
     },
@@ -947,6 +952,14 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: ['0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06'],
         selectorInfo: [],
       },
+      [BRIDGES.router]: {
+        address: ['0x21c1e74caadf990e237920d5515955a024031109'],
+        selectorInfo: [],
+      },
+      [BRIDGES.mayanFinance]: {
+        address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.SCROLL_MAINNET]: {
@@ -991,6 +1004,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x778C974568e376146dbC64fF12aD55B2d1c4133f'],
         selectorInfo: [],
       },
     },
@@ -1045,7 +1062,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [DEXES.omniBtc]: {
-        address: ['0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66'],
+        address: [
+          '0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66',
+          '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+        ],
         selectorInfo: [],
       },
     },
@@ -1495,6 +1515,10 @@ export const DZAP_PROTOCOL_CONFIG: {
           '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
           '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
         ],
+        selectorInfo: [],
+      },
+      [BRIDGES.mesonFinance]: {
+        address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
         selectorInfo: [],
       },
     },

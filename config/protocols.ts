@@ -1010,6 +1010,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: ['0x778C974568e376146dbC64fF12aD55B2d1c4133f'],
         selectorInfo: [],
       },
+      [BRIDGES.lifi]: {
+        address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.TELOS_MAINNET]: {
@@ -1455,7 +1459,7 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
     },
   },
-  [CHAIN_IDS.OKEX_MAINNET]: {
+  [CHAIN_IDS.OKX_MAINNET]: {
     dexes: {
       [DEXES.okx]: [
         '0xf6Aab105CB9e66e03CAD2c2F3f8558242593385c',
@@ -1519,6 +1523,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.mesonFinance]: {
         address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
         selectorInfo: [],
       },
     },

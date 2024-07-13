@@ -744,6 +744,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
       ],
       [DEXES.routerNitro]: ['0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF'],
+      [DEXES.vapourDex]: ['0x55477d8537ede381784b448876AfAa98aa450E63'],
     },
     bridges: {
       [BRIDGES.lifi]: {
@@ -999,7 +1000,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x5546dA2bCdCFF39b187723434cDE10D4eE99C566'],
+        address: [
+          '0x5546dA2bCdCFF39b187723434cDE10D4eE99C566',
+          '0x01b4ce0d48ce91eb6bcaf5db33870c65d641b894',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {
@@ -1012,6 +1016,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.lifi]: {
         address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+        selectorInfo: [],
+      },
+      [BRIDGES.socket]: {
+        address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
         selectorInfo: [],
       },
     },

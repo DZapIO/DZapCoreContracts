@@ -405,7 +405,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7'],
+        address: [
+          '0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7',
+          '0x260687eBC6C55DAdd578264260f9f6e968f7B2A5',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {

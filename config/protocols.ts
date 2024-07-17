@@ -5,7 +5,7 @@ export enum BRIDGES {
   socket = 'socket',
   unizen = 'unizen',
   xyFinance = 'xyFinance',
-  dbridge = 'dbridge',
+  deBridge = 'dbridge',
   mayanFinance = 'mayanFinance',
   symbiosis = 'symbiosis',
   changeNow = 'changeNow',
@@ -116,7 +116,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
@@ -238,7 +238,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
@@ -360,7 +360,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
@@ -484,7 +484,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
@@ -608,7 +608,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
@@ -772,7 +772,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
@@ -883,7 +883,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.dbridge]: {
+      [BRIDGES.deBridge]: {
         address: [
           '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
           '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
@@ -917,7 +917,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x02D728B9C1513478a6b6de77a92648e1D8F801e7'],
+        address: [
+          '0x02D728B9C1513478a6b6de77a92648e1D8F801e7',
+          '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {

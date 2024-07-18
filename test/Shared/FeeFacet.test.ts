@@ -8,8 +8,6 @@ import {
   ERRORS,
   ZERO,
   ADDRESS_ZERO,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
 } from '../../constants'
 import { snapshot, updateBalance } from '../utils'
 
@@ -64,6 +62,8 @@ let receiver: Receiver
 let bridgeManagerFacet: BridgeManagerFacet
 let bridgeManagerFacetImp: BridgeManagerFacet
 
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
 let permit2: Permit2

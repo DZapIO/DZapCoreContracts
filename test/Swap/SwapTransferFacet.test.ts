@@ -52,6 +52,8 @@ import {
   Executor,
   Receiver,
   BridgeManagerFacet,
+  BatchSwapFacet,
+  SwapTransferFacet,
 } from '../../typechain-types'
 import {
   DiamondCut,
@@ -76,6 +78,10 @@ let feesFacet: FeesFacet
 let withdrawFacetImp: WithdrawFacet
 let swapFacetImp: SwapFacet
 let swapFacet: SwapFacet
+let swapTransferFacet: SwapTransferFacet
+let swapTransferFacetImp: SwapTransferFacet
+let batchSwapFacet: BatchSwapFacet
+let batchSwapFacetImp: BatchSwapFacet
 let crossChainFacet: CrossChainFacet
 let crossChainFacetImp: CrossChainFacet
 let executor: Executor
@@ -139,7 +145,7 @@ const feeInfo2: FeeInfo[] = [
   },
 ]
 
-describe('SwapFacet.test.ts', async () => {
+describe('SwapTransferFacet.test.ts', async () => {
   beforeEach(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]
@@ -258,6 +264,14 @@ describe('SwapFacet.test.ts', async () => {
         CONTRACTS.SwapFacet,
         dZapDiamond.address
       )) as SwapFacet
+      batchSwapFacet = (await ethers.getContractAt(
+        CONTRACTS.BatchSwapFacet,
+        dZapDiamond.address
+      )) as BatchSwapFacet
+      swapTransferFacet = (await ethers.getContractAt(
+        CONTRACTS.SwapTransferFacet,
+        dZapDiamond.address
+      )) as SwapTransferFacet
       crossChainFacet = (await ethers.getContractAt(
         CONTRACTS.CrossChainFacet,
         dZapDiamond.address
@@ -320,6 +334,21 @@ describe('SwapFacet.test.ts', async () => {
       )
       swapFacetImp = (await SwapFacet.deploy()) as SwapFacet
       await swapFacetImp.deployed()
+
+      const SwapTransferFacet = await ethers.getContractFactory(
+        CONTRACTS.SwapTransferFacet,
+        deployer
+      )
+      swapTransferFacetImp =
+        (await SwapTransferFacet.deploy()) as SwapTransferFacet
+      await swapTransferFacetImp.deployed()
+
+      const BatchSwapFacet = await ethers.getContractFactory(
+        CONTRACTS.BatchSwapFacet,
+        deployer
+      )
+      batchSwapFacetImp = (await BatchSwapFacet.deploy()) as BatchSwapFacet
+      await batchSwapFacetImp.deployed()
 
       const CrossChainFacet = await ethers.getContractFactory(
         CONTRACTS.CrossChainFacet,
@@ -395,6 +424,22 @@ describe('SwapFacet.test.ts', async () => {
           functionSelectors: getSelectorsUsingContract(
             swapFacetImp,
             CONTRACTS.SwapFacet
+          ).selectors,
+        },
+        {
+          facetAddress: swapTransferFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            swapTransferFacetImp,
+            CONTRACTS.SwapTransferFacet
+          ).selectors,
+        },
+        {
+          facetAddress: batchSwapFacetImp.address,
+          action: FacetCutAction.Add,
+          functionSelectors: getSelectorsUsingContract(
+            batchSwapFacet,
+            CONTRACTS.BatchSwapFacet
           ).selectors,
         },
         {
@@ -587,7 +632,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -619,11 +664,16 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0])
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0]
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -638,8 +688,8 @@ describe('SwapFacet.test.ts', async () => {
         tokenB.balanceOf(user.address),
       ])
 
-      const eventFilter = swapFacet.filters.Swapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.Swapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       expect(args.transactionId).equal(transactionId)
@@ -679,7 +729,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -687,7 +737,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -718,13 +768,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -739,8 +795,8 @@ describe('SwapFacet.test.ts', async () => {
         tokenA.balanceOf(user.address),
       ])
 
-      const eventFilter = swapFacet.filters.Swapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.Swapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       expect(args.transactionId).equal(transactionId)
@@ -780,7 +836,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -811,13 +867,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -832,8 +894,8 @@ describe('SwapFacet.test.ts', async () => {
         tokenA.balanceOf(recipient),
       ])
 
-      const eventFilter = swapFacet.filters.Swapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.Swapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       expect(args.transactionId).equal(transactionId)
@@ -877,7 +939,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           true,
           false
@@ -911,7 +973,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
       await tokenB
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
       const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
         tokenB.balanceOf(user.address),
@@ -921,13 +983,19 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -979,7 +1047,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           true,
           false
@@ -1013,7 +1081,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
       await tokenB
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
       const [userBalanceBeforeB] = await Promise.all([
         tokenB.balanceOf(user.address),
@@ -1022,13 +1090,19 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -1076,7 +1150,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           true,
           false
@@ -1110,13 +1184,19 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -1172,7 +1252,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -1202,7 +1282,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
       await tokenB
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
       const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
         tokenB.balanceOf(user.address),
@@ -1212,13 +1292,19 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -1295,7 +1381,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -1325,7 +1411,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
       await tokenB
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
 
       const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
         tokenB.balanceOf(user.address),
@@ -1335,13 +1421,19 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.Swapped)
+        .emit(swapTransferFacet, EVENTS.Swapped)
         .withArgs(transactionId, integratorAddress, user.address, recipient, [
           mockExchange.address,
           swapData[0].from,
@@ -1379,9 +1471,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, ZERO_ADDRESS, {
+          .swapAndTransfer(transactionId, integratorAddress, ZERO_ADDRESS, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: DZAP_NATIVE,
@@ -1391,7 +1483,7 @@ describe('SwapFacet.test.ts', async () => {
             swapCallData: '0x',
             permit: encodedPermitData,
           })
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.ZeroAddress)
     })
 
     it('1.10 Should revert if integrator is not allowed', async () => {
@@ -1405,9 +1497,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, signers[10].address, recipient, {
+          .swapAndTransfer(transactionId, signers[10].address, recipient, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: DZAP_NATIVE,
@@ -1417,7 +1509,7 @@ describe('SwapFacet.test.ts', async () => {
             swapCallData: '0x',
             permit: encodedPermitData,
           })
-      ).revertedWithCustomError(swapFacet, ERRORS.IntegratorNotAllowed)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.IntegratorNotAllowed)
     })
 
     it('1.11 Should revert if from amount is zero', async () => {
@@ -1443,9 +1535,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, {
+          .swapAndTransfer(transactionId, integratorAddress, recipient, {
             callTo: mockExchange.address,
             approveTo: mockExchange.address,
             from: tokenA.address,
@@ -1455,7 +1547,7 @@ describe('SwapFacet.test.ts', async () => {
             swapCallData: callData,
             permit: encodedPermitData,
           })
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
     it('1.12 Should revert if callTo(dex) is not approved', async () => {
@@ -1470,7 +1562,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swap(
+        swapTransferFacet.connect(user).swapAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -1486,7 +1578,10 @@ describe('SwapFacet.test.ts', async () => {
           },
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('1.13 Should revert if approveTo(dex) is not approved', async () => {
@@ -1501,7 +1596,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).swap(
+        swapTransferFacet.connect(user).swapAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -1517,7 +1612,10 @@ describe('SwapFacet.test.ts', async () => {
           },
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('1.14 Should revert if swap call fails', async () => {
@@ -1544,7 +1642,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           true
@@ -1571,13 +1669,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
+        .revertedWithCustomError(swapTransferFacet, ERRORS.SwapCallFailed)
         .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
     })
 
@@ -1605,7 +1709,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -1632,13 +1736,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .swap(transactionId, integratorAddress, recipient, swapData[0], {
-            value,
-          })
+          .swapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData[0],
+            {
+              value,
+            }
+          )
       )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
+        .revertedWithCustomError(swapTransferFacet, ERRORS.SlippageTooLow)
         .withArgs(swapData[0].minToAmount, minAmount)
     })
   })
@@ -1677,12 +1787,12 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       await wNative.connect(user).deposit({ value: parseUnits('10') })
       await wNative
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -1698,7 +1808,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               NATIVE_ADDRESS,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -1717,7 +1827,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               wNative.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -1743,19 +1853,25 @@ describe('SwapFacet.test.ts', async () => {
       // wNative -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[0]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       expect(args.transactionId).equal(transactionId)
@@ -1827,7 +1943,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -1843,7 +1959,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               wNative.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -1862,7 +1978,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -1891,19 +2007,25 @@ describe('SwapFacet.test.ts', async () => {
       // eth -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(amounts[1])])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       // ----------------------------------------------------------------
@@ -1988,7 +2110,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -2004,7 +2126,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               wNative.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               true,
               false
@@ -2023,7 +2145,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               true,
               false
@@ -2053,13 +2175,19 @@ describe('SwapFacet.test.ts', async () => {
       // eth -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances(
           [user],
           [convertBNToNegative(value.sub(leftOverFromAmount[1].add(extra)))]
@@ -2067,8 +2195,8 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       // ----------------------------------------------------------------
@@ -2149,7 +2277,7 @@ describe('SwapFacet.test.ts', async () => {
       const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -2179,7 +2307,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -2198,7 +2326,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -2218,19 +2346,25 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(value)])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -2312,7 +2446,7 @@ describe('SwapFacet.test.ts', async () => {
         .approve(permit2.address, ethers.constants.MaxUint256)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -2342,7 +2476,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -2361,7 +2495,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -2381,19 +2515,25 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(value)])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -2465,7 +2605,7 @@ describe('SwapFacet.test.ts', async () => {
       const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -2498,7 +2638,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -2517,7 +2657,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               DZAP_NATIVE,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -2537,19 +2677,25 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[1]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -2632,7 +2778,7 @@ describe('SwapFacet.test.ts', async () => {
       )
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
       await tokenA
         .connect(user)
         .approve(permit2.address, ethers.constants.MaxUint256)
@@ -2668,7 +2814,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -2687,7 +2833,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               DZAP_NATIVE,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -2707,19 +2853,25 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[1]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -2770,21 +2922,26 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, ZERO_ADDRESS, [
-            {
-              callTo: mockExchange.address,
-              approveTo: mockExchange.address,
-              from: DZAP_NATIVE,
-              to: tokenB.address,
-              fromAmount: 100,
-              minToAmount: 100,
-              swapCallData: '0x',
-              permit: encodedPermitData,
-            },
-          ])
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            ZERO_ADDRESS,
+            [
+              {
+                callTo: mockExchange.address,
+                approveTo: mockExchange.address,
+                from: DZAP_NATIVE,
+                to: tokenB.address,
+                fromAmount: 100,
+                minToAmount: 100,
+                swapCallData: '0x',
+                permit: encodedPermitData,
+              },
+            ]
+          )
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.ZeroAddress)
     })
 
     it('2.9 Should revert if integrator is not allowed', async () => {
@@ -2798,9 +2955,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, signers[10].address, recipient, [
+          .multiSwapAndTransfer(transactionId, signers[10].address, recipient, [
             {
               callTo: mockExchange.address,
               approveTo: mockExchange.address,
@@ -2812,7 +2969,7 @@ describe('SwapFacet.test.ts', async () => {
               permit: encodedPermitData,
             },
           ])
-      ).revertedWithCustomError(swapFacet, ERRORS.IntegratorNotAllowed)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.IntegratorNotAllowed)
     })
 
     it('2.10 Should revert if from amount is zero', async () => {
@@ -2838,9 +2995,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, [
+          .multiSwapAndTransfer(transactionId, integratorAddress, recipient, [
             {
               callTo: mockExchange.address,
               approveTo: mockExchange.address,
@@ -2852,7 +3009,7 @@ describe('SwapFacet.test.ts', async () => {
               permit: encodedPermitData,
             },
           ])
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
     it('2.11 Should revert if callTo(dex) is not approved', async () => {
@@ -2867,7 +3024,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).multiSwap(
+        swapTransferFacet.connect(user).multiSwapAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -2885,7 +3042,10 @@ describe('SwapFacet.test.ts', async () => {
           ],
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('2.12 Should revert if approveTo(dex) is not approved', async () => {
@@ -2900,7 +3060,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).multiSwap(
+        swapTransferFacet.connect(user).multiSwapAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -2918,7 +3078,10 @@ describe('SwapFacet.test.ts', async () => {
           ],
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('2.13 Should revert if swap call fails', async () => {
@@ -2976,7 +3139,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               NATIVE_ADDRESS,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -2995,7 +3158,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               wNative.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               true
@@ -3009,13 +3172,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
+        .revertedWithCustomError(swapTransferFacet, ERRORS.SwapCallFailed)
         .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
     })
 
@@ -3043,7 +3212,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -3070,13 +3239,19 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwap(transactionId, integratorAddress, recipient, swapData, {
-            value,
-          })
+          .multiSwapAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            swapData,
+            {
+              value,
+            }
+          )
       )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
+        .revertedWithCustomError(swapTransferFacet, ERRORS.SlippageTooLow)
         .withArgs(swapData[0].minToAmount, minAmount)
     })
   })
@@ -3136,7 +3311,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               NATIVE_ADDRESS,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -3155,7 +3330,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               wNative.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -3181,9 +3356,9 @@ describe('SwapFacet.test.ts', async () => {
       // wNative -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -3193,13 +3368,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[0]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       expect(args.transactionId).equal(transactionId)
@@ -3271,7 +3446,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -3287,7 +3462,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               wNative.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -3306,7 +3481,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -3335,9 +3510,9 @@ describe('SwapFacet.test.ts', async () => {
       // eth -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -3347,13 +3522,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(amounts[1])])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       // ----------------------------------------------------------------
@@ -3438,7 +3613,7 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       // ----------------------------------------------------------------
 
@@ -3454,7 +3629,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               wNative.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               true,
               false
@@ -3473,7 +3648,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               true,
               false
@@ -3503,9 +3678,9 @@ describe('SwapFacet.test.ts', async () => {
       // eth -> tokenB
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -3515,7 +3690,7 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances(
           [user],
           [convertBNToNegative(value.sub(leftOverFromAmount[1].add(extra)))]
@@ -3523,8 +3698,8 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       // ----------------------------------------------------------------
@@ -3605,7 +3780,7 @@ describe('SwapFacet.test.ts', async () => {
       const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -3635,7 +3810,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -3654,7 +3829,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -3674,9 +3849,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -3686,13 +3861,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(value)])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -3774,7 +3949,7 @@ describe('SwapFacet.test.ts', async () => {
         .approve(permit2.address, ethers.constants.MaxUint256)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -3804,7 +3979,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -3823,7 +3998,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -3843,9 +4018,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -3855,13 +4030,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user], [convertBNToNegative(value)])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -3933,7 +4108,7 @@ describe('SwapFacet.test.ts', async () => {
       const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
 
       // ----------------------------------------------------------------
 
@@ -3966,7 +4141,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -3985,7 +4160,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               DZAP_NATIVE,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -4005,9 +4180,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -4017,13 +4192,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[1]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -4106,7 +4281,7 @@ describe('SwapFacet.test.ts', async () => {
       )
 
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA.connect(user).approve(swapFacet.address, ZERO)
+      await tokenA.connect(user).approve(swapTransferFacet.address, ZERO)
       await tokenA
         .connect(user)
         .approve(permit2.address, ethers.constants.MaxUint256)
@@ -4142,7 +4317,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               false
@@ -4161,7 +4336,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               DZAP_NATIVE,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -4181,9 +4356,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -4193,13 +4368,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, minAmount[1]])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const eventData = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const eventData = await swapTransferFacet.queryFilter(eventFilter)
       const args = eventData[eventData.length - 1].args
 
       // ----------------------------------------------------------------
@@ -4281,10 +4456,12 @@ describe('SwapFacet.test.ts', async () => {
       await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
       await tokenA
         .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+        .approve(swapTransferFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
 
       await wNative.connect(user).deposit({ value: parseUnits('100') })
-      await wNative.connect(user).approve(swapFacet.address, parseUnits('100'))
+      await wNative
+        .connect(user)
+        .approve(swapTransferFacet.address, parseUnits('100'))
 
       // ----------------------------------------------------------------
 
@@ -4309,7 +4486,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               DZAP_NATIVE,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[0],
               false,
               true
@@ -4328,7 +4505,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               tokenA.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[1],
               false,
               false
@@ -4347,7 +4524,7 @@ describe('SwapFacet.test.ts', async () => {
             await mockExchange.populateTransaction.swap(
               wNative.address,
               tokenB.address,
-              recipient,
+              dZapDiamond.address,
               amounts[2],
               false,
               true
@@ -4361,9 +4538,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -4373,13 +4550,13 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .emit(swapFacet, EVENTS.MultiSwapped)
+        .emit(swapTransferFacet, EVENTS.MultiSwapped)
         .changeEtherBalances([user, recipient], [ZERO, ZERO])
 
       // ----------------------------------------------------------------
 
-      const eventFilter = swapFacet.filters.MultiSwapped()
-      const data = await swapFacet.queryFilter(eventFilter)
+      const eventFilter = swapTransferFacet.filters.MultiSwapped()
+      const data = await swapTransferFacet.queryFilter(eventFilter)
       const args = data[data.length - 1].args
 
       // ----------------------------------------------------------------
@@ -4438,9 +4615,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             ZERO_ADDRESS,
@@ -4457,7 +4634,7 @@ describe('SwapFacet.test.ts', async () => {
               },
             ]
           )
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.ZeroAddress)
     })
 
     it('3.10 Should revert if integrator is not allowed', async () => {
@@ -4471,9 +4648,9 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             signers[10].address,
             recipient,
@@ -4490,7 +4667,7 @@ describe('SwapFacet.test.ts', async () => {
               },
             ]
           )
-      ).revertedWithCustomError(swapFacet, ERRORS.IntegratorNotAllowed)
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.IntegratorNotAllowed)
     })
 
     it('3.11 Should revert if from amount is zero', async () => {
@@ -4516,21 +4693,26 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(transactionId, integratorAddress, recipient, [
-            {
-              callTo: mockExchange.address,
-              approveTo: mockExchange.address,
-              from: tokenA.address,
-              to: tokenB.address,
-              fromAmount: 0,
-              minToAmount: 100,
-              swapCallData: callData,
-              permit: encodedPermitData,
-            },
-          ])
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
+          .multiSwapWithoutRevertAndTransfer(
+            transactionId,
+            integratorAddress,
+            recipient,
+            [
+              {
+                callTo: mockExchange.address,
+                approveTo: mockExchange.address,
+                from: tokenA.address,
+                to: tokenB.address,
+                fromAmount: 0,
+                minToAmount: 100,
+                swapCallData: callData,
+                permit: encodedPermitData,
+              },
+            ]
+          )
+      ).revertedWithCustomError(swapTransferFacet, ERRORS.NoSwapFromZeroBalance)
     })
 
     it('3.12 Should revert if callTo(dex) is not approved', async () => {
@@ -4545,7 +4727,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).multiSwapWithoutRevert(
+        swapTransferFacet.connect(user).multiSwapWithoutRevertAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -4563,7 +4745,10 @@ describe('SwapFacet.test.ts', async () => {
           ],
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('3.13 Should revert if approveTo(dex) is not approved', async () => {
@@ -4578,7 +4763,7 @@ describe('SwapFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapFacet.connect(user).multiSwapWithoutRevert(
+        swapTransferFacet.connect(user).multiSwapWithoutRevertAndTransfer(
           transactionId,
           integratorAddress,
           recipient,
@@ -4596,7 +4781,10 @@ describe('SwapFacet.test.ts', async () => {
           ],
           { value: 100 }
         )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
+      ).revertedWithCustomError(
+        swapTransferFacet,
+        ERRORS.ContractCallNotAllowed
+      )
     })
 
     it('3.14 Should revert if all swap swap call fails', async () => {
@@ -4623,7 +4811,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           true
@@ -4650,9 +4838,9 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -4661,7 +4849,7 @@ describe('SwapFacet.test.ts', async () => {
               value,
             }
           )
-      ).revertedWithCustomError(swapFacet, EVENTS.AllSwapsFailed)
+      ).revertedWithCustomError(swapTransferFacet, EVENTS.AllSwapsFailed)
     })
 
     it('3.15 Should revert if slippage is too high', async () => {
@@ -4688,7 +4876,7 @@ describe('SwapFacet.test.ts', async () => {
         await mockExchange.populateTransaction.swap(
           from,
           to,
-          recipient,
+          dZapDiamond.address,
           amounts[0],
           false,
           false
@@ -4715,9 +4903,9 @@ describe('SwapFacet.test.ts', async () => {
 
       // ----------------------------------------------------------------
       await expect(
-        swapFacet
+        swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevert(
+          .multiSwapWithoutRevertAndTransfer(
             transactionId,
             integratorAddress,
             recipient,
@@ -4727,1738 +4915,7 @@ describe('SwapFacet.test.ts', async () => {
             }
           )
       )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
-        .withArgs(swapData[0].minToAmount, minAmount)
-    })
-  })
-
-  describe('4) swapErc20ToErc20', async () => {
-    it('4.1 Should allow user to swap single token (Erc20 -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenB.address
-      const to = tokenA.address
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        TOKEN_A_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      const [recipientBalanceBeforeA, userBalanceBeforeB] = await Promise.all([
-        tokenA.balanceOf(recipient),
-        tokenB.balanceOf(user.address),
-      ])
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0])
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          ZERO,
-          minAmount,
-        ])
-
-      const [recipientBalanceAfterA, userBalanceAfterB] = await Promise.all([
-        tokenA.balanceOf(recipient),
-        tokenB.balanceOf(user.address),
-      ])
-
-      const eventFilter = swapFacet.filters.SwappedSingleToken()
-      const data = await swapFacet.queryFilter(eventFilter)
-      const args = data[data.length - 1].args
-
-      expect(args.transactionId).equal(transactionId)
-      expect(args.recipient).equal(recipient)
-      expect(args.swapInfo.dex).equal(mockExchange.address)
-      expect(args.swapInfo.fromAmount).equal(swapData[0].fromAmount)
-      expect(args.swapInfo.leftOverFromAmount).equal(ZERO)
-      expect(args.swapInfo.returnToAmount).equal(minAmount)
-
-      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
-      expect(recipientBalanceAfterA).equal(
-        recipientBalanceBeforeA.add(minAmount)
-      )
-
-      // ----------------------------------------------------------------
-    })
-
-    it('4.2 Should allow user to swap single token, return leftover tokens (Erc20 -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-      const leftOverPercent = await mockExchange.leftOverPercent()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = tokenA.address
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          true,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        TOKEN_A_DECIMAL
-      )
-
-      const leftOverFromAmount = amounts[0]
-        .mul(leftOverPercent)
-        .div(BPS_DENOMINATOR)
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0])
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          leftOverFromAmount,
-          minAmount,
-        ])
-        .changeEtherBalances([user], [ZERO])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB, recipientBalanceAfterA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      expect(userBalanceAfterB).equal(
-        userBalanceBeforeB.sub(amounts[0].sub(leftOverFromAmount))
-      )
-      expect(recipientBalanceAfterA).equal(
-        recipientBalanceBeforeA.add(minAmount)
-      )
-    })
-
-    it('4.3 Should allow user to swap single token, using permit approve (Erc20 -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = await generateRandomWallet()
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = tokenA.address
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      // ----------------------------------------------------------------
-
-      const deadline = (await latest()).add(duration.minutes(10))
-
-      const { data } = await getPermitSignatureAndCalldata(
-        user,
-        tokenB,
-        dZapDiamond.address,
-        amounts[0],
-        deadline
-      )
-      const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        TOKEN_A_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0], {})
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          0,
-          minAmount,
-        ])
-        .changeEtherBalances([user], [ZERO])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB, recipientBalanceAfterA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
-      expect(recipientBalanceAfterA).equal(
-        recipientBalanceBeforeA.add(minAmount)
-      )
-    })
-
-    it('4.4 Should allow user to swap single token, using permit2 approve (Erc20 -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = await generateRandomWallet()
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = tokenA.address
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      // ----------------------------------------------------------------
-
-      //   const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // permit2 approve
-      const deadline = (await latest()).add(duration.minutes(10))
-      const expiration = (await latest()).add(duration.minutes(30))
-
-      const { customPermitDataForTransfer } =
-        await getPermit2SignatureAndCalldataForApprove(
-          permit2,
-          user,
-          tokenB.address,
-          dZapDiamond.address,
-          amounts[0],
-          deadline,
-          expiration
-        )
-
-      const encodedPermitData = encodePermitData(
-        customPermitDataForTransfer,
-        PermitType.PERMIT2_APPROVE
-      )
-
-      await tokenB
-        .connect(user)
-        .approve(permit2.address, ethers.constants.MaxUint256)
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        TOKEN_A_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB, recipientBalanceBeforeA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0])
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          0,
-          minAmount,
-        ])
-        .changeTokenBalance(tokenA, recipient, minAmount)
-        .changeEtherBalances([user], [ZERO])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB, recipientBalanceAfterA] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
-      expect(recipientBalanceAfterA).equal(
-        recipientBalanceBeforeA.add(minAmount)
-      )
-    })
-
-    it('4.5 Should revert if recipient is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToErc20(transactionId, ZERO_ADDRESS, {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: tokenB.address,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('4.6 Should revert if from amount is zero', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          tokenA.address,
-          tokenB.address,
-          dZapDiamond.address,
-          parseUnits('1'),
-          false,
-          false
-        )
-      ).data as string
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: tokenB.address,
-          fromAmount: 0,
-          minToAmount: 100,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
-    })
-
-    it('4.7 Should revert if callTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
-          callTo: executor.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: tokenB.address,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('4.8 Should revert if approveTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToErc20(transactionId, recipient, {
-          callTo: mockExchange.address,
-          approveTo: executor.address,
-          from: tokenA.address,
-          to: tokenB.address,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('4.9 Should revert if swap call fails', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenA.address
-      const to = tokenB.address
-      const amounts = [parseUnits('1', TOKEN_A_DECIMAL)]
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          true
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        TOKEN_B_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0])
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
-        .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
-    })
-
-    it('4.10 Should revert if slippage is too high', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenA.address
-      const to = tokenB.address
-      const amounts = [parseUnits('1', TOKEN_A_DECIMAL)]
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        TOKEN_B_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount.add(1),
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToErc20(transactionId, recipient, swapData[0], {})
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
-        .withArgs(swapData[0].minToAmount, minAmount)
-    })
-  })
-
-  describe('5) swapErc20ToNative', async () => {
-    it('5.1 Should allow user to swap single token (Erc20 -> Native)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenA.address
-      const to = NATIVE_ADDRESS
-      const amounts = [parseUnits('1', TOKEN_A_DECIMAL)]
-
-      await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        18
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      const [userBalanceBeforeA] = await Promise.all([
-        tokenA.balanceOf(user.address),
-      ])
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0], {})
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          ZERO,
-          minAmount,
-        ])
-        .changeEtherBalances([recipient], [minAmount])
-
-      const [userBalanceAfterA] = await Promise.all([
-        tokenA.balanceOf(user.address),
-      ])
-
-      const eventFilter = swapFacet.filters.SwappedSingleToken()
-      const data = await swapFacet.queryFilter(eventFilter)
-      const args = data[data.length - 1].args
-
-      expect(args.transactionId).equal(transactionId)
-      expect(args.recipient).equal(recipient)
-      expect(args.swapInfo.dex).equal(mockExchange.address)
-      expect(args.swapInfo.fromAmount).equal(swapData[0].fromAmount)
-      expect(args.swapInfo.leftOverFromAmount).equal(ZERO)
-      expect(args.swapInfo.returnToAmount).equal(minAmount)
-
-      expect(userBalanceAfterA).equal(userBalanceBeforeA.sub(amounts[0]))
-
-      // ----------------------------------------------------------------
-    })
-
-    it('5.2 Should allow user to swap single token, return leftover tokens (Erc20 -> Native)', async () => {
-      const rate = await mockExchange.rate()
-      const leftOverPercent = await mockExchange.leftOverPercent()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = DZAP_NATIVE
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-      const extra = parseUnits('5')
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          true,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        18
-      )
-
-      const leftOverFromAmount = amounts[0]
-        .mul(leftOverPercent)
-        .div(BPS_DENOMINATOR)
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0], {})
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          leftOverFromAmount,
-          minAmount,
-        ])
-        .changeEtherBalances([user, recipient], [ZERO, minAmount])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      expect(userBalanceAfterB).equal(
-        userBalanceBeforeB.sub(amounts[0].sub(leftOverFromAmount))
-      )
-    })
-
-    it('5.3 Should allow user to swap single token, using permit approve (Erc20 -> Native)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = await generateRandomWallet()
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = DZAP_NATIVE
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      // ----------------------------------------------------------------
-
-      const deadline = (await latest()).add(duration.minutes(10))
-
-      const { data } = await getPermitSignatureAndCalldata(
-        user,
-        tokenB,
-        dZapDiamond.address,
-        amounts[0],
-        deadline
-      )
-      const encodedPermitData = encodePermitData(data, PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        18
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0], {})
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          0,
-          minAmount,
-        ])
-        .changeEtherBalances([user, recipient], [ZERO, minAmount])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-      ])
-
-      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
-    })
-
-    it('5.4 Should allow user to swap single token, using permit2 approve (Erc20 -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = await generateRandomWallet()
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-
-      // ----------------------------------------------------------------
-
-      const from = tokenB.address
-      const to = DZAP_NATIVE
-      const amounts = [parseUnits('1', TOKEN_B_DECIMAL)]
-
-      // ----------------------------------------------------------------
-
-      //   const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // permit2 approve
-      const deadline = (await latest()).add(duration.minutes(10))
-      const expiration = (await latest()).add(duration.minutes(30))
-
-      const { customPermitDataForTransfer } =
-        await getPermit2SignatureAndCalldataForApprove(
-          permit2,
-          user,
-          tokenB.address,
-          dZapDiamond.address,
-          amounts[0],
-          deadline,
-          expiration
-        )
-
-      const encodedPermitData = encodePermitData(
-        customPermitDataForTransfer,
-        PermitType.PERMIT2_APPROVE
-      )
-
-      await tokenB
-        .connect(user)
-        .approve(permit2.address, ethers.constants.MaxUint256)
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_B_DECIMAL),
-        18
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-
-      await tokenB.mint(user.address, parseUnits('100', TOKEN_B_DECIMAL))
-      await tokenB
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_B_DECIMAL))
-
-      const [userBalanceBeforeB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-      ])
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0], {})
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          0,
-          minAmount,
-        ])
-        .changeTokenBalance(tokenA, recipient, minAmount)
-        .changeEtherBalances([user], [ZERO])
-
-      // ----------------------------------------------------------------
-
-      const [userBalanceAfterB] = await Promise.all([
-        tokenB.balanceOf(user.address),
-        tokenA.balanceOf(recipient),
-      ])
-
-      expect(userBalanceAfterB).equal(userBalanceBeforeB.sub(amounts[0]))
-    })
-
-    it('5.5 Should revert if recipient is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToNative(transactionId, ZERO_ADDRESS, {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: DZAP_NATIVE,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('5.6 Should revert if from amount is zero', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          tokenA.address,
-          tokenB.address,
-          dZapDiamond.address,
-          parseUnits('1'),
-          false,
-          false
-        )
-      ).data as string
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToNative(transactionId, recipient, {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: DZAP_NATIVE,
-          fromAmount: 0,
-          minToAmount: 100,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
-    })
-
-    it('5.7 Should revert if callTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToNative(transactionId, recipient, {
-          callTo: executor.address,
-          approveTo: mockExchange.address,
-          from: tokenA.address,
-          to: DZAP_NATIVE,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('5.8 Should revert if approveTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToNative(transactionId, recipient, {
-          callTo: mockExchange.address,
-          approveTo: executor.address,
-          from: tokenA.address,
-          to: DZAP_NATIVE,
-          fromAmount: 100,
-          minToAmount: 100,
-          swapCallData: '0x',
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('5.9 Should revert if swap call fails', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenA.address
-      const to = DZAP_NATIVE
-      const amounts = [parseUnits('1', TOKEN_A_DECIMAL)]
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          true
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        18
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0])
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
-        .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
-    })
-
-    it('5.10 Should revert if slippage is too high', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = tokenA.address
-      const to = DZAP_NATIVE
-      const amounts = [parseUnits('1', TOKEN_A_DECIMAL)]
-
-      await tokenA
-        .connect(user)
-        .mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
-      await tokenA
-        .connect(user)
-        .approve(swapFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), TOKEN_A_DECIMAL),
-        18
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount.add(1),
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapErc20ToNative(transactionId, recipient, swapData[0], {})
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
-        .withArgs(swapData[0].minToAmount, minAmount)
-    })
-  })
-
-  describe('6) swapNativeToErc20', async () => {
-    it('6.1 Should allow user to swap single token (Native -> Erc20)', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = NATIVE_ADDRESS
-      const to = tokenA.address
-      const amounts = [parseUnits('1')]
-      const value = amounts[0]
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), 18),
-        TOKEN_A_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: DZAP_NATIVE,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      const [recipientBalanceBeforeA] = await Promise.all([
-        tokenA.balanceOf(recipient),
-      ])
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapNativeToErc20(transactionId, recipient, swapData[0], {
-            value,
-          })
-      )
-        .emit(swapFacet, EVENTS.Swapped)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          ZERO,
-          minAmount,
-        ])
-        .changeEtherBalances([user], [convertBNToNegative(amounts[0])])
-
-      const [recipientBalanceAfterA] = await Promise.all([
-        tokenA.balanceOf(recipient),
-      ])
-
-      const eventFilter = swapFacet.filters.SwappedSingleToken()
-      const data = await swapFacet.queryFilter(eventFilter)
-      const args = data[data.length - 1].args
-
-      expect(args.transactionId).equal(transactionId)
-      expect(args.recipient).equal(recipient)
-      expect(args.swapInfo.dex).equal(mockExchange.address)
-      expect(args.swapInfo.fromAmount).equal(swapData[0].fromAmount)
-      expect(args.swapInfo.leftOverFromAmount).equal(ZERO)
-      expect(args.swapInfo.returnToAmount).equal(minAmount)
-
-      expect(recipientBalanceAfterA).equal(
-        recipientBalanceBeforeA.add(minAmount)
-      )
-
-      // ----------------------------------------------------------------
-    })
-
-    it('6.2 Should allow user to swap, return excess eth sent, and left over (Native -> ERC20)', async () => {
-      const rate = await mockExchange.rate()
-      const leftOverPercent = await mockExchange.leftOverPercent()
-
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      const from = NATIVE_ADDRESS
-      const to = tokenA.address
-      const amounts = [parseUnits('1')]
-      const extra = parseUnits('5')
-      const value = amounts[0].add(extra)
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          true,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), 18),
-        TOKEN_A_DECIMAL
-      )
-
-      const leftOverFromAmount = amounts[0]
-        .mul(leftOverPercent)
-        .div(BPS_DENOMINATOR)
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      const recipientBalanceBefore = await tokenA.balanceOf(recipient)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapNativeToErc20(transactionId, recipient, swapData[0], {
-            value,
-          })
-      )
-        .emit(swapFacet, EVENTS.SwappedSingleToken)
-        .withArgs(transactionId, user.address, recipient, [
-          mockExchange.address,
-          swapData[0].from,
-          swapData[0].to,
-          swapData[0].fromAmount,
-          leftOverFromAmount,
-          minAmount,
-        ])
-        .changeEtherBalances(
-          [user],
-          [convertBNToNegative(value.sub(leftOverFromAmount.add(extra)))]
-        )
-
-      // ----------------------------------------------------------------
-
-      const recipientBalanceAfter = await tokenA.balanceOf(recipient)
-      expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-    })
-
-    it('6.3 Should revert if recipient is zero address', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapNativeToErc20(
-          transactionId,
-          ZERO_ADDRESS,
-          {
-            callTo: mockExchange.address,
-            approveTo: mockExchange.address,
-            from: DZAP_NATIVE,
-            to: tokenB.address,
-            fromAmount: 100,
-            minToAmount: 100,
-            swapCallData: '0x',
-            permit: encodedPermitData,
-          },
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ZeroAddress)
-    })
-
-    it('6.4 Should revert if from amount is zero', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          DZAP_NATIVE,
-          tokenB.address,
-          dZapDiamond.address,
-          parseUnits('1'),
-          false,
-          false
-        )
-      ).data as string
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapErc20ToNative(transactionId, recipient, {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: DZAP_NATIVE,
-          to: tokenB.address,
-          fromAmount: 0,
-          minToAmount: 100,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        })
-      ).revertedWithCustomError(swapFacet, ERRORS.NoSwapFromZeroBalance)
-    })
-
-    it('6.5 Should revert if callTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapNativeToErc20(
-          transactionId,
-          recipient,
-          {
-            callTo: executor.address,
-            approveTo: mockExchange.address,
-            from: DZAP_NATIVE,
-            to: tokenB.address,
-            fromAmount: 100,
-            minToAmount: 100,
-            swapCallData: '0x',
-            permit: encodedPermitData,
-          },
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('6.6 Should revert if approveTo(dex) is not approved', async () => {
-      // ----------------------------------------------------------------
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-
-      await expect(
-        swapFacet.connect(user).swapNativeToErc20(
-          transactionId,
-          recipient,
-          {
-            callTo: mockExchange.address,
-            approveTo: executor.address,
-            from: DZAP_NATIVE,
-            to: tokenB.address,
-            fromAmount: 100,
-            minToAmount: 100,
-            swapCallData: '0x',
-            permit: encodedPermitData,
-          },
-          { value: 100 }
-        )
-      ).revertedWithCustomError(swapFacet, ERRORS.ContractCallNotAllowed)
-    })
-
-    it('6.7 Should revert if swap call fails', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = DZAP_NATIVE
-      const to = tokenB.address
-      const amounts = [parseUnits('1')]
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          true
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), 18),
-        TOKEN_B_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount,
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapNativeToErc20(transactionId, recipient, swapData[0], {
-            value: amounts[0],
-          })
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SwapCallFailed)
-        .withArgs(mockExchange.interface.getSighash('SwapFailedFromExchange'))
-    })
-
-    it('6.8 Should revert if slippage is too high', async () => {
-      const rate = await mockExchange.rate()
-
-      // ----------------------------------------------------------------
-
-      // native to tokenA
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const recipient = signers[14].address
-      const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
-
-      // ----------------------------------------------------------------
-      const from = DZAP_NATIVE
-      const to = tokenB.address
-      const amounts = [parseUnits('1')]
-
-      // ----------------------------------------------------------------
-
-      const callData = (
-        await mockExchange.populateTransaction.swap(
-          from,
-          to,
-          recipient,
-          amounts[0],
-          false,
-          false
-        )
-      ).data as string
-
-      const minAmount = parseUnits(
-        formatUnits(amounts[0].mul(rate).div(BPS_MULTIPLIER), 18),
-        TOKEN_B_DECIMAL
-      )
-
-      const swapData = [
-        {
-          callTo: mockExchange.address,
-          approveTo: mockExchange.address,
-          from: from,
-          to: to,
-          fromAmount: amounts[0],
-          minToAmount: minAmount.add(1),
-          swapCallData: callData,
-          permit: encodedPermitData,
-        },
-      ]
-
-      // ----------------------------------------------------------------
-      await expect(
-        swapFacet
-          .connect(user)
-          .swapNativeToErc20(transactionId, recipient, swapData[0], {
-            value: amounts[0],
-          })
-      )
-        .revertedWithCustomError(swapFacet, ERRORS.SlippageTooLow)
+        .revertedWithCustomError(swapTransferFacet, ERRORS.SlippageTooLow)
         .withArgs(swapData[0].minToAmount, minAmount)
     })
   })

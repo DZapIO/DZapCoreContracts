@@ -12,11 +12,8 @@ import {
   EVENTS,
   NATIVE_ADDRESS,
   ZERO,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
   ADDRESS_ZERO,
   BPS_DENOMINATOR,
-  DEFAULT_BYTES,
 } from '../../constants'
 import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 import {
@@ -59,6 +56,7 @@ import {
   FeeType,
   PermitType,
 } from '../../types'
+import { DEFAULT_BYTES } from '../../constants/others'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -104,6 +102,9 @@ let feeManager: SignerWithAddress
 let withdrawManager: SignerWithAddress
 
 let snapshotId: string
+
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 
 const feeInfo1: FeeInfo[] = [
   {

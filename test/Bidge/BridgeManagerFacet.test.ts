@@ -7,11 +7,8 @@ import {
   ADDRESS_ZERO,
   BPS_MULTIPLIER,
   CONTRACTS,
-  DEFAULT_BYTES,
   ERRORS,
   EVENTS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
   ZERO,
 } from '../../constants'
 import {
@@ -44,6 +41,7 @@ import {
   WithdrawFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
+import { DEFAULT_BYTES } from '../../constants/others'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -90,6 +88,9 @@ let feeManager: SignerWithAddress
 let withdrawManager: SignerWithAddress
 
 let snapshotId: string
+
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 
 const feeInfo1: FeeInfo[] = [
   {

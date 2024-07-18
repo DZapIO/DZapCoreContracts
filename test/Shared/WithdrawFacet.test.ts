@@ -6,8 +6,7 @@ import {
   ERRORS,
   EVENTS,
   DZAP_NATIVE,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
+  BPS_MULTIPLIER,
 } from '../../constants'
 import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 
@@ -61,6 +60,8 @@ let crossChainFacetImp: CrossChainFacet
 let executor: Executor
 let receiver: Receiver
 
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
 let permit2: Permit2

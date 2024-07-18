@@ -11,8 +11,6 @@ import {
   ERRORS,
   EVENTS,
   ZERO,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
   BPS_DENOMINATOR,
 } from '../../constants'
 import { latest, snapshot, updateBalance } from '../utils'
@@ -80,6 +78,9 @@ let owner: SignerWithAddress
 let protoFeeVault: SignerWithAddress
 
 let snapshotId: string
+
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 
 describe('Executor.test.ts', async () => {
   beforeEach(async () => {

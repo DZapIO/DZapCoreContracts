@@ -10,8 +10,6 @@ import {
   CONTRACTS,
   DZAP_NATIVE,
   EVENTS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
   NATIVE_ADDRESS,
   ZERO,
 } from '../../constants'
@@ -102,6 +100,8 @@ let withdrawManager: SignerWithAddress
 
 let snapshotId: string
 
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 const feeInfo1: FeeInfo[] = [
   {
     tokenFee: BigNumber.from(1 * BPS_MULTIPLIER),

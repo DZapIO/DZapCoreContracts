@@ -11,8 +11,6 @@ import {
   ERRORS,
   EVENTS,
   ZERO,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
 } from '../../constants'
 import { convertBNToNegative, latest, snapshot, updateBalance } from '../utils'
 import { encodePermitData } from '../../scripts/core/helper'
@@ -42,6 +40,8 @@ import {
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, PermitType } from '../../types'
 
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 const TOKEN_A_DECIMAL = 18
 const TOKEN_B_DECIMAL = 6
 let permit2: Permit2

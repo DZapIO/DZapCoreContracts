@@ -40,21 +40,6 @@ struct SwapData {
     bytes permit;
 }
 
-struct SwapMultiTokenInfo {
-    address from;
-    address to;
-    uint256 fromAmount;
-    uint256 minToAmount;
-    bytes permit;
-}
-
-struct SwapMultiData {
-    address callTo;
-    address approveTo;
-    bytes swapCallData;
-    SwapMultiTokenInfo[] tokenInfo;
-}
-
 struct SwapInfo {
     address dex;
     address fromToken;

@@ -24,6 +24,8 @@ export const CONTRACTS = {
   BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
   BatchBridgeCallFacet: 'BatchBridgeCallFacet',
   Create2Deployer: 'Create2Deployer',
+  SwapTransferFacet: 'SwapTransferFacet',
+  BatchSwapFacet: 'BatchSwapFacet',
 }
 
 export const ERRORS = {

@@ -5,9 +5,8 @@ import {
   CONTRACTS,
   ERRORS,
   EVENTS,
-  MAX_FIXED_FEE_AMOUNT,
-  MAX_TOKEN_FEE,
   ADDRESS_ZERO,
+  BPS_MULTIPLIER,
 } from '../../constants'
 import { snapshot, updateBalance } from '../utils'
 
@@ -57,6 +56,9 @@ let owner: SignerWithAddress
 let protoFeeVault: SignerWithAddress
 
 let snapshotId: string
+
+const MAX_TOKEN_FEE = 10 * BPS_MULTIPLIER
+const MAX_FIXED_FEE_AMOUNT = ethers.utils.parseUnits('1')
 
 describe('OwnershipFacet.test.ts', async () => {
   beforeEach(async () => {

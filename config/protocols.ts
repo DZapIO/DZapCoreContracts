@@ -1549,6 +1549,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',
         '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
       ],
+      [DEXES.xyFinance]: ['0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE'],
     },
     bridges: {
       [BRIDGES.okx]: {

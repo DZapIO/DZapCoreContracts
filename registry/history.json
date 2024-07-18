@@ -412,7 +412,8 @@
         "0xd3dfad66",
         "0xb07986b9"
       ]
-    }
+    },
+    "integrators": ["DZAP"]
   },
   "169": {
     "bridge": {
@@ -749,7 +750,8 @@
         "0xd3dfad66",
         "0xb07986b9"
       ]
-    }
+    },
+    "integrators": ["DZAP"]
   },
   "43114": {
     "bridge": {

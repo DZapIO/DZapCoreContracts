@@ -270,4 +270,9 @@ export const NETWORKS = {
     rpcUrl: 'https://xlayerrpc.okx.com',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.LINEA_MAINNET]: {
+    chainId: CHAIN_IDS.LINEA_MAINNET,
+    rpcUrl: 'https://rpc.linea.build',
+    rpcType: RPC_TYPE.OTHER,
+  },
 }

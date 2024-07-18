@@ -500,7 +500,11 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.omniBtc]: {
-        address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+        address: [
+          '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
+          '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+          '0x8D18DFCeA276DC3f5d76270F9F544cb74b39c4Eb',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.symbiosis]: {
@@ -537,7 +541,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.router]: {
-        address: ['0x60b483D521b844e13E3337D304929D0519Bd50C8'],
+        address: [
+          '0x60b483D521b844e13E3337D304929D0519Bd50C8',
+          '0xef300fb4243a0ff3b90c8ccfa1264d78182adaa4',
+        ],
         selectorInfo: [],
       },
     },
@@ -568,7 +575,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       ],
       [DEXES.xyFinance]: ['0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E'],
       [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
-      [DEXES.omniBtc]: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+      [DEXES.omniBtc]: [
+        '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
+        '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+      ],
       [DEXES.sushi]: [
         '0x1af415a1EbA07a4986a52B6f2e7dE7003D82231e',
         '0x1f2FCf1d036b375b384012e61D3AA33F8C256bbE',
@@ -621,7 +631,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.omniBtc]: {
-        address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+        address: [
+          '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
+          '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.symbiosis]: {
@@ -640,6 +653,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: [
           '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
           '0x68D6B739D2020067D1e2F713b999dA97E4d54812',
+          '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
         ],
         selectorInfo: [],
       },
@@ -927,6 +941,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.omniBtc]: {
+        address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.MANTA_MAINNET]: {
@@ -937,6 +955,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
       [DEXES.routerNitro]: ['0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06'],
+      [DEXES.omniBtc]: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
     },
     bridges: {
       [BRIDGES.symbiosis]: {
@@ -965,6 +984,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.mayanFinance]: {
         address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+        selectorInfo: [],
+      },
+      [BRIDGES.omniBtc]: {
+        address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
         selectorInfo: [],
       },
     },
@@ -1012,6 +1035,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.router]: {
+        address: ['0x01b4ce0d48ce91eb6bcaf5db33870c65d641b894'],
+        selectorInfo: [],
+      },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
@@ -1020,12 +1047,8 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: ['0x778C974568e376146dbC64fF12aD55B2d1c4133f'],
         selectorInfo: [],
       },
-      [BRIDGES.lifi]: {
-        address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-        selectorInfo: [],
-      },
-      [BRIDGES.socket]: {
-        address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      [BRIDGES.omniBtc]: {
+        address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
         selectorInfo: [],
       },
     },

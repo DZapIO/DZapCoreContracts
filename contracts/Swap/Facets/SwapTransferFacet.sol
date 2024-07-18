@@ -65,7 +65,7 @@ contract SwapTransferFacet is ISwapTransferFacet, Swapper, RefundNative {
     }
 
     // solhint-disable-next-line code-complexity
-    function multiSwapWithoutRevertAndTransfer(bytes32 _transactionId, address _integrator, address _recipient, SwapData[] calldata _data) external payable refundExcessNative(msg.sender) {
+    function multiSwapAndTransferWithoutRevert(bytes32 _transactionId, address _integrator, address _recipient, SwapData[] calldata _data) external payable refundExcessNative(msg.sender) {
         if (_recipient == address(0)) revert ZeroAddress();
         if (!LibFees.isIntegratorAllowed(_integrator)) revert IntegratorNotAllowed();
 

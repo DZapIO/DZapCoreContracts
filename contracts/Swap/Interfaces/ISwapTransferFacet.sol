@@ -33,5 +33,5 @@ interface ISwapTransferFacet {
     /// @param _transactionId the transaction id associated with the operation
     /// @param _integrator the address of the integrator
     /// @param _recipient the address of the recipient
-    function multiSwapWithoutRevertAndTransfer(bytes32 _transactionId, address _integrator, address _recipient, SwapData[] calldata _data) external payable;
+    function multiSwapAndTransferWithoutRevert(bytes32 _transactionId, address _integrator, address _recipient, SwapData[] calldata _data) external payable;
 }

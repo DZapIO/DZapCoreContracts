@@ -3358,7 +3358,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -3512,7 +3512,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -3680,7 +3680,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -3851,7 +3851,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4020,7 +4020,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4182,7 +4182,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4358,7 +4358,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4540,7 +4540,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4617,7 +4617,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             ZERO_ADDRESS,
@@ -4650,7 +4650,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             signers[10].address,
             recipient,
@@ -4695,7 +4695,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4727,7 +4727,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapTransferFacet.connect(user).multiSwapWithoutRevertAndTransfer(
+        swapTransferFacet.connect(user).multiSwapAndTransferWithoutRevert(
           transactionId,
           integratorAddress,
           recipient,
@@ -4763,7 +4763,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       // ----------------------------------------------------------------
 
       await expect(
-        swapTransferFacet.connect(user).multiSwapWithoutRevertAndTransfer(
+        swapTransferFacet.connect(user).multiSwapAndTransferWithoutRevert(
           transactionId,
           integratorAddress,
           recipient,
@@ -4840,7 +4840,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,
@@ -4905,7 +4905,7 @@ describe('SwapTransferFacet.test.ts', async () => {
       await expect(
         swapTransferFacet
           .connect(user)
-          .multiSwapWithoutRevertAndTransfer(
+          .multiSwapAndTransferWithoutRevert(
             transactionId,
             integratorAddress,
             recipient,

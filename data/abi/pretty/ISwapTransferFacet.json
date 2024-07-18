@@ -3,6 +3,6 @@
   "event Swapped(bytes32 transactionId, address indexed integrator, address indexed sender, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount) swapInfo)",
   "event SwappedSingleToken(bytes32 transactionId, address indexed sender, address recipient, tuple(address dex, address fromToken, address toToken, uint256 fromAmount, uint256 leftOverFromAmount, uint256 returnToAmount) swapInfo)",
   "function multiSwapAndTransfer(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
-  "function multiSwapWithoutRevertAndTransfer(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
+  "function multiSwapAndTransferWithoutRevert(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit)[] _data) payable",
   "function swapAndTransfer(bytes32 _transactionId, address _integrator, address _recipient, tuple(address callTo, address approveTo, address from, address to, uint256 fromAmount, uint256 minToAmount, bytes swapCallData, bytes permit) _data) payable"
 ]

@@ -335,7 +335,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "multiSwapWithoutRevertAndTransfer",
+    "name": "multiSwapAndTransferWithoutRevert",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

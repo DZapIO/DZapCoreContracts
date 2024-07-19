@@ -1189,17 +1189,19 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+      [DEXES.sushi]: ['0x46b3fdf7b5cde91ac049936bf0bdb12c5d22202e'],
+      [DEXES.xyFinance]: ['0xc693C8AAD9745588e95995fef4570d6DcEF98000'],
     },
     bridges: {
-      [BRIDGES.symbiosis]: {
-        address: [
-          '0x9A31bAC4b3B958C835C243800B474818D04393dd',
-          '0x83f71AabdDBb9F0E3B6462Cc7635b6fFAD0f2f2e',
-          '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
-          '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
-        ],
+      [BRIDGES.deBridge]: {
+        address: ['0xeF4fB24aD0916217251F553c0596F8Edc630EB66'],
+        selectorInfo: [],
+      },
+      [BRIDGES.lifi]: {
+        address: ['0xDE1E598b81620773454588B85D6b5D4eEC32573e'],
         selectorInfo: [],
       },
       [BRIDGES.mesonFinance]: {
@@ -1224,8 +1226,25 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.socket]: {
+        address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+        selectorInfo: [],
+      },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.symbiosis]: {
+        address: [
+          '0x9A31bAC4b3B958C835C243800B474818D04393dd',
+          '0x83f71AabdDBb9F0E3B6462Cc7635b6fFAD0f2f2e',
+          '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+          '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
+        ],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
         selectorInfo: [],
       },
     },
@@ -1554,6 +1573,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',
         '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
       ],
+      [DEXES.xyFinance]: ['0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE'],
     },
     bridges: {
       [BRIDGES.okx]: {

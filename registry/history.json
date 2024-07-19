@@ -1197,6 +1197,15 @@
       ],
       "routerNitro": [
         "0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "sushi": [
+        "0x46b3fdf7b5cde91ac049936bf0bdb12c5d22202e"
+      ],
+      "xyFinance": [
+        "0xc693C8AAD9745588e95995fef4570d6DcEF98000"
       ]
     },
     "bridge": {
@@ -1219,6 +1228,15 @@
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "dbridge": [
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+      ],
+      "socket": [
+        "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
+      ],
+      "xyFinance": [
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
       ]
     }
   },

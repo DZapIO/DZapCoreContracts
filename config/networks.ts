@@ -272,7 +272,7 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.LINEA_MAINNET]: {
     chainId: CHAIN_IDS.LINEA_MAINNET,
-    rpcUrl: 'https://rpc.linea.build',
+    rpcUrl: 'https://linea.decubate.com',
     rpcType: RPC_TYPE.OTHER,
   },
 }

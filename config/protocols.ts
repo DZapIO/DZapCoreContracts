@@ -1199,6 +1199,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         address: ['0xeF4fB24aD0916217251F553c0596F8Edc630EB66'],
         selectorInfo: [],
       },
+      [BRIDGES.lifi]: {
+        address: ['0xDE1E598b81620773454588B85D6b5D4eEC32573e'],
+        selectorInfo: [],
+      },
       [BRIDGES.mesonFinance]: {
         address: [
           '0x25aB3Efd52e6470681CE037cD546Dc60726948D3',

@@ -583,9 +583,17 @@
         "0xb07986b9"
       ]
     },
-    "integrators": [
-      "DZAP"
-    ]
+    "integrators": {
+      "0": "DZAP",
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 200,
+          "fixedNativeFeeAmount": "100000000000000000",
+          "dzapTokenShare": 1000000,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    }
   },
   "169": {
     "bridge": {
@@ -1053,9 +1061,17 @@
         "0xb07986b9"
       ]
     },
-    "integrators": [
-      "DZAP"
-    ]
+    "integrators": {
+      "0": "DZAP",
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 200,
+          "fixedNativeFeeAmount": "20000000000000",
+          "dzapTokenShare": 1000000,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    }
   },
   "43114": {
     "bridge": {

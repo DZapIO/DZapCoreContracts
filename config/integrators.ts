@@ -38,6 +38,7 @@ export const INTEGRATOR_CONFIG = {
           dzapFixedNativeShare: 0,
         },
         {
+          type: 0,
           tokenFee: 0.02,
           fixedNativeFeeAmount: 0.1,
           dzapTokenShare: 100,

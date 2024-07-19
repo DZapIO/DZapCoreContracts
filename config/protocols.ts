@@ -1243,10 +1243,6 @@ export const DZAP_PROTOCOL_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.xyFinance]: {
-        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
-        selectorInfo: [],
-      },
     },
   },
   [CHAIN_IDS.MANTLE_MAINNET]: {

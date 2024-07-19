@@ -31,7 +31,7 @@ export interface FeeData {
 
 export interface FeeInfo {
   tokenFee: BigNumberish // ex 1%
-  fixedNativeFeeAmount: BigNumber // ex 0.5 Matic
+  fixedNativeFeeAmount: BigNumberish // ex 0.5 Matic
   dzapTokenShare: BigNumberish // 50%, 50% of the total 1% fee
   dzapFixedNativeShare: BigNumberish // 50%, 50% of the total fixedFeeAmount fee
 }

@@ -2,8 +2,11 @@ import { CHAIN_IDS, NETWORKS, RPC_TYPE } from '../config/networks'
 import { dummyKey } from '../constants/others'
 
 const key: string =
-  (process.env.IS_PROD ? process.env.MAINNET_KEY : process.env.TESTNET_KEY) ||
-  dummyKey
+  (process.env.IS_PROD
+    ? process.env.IS_PROD == 'true'
+      ? process.env.MAINNET_KEY
+      : process.env.STAGING_KEY
+    : process.env.TESTNET_KEY) || dummyKey
 
 export const getRpcUrl = (chainId: CHAIN_IDS): string => {
   const network = NETWORKS[chainId]

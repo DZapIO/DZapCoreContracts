@@ -1190,6 +1190,7 @@ export const DZAP_PROTOCOL_CONFIG: {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
       [DEXES.routerNitro]: ['0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34'],
+      [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
     },
     bridges: {
       [BRIDGES.symbiosis]: {
@@ -1210,6 +1211,10 @@ export const DZAP_PROTOCOL_CONFIG: {
       },
       [BRIDGES.routerNitro]: {
         address: ['0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34'],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
         selectorInfo: [],
       },
       [BRIDGES.okx]: {

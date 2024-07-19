@@ -749,6 +749,15 @@
         "0x88e95c47",
         "0xd3dfad66",
         "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
       ]
     },
     "integrators": ["DZAP"]
@@ -860,7 +869,8 @@
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
         "0x57df6092665eb6058DE53939612413ff4B09114E"
       ],
-      "routerNitro": ["0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34"]
+      "routerNitro": ["0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34"],
+      "kyber": ["0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"]
     },
     "bridge": {
       "symbiosis": [
@@ -878,7 +888,8 @@
         "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",
         "0x57df6092665eb6058DE53939612413ff4B09114E"
       ],
-      "squid": ["0xce16F69375520ab01377ce7B88f5BA8C48F8D666"]
+      "squid": ["0xce16F69375520ab01377ce7B88f5BA8C48F8D666"],
+      "xyFinance": ["0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"]
     }
   },
   "534352": {

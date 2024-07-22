@@ -73,7 +73,10 @@
         "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
         "0xFc99f58A8974A4bc36e60E2d490Bb8D72899ee9f"
       ],
-      "routerNitro": ["0x6c45e28a76977a96e263f84f95912b47f927b687"],
+      "routerNitro": [
+        "0x6c45e28a76977a96e263f84f95912b47f927b687",
+        "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9"
+      ],
       "squid": ["0xce16F69375520ab01377ce7B88f5BA8C48F8D666"]
     },
     "executors": {
@@ -1052,7 +1055,11 @@
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
         "0x57df6092665eb6058DE53939612413ff4B09114E"
       ],
-      "routerNitro": ["0x5546dA2bCdCFF39b187723434cDE10D4eE99C566"]
+      "routerNitro": ["0x5546dA2bCdCFF39b187723434cDE10D4eE99C566"],
+      "bebop": [
+        "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+      ]
     },
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [

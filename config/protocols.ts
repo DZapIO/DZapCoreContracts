@@ -161,7 +161,10 @@ export const DZAP_PROTOCOL_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x6c45e28a76977a96e263f84f95912b47f927b687'],
+        address: [
+          '0x6c45e28a76977a96e263f84f95912b47f927b687',
+          '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {
@@ -994,6 +997,10 @@ export const DZAP_PROTOCOL_CONFIG: {
   },
   [CHAIN_IDS.SCROLL_MAINNET]: {
     dexes: {
+      [DEXES.bebop]: [
+        '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
+        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+      ],
       [DEXES.kyber]: ['0x6131b5fae19ea4f9d964eac0408e4408b66337b5'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.sushi]: [

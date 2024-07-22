@@ -14,6 +14,7 @@ export enum BRIDGES {
   lifi = 'lifi',
   mesonFinance = 'mesonFinance',
   okx = 'okx',
+  rango = 'rango',
   routerNitro = 'routerNitro',
   router = 'router',
   squid = 'squid',
@@ -69,6 +70,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.omniBtc]: {
         address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
       [BRIDGES.symbiosis]: {
@@ -162,6 +167,10 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
       [BRIDGES.symbiosis]: {
         address: [
           '0xa260E3732593E4EcF9DdC144fD6C4c5fe7077978',
@@ -244,6 +253,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.omniBtc]: {
         address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
       [BRIDGES.symbiosis]: {
@@ -337,6 +350,10 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
       [BRIDGES.symbiosis]: {
         address: [
           '0xD01319f4b65b79124549dE409D36F25e04B3e551',
@@ -428,6 +445,10 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
       [BRIDGES.symbiosis]: {
         address: [
           '0x0f91052dc5B4baE53d0FeA5DAe561A117268f5d2',
@@ -499,6 +520,10 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x13598FD0986D0E33c402f6907F05Acf720224527'],
+        selectorInfo: [],
+      },
       [BRIDGES.routerNitro]: {
         address: ['0x7E7D4185D9c3C44D5266eD974493b24811398049'],
         selectorInfo: [],
@@ -546,6 +571,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.omniBtc]: {
         address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
       [BRIDGES.symbiosis]: {
@@ -793,6 +822,14 @@ export const DZAP_BRIDGES_CONFIG: {
       },
     },
   },
+  [CHAIN_IDS.GNOSIS_MAINNET]: {
+    bridges: {
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
+    },
+  },
   [CHAIN_IDS.KAVA_MAINNET]: {
     bridges: {
       [BRIDGES.symbiosis]: {
@@ -811,16 +848,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
     },
   },
-  [CHAIN_IDS.BOBA_MAINNET]: {
+  [CHAIN_IDS.BOBA_AVALANCHE]: {
     bridges: {
-      [BRIDGES.symbiosis]: {
-        address: [
-          '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
-          '0xca506793A420E901BbCa8066be5661E3C52c84c2',
-          '0xd92Ca299F1C2518E78E48C207b64591BA6E9b9a8',
-          '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
-          '0x506803495B1876FE1fA6Cd9dC65fB060057A4Cc3',
-        ],
+      [BRIDGES.rango]: {
+        address: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
         selectorInfo: [],
       },
     },
@@ -835,6 +866,28 @@ export const DZAP_BRIDGES_CONFIG: {
           '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
           '0xcB28fbE3E9C0FEA62E0E63ff3f232CECfE555aD4',
         ],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
+        selectorInfo: [],
+      },
+    },
+  },
+  [CHAIN_IDS.BOBA_MAINNET]: {
+    bridges: {
+      [BRIDGES.symbiosis]: {
+        address: [
+          '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+          '0xca506793A420E901BbCa8066be5661E3C52c84c2',
+          '0xd92Ca299F1C2518E78E48C207b64591BA6E9b9a8',
+          '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+          '0x506803495B1876FE1fA6Cd9dC65fB060057A4Cc3',
+        ],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
         selectorInfo: [],
       },
     },
@@ -1100,6 +1153,14 @@ export const DZAP_BRIDGES_CONFIG: {
       },
     },
   },
+  [CHAIN_IDS.HECO_MAINNET]: {
+    bridges: {
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
+    },
+  },
   [CHAIN_IDS.FANTOM_MAINNET]: {
     bridges: {
       [BRIDGES.mesonFinance]: {
@@ -1111,6 +1172,10 @@ export const DZAP_BRIDGES_CONFIG: {
           '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
           '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
         ],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {
@@ -1146,6 +1211,10 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.X_LAYER_MAINNET]: {
@@ -1173,6 +1242,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.SAAKURU_MAINNET]: {
@@ -1187,6 +1260,18 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.routerNitro]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
+    },
+  },
+  [CHAIN_IDS.MOONRIVER]: {
+    bridges: {
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
     },

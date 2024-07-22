@@ -29,11 +29,10 @@ const config: HardhatUserConfig = {
   networks: {
     mainnet: getNetworkConfig(CHAIN_IDS.ETH_MAINNET),
     polygon: getNetworkConfig(CHAIN_IDS.POLYGON_MAINNET),
+    blast: getNetworkConfig(CHAIN_IDS.BLAST_MAINNET),
     bsc: getNetworkConfig(CHAIN_IDS.BSC_MAINNET),
-    bscTestnet: getNetworkConfig(CHAIN_IDS.BSC_TESTNET),
     arbitrumOne: getNetworkConfig(CHAIN_IDS.ARBITRUM_MAINNET),
-    optimisticEthereum: getNetworkConfig(CHAIN_IDS.OPTIMISM_MAINNET),
-    zk: getNetworkConfig(CHAIN_IDS.ZKSYNC_MAINNET),
+    optimism: getNetworkConfig(CHAIN_IDS.OPTIMISM_MAINNET),
     avalanche: getNetworkConfig(CHAIN_IDS.AVALANCHE_MAINNET),
     base: getNetworkConfig(CHAIN_IDS.BASE_MAINNET),
     manta: getNetworkConfig(CHAIN_IDS.MANTA_MAINNET),
@@ -42,20 +41,9 @@ const config: HardhatUserConfig = {
     core: getNetworkConfig(CHAIN_IDS.CORE_MAINNET),
     rootstock: getNetworkConfig(CHAIN_IDS.ROOTSTOCK_MAINNET),
     mantle: getNetworkConfig(CHAIN_IDS.MANTLE_MAINNET),
-    blast: getNetworkConfig(CHAIN_IDS.BLAST_MAINNET),
+    linea: getNetworkConfig(CHAIN_IDS.LINEA_MAINNET),
     xlayer: getNetworkConfig(CHAIN_IDS.X_LAYER_MAINNET),
     zkSync: getNetworkConfig(CHAIN_IDS.ZKSYNC_MAINNET),
-    linea: getNetworkConfig(CHAIN_IDS.LINEA_MAINNET),
-    zkTestnet: {
-      url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),
-      ethNetwork: 'sepolia',
-      zksync: true,
-    },
-    zkMainnet: {
-      url: getRpcUrl(CHAIN_IDS.ZKSYNC_MAINNET),
-      ethNetwork: 'mainnet',
-      zksync: true,
-    },
   },
   solidity: {
     compilers: [

@@ -27,7 +27,7 @@ const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   // defaultNetwork: 'zkTestnet',
   networks: {
-    mainnet: getNetworkConfig(CHAIN_IDS.ETH_MAINNET),
+    ethereum: getNetworkConfig(CHAIN_IDS.ETH_MAINNET),
     polygon: getNetworkConfig(CHAIN_IDS.POLYGON_MAINNET),
     blast: getNetworkConfig(CHAIN_IDS.BLAST_MAINNET),
     bsc: getNetworkConfig(CHAIN_IDS.BSC_MAINNET),

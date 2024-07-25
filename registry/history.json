@@ -60,6 +60,9 @@
       ],
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "bridge": {
@@ -185,7 +188,8 @@
         "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138"
       ],
       "routerNitro": [
-        "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+        "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
+        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -243,7 +247,8 @@
         "0xd5eC61bCa0Af24Ad06BE431585A0920142C98890"
       ],
       "omniBtc": [
-        "0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820"
+        "0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820",
+        "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
       ],
       "op": [
         "0x1af415a1EbA07a4986a52B6f2e7dE7003D82231e",
@@ -259,6 +264,9 @@
       ],
       "routerNitro": [
         "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {
@@ -485,6 +493,9 @@
       ],
       "routerNitro": [
         "0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {
@@ -567,6 +578,9 @@
       ],
       "across": [
         "0x9295ee1d8C5b022Be115A2AD3c30C72E34e7F096"
+      ],
+      "cctp": [
+        "0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918"
       ]
     },
     "dexes": {
@@ -638,6 +652,9 @@
       ],
       "routerNitro": [
         "0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {
@@ -1018,6 +1035,9 @@
       ],
       "routerNitro": [
         "0x02D728B9C1513478a6b6de77a92648e1D8F801e7"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {
@@ -1166,6 +1186,9 @@
       ],
       "routerNitro": [
         "0xCA94d8C245601B152C904f42fE788B4125f5b46B"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {
@@ -1307,6 +1330,9 @@
       ],
       "vapourDex": [
         "0x55477d8537ede381784b448876AfAa98aa450E63"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
       ]
     },
     "executors": {

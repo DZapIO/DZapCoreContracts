@@ -5,7 +5,8 @@ export enum DEXES {
   oneInch = 'oneInch',
   lifi = 'lifi',
   odos = 'odos',
-  paraswap = 'paraswap',
+  paraswap = 'paraswap', // Should remove this in future and change below v6 to only paraswap
+  paraswapV6 = 'paraswapV6',
   openOcean = 'openOcean',
   zeroX = 'zeroX',
   wNative = 'wNative',
@@ -39,6 +40,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.bebop]: [
@@ -79,6 +81,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.bebop]: [
@@ -119,6 +122,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.bebop]: [
@@ -155,6 +159,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
@@ -194,6 +199,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1abe32c034e558cdd535791643c58a13acc10'],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
@@ -255,6 +261,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
@@ -287,6 +294,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x59C7C832e96D2568bea6db468C1aAdcbbDa08A52',
         '0x93aAAe79a53759cD164340E4C8766E4Db5331cD7',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.bebop]: [
@@ -451,6 +459,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
         '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
     },
   },
   [CHAIN_IDS.OKX_MAINNET]: {
@@ -475,6 +484,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
+      [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.routerNitro]: ['0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce'],
     },
   },

@@ -3,6 +3,7 @@ import { CHAIN_IDS } from '../networks'
 export enum BRIDGES {
   ALL = 'ALL',
   across = 'across',
+  cctp = 'cctp',
   changeNow = 'changeNow',
   deBridge = 'dbridge',
   lifi = 'lifi',
@@ -1015,7 +1016,10 @@ export const DZAP_BRIDGES_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x5501A36b1313aC5d27e85418acd2AA4564f50b44'],
+        address: [
+          '0x5501A36b1313aC5d27e85418acd2AA4564f50b44',
+          '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.squid]: {
@@ -1028,6 +1032,10 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0x9295ee1d8C5b022Be115A2AD3c30C72E34e7F096'],
+        selectorInfo: [],
+      },
+      [BRIDGES.cctp]: {
+        address: ['0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918'],
         selectorInfo: [],
       },
       [BRIDGES.lifi]: {

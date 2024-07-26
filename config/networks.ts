@@ -219,8 +219,8 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.BASE_MAINNET]: {
     chainId: CHAIN_IDS.BAHAMUT_MAINNET,
-    rpcUrl: 'https://mainnet.base.org',
-    rpcType: RPC_TYPE.OTHER,
+    rpcUrl: 'https://base-mainnet.g.alchemy.com/v2',
+    rpcType: RPC_TYPE.ALCHEMY,
   },
   [CHAIN_IDS.SCROLL_MAINNET]: {
     chainId: CHAIN_IDS.SCROLL_MAINNET,

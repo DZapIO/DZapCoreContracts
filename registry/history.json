@@ -122,6 +122,11 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "stargate": [
+        "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
+        "0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D",
+        "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
       ]
     },
     "executors": {
@@ -199,6 +204,11 @@
       ],
       "across": [
         "0x6f26Bf09B1C792e3228e5467807a900A503c0281"
+      ],
+      "stargate": [
+        "0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0",
+        "0x19cFCE47eD54a88614648DC3f19A5980097007dD",
+        "0xe8CDF27AcD73a434D661C84887215F7598e7d0d3"
       ]
     },
     "dexes": {
@@ -362,7 +372,10 @@
     "bridge": {
       "symbiosis": [
         "0x9b1adec00a25fffd87a5bb17f61916e1c26f6844",
-        "0x4949e74094D6F9C06D68e5Ffe388f6542C4b1A34"
+        "0x4949e74094D6F9C06D68e5Ffe388f6542C4b1A34",
+        "0x8097f0B9f06C27AF9579F75762F971D745bb222F",
+        "0x5523985926aa12ba58dc5ad00ddca99678d7227e",
+        "0xcB28fbE3E9C0FEA62E0E63ff3f232CECfE555aD4"
       ],
       "telosBridge": [
         "0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76"
@@ -435,6 +448,9 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "stargate": [
+        "0x138EB30f73BC423c6455C53df6D89CB01d9eBc63"
       ]
     },
     "dexes": {
@@ -581,6 +597,10 @@
       ],
       "cctp": [
         "0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918"
+      ],
+      "stargate": [
+        "0x9Aa02D4Fae7F58b8E8f34c66E756cC734DAc7fe4",
+        "0xd47b03ee6d86Cf251ee7860FB2ACf9f91B9fD4d7"
       ]
     },
     "dexes": {
@@ -982,6 +1002,10 @@
       ],
       "across": [
         "0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64"
+      ],
+      "stargate": [
+        "0x27a16dc786820B16E5c9028b75B99F6f604b5d26",
+        "0xdc181Bd607330aeeBEF6ea62e03e5e1Fb4B6F7C7"
       ]
     },
     "dexes": {
@@ -1125,6 +1149,11 @@
       ],
       "across": [
         "0xe35e9842fceaCA96570B734083f4a58e8F7C5f2A"
+      ],
+      "stargate": [
+        "0xe8CDF27AcD73a434D661C84887215F7598e7d0d3",
+        "0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0",
+        "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F"
       ]
     },
     "dexes": {
@@ -1276,6 +1305,10 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "stargate": [
+        "0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47",
+        "0x12dC9256Acc9895B076f6638D628382881e62CeE"
       ]
     },
     "dexes": {
@@ -1445,6 +1478,9 @@
       ],
       "across": [
         "0x7E63A5f1a8F0B4d0934B2f2327DAED3F6bb2ee75"
+      ],
+      "stargate": [
+        "0x81F6138153d473E8c5EcebD3DC8Cd4903506B075"
       ]
     }
   },
@@ -1520,6 +1556,10 @@
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
+      ],
+      "stargate": [
+        "0x3Fc69CC4A842838bCDC9499178740226062b14E4",
+        "0xC2b638Cb5042c1B3c5d5C969361fB50569840583"
       ]
     },
     "integrators": {

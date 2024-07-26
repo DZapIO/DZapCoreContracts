@@ -20,6 +20,7 @@ export enum BRIDGES {
   telosBridge = 'telosBridge',
   unizen = 'unizen',
   xyFinance = 'xyFinance',
+  stargate = 'stargate',
 }
 
 export const DZAP_BRIDGES_CONFIG: {
@@ -126,6 +127,14 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
+          '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
+          '0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.AURORA_MAINNET]: {
@@ -136,6 +145,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.rango]: {
         address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
+      [BRIDGES.stargate]: {
+        address: ['u'],
         selectorInfo: [],
       },
     },
@@ -220,6 +233,13 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47',
+          '0x12dC9256Acc9895B076f6638D628382881e62CeE',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.BASE_MAINNET]: {
@@ -296,6 +316,13 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.omniBtc]: {
         address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
+        selectorInfo: [],
+      },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x27a16dc786820B16E5c9028b75B99F6f604b5d26',
+          '0xdc181Bd607330aeeBEF6ea62e03e5e1Fb4B6F7C7',
+        ],
         selectorInfo: [],
       },
     },
@@ -485,6 +512,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: ['0x138EB30f73BC423c6455C53df6D89CB01d9eBc63'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.CELO_MAINNET]: {
@@ -622,6 +653,15 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x77b2043768d28E9C9aB44E1aBfC95944bcE57931',
+          '0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D',
+          '0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3',
+          '0x77b2043768d28E9C9aB44E1aBfC95944bcE57931',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.FANTOM_MAINNET]: {
@@ -687,6 +727,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: ['0x41A5b0470D96656Fb3e8f68A218b39AdBca3420b'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.LINEA_MAINNET]: {
@@ -740,6 +784,10 @@ export const DZAP_BRIDGES_CONFIG: {
           '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
           '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
         ],
+        selectorInfo: [],
+      },
+      [BRIDGES.stargate]: {
+        address: ['0x81F6138153d473E8c5EcebD3DC8Cd4903506B075'],
         selectorInfo: [],
       },
     },
@@ -819,6 +867,15 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0xAc290Ad4e0c891FDc295ca4F0a6214cf6dC6acDC',
+          '0xa81274AFac523D639DbcA2C32c1470f1600cCEBe',
+          '0x4c1d3Fc3fC3c177c3b633427c2F769276c547463',
+          '0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.METIS_MAINNET]: {
@@ -844,6 +901,14 @@ export const DZAP_BRIDGES_CONFIG: {
         address: [
           '0xa50FD06d2b099a4B06d54177C7d3AB08D3D3F004',
           '0x57df6092665eb6058DE53939612413ff4B09114E',
+        ],
+        selectorInfo: [],
+      },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x4dCBFC0249e8d5032F89D6461218a9D2eFff5125',
+          '0x36ed193dc7160D3858EC250e69D12B03Ca087D08',
+          '0xD9050e7043102a0391F81462a3916326F86331F0',
         ],
         selectorInfo: [],
       },
@@ -1026,6 +1091,14 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
+          '0x19cFCE47eD54a88614648DC3f19A5980097007dD',
+          '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -1126,6 +1199,13 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
       },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x9Aa02D4Fae7F58b8E8f34c66E756cC734DAc7fe4',
+          '0xd47b03ee6d86Cf251ee7860FB2ACf9f91B9fD4d7',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {
@@ -1188,6 +1268,13 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.omniBtc]: {
         address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
+        selectorInfo: [],
+      },
+      [BRIDGES.stargate]: {
+        address: [
+          '0x3Fc69CC4A842838bCDC9499178740226062b14E4',
+          '0xC2b638Cb5042c1B3c5d5C969361fB50569840583',
+        ],
         selectorInfo: [],
       },
     },

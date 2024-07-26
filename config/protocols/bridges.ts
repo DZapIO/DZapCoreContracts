@@ -148,7 +148,7 @@ export const DZAP_BRIDGES_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.stargate]: {
-        address: ['u'],
+        address: ['0x81F6138153d473E8c5EcebD3DC8Cd4903506B075'],
         selectorInfo: [],
       },
     },

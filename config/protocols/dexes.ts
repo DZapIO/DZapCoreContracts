@@ -214,7 +214,10 @@ export const DZAP_DEXES_CONFIG: {
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
       ],
-      [DEXES.xyFinance]: ['0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E'],
+      [DEXES.xyFinance]: [
+        '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',
+        '0xF8d342db903F266de73B10a1e46601Bb08a3c195',
+      ],
       [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
       [DEXES.omniBtc]: [
         '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',

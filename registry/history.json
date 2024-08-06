@@ -112,7 +112,8 @@
       ],
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687",
-        "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9"
+        "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9",
+        "0xfB375Cdfb975381731be52c05e8e695C8253c319"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -1485,6 +1486,9 @@
       ],
       "stargate": [
         "0x81F6138153d473E8c5EcebD3DC8Cd4903506B075"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
       ]
     }
   },

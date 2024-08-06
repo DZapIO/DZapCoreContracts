@@ -646,6 +646,7 @@ export const DZAP_BRIDGES_CONFIG: {
         address: [
           '0x6c45e28a76977a96e263f84f95912b47f927b687',
           '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+          '0xfB375Cdfb975381731be52c05e8e695C8253c319',
         ],
         selectorInfo: [],
       },
@@ -788,6 +789,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.stargate]: {
         address: ['0x81F6138153d473E8c5EcebD3DC8Cd4903506B075'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
     },

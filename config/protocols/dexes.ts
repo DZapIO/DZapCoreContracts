@@ -1,6 +1,7 @@
 import { CHAIN_IDS } from '../networks'
 
 export enum DEXES {
+  enso = 'enso',
   kyber = 'kyber',
   oneInch = 'oneInch',
   lifi = 'lifi',
@@ -32,6 +33,7 @@ export const DZAP_DEXES_CONFIG: {
 } = {
   [CHAIN_IDS.ETH_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -73,6 +75,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -114,6 +117,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.BSC_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -151,6 +155,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -191,6 +196,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -256,6 +262,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.AVALANCHE_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -289,6 +296,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.BASE_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -392,6 +400,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.BOBA_BNB]: {},
   [CHAIN_IDS.LINEA_MAINNET]: {
     dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
         '0x57df6092665eb6058DE53939612413ff4B09114E',
@@ -508,6 +517,11 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.SAAKURU_MAINNET]: {
     dexes: {
       [DEXES.routerNitro]: ['0x3BcEe7629Fce3b54783bE5e9305119a12bC2C770'],
+    },
+  },
+  [CHAIN_IDS.GNOSIS_MAINNET]: {
+    dexes: {
+      [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
     },
   },
   [CHAIN_IDS.MOONBEAM_MAINNET]: {},

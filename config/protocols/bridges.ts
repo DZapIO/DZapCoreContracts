@@ -321,6 +321,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
         selectorInfo: [],
       },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
       [BRIDGES.stargate]: {
         address: [
           '0x27a16dc786820B16E5c9028b75B99F6f604b5d26',

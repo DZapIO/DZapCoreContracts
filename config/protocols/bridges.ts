@@ -5,7 +5,8 @@ export enum BRIDGES {
   across = 'across',
   cctp = 'cctp',
   changeNow = 'changeNow',
-  deBridge = 'dbridge',
+  deBridge = 'debridge',
+  hop = 'hop',
   lifi = 'lifi',
   mayanFinance = 'mayanFinance',
   mesonFinance = 'mesonFinance',
@@ -30,6 +31,16 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0xe35e9842fceaCA96570B734083f4a58e8F7C5f2A'],
+        selectorInfo: [],
+      },
+      [BRIDGES.hop]: {
+        address: [
+          '0xCB0a4177E0A60247C0ad18Be87f8eDfF6DD30283',
+          '0xe7F40BF16AB09f4a6906Ac2CAA4094aD2dA48Cc2',
+          '0x33ceb27b39d2Bb7D2e61F7564d3Df29344020417',
+          '0x16e08C02e4B78B0a5b3A917FF5FeaeDd349a5a95',
+          '0x50a3a623d00fd8b8a4F3CbC5aa53D0Bc6FA912DD',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.lifi]: {
@@ -249,6 +260,13 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64'],
+        selectorInfo: [],
+      },
+      [BRIDGES.hop]: {
+        address: [
+          '0x7D269D3E0d61A05a0bA976b7DBF8805bF844AF3F',
+          '0x10541b07d8Ad2647Dc6cD67abd4c03575dade261',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.lifi]: {
@@ -751,6 +769,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xeF4fB24aD0916217251F553c0596F8Edc630EB66'],
         selectorInfo: [],
       },
+      [BRIDGES.hop]: {
+        address: ['0xC8A4FB931e8D77df8497790381CA7d228E68a41b'],
+        selectorInfo: [],
+      },
       [BRIDGES.lifi]: {
         address: ['0xDE1E598b81620773454588B85D6b5D4eEC32573e'],
         selectorInfo: [],
@@ -1021,6 +1043,18 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x6f26Bf09B1C792e3228e5467807a900A503c0281'],
         selectorInfo: [],
       },
+      [BRIDGES.hop]: {
+        address: [
+          '0x2ad09850b0CA4c7c1B33f5AcD6cBAbCaB5d6e796',
+          '0x7D269D3E0d61A05a0bA976b7DBF8805bF844AF3F',
+          '0xb3C68a491608952Cb1257FC9909a537a0173b63B',
+          '0x86cA30bEF97fB651b8d866D45503684b90cb3312',
+          '0xf11EBB94EC986EA891Aec29cfF151345C83b33Ec',
+          '0x29Fba7d2A6C95DB162ee09C6250e912D6893DCa6',
+          '0x19B2162CA4C2C6F08C6942bFB846ce5C396aCB75',
+        ],
+        selectorInfo: [],
+      },
       [BRIDGES.lifi]: {
         address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
         selectorInfo: [
@@ -1124,6 +1158,16 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918'],
         selectorInfo: [],
       },
+      [BRIDGES.hop]: {
+        address: [
+          '0x8741Ba6225A6BF91f9D73531A98A89807857a2B3',
+          '0x76b22b8C1079A44F1211D867D68b1eda76a635A7',
+          '0x884d1Aa15F9957E1aEAA86a82a72e49Bc2bfCbe3',
+          '0x28529fec439cfF6d7D1D5917e956dEE62Cd3BE5c',
+          '0xc315239cFb05F1E130E7E28E603CEa4C014c57f0',
+        ],
+        selectorInfo: [],
+      },
       [BRIDGES.lifi]: {
         address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
         selectorInfo: [
@@ -1179,6 +1223,7 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
         selectorInfo: [],
       },
+
       [BRIDGES.symbiosis]: {
         address: [
           '0xa260E3732593E4EcF9DdC144fD6C4c5fe7077978',

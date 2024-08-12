@@ -650,7 +650,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             NATIVE_ADDRESS,
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -756,8 +756,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -851,23 +850,21 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('1.3 Should allow user to bridge token from one chain to other chain (without chaining offset)', async () => {
-      {
-        await bridgeManagerFacet
-          .connect(crossChainManager)
-          .updateSelectorInfo(
-            [mockBridge.address],
-            getSighash(
-              [
-                mockBridge.interface.functions[
-                  'bridge(address,address,uint256,bool)'
-                ],
+    it('1.3 Should allow user to bridge token from one chain to other chain (give leftover swap return amount)', async () => {
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .updateSelectorInfo(
+          [mockBridge.address],
+          getSighash(
+            [
+              mockBridge.interface.functions[
+                'bridge(address,address,uint256,bool)'
               ],
-              mockBridge.interface
-            ),
-            [ZERO]
-          )
-      }
+            ],
+            mockBridge.interface
+          ),
+          [ZERO]
+        )
 
       // -------------------------------------
 
@@ -924,7 +921,6 @@ describe('CrossChainFacet.test.ts', async () => {
             recipient.address,
             tokenA.address,
             amountWithoutFee[0],
-            // amounts[0],
             false
           )
         ).data as string,
@@ -999,7 +995,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(routerAfterN).equal(routerBeforeN.add(routerNativeFeeAmount))
     })
 
-    it('1.5 Should revert if amount is zero', async () => {
+    it('1.4 Should revert if amount is zero', async () => {
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
 
       // -------------------------------------
@@ -1051,7 +1047,6 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
             amounts[0],
             false
           )
@@ -1125,8 +1120,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -1204,8 +1198,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -1299,8 +1292,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -1378,8 +1370,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -1451,8 +1442,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             true
           )
         ).data as string,
@@ -1524,8 +1514,7 @@ describe('CrossChainFacet.test.ts', async () => {
           await mockBridge.populateTransaction.bridge(
             recipient.address,
             tokenA.address,
-            // amountWithoutFee[0]
-            amounts[0],
+            amountWithoutFee[0],
             false
           )
         ).data as string,
@@ -1681,8 +1670,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              // amountWithoutFee[0]
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -1696,7 +1684,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenB.address,
-              amounts[1],
+              amountWithoutFee[1],
               false
             )
           ).data as string,
@@ -1887,8 +1875,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              // amountWithoutFee[0]
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -1902,7 +1889,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               DZAP_NATIVE,
-              amounts[1],
+              amountWithoutFee[1],
               false
             )
           ).data as string,
@@ -2890,7 +2877,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -2904,8 +2891,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenB.address,
-              // swapReturnAmount,
-              amounts[1], // replace offset with swapReturnAmount
+              swapReturnAmount,
               false
             )
           ).data as string,
@@ -3057,7 +3043,484 @@ describe('CrossChainFacet.test.ts', async () => {
       ])
     })
 
-    it('3.2 Should allow user to bridge token to destination chain then swap them on dst chain', async () => {
+    it('3.2 Should allow user to swap src token then bridge them to destination chain (refund extra return amount)', async () => {
+      const rate = await mockExchange.rate()
+      const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
+      const routerFeePercent = await mockBridge.tokenFee()
+
+      // -------------------------------------
+
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .updateSelectorInfo(
+          [mockBridge.address],
+          getSighash(
+            [
+              mockBridge.interface.functions[
+                'bridge(address,address,uint256,bool)'
+              ],
+            ],
+            mockBridge.interface
+          ),
+          [0]
+        )
+
+      // -------------------------------------
+
+      const user = signers[12]
+      const transactionId = ethers.utils.formatBytes32String('dummyId')
+      const integratorAddress = integrator1.address
+      // const refundee = signers[13]
+      const recipient = signers[14]
+
+      // -------------------------------------
+      const amounts = [
+        parseUnits('10', TOKEN_A_DECIMAL),
+        parseUnits('50', TOKEN_A_DECIMAL),
+      ]
+      // const leftOver = [parseUnits('2', TOKEN_A_DECIMAL), ZERO]
+
+      const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
+        await getFeeData(
+          swapFacet.address,
+          integratorAddress,
+          amounts,
+          FeeType.BRIDGE
+        )
+
+      // -------------------------------------
+
+      await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
+      await tokenA
+        .connect(user)
+        .approve(crossChainFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+
+      // -------------------------------------
+      const swapReturnAmount = parseUnits(
+        formatUnits(
+          amountWithoutFee[1].mul(rate).div(BPS_MULTIPLIER),
+          TOKEN_A_DECIMAL
+        ),
+        TOKEN_B_DECIMAL
+      )
+      const minSwapReturnAmount = swapReturnAmount.sub(
+        parseUnits('1', TOKEN_B_DECIMAL)
+      )
+
+      const bridgeData = [
+        {
+          bridge: 'TestBridge1',
+          from: tokenA.address,
+          to: tokenA.address,
+          receiver: recipient.address,
+          minAmountIn: amounts[0],
+          destinationChainId: destinationChainId,
+          hasSourceSwaps: false,
+          hasDestinationCall: false,
+        },
+        {
+          bridge: 'TestBridge2',
+          from: tokenB.address,
+          to: tokenB.address,
+          receiver: recipient.address,
+          minAmountIn: minSwapReturnAmount,
+          destinationChainId: destinationChainId2,
+          hasSourceSwaps: true,
+          hasDestinationCall: false,
+        },
+      ]
+
+      const genericData = [
+        {
+          callTo: mockBridge.address,
+          approveTo: mockBridge.address,
+          extraNative: routerNativeFeeAmount,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+          callData: (
+            await mockBridge.populateTransaction.bridge(
+              recipient.address,
+              tokenA.address,
+              amountWithoutFee[0],
+              false
+            )
+          ).data as string,
+        },
+        {
+          callTo: mockBridge.address,
+          approveTo: mockBridge.address,
+          extraNative: routerNativeFeeAmount,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+          callData: (
+            await mockBridge.populateTransaction.bridge(
+              recipient.address,
+              tokenB.address,
+              minSwapReturnAmount,
+              false
+            )
+          ).data as string,
+        },
+      ]
+
+      const swapData = [
+        {
+          callTo: mockExchange.address,
+          approveTo: mockExchange.address,
+          from: tokenA.address,
+          to: tokenB.address,
+          fromAmount: amounts[1],
+          minToAmount: swapReturnAmount,
+          swapCallData: (
+            await mockExchange.populateTransaction.swap(
+              tokenA.address,
+              tokenB.address,
+              crossChainFacet.address,
+              amountWithoutFee[1],
+              false,
+              false
+            )
+          ).data as string,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+        },
+      ]
+
+      // -------------------------------------
+
+      const value = fixedNativeFeeAmount
+        .add(routerNativeFeeAmount)
+        .add(routerNativeFeeAmount)
+
+      const routerTokenFee = [
+        amountWithoutFee[0].mul(routerFeePercent).div(BPS_DENOMINATOR),
+        minSwapReturnAmount.mul(routerFeePercent).div(BPS_DENOMINATOR),
+      ]
+
+      const minReturn = [
+        amountWithoutFee[0].sub(routerTokenFee[0]),
+        minSwapReturnAmount.sub(routerTokenFee[1]),
+      ]
+
+      // -------------------------------------
+      // native
+      const integratorBalanceBeforeN = await ethers.provider.getBalance(
+        integratorAddress
+      )
+      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
+        protoFeeVault.address
+      )
+
+      const routerBeforeN = await ethers.provider.getBalance(mockBridge.address)
+      // const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
+
+      // tokenB
+      const routersBeforeB = await tokenB.balanceOf(mockBridge.address)
+      const recipientBeforeB = await tokenB.balanceOf(recipient.address)
+      const userBeforeB = await tokenB.balanceOf(user.address)
+
+      // -------------------------------------
+      // tokenA
+      // tokenA -> tokenB
+
+      await expect(
+        crossChainFacet
+          .connect(user)
+          .swapAndBridge(
+            transactionId,
+            integratorAddress,
+            bridgeData,
+            swapData,
+            genericData,
+            {
+              value,
+            }
+          )
+      ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+
+      // -------------------------------------
+
+      const integratorBalanceAfterN = await ethers.provider.getBalance(
+        integratorAddress
+      )
+      const protoFeeVaultAfterN = await ethers.provider.getBalance(
+        protoFeeVault.address
+      )
+      const routerAfterN = await ethers.provider.getBalance(mockBridge.address)
+
+      const routersAfterB = await tokenB.balanceOf(mockBridge.address)
+      const recipientAfterB = await tokenB.balanceOf(recipient.address)
+      const userAfterB = await tokenB.balanceOf(user.address)
+
+      expect(integratorBalanceAfterN).equal(integratorBalanceBeforeN.add(ZERO))
+      expect(protoFeeVaultAfterN).equal(
+        protoFeeVaultBeforeN.add(fixedNativeFeeAmount)
+      )
+      expect(routerAfterN).equal(
+        routerBeforeN.add(routerNativeFeeAmount.mul(2))
+      )
+
+      expect(userAfterB).equal(
+        userBeforeB.add(swapReturnAmount.sub(minSwapReturnAmount))
+      )
+      expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
+      expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
+
+      // -------------------------------------
+
+      const eventFilter = crossChainFacet.filters.SwapBridgeTransferStarted()
+      const data = await crossChainFacet.queryFilter(eventFilter)
+      const args = data[data.length - 1].args
+
+      expect(args.swapInfo[0]).eql([
+        swapData[0].callTo,
+        swapData[0].from,
+        swapData[0].to,
+        swapData[0].fromAmount,
+        ZERO,
+        swapReturnAmount,
+      ])
+
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData[0],
+        amountWithoutFee[0]
+      )
+
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData[1],
+        minSwapReturnAmount
+      )
+    })
+
+    it('3.3 Should allow user to swap src token then bridge them to destination chain (replace offset)', async () => {
+      const rate = await mockExchange.rate()
+      const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
+      const routerFeePercent = await mockBridge.tokenFee()
+
+      // -------------------------------------
+
+      const user = signers[12]
+      const transactionId = ethers.utils.formatBytes32String('dummyId')
+      const integratorAddress = integrator1.address
+      // const refundee = signers[13]
+      const recipient = signers[14]
+
+      // -------------------------------------
+      const amounts = [
+        parseUnits('10', TOKEN_A_DECIMAL),
+        parseUnits('50', TOKEN_A_DECIMAL),
+      ]
+      // const leftOver = [parseUnits('2', TOKEN_A_DECIMAL), ZERO]
+
+      const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
+        await getFeeData(
+          swapFacet.address,
+          integratorAddress,
+          amounts,
+          FeeType.BRIDGE
+        )
+
+      // -------------------------------------
+
+      await tokenA.mint(user.address, parseUnits('100', TOKEN_A_DECIMAL))
+      await tokenA
+        .connect(user)
+        .approve(crossChainFacet.address, parseUnits('100', TOKEN_A_DECIMAL))
+
+      // -------------------------------------
+      const swapReturnAmount = parseUnits(
+        formatUnits(
+          amountWithoutFee[1].mul(rate).div(BPS_MULTIPLIER),
+          TOKEN_A_DECIMAL
+        ),
+        TOKEN_B_DECIMAL
+      )
+      const tempSwapReturnAmount = swapReturnAmount.sub(
+        parseUnits('1', TOKEN_B_DECIMAL)
+      )
+
+      const bridgeData = [
+        {
+          bridge: 'TestBridge1',
+          from: tokenA.address,
+          to: tokenA.address,
+          receiver: recipient.address,
+          minAmountIn: amounts[0],
+          destinationChainId: destinationChainId,
+          hasSourceSwaps: false,
+          hasDestinationCall: false,
+        },
+        {
+          bridge: 'TestBridge2',
+          from: tokenB.address,
+          to: tokenB.address,
+          receiver: recipient.address,
+          minAmountIn: tempSwapReturnAmount,
+          destinationChainId: destinationChainId2,
+          hasSourceSwaps: true,
+          hasDestinationCall: false,
+        },
+      ]
+
+      const genericData = [
+        {
+          callTo: mockBridge.address,
+          approveTo: mockBridge.address,
+          extraNative: routerNativeFeeAmount,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+          callData: (
+            await mockBridge.populateTransaction.bridge(
+              recipient.address,
+              tokenA.address,
+              amountWithoutFee[0],
+              false
+            )
+          ).data as string,
+        },
+        {
+          callTo: mockBridge.address,
+          approveTo: mockBridge.address,
+          extraNative: routerNativeFeeAmount,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+          callData: (
+            await mockBridge.populateTransaction.bridge(
+              recipient.address,
+              tokenB.address,
+              tempSwapReturnAmount,
+              false
+            )
+          ).data as string,
+        },
+      ]
+
+      const swapData = [
+        {
+          callTo: mockExchange.address,
+          approveTo: mockExchange.address,
+          from: tokenA.address,
+          to: tokenB.address,
+          fromAmount: amounts[1],
+          minToAmount: swapReturnAmount,
+          swapCallData: (
+            await mockExchange.populateTransaction.swap(
+              tokenA.address,
+              tokenB.address,
+              crossChainFacet.address,
+              amountWithoutFee[1],
+              false,
+              false
+            )
+          ).data as string,
+          permit: encodePermitData('0x', PermitType.PERMIT),
+        },
+      ]
+
+      // -------------------------------------
+
+      const value = fixedNativeFeeAmount
+        .add(routerNativeFeeAmount)
+        .add(routerNativeFeeAmount)
+
+      const routerTokenFee = [
+        amountWithoutFee[0].mul(routerFeePercent).div(BPS_DENOMINATOR),
+        swapReturnAmount.mul(routerFeePercent).div(BPS_DENOMINATOR),
+      ]
+
+      const minReturn = [
+        amountWithoutFee[0].sub(routerTokenFee[0]),
+        swapReturnAmount.sub(routerTokenFee[1]),
+      ]
+
+      // -------------------------------------
+      // native
+      const integratorBalanceBeforeN = await ethers.provider.getBalance(
+        integratorAddress
+      )
+      const protoFeeVaultBeforeN = await ethers.provider.getBalance(
+        protoFeeVault.address
+      )
+
+      const routerBeforeN = await ethers.provider.getBalance(mockBridge.address)
+      // const refundeeBeforeN = await ethers.provider.getBalance(refundee.address)
+
+      // tokenB
+      const routersBeforeB = await tokenB.balanceOf(mockBridge.address)
+      const recipientBeforeB = await tokenB.balanceOf(recipient.address)
+      const userBeforeB = await tokenB.balanceOf(user.address)
+
+      // -------------------------------------
+      // tokenA
+      // tokenA -> tokenB
+
+      await expect(
+        crossChainFacet
+          .connect(user)
+          .swapAndBridge(
+            transactionId,
+            integratorAddress,
+            bridgeData,
+            swapData,
+            genericData,
+            {
+              value,
+            }
+          )
+      ).emit(crossChainFacet, EVENTS.SwapBridgeTransferStarted)
+
+      // -------------------------------------
+
+      const integratorBalanceAfterN = await ethers.provider.getBalance(
+        integratorAddress
+      )
+      const protoFeeVaultAfterN = await ethers.provider.getBalance(
+        protoFeeVault.address
+      )
+      const routerAfterN = await ethers.provider.getBalance(mockBridge.address)
+
+      const routersAfterB = await tokenB.balanceOf(mockBridge.address)
+      const recipientAfterB = await tokenB.balanceOf(recipient.address)
+      const userAfterB = await tokenB.balanceOf(user.address)
+
+      expect(integratorBalanceAfterN).equal(integratorBalanceBeforeN.add(ZERO))
+      expect(protoFeeVaultAfterN).equal(
+        protoFeeVaultBeforeN.add(fixedNativeFeeAmount)
+      )
+      expect(routerAfterN).equal(
+        routerBeforeN.add(routerNativeFeeAmount.mul(2))
+      )
+
+      expect(userAfterB).equal(userBeforeB)
+      expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
+      expect(recipientAfterB).equal(recipientBeforeB.add(minReturn[1]))
+
+      // -------------------------------------
+
+      const eventFilter = crossChainFacet.filters.SwapBridgeTransferStarted()
+      const data = await crossChainFacet.queryFilter(eventFilter)
+      const args = data[data.length - 1].args
+
+      expect(args.swapInfo[0]).eql([
+        swapData[0].callTo,
+        swapData[0].from,
+        swapData[0].to,
+        swapData[0].fromAmount,
+        ZERO,
+        swapReturnAmount,
+      ])
+
+      validateMultiBridgeEventData(
+        args.bridgeData[0],
+        bridgeData[0],
+        amountWithoutFee[0]
+      )
+
+      validateMultiBridgeEventData(
+        args.bridgeData[1],
+        bridgeData[1],
+        swapReturnAmount
+      )
+    })
+
+    it('3.4 Should allow user to bridge token to destination chain then swap them on dst chain', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3174,7 +3637,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -3296,7 +3759,7 @@ describe('CrossChainFacet.test.ts', async () => {
       expect(args.swapInfo).eql([])
     })
 
-    it('3.3 Should allow user to swap src token, return leftOver then bridge them to destination chain', async () => {
+    it('3.5 Should allow user to swap src token, return leftOver then bridge then', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3376,7 +3839,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -3390,8 +3853,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenB.address,
-              // swapReturnAmount,
-              amounts[1], // replace offset with swapReturnAmount
+              swapReturnAmount,
               false
             )
           ).data as string,
@@ -3532,7 +3994,7 @@ describe('CrossChainFacet.test.ts', async () => {
       )
     })
 
-    it('3.4 Should allow user to swap src token,then bridge them to destination chain and return extra native tokens', async () => {
+    it('3.6 Should allow user to swap src token,then bridge them to destination chain and return extra native tokens', async () => {
       const rate = await mockExchange.rate()
       const routerNativeFeeAmount = await mockBridge.nativeFeeAmount()
       const routerFeePercent = await mockBridge.tokenFee()
@@ -3608,7 +4070,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenA.address,
-              amounts[0],
+              amountWithoutFee[0],
               false
             )
           ).data as string,
@@ -3622,8 +4084,7 @@ describe('CrossChainFacet.test.ts', async () => {
             await mockBridge.populateTransaction.bridge(
               recipient.address,
               tokenB.address,
-              // swapReturnAmount,
-              amounts[1], // replace offset with swapReturnAmount
+              swapReturnAmount,
               false
             )
           ).data as string,

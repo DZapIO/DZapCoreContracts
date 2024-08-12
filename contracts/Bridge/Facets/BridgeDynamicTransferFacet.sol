@@ -37,4 +37,33 @@ contract BridgeDynamicTransferFacet is IBridgeDynamicTransferFacet, RefundNative
         LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
         emit MultiTokenBridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData);
     }
+
+    function swapAndBridgeViaTransfer(bytes32 _transactionId, address _integrator, GenericBridgeData[] memory _bridgeData, SwapData[] calldata _swapData, TransferData[] calldata _transferData) external payable refundExcessNative(msg.sender) {
+        uint256 length = _bridgeData.length;
+        uint256 swapCount;
+        SwapInfo[] memory swapInfo = new SwapInfo[](_swapData.length);
+        FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
+
+        for (uint256 i = 0; i < length; ) {
+            GenericBridgeData memory bridgeData = _bridgeData[i];
+
+            if (bridgeData.hasSourceSwaps) {
+                swapInfo[swapCount] = LibBridge.swapAndBridgeViaTransfer(_integrator, feeInfo, bridgeData, _transferData[i], _swapData[swapCount]);
+
+                unchecked {
+                    ++swapCount;
+                }
+            } else {
+                // dstSwap or simple bridge
+                LibBridge.transferBridgeWithoutSwapAndDestCallCheck(_integrator, feeInfo, _bridgeData[i], _transferData[i]);
+            }
+
+            unchecked {
+                ++i;
+            }
+        }
+
+        LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
+        emit SwapBridgeTransferStarted(_transactionId, _integrator, msg.sender, _bridgeData, swapInfo);
+    }
 }

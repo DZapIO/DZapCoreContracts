@@ -57,8 +57,8 @@ contract CrossChainFacet is ICrossChainFacet, RefundNative {
                     ++swapCount;
                 }
             } else {
-                // dstSwap or simple swap
-                LibBridge.bridgeWithoutSwapAndCallCheck(_integrator, feeInfo, bridgeData, _genericData[i]);
+                // dstSwap or simple bridge
+                LibBridge.bridgeWithoutSwapAndDestCallCheck(_integrator, feeInfo, bridgeData, _genericData[i]);
             }
 
             unchecked {

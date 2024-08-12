@@ -55,6 +55,8 @@ export const ERRORS = {
   SwapCallFailed: 'SwapCallFailed',
   BridgeNotAdded: 'BridgeNotAdded',
   UnAuthorizedCall: 'UnAuthorizedCall',
+  InvalidLength: 'InvalidLength',
+  InvalidSwapDetails: 'InvalidSwapDetails',
 }
 
 export const EVENTS = {
@@ -79,4 +81,5 @@ export const EVENTS = {
   BridgeRemoved: 'BridgeRemoved',
   BatchBridgeTransferStart: 'BatchBridgeTransferStart',
   SwappedSingleToken: 'SwappedSingleToken',
+  BatchSwapAndBridgeTransferStart: 'BatchSwapAndBridgeTransferStart',
 }

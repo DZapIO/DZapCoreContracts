@@ -1,7 +1,6 @@
 [
   "error BridgeCallFailed(bytes reason)",
   "error CannotBridgeToSameNetwork()",
-  "error ContractCallNotAllowed()",
   "error InformationMismatch()",
   "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error IntegratorNotAllowed()",

@@ -617,51 +617,6 @@
   },
   {
     "type": "function",
-    "name": "batchBridgeCall",
-    "constant": false,
-    "stateMutability": "payable",
-    "payable": true,
-    "inputs": [
-      { "type": "bytes32", "name": "_transactionId" },
-      { "type": "address", "name": "_integrator" },
-      {
-        "type": "tuple[]",
-        "name": "_crossChainData",
-        "components": [
-          { "type": "address", "name": "callTo" },
-          { "type": "address", "name": "approveTo" },
-          { "type": "uint256", "name": "extraNative" },
-          { "type": "bytes", "name": "permit" },
-          { "type": "bytes", "name": "callData" }
-        ]
-      },
-      {
-        "type": "tuple[]",
-        "name": "_bridgeData",
-        "components": [
-          { "type": "string", "name": "bridge" },
-          { "type": "bytes", "name": "to" },
-          { "type": "bytes", "name": "receiver" },
-          { "type": "address", "name": "from" },
-          { "type": "bool", "name": "hasSourceSwaps" },
-          { "type": "bool", "name": "hasDestinationCall" },
-          { "type": "uint256", "name": "minAmountIn" },
-          { "type": "uint256", "name": "destinationChainId" }
-        ]
-      },
-      {
-        "type": "tuple[]",
-        "name": "_transferData",
-        "components": [
-          { "type": "address", "name": "transferTo" },
-          { "type": "bytes", "name": "permit" }
-        ]
-      }
-    ],
-    "outputs": []
-  },
-  {
-    "type": "function",
     "name": "addAggregatorsAndBridges",
     "constant": false,
     "payable": false,
@@ -1682,6 +1637,521 @@
       }
     ],
     "name": "batchSwap",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct GenericBridgeData[]",
+        "name": "_bridgeData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "approveTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minToAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "swapCallData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct SwapData[]",
+        "name": "_swapData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "transferTo",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransferData[]",
+        "name": "_transferData",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "swapAndBridgeViaTransfer",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "transactionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "integrator",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct GenericBridgeData[]",
+        "name": "bridgeData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "dex",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "fromToken",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "toToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "leftOverFromAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "returnToAmount",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct SwapInfo[]",
+        "name": "swapInfo",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "BatchSwapAndBridgeTransferStart",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "approveTo",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "extraNative",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "callData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct CrossChainData[]",
+        "name": "_crossChainData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct GenericBridgeData[]",
+        "name": "_bridgeData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "transferTo",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransferData[]",
+        "name": "_transferData",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "batchBridge",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "approveTo",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "extraNative",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "callData",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct CrossChainData[]",
+        "name": "_crossChainData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "bridge",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes",
+            "name": "to",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "receiver",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasSourceSwaps",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasDestinationCall",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destinationChainId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct GenericBridgeData[]",
+        "name": "_bridgeData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "approveTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minToAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "swapCallData",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct SwapData[]",
+        "name": "_swapData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "transferTo",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransferData[]",
+        "name": "_transferData",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "batchSwapAndBridge",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

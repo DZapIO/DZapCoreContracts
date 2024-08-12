@@ -17,11 +17,6 @@
   },
   {
     "inputs": [],
-    "name": "ContractCallNotAllowed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "InformationMismatch",
     "type": "error"
   },

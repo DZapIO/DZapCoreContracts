@@ -149,6 +149,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0xF70c086618dcf2b1A461311275e00D6B722ef914',
         '0x33d91116e0370970444B0281AB117e161fEbFcdD',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0x9333C74BDd1E118634fE5664ACA7a9710b108Bab',
@@ -190,6 +191,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xF0cBce1942A68BEB3d1b73F0dd86C8DCc363eF49',
         '0x8A21F6768C1f8075791D08546Dadf6daA0bE820c',
         '0x544bA588efD839d2692Fc31EA991cD39993c135F',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
@@ -236,6 +238,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0x1af415a1EbA07a4986a52B6f2e7dE7003D82231e',
         '0x1f2FCf1d036b375b384012e61D3AA33F8C256bbE',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
@@ -289,6 +292,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0x18350b048AB366ed601fFDbC669110Ecb36016f3',
         '0xCdBCd51a5E8728E0AF4895ce5771b7d17fF71959',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d',
@@ -327,6 +331,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0x80C7DD17B01855a6D2347444a0FCC36136a314de',
         '0x0389879e0156033202c44bf784ac18fc02edee4f',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
@@ -358,6 +363,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x33d91116e0370970444B0281AB117e161fEbFcdD',
         '0x0389879e0156033202C44BF784ac18fC02edeE4f',
         '0x734583f62Bb6ACe3c9bA9bd5A53143CA2Ce8C55A',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
@@ -381,6 +387,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0x0389879e0156033202C44BF784ac18fC02edeE4f',
         '0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.omniBtc]: [
         '0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66',
@@ -412,7 +419,10 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
-      [DEXES.sushi]: ['0x46b3fdf7b5cde91ac049936bf0bdb12c5d22202e'],
+      [DEXES.sushi]: [
+        '0x46b3fdf7b5cde91ac049936bf0bdb12c5d22202e',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+      ],
       [DEXES.xyFinance]: ['0xc693C8AAD9745588e95995fef4570d6DcEF98000'],
     },
   },

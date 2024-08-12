@@ -433,6 +433,9 @@ export const DZAP_DEXES_CONFIG: {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
       [DEXES.routerNitro]: ['0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6'],
+      [DEXES.xyFinance]: ['0x52075Fd1fF67f03beABCb5AcdA9679b02d98cA37'],
+      [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     },
   },
   [CHAIN_IDS.METIS_MAINNET]: {

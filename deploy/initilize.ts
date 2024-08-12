@@ -42,6 +42,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     CONTRACTS.FeesFacet,
     CONTRACTS.WithdrawFacet,
     CONTRACTS.SwapFacet,
+    CONTRACTS.SwapTransferFacet,
+    CONTRACTS.BatchSwapFacet,
     CONTRACTS.BridgeManagerFacet,
     CONTRACTS.CrossChainFacet,
     CONTRACTS.BridgeDynamicTransferFacet,

@@ -44,6 +44,9 @@ const config: HardhatUserConfig = {
     linea: getNetworkConfig(CHAIN_IDS.LINEA_MAINNET),
     xlayer: getNetworkConfig(CHAIN_IDS.X_LAYER_MAINNET),
     zkSync: getNetworkConfig(CHAIN_IDS.ZKSYNC_MAINNET),
+    polygonZk: getNetworkConfig(CHAIN_IDS.POLYGON_ZK_EVM_MAINNET),
+    mode: getNetworkConfig(CHAIN_IDS.MODE_MAINNET),
+    metis: getNetworkConfig(CHAIN_IDS.METIS_MAINNET),
   },
   solidity: {
     compilers: [

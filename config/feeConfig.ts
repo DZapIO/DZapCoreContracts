@@ -91,4 +91,28 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.POLYGON_ZK_EVM_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.MODE_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.MANTLE_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '200',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.METIS_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '5',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

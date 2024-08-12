@@ -695,7 +695,8 @@
       "sushi": [
         "0x0aF89E1620b96170e2a9D0b68fEebb767eD044c3",
         "0xb7402ee99F0A008e461098AC3A27F4957Df89a40",
-        "0x46B3fDF7b5CDe91Ac049936bF0bDb12c5d22202e"
+        "0x46B3fDF7b5CDe91Ac049936bF0bDb12c5d22202e",
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ],
       "polygon": [
         "0x0aF89E1620b96170e2a9D0b68fEebb767eD044c3",
@@ -947,6 +948,70 @@
       ]
     }
   },
+  "1088": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "10000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    },
+    "dexes": {
+      "okx": [
+        "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
+        "0x57df6092665eb6058DE53939612413ff4B09114E"
+      ],
+      "routerNitro": [
+        "0x21c1E74CAaDf990E237920d5515955a024031109"
+      ]
+    },
+    "bridge": {
+      "symbiosis": [
+        "0xf85FC807D05d3Ab2309364226970aAc57b4e1ea4",
+        "0xcd7C056b39DdFB568E451923ABEDb9B6a7Aeb885",
+        "0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9",
+        "0x5Aa5f7f84eD0E5db0a4a85C3947eA16B53352FD4"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "routerNitro": [
+        "0x21c1E74CAaDf990E237920d5515955a024031109"
+      ],
+      "okx": [
+        "0xa50FD06d2b099a4B06d54177C7d3AB08D3D3F004",
+        "0x57df6092665eb6058DE53939612413ff4B09114E"
+      ],
+      "stargate": [
+        "0x4dCBFC0249e8d5032F89D6461218a9D2eFff5125",
+        "0x36ed193dc7160D3858EC250e69D12B03Ca087D08",
+        "0xD9050e7043102a0391F81462a3916326F86331F0"
+      ]
+    }
+  },
   "1116": {
     "dexes": {
       "sushi": [
@@ -992,6 +1057,75 @@
         "0x88e95c47",
         "0xd3dfad66",
         "0xb07986b9"
+      ]
+    }
+  },
+  "5000": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "500000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    },
+    "dexes": {
+      "okx": [
+        "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
+        "0x57df6092665eb6058DE53939612413ff4B09114E"
+      ],
+      "routerNitro": [
+        "0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6"
+      ]
+    },
+    "bridge": {
+      "symbiosis": [
+        "0xDd0840118bF9CCCc6d67b2944ddDfbdb995955FD",
+        "0xca506793A420E901BbCa8066be5661E3C52c84c2",
+        "0xd92Ca299F1C2518E78E48C207b64591BA6E9b9a8",
+        "0x5523985926Aa12BA58DC5Ad00DDca99678D7227E",
+        "0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "routerNitro": [
+        "0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6"
+      ],
+      "okx": [
+        "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",
+        "0x57df6092665eb6058DE53939612413ff4B09114E"
+      ],
+      "squid": [
+        "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "stargate": [
+        "0xAc290Ad4e0c891FDc295ca4F0a6214cf6dC6acDC",
+        "0xa81274AFac523D639DbcA2C32c1470f1600cCEBe",
+        "0x4c1d3Fc3fC3c177c3b633427c2F769276c547463",
+        "0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1"
       ]
     }
   },

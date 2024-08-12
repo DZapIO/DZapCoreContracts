@@ -117,7 +117,6 @@ export enum CHAIN_IDS {
   ARBITRUM_NOVA = 42170,
   OPTIMISM_MAINNET = 10,
   ZETACHAIN_ATHENS_2 = 7001,
-  POLYGON_ZK = 1101,
   TRON_MAINNET = 728126428,
   TRON_TESTNET = 2494104990,
   LINEA_TESTNET = 59140,
@@ -275,6 +274,21 @@ export const NETWORKS = {
   [CHAIN_IDS.LINEA_MAINNET]: {
     chainId: CHAIN_IDS.LINEA_MAINNET,
     rpcUrl: 'https://linea.decubate.com',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.METIS_MAINNET]: {
+    chainId: CHAIN_IDS.METIS_MAINNET,
+    rpcUrl: 'https://metis-pokt.nodies.app',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.POLYGON_ZK_EVM_MAINNET]: {
+    chainId: CHAIN_IDS.POLYGON_ZK_EVM_MAINNET,
+    rpcUrl: 'https://polygon-zkevm.drpc.org',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.MODE_MAINNET]: {
+    chainId: CHAIN_IDS.MODE_MAINNET,
+    rpcUrl: 'https://1rpc.io/mode',
     rpcType: RPC_TYPE.OTHER,
   },
 }

@@ -283,12 +283,12 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.POLYGON_ZK_EVM_MAINNET]: {
     chainId: CHAIN_IDS.POLYGON_ZK_EVM_MAINNET,
-    rpcUrl: 'https://polygon-zkevm.drpc.org',
+    rpcUrl: 'https://zkevm-rpc.com',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     chainId: CHAIN_IDS.MODE_MAINNET,
-    rpcUrl: 'https://1rpc.io/mode',
+    rpcUrl: 'https://mainnet.mode.network',
     rpcType: RPC_TYPE.OTHER,
   },
 }

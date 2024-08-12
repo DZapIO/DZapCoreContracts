@@ -1279,6 +1279,61 @@
       }
     }
   },
+  "34443": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "120000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    },
+    "dexes": {
+      "routerNitro": [
+        "0xf0773508c585246bd09bfb401aa18b72685b03f9"
+      ]
+    },
+    "bridge": {
+      "across": [
+        "0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96"
+      ],
+      "symbiosis": [
+        "0x5D61c537393cf21893BE619E36fC94cd73C77DD3",
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278",
+        "0x5523985926Aa12BA58DC5Ad00DDca99678D7227E",
+        "0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "routerNitro": [
+        "0xf0773508c585246bd09bfb401aa18b72685b03f9"
+      ]
+    }
+  },
   "42161": {
     "bridge": {
       "lifi": [

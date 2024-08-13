@@ -47,6 +47,7 @@ const config: HardhatUserConfig = {
     polygonZk: getNetworkConfig(CHAIN_IDS.POLYGON_ZK_EVM_MAINNET),
     mode: getNetworkConfig(CHAIN_IDS.MODE_MAINNET),
     metis: getNetworkConfig(CHAIN_IDS.METIS_MAINNET),
+    celo: getNetworkConfig(CHAIN_IDS.CELO_MAINNET),
   },
   solidity: {
     compilers: [

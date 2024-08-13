@@ -545,8 +545,12 @@ export const DZAP_BRIDGES_CONFIG: {
   },
   [CHAIN_IDS.CELO_MAINNET]: {
     bridges: {
-      [BRIDGES.routerNitro]: {
+      [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.mayanFinance]: {
+        address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
         selectorInfo: [],
       },
     },
@@ -890,6 +894,18 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6'],
         selectorInfo: [],
       },
+      [BRIDGES.router]: {
+        address: ['0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9'],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
+        selectorInfo: [],
+      },
+      [BRIDGES.socket]: {
+        address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+        selectorInfo: [],
+      },
       [BRIDGES.okx]: {
         address: [
           '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
@@ -899,6 +915,10 @@ export const DZAP_BRIDGES_CONFIG: {
       },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+        selectorInfo: [],
+      },
+      [BRIDGES.lifi]: {
+        address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
         selectorInfo: [],
       },
       [BRIDGES.stargate]: {

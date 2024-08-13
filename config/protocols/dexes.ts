@@ -542,6 +542,11 @@ export const DZAP_DEXES_CONFIG: {
     },
   },
   [CHAIN_IDS.MOONBEAM_MAINNET]: {},
-  [CHAIN_IDS.CELO_MAINNET]: {},
+  [CHAIN_IDS.CELO_MAINNET]: {
+    dexes: {
+      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+    },
+  },
   [CHAIN_IDS.FILECOIN_MAINNET]: {},
 }

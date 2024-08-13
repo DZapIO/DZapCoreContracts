@@ -115,4 +115,10 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.CELO_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '400',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

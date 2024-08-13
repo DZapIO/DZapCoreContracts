@@ -291,4 +291,9 @@ export const NETWORKS = {
     rpcUrl: 'https://mainnet.mode.network',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.CELO_MAINNET]: {
+    chainId: CHAIN_IDS.CELO_MAINNET,
+    rpcUrl: 'https://forno.celo.org',
+    rpcType: RPC_TYPE.OTHER,
+  },
 }

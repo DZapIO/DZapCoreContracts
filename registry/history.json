@@ -1195,6 +1195,18 @@
         "0xa81274AFac523D639DbcA2C32c1470f1600cCEBe",
         "0x4c1d3Fc3fC3c177c3b633427c2F769276c547463",
         "0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "router": [
+        "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9"
+      ],
+      "xyFinance": [
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+      ],
+      "socket": [
+        "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
       ]
     }
   },
@@ -1584,6 +1596,54 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    }
+  },
+  "42220": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "700000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    },
+    "dexes": {
+      "zeroX": [
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
+    },
+    "bridge": {
+      "squid": [
+        "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "mayanFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ]
     }
   },
   "43114": {

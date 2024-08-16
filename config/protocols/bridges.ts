@@ -891,15 +891,14 @@ export const DZAP_BRIDGES_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6'],
+        address: [
+          '0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6',
+          '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.router]: {
         address: ['0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9'],
-        selectorInfo: [],
-      },
-      [BRIDGES.xyFinance]: {
-        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
         selectorInfo: [],
       },
       [BRIDGES.socket]: {
@@ -928,6 +927,10 @@ export const DZAP_BRIDGES_CONFIG: {
           '0x4c1d3Fc3fC3c177c3b633427c2F769276c547463',
           '0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1',
         ],
+        selectorInfo: [],
+      },
+      [BRIDGES.xyFinance]: {
+        address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
         selectorInfo: [],
       },
     },
@@ -1185,6 +1188,7 @@ export const DZAP_BRIDGES_CONFIG: {
           '0x884d1Aa15F9957E1aEAA86a82a72e49Bc2bfCbe3',
           '0x28529fec439cfF6d7D1D5917e956dEE62Cd3BE5c',
           '0xc315239cFb05F1E130E7E28E603CEa4C014c57f0',
+          '0x8741Ba6225A6BF91f9D73531A98A89807857a2B3',
         ],
         selectorInfo: [],
       },

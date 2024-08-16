@@ -235,7 +235,8 @@
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
       ],
       "oneInch": [
-        "0x1111111254eeb25477b68fb85ed929f73a960582"
+        "0x1111111254eeb25477b68fb85ed929f73a960582",
+        "0x111111125421cA6dc452d289314280a0f8842A65"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
@@ -1907,7 +1908,8 @@
       "sushi": [
         "0x33d91116e0370970444B0281AB117e161fEbFcdD",
         "0x0389879e0156033202C44BF784ac18fC02edeE4f",
-        "0x734583f62Bb6ACe3c9bA9bd5A53143CA2Ce8C55A"
+        "0x734583f62Bb6ACe3c9bA9bd5A53143CA2Ce8C55A",
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ],
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
@@ -1919,6 +1921,9 @@
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+      ],
+      "odos": [
+        "0xbFe03C9E20a9Fc0b37de01A172F207004935E0b1"
       ]
     },
     "executors": {

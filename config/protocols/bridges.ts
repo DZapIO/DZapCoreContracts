@@ -1327,7 +1327,10 @@ export const DZAP_BRIDGES_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.xyFinance]: {
-        address: ['0x3689D3B912d4D73FfcAad3a80861e7caF2d4F049'],
+        address: [
+          '0x3689D3B912d4D73FfcAad3a80861e7caF2d4F049',
+          '0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080',
+        ],
         selectorInfo: [],
       },
     },

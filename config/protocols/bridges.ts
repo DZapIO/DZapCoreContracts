@@ -1308,7 +1308,10 @@ export const DZAP_BRIDGES_CONFIG: {
         selectorInfo: [],
       },
       [BRIDGES.routerNitro]: {
-        address: ['0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce'],
+        address: [
+          '0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce',
+          '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+        ],
         selectorInfo: [],
       },
       [BRIDGES.okx]: {

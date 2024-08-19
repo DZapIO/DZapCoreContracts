@@ -1438,25 +1438,6 @@ export const DZAP_BRIDGES_CONFIG: {
       },
     },
   },
-  [CHAIN_IDS.POLYGON_ZK_EVM_MAINNET]: {
-    bridges: {
-      [BRIDGES.routerNitro]: {
-        address: ['0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce'],
-        selectorInfo: [],
-      },
-      [BRIDGES.okx]: {
-        address: [
-          '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
-          '0x57df6092665eb6058DE53939612413ff4B09114E',
-        ],
-        selectorInfo: [],
-      },
-      [BRIDGES.rango]: {
-        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-        selectorInfo: [],
-      },
-    },
-  },
   [CHAIN_IDS.SAAKURU_MAINNET]: {
     bridges: {
       [BRIDGES.routerNitro]: {

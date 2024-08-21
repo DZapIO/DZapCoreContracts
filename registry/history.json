@@ -1063,6 +1063,10 @@
       ],
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ],
+      "paraswap": [
+        "0xB83B554730d29cE4Cb55BB42206c3E2c03E4A40A",
+        "0xc8a21fcd5a100c3ecc037c97e2f9c53a8d3a02a1"
       ]
     },
     "bridge": {

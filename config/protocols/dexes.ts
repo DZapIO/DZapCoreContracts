@@ -534,6 +534,10 @@ export const DZAP_DEXES_CONFIG: {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
+      [DEXES.paraswap]: [
+        '0xB83B554730d29cE4Cb55BB42206c3E2c03E4A40A',
+        '0xc8a21fcd5a100c3ecc037c97e2f9c53a8d3a02a1',
+      ],
       [DEXES.routerNitro]: ['0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce'],
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
     },

@@ -1,6 +1,7 @@
 import { CHAIN_IDS } from '../networks'
 
 export enum DEXES {
+  dodo = 'dodo',
   enso = 'enso',
   kyber = 'kyber',
   oneInch = 'oneInch',
@@ -161,9 +162,13 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     dexes: {
+      [DEXES.dodo]: ['0xe05dd51e4eB5636f4f0E8e7Fbe82eA31a2ecef16'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
-      [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
+      [DEXES.oneInch]: [
+        '0x1111111254eeb25477b68fb85ed929f73a960582',
+        `0x111111125421ca6dc452d289314280a0f8842a65`,
+      ],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       [DEXES.odos]: ['0xa669e7A0d4b3e4Fa48af2dE86BD4CD7126Be4e13'],
       [DEXES.paraswap]: [

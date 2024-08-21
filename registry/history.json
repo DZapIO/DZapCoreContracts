@@ -1927,6 +1927,62 @@
       ]
     }
   },
+  "167000": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "120000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    },
+    "dexes": {
+      "bebop": [
+        "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+      ],
+      "xyFinance": [
+        "0xedC061306A79257f15108200C5B82ACc874C239d"
+      ]
+    },
+    "bridge": {
+      "symbiosis": [
+        "0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365",
+        "0xa0079829B9F1Edc5DD0DE3eC104f281745C4bD81",
+        "0xda8057acB94905eb6025120cB2c38415Fd81BfEB",
+        "0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "xyFinance": [
+        "0xedC061306A79257f15108200C5B82ACc874C239d",
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+      ]
+    }
+  },
   "534352": {
     "dexes": {
       "kyber": [

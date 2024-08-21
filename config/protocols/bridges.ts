@@ -1442,6 +1442,13 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
         selectorInfo: [],
       },
+      [BRIDGES.xyFinance]: {
+        address: [
+          '0xedC061306A79257f15108200C5B82ACc874C239d',
+          '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        ],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.SAAKURU_MAINNET]: {

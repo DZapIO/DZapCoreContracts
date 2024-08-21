@@ -296,4 +296,9 @@ export const NETWORKS = {
     rpcUrl: 'https://forno.celo.org',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.TAIKO_MAINNET]: {
+    chainId: CHAIN_IDS.TAIKO_MAINNET,
+    rpcUrl: 'https://rpc.mainnet.taiko.xyz',
+    rpcType: RPC_TYPE.OTHER,
+  },
 }

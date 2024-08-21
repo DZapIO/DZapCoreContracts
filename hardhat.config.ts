@@ -48,6 +48,7 @@ const config: HardhatUserConfig = {
     mode: getNetworkConfig(CHAIN_IDS.MODE_MAINNET),
     metis: getNetworkConfig(CHAIN_IDS.METIS_MAINNET),
     celo: getNetworkConfig(CHAIN_IDS.CELO_MAINNET),
+    taiko: getNetworkConfig(CHAIN_IDS.TAIKO_MAINNET),
   },
   solidity: {
     compilers: [

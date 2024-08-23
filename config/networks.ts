@@ -243,7 +243,7 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.BLAST_MAINNET]: {
     chainId: CHAIN_IDS.BLAST_MAINNET,
-    rpcUrl: 'https://rpc.blastblockchain.com',
+    rpcUrl: 'https://rpc.blast.io',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.MANTLE_MAINNET]: {
@@ -273,7 +273,7 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.LINEA_MAINNET]: {
     chainId: CHAIN_IDS.LINEA_MAINNET,
-    rpcUrl: 'https://linea.decubate.com',
+    rpcUrl: 'https://rpc.linea.build ',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.METIS_MAINNET]: {

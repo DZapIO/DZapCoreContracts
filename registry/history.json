@@ -149,7 +149,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -320,7 +320,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -333,7 +333,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "2000000000000",
+          "fixedNativeFeeAmount": "5000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -369,7 +369,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "700000000000000000",
+          "fixedNativeFeeAmount": "120000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -560,7 +560,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "250000000000000",
+          "fixedNativeFeeAmount": "520000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -741,7 +741,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "250000000000000000",
+          "fixedNativeFeeAmount": "600000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -805,7 +805,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -818,7 +818,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "3500000000000000",
+          "fixedNativeFeeAmount": "8000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -863,7 +863,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -1134,7 +1134,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "100000000000000000",
+          "fixedNativeFeeAmount": "300000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -1386,7 +1386,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -1627,7 +1627,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -1818,7 +1818,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "5000000000000000",
+          "fixedNativeFeeAmount": "12000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -1831,7 +1831,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -2074,7 +2074,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "40000000000000",
+          "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }

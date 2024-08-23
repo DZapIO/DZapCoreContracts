@@ -19,7 +19,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -40,7 +40,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.25,
+          fixedNativeFeeAmount: 0.6,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -61,7 +61,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00025,
+          fixedNativeFeeAmount: 0.00052,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -82,7 +82,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -103,7 +103,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -124,7 +124,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -145,7 +145,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.005,
+          fixedNativeFeeAmount: 0.012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -166,7 +166,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -187,7 +187,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -208,7 +208,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -229,7 +229,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.7,
+          fixedNativeFeeAmount: 0.12,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -250,7 +250,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.1,
+          fixedNativeFeeAmount: 0.3,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -271,7 +271,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.000002,
+          fixedNativeFeeAmount: 0.000005,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -292,7 +292,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.0035,
+          fixedNativeFeeAmount: 0.008,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -313,7 +313,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },
@@ -334,7 +334,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0.00004,
+          fixedNativeFeeAmount: 0.00012,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 100,
         },

@@ -40,6 +40,7 @@ export const DZAP_BRIDGES_CONFIG: {
           '0x33ceb27b39d2Bb7D2e61F7564d3Df29344020417',
           '0x16e08C02e4B78B0a5b3A917FF5FeaeDd349a5a95',
           '0x50a3a623d00fd8b8a4F3CbC5aa53D0Bc6FA912DD',
+          '0x6504BFcaB789c35325cA4329f1f41FaC340bf982',
         ],
         selectorInfo: [],
       },

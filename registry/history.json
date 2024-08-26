@@ -842,6 +842,9 @@
       ],
       "xyFinance": [
         "0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE"
+      ],
+      "kyber": [
+        "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
       ]
     },
     "bridge": {

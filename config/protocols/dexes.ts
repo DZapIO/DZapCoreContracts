@@ -551,6 +551,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
       ],
       [DEXES.xyFinance]: ['0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE'],
+      [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
     },
   },
   [CHAIN_IDS.AURORA_MAINNET]: {

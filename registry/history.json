@@ -229,6 +229,9 @@
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
         "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA",
         "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+      ],
+      "allbridge": [
+        "0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab"
       ]
     },
     "dexes": {
@@ -477,6 +480,14 @@
       ],
       "stargate": [
         "0x138EB30f73BC423c6455C53df6D89CB01d9eBc63"
+      ],
+      "allbridge": [
+        "0x3C4FA639c8D7E65c603145adaD8bD12F2358312f"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
+        "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA",
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
       ]
     },
     "dexes": {
@@ -645,6 +656,9 @@
         "0x884d1Aa15F9957E1aEAA86a82a72e49Bc2bfCbe3",
         "0x28529fec439cfF6d7D1D5917e956dEE62Cd3BE5c",
         "0xc315239cFb05F1E130E7E28E603CEa4C014c57f0"
+      ],
+      "allbridge": [
+        "0x7775d63836987f444E2F14AA0fA2602204D7D3E0"
       ]
     },
     "dexes": {
@@ -1532,6 +1546,9 @@
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
         "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA",
         "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+      ],
+      "allbridge": [
+        "0x9Ce3447B58D58e8602B7306316A5fF011B92d189"
       ]
     },
     "dexes": {
@@ -1744,6 +1761,14 @@
       "stargate": [
         "0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47",
         "0x12dC9256Acc9895B076f6638D628382881e62CeE"
+      ],
+      "allbridge": [
+        "0x9068E1C28941D0A680197Cc03be8aFe27ccaeea9"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
+        "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA",
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
       ]
     },
     "dexes": {
@@ -1970,7 +1995,8 @@
     "dexes": {
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
       ],
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d"
@@ -1989,6 +2015,9 @@
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d",
         "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+      ],
+      "router": [
+        "0x7BD616192fB2B364f9d29B2026165281a5f2ff2F"
       ]
     }
   },

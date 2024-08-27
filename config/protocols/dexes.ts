@@ -481,24 +481,6 @@ export const DZAP_DEXES_CONFIG: {
       ],
     },
   },
-  [CHAIN_IDS.TAIKO_MAINNET]: {
-    dexes: {
-      [DEXES.bebop]: [
-        '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
-        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
-      ],
-      [DEXES.xyFinance]: ['0xedC061306A79257f15108200C5B82ACc874C239d'],
-    },
-  },
-  [CHAIN_IDS.ZETACHAIN_MAINNET]: {
-    dexes: {
-      [DEXES.okx]: [
-        '0x0DaB5A5294AfAae76Ce990993fC10b896A01DBd1',
-        '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',
-        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
-      ],
-    },
-  },
   [CHAIN_IDS.CRONOS_MAINNET]: {},
   [CHAIN_IDS.BOB_MAINNET]: {},
   [CHAIN_IDS.BEVM_MAINNET]: {},
@@ -544,6 +526,16 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
     },
   },
+  [CHAIN_IDS.TAIKO_MAINNET]: {
+    dexes: {
+      [DEXES.bebop]: [
+        '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
+        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
+        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+      ],
+      [DEXES.xyFinance]: ['0xedC061306A79257f15108200C5B82ACc874C239d'],
+    },
+  },
   [CHAIN_IDS.X_LAYER_MAINNET]: {
     dexes: {
       [DEXES.okx]: [
@@ -552,6 +544,15 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.xyFinance]: ['0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+    },
+  },
+  [CHAIN_IDS.ZETACHAIN_MAINNET]: {
+    dexes: {
+      [DEXES.okx]: [
+        '0x0DaB5A5294AfAae76Ce990993fC10b896A01DBd1',
+        '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',
+        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
+      ],
     },
   },
   [CHAIN_IDS.AURORA_MAINNET]: {

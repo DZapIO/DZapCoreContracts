@@ -3,6 +3,7 @@ import { CHAIN_IDS } from '../networks'
 export enum BRIDGES {
   ALL = 'ALL',
   across = 'across',
+  allbridge = 'allbridge',
   cctp = 'cctp',
   changeNow = 'changeNow',
   deBridge = 'debridge',
@@ -12,6 +13,7 @@ export enum BRIDGES {
   mesonFinance = 'mesonFinance',
   okx = 'okx',
   omniBtc = 'omniBtc',
+  owlto = 'owlto',
   rango = 'rango',
   routerNitro = 'routerNitro',
   router = 'router',
@@ -31,6 +33,10 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0xe35e9842fceaCA96570B734083f4a58e8F7C5f2A'],
+        selectorInfo: [],
+      },
+      [BRIDGES.allbridge]: {
+        address: ['0x9Ce3447B58D58e8602B7306316A5fF011B92d189'],
         selectorInfo: [],
       },
       [BRIDGES.hop]: {
@@ -167,6 +173,10 @@ export const DZAP_BRIDGES_CONFIG: {
   },
   [CHAIN_IDS.AVALANCHE_MAINNET]: {
     bridges: {
+      [BRIDGES.allbridge]: {
+        address: ['0x9068E1C28941D0A680197Cc03be8aFe27ccaeea9'],
+        selectorInfo: [],
+      },
       [BRIDGES.lifi]: {
         address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
         selectorInfo: [],
@@ -261,6 +271,10 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64'],
+        selectorInfo: [],
+      },
+      [BRIDGES.allbridge]: {
+        address: ['0x001E3f136c2f804854581Da55Ad7660a2b35DEf7'],
         selectorInfo: [],
       },
       [BRIDGES.hop]: {
@@ -451,6 +465,10 @@ export const DZAP_BRIDGES_CONFIG: {
   },
   [CHAIN_IDS.BSC_MAINNET]: {
     bridges: {
+      [BRIDGES.allbridge]: {
+        address: ['0x3C4FA639c8D7E65c603145adaD8bD12F2358312f'],
+        selectorInfo: [],
+      },
       [BRIDGES.lifi]: {
         address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
         selectorInfo: [
@@ -546,6 +564,10 @@ export const DZAP_BRIDGES_CONFIG: {
   },
   [CHAIN_IDS.CELO_MAINNET]: {
     bridges: {
+      [BRIDGES.allbridge]: {
+        address: ['0x80858f5F8EFD2Ab6485Aba1A0B9557ED46C6ba0e'],
+        selectorInfo: [],
+      },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],
@@ -593,6 +615,10 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.ETH_MAINNET]: {
     bridges: {
       [BRIDGES.across]: {
+        address: ['0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5'],
+        selectorInfo: [],
+      },
+      [BRIDGES.allbridge]: {
         address: ['0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5'],
         selectorInfo: [],
       },
@@ -1067,6 +1093,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x6f26Bf09B1C792e3228e5467807a900A503c0281'],
         selectorInfo: [],
       },
+      [BRIDGES.allbridge]: {
+        address: ['0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab'],
+        selectorInfo: [],
+      },
       [BRIDGES.hop]: {
         address: [
           '0x2ad09850b0CA4c7c1B33f5AcD6cBAbCaB5d6e796',
@@ -1176,6 +1206,10 @@ export const DZAP_BRIDGES_CONFIG: {
     bridges: {
       [BRIDGES.across]: {
         address: ['0x9295ee1d8C5b022Be115A2AD3c30C72E34e7F096'],
+        selectorInfo: [],
+      },
+      [BRIDGES.allbridge]: {
+        address: ['0x7775d63836987f444E2F14AA0fA2602204D7D3E0'],
         selectorInfo: [],
       },
       [BRIDGES.cctp]: {
@@ -1430,6 +1464,18 @@ export const DZAP_BRIDGES_CONFIG: {
   },
   [CHAIN_IDS.TAIKO_MAINNET]: {
     bridges: {
+      [BRIDGES.mesonFinance]: {
+        address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+        selectorInfo: [],
+      },
+      [BRIDGES.owlto]: {
+        address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+        selectorInfo: [],
+      },
+      [BRIDGES.router]: {
+        address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
+        selectorInfo: [],
+      },
       [BRIDGES.symbiosis]: {
         address: [
           '0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365',
@@ -1437,10 +1483,6 @@ export const DZAP_BRIDGES_CONFIG: {
           '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
           '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
         ],
-        selectorInfo: [],
-      },
-      [BRIDGES.mesonFinance]: {
-        address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
         selectorInfo: [],
       },
       [BRIDGES.xyFinance]: {

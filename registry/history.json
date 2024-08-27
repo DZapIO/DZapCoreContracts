@@ -1700,6 +1700,9 @@
       ],
       "mayanFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "allbridge": [
+        "0x80858f5F8EFD2Ab6485Aba1A0B9557ED46C6ba0e"
       ]
     }
   },
@@ -2018,6 +2021,9 @@
       ],
       "router": [
         "0x7BD616192fB2B364f9d29B2026165281a5f2ff2F"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     }
   },

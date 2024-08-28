@@ -26,6 +26,7 @@ export enum DEXES {
   symmetric = 'symmetric',
   vapourDex = 'vapourDex',
   routerNitro = 'routerNitro',
+  router = 'router',
   okx = 'okx',
 }
 
@@ -534,6 +535,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
       ],
       [DEXES.xyFinance]: ['0xedC061306A79257f15108200C5B82ACc874C239d'],
+      [DEXES.router]: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
     },
   },
   [CHAIN_IDS.X_LAYER_MAINNET]: {

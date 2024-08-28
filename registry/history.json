@@ -2003,6 +2003,9 @@
       ],
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d"
+      ],
+      "router": [
+        "0x7BD616192fB2B364f9d29B2026165281a5f2ff2F"
       ]
     },
     "bridge": {

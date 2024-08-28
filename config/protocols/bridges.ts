@@ -576,6 +576,10 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
         selectorInfo: [],
       },
+      [BRIDGES.lifi]: {
+        address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.CONFLUX_E_SPACE_MAINNET]: {

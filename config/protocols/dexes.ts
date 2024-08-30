@@ -28,6 +28,7 @@ export enum DEXES {
   routerNitro = 'routerNitro',
   router = 'router',
   okx = 'okx',
+  propeller = 'propeller',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -74,6 +75,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
       ],
       [DEXES.routerNitro]: ['0x6c45e28a76977a96e263f84f95912b47f927b687'],
+      [DEXES.propeller]: ['0x14f2b6ca0324cd2B013aD02a7D85541d215e2906'],
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -278,6 +280,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xc67879F4065d3B9fe1C09EE990B891Aa8E3a4c2f',
       ],
       [DEXES.routerNitro]: ['0x7E7D4185D9c3C44D5266eD974493b24811398049'],
+      [DEXES.propeller]: ['0xe832e655E4C3c36b2be5256915ECF8536a642f59'],
     },
   },
   [CHAIN_IDS.AVALANCHE_MAINNET]: {

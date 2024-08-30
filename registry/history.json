@@ -67,6 +67,9 @@
       ],
       "enso": [
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "propeller": [
+        "0x14f2b6ca0324cd2B013aD02a7D85541d215e2906"
       ]
     },
     "bridge": {
@@ -956,6 +959,9 @@
       ],
       "routerNitro": [
         "0x7E7D4185D9c3C44D5266eD974493b24811398049"
+      ],
+      "propeller": [
+        "0xe832e655E4C3c36b2be5256915ECF8536a642f59"
       ]
     },
     "executors": {
@@ -1789,7 +1795,8 @@
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
       ],
       "oneInch": [
-        "0x1111111254eeb25477b68fb85ed929f73a960582"
+        "0x1111111254eeb25477b68fb85ed929f73a960582",
+        "0x111111125421ca6dc452d289314280a0f8842a65"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
@@ -1843,6 +1850,9 @@
       ],
       "enso": [
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "dodo": [
+        "0x1F076a800005c758a505E759720eb6737136e893"
       ]
     },
     "executors": {

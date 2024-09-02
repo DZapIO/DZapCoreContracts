@@ -872,6 +872,9 @@
       ],
       "xyFinance": [
         "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+      ],
+      "router": [
+        "0x21c1E74CAaDf990E237920d5515955a024031109"
       ]
     }
   },
@@ -1445,6 +1448,12 @@
     "dexes": {
       "routerNitro": [
         "0xf0773508c585246bd09bfb401aa18b72685b03f9"
+      ],
+      "odos": [
+        "0x7E15EB462cdc67Cf92Af1f7102465a8F8c784874"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ]
     },
     "bridge": {
@@ -1463,6 +1472,9 @@
       ],
       "routerNitro": [
         "0xf0773508c585246bd09bfb401aa18b72685b03f9"
+      ],
+      "owlto": [
+        "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ]
     }
   },

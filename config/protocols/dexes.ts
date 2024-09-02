@@ -465,6 +465,8 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     dexes: {
+      [DEXES.odos]: ['0x7E15EB462cdc67Cf92Af1f7102465a8F8c784874'],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
     },
   },

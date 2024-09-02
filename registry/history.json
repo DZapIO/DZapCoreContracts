@@ -1226,6 +1226,9 @@
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "dodo": [
+        "0x70B9C57E1fF24761C1C3ced57Ddae9A3F3570698"
       ]
     },
     "bridge": {

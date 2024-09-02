@@ -15,15 +15,15 @@ export enum BRIDGES {
   omniBtc = 'omniBtc',
   owlto = 'owlto',
   rango = 'rango',
-  router = 'router',
   routerNitro = 'routerNitro',
+  router = 'router',
   socket = 'socket',
   squid = 'squid',
-  stargate = 'stargate',
   symbiosis = 'symbiosis',
   telosBridge = 'telosBridge',
   unizen = 'unizen',
   xyFinance = 'xyFinance',
+  stargate = 'stargate',
 }
 
 export const DZAP_BRIDGES_CONFIG: {

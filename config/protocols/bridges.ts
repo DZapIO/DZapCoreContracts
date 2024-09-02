@@ -1030,6 +1030,18 @@ export const DZAP_BRIDGES_CONFIG: {
         address: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
         selectorInfo: [],
       },
+      [BRIDGES.router]: {
+        address: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
+        selectorInfo: [],
+      },
+      [BRIDGES.lifi]: {
+        address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+        selectorInfo: [],
+      },
+      [BRIDGES.rango]: {
+        address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+        selectorInfo: [],
+      },
     },
   },
   [CHAIN_IDS.MERLIN_MAINNET]: {

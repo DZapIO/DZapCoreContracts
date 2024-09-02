@@ -28,6 +28,7 @@ export enum DEXES {
   routerNitro = 'routerNitro',
   router = 'router',
   okx = 'okx',
+  propeller = 'propeller',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -74,6 +75,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
       ],
       [DEXES.routerNitro]: ['0x6c45e28a76977a96e263f84f95912b47f927b687'],
+      [DEXES.propeller]: ['0x14f2b6ca0324cd2B013aD02a7D85541d215e2906'],
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -278,13 +280,17 @@ export const DZAP_DEXES_CONFIG: {
         '0xc67879F4065d3B9fe1C09EE990B891Aa8E3a4c2f',
       ],
       [DEXES.routerNitro]: ['0x7E7D4185D9c3C44D5266eD974493b24811398049'],
+      [DEXES.propeller]: ['0xe832e655E4C3c36b2be5256915ECF8536a642f59'],
     },
   },
   [CHAIN_IDS.AVALANCHE_MAINNET]: {
     dexes: {
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
-      [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
+      [DEXES.oneInch]: [
+        '0x1111111254eeb25477b68fb85ed929f73a960582',
+        '0x111111125421ca6dc452d289314280a0f8842a65',
+      ],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       [DEXES.odos]: ['0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC'],
       [DEXES.paraswap]: [
@@ -313,6 +319,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF'],
       [DEXES.vapourDex]: ['0x55477d8537ede381784b448876AfAa98aa450E63'],
+      [DEXES.dodo]: ['0x1F076a800005c758a505E759720eb6737136e893'],
     },
   },
   [CHAIN_IDS.BASE_MAINNET]: {

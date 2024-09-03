@@ -111,6 +111,7 @@ export enum CHAIN_IDS {
   ETH_RINKEBY = 4,
   FANTOM_MAINNET = 250,
   FILECOIN_MAINNET = 314,
+  FIRE_MAINNET = 995,
   GANACHE = 1337,
   GNOSIS_MAINNET = 100,
   HARDHAT = 31337,
@@ -299,6 +300,11 @@ export const NETWORKS = {
   [CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]: {
     chainId: CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
     rpcUrl: 'https://sepolia.era.zksync.dev',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.FIRE_MAINNET]: {
+    chainId: CHAIN_IDS.FIRE_MAINNET,
+    rpcUrl: 'https://rpc.5ire.network',
     rpcType: RPC_TYPE.OTHER,
   },
 }

@@ -324,9 +324,13 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.BASE_MAINNET]: {
     dexes: {
+      [DEXES.dodo]: ['0x987bFBE33c9cF18cAA665B792Db66339a9c16D32'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
-      [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
+      [DEXES.oneInch]: [
+        '0x1111111254eeb25477b68fb85ed929f73a960582',
+        '0x111111125421ca6dc452d289314280a0f8842a65',
+      ],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       [DEXES.odos]: ['0x19cEeAd7105607Cd444F5ad10dd51356436095a1'],
       [DEXES.paraswap]: [
@@ -416,6 +420,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66',
         '0xd600d94d0812f7edfa47d0cf02a767b1dd14a01b',
       ],
+      [DEXES.iceCreamSwap]: ['0xBd8BB286Cd14124720F3f8C5F3fdD7fa13735Dc2'],
     },
   },
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {

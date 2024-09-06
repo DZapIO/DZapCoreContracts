@@ -50,6 +50,7 @@ const config: HardhatUserConfig = {
     celo: getNetworkConfig(CHAIN_IDS.CELO_MAINNET),
     taiko: getNetworkConfig(CHAIN_IDS.TAIKO_MAINNET),
     fire: getNetworkConfig(CHAIN_IDS.FIRE_MAINNET),
+    zeta: getNetworkConfig(CHAIN_IDS.ZETACHAIN_MAINNET),
   },
   solidity: {
     compilers: [

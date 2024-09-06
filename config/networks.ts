@@ -307,4 +307,9 @@ export const NETWORKS = {
     rpcUrl: 'https://rpc.5ire.network',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.ZETACHAIN_MAINNET]: {
+    chainId: CHAIN_IDS.ZETACHAIN_MAINNET,
+    rpcUrl: 'https://zetachain-mainnet.public.blastapi.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
 }

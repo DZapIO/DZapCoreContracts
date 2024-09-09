@@ -571,7 +571,10 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.ZETACHAIN_MAINNET]: {
     dexes: {
-      [DEXES.okx]: ['0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE'],
+      [DEXES.okx]: [
+        '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',
+        '0x0DaB5A5294AfAae76Ce990993fC10b896A01DBd1',
+      ],
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
     },
   },

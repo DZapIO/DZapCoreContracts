@@ -6,6 +6,10 @@ export const BLAST_MAINNET = {
       address: ['0x2D509190Ed0172ba588407D4c2df918F955Cc6E1'],
       selectorInfo: [],
     },
+    [BRIDGES.lifi]: {
+      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+      selectorInfo: [],
+    },
     [BRIDGES.symbiosis]: {
       address: [
         '0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365',
@@ -24,10 +28,7 @@ export const BLAST_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.okx]: {
-      address: [
-        '0xf956d9fa19656d8e5219fd6fa8ba6cb198094138',
-        '0x5fD2Dc91FF1dE7FF4AEB1CACeF8E9911bAAECa68',
-      ],
+      address: ['0xf956d9fa19656d8e5219fd6fa8ba6cb198094138'],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {

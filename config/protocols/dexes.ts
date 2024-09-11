@@ -440,7 +440,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.KAVA_MAINNET]: {},
   [CHAIN_IDS.BOBA_ETH]: {
     dexes: {
-      [DEXES.iceCreamSwap]: [],
+      [DEXES.iceCreamSwap]: ['0xA608FF30563cEed3f0BC52eFc4abfc9502F1a71C'],
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },
@@ -511,6 +511,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x549FEB8c9bd4c12Ad2AB27022dA12492aC452B66',
       ],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+      [DEXES.iceCreamSwap]: ['0xe0627818b29D2f28E62f54bC988E6e02C8dbC300'],
     },
   },
   [CHAIN_IDS.MERLIN_MAINNET]: {

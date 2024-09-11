@@ -35,5 +35,9 @@ export const BLAST_MAINNET = {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],
     },
+    [BRIDGES.xyFinance]: {
+      address: ['0x43A86823EBBe2ECF9A384aDfD989E26A30626458'],
+      selectorInfo: [],
+    },
   },
 }

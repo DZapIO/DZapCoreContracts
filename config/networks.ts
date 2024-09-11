@@ -14,7 +14,7 @@ export enum NETWORK_NAMES {
   HECO_TESTNET = 'HECO_TESTNET',
   OKEX_MAINNET = 'OKEX_MAINNET',
   OKEX_TESTNET = 'OKEX_TESTNET',
-  BOBA_MAINNET = 'BOBA_MAINNET',
+  BOBA_ETH = 'BOBA_ETH',
   BOBA_BNB = 'BOBA_BNB',
   BOBA_AVALANCHE = 'BOBA_AVALANCHE',
   BOBA_RINKEBY = 'BOBA_RINKEBY',
@@ -93,7 +93,7 @@ export enum CHAIN_IDS {
   BOB_MAINNET = 60808,
   BOBA_AVALANCHE = 43288,
   BOBA_BNB = 56288,
-  BOBA_MAINNET = 288,
+  BOBA_ETH = 288,
   BOBA_RINKEBY = 28,
   BSC_MAINNET = 56,
   BSC_TESTNET = 97,
@@ -310,6 +310,11 @@ export const NETWORKS = {
   [CHAIN_IDS.ZETACHAIN_MAINNET]: {
     chainId: CHAIN_IDS.ZETACHAIN_MAINNET,
     rpcUrl: 'https://zetachain-mainnet.public.blastapi.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.BOBA_ETH]: {
+    chainId: CHAIN_IDS.BOBA_ETH,
+    rpcUrl: 'https://mainnet.boba.network',
     rpcType: RPC_TYPE.OTHER,
   },
 }

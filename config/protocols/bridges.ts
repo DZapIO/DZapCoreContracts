@@ -35,7 +35,7 @@ import { BOB_MAINNET } from './bridges/bob'
 import { BEVM_MAINNET } from './bridges/bev'
 import { BOBA_AVALANCHE } from './bridges/bobaAvalanche'
 import { BOBA_BNB } from './bridges/bobaBnb'
-import { BOBA_MAINNET } from './bridges/boba'
+import { BOBA_ETH } from './bridges/boba'
 import { BSC_MAINNET } from './bridges/bsc'
 import { CELO_MAINNET } from './bridges/celo'
 import { CONFLUX_E_SPACE_MAINNET } from './bridges/conflux'
@@ -82,7 +82,7 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.BEVM_MAINNET]: BEVM_MAINNET,
   [CHAIN_IDS.BOBA_AVALANCHE]: BOBA_AVALANCHE,
   [CHAIN_IDS.BOBA_BNB]: BOBA_BNB,
-  [CHAIN_IDS.BOBA_MAINNET]: BOBA_MAINNET,
+  [CHAIN_IDS.BOBA_ETH]: BOBA_ETH,
   [CHAIN_IDS.BSC_MAINNET]: BSC_MAINNET,
   [CHAIN_IDS.CELO_MAINNET]: CELO_MAINNET,
   [CHAIN_IDS.CONFLUX_E_SPACE_MAINNET]: CONFLUX_E_SPACE_MAINNET,

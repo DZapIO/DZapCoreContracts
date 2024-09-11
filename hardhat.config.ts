@@ -51,6 +51,7 @@ const config: HardhatUserConfig = {
     taiko: getNetworkConfig(CHAIN_IDS.TAIKO_MAINNET),
     fire: getNetworkConfig(CHAIN_IDS.FIRE_MAINNET),
     zeta: getNetworkConfig(CHAIN_IDS.ZETACHAIN_MAINNET),
+    bobaEth: getNetworkConfig(CHAIN_IDS.BOBA_ETH),
   },
   solidity: {
     compilers: [

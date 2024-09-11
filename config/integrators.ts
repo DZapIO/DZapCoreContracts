@@ -509,4 +509,25 @@ export const INTEGRATOR_CONFIG = {
       ],
     },
   },
+  [CHAIN_IDS.BOBA_ETH]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.00012,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 100,
+        },
+      ],
+    },
+  },
 }

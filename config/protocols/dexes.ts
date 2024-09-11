@@ -438,7 +438,13 @@ export const DZAP_DEXES_CONFIG: {
     },
   },
   [CHAIN_IDS.KAVA_MAINNET]: {},
-  [CHAIN_IDS.BOBA_MAINNET]: {},
+  [CHAIN_IDS.BOBA_ETH]: {
+    dexes: {
+      [DEXES.iceCreamSwap]: [],
+      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
+      [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+    },
+  },
   [CHAIN_IDS.BOBA_BNB]: {},
   [CHAIN_IDS.LINEA_MAINNET]: {
     dexes: {

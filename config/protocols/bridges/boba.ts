@@ -19,5 +19,9 @@ export const BOBA_ETH = {
       address: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
+      selectorInfo: [],
+    },
   },
 }

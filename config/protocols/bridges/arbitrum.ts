@@ -124,5 +124,13 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
+      selectorInfo: [],
+    },
+    [BRIDGES.celer]: {
+      address: ['0x1619DE6B6B20eD217a58d00f37B9d47C7663feca'],
+      selectorInfo: [],
+    },
   },
 }

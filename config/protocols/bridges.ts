@@ -24,6 +24,7 @@ export enum BRIDGES {
   unizen = 'unizen',
   xyFinance = 'xyFinance',
   stargate = 'stargate',
+  celer = 'celer',
 }
 
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'

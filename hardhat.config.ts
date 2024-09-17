@@ -53,6 +53,7 @@ const config: HardhatUserConfig = {
     zeta: getNetworkConfig(CHAIN_IDS.ZETACHAIN_MAINNET),
     bobaEth: getNetworkConfig(CHAIN_IDS.BOBA_ETH),
     fraxtal: getNetworkConfig(CHAIN_IDS.FRAXTAL),
+    gravity: getNetworkConfig(CHAIN_IDS.GRAVITY),
   },
   solidity: {
     compilers: [

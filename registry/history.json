@@ -1312,6 +1312,38 @@
       ]
     }
   },
+  "1625": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0xc7d3722f",
+        "0xe47b7f8e",
+        "0x88e95c47",
+        "0xd3dfad66",
+        "0xb07986b9"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "bridge": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "10000000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        }
+      }
+    }
+  },
   "5000": {
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
@@ -2238,7 +2270,9 @@
       "okx": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
+        "0x2E86f54943faFD2cB62958c3deed36C879e3E944",
+        "0x5fD2Dc91FF1dE7FF4AEB1CACeF8E9911bAAECa68"
       ],
       "kyber": [
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
@@ -2262,6 +2296,9 @@
       ],
       "iceCreamSwap": [
         "0xe0627818b29D2f28E62f54bC988E6e02C8dbC300"
+      ],
+      "xyFinance": [
+        "0x43A86823EBBe2ECF9A384aDfD989E26A30626458"
       ]
     },
     "bridge": {

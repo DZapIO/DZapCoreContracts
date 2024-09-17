@@ -157,4 +157,10 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.GRAVITY]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '6000',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

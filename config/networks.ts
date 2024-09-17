@@ -71,6 +71,7 @@ export enum NETWORK_NAMES {
   HARDHAT = 'HARDHAT',
   GANACHE = 'GANACHE',
   FRAXTAL = 'FRAXTAL',
+  GRAVITY = 'GRAVITY',
 }
 
 export enum RPC_TYPE {
@@ -166,6 +167,7 @@ export enum CHAIN_IDS {
   X_LAYER_MAINNET = 196,
   X_LAYER_TESTNET = 195,
   FRAXTAL = 252,
+  GRAVITY = 1625,
 }
 
 export const NETWORKS = {
@@ -322,6 +324,11 @@ export const NETWORKS = {
   [CHAIN_IDS.FRAXTAL]: {
     chainId: CHAIN_IDS.FRAXTAL,
     rpcUrl: 'https://rpc.frax.com',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.GRAVITY]: {
+    chainId: CHAIN_IDS.GRAVITY,
+    rpcUrl: 'https://rpc.gravity.xyz',
     rpcType: RPC_TYPE.OTHER,
   },
 }

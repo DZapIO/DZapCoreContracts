@@ -70,6 +70,7 @@ export enum NETWORK_NAMES {
   X_LAYER_TESTNET = 'X_LAYER_TESTNET',
   HARDHAT = 'HARDHAT',
   GANACHE = 'GANACHE',
+  FRAXTAL = 'FRAXTAL',
 }
 
 export enum RPC_TYPE {
@@ -164,6 +165,7 @@ export enum CHAIN_IDS {
   ZKSYNC_SEPOLIA_TESTNET = 300,
   X_LAYER_MAINNET = 196,
   X_LAYER_TESTNET = 195,
+  FRAXTAL = 252,
 }
 
 export const NETWORKS = {
@@ -315,6 +317,11 @@ export const NETWORKS = {
   [CHAIN_IDS.BOBA_ETH]: {
     chainId: CHAIN_IDS.BOBA_ETH,
     rpcUrl: 'https://mainnet.boba.network',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.FRAXTAL]: {
+    chainId: CHAIN_IDS.FRAXTAL,
+    rpcUrl: 'https://rpc.frax.com',
     rpcType: RPC_TYPE.OTHER,
   },
 }

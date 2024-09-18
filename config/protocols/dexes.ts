@@ -631,4 +631,9 @@ export const DZAP_DEXES_CONFIG: {
     },
   },
   [CHAIN_IDS.FILECOIN_MAINNET]: {},
+  [CHAIN_IDS.GRAVITY]: {
+    dexes: {
+      [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
+    },
+  },
 }

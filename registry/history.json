@@ -1351,6 +1351,17 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "dexes": {
+      "iceCreamSwap": [
+        "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ]
+    },
+    "bridge": {
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ]
     }
   },
   "5000": {

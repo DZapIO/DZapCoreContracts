@@ -70,6 +70,7 @@ import { SAAKURU_MAINNET } from './bridges/saakuru'
 import { XLAYER_MAINNET } from './bridges/xlayer'
 import { ZETACHAIN_MAINNET } from './bridges/zetachain'
 import { ZKSYNC_MAINNET } from './bridges/zksync'
+import { FRAXTAL } from './bridges/fraxtal'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x: number]: { bridges?: any }
@@ -117,4 +118,5 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.X_LAYER_MAINNET]: XLAYER_MAINNET,
   [CHAIN_IDS.ZETACHAIN_MAINNET]: ZETACHAIN_MAINNET,
   [CHAIN_IDS.ZKSYNC_MAINNET]: ZKSYNC_MAINNET,
+  [CHAIN_IDS.FRAXTAL]: FRAXTAL,
 }

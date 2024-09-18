@@ -1576,6 +1576,9 @@
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
         "0xeF4fB24aD0916217251F553c0596F8Edc630EB66",
         "0xc1656B63D9EEBa6d114f6bE19565177893e5bCBF"
+      ],
+      "allbridge": [
+        "0x001E3f136c2f804854581Da55Ad7660a2b35DEf7"
       ]
     },
     "dexes": {

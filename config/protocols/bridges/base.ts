@@ -7,7 +7,10 @@ export const BASE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.allbridge]: {
-      address: ['0x001E3f136c2f804854581Da55Ad7660a2b35DEf7'],
+      address: [
+        '0x001E3f136c2f804854581Da55Ad7660a2b35DEf7',
+        '0x001E3f136c2f804854581Da55Ad7660a2b35DEf7',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.hop]: {

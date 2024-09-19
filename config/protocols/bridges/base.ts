@@ -17,6 +17,7 @@ export const BASE_MAINNET = {
       address: [
         '0x7D269D3E0d61A05a0bA976b7DBF8805bF844AF3F',
         '0x10541b07d8Ad2647Dc6cD67abd4c03575dade261',
+        '0xe7F40BF16AB09f4a6906Ac2CAA4094aD2dA48Cc2',
       ],
       selectorInfo: [],
     },

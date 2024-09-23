@@ -164,6 +164,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x2c34A2Fb1d0b4f55de51E1d0bDEfaDDce6b7cDD6',
       ],
       [DEXES.routerNitro]: ['0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7'],
+      [DEXES.dodo]: ['0x0656fD85364d03b103CEEda192FB2D3906A6ac15'],
     },
   },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {

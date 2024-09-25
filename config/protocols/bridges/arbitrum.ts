@@ -132,5 +132,9 @@ export const ARBITRUM_MAINNET = {
       address: ['0x1619DE6B6B20eD217a58d00f37B9d47C7663feca'],
       selectorInfo: [],
     },
+    [BRIDGES.synapse]: {
+      address: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+      selectorInfo: [],
+    },
   },
 }

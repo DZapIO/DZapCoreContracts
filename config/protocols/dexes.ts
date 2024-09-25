@@ -122,6 +122,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x3B86917369B83a6892f553609F3c2F439C184e31',
       ],
       [DEXES.routerNitro]: ['0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a'],
+      [DEXES.dodo]: ['0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63'],
     },
   },
   [CHAIN_IDS.BSC_MAINNET]: {

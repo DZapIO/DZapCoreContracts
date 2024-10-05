@@ -84,7 +84,7 @@ export const BASE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.synapse]: {
-      address: ['0x0000000000489d89D2B233D3375C045dfD05745F'],
+      address: ['0x0000000000489d89D2B233D3375C045dfD05745F', "0x00cD000000003f7F682BE4813200893d4e690000"],
       selectorInfo: [],
     },
   },

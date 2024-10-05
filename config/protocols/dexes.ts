@@ -30,6 +30,7 @@ export enum DEXES {
   okx = 'okx',
   propeller = 'propeller',
   synapse = 'synapse',
+  izumi = 'izumi',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -124,6 +125,8 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a'],
       [DEXES.dodo]: ['0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+      [DEXES.izumi]: ['0x032b241De86a8660f1Ae0691a4760B426EA246d7'],
     },
   },
   [CHAIN_IDS.BSC_MAINNET]: {
@@ -167,6 +170,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7'],
       [DEXES.dodo]: ['0x0656fD85364d03b103CEEda192FB2D3906A6ac15'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
@@ -214,6 +218,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+      [DEXES.izumi]: ['0x01fDea353849cA29F778B2663BcaCA1D191bED0e'],
     },
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {
@@ -265,6 +270,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x5501A36b1313aC5d27e85418acd2AA4564f50b44'],
       [DEXES.dodo]: ['0x716fcc67dcA500A91B4a28c9255262c398D8f971'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.ZKSYNC_MAINNET]: {
@@ -328,6 +334,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.routerNitro]: ['0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF'],
       [DEXES.vapourDex]: ['0x55477d8537ede381784b448876AfAa98aa450E63'],
       [DEXES.dodo]: ['0x1F076a800005c758a505E759720eb6737136e893'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.BASE_MAINNET]: {
@@ -371,6 +378,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x02D728B9C1513478a6b6de77a92648e1D8F801e7'],
       [DEXES.iceCreamSwap]: ['0xD810A437e334B9C3660C18b38fB3C01000B91DD3'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.MANTA_MAINNET]: {

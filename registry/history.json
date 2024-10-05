@@ -315,6 +315,9 @@
       ],
       "dodo": [
         "0x716fcc67dcA500A91B4a28c9255262c398D8f971"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ]
     },
     "executors": {

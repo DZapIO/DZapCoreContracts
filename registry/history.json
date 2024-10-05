@@ -1939,6 +1939,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "izumi": [
+        "0x01fDea353849cA29F778B2663BcaCA1D191bED0e"
       ]
     },
     "executors": {

@@ -235,6 +235,9 @@
       ],
       "allbridge": [
         "0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab"
+      ],
+      "synapse": [
+        "0x00cD000000003f7F682BE4813200893d4e690000"
       ]
     },
     "dexes": {

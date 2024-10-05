@@ -29,6 +29,7 @@ export enum DEXES {
   router = 'router',
   okx = 'okx',
   propeller = 'propeller',
+  synapse = 'synapse',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -212,6 +213,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
       ],
       [DEXES.routerNitro]: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {

@@ -755,6 +755,12 @@
       ],
       "dodo": [
         "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "izumi": [
+        "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
       ]
     },
     "executors": {

@@ -124,5 +124,17 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: [
+        '0x88DCDC47D2f83a99CF0000FDF667A468bB958a78',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: [
+        '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
+      ],
+      selectorInfo: [],
+    },
   },
 }

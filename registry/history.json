@@ -679,6 +679,12 @@
       ],
       "allbridge": [
         "0x7775d63836987f444E2F14AA0fA2602204D7D3E0"
+      ],
+      "celer": [
+        "0x88DCDC47D2f83a99CF0000FDF667A468bB958a78"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     },
     "dexes": {

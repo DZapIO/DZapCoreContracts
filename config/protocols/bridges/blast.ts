@@ -39,5 +39,9 @@ export const BLAST_MAINNET = {
       address: ['0x43A86823EBBe2ECF9A384aDfD989E26A30626458'],
       selectorInfo: [],
     },
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      selectorInfo: [],
+    },
   },
 }

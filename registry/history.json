@@ -1190,6 +1190,15 @@
       ],
       "routerNitro": [
         "0x21c1E74CAaDf990E237920d5515955a024031109"
+      ],
+      "sushi": [
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "lifi": [
+        "0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68"
       ]
     },
     "bridge": {

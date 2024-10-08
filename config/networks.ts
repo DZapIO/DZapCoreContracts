@@ -228,8 +228,8 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.LINEA_MAINNET]: {
     chainId: CHAIN_IDS.LINEA_MAINNET,
-    rpcUrl: 'https://rpc.linea.build ',
-    rpcType: RPC_TYPE.OTHER,
+    rpcUrl: 'https://linea-mainnet.g.alchemy.com/v2',
+    rpcType: RPC_TYPE.ALCHEMY,
   },
   [CHAIN_IDS.MANTA_MAINNET]: {
     chainId: CHAIN_IDS.MANTA_MAINNET,
@@ -238,12 +238,12 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.MANTLE_MAINNET]: {
     chainId: CHAIN_IDS.MANTLE_MAINNET,
-    rpcUrl: 'https://mantle-rpc.publicnode.com',
-    rpcType: RPC_TYPE.OTHER,
+    rpcUrl: 'https://mantle-mainnet.g.alchemy.com/v2',
+    rpcType: RPC_TYPE.ALCHEMY,
   },
   [CHAIN_IDS.METIS_MAINNET]: {
     chainId: CHAIN_IDS.METIS_MAINNET,
-    rpcUrl: 'https://metis-pokt.nodies.app',
+    rpcUrl: 'https://andromeda.metis.io/',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.MODE_MAINNET]: {

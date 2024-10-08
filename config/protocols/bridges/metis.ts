@@ -34,5 +34,17 @@ export const METIS_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: [
+        '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.lifi]: {
+      address: [
+        '0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'
+      ],
+      selectorInfo: [],
+    },
   },
 }

@@ -136,5 +136,12 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.synapse]: {
+      address: [
+        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'
+      ],
+      selectorInfo: [],
+    },
   },
 }

@@ -2,24 +2,50 @@ import { BRIDGES } from '../bridges'
 
 export const SCROLL_MAINNET = {
   bridges: {
-    [BRIDGES.lifi]: {
-      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [],
-    },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
       selectorInfo: [],
     },
-    [BRIDGES.routerNitro]: {
-      address: ['0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9'],
-      selectorInfo: [],
-    },
     [BRIDGES.okx]: {
-      address: ['0x57df6092665eb6058DE53939612413ff4B09114E'],
+      address: [
+        '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
+        '0x57df6092665eb6058DE53939612413ff4B09114E',
+      ],
       selectorInfo: [],
     },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    [BRIDGES.routerNitro]: {
+      address: [
+        '0x5546dA2bCdCFF39b187723434cDE10D4eE99C566',
+        '0x01b4ce0d48ce91eb6bcaf5db33870c65d641b894',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+      selectorInfo: [],
+    },
+    [BRIDGES.xyFinance]: {
+      address: ['0x778C974568e376146dbC64fF12aD55B2d1c4133f'],
+      selectorInfo: [],
+    },
+    [BRIDGES.omniBtc]: {
+      address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
+      selectorInfo: [],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0x3Fc69CC4A842838bCDC9499178740226062b14E4',
+        '0xC2b638Cb5042c1B3c5d5C969361fB50569840583',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0x624FFe62eBa13e6057878bCA1D7A9E35651E1D9c',
+        '0x49952ff32FcBc3408D447E1E91Da2b44BD2D1AFE',
+        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+        '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.synapse]: {

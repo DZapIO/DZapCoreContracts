@@ -2,45 +2,23 @@ import { BRIDGES } from '../bridges'
 
 export const XLAYER_MAINNET = {
   bridges: {
-    [BRIDGES.lifi]: {
-      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [],
-    },
-    [BRIDGES.hop]: {
-      address: ['0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef'],
+    [BRIDGES.okx]: {
+      address: [
+        '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
+        '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
       selectorInfo: [],
     },
-    [BRIDGES.routerNitro]: {
-      address: [
-        '0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef',
-        '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.okx]: {
-      address: [
-        '0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef',
-        '0x57df6092665eb6058DE53939612413ff4B09114E',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
-    },
-    [BRIDGES.symbiosis]: {
-      address: ['0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef'],
+    [BRIDGES.router]: {
+      address: ['0x21c1E74CAaDf990E237920d5515955a024031109'],
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {
-      address: [
-        '0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef',
-        '0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef',
-      ],
+      address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
       selectorInfo: [],
     },
   },

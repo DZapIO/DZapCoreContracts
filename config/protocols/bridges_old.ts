@@ -1439,10 +1439,6 @@ export const DZAP_BRIDGES_CONFIG: {
         ],
         selectorInfo: [],
       },
-      [BRIDGES.router]: {
-        address: ['0x01b4ce0d48ce91eb6bcaf5db33870c65d641b894'],
-        selectorInfo: [],
-      },
       [BRIDGES.squid]: {
         address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
         selectorInfo: [],

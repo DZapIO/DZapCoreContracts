@@ -573,6 +573,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "izumi": [
+        "0xedf2021f41AbCfE2dEA4427E1B61f4d0AA5aA4b8"
       ]
     },
     "executors": {
@@ -902,6 +905,9 @@
       ],
       "kyber": [
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
+      ],
+      "izumi": [
+        "0xd7de110Bd452AAB96608ac3750c3730A17993DE0"
       ]
     },
     "bridge": {
@@ -1106,6 +1112,9 @@
       ],
       "propeller": [
         "0xe832e655E4C3c36b2be5256915ECF8536a642f59"
+      ],
+      "izumi": [
+        "0x943ac2310D9BC703d6AB5e5e76876e212100f894"
       ]
     },
     "executors": {
@@ -1336,6 +1345,9 @@
       ],
       "iceCreamSwap": [
         "0xBd8BB286Cd14124720F3f8C5F3fdD7fa13735Dc2"
+      ],
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
     "bridge": {
@@ -1410,6 +1422,9 @@
     "dexes": {
       "iceCreamSwap": [
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ],
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
     "bridge": {
@@ -1469,6 +1484,9 @@
       ],
       "dodo": [
         "0x70B9C57E1fF24761C1C3ced57Ddae9A3F3570698"
+      ],
+      "izumi": [
+        "0x25C030116Feb2E7BbA054b9de0915E5F51b03e31"
       ]
     },
     "bridge": {
@@ -1709,6 +1727,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "izumi": [
+        "0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2"
       ]
     },
     "executors": {
@@ -1773,6 +1794,9 @@
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
     "bridge": {
@@ -2292,6 +2316,9 @@
       ],
       "enso": [
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "izumi": [
+        "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
       ]
     },
     "bridge": {
@@ -2408,6 +2435,9 @@
       ],
       "xyFinance": [
         "0x43A86823EBBe2ECF9A384aDfD989E26A30626458"
+      ],
+      "izumi": [
+        "0xA3F50FeBA40dd3E884688C0AF72C4054D07a1c50"
       ]
     },
     "bridge": {
@@ -2488,6 +2518,9 @@
       ],
       "iceCreamSwap": [
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ],
+      "izumi": [
+        "0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148"
       ]
     },
     "bridge": {
@@ -2545,6 +2578,9 @@
       ],
       "dodo": [
         "0x89Ba4039841587B0a4cFfDF17AEE30caCF006f4D"
+      ],
+      "izumi": [
+        "0x2db0AFD0045F3518c77eC6591a542e326Befd3D7"
       ]
     },
     "executors": {

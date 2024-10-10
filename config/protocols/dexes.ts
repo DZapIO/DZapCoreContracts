@@ -150,6 +150,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
       ],
+      [DEXES.izumi]: ['0xedf2021f41AbCfE2dEA4427E1B61f4d0AA5aA4b8'],
       [DEXES.uniswap]: ['0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2'],
       [DEXES.unizen]: [
         '0x880E0cE34F48c0cbC68BF3E745F17175BA8c650e',
@@ -280,6 +281,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x6e2B76966cbD9cF4cC2Fa0D76d24d5241E0ABC2F',
         '0x6fd4383cb451173d5f9304f041c7bcbf27d561ff',
       ],
+      [DEXES.izumi]: ['0x943ac2310D9BC703d6AB5e5e76876e212100f894'],
       [DEXES.lifi]: ['0x341e94069f53234fE6DabeF707aD424830525715'],
       [DEXES.odos]: ['0x4bBa932E9792A2b917D47830C93a9BC79320E4f7'],
       [DEXES.openOcean]: ['0x36A1aCbbCAfca2468b85011DDD16E7Cb4d673230'],
@@ -346,6 +348,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x1111111254eeb25477b68fb85ed929f73a960582',
         '0x111111125421ca6dc452d289314280a0f8842a65',
       ],
+      [DEXES.izumi]: ['0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       [DEXES.odos]: ['0x19cEeAd7105607Cd444F5ad10dd51356436095a1'],
       [DEXES.paraswap]: [
@@ -383,6 +386,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.MANTA_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
@@ -408,6 +412,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x5546dA2bCdCFF39b187723434cDE10D4eE99C566'],
       [DEXES.iceCreamSwap]: ['0xD810A437e334B9C3660C18b38fB3C01000B91DD3'],
+      [DEXES.izumi]: ['0x2db0AFD0045F3518c77eC6591a542e326Befd3D7'],
       [DEXES.dodo]: ['0x89Ba4039841587B0a4cFfDF17AEE30caCF006f4D'],
       [DEXES.sushi]: [
         '0x33d91116e0370970444B0281AB117e161fEbFcdD',
@@ -442,10 +447,12 @@ export const DZAP_DEXES_CONFIG: {
         '0xd600d94d0812f7edfa47d0cf02a767b1dd14a01b',
       ],
       [DEXES.iceCreamSwap]: ['0xBd8BB286Cd14124720F3f8C5F3fdD7fa13735Dc2'],
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
     },
   },
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xff13a7a12fd485bc9687ff88d8ae1a6b655ab469'],
       [DEXES.sushi]: [
@@ -455,7 +462,11 @@ export const DZAP_DEXES_CONFIG: {
       ],
     },
   },
-  [CHAIN_IDS.KAVA_MAINNET]: {},
+  [CHAIN_IDS.KAVA_MAINNET]: {
+    dexes: {
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
+    },
+  },
   [CHAIN_IDS.BOBA_ETH]: {
     dexes: {
       [DEXES.iceCreamSwap]: ['0xA608FF30563cEed3f0BC52eFc4abfc9502F1a71C'],
@@ -472,6 +483,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
         '0x2d8879046f1559E53eb052E949e9544bCB72f414',
       ],
+      [DEXES.izumi]: ['0x032b241De86a8660f1Ae0691a4760B426EA246d7'],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
@@ -486,6 +498,7 @@ export const DZAP_DEXES_CONFIG: {
     dexes: {
       [DEXES.dodo]: ['0x70B9C57E1fF24761C1C3ced57Ddae9A3F3570698'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+      [DEXES.izumi]: ['0x25C030116Feb2E7BbA054b9de0915E5F51b03e31'],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
         '0x57df6092665eb6058DE53939612413ff4B09114E',
@@ -509,6 +522,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
       [DEXES.odos]: ['0x7E15EB462cdc67Cf92Af1f7102465a8F8c784874'],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
@@ -516,6 +530,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.BLAST_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0xA3F50FeBA40dd3E884688C0AF72C4054D07a1c50'],
       [DEXES.okx]: [
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
@@ -550,7 +565,11 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.CRONOS_MAINNET]: {},
   [CHAIN_IDS.BOB_MAINNET]: {},
   [CHAIN_IDS.BEVM_MAINNET]: {},
-  [CHAIN_IDS.OPBNB_MAINNET]: {},
+  [CHAIN_IDS.OPBNB_MAINNET]: {
+    dexes: {
+      [DEXES.izumi]: ['0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2'],
+    },
+  },
   [CHAIN_IDS.FANTOM_MAINNET]: {
     dexes: {
       [DEXES.okx]: [
@@ -599,6 +618,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
       ],
+      [DEXES.izumi]: ['0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148'],
       [DEXES.xyFinance]: ['0xedC061306A79257f15108200C5B82ACc874C239d'],
       [DEXES.router]: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
       [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
@@ -606,6 +626,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.X_LAYER_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0xd7de110Bd452AAB96608ac3750c3730A17993DE0'],
       [DEXES.okx]: [
         '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',
         '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
@@ -616,6 +637,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.ZETACHAIN_MAINNET]: {
     dexes: {
+      [DEXES.izumi]: ['0x34bc1b87f60e0a30c0e24FD7Abada70436c71406'],
       [DEXES.okx]: [
         '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',
         '0x0DaB5A5294AfAae76Ce990993fC10b896A01DBd1',
@@ -652,6 +674,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.GRAVITY]: {
     dexes: {
       [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
+      [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
     },
   },
 }

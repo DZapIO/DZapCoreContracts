@@ -91,6 +91,14 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.synapse]: {
+      address: [
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
+        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
+        '0x00cD000000003f7F682BE4813200893d4e690000',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.telosBridge]: {
       address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
       selectorInfo: [],
@@ -125,21 +133,17 @@ export const POLYGON_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.celer]: {
-      address: [
-        '0x88DCDC47D2f83a99CF0000FDF667A468bB958a78',
-      ],
+      address: ['0x88DCDC47D2f83a99CF0000FDF667A468bB958a78'],
       selectorInfo: [],
     },
     [BRIDGES.owlto]: {
-      address: [
-        '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
-      ],
+      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
       selectorInfo: [],
     },
     [BRIDGES.synapse]: {
       address: [
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
-        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
       ],
       selectorInfo: [],
     },

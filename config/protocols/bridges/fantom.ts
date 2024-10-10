@@ -21,5 +21,13 @@ export const FANTOM_MAINNET = {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],
     },
+    [BRIDGES.synapse]: {
+      address: [
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
+        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
+        '0x00cD000000003f7F682BE4813200893d4e690000',
+      ],
+      selectorInfo: [],
+    },
   },
 }

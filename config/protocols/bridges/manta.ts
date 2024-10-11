@@ -34,5 +34,9 @@ export const MANTA_MAINNET = {
       address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
       selectorInfo: [],
     },
+    [BRIDGES.izumi]: {
+      address: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
+      selectorInfo: [],
+    },
   },
 }

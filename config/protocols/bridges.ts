@@ -26,6 +26,7 @@ export enum BRIDGES {
   stargate = 'stargate',
   celer = 'celer',
   synapse = 'synapse',
+  izumi = 'izumi'
 }
 
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'

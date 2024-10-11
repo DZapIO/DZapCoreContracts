@@ -837,6 +837,9 @@
       ],
       "omniBtc": [
         "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
+      ],
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
     "dexes": {

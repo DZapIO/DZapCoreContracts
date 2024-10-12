@@ -319,7 +319,8 @@
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
       ],
       "dodo": [
-        "0x716fcc67dcA500A91B4a28c9255262c398D8f971"
+        "0x716fcc67dcA500A91B4a28c9255262c398D8f971",
+        "0x3a64Ec3606FF7310E8fAd6FcC008e39705fB496d"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
@@ -783,7 +784,8 @@
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
       ],
       "dodo": [
-        "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63"
+        "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63",
+        "0x46AFE01D758a46d64c7d8E0791314D5db3E2e683"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
@@ -860,7 +862,11 @@
         "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
       ],
       "dodo": [
-        "0x0Dc808adcE2099A9F62AA87D9670745AbA741746"
+        "0x0Dc808adcE2099A9F62AA87D9670745AbA741746",
+        "0x2933c0374089D7D98BA0C71c5E02E1A0e09deBEE"
+      ],
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
     "executors": {
@@ -1740,7 +1746,8 @@
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
       ],
       "dodo": [
-        "0x987bFBE33c9cF18cAA665B792Db66339a9c16D32"
+        "0x987bFBE33c9cF18cAA665B792Db66339a9c16D32",
+        "0x8b09DB11ea380d6454D2592D334FFC319ce6EF3E"
       ],
       "iceCreamSwap": [
         "0xD810A437e334B9C3660C18b38fB3C01000B91DD3"
@@ -2617,6 +2624,9 @@
       ],
       "izumi": [
         "0x2db0AFD0045F3518c77eC6591a542e326Befd3D7"
+      ],
+      "xyFinance": [
+        "0x22bf2A9fcAab9dc96526097318f459eF74277042"
       ]
     },
     "executors": {

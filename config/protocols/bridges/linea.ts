@@ -73,5 +73,9 @@ export const LINEA_MAINNET = {
       address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
       selectorInfo: [],
     },
+    [BRIDGES.orbital]: {
+      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      selectorInfo: [],
+    },
   },
 }

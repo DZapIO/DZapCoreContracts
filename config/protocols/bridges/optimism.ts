@@ -121,5 +121,11 @@ export const OPTIMISM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.orbital]: {
+      address: [
+        '0x3191f40de6991b1bb1f61b7cec43d62bb337786b'
+      ],
+      selectorInfo: [],
+    },
   },
 }

@@ -30,5 +30,9 @@ export const TAIKO_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.orbital]: {
+      address: ['0x2598d7bc9d3b4b6124f3282e49eee68db270f516'],
+      selectorInfo: [],
+    },
   },
 }

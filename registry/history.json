@@ -240,6 +240,9 @@
         "0x00cD000000003f7F682BE4813200893d4e690000",
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48"
+      ],
+      "orbital": [
+        "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
       ]
     },
     "dexes": {
@@ -1671,6 +1674,9 @@
         "0x00cD000000003f7F682BE4813200893d4e690000",
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48"
+      ],
+      "orbital": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     },
     "dexes": {
@@ -2387,6 +2393,9 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "orbital": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     }
   },
@@ -2566,6 +2575,9 @@
       ],
       "owlto": [
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ],
+      "orbital": [
+        "0x2598d7bc9d3b4b6124f3282e49eee68db270f516"
       ]
     }
   },
@@ -2657,7 +2669,12 @@
         "0xC2b638Cb5042c1B3c5d5C969361fB50569840583"
       ],
       "synapse": [
-        "0x00cD000000003f7F682BE4813200893d4e690000"
+        "0x00cD000000003f7F682BE4813200893d4e690000",
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
+        "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48"
+      ],
+      "orbital": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     },
     "integrators": {

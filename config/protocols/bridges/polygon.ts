@@ -140,11 +140,8 @@ export const POLYGON_MAINNET = {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
       selectorInfo: [],
     },
-    [BRIDGES.synapse]: {
-      address: [
-        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
-        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
-      ],
+    [BRIDGES.orbital]: {
+      address: ['0x653f25dc641544675338cb47057f8ea530c69b78'],
       selectorInfo: [],
     },
   },

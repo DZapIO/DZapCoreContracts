@@ -583,7 +583,8 @@
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
       ],
       "dodo": [
-        "0x0656fD85364d03b103CEEda192FB2D3906A6ac15"
+        "0x0656fD85364d03b103CEEda192FB2D3906A6ac15",
+        "0x0343C5757Fb98aD9eF39824e08B852aF61C71c64"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
@@ -705,7 +706,11 @@
       ],
       "synapse": [
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
-        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
+        "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "orbital": [
+        "0x653f25dc641544675338cb47057f8ea530c69b78"
       ]
     },
     "dexes": {
@@ -2026,7 +2031,8 @@
         "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
       ],
       "dodo": [
-        "0xe05dd51e4eB5636f4f0E8e7Fbe82eA31a2ecef16"
+        "0xe05dd51e4eB5636f4f0E8e7Fbe82eA31a2ecef16",
+        "0x69716E51E3F8Bec9c3D4E1bB46396384AE11C594"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"

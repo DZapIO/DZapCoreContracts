@@ -57,9 +57,11 @@ export const SCROLL_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.orbital]: {
-      address: [
-        '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'
-      ],
+      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      selectorInfo: [],
+    },
+    [BRIDGES.celer]: {
+      address: ['0x9B36f165baB9ebe611d491180418d8De4b8f3a1f'],
       selectorInfo: [],
     },
   },

@@ -56,5 +56,9 @@ export const ZKSYNC_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x54069e96C4247b37C2fbd9559CA99f08CD1CD66c'],
+      selectorInfo: [],
+    },
   },
 }

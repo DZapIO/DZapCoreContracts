@@ -105,5 +105,9 @@ export const BSC_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0xdd90E5E87A2081Dcf0391920868eBc2FFB81a1aF'],
+      selectorInfo: [],
+    },
   },
 }

@@ -243,6 +243,9 @@
       ],
       "orbital": [
         "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
+      ],
+      "celer": [
+        "0x9D39Fc627A6d9d9F8C831c16995b209548cc3401"
       ]
     },
     "dexes": {
@@ -515,6 +518,9 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "celer": [
+        "0xdd90E5E87A2081Dcf0391920868eBc2FFB81a1aF"
       ]
     },
     "dexes": {
@@ -1101,6 +1107,9 @@
       ],
       "across": [
         "0xE0B015E54d54fc84a6cB9B666099c46adE9335FF"
+      ],
+      "celer": [
+        "0x54069e96C4247b37C2fbd9559CA99f08CD1CD66c"
       ]
     },
     "dexes": {
@@ -2694,6 +2703,9 @@
       ],
       "orbital": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "celer": [
+        "0x9B36f165baB9ebe611d491180418d8De4b8f3a1f"
       ]
     },
     "integrators": {

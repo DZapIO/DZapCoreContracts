@@ -73,6 +73,10 @@ export enum NETWORK_NAMES {
   FRAXTAL = 'FRAXTAL',
   GRAVITY = 'GRAVITY',
   ARTHERA = 'ARTHERA',
+  FUSE = 'FUSE',
+  ZKFAIR = 'ZKFAIR',
+  KROMA = 'KROMA',
+  VELAS = 'VELOS',
 }
 
 export enum RPC_TYPE {
@@ -170,6 +174,10 @@ export enum CHAIN_IDS {
   FRAXTAL = 252,
   GRAVITY = 1625,
   ARTHERA = 10242,
+  FUSE = 122,
+  ZKFAIR = 42766,
+  KROMA = 255,
+  VELAS = 106,
 }
 
 export const NETWORKS = {
@@ -341,6 +349,71 @@ export const NETWORKS = {
   [CHAIN_IDS.GNOSIS_MAINNET]: {
     chainId: CHAIN_IDS.GNOSIS_MAINNET,
     rpcUrl: 'https://gnosis-rpc.publicnode.com',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.FANTOM_MAINNET]: {
+    chainId: CHAIN_IDS.FANTOM_MAINNET,
+    rpcUrl: 'https://rpc.ankr.com/fantom',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.FUSE]: {
+    chainId: CHAIN_IDS.FUSE,
+    rpcUrl: 'https://rpc.fuse.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.MOONBEAM_MAINNET]: {
+    chainId: CHAIN_IDS.MOONBEAM_MAINNET,
+    rpcUrl: 'https://moonbeam.public.blastapi.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.MOONRIVER]: {
+    chainId: CHAIN_IDS.MOONRIVER,
+    rpcUrl: 'https://moonriver.public.blastapi.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.CRONOS_MAINNET]: {
+    chainId: CHAIN_IDS.CRONOS_MAINNET,
+    rpcUrl: 'https://cronos-evm-rpc.publicnode.com	',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.AURORA_MAINNET]: {
+    chainId: CHAIN_IDS.AURORA_MAINNET,
+    rpcUrl: 'https://1rpc.io/aurora',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.KAVA_MAINNET]: {
+    chainId: CHAIN_IDS.KAVA_MAINNET,
+    rpcUrl: 'https://rpc.ankr.com/kava_evm',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.ZKFAIR]: {
+    chainId: CHAIN_IDS.ZKFAIR,
+    rpcUrl: 'https://rpc.zkfair.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.KROMA]: {
+    chainId: CHAIN_IDS.KROMA,
+    rpcUrl: 'https://1rpc.io/kroma',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.SEI_EVM_MAINNET]: {
+    chainId: CHAIN_IDS.SEI_EVM_MAINNET,
+    rpcUrl: 'https://evm-rpc.sei-apis.com',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.ZKLINK_MAINNET]: {
+    chainId: CHAIN_IDS.ZKLINK_MAINNET,
+    rpcUrl: 'https://rpc.zklink.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.VELAS]: {
+    chainId: CHAIN_IDS.VELAS,
+    rpcUrl: 'https://explorer.velas.com/rpc',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.FILECOIN_MAINNET]: {
+    chainId: CHAIN_IDS.FILECOIN_MAINNET,
+    rpcUrl: 'https://rpc.ankr.com/filecoin',
     rpcType: RPC_TYPE.OTHER,
   },
 }

@@ -72,6 +72,7 @@ export enum NETWORK_NAMES {
   GANACHE = 'GANACHE',
   FRAXTAL = 'FRAXTAL',
   GRAVITY = 'GRAVITY',
+  ARTHERA = 'ARTHERA',
 }
 
 export enum RPC_TYPE {
@@ -168,6 +169,7 @@ export enum CHAIN_IDS {
   X_LAYER_TESTNET = 195,
   FRAXTAL = 252,
   GRAVITY = 1625,
+  ARTHERA = 10242,
 }
 
 export const NETWORKS = {
@@ -329,6 +331,16 @@ export const NETWORKS = {
   [CHAIN_IDS.GRAVITY]: {
     chainId: CHAIN_IDS.GRAVITY,
     rpcUrl: 'https://rpc.gravity.xyz',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.ARTHERA]: {
+    chainId: CHAIN_IDS.ARTHERA,
+    rpcUrl: 'https://rpc.arthera.net',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.GNOSIS_MAINNET]: {
+    chainId: CHAIN_IDS.GNOSIS_MAINNET,
+    rpcUrl: 'https://gnosis-rpc.publicnode.com',
     rpcType: RPC_TYPE.OTHER,
   },
 }

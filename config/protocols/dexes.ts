@@ -676,7 +676,7 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.AURORA_MAINNET]: {
     dexes: {
-      [DEXES.rocketX]: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     },
   },
   [CHAIN_IDS.SAAKURU_MAINNET]: {

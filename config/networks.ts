@@ -378,7 +378,7 @@ export const NETWORKS = {
   },
   [CHAIN_IDS.AURORA_MAINNET]: {
     chainId: CHAIN_IDS.AURORA_MAINNET,
-    rpcUrl: 'https://1rpc.io/aurora',
+    rpcUrl: 'https://mainnet.aurora.dev',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.KAVA_MAINNET]: {

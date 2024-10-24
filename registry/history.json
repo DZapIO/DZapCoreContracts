@@ -684,6 +684,31 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "bridge": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "socket": [
+        "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
+      ],
+      "hop": [
+        "0x49094a1B3463c4e2E82ca41b8e6A023bdd6E222f"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ]
+    },
+    "dexes": {
+      "enso": [
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
     }
   },
   "122": {

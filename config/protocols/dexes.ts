@@ -687,6 +687,8 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.GNOSIS_MAINNET]: {
     dexes: {
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+      // [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
     },
   },
   [CHAIN_IDS.MOONBEAM_MAINNET]: {},

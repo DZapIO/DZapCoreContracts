@@ -676,7 +676,12 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.AURORA_MAINNET]: {
     dexes: {
+      [DEXES.dodo]: [
+        '0x335aC99bb3E51BDbF22025f092Ebc1Cf2c5cC619',
+        '0x7449Cd63C2b1A06C36945eD83f0626D303781B6E',
+      ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
   [CHAIN_IDS.SAAKURU_MAINNET]: {

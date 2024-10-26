@@ -3054,12 +3054,20 @@
         "0x81F6138153d473E8c5EcebD3DC8Cd4903506B075"
       ],
       "router": [
+        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9",
         "0x7BD616192fB2B364f9d29B2026165281a5f2ff2F"
       ]
     },
     "dexes": {
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "dodo": [
+        "0x335aC99bb3E51BDbF22025f092Ebc1Cf2c5cC619",
+        "0x7449Cd63C2b1A06C36945eD83f0626D303781B6E"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ]
     }
   }

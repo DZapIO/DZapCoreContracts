@@ -18,5 +18,9 @@ export const AURORA_MAINNET = {
       address: ['0x81F6138153d473E8c5EcebD3DC8Cd4903506B075'],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
+      selectorInfo: [],
+    },
   },
 }

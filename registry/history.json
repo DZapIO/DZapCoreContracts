@@ -403,7 +403,8 @@
       "sushi": [
         "0x1400feFD6F9b897970f00Df6237Ff2B8b27Dc82C",
         "0x0389879e0156033202C44BF784ac18fC02edeE4f",
-        "0xb46e319390De313B8cc95EA5aa30C7bBFD79Da94"
+        "0xb46e319390De313B8cc95EA5aa30C7bBFD79Da94",
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ],
       "routerNitro": [
         "0xff13a7a12fd485bc9687ff88d8ae1a6b655ab469"
@@ -420,6 +421,9 @@
       ],
       "routerNitro": [
         "0xff13a7a12fd485bc9687ff88d8ae1a6b655ab469"
+      ],
+      "router": [
+        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9"
       ]
     }
   },

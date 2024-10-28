@@ -12,7 +12,10 @@ export const ROOTSTOCK_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
-      address: ['0xff13a7a12fd485bc9687ff88d8ae1a6b655ab469'],
+      address: [
+        '0xff13a7a12fd485bc9687ff88d8ae1a6b655ab469',
+        '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.router]: {

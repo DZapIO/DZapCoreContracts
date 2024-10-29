@@ -401,6 +401,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.routerNitro]: ['0x02D728B9C1513478a6b6de77a92648e1D8F801e7'],
       [DEXES.iceCreamSwap]: ['0xD810A437e334B9C3660C18b38fB3C01000B91DD3'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+      [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
     },
   },
   [CHAIN_IDS.MANTA_MAINNET]: {
@@ -592,7 +593,13 @@ export const DZAP_DEXES_CONFIG: {
       ],
     },
   },
-  [CHAIN_IDS.CRONOS_MAINNET]: {},
+  [CHAIN_IDS.CRONOS_MAINNET]: {
+    dexes: {
+      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
+      [DEXES.okx]: ['0xf332761c673b59B21fF6dfa8adA44d78c12dEF09'],
+      [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+    },
+  },
   [CHAIN_IDS.BOB_MAINNET]: {},
   [CHAIN_IDS.BEVM_MAINNET]: {},
   [CHAIN_IDS.OPBNB_MAINNET]: {

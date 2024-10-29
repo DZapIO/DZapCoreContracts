@@ -382,6 +382,17 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "dexes": {
+      "sushi": [
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ],
+      "okx": [
+        "0xf332761c673b59B21fF6dfa8adA44d78c12dEF09"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
     }
   },
   "30": {
@@ -2261,6 +2272,9 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "comet": [
+        "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
       ]
     },
     "dexes": {

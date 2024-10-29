@@ -140,5 +140,9 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
   },
 }

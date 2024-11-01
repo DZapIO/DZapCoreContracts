@@ -1130,6 +1130,54 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "bridge": {
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "okx": [
+        "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",
+        "0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "squid": [
+        "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
+        "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
+        "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ]
+    },
+    "dexes": {
+      "okx": [
+        "0xf332761c673b59B21fF6dfa8adA44d78c12dEF09",
+        "0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58"
+      ],
+      "paraswapV6": [
+        "0x6a000f20005980200259b80c5102003040001068"
+      ],
+      "zeroX": [
+        "0xDEF189DeAEF76E379df891899eb5A00a94cBC250"
+      ],
+      "sushi": [
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ],
+      "paraswap": [
+        "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
+        "0x216b4b4ba9f3e719726886d34a177484278bfcae"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "kyber": [
+        "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
+      ]
     }
   },
   "252": {

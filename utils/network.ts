@@ -16,6 +16,8 @@ export const getRpcUrl = (chainId: CHAIN_IDS): string => {
     rpc = `${rpc}/${process.env.ALCHEMY_API_KEY}`
   } else if (network.rpcType == RPC_TYPE.INFURA) {
     rpc = `${rpc}/${process.env.INFURA_API_KEY}`
+  } else if (network.rpcType == RPC_TYPE.BLAST_API) {
+    rpc = `${rpc}/${process.env.BLAST_API_KEY}`
   }
 
   return rpc

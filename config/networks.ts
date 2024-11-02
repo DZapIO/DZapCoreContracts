@@ -82,6 +82,7 @@ export enum NETWORK_NAMES {
 export enum RPC_TYPE {
   ALCHEMY,
   INFURA,
+  BLAST_API,
   OTHER,
 }
 
@@ -254,12 +255,12 @@ export const NETWORKS = {
   [CHAIN_IDS.METIS_MAINNET]: {
     chainId: CHAIN_IDS.METIS_MAINNET,
     rpcUrl: 'https://andromeda.metis.io/',
-    rpcType: RPC_TYPE.OTHER,
+    rpcType: RPC_TYPE.BLAST_API,
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     chainId: CHAIN_IDS.MODE_MAINNET,
     rpcUrl: 'https://mainnet.mode.network',
-    rpcType: RPC_TYPE.OTHER,
+    rpcType: RPC_TYPE.BLAST_API,
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {
     chainId: CHAIN_IDS.OPTIMISM_MAINNET,
@@ -274,17 +275,17 @@ export const NETWORKS = {
   [CHAIN_IDS.POLYGON_ZK_EVM_MAINNET]: {
     chainId: CHAIN_IDS.POLYGON_ZK_EVM_MAINNET,
     rpcUrl: 'https://zkevm-rpc.com',
-    rpcType: RPC_TYPE.OTHER,
+    rpcType: RPC_TYPE.BLAST_API,
   },
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {
     chainId: CHAIN_IDS.ROOTSTOCK_MAINNET,
-    rpcUrl: 'https://public-node.rsk.co',
-    rpcType: RPC_TYPE.OTHER,
+    rpcUrl: 'https://rootstock-mainnet.blastapi.io',
+    rpcType: RPC_TYPE.BLAST_API,
   },
   [CHAIN_IDS.SCROLL_MAINNET]: {
     chainId: CHAIN_IDS.SCROLL_MAINNET,
     rpcUrl: 'https://rpc.scroll.io',
-    rpcType: RPC_TYPE.OTHER,
+    rpcType: RPC_TYPE.BLAST_API,
   },
   [CHAIN_IDS.SEPOLIA_TESTNET]: {
     chainId: CHAIN_IDS.SEPOLIA_TESTNET,

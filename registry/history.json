@@ -3094,7 +3094,8 @@
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
       ],
       "xyFinance": [
-        "0x778C974568e376146dbC64fF12aD55B2d1c4133f"
+        "0x778C974568e376146dbC64fF12aD55B2d1c4133f",
+        "0x22bf2A9fcAab9dc96526097318f459eF74277042"
       ],
       "omniBtc": [
         "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
@@ -3122,6 +3123,12 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "comet": [
+        "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
+      ],
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     },
     "integrators": {

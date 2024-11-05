@@ -82,6 +82,10 @@ export const BSC_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7',

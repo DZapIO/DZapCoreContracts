@@ -33,7 +33,10 @@ export const POLYGON_ZK_EVM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
-      address: ['0xb91d3060C90aac7c4c706aef2B37997b3b2a1DcF'],
+      address: [
+        '0xb91d3060C90aac7c4c706aef2B37997b3b2a1DcF',
+        '0x668961F4923A4FB96b22ad1F18aE215bB2694593',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {

@@ -27,7 +27,7 @@ export enum BRIDGES {
   celer = 'celer',
   synapse = 'synapse',
   izumi = 'izumi',
-  orbital = 'orbital',
+  orbiter = 'orbiter',
   comet = 'comet',
 }
 

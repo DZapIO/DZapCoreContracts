@@ -592,6 +592,9 @@
       ],
       "celer": [
         "0xdd90E5E87A2081Dcf0391920868eBc2FFB81a1aF"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     },
     "dexes": {
@@ -782,6 +785,14 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "dexes": {
+      "iceCreamSwap": [
+        "0x698a912F8CA34Df9b46E6Ea4A2B2DB0B7151b083"
+      ],
+      "sushi": [
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ]
     }
   },
   "137": {
@@ -1386,6 +1397,9 @@
       ],
       "celer": [
         "0x54069e96C4247b37C2fbd9559CA99f08CD1CD66c"
+      ],
+      "orbiter": [
+        "0xb4AB2FF34faDC774aFF45f1C4566Cb5E16bD4867"
       ]
     },
     "dexes": {
@@ -1632,7 +1646,8 @@
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
       "symbiosis": [
-        "0xb91d3060C90aac7c4c706aef2B37997b3b2a1DcF"
+        "0xb91d3060C90aac7c4c706aef2B37997b3b2a1DcF",
+        "0x668961F4923A4FB96b22ad1F18aE215bB2694593"
       ],
       "xyFinance": [
         "0x3689D3B912d4D73FfcAad3a80861e7caF2d4F049",
@@ -1732,6 +1747,16 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "bridge": {
+      "squid": [
+        "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ]
+    },
+    "dexes": {
+      "sushi": [
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+      ]
     }
   },
   "1285": {
@@ -1812,6 +1837,9 @@
       "symbiosis": [
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },

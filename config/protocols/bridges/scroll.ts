@@ -2,6 +2,10 @@ import { BRIDGES } from '../bridges'
 
 export const SCROLL_MAINNET = {
   bridges: {
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
       selectorInfo: [],
@@ -29,7 +33,10 @@ export const SCROLL_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {
-      address: ['0x778C974568e376146dbC64fF12aD55B2d1c4133f'],
+      address: [
+        '0x778C974568e376146dbC64fF12aD55B2d1c4133f',
+        '0x22bf2A9fcAab9dc96526097318f459eF74277042',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.omniBtc]: {
@@ -60,7 +67,7 @@ export const SCROLL_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.orbital]: {
+    [BRIDGES.orbiter]: {
       address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
       selectorInfo: [],
     },

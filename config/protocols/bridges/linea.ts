@@ -77,5 +77,9 @@ export const LINEA_MAINNET = {
       address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
       selectorInfo: [],
     },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
   },
 }

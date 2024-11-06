@@ -260,7 +260,7 @@ export const NETWORKS = {
   [CHAIN_IDS.MODE_MAINNET]: {
     chainId: CHAIN_IDS.MODE_MAINNET,
     rpcUrl: 'https://mainnet.mode.network',
-    rpcType: RPC_TYPE.BLAST_API,
+    rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {
     chainId: CHAIN_IDS.OPTIMISM_MAINNET,

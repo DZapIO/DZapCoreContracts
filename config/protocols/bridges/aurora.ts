@@ -29,5 +29,9 @@ export const AURORA_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.synapse]: {
+      address: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+      selectorInfo: [],
+    },
   },
 }

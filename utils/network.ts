@@ -32,3 +32,7 @@ export const getNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {
     accounts,
   }
 }
+
+export const getChainName = (chainId: CHAIN_IDS) => {
+  return NETWORKS[chainId].chainName
+}

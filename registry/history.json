@@ -1692,6 +1692,9 @@
       "omniBtc": [
         "0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66",
         "0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     },
     "integrators": {
@@ -1840,6 +1843,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "comet": [
+        "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
       ]
     }
   },
@@ -1887,6 +1893,9 @@
       ],
       "stargate": [
         "0x41A5b0470D96656Fb3e8f68A218b39AdBca3420b"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ]
     },
     "dexes": {

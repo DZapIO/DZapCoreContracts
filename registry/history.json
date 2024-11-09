@@ -664,7 +664,8 @@
       ],
       "dodo": [
         "0x0656fD85364d03b103CEEda192FB2D3906A6ac15",
-        "0x0343C5757Fb98aD9eF39824e08B852aF61C71c64"
+        "0x0343C5757Fb98aD9eF39824e08B852aF61C71c64",
+        "0xa128Ba44B2738A558A1fdC06d6303d52D3Cef8c1"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
@@ -2145,6 +2146,9 @@
       ],
       "comet": [
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     },
     "dexes": {
@@ -2834,7 +2838,8 @@
         "0x3335733c454805df6a77f825f266e136FB4a3333"
       ],
       "routerNitro": [
-        "0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34"
+        "0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34",
+        "0x8c4acd74ff4385f3b7911432fa6787aa14406f8b"
       ],
       "okx": [
         "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",

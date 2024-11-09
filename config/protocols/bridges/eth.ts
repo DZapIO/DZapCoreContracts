@@ -92,6 +92,7 @@ export const ETH_MAINNET = {
         '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
         '0xfB375Cdfb975381731be52c05e8e695C8253c319',
         '0x35101b9DeCace6324aaDf65867d695D175c71D59',
+        '0xd87Fff92728792F6dFFA5A915Bd4F7BE1A5bb45E',
       ],
       selectorInfo: [],
     },

@@ -76,6 +76,10 @@ export const BASE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x02D728B9C1513478a6b6de77a92648e1D8F801e7',

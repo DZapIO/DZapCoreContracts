@@ -21,5 +21,9 @@ export const XLAYER_MAINNET = {
       address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+      selectorInfo: [],
+    },
   },
 }

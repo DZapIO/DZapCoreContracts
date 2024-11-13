@@ -1132,6 +1132,9 @@
       ],
       "router": [
         "0x21c1E74CAaDf990E237920d5515955a024031109"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     }
   },
@@ -1286,6 +1289,11 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "bridge": {
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ]
     }
   },
   "288": {
@@ -2224,6 +2232,9 @@
       ],
       "izumi": [
         "0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2"
+      ],
+      "conveyor": [
+        "0xd5eC61bCa0Af24Ad06BE431585A0920142C98890"
       ]
     },
     "executors": {
@@ -3184,6 +3195,9 @@
       ],
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "across": [
+        "0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96"
       ]
     },
     "integrators": {

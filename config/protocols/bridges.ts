@@ -76,6 +76,7 @@ import { ZETACHAIN_MAINNET } from './bridges/zetachain'
 import { ZKSYNC_MAINNET } from './bridges/zksync'
 import { FRAXTAL } from './bridges/fraxtal'
 import { GRAVITY } from './bridges/gravity'
+import { KROMA } from './bridges/kroma'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x: number]: { bridges?: any }
@@ -125,4 +126,5 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.ZKSYNC_MAINNET]: ZKSYNC_MAINNET,
   [CHAIN_IDS.FRAXTAL]: FRAXTAL,
   [CHAIN_IDS.GRAVITY]: GRAVITY,
+  [CHAIN_IDS.KROMA]: KROMA,
 }

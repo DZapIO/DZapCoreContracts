@@ -306,7 +306,7 @@ export const NETWORKS = {
     chainId: CHAIN_IDS.SCROLL_MAINNET,
     chainName: 'Scroll Mainnet',
     rpcUrl: 'https://rpc.scroll.io',
-    rpcType: RPC_TYPE.BLAST_API,
+    rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.SEPOLIA_TESTNET]: {
     chainId: CHAIN_IDS.SEPOLIA_TESTNET,

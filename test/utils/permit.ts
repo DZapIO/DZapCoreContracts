@@ -13,6 +13,17 @@ import {
   SignatureTransfer,
 } from '@uniswap/permit2-sdk'
 import { latest } from './time'
+import { expect } from 'chai'
+
+async function getDomainSeparator(chainId, tokenAddress, name, version) {
+  const domainSeparator = ethers.utils._TypedDataEncoder.hashDomain({
+    name,
+    version,
+    chainId,
+    verifyingContract: tokenAddress,
+  })
+  return domainSeparator
+}
 
 export async function getPermitSignatureAndCalldata(
   wallet: Wallet,
@@ -30,9 +41,16 @@ export async function getPermitSignatureAndCalldata(
   const [nonce, name, version, chainId] = await Promise.all([
     permitConfig?.nonce ?? token.nonces(wallet.address),
     permitConfig?.name ?? token.name(),
-    permitConfig?.version ?? '1',
+    // permitConfig?.version ?? '1',
+    permitConfig?.version ?? '2',
     permitConfig?.chainId ?? wallet.getChainId(),
   ])
+
+  const DOMAIN_SEPARATOR = await token.DOMAIN_SEPARATOR()
+  const domain = await getDomainSeparator(chainId, token.address, name, version)
+  expect(DOMAIN_SEPARATOR === domain, 'domain dont match')
+
+  console.log(nonce.toString(), name, version, chainId)
 
   const message = await wallet._signTypedData(
     {

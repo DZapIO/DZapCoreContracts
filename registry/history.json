@@ -70,6 +70,9 @@
       ],
       "propeller": [
         "0x14f2b6ca0324cd2B013aD02a7D85541d215e2906"
+      ],
+      "fluid": [
+        "0x0B1a513ee24972DAEf112bC777a5610d4325C9e7"
       ]
     },
     "bridge": {
@@ -595,6 +598,9 @@
       ],
       "owlto": [
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ],
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     },
     "dexes": {
@@ -1053,7 +1059,8 @@
       ],
       "dodo": [
         "0x0Dc808adcE2099A9F62AA87D9670745AbA741746",
-        "0x2933c0374089D7D98BA0C71c5E02E1A0e09deBEE"
+        "0x2933c0374089D7D98BA0C71c5E02E1A0e09deBEE",
+        "0x0226fCE8c969604C3A0AD19c37d1FAFac73e13c2"
       ],
       "izumi": [
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
@@ -2969,6 +2976,9 @@
       ],
       "izumi": [
         "0xA3F50FeBA40dd3E884688C0AF72C4054D07a1c50"
+      ],
+      "synapse": [
+        "0x0000000000365b1d5B142732CF4d33BcddED21Fc"
       ]
     },
     "bridge": {

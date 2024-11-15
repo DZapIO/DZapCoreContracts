@@ -31,6 +31,7 @@ export enum DEXES {
   propeller = 'propeller',
   synapse = 'synapse',
   izumi = 'izumi',
+  fluid = 'fluid',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -38,6 +39,7 @@ export const DZAP_DEXES_CONFIG: {
 } = {
   [CHAIN_IDS.ETH_MAINNET]: {
     dexes: {
+      [DEXES.fluid]: ['0x0B1a513ee24972DAEf112bC777a5610d4325C9e7'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
@@ -598,6 +600,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       [DEXES.iceCreamSwap]: ['0xe0627818b29D2f28E62f54bC988E6e02C8dbC300'],
       [DEXES.xyFinance]: ['0x43A86823EBBe2ECF9A384aDfD989E26A30626458'],
+      [DEXES.synapse]: ['0x0000000000365b1d5B142732CF4d33BcddED21Fc'],
     },
   },
   [CHAIN_IDS.MERLIN_MAINNET]: {

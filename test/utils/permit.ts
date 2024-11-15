@@ -41,8 +41,8 @@ export async function getPermitSignatureAndCalldata(
   const [nonce, name, version, chainId] = await Promise.all([
     permitConfig?.nonce ?? token.nonces(wallet.address),
     permitConfig?.name ?? token.name(),
-    // permitConfig?.version ?? '1',
-    permitConfig?.version ?? '2',
+    permitConfig?.version ?? '1',
+    // permitConfig?.version ?? '2', // usdc arbitrum
     permitConfig?.chainId ?? wallet.getChainId(),
   ])
 

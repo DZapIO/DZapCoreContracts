@@ -18,16 +18,14 @@ import {
 import {
   convertBNToNegative,
   duration,
-  forkNetwork,
   generateRandomWallet,
   getPermit2SignatureAndCalldataForApprove,
   getPermitSignatureAndCalldata,
-  impersonate,
   latest,
   snapshot,
   updateBalance,
 } from '../utils'
-import { getFeeData, encodePermitData } from '../../scripts/core/helper'
+import { encodePermitData } from '../../scripts/core/helper'
 import {
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
@@ -62,8 +60,6 @@ import {
   FeeType,
   PermitType,
 } from '../../types'
-import { getRpcUrl } from '../../utils/network'
-import { CHAIN_IDS } from '../../config'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -1138,55 +1134,6 @@ describe('SwapFacet.test.ts', async () => {
 
       const recipientBalanceAfter = await tokenA.balanceOf(recipient)
       expect(recipientBalanceAfter).equal(recipientBalanceBefore.add(minAmount))
-    })
-
-    it.skip('1.7 Should allow user to swap single token, using permit approve (Erc20 -> Erc20)', async () => {
-      const rpcUrl = getRpcUrl(CHAIN_IDS.BASE_MAINNET)
-      console.log(rpcUrl)
-      await forkNetwork(rpcUrl)
-      const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
-      const user = await impersonate(
-        '0x136aA91d5f70E20854287749da735b26A04cf076'
-      )
-      await updateBalance(user.address)
-
-      const wallet = new Wallet(
-        '0x81648d85ebf1a18263fb7eeb501911b7d92d2ae23dcbe3037962fcb2c0852f56',
-        provider
-      )
-      // const wallet = await generateRandomWallet()
-      const tokenAddress = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
-
-      const tokenContract = (await ethers.getContractAt(
-        CONTRACTS.ERC20Mock,
-        tokenAddress
-      )) as ERC20Mock
-
-      // const spender = '0xF708e11A7C94abdE8f6217B13e6fE39C8b9cC0a6'
-      const spender = user.address
-      const amount = 500000000
-      const deadline = (await latest()).add(duration.minutes(10))
-
-      const { data, signature } = await getPermitSignatureAndCalldata(
-        wallet,
-        tokenContract,
-        spender,
-        amount,
-        deadline
-      )
-      console.log(data)
-
-      await tokenContract
-        .connect(user)
-        .permit(
-          wallet.address,
-          spender,
-          amount,
-          deadline,
-          signature.v,
-          signature.r,
-          signature.s
-        )
     })
 
     it('1.7 Should allow user to swap single token, using permit approve (Erc20 -> Erc20)', async () => {

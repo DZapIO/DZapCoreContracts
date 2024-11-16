@@ -2,6 +2,10 @@ import { BRIDGES } from '../bridges'
 
 export const SCROLL_MAINNET = {
   bridges: {
+    [BRIDGES.across]: {
+      address: ['0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96'],
+      selectorInfo: [],
+    },
     [BRIDGES.comet]: {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
       selectorInfo: [],

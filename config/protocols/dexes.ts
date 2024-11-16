@@ -614,7 +614,10 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.CRONOS_MAINNET]: {
     dexes: {
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
-      [DEXES.okx]: ['0xf332761c673b59B21fF6dfa8adA44d78c12dEF09'],
+      [DEXES.okx]: [
+        '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
+        '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
+      ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     },
   },

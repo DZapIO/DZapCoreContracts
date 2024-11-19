@@ -123,7 +123,9 @@
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687",
         "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9",
-        "0xfB375Cdfb975381731be52c05e8e695C8253c319"
+        "0xfB375Cdfb975381731be52c05e8e695C8253c319",
+        "0x35101b9DeCace6324aaDf65867d695D175c71D59",
+        "0xd87Fff92728792F6dFFA5A915Bd4F7BE1A5bb45E"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -138,6 +140,22 @@
         "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
         "0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D",
         "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
+      ],
+      "allbridge": [
+        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
+      ],
+      "hop": [
+        "0xb8901acB165ed027E32754E0FFe830802919727f"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66",
+        "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
+        "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
+        "0x00cD000000003f7F682BE4813200893d4e690000"
       ]
     },
     "executors": {
@@ -630,7 +648,8 @@
       ],
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
       ],
       "uniswap": [
         "0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2"
@@ -3011,7 +3030,8 @@
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
       ],
       "xyFinance": [
-        "0x43A86823EBBe2ECF9A384aDfD989E26A30626458"
+        "0x43A86823EBBe2ECF9A384aDfD989E26A30626458",
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"

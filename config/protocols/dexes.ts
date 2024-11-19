@@ -155,6 +155,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.bebop]: [
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
       ],
       [DEXES.izumi]: ['0xedf2021f41AbCfE2dEA4427E1B61f4d0AA5aA4b8'],
       [DEXES.uniswap]: ['0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2'],

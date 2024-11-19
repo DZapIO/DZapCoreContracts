@@ -10,6 +10,10 @@ export const ETH_MAINNET = {
       address: ['0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5'],
       selectorInfo: [],
     },
+    [BRIDGES.hop]: {
+      address: ['0xb8901acB165ed027E32754E0FFe830802919727f'],
+      selectorInfo: [],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [

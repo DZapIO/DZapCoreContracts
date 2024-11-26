@@ -102,7 +102,10 @@ export const ARBITRUM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
-      address: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
+      address: [
+        '0xCA94d8C245601B152C904f42fE788B4125f5b46B',
+        '0xC1a40F3e8cAC90a9f8fA427Ccc75653440DD5130',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {

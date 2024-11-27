@@ -871,7 +871,8 @@
       ],
       "routerNitro": [
         "0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a",
-        "0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE"
+        "0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE",
+        "0xfd30C690631592712F1A6927ebaF59581953B494"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -917,6 +918,9 @@
         "0x00cD000000003f7F682BE4813200893d4e690000"
       ],
       "orbital": [
+        "0x653f25dc641544675338cb47057f8ea530c69b78"
+      ],
+      "orbiter": [
         "0x653f25dc641544675338cb47057f8ea530c69b78"
       ]
     },
@@ -1051,7 +1055,8 @@
         "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
       ],
       "router": [
-        "0x21c1e74caadf990e237920d5515955a024031109"
+        "0x21c1e74caadf990e237920d5515955a024031109",
+        "0x0233971bd2DE29E81029336C46997055df3B5282"
       ],
       "mayanFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"

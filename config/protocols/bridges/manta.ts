@@ -23,7 +23,10 @@ export const MANTA_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.router]: {
-      address: ['0x21c1e74caadf990e237920d5515955a024031109'],
+      address: [
+        '0x21c1e74caadf990e237920d5515955a024031109',
+        '0x0233971bd2DE29E81029336C46997055df3B5282',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.mayanFinance]: {

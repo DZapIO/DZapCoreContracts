@@ -69,6 +69,9 @@ const config: HardhatUserConfig = {
     zklink: getNetworkConfig(CHAIN_IDS.ZKLINK_MAINNET),
     velas: getNetworkConfig(CHAIN_IDS.VELAS),
     filecoin: getNetworkConfig(CHAIN_IDS.FILECOIN_MAINNET),
+    mint: getNetworkConfig(CHAIN_IDS.MINT),
+    morph: getNetworkConfig(CHAIN_IDS.MORPH),
+    ontology: getNetworkConfig(CHAIN_IDS.ONTOLOGY),
   },
   solidity: {
     compilers: [

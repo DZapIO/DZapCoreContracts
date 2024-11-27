@@ -77,6 +77,9 @@ export enum NETWORK_NAMES {
   ZKFAIR = 'ZKFAIR',
   KROMA = 'KROMA',
   VELAS = 'VELOS',
+  MINT = 'MINT',
+  MORPH = 'MORPH',
+  ONTOLOGY = 'ONTOLOGY',
 }
 
 export enum RPC_TYPE {
@@ -179,6 +182,9 @@ export enum CHAIN_IDS {
   ZKFAIR = 42766,
   KROMA = 255,
   VELAS = 106,
+  MINT = 185,
+  MORPH = 2818,
+  ONTOLOGY = 58,
 }
 
 export const NETWORKS = {
@@ -462,6 +468,24 @@ export const NETWORKS = {
     chainId: CHAIN_IDS.FILECOIN_MAINNET,
     chainName: 'Filecoin Mainnet',
     rpcUrl: 'https://rpc.ankr.com/filecoin',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.MINT]: {
+    chainId: CHAIN_IDS.MINT,
+    chainName: 'Mint Mainnet',
+    rpcUrl: 'https://rpc.mintchain.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.MORPH]: {
+    chainId: CHAIN_IDS.MINT,
+    chainName: 'Morph Mainnet',
+    rpcUrl: 'https://rpc-quicknode.morphl2.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.ONTOLOGY]: {
+    chainId: CHAIN_IDS.ONTOLOGY,
+    chainName: 'Ontology Mainnet',
+    rpcUrl: 'https://dappnode1.ont.io:10339',
     rpcType: RPC_TYPE.OTHER,
   },
 }

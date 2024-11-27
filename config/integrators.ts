@@ -796,7 +796,7 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 0, // 0.15$ ido price
+          fixedNativeFeeAmount: 2,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 0,
         },

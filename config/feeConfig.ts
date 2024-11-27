@@ -225,7 +225,7 @@ export const DZAP_FEE_CONFIG = {
   },
   [CHAIN_IDS.ARTHERA]: {
     protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
-    maxFixedFeeAmount: '500',
+    maxFixedFeeAmount: '2000',
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },

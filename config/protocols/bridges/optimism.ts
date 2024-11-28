@@ -129,5 +129,9 @@ export const OPTIMISM_MAINNET = {
       address: ['0x9D39Fc627A6d9d9F8C831c16995b209548cc3401'],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0x1a2f6171d7e75f06141a953b650c6772055be843'],
+      selectorInfo: [],
+    },
   },
 }

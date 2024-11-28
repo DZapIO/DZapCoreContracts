@@ -77,6 +77,8 @@ import { ZKSYNC_MAINNET } from './bridges/zksync'
 import { FRAXTAL } from './bridges/fraxtal'
 import { GRAVITY } from './bridges/gravity'
 import { KROMA } from './bridges/kroma'
+import { MINT } from './bridges/mint'
+import { ARTHERA } from './bridges/arthera'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x: number]: { bridges?: any }
@@ -127,4 +129,6 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.FRAXTAL]: FRAXTAL,
   [CHAIN_IDS.GRAVITY]: GRAVITY,
   [CHAIN_IDS.KROMA]: KROMA,
+  [CHAIN_IDS.MINT]: MINT,
+  [CHAIN_IDS.ARTHERA]: ARTHERA,
 }

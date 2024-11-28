@@ -756,4 +756,9 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     },
   },
+  [CHAIN_IDS.MINT]: {
+    dexes: {
+      [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
+    },
+  },
 }

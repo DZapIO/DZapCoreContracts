@@ -267,6 +267,12 @@
       ],
       "celer": [
         "0x9D39Fc627A6d9d9F8C831c16995b209548cc3401"
+      ],
+      "orbiter": [
+        "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
+      ],
+      "router": [
+        "0x1a2f6171d7e75f06141a953b650c6772055be843"
       ]
     },
     "dexes": {
@@ -872,7 +878,8 @@
       "routerNitro": [
         "0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a",
         "0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE",
-        "0xfd30C690631592712F1A6927ebaF59581953B494"
+        "0xfd30C690631592712F1A6927ebaF59581953B494",
+        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -1143,6 +1150,16 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "bridge": {
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ]
+    },
+    "dexes": {
+      "iceCreamSwap": [
+        "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ]
     }
   },
   "196": {
@@ -2496,7 +2513,8 @@
       "router": [
         "0x60b483D521b844e13E3337D304929D0519Bd50C8",
         "0xef300fb4243a0ff3b90c8ccfa1264d78182adaa4",
-        "0x09a58d77ec86478d373c3173f3673195e4a12c06"
+        "0x09a58d77ec86478d373c3173f3673195e4a12c06",
+        "0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f"
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"

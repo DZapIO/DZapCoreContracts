@@ -2369,7 +2369,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "2000000000000000000",
+          "fixedNativeFeeAmount": 0,
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 0
         }

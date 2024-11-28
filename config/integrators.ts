@@ -796,7 +796,8 @@ export const INTEGRATOR_CONFIG = {
         {
           type: 0,
           tokenFee: 0,
-          fixedNativeFeeAmount: 2,
+          // fixedNativeFeeAmount: 2,
+          fixedNativeFeeAmount: 0,
           dzapTokenShare: 0,
           dzapFixedNativeShare: 0,
         },

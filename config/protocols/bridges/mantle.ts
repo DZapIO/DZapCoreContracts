@@ -20,6 +20,7 @@ export const MANTLE_MAINNET = {
       address: [
         '0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6',
         '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+        '0x6d6050ca1dd8e4aab9164b663d805104a3ecfc34',
       ],
       selectorInfo: [],
     },

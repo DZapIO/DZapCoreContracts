@@ -80,6 +80,7 @@ export const AVALANCHE_MAINNET = {
       address: [
         '0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF',
         '0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2',
+        '0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785',
       ],
       selectorInfo: [],
     },

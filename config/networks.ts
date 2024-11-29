@@ -276,7 +276,7 @@ export const NETWORKS = {
     chainId: CHAIN_IDS.METIS_MAINNET,
     chainName: 'Metis Andromeda',
     rpcUrl: 'https://andromeda.metis.io/',
-    rpcType: RPC_TYPE.BLAST_API,
+    rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     chainId: CHAIN_IDS.MODE_MAINNET,

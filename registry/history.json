@@ -1667,6 +1667,9 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
       ]
     }
   },
@@ -2074,7 +2077,9 @@
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
       "routerNitro": [
-        "0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6"
+        "0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6",
+        "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9",
+        "0x6d6050ca1dd8e4aab9164b663d805104a3ecfc34"
       ],
       "okx": [
         "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",
@@ -2783,7 +2788,8 @@
       ],
       "routerNitro": [
         "0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF",
-        "0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2"
+        "0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2",
+        "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -2975,7 +2981,8 @@
       ],
       "routerNitro": [
         "0x6D6050Ca1dd8e4aAb9164B663d805104a3ECFC34",
-        "0x8c4acd74ff4385f3b7911432fa6787aa14406f8b"
+        "0x8c4acd74ff4385f3b7911432fa6787aa14406f8b",
+        "0xf8555Aac045eEA3a355b5ce4f8916b67Cc74d693"
       ],
       "okx": [
         "0xf956D9FA19656D8e5219fd6fa8bA6cb198094138",

@@ -11,7 +11,10 @@ export const POLYGON_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.cctp]: {
-      address: ['0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918'],
+      address: [
+        '0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918',
+        '0xB876cc05c3C3C8ECBA65dAc4CF69CaF871F2e0DD', // celer
+      ],
       selectorInfo: [],
     },
     [BRIDGES.hop]: {
@@ -119,6 +122,7 @@ export const POLYGON_MAINNET = {
         '0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a',
         '0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE',
         '0xfd30C690631592712F1A6927ebaF59581953B494',
+        '0xa62ec33AbD6d7eBdF8ec98ce874820517Ae71E4D',
       ],
       selectorInfo: [],
     },

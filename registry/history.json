@@ -594,7 +594,9 @@
       ],
       "routerNitro": [
         "0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7",
-        "0x260687eBC6C55DAdd578264260f9f6e968f7B2A5"
+        "0x260687eBC6C55DAdd578264260f9f6e968f7B2A5",
+        "0xf9aB4A9D8CeE371De059405206b627b4776d97F7",
+        "0x7cfa5Ad327A80084b7d300982DDAc14C91d42Aba"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -891,7 +893,8 @@
         "0x9295ee1d8C5b022Be115A2AD3c30C72E34e7F096"
       ],
       "cctp": [
-        "0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918"
+        "0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918",
+        "0xB876cc05c3C3C8ECBA65dAc4CF69CaF871F2e0DD"
       ],
       "stargate": [
         "0x9Aa02D4Fae7F58b8E8f34c66E756cC734DAc7fe4",
@@ -929,6 +932,9 @@
       ],
       "orbiter": [
         "0x653f25dc641544675338cb47057f8ea530c69b78"
+      ],
+      "router": [
+        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d"
       ]
     },
     "dexes": {

@@ -25,7 +25,10 @@ export const MODE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
-      address: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
+      address: [
+        '0xf0773508c585246bd09bfb401aa18b72685b03f9',
+        '0x97eec1c29f745dc7c267f90292aa663d997a601d',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.router]: {

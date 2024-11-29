@@ -91,6 +91,7 @@ export const BSC_MAINNET = {
         '0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7',
         '0x260687eBC6C55DAdd578264260f9f6e968f7B2A5',
         '0xf9aB4A9D8CeE371De059405206b627b4776d97F7',
+        '0x7cfa5Ad327A80084b7d300982DDAc14C91d42Aba',
       ],
       selectorInfo: [],
     },

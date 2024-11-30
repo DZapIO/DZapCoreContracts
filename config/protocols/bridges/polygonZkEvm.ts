@@ -18,6 +18,7 @@ export const POLYGON_ZK_EVM_MAINNET = {
       address: [
         '0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce',
         '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
+        '0x4A95fAb2c7f0d425F74Aa6F0B2399b278AF80289',
       ],
       selectorInfo: [],
     },

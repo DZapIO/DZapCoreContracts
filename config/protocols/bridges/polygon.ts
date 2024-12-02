@@ -127,7 +127,10 @@ export const POLYGON_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.router]: {
-      address: ['0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d'],
+      address: [
+        '0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d',
+        '0x1ba8ca832496f0b66c08ab5f248217eb27b89a25',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {

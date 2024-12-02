@@ -247,7 +247,8 @@
         "0x86cA30bEF97fB651b8d866D45503684b90cb3312",
         "0xf11EBB94EC986EA891Aec29cfF151345C83b33Ec",
         "0x29Fba7d2A6C95DB162ee09C6250e912D6893DCa6",
-        "0x19B2162CA4C2C6F08C6942bFB846ce5C396aCB75"
+        "0x19B2162CA4C2C6F08C6942bFB846ce5C396aCB75",
+        "0x469147af8Bde580232BE9DC84Bb4EC84d348De24"
       ],
       "debridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -881,7 +882,8 @@
         "0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a",
         "0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE",
         "0xfd30C690631592712F1A6927ebaF59581953B494",
-        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d"
+        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d",
+        "0xa62ec33AbD6d7eBdF8ec98ce874820517Ae71E4D"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -934,7 +936,8 @@
         "0x653f25dc641544675338cb47057f8ea530c69b78"
       ],
       "router": [
-        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d"
+        "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d",
+        "0x1ba8ca832496f0b66c08ab5f248217eb27b89a25"
       ]
     },
     "dexes": {
@@ -1440,6 +1443,11 @@
       ],
       "router": [
         "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
+        "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
+        "0x00cD000000003f7F682BE4813200893d4e690000"
       ]
     }
   },

@@ -29,5 +29,9 @@ export const BLAST_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x841ce48F9446C8E281D3F1444cB859b4A6D0738C'],
+      selectorInfo: [],
+    },
   },
 }

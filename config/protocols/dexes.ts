@@ -676,6 +676,8 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.routerNitro]: ['0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce'],
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
+      [DEXES.openOcean]: ['0x6dd434082EAB5Cd134B33719ec1FF05fE985B97b'],
+      [DEXES.xyFinance]: ['0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080'],
     },
   },
   [CHAIN_IDS.TAIKO_MAINNET]: {

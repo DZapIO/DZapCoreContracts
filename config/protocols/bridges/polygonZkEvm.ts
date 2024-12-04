@@ -22,6 +22,10 @@ export const POLYGON_ZK_EVM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5'],
+      selectorInfo: [],
+    },
     [BRIDGES.okx]: {
       address: [
         '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',

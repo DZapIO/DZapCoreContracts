@@ -44,6 +44,10 @@ export const LINEA_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0x29AE05C93549bb93827cd651C6ee1c25960dB847'],
+      selectorInfo: [],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],

@@ -118,6 +118,7 @@ export const ARBITRUM_MAINNET = {
         '0xef300fb4243a0ff3b90c8ccfa1264d78182adaa4',
         '0x09a58d77ec86478d373c3173f3673195e4a12c06',
         '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
+        '0xb7ea6Ee9647Bef9f7bd672b459bd3799fffb26a1',
       ],
       selectorInfo: [],
     },
@@ -134,7 +135,10 @@ export const ARBITRUM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.celer]: {
-      address: ['0x1619DE6B6B20eD217a58d00f37B9d47C7663feca'],
+      address: [
+        '0x1619DE6B6B20eD217a58d00f37B9d47C7663feca',
+        '0x054B95b60BFFACe948Fa4548DA8eE2e212fb7C0a',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.synapse]: {

@@ -103,5 +103,9 @@ export const AVALANCHE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x9744ae566c64B6B6f7F9A4dD50f7496Df6Fef990'],
+      selectorInfo: [],
+    },
   },
 }

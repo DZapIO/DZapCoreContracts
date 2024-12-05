@@ -6,5 +6,9 @@ export const KAVA_MAINNET = {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0xb51541df05DE07be38dcfc4a80c05389A54502BB'],
+      selectorInfo: [],
+    },
   },
 }

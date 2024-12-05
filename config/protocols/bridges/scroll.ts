@@ -32,6 +32,10 @@ export const SCROLL_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0x6446C9f678764c8b69A75AEdd5b505E239dffB63'],
+      selectorInfo: [],
+    },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],
@@ -77,10 +81,6 @@ export const SCROLL_MAINNET = {
     },
     [BRIDGES.celer]: {
       address: ['0x9B36f165baB9ebe611d491180418d8De4b8f3a1f'],
-      selectorInfo: [],
-    },
-    [BRIDGES.across]: {
-      address: ['0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96'],
       selectorInfo: [],
     },
   },

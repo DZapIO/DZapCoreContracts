@@ -104,5 +104,9 @@ export const BASE_MAINNET = {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x243b40e96c6bF21511E53d85c86F6Ec982f9a879'],
+      selectorInfo: [],
+    },
   },
 }

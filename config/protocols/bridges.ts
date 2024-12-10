@@ -29,6 +29,7 @@ export enum BRIDGES {
   izumi = 'izumi',
   orbiter = 'orbiter',
   comet = 'comet',
+  swing = 'swing',
 }
 
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'

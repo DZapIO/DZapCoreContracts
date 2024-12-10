@@ -395,7 +395,8 @@ export const NETWORKS = {
   [CHAIN_IDS.FANTOM_MAINNET]: {
     chainId: CHAIN_IDS.FANTOM_MAINNET,
     chainName: 'Fantom Mainnet',
-    rpcUrl: 'https://rpc.ankr.com/fantom',
+    // rpcUrl: 'https://rpc.ankr.com/fantom',
+    rpcUrl: 'https://rpcapi.fantom.network',
     rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.FUSE]: {

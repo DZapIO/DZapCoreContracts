@@ -833,6 +833,14 @@
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ]
+    },
+    "bridge": {
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ]
     }
   },
   "137": {

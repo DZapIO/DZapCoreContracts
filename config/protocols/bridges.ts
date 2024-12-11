@@ -80,6 +80,7 @@ import { GRAVITY } from './bridges/gravity'
 import { KROMA } from './bridges/kroma'
 import { MINT } from './bridges/mint'
 import { ARTHERA } from './bridges/arthera'
+import { FUSE } from './bridges/fuse'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x: number]: { bridges?: any }
@@ -132,4 +133,5 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.KROMA]: KROMA,
   [CHAIN_IDS.MINT]: MINT,
   [CHAIN_IDS.ARTHERA]: ARTHERA,
+  [CHAIN_IDS.FUSE]: FUSE,
 }

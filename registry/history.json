@@ -1181,6 +1181,9 @@
     "bridge": {
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ]
     },
     "dexes": {
@@ -3033,6 +3036,9 @@
       ],
       "izumi": [
         "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
+      ],
+      "dodo": [
+        "0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B"
       ]
     },
     "bridge": {

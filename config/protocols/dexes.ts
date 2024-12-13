@@ -523,6 +523,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.BOBA_BNB]: {},
   [CHAIN_IDS.LINEA_MAINNET]: {
     dexes: {
+      [DEXES.dodo]: ['0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.okx]: [
         '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',

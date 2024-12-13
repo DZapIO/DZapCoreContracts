@@ -644,6 +644,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+      [DEXES.odos]: ['0xD0c22A5435F4E8E5770C1fAFb5374015FC12F7cD'],
     },
   },
   [CHAIN_IDS.OKX_MAINNET]: {

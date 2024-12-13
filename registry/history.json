@@ -273,7 +273,8 @@
         "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
       ],
       "router": [
-        "0x1a2f6171d7e75f06141a953b650c6772055be843"
+        "0x1a2f6171d7e75f06141a953b650c6772055be843",
+        "0x0967dc6F203aBc2d1FD75c15033d5f6446C14354"
       ]
     },
     "dexes": {
@@ -832,6 +833,14 @@
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ]
+    },
+    "bridge": {
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ]
     }
   },
   "137": {
@@ -941,6 +950,9 @@
       "router": [
         "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d",
         "0x1ba8ca832496f0b66c08ab5f248217eb27b89a25"
+      ],
+      "swing": [
+        "0xE684eEDD1F493945d7923E9156401e945211243d"
       ]
     },
     "dexes": {
@@ -1311,6 +1323,9 @@
       ],
       "kyber": [
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
+      ],
+      "odos": [
+        "0xD0c22A5435F4E8E5770C1fAFb5374015FC12F7cD"
       ]
     }
   },
@@ -2283,10 +2298,15 @@
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
       ],
       "owlto": [
-        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7",
+        "0xB5CeDAF172425BdeA4c186f6fCF30b367273DA19"
       ],
       "celer": [
         "0x243b40e96c6bF21511E53d85c86F6Ec982f9a879"
+      ],
+      "router": [
+        "0xfA14A71F6647bDe075BF16880EE7055C3b553237",
+        "0x655bca39f907fa391612af4e5980ce0b173976aa"
       ]
     },
     "dexes": {
@@ -2487,13 +2507,15 @@
       ],
       "routerNitro": [
         "0xf0773508c585246bd09bfb401aa18b72685b03f9",
-        "0x97eec1c29f745dc7c267f90292aa663d997a601d"
+        "0x97eec1c29f745dc7c267f90292aa663d997a601d",
+        "0x97eec1c29f745dC7c267F90292AA663d997a601D"
       ],
       "owlto": [
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ],
       "router": [
-        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9"
+        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9",
+        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"

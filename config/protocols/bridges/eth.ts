@@ -100,6 +100,10 @@ export const ETH_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.router]: {
+      address: ['0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc'],
+      selectorInfo: [],
+    },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],

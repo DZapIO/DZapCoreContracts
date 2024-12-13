@@ -32,7 +32,10 @@ export const MODE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.router]: {
-      address: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
+      address: [
+        '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',
+        '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.lifi]: {

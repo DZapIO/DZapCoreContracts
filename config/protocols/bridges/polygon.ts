@@ -133,6 +133,10 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0xE684eEDD1F493945d7923E9156401e945211243d'],
+      selectorInfo: [],
+    },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],

@@ -50,5 +50,9 @@ export const MODE_MAINNET = {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22'],
+      selectorInfo: [],
+    },
   },
 }

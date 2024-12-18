@@ -22,5 +22,9 @@ export const GNOSIS_MAINNET = {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1'],
+      selectorInfo: [],
+    },
   },
 }

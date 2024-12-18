@@ -17,6 +17,10 @@ export const BLAST_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.squid]: {
+      address: ['0x492751eC3c57141deb205eC2da8bFcb410738630'],
+      selectorInfo: [],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],

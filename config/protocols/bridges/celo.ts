@@ -18,5 +18,9 @@ export const CELO_MAINNET = {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x05222e273B480e91798961c92B7a35D68A1C0E02'],
+      selectorInfo: [],
+    },
   },
 }

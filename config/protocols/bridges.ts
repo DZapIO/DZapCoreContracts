@@ -8,6 +8,7 @@ export enum BRIDGES {
   changeNow = 'changeNow',
   deBridge = 'debridge',
   hop = 'hop',
+  hyperlane = 'hyperlane',
   lifi = 'lifi',
   mayanFinance = 'mayanFinance',
   mesonFinance = 'mesonFinance',

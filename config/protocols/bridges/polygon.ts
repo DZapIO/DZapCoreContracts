@@ -29,6 +29,10 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.hyperlane]: {
+      address: ['0xB3dF48224FA257D55e01342592f9A24cefc2628e'],
+      selectorInfo: [],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [
@@ -54,6 +58,7 @@ export const POLYGON_MAINNET = {
       address: [
         '0xa1fB1F1E5382844Ee2D1BD69Ef07D5A6Abcbd388',
         '0x0c988b66EdEf267D04f100A879db86cdb7B9A34F',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },
@@ -134,7 +139,11 @@ export const POLYGON_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.swing]: {
-      address: ['0xE684eEDD1F493945d7923E9156401e945211243d'],
+      address: [
+        '0xE684eEDD1F493945d7923E9156401e945211243d',
+        '0x0fad05a723fD039769815bE74Be9E7a1f7EeD911',
+        '0x36F60E4F8aE2f6d2b373f48C0921348d5203F728',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {

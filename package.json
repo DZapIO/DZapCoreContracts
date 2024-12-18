@@ -13,8 +13,8 @@
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
-    "addBridge": "ts-node scripts/others/addBridgesMulti.ts",
-    "addDex": "ts-node scripts/others/addSwapDexesMulti.ts"
+    "addBridges": "ts-node scripts/others/addMultipleBridges.ts",
+    "addDexes": "ts-node scripts/others/addMultipleDexes.ts"
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "0.11.0",

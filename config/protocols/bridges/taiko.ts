@@ -23,10 +23,15 @@ export const TAIKO_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x90f1Ef9D2cDe204C8494Cf73130771B350070B53'],
+      selectorInfo: [],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0xedC061306A79257f15108200C5B82ACc874C239d',
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0x6bE1fE9Dd10a4fBFCE5552Ca9AdD122341eC6C04',
       ],
       selectorInfo: [],
     },

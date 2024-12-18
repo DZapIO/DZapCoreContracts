@@ -40,6 +40,7 @@ export const BASE_MAINNET = {
       address: [
         '0x6aCd0Ec9405CcB701c57A88849C4F1CD85a3f3ab',
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },
@@ -117,6 +118,10 @@ export const BASE_MAINNET = {
     },
     [BRIDGES.celer]: {
       address: ['0x243b40e96c6bF21511E53d85c86F6Ec982f9a879'],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: ['0x3F45a223faA0dE47E2d4390c336320c68DC14E4E'],
       selectorInfo: [],
     },
   },

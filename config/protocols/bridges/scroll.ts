@@ -58,6 +58,10 @@ export const SCROLL_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0xa33db50b90E35378faEE4058DeAab2B392989b65'],
+      selectorInfo: [],
+    },
     [BRIDGES.symbiosis]: {
       address: [
         '0x624FFe62eBa13e6057878bCA1D7A9E35651E1D9c',

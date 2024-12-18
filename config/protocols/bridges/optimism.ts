@@ -37,6 +37,13 @@ export const OPTIMISM_MAINNET = {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: [
+        '0xF1c231F59b6b7Ffa68A7Aad43BbD238BF0bFB9C9',
+        '0xec42C38412fb4a56f75D706838215588b41701aa',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.unizen]: {
       address: [
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',
@@ -49,6 +56,7 @@ export const OPTIMISM_MAINNET = {
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',
         '0x7a6e01880693093abACcF442fcbED9E0435f1030',
         '0xF8d342db903F266de73B10a1e46601Bb08a3c195',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },
@@ -127,7 +135,10 @@ export const OPTIMISM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.celer]: {
-      address: ['0x9D39Fc627A6d9d9F8C831c16995b209548cc3401'],
+      address: [
+        '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',
+        '0x697aC93c9263346c5Ad0412F9356D5789a3AA687',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.router]: {

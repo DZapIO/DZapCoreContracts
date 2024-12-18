@@ -95,6 +95,10 @@ export const AVALANCHE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274'],
+      selectorInfo: [],
+    },
     [BRIDGES.synapse]: {
       address: [
         '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',

@@ -39,8 +39,9 @@ export const DZAP_DEXES_CONFIG: {
 } = {
   [CHAIN_IDS.ETH_MAINNET]: {
     dexes: {
-      [DEXES.fluid]: ['0x0B1a513ee24972DAEf112bC777a5610d4325C9e7'],
+      [DEXES.dodo]: ['0xFe837A3530dD566401d35beFCd55582AF7c4dfFC'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+      [DEXES.fluid]: ['0x0B1a513ee24972DAEf112bC777a5610d4325C9e7'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: ['0x1111111254eeb25477b68fb85ed929f73a960582'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -98,7 +99,10 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
+      [DEXES.zeroX]: [
+        '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+        '0xfF4b330c5BC3811b66d8864CF8078D8F2db20Dd6',
+      ],
       [DEXES.bebop]: [
         '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',

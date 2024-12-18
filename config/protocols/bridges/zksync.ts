@@ -18,6 +18,7 @@ export const ZKSYNC_MAINNET = {
       address: [
         '0x30E63157bD0bA74C814B786F6eA2ed9549507b46',
         '0xe4e156167cc9C7AC4AbD8d39d203a5495F775547',
+        '0xfA995b6540cBBe2beCC00f00D5B8Ce73523D1b51',
       ],
       selectorInfo: [],
     },
@@ -62,6 +63,10 @@ export const ZKSYNC_MAINNET = {
     },
     [BRIDGES.celer]: {
       address: ['0x54069e96C4247b37C2fbd9559CA99f08CD1CD66c'],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: ['0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1'],
       selectorInfo: [],
     },
   },

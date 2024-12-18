@@ -195,7 +195,8 @@
       "xyFinance": [
         "0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E",
         "0x7a6e01880693093abACcF442fcbED9E0435f1030",
-        "0xF8d342db903F266de73B10a1e46601Bb08a3c195"
+        "0xF8d342db903F266de73B10a1e46601Bb08a3c195",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "dbridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -267,7 +268,8 @@
         "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
       ],
       "celer": [
-        "0x9D39Fc627A6d9d9F8C831c16995b209548cc3401"
+        "0x9D39Fc627A6d9d9F8C831c16995b209548cc3401",
+        "0x697aC93c9263346c5Ad0412F9356D5789a3AA687"
       ],
       "orbiter": [
         "0x3191f40de6991b1bb1f61b7cec43d62bb337786b"
@@ -275,6 +277,10 @@
       "router": [
         "0x1a2f6171d7e75f06141a953b650c6772055be843",
         "0x0967dc6F203aBc2d1FD75c15033d5f6446C14354"
+      ],
+      "swing": [
+        "0xF1c231F59b6b7Ffa68A7Aad43BbD238BF0bFB9C9",
+        "0xec42C38412fb4a56f75D706838215588b41701aa"
       ]
     },
     "dexes": {
@@ -781,6 +787,9 @@
       ],
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "swing": [
+        "0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1"
       ]
     },
     "dexes": {
@@ -857,7 +866,8 @@
       ],
       "xyFinance": [
         "0xa1fB1F1E5382844Ee2D1BD69Ef07D5A6Abcbd388",
-        "0x0c988b66EdEf267D04f100A879db86cdb7B9A34F"
+        "0x0c988b66EdEf267D04f100A879db86cdb7B9A34F",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "dbridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -952,7 +962,12 @@
         "0x1ba8ca832496f0b66c08ab5f248217eb27b89a25"
       ],
       "swing": [
-        "0xE684eEDD1F493945d7923E9156401e945211243d"
+        "0xE684eEDD1F493945d7923E9156401e945211243d",
+        "0x0fad05a723fD039769815bE74Be9E7a1f7EeD911",
+        "0x36F60E4F8aE2f6d2b373f48C0921348d5203F728"
+      ],
+      "hyperlane": [
+        "0xB3dF48224FA257D55e01342592f9A24cefc2628e"
       ]
     },
     "dexes": {
@@ -1100,6 +1115,9 @@
       ],
       "celer": [
         "0x9B36f165baB9ebe611d491180418d8De4b8f3a1f"
+      ],
+      "swing": [
+        "0xdC81B70a3B8226bF966371748821D1FD4155eb9e"
       ]
     },
     "dexes": {
@@ -1460,7 +1478,8 @@
         "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
         "0xca506793A420E901BbCa8066be5661E3C52c84c2",
         "0x5523985926Aa12BA58DC5Ad00DDca99678D7227E",
-        "0x506803495B1876FE1fA6Cd9dC65fB060057A4Cc3"
+        "0x506803495B1876FE1fA6Cd9dC65fB060057A4Cc3",
+        "0xd92Ca299F1C2518E78E48C207b64591BA6E9b9a8"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
@@ -1499,7 +1518,8 @@
       ],
       "xyFinance": [
         "0x30E63157bD0bA74C814B786F6eA2ed9549507b46",
-        "0xe4e156167cc9C7AC4AbD8d39d203a5495F775547"
+        "0xe4e156167cc9C7AC4AbD8d39d203a5495F775547",
+        "0xfA995b6540cBBe2beCC00f00D5B8Ce73523D1b51"
       ],
       "symbiosis": [
         "0x8B791913eB07C32779a16750e3868aA8495F5964",
@@ -1531,6 +1551,9 @@
       ],
       "orbiter": [
         "0xb4AB2FF34faDC774aFF45f1C4566Cb5E16bD4867"
+      ],
+      "swing": [
+        "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
       ]
     },
     "dexes": {
@@ -2225,7 +2248,8 @@
       ],
       "xyFinance": [
         "0x6aCd0Ec9405CcB701c57A88849C4F1CD85a3f3ab",
-        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "dbridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -2310,6 +2334,9 @@
       "router": [
         "0xfA14A71F6647bDe075BF16880EE7055C3b553237",
         "0x655bca39f907fa391612af4e5980ce0b173976aa"
+      ],
+      "swing": [
+        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E"
       ]
     },
     "dexes": {
@@ -2528,6 +2555,9 @@
       ],
       "comet": [
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
+      ],
+      "swing": [
+        "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
       ]
     }
   },
@@ -2634,6 +2664,10 @@
       ],
       "comet": [
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
+      ],
+      "swing": [
+        "0x2260f6120b634B94A23eF11fa0D615ecf62db3cD",
+        "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53"
       ]
     },
     "dexes": {
@@ -2805,6 +2839,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "swing": [
+        "0x05222e273B480e91798961c92B7a35D68A1C0E02"
       ]
     }
   },
@@ -2883,6 +2920,9 @@
       ],
       "celer": [
         "0x9744ae566c64B6B6f7F9A4dD50f7496Df6Fef990"
+      ],
+      "swing": [
+        "0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274"
       ]
     },
     "dexes": {
@@ -3110,6 +3150,9 @@
       ],
       "router": [
         "0x29AE05C93549bb93827cd651C6ee1c25960dB847"
+      ],
+      "swing": [
+        "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
       ]
     }
   },
@@ -3206,6 +3249,9 @@
       ],
       "celer": [
         "0x841ce48F9446C8E281D3F1444cB859b4A6D0738C"
+      ],
+      "squid": [
+        "0x492751eC3c57141deb205eC2da8bFcb410738630"
       ]
     }
   },
@@ -3271,7 +3317,8 @@
       ],
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d",
-        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1"
+        "0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1",
+        "0x6bE1fE9Dd10a4fBFCE5552Ca9AdD122341eC6C04"
       ],
       "router": [
         "0x7BD616192fB2B364f9d29B2026165281a5f2ff2F"
@@ -3280,6 +3327,12 @@
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ],
       "orbital": [
+        "0x2598d7bc9d3b4b6124f3282e49eee68db270f516"
+      ],
+      "swing": [
+        "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53"
+      ],
+      "orbiter": [
         "0x2598d7bc9d3b4b6124f3282e49eee68db270f516"
       ]
     }
@@ -3401,6 +3454,9 @@
       ],
       "router": [
         "0x6446C9f678764c8b69A75AEdd5b505E239dffB63"
+      ],
+      "swing": [
+        "0xa33db50b90E35378faEE4058DeAab2B392989b65"
       ]
     },
     "integrators": {

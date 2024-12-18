@@ -79,6 +79,10 @@ export const OPTIMISM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
+      selectorInfo: [],
+    },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],

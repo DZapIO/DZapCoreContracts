@@ -281,6 +281,9 @@
       "swing": [
         "0xF1c231F59b6b7Ffa68A7Aad43BbD238BF0bFB9C9",
         "0xec42C38412fb4a56f75D706838215588b41701aa"
+      ],
+      "owlto": [
+        "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ]
     },
     "dexes": {

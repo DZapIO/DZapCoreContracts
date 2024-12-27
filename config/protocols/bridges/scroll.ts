@@ -6,6 +6,10 @@ export const SCROLL_MAINNET = {
       address: ['0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x9B36f165baB9ebe611d491180418d8De4b8f3a1f'],
+      selectorInfo: [],
+    },
     [BRIDGES.comet]: {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
       selectorInfo: [],
@@ -38,13 +42,6 @@ export const SCROLL_MAINNET = {
     },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
-      selectorInfo: [],
-    },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0x778C974568e376146dbC64fF12aD55B2d1c4133f',
-        '0x22bf2A9fcAab9dc96526097318f459eF74277042',
-      ],
       selectorInfo: [],
     },
     [BRIDGES.omniBtc]: {
@@ -83,8 +80,12 @@ export const SCROLL_MAINNET = {
       address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
       selectorInfo: [],
     },
-    [BRIDGES.celer]: {
-      address: ['0x9B36f165baB9ebe611d491180418d8De4b8f3a1f'],
+    [BRIDGES.xyFinance]: {
+      address: [
+        '0x778C974568e376146dbC64fF12aD55B2d1c4133f',
+        '0x22bf2A9fcAab9dc96526097318f459eF74277042',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+      ],
       selectorInfo: [],
     },
   },

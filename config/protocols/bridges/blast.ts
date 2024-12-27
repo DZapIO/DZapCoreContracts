@@ -25,6 +25,10 @@ export const BLAST_MAINNET = {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
+    [BRIDGES.symbiosis]: {
+      address: ['0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365'],
+      selectorInfo: [],
+    },
     [BRIDGES.synapse]: {
       address: [
         '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',

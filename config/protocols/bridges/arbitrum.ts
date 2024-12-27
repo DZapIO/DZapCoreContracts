@@ -46,6 +46,7 @@ export const ARBITRUM_MAINNET = {
       address: [
         '0x062b1Db694F6A437e3c028FC60dd6feA7444308c',
         '0x33383265290421C704c6b09F4BF27ce574DC4203',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },
@@ -134,6 +135,7 @@ export const ARBITRUM_MAINNET = {
       address: [
         '0x2260f6120b634B94A23eF11fa0D615ecf62db3cD',
         '0x90f1Ef9D2cDe204C8494Cf73130771B350070B53',
+        '0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64',
       ],
       selectorInfo: [],
     },

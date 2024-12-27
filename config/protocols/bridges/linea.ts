@@ -78,7 +78,10 @@ export const LINEA_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {
-      address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
+      address: [
+        '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.orbiter]: {

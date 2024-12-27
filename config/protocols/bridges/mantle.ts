@@ -39,6 +39,10 @@ export const MANTLE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.owlto]: {
+      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+      selectorInfo: [],
+    },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],

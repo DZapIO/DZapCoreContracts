@@ -6,10 +6,6 @@ export const MODE_MAINNET = {
       address: ['0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96'],
       selectorInfo: [],
     },
-    [BRIDGES.owlto]: {
-      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
-      selectorInfo: [],
-    },
     [BRIDGES.symbiosis]: {
       address: [
         '0x5D61c537393cf21893BE619E36fC94cd73C77DD3',
@@ -22,6 +18,13 @@ export const MODE_MAINNET = {
     },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: [
+        '0x0e83DEd9f80e1C92549615D96842F5cB64A08762',
+        '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {

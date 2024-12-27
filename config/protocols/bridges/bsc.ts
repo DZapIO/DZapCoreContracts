@@ -31,6 +31,7 @@ export const BSC_MAINNET = {
       address: [
         '0xDF921bc47aa6eCdB278f8C259D6a7Fef5702f1A9',
         '0x7D26F09d4e2d032Efa0729fC31a4c2Db8a2394b1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },

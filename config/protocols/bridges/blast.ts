@@ -14,6 +14,7 @@ export const BLAST_MAINNET = {
       address: [
         '0x43A86823EBBe2ECF9A384aDfD989E26A30626458',
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },
@@ -23,6 +24,10 @@ export const BLAST_MAINNET = {
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: ['0xa33db50b90E35378faEE4058DeAab2B392989b65'],
       selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {

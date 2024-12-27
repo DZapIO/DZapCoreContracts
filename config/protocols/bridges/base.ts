@@ -13,6 +13,22 @@ export const BASE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0x243b40e96c6bF21511E53d85c86F6Ec982f9a879'],
+      selectorInfo: [],
+    },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
+    [BRIDGES.deBridge]: {
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+        '0xc1656B63D9EEbA6d114f6bE19565177893e5bCBF',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.hop]: {
       address: [
         '0x7D269D3E0d61A05a0bA976b7DBF8805bF844AF3F',
@@ -25,8 +41,75 @@ export const BASE_MAINNET = {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [],
     },
+    [BRIDGES.mayanFinance]: {
+      address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
+      selectorInfo: [],
+    },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+      selectorInfo: [],
+    },
+    [BRIDGES.okx]: {
+      address: [
+        '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
+        '0x57df6092665eb6058DE53939612413ff4B09114E',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.orbiter]: {
+      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: [
+        '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
+        '0xB5CeDAF172425BdeA4c186f6fCF30b367273DA19',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.router]: {
+      address: [
+        '0xfA14A71F6647bDe075BF16880EE7055C3b553237',
+        '0x655bca39f907fa391612af4e5980ce0b173976aa',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.routerNitro]: {
+      address: [
+        '0x02D728B9C1513478a6b6de77a92648e1D8F801e7',
+        '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
+        '0xE01cd80B1123ADCeaA17C1C7DeCBcEbF84921323',
+        '0x655bca39f907fa391612af4e5980ce0b173976aa',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: [
+        '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
+        '0x36B356187ba614ee19bf79A080cAc9C0A12C9206',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
+        '0x41Ae964d0F61Bb5F5e253141A462aD6F3b625B92',
+        '0x691df9C4561d95a4a726313089c8536dd682b946',
+        '0x8097f0B9f06C27AF9579F75762F971D745bb222F',
+        '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.synapse]: {
+      address: [
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
+        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
+        '0x00cD000000003f7F682BE4813200893d4e690000',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.unizen]: {
@@ -42,86 +125,6 @@ export const BASE_MAINNET = {
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.deBridge]: {
-      address: [
-        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
-        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
-        '0xc1656B63D9EEBa6d114f6bE19565177893e5bCBF',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.mayanFinance]: {
-      address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
-      selectorInfo: [],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
-        '0x41Ae964d0F61Bb5F5e253141A462aD6F3b625B92',
-        '0x691df9C4561d95a4a726313089c8536dd682b946',
-        '0x8097f0B9f06C27AF9579F75762F971D745bb222F',
-        '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
-    },
-    [BRIDGES.okx]: {
-      address: [
-        '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
-        '0x57df6092665eb6058DE53939612413ff4B09114E',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.owlto]: {
-      address: [
-        '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
-        '0xB5CeDAF172425BdeA4c186f6fCF30b367273DA19',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.routerNitro]: {
-      address: [
-        '0x02D728B9C1513478a6b6de77a92648e1D8F801e7',
-        '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
-        '0xE01cd80B1123ADCeaA17C1C7DeCBcEbF84921323',
-        '0x655bca39f907fa391612af4e5980ce0b173976aa',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.router]: {
-      address: [
-        '0xfA14A71F6647bDe075BF16880EE7055C3b553237',
-        '0x655bca39f907fa391612af4e5980ce0b173976aa',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.synapse]: {
-      address: [
-        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
-        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
-        '0x00cD000000003f7F682BE4813200893d4e690000',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.orbiter]: {
-      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
-      selectorInfo: [],
-    },
-    [BRIDGES.comet]: {
-      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
-      selectorInfo: [],
-    },
-    [BRIDGES.celer]: {
-      address: ['0x243b40e96c6bF21511E53d85c86F6Ec982f9a879'],
-      selectorInfo: [],
-    },
-    [BRIDGES.swing]: {
-      address: ['0x3F45a223faA0dE47E2d4390c336320c68DC14E4E'],
       selectorInfo: [],
     },
   },

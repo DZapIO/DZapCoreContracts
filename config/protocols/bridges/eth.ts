@@ -10,6 +10,18 @@ export const ETH_MAINNET = {
       address: ['0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5'],
       selectorInfo: [],
     },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
+    [BRIDGES.deBridge]: {
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.hop]: {
       address: ['0xb8901acB165ed027E32754E0FFe830802919727f'],
       selectorInfo: [],
@@ -24,63 +36,11 @@ export const ETH_MAINNET = {
         },
       ],
     },
-    [BRIDGES.comet]: {
-      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
-      selectorInfo: [],
-    },
-    [BRIDGES.socket]: {
-      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
-      selectorInfo: [],
-    },
-    [BRIDGES.unizen]: {
-      address: [
-        '0xd3f64BAa732061F8B3626ee44bab354f854877AC',
-        '0xCf2DBA4e5C9f1B47AC09dc712A0F7bD8eE31A15d',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
-        '0x4315f344a905dC21a08189A117eFd6E1fcA37D57',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.deBridge]: {
-      address: [
-        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
-        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
-        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
-      ],
-      selectorInfo: [],
-    },
     [BRIDGES.mayanFinance]: {
       address: [
         '0xf3f04555f8fda510bfc77820fd6eb8446f59e72d',
         '0x0654874eb7F59C6f5b39931FC45dC45337c967c3',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.omniBtc]: {
-      address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
-      selectorInfo: [],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
-        '0xfCEF2Fe72413b65d3F393d278A714caD87512bcd',
-        '0xf621Fb08BBE51aF70e7E0F4EA63496894166Ff7F',
-        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
-        '0x49d3Fc00f3ACf80FABCb42D7681667B20F60889A',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.telosBridge]: {
-      address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
       selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
@@ -94,6 +54,18 @@ export const ETH_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.omniBtc]: {
+      address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
+      selectorInfo: [],
+    },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+      selectorInfo: [],
+    },
+    [BRIDGES.router]: {
+      address: ['0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x6c45e28a76977a96e263f84f95912b47f927b687',
@@ -105,8 +77,8 @@ export const ETH_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.router]: {
-      address: ['0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc'],
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {
@@ -122,11 +94,39 @@ export const ETH_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
+        '0xfCEF2Fe72413b65d3F393d278A714caD87512bcd',
+        '0xf621Fb08BBE51aF70e7E0F4EA63496894166Ff7F',
+        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+        '0x49d3Fc00f3ACf80FABCb42D7681667B20F60889A',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.synapse]: {
       address: [
         '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.telosBridge]: {
+      address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
+      selectorInfo: [],
+    },
+    [BRIDGES.unizen]: {
+      address: [
+        '0xd3f64BAa732061F8B3626ee44bab354f854877AC',
+        '0xCf2DBA4e5C9f1B47AC09dc712A0F7bD8eE31A15d',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.xyFinance]: {
+      address: [
+        '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
+        '0x4315f344a905dC21a08189A117eFd6E1fcA37D57',
       ],
       selectorInfo: [],
     },

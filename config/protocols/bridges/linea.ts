@@ -6,6 +6,10 @@ export const LINEA_MAINNET = {
       address: ['0x7E63A5f1a8F0B4d0934B2f2327DAED3F6bb2ee75'],
       selectorInfo: [],
     },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
     [BRIDGES.deBridge]: {
       address: ['0xeF4fB24aD0916217251F553c0596F8Edc630EB66'],
       selectorInfo: [],
@@ -32,8 +36,20 @@ export const LINEA_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: ['0xA562e2510ECDACAa1DB482fd287454AD2B979fa6'],
+      selectorInfo: [],
+    },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+      selectorInfo: [],
+    },
+    [BRIDGES.router]: {
+      address: ['0x29AE05C93549bb93827cd651C6ee1c25960dB847'],
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
@@ -42,10 +58,6 @@ export const LINEA_MAINNET = {
         '0x8c4acd74ff4385f3b7911432fa6787aa14406f8b',
         '0xf8555Aac045eEA3a355b5ce4f8916b67Cc74d693',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.router]: {
-      address: ['0x29AE05C93549bb93827cd651C6ee1c25960dB847'],
       selectorInfo: [],
     },
     [BRIDGES.socket]: {
@@ -58,6 +70,10 @@ export const LINEA_MAINNET = {
     },
     [BRIDGES.stargate]: {
       address: ['0x81F6138153d473E8c5EcebD3DC8Cd4903506B075'],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: ['0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22'],
       selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
@@ -82,22 +98,6 @@ export const LINEA_MAINNET = {
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.orbiter]: {
-      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
-      selectorInfo: [],
-    },
-    [BRIDGES.owlto]: {
-      address: ['0xA562e2510ECDACAa1DB482fd287454AD2B979fa6'],
-      selectorInfo: [],
-    },
-    [BRIDGES.comet]: {
-      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
-      selectorInfo: [],
-    },
-    [BRIDGES.swing]: {
-      address: ['0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22'],
       selectorInfo: [],
     },
   },

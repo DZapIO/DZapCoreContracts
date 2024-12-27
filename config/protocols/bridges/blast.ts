@@ -2,6 +2,10 @@ import { BRIDGES } from '../bridges'
 
 export const BLAST_MAINNET = {
   bridges: {
+    [BRIDGES.celer]: {
+      address: ['0x841ce48F9446C8E281D3F1444cB859b4A6D0738C'],
+      selectorInfo: [],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [],
@@ -10,20 +14,12 @@ export const BLAST_MAINNET = {
       address: ['0xf956d9fa19656d8e5219fd6fa8ba6cb198094138'],
       selectorInfo: [],
     },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0x43A86823EBBe2ECF9A384aDfD989E26A30626458',
-        '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
-        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
-      ],
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
     [BRIDGES.squid]: {
       address: ['0x492751eC3c57141deb205eC2da8bFcb410738630'],
-      selectorInfo: [],
-    },
-    [BRIDGES.socket]: {
-      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],
     },
     [BRIDGES.swing]: {
@@ -42,8 +38,12 @@ export const BLAST_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.celer]: {
-      address: ['0x841ce48F9446C8E281D3F1444cB859b4A6D0738C'],
+    [BRIDGES.xyFinance]: {
+      address: [
+        '0x43A86823EBBe2ECF9A384aDfD989E26A30626458',
+        '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+      ],
       selectorInfo: [],
     },
   },

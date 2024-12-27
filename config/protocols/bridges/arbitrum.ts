@@ -10,6 +10,25 @@ export const ARBITRUM_MAINNET = {
       address: ['0x9Ce3447B58D58e8602B7306316A5fF011B92d189'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: [
+        '0x1619DE6B6B20eD217a58d00f37B9d47C7663feca',
+        '0x054B95b60BFFACe948Fa4548DA8eE2e212fb7C0a',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.comet]: {
+      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+      selectorInfo: [],
+    },
+    [BRIDGES.deBridge]: {
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.hop]: {
       address: [
         '0xCB0a4177E0A60247C0ad18Be87f8eDfF6DD30283',
@@ -31,64 +50,11 @@ export const ARBITRUM_MAINNET = {
         },
       ],
     },
-    [BRIDGES.socket]: {
-      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
-      selectorInfo: [],
-    },
-    [BRIDGES.unizen]: {
-      address: [
-        '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',
-        '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0x062b1Db694F6A437e3c028FC60dd6feA7444308c',
-        '0x33383265290421C704c6b09F4BF27ce574DC4203',
-        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.deBridge]: {
-      address: [
-        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
-        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
-        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
-      ],
-      selectorInfo: [],
-    },
     [BRIDGES.mayanFinance]: {
       address: [
         '0xF3f04555f8FdA510bfC77820FD6eB8446f59E72d',
         '0x0654874eb7F59C6f5b39931FC45dC45337c967c3',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.omniBtc]: {
-      address: [
-        '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
-        '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
-        '0x8D18DFCeA276DC3f5d76270F9F544cb74b39c4Eb',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0xD01319f4b65b79124549dE409D36F25e04B3e551',
-        '0x80ddDDa846e779cceE463bDC0BCc2Ae296feDaF9',
-        '0xf7e96217347667064DEE8f20DB747B1C7df45DDe',
-        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
-        '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.telosBridge]: {
-      address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
       selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
@@ -102,15 +68,20 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.routerNitro]: {
+    [BRIDGES.omniBtc]: {
       address: [
-        '0xCA94d8C245601B152C904f42fE788B4125f5b46B',
-        '0xC1a40F3e8cAC90a9f8fA427Ccc75653440DD5130',
+        '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
+        '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+        '0x8D18DFCeA276DC3f5d76270F9F544cb74b39c4Eb',
       ],
       selectorInfo: [],
     },
-    [BRIDGES.squid]: {
-      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+    [BRIDGES.owlto]: {
+      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
+      selectorInfo: [],
+    },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
     [BRIDGES.router]: {
@@ -121,6 +92,21 @@ export const ARBITRUM_MAINNET = {
         '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
         '0xb7ea6Ee9647Bef9f7bd672b459bd3799fffb26a1',
       ],
+      selectorInfo: [],
+    },
+    [BRIDGES.routerNitro]: {
+      address: [
+        '0xCA94d8C245601B152C904f42fE788B4125f5b46B',
+        '0xC1a40F3e8cAC90a9f8fA427Ccc75653440DD5130',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      selectorInfo: [],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
       selectorInfo: [],
     },
     [BRIDGES.stargate]: {
@@ -139,14 +125,13 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.owlto]: {
-      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
-      selectorInfo: [],
-    },
-    [BRIDGES.celer]: {
+    [BRIDGES.symbiosis]: {
       address: [
-        '0x1619DE6B6B20eD217a58d00f37B9d47C7663feca',
-        '0x054B95b60BFFACe948Fa4548DA8eE2e212fb7C0a',
+        '0xD01319f4b65b79124549dE409D36F25e04B3e551',
+        '0x80ddDDa846e779cceE463bDC0BCc2Ae296feDaF9',
+        '0xf7e96217347667064DEE8f20DB747B1C7df45DDe',
+        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+        '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
       ],
       selectorInfo: [],
     },
@@ -158,8 +143,23 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
-    [BRIDGES.comet]: {
-      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+    [BRIDGES.telosBridge]: {
+      address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
+      selectorInfo: [],
+    },
+    [BRIDGES.unizen]: {
+      address: [
+        '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',
+        '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.xyFinance]: {
+      address: [
+        '0x062b1Db694F6A437e3c028FC60dd6feA7444308c',
+        '0x33383265290421C704c6b09F4BF27ce574DC4203',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+      ],
       selectorInfo: [],
     },
   },

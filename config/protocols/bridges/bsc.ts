@@ -6,6 +6,10 @@ export const BSC_MAINNET = {
       address: ['0x3C4FA639c8D7E65c603145adaD8bD12F2358312f'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: ['0xdd90E5E87A2081Dcf0391920868eBc2FFB81a1aF'],
+      selectorInfo: [],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
       selectorInfo: [
@@ -114,10 +118,6 @@ export const BSC_MAINNET = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-      selectorInfo: [],
-    },
-    [BRIDGES.celer]: {
-      address: ['0xdd90E5E87A2081Dcf0391920868eBc2FFB81a1aF'],
       selectorInfo: [],
     },
     [BRIDGES.orbiter]: {

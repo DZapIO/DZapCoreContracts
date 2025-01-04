@@ -7,7 +7,14 @@ export const ETH_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.allbridge]: {
-      address: ['0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5'],
+      address: [
+        '0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5',
+        '0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.celer]: {
+      address: ['0x6065A982F04F759b7d2D042D2864e569fad84214'],
       selectorInfo: [],
     },
     [BRIDGES.comet]: {
@@ -23,7 +30,10 @@ export const ETH_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.hop]: {
-      address: ['0xb8901acB165ed027E32754E0FFe830802919727f'],
+      address: [
+        '0xb8901acB165ed027E32754E0FFe830802919727f',
+        '0x7e77461CA2a9d82d26FD5e0Da2243BF72eA45747',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.lifi]: {
@@ -58,8 +68,19 @@ export const ETH_MAINNET = {
       address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
       selectorInfo: [],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0xC741900276CD598060b0FE6594FbE977392928f4'],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
+      selectorInfo: [],
+    },
     [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+      address: [
+        '0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d',
+        '0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52', // rainbow bridge through rango
+      ],
       selectorInfo: [],
     },
     [BRIDGES.router]: {

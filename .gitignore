@@ -9,6 +9,7 @@ deployments-zk
 scripts
 stagingHistory.json
 .env
+/scripts
 
 temp
 .vscode

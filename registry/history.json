@@ -2771,6 +2771,9 @@
       ],
       "izumi": [
         "0x01fDea353849cA29F778B2663BcaCA1D191bED0e"
+      ],
+      "swapKit": [
+        "0x99D4e80DB0C023EFF8D25d8155E0dCFb5aDDeC5E"
       ]
     },
     "executors": {

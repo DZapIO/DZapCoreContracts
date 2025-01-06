@@ -32,6 +32,7 @@ export enum DEXES {
   synapse = 'synapse',
   izumi = 'izumi',
   fluid = 'fluid',
+  swapKit = 'swapKit',
 }
 
 export const DZAP_DEXES_CONFIG: {
@@ -252,6 +253,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.routerNitro]: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
       [DEXES.izumi]: ['0x01fDea353849cA29F778B2663BcaCA1D191bED0e'],
+      [DEXES.swapKit]: ['0x99D4e80DB0C023EFF8D25d8155E0dCFb5aDDeC5E'],
     },
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {

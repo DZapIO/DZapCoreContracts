@@ -2690,6 +2690,16 @@
         "0x2260f6120b634B94A23eF11fa0D615ecf62db3cD",
         "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53",
         "0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64"
+      ],
+      "relayLink": [
+        "0xa5f565650890fba1824ee0f21ebbbf660a179934"
+      ],
+      "crossCurve": [
+        "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "wanBridge": [
+        "0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613",
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {

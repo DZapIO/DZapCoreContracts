@@ -135,7 +135,8 @@
         "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
       ],
       "rango": [
-        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d",
+        "0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52"
       ],
       "stargate": [
         "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
@@ -143,10 +144,12 @@
         "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
       ],
       "allbridge": [
-        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
+        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5",
+        "0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e"
       ],
       "hop": [
-        "0xb8901acB165ed027E32754E0FFe830802919727f"
+        "0xb8901acB165ed027E32754E0FFe830802919727f",
+        "0x7e77461CA2a9d82d26FD5e0Da2243BF72eA45747"
       ],
       "debridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -163,6 +166,15 @@
       ],
       "router": [
         "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc"
+      ],
+      "celer": [
+        "0x6065A982F04F759b7d2D042D2864e569fad84214"
+      ],
+      "orbiter": [
+        "0xC741900276CD598060b0FE6594FbE977392928f4"
+      ],
+      "owlto": [
+        "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ]
     },
     "executors": {

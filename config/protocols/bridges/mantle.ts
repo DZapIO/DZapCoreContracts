@@ -30,6 +30,7 @@ export const MANTLE_MAINNET = {
         '0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6',
         '0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9',
         '0x6d6050ca1dd8e4aab9164b663d805104a3ecfc34',
+        '0x958CAE900315e85f6d00228c48E237822f9C22f8',
       ],
       selectorInfo: [],
     },
@@ -61,7 +62,10 @@ export const MANTLE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {
-      address: ['0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1'],
+      address: [
+        '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+      ],
       selectorInfo: [],
     },
   },

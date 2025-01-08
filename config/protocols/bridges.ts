@@ -7,6 +7,7 @@ export enum BRIDGES {
   cctp = 'cctp',
   celer = 'celer',
   changeNow = 'changeNow',
+  crossCurve = 'crossCurve',
   comet = 'comet',
   deBridge = 'debridge',
   hop = 'hop',
@@ -20,7 +21,6 @@ export enum BRIDGES {
   orbiter = 'orbiter',
   owlto = 'owlto',
   rango = 'rango',
-  router = 'router',
   routerNitro = 'routerNitro',
   socket = 'socket',
   squid = 'squid',
@@ -32,6 +32,13 @@ export enum BRIDGES {
   unizen = 'unizen',
   wanBridge = 'wanBridge',
   xyFinance = 'xyFinance',
+  stargate = 'stargate',
+  celer = 'celer',
+  synapse = 'synapse',
+  izumi = 'izumi',
+  orbiter = 'orbiter',
+  comet = 'comet',
+  swing = 'swing',
 }
 
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'

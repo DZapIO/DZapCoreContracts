@@ -135,7 +135,8 @@
         "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
       ],
       "rango": [
-        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d",
+        "0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52"
       ],
       "stargate": [
         "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
@@ -143,10 +144,12 @@
         "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
       ],
       "allbridge": [
-        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
+        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5",
+        "0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e"
       ],
       "hop": [
-        "0xb8901acB165ed027E32754E0FFe830802919727f"
+        "0xb8901acB165ed027E32754E0FFe830802919727f",
+        "0x7e77461CA2a9d82d26FD5e0Da2243BF72eA45747"
       ],
       "debridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -163,6 +166,15 @@
       ],
       "router": [
         "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc"
+      ],
+      "celer": [
+        "0x6065A982F04F759b7d2D042D2864e569fad84214"
+      ],
+      "orbiter": [
+        "0xC741900276CD598060b0FE6594FbE977392928f4"
+      ],
+      "owlto": [
+        "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ]
     },
     "executors": {
@@ -2692,6 +2704,16 @@
         "0x2260f6120b634B94A23eF11fa0D615ecf62db3cD",
         "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53",
         "0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64"
+      ],
+      "relayLink": [
+        "0xa5f565650890fba1824ee0f21ebbbf660a179934"
+      ],
+      "crossCurve": [
+        "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "wanBridge": [
+        "0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613",
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {
@@ -2773,6 +2795,9 @@
       ],
       "izumi": [
         "0x01fDea353849cA29F778B2663BcaCA1D191bED0e"
+      ],
+      "swapKit": [
+        "0x99D4e80DB0C023EFF8D25d8155E0dCFb5aDDeC5E"
       ],
       "swapkit": [
         "0x700E97ef07219440487840Dc472E7120A7FF11F4"
@@ -2922,7 +2947,8 @@
       "routerNitro": [
         "0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF",
         "0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2",
-        "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785"
+        "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785",
+        "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"

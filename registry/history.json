@@ -2393,7 +2393,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8"
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
@@ -2552,6 +2553,9 @@
       ],
       "izumi": [
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ],
+      "zeroX": [
+        "0xa601B541f17FB6Bf8db1628E8F3d113b4336434c"
       ]
     },
     "bridge": {
@@ -3002,7 +3006,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xaBB0aBF698ea1879A0B0e309Ee8C8e1056ae8bce"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -3287,6 +3292,9 @@
       ],
       "synapse": [
         "0x0000000000365b1d5B142732CF4d33BcddED21Fc"
+      ],
+      "zeroX": [
+        "0xFD91797719b50D8C3F37e02647a88B880162A5c6"
       ]
     },
     "bridge": {
@@ -3446,6 +3454,9 @@
       ],
       "xyFinance": [
         "0x22bf2A9fcAab9dc96526097318f459eF74277042"
+      ],
+      "zeroX": [
+        "0x6c403dBA21F072E16b7De2B013f8aDEAE9c2e76E"
       ]
     },
     "executors": {
@@ -3601,7 +3612,8 @@
       ],
       "dodo": [
         "0x335aC99bb3E51BDbF22025f092Ebc1Cf2c5cC619",
-        "0x7449Cd63C2b1A06C36945eD83f0626D303781B6E"
+        "0x7449Cd63C2b1A06C36945eD83f0626D303781B6E",
+        "0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"

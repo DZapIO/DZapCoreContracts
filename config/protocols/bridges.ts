@@ -5,32 +5,33 @@ export enum BRIDGES {
   across = 'across',
   allbridge = 'allbridge',
   cctp = 'cctp',
+  celer = 'celer',
   changeNow = 'changeNow',
+  comet = 'comet',
   deBridge = 'debridge',
   hop = 'hop',
   hyperlane = 'hyperlane',
+  izumi = 'izumi',
   lifi = 'lifi',
   mayanFinance = 'mayanFinance',
   mesonFinance = 'mesonFinance',
   okx = 'okx',
   omniBtc = 'omniBtc',
+  orbiter = 'orbiter',
   owlto = 'owlto',
   rango = 'rango',
-  routerNitro = 'routerNitro',
   router = 'router',
+  routerNitro = 'routerNitro',
   socket = 'socket',
   squid = 'squid',
+  stargate = 'stargate',
+  swing = 'swing',
   symbiosis = 'symbiosis',
+  synapse = 'synapse',
   telosBridge = 'telosBridge',
   unizen = 'unizen',
+  wanBridge = 'wanBridge',
   xyFinance = 'xyFinance',
-  stargate = 'stargate',
-  celer = 'celer',
-  synapse = 'synapse',
-  izumi = 'izumi',
-  orbiter = 'orbiter',
-  comet = 'comet',
-  swing = 'swing',
 }
 
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'
@@ -48,7 +49,7 @@ import { CELO_MAINNET } from './bridges/celo'
 import { CONFLUX_E_SPACE_MAINNET } from './bridges/conflux'
 import { CORE_MAINNET } from './bridges/core'
 import { CRONOS_MAINNET } from './bridges/cronos'
-import { ETH_MAINNET } from './bridges/eth'
+import { ETH_MAINNET } from './bridges/ethereum'
 import { FANTOM_MAINNET } from './bridges/fantom'
 import { FILECOIN_MAINNET } from './bridges/filecoin'
 import { GNOSIS_MAINNET } from './bridges/gnosis'

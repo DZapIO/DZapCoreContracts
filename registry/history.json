@@ -316,7 +316,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1abe32c034e558cdd535791643c58a13acc10"
+        "0xdef1abe32c034e558cdd535791643c58a13acc10",
+        "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -675,7 +676,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0x068BA5d0540e27b39c71a00a1c0c1E669D62Dc10"
       ],
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
@@ -2771,6 +2773,9 @@
       ],
       "izumi": [
         "0x01fDea353849cA29F778B2663BcaCA1D191bED0e"
+      ],
+      "swapkit": [
+        "0x700E97ef07219440487840Dc472E7120A7FF11F4"
       ]
     },
     "executors": {
@@ -3013,10 +3018,14 @@
       "dodo": [
         "0x1F076a800005c758a505E759720eb6737136e893",
         "0x3a64Ec3606FF7310E8fAd6FcC008e39705fB496d",
-        "0xCFea63e3DE31De53D68780Dd65675F169439e470"
+        "0xCFea63e3DE31De53D68780Dd65675F169439e470",
+        "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "swapkit": [
+        "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
       ]
     },
     "executors": {

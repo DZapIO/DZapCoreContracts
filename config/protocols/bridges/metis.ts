@@ -22,7 +22,10 @@ export const METIS_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.router]: {
-      address: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
+      address: [
+        '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',
+        '0x97eec1c29f745dC7c267F90292AA663d997a601D',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.rango]: {

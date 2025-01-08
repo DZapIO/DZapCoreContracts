@@ -123,6 +123,10 @@ export const ETH_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.wanBridge]: {
+      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      selectorInfo: [],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',

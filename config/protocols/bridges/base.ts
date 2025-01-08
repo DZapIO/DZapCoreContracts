@@ -7,10 +7,7 @@ export const BASE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.allbridge]: {
-      address: [
-        '0x001E3f136c2f804854581Da55Ad7660a2b35DEf7',
-        '0x001E3f136c2f804854581Da55Ad7660a2b35DEf7',
-      ],
+      address: ['0x001E3f136c2f804854581Da55Ad7660a2b35DEf7'],
       selectorInfo: [],
     },
     [BRIDGES.celer]: {
@@ -25,7 +22,7 @@ export const BASE_MAINNET = {
       address: [
         '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
         '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
-        '0xc1656B63D9EEbA6d114f6bE19565177893e5bCBF',
+        '0xc1656B63D9EEBa6d114f6bE19565177893e5bCBF',
       ],
       selectorInfo: [],
     },
@@ -117,6 +114,10 @@ export const BASE_MAINNET = {
         '0x4F68248ecB782647D1E5981a181bBe1bfFee1040',
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
       ],
+      selectorInfo: [],
+    },
+    [BRIDGES.wanBridge]: {
+      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {

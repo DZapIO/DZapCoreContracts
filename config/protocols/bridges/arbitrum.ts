@@ -166,6 +166,7 @@ export const ARBITRUM_MAINNET = {
       address: [
         '0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613',
         '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+        '0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437', // cctp
       ],
       selectorInfo: [],
     },

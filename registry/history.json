@@ -338,7 +338,9 @@
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -694,7 +696,9 @@
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2"
@@ -1026,7 +1030,9 @@
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b"
+        "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -2368,7 +2374,11 @@
         "0x655bca39f907fa391612af4e5980ce0b173976aa"
       ],
       "swing": [
-        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E"
+        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E",
+        "0x36B356187ba614ee19bf79A080cAc9C0A12C9206"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {
@@ -2399,7 +2409,9 @@
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x2626664c2603336E57B271c5C0b26F421741e481"
@@ -2556,6 +2568,10 @@
       ],
       "zeroX": [
         "0xa601B541f17FB6Bf8db1628E8F3d113b4336434c"
+      ],
+      "bebop": [
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
     "bridge": {
@@ -2717,7 +2733,8 @@
       ],
       "wanBridge": [
         "0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613",
-        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
+        "0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437"
       ]
     },
     "dexes": {
@@ -3295,6 +3312,10 @@
       ],
       "zeroX": [
         "0xFD91797719b50D8C3F37e02647a88B880162A5c6"
+      ],
+      "bebop": [
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
     "bridge": {
@@ -3366,7 +3387,9 @@
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d"
@@ -3437,7 +3460,9 @@
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "odos": [
         "0xbFe03C9E20a9Fc0b37de01A172F207004935E0b1"

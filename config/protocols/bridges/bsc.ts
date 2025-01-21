@@ -124,5 +124,9 @@ export const BSC_MAINNET = {
       address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
       selectorInfo: [],
     },
+    [BRIDGES.wanBridge]: {
+      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      selectorInfo: [],
+    },
   },
 }

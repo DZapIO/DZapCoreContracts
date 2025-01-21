@@ -253,7 +253,8 @@
       ],
       "routerNitro": [
         "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
-        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
+        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06",
+        "0x09a58d77ec86478d373c3173f3673195e4a12c06"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -675,6 +676,9 @@
       ],
       "router": [
         "0x2c43992873b4fb841af4941aa0cf5a45598f3e76"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {
@@ -1003,7 +1007,8 @@
       "swing": [
         "0xE684eEDD1F493945d7923E9156401e945211243d",
         "0x0fad05a723fD039769815bE74Be9E7a1f7EeD911",
-        "0x36F60E4F8aE2f6d2b373f48C0921348d5203F728"
+        "0x36F60E4F8aE2f6d2b373f48C0921348d5203F728",
+        "0x80CA2C352ad30641bA39274110Df5F5c10F0dCa0"
       ],
       "hyperlane": [
         "0xB3dF48224FA257D55e01342592f9A24cefc2628e"
@@ -2768,7 +2773,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -2777,7 +2783,9 @@
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"

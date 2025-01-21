@@ -152,6 +152,7 @@ export const ETH_MAINNET = {
       address: [
         '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
         '0x4315f344a905dC21a08189A117eFd6E1fcA37D57',
+        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
       selectorInfo: [],
     },

@@ -23,7 +23,6 @@ export enum DEXES {
   routerNitro = 'routerNitro',
   socket = 'socket',
   sushi = 'sushi',
-  swapkit = 'swapkit',
   swapsicle = 'swapsicle',
   symmetric = 'symmetric',
   synapse = 'synapse',
@@ -76,6 +75,8 @@ export const DZAP_DEXES_CONFIG: {
         '0xe43ca1Dee3F0fc1e2df73A0745674545F11A59F5',
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
+      [DEXES.swapKit]: ['0xE592427A0AEce92De3Edee1F18E0157C05861564'],
+      [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
       [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
       [DEXES.unizen]: [
         '0xd3f64BAa732061F8B3626ee44bab354f854877AC',
@@ -87,6 +88,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
+      [DEXES.zeroX]: ['0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710'],
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -393,7 +395,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xCFea63e3DE31De53D68780Dd65675F169439e470',
         '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E',
       ],
-      [DEXES.swapkit]: ['0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549'],
+      [DEXES.swapKit]: ['0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },

@@ -33,6 +33,7 @@ export const ETH_MAINNET = {
       address: [
         '0xb8901acB165ed027E32754E0FFe830802919727f',
         '0x7e77461CA2a9d82d26FD5e0Da2243BF72eA45747',
+        '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6',
       ],
       selectorInfo: [],
     },
@@ -112,6 +113,13 @@ export const ETH_MAINNET = {
         '0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D',
         '0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3',
         '0x77b2043768d28E9C9aB44E1aBfC95944bcE57931',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.swing]: {
+      address: [
+        '0x885E415D0836727F8757BfFC093E9728B1Aaf60f',
+        '0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7',
       ],
       selectorInfo: [],
     },

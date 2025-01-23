@@ -88,6 +88,7 @@ export const BASE_MAINNET = {
       address: [
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
         '0x36B356187ba614ee19bf79A080cAc9C0A12C9206',
+        '0xe806894cF5b21A578C50b8876960Bb2B2302ce3A',
       ],
       selectorInfo: [],
     },
@@ -117,7 +118,10 @@ export const BASE_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.wanBridge]: {
-      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      address: [
+        '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+        '0x012297F3d1Cb0D685B195A70231730F4c8c86F86',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {

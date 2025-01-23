@@ -170,5 +170,9 @@ export const POLYGON_MAINNET = {
       address: ['0x653f25dc641544675338cb47057f8ea530c69b78'],
       selectorInfo: [],
     },
+    [BRIDGES.wanBridge]: {
+      address: ['0x30b8d9e757595B5cbAEcdFD81e9Eeccf4B31e53D'],
+      selectorInfo: [],
+    },
   },
 }

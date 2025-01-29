@@ -605,6 +605,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6'],
+      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
       [DEXES.xyFinance]: ['0x52075Fd1fF67f03beABCb5AcdA9679b02d98cA37'],
     },
   },

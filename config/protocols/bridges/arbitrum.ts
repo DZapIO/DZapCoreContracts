@@ -89,7 +89,10 @@ export const ARBITRUM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xa5f565650890fba1824ee0f21ebbbf660a179934'],
+      address: [
+        '0xa5f565650890fba1824ee0f21ebbbf660a179934',
+        '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.router]: {
@@ -131,6 +134,7 @@ export const ARBITRUM_MAINNET = {
         '0x90f1Ef9D2cDe204C8494Cf73130771B350070B53',
         '0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64',
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
+        '0xD073b9740D17850A804341d08ad657749fb178e0',
       ],
       selectorInfo: [],
     },

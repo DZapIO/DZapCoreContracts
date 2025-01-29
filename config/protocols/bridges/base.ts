@@ -89,6 +89,8 @@ export const BASE_MAINNET = {
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
         '0x36B356187ba614ee19bf79A080cAc9C0A12C9206',
         '0xe806894cF5b21A578C50b8876960Bb2B2302ce3A',
+        '0x56404bbf3Cc262fB9f365E7aB82Ed142CB9d4a38',
+        '0x97fffFfa57144BBfacF41251bd1763657e646667',
       ],
       selectorInfo: [],
     },

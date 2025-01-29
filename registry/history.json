@@ -384,7 +384,8 @@
         "0xe47b7f8e",
         "0x88e95c47",
         "0xd3dfad66",
-        "0xb07986b9"
+        "0xb07986b9",
+        "0xd9caed12"
       ]
     },
     "integrators": {
@@ -1090,7 +1091,7 @@
       "DZAP": {
         "bridge": {
           "tokenFee": 0,
-          "fixedNativeFeeAmount": "600000000000000000",
+          "fixedNativeFeeAmount": "1000000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
         }
@@ -2444,7 +2445,8 @@
         "0xe47b7f8e",
         "0x88e95c47",
         "0xd3dfad66",
-        "0xb07986b9"
+        "0xb07986b9",
+        "0xd9caed12"
       ]
     },
     "integrators": {
@@ -2784,7 +2786,8 @@
         "0xe47b7f8e",
         "0x88e95c47",
         "0xd3dfad66",
-        "0xb07986b9"
+        "0xb07986b9",
+        "0xd9caed12"
       ],
       "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
         "0x536db266",

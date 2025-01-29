@@ -112,6 +112,7 @@ export const OPTIMISM_MAINNET = {
       address: [
         '0x5501A36b1313aC5d27e85418acd2AA4564f50b44',
         '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
+        '0x09a58d77ec86478d373c3173f3673195e4a12c06',
       ],
       selectorInfo: [],
     },

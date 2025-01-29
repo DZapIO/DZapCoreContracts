@@ -25,6 +25,10 @@ export const XLAYER_MAINNET = {
       address: ['0x21c1E74CAaDf990E237920d5515955a024031109'],
       selectorInfo: [],
     },
+    [BRIDGES.wanBridge]: {
+      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      selectorInfo: [],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',

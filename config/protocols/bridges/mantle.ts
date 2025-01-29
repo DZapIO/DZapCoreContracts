@@ -48,6 +48,7 @@ export const MANTLE_MAINNET = {
         '0xa81274AFac523D639DbcA2C32c1470f1600cCEBe',
         '0x4c1d3Fc3fC3c177c3b633427c2F769276c547463',
         '0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       selectorInfo: [],
     },

@@ -54,6 +54,7 @@ export const AVALANCHE_MAINNET = {
         '0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2',
         '0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785',
         '0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B',
+        '0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775',
       ],
       selectorInfo: [],
     },
@@ -104,6 +105,9 @@ export const AVALANCHE_MAINNET = {
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
       ],
       selectorInfo: [],
+    },
+    [BRIDGES.wanBridge]: {
+      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
     },
     [BRIDGES.xyFinance]: {
       address: [

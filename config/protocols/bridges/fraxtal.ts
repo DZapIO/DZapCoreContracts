@@ -2,6 +2,10 @@ import { BRIDGES } from '../bridges'
 
 export const FRAXTAL = {
   bridges: {
+    [BRIDGES.lifi]: {
+      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+      selectorInfo: [],
+    },
     [BRIDGES.squid]: {
       address: ['0xDC3D8e1Abe590BCa428a8a2FC4CfDbD1AcF57Bd9'],
       selectorInfo: [],

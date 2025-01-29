@@ -269,10 +269,10 @@ export const NETWORKS = {
   [CHAIN_IDS.MANTLE_MAINNET]: {
     chainId: CHAIN_IDS.MANTLE_MAINNET,
     chainName: 'Mantle Mainnet',
-    rpcUrl: 'https://mantle-mainnet.g.alchemy.com/v2',
+    // rpcUrl: 'https://mantle-mainnet.g.alchemy.com/v2',
     // rpcUrl: 'https://mantle-mainnet.blastapi.io',
-    // rpcUrl: 'https://rpc.mantle.xyz',
-    rpcType: RPC_TYPE.ALCHEMY,
+    rpcUrl: 'https://rpc.mantle.xyz',
+    rpcType: RPC_TYPE.OTHER,
   },
   [CHAIN_IDS.METIS_MAINNET]: {
     chainId: CHAIN_IDS.METIS_MAINNET,

@@ -21,6 +21,10 @@ export const ARBITRUM_MAINNET = {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
       selectorInfo: [],
     },
+    [BRIDGES.crossCurve]: {
+      address: ['0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74'],
+      selectorInfo: [],
+    },
     [BRIDGES.deBridge]: {
       address: [
         '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
@@ -84,6 +88,13 @@ export const ARBITRUM_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: [
+        '0xa5f565650890fba1824ee0f21ebbbf660a179934',
+        '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.router]: {
       address: [
         '0x60b483D521b844e13E3337D304929D0519Bd50C8',
@@ -122,6 +133,8 @@ export const ARBITRUM_MAINNET = {
         '0x2260f6120b634B94A23eF11fa0D615ecf62db3cD',
         '0x90f1Ef9D2cDe204C8494Cf73130771B350070B53',
         '0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64',
+        '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
+        '0xD073b9740D17850A804341d08ad657749fb178e0',
       ],
       selectorInfo: [],
     },
@@ -151,6 +164,14 @@ export const ARBITRUM_MAINNET = {
       address: [
         '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.wanBridge]: {
+      address: [
+        '0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613',
+        '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+        '0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437', // cctp
       ],
       selectorInfo: [],
     },

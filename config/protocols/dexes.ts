@@ -1,37 +1,37 @@
 import { CHAIN_IDS } from '../networks'
 
 export enum DEXES {
+  bebop = 'bebop',
+  conveyor = 'conveyor',
   dodo = 'dodo',
   enso = 'enso',
+  fluid = 'fluid',
+  iceCreamSwap = 'iceCreamSwap',
+  izumi = 'izumi',
   kyber = 'kyber',
-  oneInch = 'oneInch',
   lifi = 'lifi',
   odos = 'odos',
+  okx = 'okx',
+  omniBtc = 'omniBtc',
+  oneInch = 'oneInch',
+  openOcean = 'openOcean',
   paraswap = 'paraswap', // Should remove this in future and change below v6 to only paraswap
   paraswapV6 = 'paraswapV6',
-  openOcean = 'openOcean',
-  zeroX = 'zeroX',
-  wNative = 'wNative',
-  bebop = 'bebop',
-  uniswap = 'uniswap',
-  unizen = 'unizen',
-  xyFinance = 'xyFinance',
-  socket = 'socket',
-  conveyor = 'conveyor',
-  sushi = 'sushi',
-  iceCreamSwap = 'iceCreamSwap',
-  omniBtc = 'omniBtc',
+  propeller = 'propeller',
   rocketX = 'rocketX',
+  router = 'router',
+  routerNitro = 'routerNitro',
+  socket = 'socket',
+  sushi = 'sushi',
   swapsicle = 'swapsicle',
   symmetric = 'symmetric',
-  vapourDex = 'vapourDex',
-  routerNitro = 'routerNitro',
-  router = 'router',
-  okx = 'okx',
-  propeller = 'propeller',
   synapse = 'synapse',
-  izumi = 'izumi',
-  fluid = 'fluid',
+  uniswap = 'uniswap',
+  unizen = 'unizen',
+  vapourDex = 'vapourDex',
+  wNative = 'wNative',
+  xyFinance = 'xyFinance',
+  zeroX = 'zeroX',
   swapKit = 'swapKit',
 }
 
@@ -40,17 +40,19 @@ export const DZAP_DEXES_CONFIG: {
 } = {
   [CHAIN_IDS.ETH_MAINNET]: {
     dexes: {
+      [DEXES.bebop]: [
+        '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
+        '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
+        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
+      ],
+      [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
       [DEXES.dodo]: ['0xFe837A3530dD566401d35beFCd55582AF7c4dfFC'],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
       [DEXES.fluid]: ['0x0B1a513ee24972DAEf112bC777a5610d4325C9e7'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      [DEXES.bebop]: [
-        '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
-        '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
-        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
-      ],
-      [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
       [DEXES.odos]: ['0xcf5540fffcdc3d510b18bfca6d2b9987b0772559'],
       [DEXES.okx]: [
         '0x7D0CcAa3Fac1e5A943c5168b6CEd828691b46B36',
@@ -73,6 +75,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xe43ca1Dee3F0fc1e2df73A0745674545F11A59F5',
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
+      [DEXES.swapKit]: ['0xE592427A0AEce92De3Edee1F18E0157C05861564'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
       [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
       [DEXES.unizen]: [
@@ -85,10 +88,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      [DEXES.zeroX]: [
-        '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
-        '0x70bf6634eE8Cb27D04478f184b9b8BB13E5f4710',
-      ],
+      [DEXES.zeroX]: ['0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710'],
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -117,6 +117,8 @@ export const DZAP_DEXES_CONFIG: {
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
       [DEXES.unizen]: [
@@ -166,11 +168,16 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
+      [DEXES.zeroX]: [
+        '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+        '0x068BA5d0540e27b39c71a00a1c0c1E669D62Dc10',
+      ],
       [DEXES.bebop]: [
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.izumi]: ['0xedf2021f41AbCfE2dEA4427E1B61f4d0AA5aA4b8'],
       [DEXES.uniswap]: ['0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2'],
@@ -202,12 +209,22 @@ export const DZAP_DEXES_CONFIG: {
   },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     dexes: {
+      [DEXES.bebop]: [
+        '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
+        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
+        '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
+        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
+      ],
+      [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
       [DEXES.dodo]: [
         '0xe05dd51e4eB5636f4f0E8e7Fbe82eA31a2ecef16',
         '0x69716E51E3F8Bec9c3D4E1bB46396384AE11C594',
         '0xA867241cDC8d3b0C07C85cC06F25a0cD3b5474d8',
       ],
       [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+      [DEXES.izumi]: ['0x01fDea353849cA29F778B2663BcaCA1D191bED0e'],
       [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
       [DEXES.oneInch]: [
         '0x1111111254eeb25477b68fb85ed929f73a960582',
@@ -220,15 +237,10 @@ export const DZAP_DEXES_CONFIG: {
         '0x216b4b4ba9f3e719726886d34a177484278bfcae',
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
+      [DEXES.routerNitro]: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
+      [DEXES.omniBtc]: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
-      [DEXES.bebop]: [
-        '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
-        '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
-        '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
-        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
-      ],
       [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
       [DEXES.unizen]: [
         '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',
@@ -238,8 +250,6 @@ export const DZAP_DEXES_CONFIG: {
         '0x062b1Db694F6A437e3c028FC60dd6feA7444308c',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      [DEXES.conveyor]: ['0xd5eC61bCa0Af24Ad06BE431585A0920142C98890'],
-      [DEXES.omniBtc]: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
       [DEXES.sushi]: [
         '0xF0cBce1942A68BEB3d1b73F0dd86C8DCc363eF49',
         '0x8A21F6768C1f8075791D08546Dadf6daA0bE820c',
@@ -250,10 +260,8 @@ export const DZAP_DEXES_CONFIG: {
         '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
         '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
       ],
-      [DEXES.routerNitro]: ['0xCA94d8C245601B152C904f42fE788B4125f5b46B'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
-      [DEXES.izumi]: ['0x01fDea353849cA29F778B2663BcaCA1D191bED0e'],
-      [DEXES.swapKit]: ['0x99D4e80DB0C023EFF8D25d8155E0dCFb5aDDeC5E'],
+      [DEXES.zeroX]: ['0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b'],
     },
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {
@@ -272,13 +280,18 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1abe32c034e558cdd535791643c58a13acc10'],
+      [DEXES.zeroX]: [
+        '0xdef1abe32c034e558cdd535791643c58a13acc10',
+        '0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f',
+      ],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       [DEXES.bebop]: [
         '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
       [DEXES.unizen]: [
@@ -353,7 +366,10 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
+      [DEXES.zeroX]: [
+        '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+        '0xaBB0aBF698ea1879A0B0e309Ee8C8e1056ae8bce',
+      ],
       [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       [DEXES.uniswap]: ['0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE'],
       [DEXES.unizen]: [
@@ -379,6 +395,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xCFea63e3DE31De53D68780Dd65675F169439e470',
         '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E',
       ],
+      [DEXES.swapKit]: ['0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
     },
   },
@@ -404,11 +421,16 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-      [DEXES.zeroX]: ['0xdef1c0ded9bec7f1a1670819833240f027b25eff'],
+      [DEXES.zeroX]: [
+        '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
+        '0xBc3c5cA50b6A215edf00815965485527f26F5dA8',
+      ],
       [DEXES.bebop]: [
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.uniswap]: ['0x2626664c2603336E57B271c5C0b26F421741e481'],
       [DEXES.unizen]: [
@@ -463,6 +485,8 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.bebop]: [
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.kyber]: ['0x6131b5fae19ea4f9d964eac0408e4408b66337b5'],
       [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
@@ -485,6 +509,7 @@ export const DZAP_DEXES_CONFIG: {
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       [DEXES.xyFinance]: ['0x22bf2A9fcAab9dc96526097318f459eF74277042'],
+      [DEXES.zeroX]: ['0x6c403dBA21F072E16b7De2B013f8aDEAE9c2e76E'],
     },
   },
   [CHAIN_IDS.TELOS_MAINNET]: {
@@ -580,6 +605,7 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xB6dc6C8b71e88642cEAD3be1025565A9eE74d1C6'],
+      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
       [DEXES.xyFinance]: ['0x52075Fd1fF67f03beABCb5AcdA9679b02d98cA37'],
     },
   },
@@ -593,18 +619,28 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.lifi]: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
+      [DEXES.zeroX]: ['0xc31a8685e042e6018a291b5b31f4674ce679ecf7'],
     },
   },
   [CHAIN_IDS.MODE_MAINNET]: {
     dexes: {
+      [DEXES.bebop]: [
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
+      ],
       [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
       [DEXES.odos]: ['0x7E15EB462cdc67Cf92Af1f7102465a8F8c784874'],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.routerNitro]: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
+      [DEXES.zeroX]: ['0xa601B541f17FB6Bf8db1628E8F3d113b4336434c'],
     },
   },
   [CHAIN_IDS.BLAST_MAINNET]: {
     dexes: {
+      [DEXES.bebop]: [
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
+      ],
       [DEXES.izumi]: ['0xA3F50FeBA40dd3E884688C0AF72C4054D07a1c50'],
       [DEXES.okx]: [
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',
@@ -628,6 +664,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.iceCreamSwap]: ['0xe0627818b29D2f28E62f54bC988E6e02C8dbC300'],
       [DEXES.xyFinance]: ['0x43A86823EBBe2ECF9A384aDfD989E26A30626458'],
       [DEXES.synapse]: ['0x0000000000365b1d5B142732CF4d33BcddED21Fc'],
+      [DEXES.zeroX]: ['0xFD91797719b50D8C3F37e02647a88B880162A5c6'],
     },
   },
   [CHAIN_IDS.MERLIN_MAINNET]: {
@@ -713,6 +750,8 @@ export const DZAP_DEXES_CONFIG: {
         '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',
         '0xbbbbbBB520d69a9775E85b458C58c648259FAD5F',
         '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+        '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+        '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
       ],
       [DEXES.izumi]: ['0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148'],
       [DEXES.xyFinance]: ['0xedC061306A79257f15108200C5B82ACc874C239d'],
@@ -746,6 +785,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.dodo]: [
         '0x335aC99bb3E51BDbF22025f092Ebc1Cf2c5cC619',
         '0x7449Cd63C2b1A06C36945eD83f0626D303781B6E',
+        '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
       ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],

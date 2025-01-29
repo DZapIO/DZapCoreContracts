@@ -143,6 +143,7 @@ export const POLYGON_MAINNET = {
         '0xE684eEDD1F493945d7923E9156401e945211243d',
         '0x0fad05a723fD039769815bE74Be9E7a1f7EeD911',
         '0x36F60E4F8aE2f6d2b373f48C0921348d5203F728',
+        '0x80CA2C352ad30641bA39274110Df5F5c10F0dCa0',
       ],
       selectorInfo: [],
     },
@@ -167,6 +168,10 @@ export const POLYGON_MAINNET = {
     },
     [BRIDGES.orbiter]: {
       address: ['0x653f25dc641544675338cb47057f8ea530c69b78'],
+      selectorInfo: [],
+    },
+    [BRIDGES.wanBridge]: {
+      address: ['0x30b8d9e757595B5cbAEcdFD81e9Eeccf4B31e53D'],
       selectorInfo: [],
     },
   },

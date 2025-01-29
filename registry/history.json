@@ -21,12 +21,15 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710"
       ],
       "bebop": [
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -38,7 +41,8 @@
         "0xbbbbbbb520d69a9775e85b458c58c648259fad5f"
       ],
       "xyFinance": [
-        "0xFfB9faf89165585Ad4b25F81332Ead96986a2681"
+        "0xFfB9faf89165585Ad4b25F81332Ead96986a2681",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -73,6 +77,15 @@
       ],
       "fluid": [
         "0x0B1a513ee24972DAEf112bC777a5610d4325C9e7"
+      ],
+      "dodo": [
+        "0xFe837A3530dD566401d35beFCd55582AF7c4dfFC"
+      ],
+      "swapKit": [
+        "0xE592427A0AEce92De3Edee1F18E0157C05861564"
+      ],
+      "synapse": [
+        "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ]
     },
     "bridge": {
@@ -88,7 +101,8 @@
       ],
       "xyFinance": [
         "0xFfB9faf89165585Ad4b25F81332Ead96986a2681",
-        "0x4315f344a905dC21a08189A117eFd6E1fcA37D57"
+        "0x4315f344a905dC21a08189A117eFd6E1fcA37D57",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "dbridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -135,7 +149,8 @@
         "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
       ],
       "rango": [
-        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d",
+        "0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52"
       ],
       "stargate": [
         "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
@@ -143,10 +158,13 @@
         "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
       ],
       "allbridge": [
-        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5"
+        "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5",
+        "0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e"
       ],
       "hop": [
-        "0xb8901acB165ed027E32754E0FFe830802919727f"
+        "0xb8901acB165ed027E32754E0FFe830802919727f",
+        "0x7e77461CA2a9d82d26FD5e0Da2243BF72eA45747",
+        "0x3E4a3a4796d16c0Cd582C382691998f7c06420B6"
       ],
       "debridge": [
         "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
@@ -163,6 +181,22 @@
       ],
       "router": [
         "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc"
+      ],
+      "celer": [
+        "0x6065A982F04F759b7d2D042D2864e569fad84214"
+      ],
+      "orbiter": [
+        "0xC741900276CD598060b0FE6594FbE977392928f4"
+      ],
+      "owlto": [
+        "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+      ],
+      "swing": [
+        "0x885E415D0836727F8757BfFC093E9728B1Aaf60f",
+        "0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7"
       ]
     },
     "executors": {
@@ -232,7 +266,8 @@
       ],
       "routerNitro": [
         "0x5501A36b1313aC5d27e85418acd2AA4564f50b44",
-        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06"
+        "0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06",
+        "0x09a58d77ec86478d373c3173f3673195e4a12c06"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -316,7 +351,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1abe32c034e558cdd535791643c58a13acc10"
+        "0xdef1abe32c034e558cdd535791643c58a13acc10",
+        "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -325,7 +361,9 @@
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -652,6 +690,9 @@
       ],
       "router": [
         "0x2c43992873b4fb841af4941aa0cf5a45598f3e76"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {
@@ -676,12 +717,15 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0x068BA5d0540e27b39c71a00a1c0c1E669D62Dc10"
       ],
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2"
@@ -977,10 +1021,14 @@
       "swing": [
         "0xE684eEDD1F493945d7923E9156401e945211243d",
         "0x0fad05a723fD039769815bE74Be9E7a1f7EeD911",
-        "0x36F60E4F8aE2f6d2b373f48C0921348d5203F728"
+        "0x36F60E4F8aE2f6d2b373f48C0921348d5203F728",
+        "0x80CA2C352ad30641bA39274110Df5F5c10F0dCa0"
       ],
       "hyperlane": [
         "0xB3dF48224FA257D55e01342592f9A24cefc2628e"
+      ],
+      "wanBridge": [
+        "0x30b8d9e757595B5cbAEcdFD81e9Eeccf4B31e53D"
       ]
     },
     "dexes": {
@@ -1013,7 +1061,9 @@
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b"
+        "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -1283,6 +1333,9 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     }
   },
@@ -2355,7 +2408,15 @@
         "0x655bca39f907fa391612af4e5980ce0b173976aa"
       ],
       "swing": [
-        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E"
+        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E",
+        "0x36B356187ba614ee19bf79A080cAc9C0A12C9206",
+        "0xe806894cF5b21A578C50b8876960Bb2B2302ce3A",
+        "0x56404bbf3Cc262fB9f365E7aB82Ed142CB9d4a38",
+        "0x97fffFfa57144BBfacF41251bd1763657e646667"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
+        "0x012297F3d1Cb0D685B195A70231730F4c8c86F86"
       ]
     },
     "dexes": {
@@ -2380,12 +2441,15 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8"
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x2626664c2603336E57B271c5C0b26F421741e481"
@@ -2540,6 +2604,13 @@
       ],
       "izumi": [
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ],
+      "zeroX": [
+        "0xa601B541f17FB6Bf8db1628E8F3d113b4336434c"
+      ],
+      "bebop": [
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
     "bridge": {
@@ -2691,7 +2762,21 @@
       "swing": [
         "0x2260f6120b634B94A23eF11fa0D615ecf62db3cD",
         "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53",
-        "0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64"
+        "0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64",
+        "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E",
+        "0xD073b9740D17850A804341d08ad657749fb178e0"
+      ],
+      "relayLink": [
+        "0xa5f565650890fba1824ee0f21ebbbf660a179934",
+        "0xf70da97812CB96acDF810712Aa562db8dfA3dbEF"
+      ],
+      "crossCurve": [
+        "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "wanBridge": [
+        "0xF7Ba155556E2CD4Dfe3Fe26e506A14d2f4b97613",
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
+        "0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437"
       ]
     },
     "dexes": {
@@ -2716,7 +2801,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -2725,7 +2811,9 @@
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "uniswap": [
         "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
@@ -2776,6 +2864,9 @@
       ],
       "swapKit": [
         "0x99D4e80DB0C023EFF8D25d8155E0dCFb5aDDeC5E"
+      ],
+      "swapkit": [
+        "0x700E97ef07219440487840Dc472E7120A7FF11F4"
       ]
     },
     "executors": {
@@ -2924,7 +3015,8 @@
         "0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF",
         "0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2",
         "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785",
-        "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B"
+        "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B",
+        "0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -2954,6 +3046,9 @@
       ],
       "swing": [
         "0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274"
+      ],
+      "wanBridge": [
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ]
     },
     "dexes": {
@@ -2978,7 +3073,8 @@
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ],
       "zeroX": [
-        "0xdef1c0ded9bec7f1a1670819833240f027b25eff"
+        "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "0xaBB0aBF698ea1879A0B0e309Ee8C8e1056ae8bce"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -3020,10 +3116,14 @@
       "dodo": [
         "0x1F076a800005c758a505E759720eb6737136e893",
         "0x3a64Ec3606FF7310E8fAd6FcC008e39705fB496d",
-        "0xCFea63e3DE31De53D68780Dd65675F169439e470"
+        "0xCFea63e3DE31De53D68780Dd65675F169439e470",
+        "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "swapkit": [
+        "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
       ]
     },
     "executors": {
@@ -3259,6 +3359,13 @@
       ],
       "synapse": [
         "0x0000000000365b1d5B142732CF4d33BcddED21Fc"
+      ],
+      "zeroX": [
+        "0xFD91797719b50D8C3F37e02647a88B880162A5c6"
+      ],
+      "bebop": [
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
     "bridge": {
@@ -3330,7 +3437,9 @@
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
         "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
-        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F"
+        "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "xyFinance": [
         "0xedC061306A79257f15108200C5B82ACc874C239d"
@@ -3401,7 +3510,9 @@
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
-        "0xfE96910cF84318d1B8a5e2a6962774711467C0be"
+        "0xfE96910cF84318d1B8a5e2a6962774711467C0be",
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "odos": [
         "0xbFe03C9E20a9Fc0b37de01A172F207004935E0b1"
@@ -3418,6 +3529,9 @@
       ],
       "xyFinance": [
         "0x22bf2A9fcAab9dc96526097318f459eF74277042"
+      ],
+      "zeroX": [
+        "0x6c403dBA21F072E16b7De2B013f8aDEAE9c2e76E"
       ]
     },
     "executors": {
@@ -3573,7 +3687,8 @@
       ],
       "dodo": [
         "0x335aC99bb3E51BDbF22025f092Ebc1Cf2c5cC619",
-        "0x7449Cd63C2b1A06C36945eD83f0626D303781B6E"
+        "0x7449Cd63C2b1A06C36945eD83f0626D303781B6E",
+        "0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB"
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"

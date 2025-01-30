@@ -261,7 +261,10 @@ export const DZAP_DEXES_CONFIG: {
         '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
       ],
       [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
-      [DEXES.zeroX]: ['0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b'],
+      [DEXES.zeroX]: [
+        '0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b',
+        '0x6db4d3b89b06d3c8bd2074ee1f1b440baf122ead',
+      ],
     },
   },
   [CHAIN_IDS.OPTIMISM_MAINNET]: {

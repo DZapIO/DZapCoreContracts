@@ -22,7 +22,8 @@
       ],
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
-        "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710"
+        "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710",
+        "0x0d0e364aa7852291883c162b22d6d81f6355428f"
       ],
       "bebop": [
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
@@ -2442,7 +2443,8 @@
       ],
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
-        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8"
+        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8",
+        "0x6A57A0579E91A5B7ce9c2d08b93E1A9b995f974f"
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
@@ -2726,7 +2728,8 @@
       "stargate": [
         "0xe8CDF27AcD73a434D661C84887215F7598e7d0d3",
         "0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0",
-        "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F"
+        "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F",
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ],
       "hop": [
         "0xCB0a4177E0A60247C0ad18Be87f8eDfF6DD30283",

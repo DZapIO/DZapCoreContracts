@@ -88,7 +88,10 @@ export const DZAP_DEXES_CONFIG: {
         '0xFfB9faf89165585Ad4b25F81332Ead96986a2681',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      [DEXES.zeroX]: ['0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710'],
+      [DEXES.zeroX]: [
+        '0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710',
+        '0x0d0e364aa7852291883c162b22d6d81f6355428f',
+      ],
     },
   },
   [CHAIN_IDS.POLYGON_MAINNET]: {
@@ -427,6 +430,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.zeroX]: [
         '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
         '0xBc3c5cA50b6A215edf00815965485527f26F5dA8',
+        '0x6A57A0579E91A5B7ce9c2d08b93E1A9b995f974f',
       ],
       [DEXES.bebop]: [
         '0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b',

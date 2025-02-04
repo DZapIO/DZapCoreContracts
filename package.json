@@ -68,5 +68,8 @@
     "viem": "^2.16.3",
     "xdeployer": "^1.2.7",
     "zksync-ethers": "5"
+  },
+  "dependencies": {
+    "ethers-multicall-provider": "3.1.2"
   }
 }

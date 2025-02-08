@@ -10,6 +10,21 @@ export const OPTIMISM_MAINNET = {
       address: ['0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab'],
       selectorInfo: [],
     },
+    [BRIDGES.celer]: {
+      address: [
+        '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',
+        '0x697aC93c9263346c5Ad0412F9356D5789a3AA687',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.deBridge]: {
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.hop]: {
       address: [
         '0x2ad09850b0CA4c7c1B33f5AcD6cBAbCaB5d6e796',
@@ -33,8 +48,70 @@ export const OPTIMISM_MAINNET = {
         },
       ],
     },
+    [BRIDGES.mayanFinance]: {
+      address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
+      selectorInfo: [],
+    },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+      selectorInfo: [],
+    },
+    [BRIDGES.okx]: {
+      address: [
+        '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
+        '0x68D6B739D2020067D1e2F713b999dA97E4d54812',
+        '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.omniBtc]: {
+      address: [
+        '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
+        '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.orbiter]: {
+      address: ['0x3191f40de6991b1bb1f61b7cec43d62bb337786b'],
+      selectorInfo: [],
+    },
+    [BRIDGES.owlto]: {
+      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
+      selectorInfo: [],
+    },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+      selectorInfo: [],
+    },
+    [BRIDGES.router]: {
+      address: [
+        '0x1a2f6171d7e75f06141a953b650c6772055be843',
+        '0x0967dc6F203aBc2d1FD75c15033d5f6446C14354',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.routerNitro]: {
+      address: [
+        '0x5501A36b1313aC5d27e85418acd2AA4564f50b44',
+        '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
+        '0x09a58d77ec86478d373c3173f3673195e4a12c06',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+      selectorInfo: [],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+      selectorInfo: [],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
+        '0x19cFCE47eD54a88614648DC3f19A5980097007dD',
+        '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.swing]: {
@@ -42,6 +119,22 @@ export const OPTIMISM_MAINNET = {
         '0xF1c231F59b6b7Ffa68A7Aad43BbD238BF0bFB9C9',
         '0xec42C38412fb4a56f75D706838215588b41701aa',
         '0x3CA700004Aa08dD4C04a1D8595326A1de82Da5bF',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0x0f91052dc5B4baE53d0FeA5DAe561A117268f5d2',
+        '0x200a0fe876421DC49A26508e3Efd0a1008fD12B5',
+        '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
+      ],
+      selectorInfo: [],
+    },
+    [BRIDGES.synapse]: {
+      address: [
+        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
+        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
+        '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
       selectorInfo: [],
     },
@@ -58,99 +151,6 @@ export const OPTIMISM_MAINNET = {
         '0x7a6e01880693093abACcF442fcbED9E0435f1030',
         '0xF8d342db903F266de73B10a1e46601Bb08a3c195',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.deBridge]: {
-      address: [
-        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
-        '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
-        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.mayanFinance]: {
-      address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
-      selectorInfo: [],
-    },
-    [BRIDGES.omniBtc]: {
-      address: [
-        '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
-        '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.owlto]: {
-      address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
-      selectorInfo: [],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0x0f91052dc5B4baE53d0FeA5DAe561A117268f5d2',
-        '0x200a0fe876421DC49A26508e3Efd0a1008fD12B5',
-        '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
-    },
-    [BRIDGES.okx]: {
-      address: [
-        '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
-        '0x68D6B739D2020067D1e2F713b999dA97E4d54812',
-        '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.routerNitro]: {
-      address: [
-        '0x5501A36b1313aC5d27e85418acd2AA4564f50b44',
-        '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
-        '0x09a58d77ec86478d373c3173f3673195e4a12c06',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.squid]: {
-      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
-      selectorInfo: [],
-    },
-    [BRIDGES.stargate]: {
-      address: [
-        '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
-        '0x19cFCE47eD54a88614648DC3f19A5980097007dD',
-        '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.synapse]: {
-      address: [
-        '0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a',
-        '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
-        '0x00cD000000003f7F682BE4813200893d4e690000',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.orbiter]: {
-      address: ['0x3191f40de6991b1bb1f61b7cec43d62bb337786b'],
-      selectorInfo: [],
-    },
-    [BRIDGES.celer]: {
-      address: [
-        '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',
-        '0x697aC93c9263346c5Ad0412F9356D5789a3AA687',
-      ],
-      selectorInfo: [],
-    },
-    [BRIDGES.router]: {
-      address: [
-        '0x1a2f6171d7e75f06141a953b650c6772055be843',
-        '0x0967dc6F203aBc2d1FD75c15033d5f6446C14354',
       ],
       selectorInfo: [],
     },

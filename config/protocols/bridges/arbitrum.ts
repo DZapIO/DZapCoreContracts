@@ -88,6 +88,9 @@ export const ARBITRUM_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    // [BRIDGES.relayLink]: {
+    //   address: ['0xf70da97812CB96acDF810712Aa562db8dfA3dbEF']
+    // },
     [BRIDGES.router]: {
       address: [
         '0x60b483D521b844e13E3337D304929D0519Bd50C8',
@@ -118,6 +121,7 @@ export const ARBITRUM_MAINNET = {
         '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
         '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
         '0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F',
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
       selectorInfo: [],
     },
@@ -128,6 +132,7 @@ export const ARBITRUM_MAINNET = {
         '0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64',
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
         '0xD073b9740D17850A804341d08ad657749fb178e0',
+        '0xde2A27EA71c2671DDF373951fe9099377De980Da',
       ],
       selectorInfo: [],
     },

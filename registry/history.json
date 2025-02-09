@@ -5,7 +5,8 @@
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
       ],
       "oneInch": [
-        "0x1111111254eeb25477b68fb85ed929f73a960582"
+        "0x1111111254eeb25477b68fb85ed929f73a960582",
+        "0x111111125421ca6dc452d289314280a0f8842a65"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
@@ -22,7 +23,8 @@
       ],
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
-        "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710"
+        "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710",
+        "0x0d0e364aa7852291883c162b22d6d81f6355428f"
       ],
       "bebop": [
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
@@ -79,7 +81,8 @@
         "0x0B1a513ee24972DAEf112bC777a5610d4325C9e7"
       ],
       "dodo": [
-        "0xFe837A3530dD566401d35beFCd55582AF7c4dfFC"
+        "0xFe837A3530dD566401d35beFCd55582AF7c4dfFC",
+        "0xCB859eA579b28e02B87A1FDE08d087ab9dbE5149"
       ],
       "swapKit": [
         "0xE592427A0AEce92De3Edee1F18E0157C05861564"
@@ -196,7 +199,8 @@
       ],
       "swing": [
         "0x885E415D0836727F8757BfFC093E9728B1Aaf60f",
-        "0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7"
+        "0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7",
+        "0xF5027600efEA7491515056866fa1F0303f6C8d09"
       ]
     },
     "executors": {
@@ -352,7 +356,8 @@
       ],
       "zeroX": [
         "0xdef1abe32c034e558cdd535791643c58a13acc10",
-        "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f"
+        "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f",
+        "0x402867b638339ad8bec6e5373cfa95da0b462c85"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -2442,7 +2447,8 @@
       ],
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
-        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8"
+        "0xBc3c5cA50b6A215edf00815965485527f26F5dA8",
+        "0x6A57A0579E91A5B7ce9c2d08b93E1A9b995f974f"
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
@@ -2726,7 +2732,8 @@
       "stargate": [
         "0xe8CDF27AcD73a434D661C84887215F7598e7d0d3",
         "0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0",
-        "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F"
+        "0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F",
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
       ],
       "hop": [
         "0xCB0a4177E0A60247C0ad18Be87f8eDfF6DD30283",
@@ -2764,7 +2771,8 @@
         "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53",
         "0x4C1A9D72F3d6b9E4a62cA8971dd3862FcB64aD64",
         "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E",
-        "0xD073b9740D17850A804341d08ad657749fb178e0"
+        "0xD073b9740D17850A804341d08ad657749fb178e0",
+        "0xde2A27EA71c2671DDF373951fe9099377De980Da"
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
@@ -2798,7 +2806,8 @@
       ],
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
-        "0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b"
+        "0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b",
+        "0x6db4d3b89b06d3c8bd2074ee1f1b440baf122ead"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"

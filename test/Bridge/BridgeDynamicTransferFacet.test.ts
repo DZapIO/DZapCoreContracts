@@ -985,7 +985,7 @@ describe('BridgeDynamicTransferFacet.test.ts', async () => {
             }
           )
       ).revertedWithCustomError(
-        batchBridgeCallFacet,
+        bridgeDynamicTransferFacet,
         ERRORS.InformationMismatch
       )
     })
@@ -1045,7 +1045,7 @@ describe('BridgeDynamicTransferFacet.test.ts', async () => {
             }
           )
       ).revertedWithCustomError(
-        batchBridgeCallFacet,
+        bridgeDynamicTransferFacet,
         ERRORS.InformationMismatch
       )
     })
@@ -1499,7 +1499,7 @@ describe('BridgeDynamicTransferFacet.test.ts', async () => {
             }
           )
       ).revertedWithCustomError(
-        batchBridgeCallFacet,
+        bridgeDynamicTransferFacet,
         ERRORS.InformationMismatch
       )
     })
@@ -1559,7 +1559,7 @@ describe('BridgeDynamicTransferFacet.test.ts', async () => {
             }
           )
       ).revertedWithCustomError(
-        batchBridgeCallFacet,
+        bridgeDynamicTransferFacet,
         ERRORS.InformationMismatch
       )
     })
@@ -2580,7 +2580,7 @@ describe('BridgeDynamicTransferFacet.test.ts', async () => {
       )
     })
 
-    it('3.6 Should revert if receiver length is invalid is 255', async () => {
+    it('3.6 Should revert if destToken length is invalid is 255', async () => {
       // -------------------------------------
 
       const user = signers[12]

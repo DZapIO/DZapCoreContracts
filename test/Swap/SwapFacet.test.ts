@@ -140,7 +140,7 @@ const feeInfo2: FeeInfo[] = [
 ]
 
 describe('SwapFacet.test.ts', async () => {
-  beforeEach(async () => {
+  before(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]
     owner = signers[1]
@@ -1262,7 +1262,6 @@ describe('SwapFacet.test.ts', async () => {
       const value = ZERO
 
       // ----------------------------------------------------------------
-
       //   const encodedPermitData = encodePermitData('0x', PermitType.PERMIT)
 
       // permit2 approve

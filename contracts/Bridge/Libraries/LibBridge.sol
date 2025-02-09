@@ -134,4 +134,21 @@ library LibBridge {
 
         LibFees.accrueTokenFees(_integrator, _bridgeData.from, totalFee - dZapShare, dZapShare);
     }
+
+    function swap(address _integrator, FeeInfo memory _feeInfo, GenericBridgeData memory _bridgeData, SwapData calldata _swapData) internal returns (SwapInfo memory) {
+        LibValidatable.validateSwapData(_swapData);
+        if (_swapData.to != _bridgeData.from) revert InvalidSwapDetails();
+
+        (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(_feeInfo, _swapData.from, _swapData.fromAmount, _swapData.permit);
+
+        (uint256 leftoverFromAmount, uint256 returnToAmount) = LibSwap.swap(_swapData, totalFee, false);
+
+        if (returnToAmount < _bridgeData.minAmountIn) revert SlippageTooLow(_bridgeData.minAmountIn, returnToAmount);
+
+        LibFees.accrueTokenFees(_integrator, _swapData.from, totalFee - dZapShare, dZapShare);
+        if (leftoverFromAmount != 0) LibAsset.transferToken(_swapData.from, msg.sender, leftoverFromAmount);
+        if (returnToAmount > _bridgeData.minAmountIn) LibAsset.transferToken(_swapData.to, msg.sender, returnToAmount - _bridgeData.minAmountIn);
+
+        return SwapInfo(_swapData.callTo, _swapData.from, _swapData.to, _swapData.fromAmount, leftoverFromAmount, returnToAmount);
+    }
 }

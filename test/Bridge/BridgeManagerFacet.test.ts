@@ -15,9 +15,11 @@ import {
   getSelectorsUsingContract,
   getSighash,
 } from '../../scripts/utils/diamond'
-import { snapshot, updateBalance } from '../utils'
+import { forkNetwork, impersonate, snapshot, updateBalance } from '../utils'
 
 import { expect } from 'chai'
+import { CHAIN_IDS } from '../../config'
+import { DEFAULT_BYTES } from '../../constants/others'
 import { calculateOffset } from '../../scripts/core/helper'
 import {
   AccessManagerFacet,
@@ -41,7 +43,7 @@ import {
   WithdrawFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
-import { DEFAULT_BYTES } from '../../constants/others'
+import { getRpcUrl } from '../../utils/network'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit
@@ -457,6 +459,8 @@ describe('BridgeManagerFacet.test.ts', async () => {
           bridgeManagerFacet.interface.functions[
             'removeAggregatorsAndBridges(address[])'
           ],
+          bridgeManagerFacet.interface.functions['addAdapters(address[])'],
+          bridgeManagerFacet.interface.functions['removeAdapters(address[])'],
         ],
         bridgeManagerFacet.interface
       )
@@ -581,12 +585,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
     })
 
     it('1.2 Should allow crossChainManager to whitelist bridge', async () => {
@@ -602,12 +606,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
     })
 
     it('1.3 Should revert if caller is not owner/crossChainManager', async () => {
@@ -627,12 +631,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
   describe('2) updateSelectorInfo', () => {
     it('2.1 Should allow owner to updateSelectorInfo (bridge is not whitelisted)', async () => {
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        false
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        false
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(false)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(false)
       // -------------------------------------
       await expect(
         bridgeManagerFacet
@@ -644,12 +648,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
       expect(
         await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
       ).eql([true, selectorInfo[0]])
@@ -669,12 +673,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
         .connect(crossChainManager)
         .addAggregatorsAndBridges([mockBridge1.address])
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        false
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(false)
 
       // -------------------------------------
       await expect(
@@ -687,12 +691,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
       expect(
         await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
       ).eql([true, selectorInfo[0]])
@@ -729,12 +733,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
         .connect(crossChainManager)
         .updateSelectorInfo(routers, selectors, selectorInfo)
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
 
       // -------------------------------------
 
@@ -748,12 +752,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        false
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(false)
       expect(
         await bridgeManagerFacet.getSelectorInfo(routers[1], selectors[1])
       ).eql([false, selectorInfo[0]])
@@ -769,12 +773,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
         .connect(crossChainManager)
         .updateSelectorInfo(routers, selectors, selectorInfo)
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        true
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(true)
 
       // -------------------------------------
 
@@ -788,12 +792,12 @@ describe('BridgeManagerFacet.test.ts', async () => {
 
       // -------------------------------------
 
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge1.address)).eql(
-        true
-      )
-      expect(await bridgeManagerFacet.isWhitelisted(mockBridge2.address)).eql(
-        false
-      )
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge1.address)
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isBridgeWhitelisted(mockBridge2.address)
+      ).eql(false)
       expect(
         await bridgeManagerFacet.getSelectorInfo(routers[0], selectors[0])
       ).eql([true, selectorInfo[0]])
@@ -816,6 +820,363 @@ describe('BridgeManagerFacet.test.ts', async () => {
           .connect(crossChainManager)
           .removeAggregatorsAndBridges([mockBridge1.address])
       ).revertedWithCustomError(bridgeManagerFacet, ERRORS.BridgeNotAdded)
+    })
+  })
+
+  describe('4) addAdapters', () => {
+    let mockAdapters: string[] = []
+
+    beforeEach(async () => {
+      mockAdapters = [mockBridge1.address, mockBridge2.address]
+    })
+
+    it('4.1 Should allow owner to whitelist adapter', async () => {
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(false)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(false)
+
+      // -------------------------------------
+      await expect(bridgeManagerFacet.connect(owner).addAdapters(mockAdapters))
+        .emit(bridgeManagerFacet, EVENTS.AdaptersAdded)
+        .withArgs(mockAdapters)
+
+      // -------------------------------------
+
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(true)
+    })
+
+    it('4.2 Should allow crossChainManager to whitelist adapter', async () => {
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(false)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(false)
+
+      // -------------------------------------
+      await expect(
+        bridgeManagerFacet.connect(crossChainManager).addAdapters(mockAdapters)
+      )
+        .emit(bridgeManagerFacet, EVENTS.AdaptersAdded)
+        .withArgs(mockAdapters)
+
+      // -------------------------------------
+
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(true)
+    })
+
+    it('4.3 Should revert if caller is not owner/crossChainManager', async () => {
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .addAdapters([bridgeManagerFacet.address])
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.CannotAuthorizeSelf)
+    })
+
+    it('4.4 Should revert if adapter address is same as dzap address', async () => {
+      await expect(
+        bridgeManagerFacet.connect(dexManager).addAdapters(mockAdapters)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.UnAuthorized)
+    })
+  })
+
+  describe('5) removeAdapters', () => {
+    let mockAdapters: string[] = []
+
+    beforeEach(async () => {
+      mockAdapters = [mockBridge1.address, mockBridge2.address]
+
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .addAdapters(mockAdapters)
+    })
+
+    it('5.1 Should allow owner to blacklist bridge', async () => {
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(true)
+
+      // -------------------------------------
+
+      await expect(
+        bridgeManagerFacet.connect(owner).removeAdapters([mockAdapters[1]])
+      )
+        .emit(bridgeManagerFacet, EVENTS.AdaptersRemoved)
+        .withArgs([mockAdapters[1]])
+
+      // -------------------------------------
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(true)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(false)
+    })
+
+    it('5.2 Should allow crossChainManager to blacklist bridge', async () => {
+      // -------------------------------------
+
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .removeAdapters(mockAdapters)
+      )
+        .emit(bridgeManagerFacet, EVENTS.AdaptersRemoved)
+        .withArgs(mockAdapters)
+
+      // -------------------------------------
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[0])
+      ).eql(false)
+      expect(
+        await bridgeManagerFacet.isAdapterWhitelisted(mockAdapters[1])
+      ).eql(false)
+    })
+
+    it('5.3 Should revert if caller is not owner/crossChainManager', async () => {
+      await expect(
+        bridgeManagerFacet.connect(dexManager).removeAdapters(mockAdapters)
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.UnAuthorized)
+    })
+
+    it('5.4 Should revert if bridge address is same as dzap address', async () => {
+      await bridgeManagerFacet
+        .connect(crossChainManager)
+        .removeAdapters(mockAdapters)
+
+      await expect(
+        bridgeManagerFacet
+          .connect(crossChainManager)
+          .removeAdapters([mockAdapters[1]])
+      ).revertedWithCustomError(bridgeManagerFacet, ERRORS.AdapterNotAdded)
+    })
+  })
+
+  describe('6) Storage Upgrade Test', () => {
+    const oldBridgeManagerAbi = [
+      'error BridgeNotAdded(address)',
+      'error CannotAuthorizeSelf()',
+      'error UnAuthorized()',
+      'event BridgeAdded(address[] bridges)',
+      'event BridgeRemoved(address[] bridges)',
+      'event SelectorToInfoUpdated(address[] bridges, bytes4[] selectors, uint256[] info)',
+      'function addAggregatorsAndBridges(address[] _bridgeAddresses)',
+      'function getSelectorInfo(address _bridge, bytes4 _selector) view returns (bool, uint256)',
+      'function isWhitelisted(address _bridge) view returns (bool)',
+      'function removeAggregatorsAndBridges(address[] _bridgeAddresses)',
+      'function updateSelectorInfo(address[] _bridgeAddresses, bytes4[] _selectors, uint256[] _offset)',
+    ]
+
+    it('6.1 Should update the storage mapping without making colisions', async () => {
+      // fork old dzap at a block
+      const dzapAddress = '0xF708e11A7C94abdE8f6217B13e6fE39C8b9cC0a6'
+      const jsonRpcUrl = getRpcUrl(CHAIN_IDS.ARBITRUM_MAINNET)
+      await forkNetwork(jsonRpcUrl, 303497900)
+
+      const owner = await impersonate(
+        '0x45679CDF728abdcdfce0F03A8f1D22BA49BAbC72'
+      )
+      await updateBalance(owner.address)
+
+      // ----------------
+      const bridgesAddress = [
+        '0xe35e9842fceaCA96570B734083f4a58e8F7C5f2A',
+        '0x9Ce3447B58D58e8602B7306316A5fF011B92d189',
+        '0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE',
+        '0xfE96910cF84318d1B8a5e2a6962774711467C0be',
+      ]
+      const adaptersAddress = [
+        '0x16c1E305BDcE64578A7837822E6D715B50301B17',
+        '0xc3aa1d86e034cE4EB7aEc9AD8a3924E137163961',
+        '0xD3564bAA559a62775AACa5ffA02A4F2B61F6f63F',
+      ]
+
+      // ----------------
+
+      const oldBridgeManager = await ethers.getContractAt(
+        oldBridgeManagerAbi,
+        dzapAddress
+      )
+
+      expect(await oldBridgeManager.isWhitelisted(bridgesAddress[0])).equal(
+        true
+      )
+      expect(await oldBridgeManager.isWhitelisted(bridgesAddress[1])).equal(
+        true
+      )
+      expect(await oldBridgeManager.isWhitelisted(bridgesAddress[2])).equal(
+        true
+      )
+      expect(await oldBridgeManager.isWhitelisted(bridgesAddress[3])).equal(
+        false
+      )
+      expect(await oldBridgeManager.isWhitelisted(adaptersAddress[0])).equal(
+        false
+      )
+      expect(await oldBridgeManager.isWhitelisted(adaptersAddress[1])).equal(
+        false
+      )
+      expect(await oldBridgeManager.isWhitelisted(adaptersAddress[2])).equal(
+        false
+      )
+
+      // -----------------
+
+      const BridgeManagerFacet = await ethers.getContractFactory(
+        CONTRACTS.BridgeManagerFacet
+      )
+      const bridgeManagerFacet = await BridgeManagerFacet.deploy()
+
+      const { selectors: oldSelectors } = await getSelectorsUsingContract(
+        oldBridgeManager,
+        'OldBridgeManagerFacet'
+      )
+      const { selectors: newSelectors } = await getSelectorsUsingContract(
+        bridgeManagerFacet,
+        'NewBridgeManagerFacet'
+      )
+
+      const initData = {
+        address: ethers.constants.AddressZero,
+        data: '0x',
+      }
+
+      const cutData = [
+        {
+          facetAddress: ADDRESS_ZERO,
+          action: FacetCutAction.Remove,
+          functionSelectors: oldSelectors,
+        },
+        {
+          facetAddress: bridgeManagerFacet.address,
+          action: FacetCutAction.Add,
+          functionSelectors: newSelectors,
+        },
+      ]
+
+      const diamondCut = await ethers.getContractAt(
+        CONTRACTS.DiamondCutFacet,
+        dzapAddress
+      )
+      await diamondCut
+        .connect(owner)
+        .diamondCut(cutData, initData.address, initData.data)
+
+      // -----------------
+
+      const newBridgeManager = (await ethers.getContractAt(
+        CONTRACTS.BridgeManagerFacet,
+        dzapAddress
+      )) as BridgeManagerFacet
+
+      // isBridgeWhitelisted
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(bridgesAddress[0])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(bridgesAddress[1])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(bridgesAddress[2])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(bridgesAddress[3])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[0])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[1])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[2])
+      ).equal(false)
+
+      // isAdapterWhitelisted
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(bridgesAddress[0])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(bridgesAddress[1])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(bridgesAddress[2])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(bridgesAddress[3])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[0])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[1])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[2])
+      ).equal(false)
+
+      // -----------------
+      // add adapters
+      await newBridgeManager.connect(owner).addAdapters(adaptersAddress)
+
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[0])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[1])
+      ).equal(false)
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(adaptersAddress[2])
+      ).equal(false)
+
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[0])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[1])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(adaptersAddress[2])
+      ).equal(true)
+
+      // -----------------
+      // add new bridge
+
+      await newBridgeManager
+        .connect(owner)
+        .addAggregatorsAndBridges([bridgesAddress[3]])
+      expect(
+        await newBridgeManager.isBridgeWhitelisted(bridgesAddress[3])
+      ).equal(true)
+      expect(
+        await newBridgeManager.isAdapterWhitelisted(bridgesAddress[3])
+      ).equal(false)
+
+      // -----------------
+      // add same bridge and adapter
+      const addr = '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a'
+
+      await newBridgeManager.connect(owner).addAggregatorsAndBridges([addr])
+      await newBridgeManager.connect(owner).addAdapters([addr])
+
+      expect(await newBridgeManager.isBridgeWhitelisted(addr)).equal(true)
+      expect(await newBridgeManager.isAdapterWhitelisted(addr)).equal(true)
     })
   })
 })

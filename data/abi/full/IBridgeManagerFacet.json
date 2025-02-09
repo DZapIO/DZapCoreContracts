@@ -5,6 +5,32 @@
       {
         "indexed": false,
         "internalType": "address[]",
+        "name": "adapters",
+        "type": "address[]"
+      }
+    ],
+    "name": "AdaptersAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "adapters",
+        "type": "address[]"
+      }
+    ],
+    "name": "AdaptersRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address[]",
         "name": "bridges",
         "type": "address[]"
       }
@@ -49,6 +75,19 @@
     ],
     "name": "SelectorToInfoUpdated",
     "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_adapters",
+        "type": "address[]"
+      }
+    ],
+    "name": "addAdapters",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "inputs": [
@@ -100,7 +139,7 @@
         "type": "address"
       }
     ],
-    "name": "isWhitelisted",
+    "name": "isAdapterWhitelisted",
     "outputs": [
       {
         "internalType": "bool",
@@ -109,6 +148,38 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_bridge",
+        "type": "address"
+      }
+    ],
+    "name": "isBridgeWhitelisted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_adapters",
+        "type": "address[]"
+      }
+    ],
+    "name": "removeAdapters",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

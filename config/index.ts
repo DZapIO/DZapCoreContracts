@@ -1,6 +1,6 @@
 export * from './protocols/bridges'
 export * from './protocols/dexes'
-export * from './create2'
+export * from './createX'
 export * from './feeConfig'
 export * from './integrators'
 export * from './permit2'

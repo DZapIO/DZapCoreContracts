@@ -491,4 +491,10 @@ export const NETWORKS = {
     rpcUrl: 'https://dappnode1.ont.io:10339',
     rpcType: RPC_TYPE.OTHER,
   },
+  [CHAIN_IDS.MERLIN_MAINNET]: {
+    chainId: CHAIN_IDS.MERLIN_MAINNET,
+    chainName: 'Merlin Mainnet',
+    rpcUrl: 'https://rpc.merlinchain.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
 }

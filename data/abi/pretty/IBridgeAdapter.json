@@ -1,0 +1,3 @@
+[
+  "function bridge(address _srcToken, uint256 _amount, bytes _data) payable"
+]

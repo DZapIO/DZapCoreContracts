@@ -7,8 +7,8 @@ import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 import { IBridgeManagerFacet } from "../Interfaces/IBridgeManagerFacet.sol";
 
 import { CrossChainStorage, CrossChainAllowedList } from "../Types.sol";
-import { CannotAuthorizeSelf, BridgeNotAdded } from "../../Shared/ErrorsNew.sol";
-
+import { CannotAuthorizeSelf, BridgeNotAdded, AdapterNotAdded } from "../../Shared/ErrorsNew.sol";
+ 
 contract BridgeManagerFacet is IBridgeManagerFacet {
     /* ========= MODIFIER ========= */
 
@@ -19,8 +19,12 @@ contract BridgeManagerFacet is IBridgeManagerFacet {
 
     /* ========= VIEWS ========= */
 
-    function isWhitelisted(address _bridge) external view returns (bool) {
+    function isBridgeWhitelisted(address _bridge) external view returns (bool) {
         return LibBridgeStorage.getCrossChainStorage().allowlist[_bridge].isWhitelisted;
+    }
+  
+    function isAdapterWhitelisted(address _adapter) external view returns (bool) {
+        return LibBridgeStorage.getCrossChainStorage().adaptersAllowlist[_adapter];
     }
 
     function getSelectorInfo(address _bridge, bytes4 _selector) external view returns (bool, uint256) {
@@ -30,6 +34,38 @@ contract BridgeManagerFacet is IBridgeManagerFacet {
     }
 
     /* ========= RESTRICTED ========= */
+
+    function addAdapters(address[] calldata _adapters) external onlyAuthorized {
+        uint256 length = _adapters.length;
+        CrossChainStorage storage storageInfo = LibBridgeStorage.getCrossChainStorage();
+
+        for (uint256 i; i < length; ) {
+            address adapter = _adapters[i];
+            if (adapter == address(this)) revert CannotAuthorizeSelf();
+            storageInfo.adaptersAllowlist[adapter] = true;
+
+            unchecked {
+                ++i;
+            }
+        } 
+        emit AdaptersAdded(_adapters);
+    }
+
+    function removeAdapters(address[] calldata _adapters) external onlyAuthorized {
+        uint256 length = _adapters.length;
+        CrossChainStorage storage storageInfo = LibBridgeStorage.getCrossChainStorage();
+
+        for (uint256 i; i < length; ) {
+            address adapter = _adapters[i];
+            if (!storageInfo.adaptersAllowlist[adapter]) revert AdapterNotAdded(adapter);
+            storageInfo.adaptersAllowlist[adapter] = false;
+
+            unchecked {
+                ++i; 
+            }
+        } 
+        emit AdaptersRemoved(_adapters);
+    }
 
     function addAggregatorsAndBridges(address[] calldata _bridgeAddresses) external onlyAuthorized {
         uint256 length = _bridgeAddresses.length;

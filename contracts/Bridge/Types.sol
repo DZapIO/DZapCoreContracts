@@ -8,6 +8,7 @@ struct CrossChainAllowedList {
 
 struct CrossChainStorage {
     mapping(address => CrossChainAllowedList) allowlist;
+    mapping(address => bool) adaptersAllowlist;
 }
 
 struct TransferData {
@@ -43,4 +44,20 @@ struct GenericBridgeData {
     bool hasDestinationCall;
     uint256 minAmountIn;
     uint256 destinationChainId;
+}
+
+struct RelayData {
+    bytes32 requestId;
+    bytes permit;
+}
+
+struct GasZipData {
+    bytes data;
+    uint256 depositAmount;
+}
+
+struct AdapterData {
+   address adapter;
+   bytes data;
+   bytes permit;
 }

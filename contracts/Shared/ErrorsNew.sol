@@ -52,3 +52,12 @@ error BridgeNotAdded(address);
 error InvalidLength();
 
 error AllSwapsFailed();
+
+error AdapterCallFailed(bytes res);
+error AdapterNotWhitelisted(address adapter);
+error AdapterNotAdded(address adapter);
+
+error NativeCallFailed(bytes reason);
+error Erc20CallFailed(bytes reason);
+error NotNativeToken();
+  

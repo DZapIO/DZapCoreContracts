@@ -2,91 +2,114 @@
 pragma solidity 0.8.19;
 
 import { LibFees } from "../../Shared/Libraries/LibFees.sol";
+import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibBridge } from "../Libraries/LibBridge.sol";
+import { LibValidatable } from "../Libraries/LibValidatable.sol";
+import { LibBridgeStorage } from "../Libraries/LibBridgeStorage.sol";
 
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
 
 import { IBatchBridgeCallFacet } from "../Interfaces/IBatchBridgeCallFacet.sol";
+import { IBridgeAdapter } from "../Interfaces/IBridgeAdapter.sol";
 
 import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
-import { GenericBridgeData, CrossChainData, BridgeData, TransferData } from "../Types.sol";
+import { GenericBridgeData, AdapterData } from "../Types.sol";
+import {  AdapterCallFailed, AdapterNotWhitelisted } from "../../Shared/ErrorsNew.sol";
 
 /// @title BatchBridgeCallFacet Facet
 /// @notice Batches multiple bridge facets
 contract BatchBridgeCallFacet is IBatchBridgeCallFacet, RefundNative {
-    function batchBridge(bytes32 _transactionId, address _integrator, CrossChainData[] calldata _crossChainData, GenericBridgeData[] memory _bridgeData, TransferData[] calldata _transferData) external payable refundExcessNative(msg.sender) {
+    function batchBridge(
+        bytes32 _transactionId, 
+        address _integrator, 
+        GenericBridgeData[] memory _bridgeData,
+        AdapterData[] calldata _data
+    ) external payable refundExcessNative(msg.sender) {
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
-        uint256 length = _crossChainData.length;
-        uint256 i;
+        uint256 length = _data.length;
+        
+        for (uint256 i; i < length; ) {
+            GenericBridgeData memory bridgeData = _bridgeData[i];
+            address adapter = _data[i].adapter;
 
-        for (i; i < length; ) {
-            LibBridge.bridge(_integrator, feeInfo, _bridgeData[i], _crossChainData[i]);
+            if(!LibBridgeStorage.getCrossChainStorage().adaptersAllowlist[adapter]) revert AdapterNotWhitelisted(adapter);
+            
+            LibValidatable.validateData(bridgeData);
+
+            (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, bridgeData.from, bridgeData.minAmountIn, _data[i].permit);
+            bridgeData.minAmountIn -= totalFee;
+
+            LibFees.accrueTokenFees(_integrator, bridgeData.from, totalFee - dZapShare, dZapShare);
+
+            (bool success, bytes memory res) = adapter.delegatecall(
+                abi.encodeWithSelector(
+                    IBridgeAdapter.bridge.selector,
+                    bridgeData.from,      
+                    bridgeData.minAmountIn, 
+                    _data[i].data
+                )
+            );    
+            if(!success) revert AdapterCallFailed(res);
 
             unchecked {
                 ++i;
             }
-        }
-
-        length = _transferData.length;
-        for (uint256 j; j < length; ) {
-            LibBridge.transferBridge(_integrator, feeInfo, _bridgeData[i], _transferData[j]);
-
-            unchecked {
-                ++i;
-                ++j;
-            }
-        }
+        } 
 
         LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
         emit BatchBridgeTransferStart(_transactionId, _integrator, msg.sender, _bridgeData);
-    }
+    } 
 
-    function batchSwapAndBridge(bytes32 _transactionId, address _integrator, CrossChainData[] calldata _crossChainData, GenericBridgeData[] memory _bridgeData, SwapData[] calldata _swapData, TransferData[] calldata _transferData) external payable refundExcessNative(msg.sender) {
-        uint256 length = _crossChainData.length;
+
+    function batchSwapAndBridge(
+        bytes32 _transactionId, 
+        address _integrator, 
+        GenericBridgeData[] memory _bridgeData,
+        SwapData[] calldata _swapData,
+        AdapterData[] calldata _data
+    ) external payable refundExcessNative(msg.sender) {
+        uint256 length = _data.length;
         uint256 i;
         uint256 swapCount;
         FeeInfo memory feeInfo = LibFees.getIntegratorFeeInfo(_integrator, FeeType.BRIDGE);
         SwapInfo[] memory swapInfo = new SwapInfo[](_swapData.length);
-
+        
         for (i; i < length; ) {
             GenericBridgeData memory bridgeData = _bridgeData[i];
+            address adapter = _data[i].adapter;
 
-            if (bridgeData.hasSourceSwaps) {
-                swapInfo[swapCount] = LibBridge.swapAndBridge(_integrator, feeInfo, bridgeData, _crossChainData[i], _swapData[swapCount]);
+            if(!LibBridgeStorage.getCrossChainStorage().adaptersAllowlist[adapter]) revert AdapterNotWhitelisted(adapter);
+            
+            LibValidatable.validateData(bridgeData);
 
-                unchecked {
-                    ++swapCount;
-                }
-            } else {
-                LibBridge.bridgeWithoutSwapAndDestCallCheck(_integrator, feeInfo, _bridgeData[i], _crossChainData[i]);
-            }
-
-            unchecked {
-                ++i;
-            }
-        }
-
-        length = _transferData.length;
-        for (uint256 j; j < length; ) {
-            GenericBridgeData memory bridgeData = _bridgeData[i];
-
-            if (bridgeData.hasSourceSwaps) {
-                swapInfo[swapCount] = LibBridge.swapAndBridgeViaTransfer(_integrator, feeInfo, bridgeData, _transferData[j], _swapData[swapCount]);
+            if(bridgeData.hasSourceSwaps) {
+                swapInfo[swapCount] = LibBridge.swap(_integrator, feeInfo, bridgeData, _swapData[swapCount]);
 
                 unchecked {
                     ++swapCount;
                 }
             } else {
-                LibBridge.transferBridgeWithoutSwapAndDestCallCheck(_integrator, feeInfo, _bridgeData[i], _transferData[j]);
-            }
+                (uint256 totalFee, uint256 dZapShare) = LibAsset.deposit(feeInfo, bridgeData.from, bridgeData.minAmountIn, _data[i].permit);
+                bridgeData.minAmountIn -= totalFee;
 
+                LibFees.accrueTokenFees(_integrator, bridgeData.from, totalFee - dZapShare, dZapShare);
+            }
+            (bool success, bytes memory res) = adapter.delegatecall(
+                abi.encodeWithSelector(
+                    IBridgeAdapter.bridge.selector,
+                    bridgeData.from,      
+                    bridgeData.minAmountIn, 
+                    _data[i].data
+                )
+            );    
+
+            if(!success) revert AdapterCallFailed(res);
             unchecked {
                 ++i;
-                ++j;
             }
-        }
+        } 
 
         LibFees.accrueFixedNativeFees(_integrator, FeeType.BRIDGE);
         emit BatchSwapAndBridgeTransferStart(_transactionId, _integrator, msg.sender, _bridgeData, swapInfo);
-    }
+    } 
 }

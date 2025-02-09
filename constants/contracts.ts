@@ -24,8 +24,15 @@ export const CONTRACTS = {
   BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
   BatchBridgeCallFacet: 'BatchBridgeCallFacet',
   Create2Deployer: 'Create2Deployer',
+  CreateX: 'CreateX',
   SwapTransferFacet: 'SwapTransferFacet',
   BatchSwapFacet: 'BatchSwapFacet',
+  RelayBridgeFacet: 'RelayBridgeFacet',
+  GasZipFacet: 'GasZipFacet',
+  DirectTransferAdapter: 'DirectTransferAdapter',
+  GasZipAdapter: 'GasZipAdapter',
+  GenericBridgeAdapter: 'GenericBridgeAdapter',
+  RelayBridgeAdapter: 'RelayBridgeAdapter',
 }
 
 export const ERRORS = {
@@ -57,6 +64,8 @@ export const ERRORS = {
   UnAuthorizedCall: 'UnAuthorizedCall',
   InvalidLength: 'InvalidLength',
   InvalidSwapDetails: 'InvalidSwapDetails',
+  AdapterNotAdded: 'AdapterNotAdded',
+  NotNativeToken: 'NotNativeToken',
 }
 
 export const EVENTS = {
@@ -82,4 +91,25 @@ export const EVENTS = {
   BatchBridgeTransferStart: 'BatchBridgeTransferStart',
   SwappedSingleToken: 'SwappedSingleToken',
   BatchSwapAndBridgeTransferStart: 'BatchSwapAndBridgeTransferStart',
+  AdaptersAdded: 'AdaptersAdded',
+  AdaptersRemoved: 'AdaptersRemoved',
+  GasZipBridgeTransferStarted: 'GasZipBridgeTransferStarted',
+  GasZipSwapBridgeTransferStarted: 'GasZipSwapBridgeTransferStarted',
+}
+
+export const FunctionNames = {
+  AddDex: 'addDex',
+  BatchAddDex: 'batchAddDex',
+  RemoveDex: 'removeDex',
+  BatchRemoveDex: 'batchRemoveDex',
+  SetFunctionApprovalBySignature: 'setFunctionApprovalBySignature',
+  BatchSetFunctionApprovalBySignature: 'batchSetFunctionApprovalBySignature',
+  SetProtocolFeeVault: 'setProtocolFeeVault',
+  SetIntegratorInfo: 'setIntegratorInfo',
+  RemoveIntegrator: 'removeIntegrator',
+  UpdateSelectorInfo: 'updateSelectorInfo',
+  AddAggregatorsAndBridges: 'addAggregatorsAndBridges',
+  RemoveAggregatorsAndBridges: 'removeAggregatorsAndBridges',
+  AddAdapters: 'addAdapters',
+  RemoveAdapters: 'removeAdapters',
 }

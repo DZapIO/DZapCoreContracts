@@ -72,11 +72,22 @@ const config: HardhatUserConfig = {
     mint: getNetworkConfig(CHAIN_IDS.MINT),
     morph: getNetworkConfig(CHAIN_IDS.MORPH),
     ontology: getNetworkConfig(CHAIN_IDS.ONTOLOGY),
+    merlin: getNetworkConfig(CHAIN_IDS.MERLIN_MAINNET),
   },
   solidity: {
     compilers: [
       {
         version: '0.8.19',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 300,
+          },
+          viaIR: true,
+        },
+      },
+      {
+        version: '0.8.23',
         settings: {
           optimizer: {
             enabled: true,
@@ -135,6 +146,10 @@ const config: HardhatUserConfig = {
         'BatchBridgeCallFacet',
         'BridgeDynamicTransferFacet',
         'BridgeManagerFacet',
+        'RelayBridgeFacet',
+        'GasZipFacet',
+        'DynamicBatchBridgeCallFacet',
+        'IBridgeAdapter',
       ],
       flat: true,
       clear: true,
@@ -160,6 +175,10 @@ const config: HardhatUserConfig = {
         'BatchBridgeCallFacet',
         'BridgeDynamicTransferFacet',
         'BridgeManagerFacet',
+        'RelayBridgeFacet',
+        'GasZipFacet',
+        'DynamicBatchBridgeCallFacet',
+        'IBridgeAdapter',
       ],
       flat: true,
       clear: true,

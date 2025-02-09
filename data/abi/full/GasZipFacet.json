@@ -2,29 +2,13 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
-        "name": "res",
-        "type": "bytes"
-      }
-    ],
-    "name": "AdapterCallFailed",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
-        "name": "adapter",
+        "name": "_depositAddress",
         "type": "address"
       }
     ],
-    "name": "AdapterNotWhitelisted",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "CannotBridgeToSameNetwork",
-    "type": "error"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
     "inputs": [
@@ -59,11 +43,6 @@
   },
   {
     "inputs": [],
-    "name": "InvalidLength",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "InvalidPermit",
     "type": "error"
   },
@@ -73,8 +52,14 @@
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "InvalidSwapDetails",
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "reason",
+        "type": "bytes"
+      }
+    ],
+    "name": "NativeCallFailed",
     "type": "error"
   },
   {
@@ -90,6 +75,11 @@
   {
     "inputs": [],
     "name": "NoTransferToNullAddress",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotNativeToken",
     "type": "error"
   },
   {
@@ -144,13 +134,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "bytes32",
         "name": "transactionId",
         "type": "bytes32"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "integrator",
         "type": "address"
@@ -164,66 +154,36 @@
       {
         "components": [
           {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
             "internalType": "bytes",
-            "name": "to",
+            "name": "data",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "receiver",
-            "type": "bytes"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
             "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
+            "name": "depositAmount",
             "type": "uint256"
           }
         ],
         "indexed": false,
-        "internalType": "struct GenericBridgeData[]",
-        "name": "bridgeData",
-        "type": "tuple[]"
+        "internalType": "struct GasZipData",
+        "name": "gasZipData",
+        "type": "tuple"
       }
     ],
-    "name": "BatchBridgeTransferStart",
+    "name": "GasZipBridgeTransferStarted",
     "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "bytes32",
         "name": "transactionId",
         "type": "bytes32"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "integrator",
         "type": "address"
@@ -237,50 +197,20 @@
       {
         "components": [
           {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
             "internalType": "bytes",
-            "name": "to",
+            "name": "data",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "receiver",
-            "type": "bytes"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
             "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
+            "name": "depositAmount",
             "type": "uint256"
           }
         ],
         "indexed": false,
-        "internalType": "struct GenericBridgeData[]",
-        "name": "bridgeData",
-        "type": "tuple[]"
+        "internalType": "struct GasZipData",
+        "name": "gasZipData",
+        "type": "tuple"
       },
       {
         "components": [
@@ -321,7 +251,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "BatchSwapAndBridgeTransferStart",
+    "name": "GasZipSwapBridgeTransferStarted",
     "type": "event"
   },
   {
@@ -339,76 +269,37 @@
       {
         "components": [
           {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
-            "internalType": "bytes",
-            "name": "to",
-            "type": "bytes"
-          },
-          {
-            "internalType": "bytes",
-            "name": "receiver",
-            "type": "bytes"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct GenericBridgeData[]",
-        "name": "_bridgeData",
-        "type": "tuple[]"
-      },
-      {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "adapter",
-            "type": "address"
-          },
-          {
             "internalType": "bytes",
             "name": "data",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
+            "internalType": "uint256",
+            "name": "depositAmount",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct AdapterData[]",
-        "name": "_data",
-        "type": "tuple[]"
+        "internalType": "struct GasZipData",
+        "name": "_gasZipData",
+        "type": "tuple"
       }
     ],
-    "name": "batchBridge",
+    "name": "bridgeTokensViaGasZip",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getGasZipDepositAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -422,53 +313,6 @@
         "internalType": "address",
         "name": "_integrator",
         "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "bridge",
-            "type": "string"
-          },
-          {
-            "internalType": "bytes",
-            "name": "to",
-            "type": "bytes"
-          },
-          {
-            "internalType": "bytes",
-            "name": "receiver",
-            "type": "bytes"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasSourceSwaps",
-            "type": "bool"
-          },
-          {
-            "internalType": "bool",
-            "name": "hasDestinationCall",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minAmountIn",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destinationChainId",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct GenericBridgeData[]",
-        "name": "_bridgeData",
-        "type": "tuple[]"
       },
       {
         "components": [
@@ -520,27 +364,22 @@
       {
         "components": [
           {
-            "internalType": "address",
-            "name": "adapter",
-            "type": "address"
-          },
-          {
             "internalType": "bytes",
             "name": "data",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
+            "internalType": "uint256",
+            "name": "depositAmount",
+            "type": "uint256"
           }
         ],
-        "internalType": "struct AdapterData[]",
-        "name": "_data",
-        "type": "tuple[]"
+        "internalType": "struct GasZipData",
+        "name": "_gasZipData",
+        "type": "tuple"
       }
     ],
-    "name": "batchSwapAndBridge",
+    "name": "swapAndBridgeTokensViaGasZip",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

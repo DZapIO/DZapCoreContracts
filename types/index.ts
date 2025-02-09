@@ -108,3 +108,10 @@ export interface FacetCut {
 export interface FacetCuts {
   [address: string]: FacetCut
 }
+
+export interface AccessContractObj {
+  [key: string]: {
+    executor: string
+    functionNames: string[]
+  }
+}

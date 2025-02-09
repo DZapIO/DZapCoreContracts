@@ -154,7 +154,7 @@ const validateMultiBridgeEventData = (
 }
 
 describe('CrossChainFacet.test.ts', async () => {
-  beforeEach(async () => {
+  before(async () => {
     signers = await ethers.getSigners()
     deployer = signers[0]
     owner = signers[1]

@@ -30,7 +30,7 @@ export const calculateTokenFee = (amount: BigNumber, feeInfo: FeeInfo) => {
 }
 
 export const calculateFixedNativeFee = (feeInfo: FeeInfo) => {
-  const totalNativeFee = feeInfo.fixedNativeFeeAmount
+  const totalNativeFee = BigNumber.from(feeInfo.fixedNativeFeeAmount)
   const dzapNativeFeeShare = totalNativeFee
     .mul(feeInfo.dzapFixedNativeShare)
     .div(BPS_DENOMINATOR)

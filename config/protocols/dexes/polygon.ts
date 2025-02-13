@@ -1,4 +1,4 @@
-import { DEXES } from '../dexes'
+import { DEXES } from '../dexNames'
 
 export const POLYGON_DEXES = {
   dexes: {

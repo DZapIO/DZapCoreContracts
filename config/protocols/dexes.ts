@@ -1,40 +1,5 @@
 import { CHAIN_IDS } from '../networks'
 
-export enum DEXES {
-  bebop = 'bebop',
-  conveyor = 'conveyor',
-  dodo = 'dodo',
-  enso = 'enso',
-  fluid = 'fluid',
-  iceCreamSwap = 'iceCreamSwap',
-  izumi = 'izumi',
-  kyber = 'kyber',
-  lifi = 'lifi',
-  odos = 'odos',
-  okx = 'okx',
-  omniBtc = 'omniBtc',
-  oneInch = 'oneInch',
-  openOcean = 'openOcean',
-  paraswap = 'paraswap', // Should remove this in future and change below v6 to only paraswap
-  paraswapV6 = 'paraswapV6',
-  propeller = 'propeller',
-  rocketX = 'rocketX',
-  router = 'router',
-  routerNitro = 'routerNitro',
-  socket = 'socket',
-  sushi = 'sushi',
-  swapsicle = 'swapsicle',
-  symmetric = 'symmetric',
-  synapse = 'synapse',
-  uniswap = 'uniswap',
-  unizen = 'unizen',
-  vapourDex = 'vapourDex',
-  wNative = 'wNative',
-  xyFinance = 'xyFinance',
-  zeroX = 'zeroX',
-  swapKit = 'swapKit',
-}
-
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
 import { AVALANCHE_DEXES } from './dexes/avalanche'
 import { BASE_DEXES } from './dexes/base'

@@ -1,4 +1,4 @@
-import { BRIDGES } from '../bridges'
+import { BRIDGES } from '../bridgeNames'
 
 export const POLYGON_ZK_EVM_MAINNET = {
   bridges: {

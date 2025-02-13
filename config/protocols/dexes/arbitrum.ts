@@ -1,4 +1,4 @@
-import { DEXES } from '../dexes'
+import { DEXES } from '../dexNames'
 
 export const ARBITRUM_DEXES = {
   dexes: {

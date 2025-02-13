@@ -1,41 +1,5 @@
 import { CHAIN_IDS } from '../networks'
 
-export enum BRIDGES {
-  ALL = 'ALL',
-  across = 'across',
-  allbridge = 'allbridge',
-  cctp = 'cctp',
-  celer = 'celer',
-  changeNow = 'changeNow',
-  crossCurve = 'crossCurve',
-  comet = 'comet',
-  deBridge = 'debridge',
-  hop = 'hop',
-  hyperlane = 'hyperlane',
-  izumi = 'izumi',
-  lifi = 'lifi',
-  mayanFinance = 'mayanFinance',
-  mesonFinance = 'mesonFinance',
-  okx = 'okx',
-  omniBtc = 'omniBtc',
-  orbiter = 'orbiter',
-  owlto = 'owlto',
-  rango = 'rango',
-  relayLink = 'relayLink',
-  router = 'router',
-  routerNitro = 'routerNitro',
-  socket = 'socket',
-  squid = 'squid',
-  stargate = 'stargate',
-  swing = 'swing',
-  symbiosis = 'symbiosis',
-  synapse = 'synapse',
-  telosBridge = 'telosBridge',
-  unizen = 'unizen',
-  wanBridge = 'wanBridge',
-  xyFinance = 'xyFinance',
-}
-
 import { ARBITRUM_MAINNET } from './bridges/arbitrum'
 import { AURORA_MAINNET } from './bridges/aurora'
 import { AVALANCHE_MAINNET } from './bridges/avalanche'

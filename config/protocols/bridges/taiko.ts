@@ -1,4 +1,4 @@
-import { BRIDGES } from '../bridges'
+import { BRIDGES } from '../bridgeNames'
 
 export const TAIKO_MAINNET = {
   bridges: {

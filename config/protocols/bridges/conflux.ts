@@ -1,4 +1,4 @@
-import { BRIDGES } from '../bridges'
+import { BRIDGES } from '../bridgeNames'
 
 export const CONFLUX_E_SPACE_MAINNET = {
   bridges: {

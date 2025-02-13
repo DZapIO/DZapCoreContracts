@@ -1,8 +1,4 @@
 import { CHAIN_IDS } from '../networks'
-import { ARBITRUM_DEXES } from './dexes/arbitrum'
-import { AVALANCHE_DEXES } from './dexes/avalanche'
-import { BASE_DEXES } from './dexes/base'
-import { BOBA_BNB_DEXES } from './dexes/bobaBnb'
 
 export enum DEXES {
   bebop = 'bebop',
@@ -39,6 +35,10 @@ export enum DEXES {
   swapKit = 'swapKit',
 }
 
+import { ARBITRUM_DEXES } from './dexes/arbitrum'
+import { AVALANCHE_DEXES } from './dexes/avalanche'
+import { BASE_DEXES } from './dexes/base'
+import { BOBA_BNB_DEXES } from './dexes/bobaBnb'
 import { BSC_DEXES } from './dexes/bsc'
 import { ETH_DEXES } from './dexes/ethereum'
 import { POLYGON_DEXES } from './dexes/polygon'

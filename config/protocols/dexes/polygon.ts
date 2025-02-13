@@ -19,6 +19,7 @@ export const POLYGON_DEXES = {
     [DEXES.zeroX]: [
       '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
       '0xfF4b330c5BC3811b66d8864CF8078D8F2db20Dd6',
+      '0x7f20a7A526D1BAB092e3Be0733D96287E93cEf59',
     ],
     [DEXES.bebop]: [
       '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',

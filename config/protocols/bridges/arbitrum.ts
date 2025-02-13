@@ -133,6 +133,7 @@ export const ARBITRUM_MAINNET = {
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',
         '0xD073b9740D17850A804341d08ad657749fb178e0',
         '0xde2A27EA71c2671DDF373951fe9099377De980Da',
+        '0x97fffFfa57144BBfacF41251bd1763657e646667',
       ],
       selectorInfo: [],
     },

@@ -145,6 +145,10 @@ export const OPTIMISM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.wanBridge]: {
+      address: ['0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6'],
+      selectorInfo: [],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',

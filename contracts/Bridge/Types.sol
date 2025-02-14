@@ -52,8 +52,7 @@ struct RelayData {
 }
 
 struct GasZipData {
-    bytes32 recipeint; // recipeint.  EVM addresses need to be padded with trailing 0s,
-    uint256 destChains; // short Chains
+    bytes data;
     uint256 depositAmount;
 }
 

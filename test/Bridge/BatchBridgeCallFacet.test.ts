@@ -34,11 +34,11 @@ import {
 import { AdapterData, GenericBridgeData } from '../types'
 import {
   addBridgeSelectors,
+  createGasZipCallData,
   deployAndAdapters,
   deployAndIntializeDimond,
   deployFacets,
   getAllFacets,
-  getEncodedGasZipData,
   getMockContract,
   getPermi2ApprovetData,
   setAccessControl,
@@ -63,6 +63,7 @@ let feeManager: SignerWithAddress
 let withdrawManager: SignerWithAddress
 let relayReciever: SignerWithAddress
 let relaySolver: SignerWithAddress
+let gasZipDepositor: SignerWithAddress
 
 let snapshotId: string
 
@@ -79,6 +80,7 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
     bridgeManager = signers[7]
     feeManager = signers[8]
     withdrawManager = signers[9]
+    gasZipDepositor = signers[10]
     relayReciever = signers[17]
     relaySolver = signers[18]
 
@@ -104,7 +106,7 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
         relayReciever.address,
         relaySolver.address,
       ],
-      [CONTRACTS.GasZipFacet]: [mock.mockGasZip.address],
+      [CONTRACTS.GasZipFacet]: [gasZipDepositor.address],
     })
 
     // deploy diamond, and initialize it
@@ -180,8 +182,8 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
   beforeEach(async () => {
     await snapshot.revert(snapshotId)
 
-    expect(await contracts.gasZipFacet.getGasZipRouter()).eql(
-      mock.mockGasZip.address
+    expect(await contracts.gasZipFacet.getGasZipDepositAddress()).eql(
+      gasZipDepositor.address
     )
     expect(await contracts.relayBridgeFacet.getRelayAddress()).eql([
       relayReciever.address,
@@ -540,12 +542,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
         const integratorAddress = integrator2.address
         const recipient = [signers[14], signers[15]]
         const gasZipCallData = [
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET]],
             reciever: recipient[0].address,
           }),
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.BASE_MAINNET]],
             reciever: recipient[1].address,
@@ -601,12 +603,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
         const adapterData: AdapterData[] = [
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[0].encodedData,
+            data: gasZipCallData[0],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[1].encodedData,
+            data: gasZipCallData[1],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
         ]
@@ -626,7 +628,7 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           )
 
         await expect(tx).changeEtherBalances(
-          [user, mock.mockGasZip, protoFeeVault, integrator2, dZapDiamond],
+          [user, gasZipDepositor, protoFeeVault, integrator2, dZapDiamond],
           [
             convertBNToNegative(value).add(extra),
             amountWithoutFee[0].add(amountWithoutFee[1]),
@@ -667,24 +669,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           genericBridgeData[1],
           amountWithoutFee[1]
         )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[0].destChains,
-            amountWithoutFee[0],
-            gasZipCallData[0].reciever.toLowerCase()
-          )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[1].destChains,
-            amountWithoutFee[1],
-            gasZipCallData[1].reciever.toLowerCase()
-          )
       })
     })
 
@@ -1426,12 +1410,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           ethers.utils.id('relayDymmyId2'),
         ]
         const gasZipCallData = [
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET]],
             reciever: recipient.gasZip[0].address,
           }),
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.BASE_MAINNET]],
             reciever: recipient.gasZip[1].address,
@@ -1588,12 +1572,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           },
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[0].encodedData,
+            data: gasZipCallData[0],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[1].encodedData,
+            data: gasZipCallData[1],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
           {
@@ -1671,7 +1655,7 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             user,
             relayReciever,
             relaySolver,
-            mock.mockGasZip,
+            gasZipDepositor,
             mockTransferAddress[0],
             recipient.generic[0],
             protoFeeVault,
@@ -1756,24 +1740,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           genericBridgeData[1],
           amountWithoutFee[1]
         )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[0].destChains,
-            amountWithoutFee[2],
-            gasZipCallData[0].reciever.toLowerCase()
-          )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[1].destChains,
-            amountWithoutFee[3],
-            gasZipCallData[1].reciever.toLowerCase()
-          )
       })
 
       it('1.5.2 Should allow users to bridge using with permit [RelayBridgeAdapter(native,erc20), GasZipAdapter, DirectTransferAdapter(native,erc20), GenericBridgeAdapter(native,erc20)]', async () => {
@@ -1796,12 +1762,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           ethers.utils.id('relayDymmyId2'),
         ]
         const gasZipCallData = [
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET]],
             reciever: recipient.gasZip[0].address,
           }),
-          getEncodedGasZipData({
+          createGasZipCallData({
             recieverType: GasZipReciever.EvmReciver,
             desChainId: [GasZipChainIds[CHAIN_IDS.BASE_MAINNET]],
             reciever: recipient.gasZip[1].address,
@@ -1964,12 +1930,12 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           },
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[0].encodedData,
+            data: gasZipCallData[0],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
           {
             adapter: adapters.gasZipAdapter.address,
-            data: gasZipCallData[1].encodedData,
+            data: gasZipCallData[1],
             permit: DEFAULT_ENCODDED_PERMIT,
           },
           {
@@ -2047,7 +2013,7 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
             user,
             relayReciever,
             relaySolver,
-            mock.mockGasZip,
+            gasZipDepositor,
             mockTransferAddress[0],
             recipient.generic[0],
             protoFeeVault,
@@ -2132,24 +2098,6 @@ describe('BatchBridgeCallFacet.test.ts', async () => {
           genericBridgeData[1],
           amountWithoutFee[1]
         )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[0].destChains,
-            amountWithoutFee[2],
-            gasZipCallData[0].reciever.toLowerCase()
-          )
-
-        await expect(tx)
-          .emit(mock.mockGasZip, EVENTS.Deposit)
-          .withArgs(
-            dZapDiamond.address,
-            gasZipCallData[1].destChains,
-            amountWithoutFee[3],
-            gasZipCallData[1].reciever.toLowerCase()
-          )
       })
     })
   })

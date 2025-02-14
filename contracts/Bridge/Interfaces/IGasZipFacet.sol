@@ -24,7 +24,7 @@ interface IGasZipFacet {
 
     /* ========= View ========= */
 
-    function getGasZipRouter() external view returns(address);
+    function getGasZipDepositAddress() external view returns(address);
 
     /* ========= EXTERNAL ========= */
 

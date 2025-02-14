@@ -9,7 +9,6 @@ import {
   ERRORS,
   EVENTS,
   FunctionNames,
-  HARDHAT_CHAIN_ID,
   NATIVE_ADDRESS,
   ZERO,
 } from '../../constants'
@@ -36,7 +35,7 @@ import {
   TOKEN_B_DECIMAL,
 } from '../constants'
 import {
-  createGasZipCallDataForContractDeposit,
+  createGasZipCallData,
   deployAndIntializeDimond,
   deployFacets,
   getAllFacets,
@@ -45,9 +44,6 @@ import {
   setAccessControl,
   validateSwapEventData,
 } from '../utils/helpers'
-import { GasZipData } from '../types'
-import { DEFAULT_BYTES } from '../../constants/others'
-import { BigNumber } from 'ethers'
 
 let dZapDiamond: DZapDiamond
 let contracts: Awaited<ReturnType<typeof getAllFacets>>
@@ -64,6 +60,7 @@ let swapManager: SignerWithAddress
 let bridgeManager: SignerWithAddress
 let feeManager: SignerWithAddress
 let withdrawManager: SignerWithAddress
+let gasZipDepositor: SignerWithAddress
 
 let snapshotId: string
 
@@ -80,6 +77,7 @@ describe('GasZipFacet.test.ts', async () => {
     bridgeManager = signers[7]
     feeManager = signers[8]
     withdrawManager = signers[9]
+    gasZipDepositor = signers[10]
 
     await updateBalance(deployer.address)
 
@@ -98,7 +96,7 @@ describe('GasZipFacet.test.ts', async () => {
       [CONTRACTS.BridgeManagerFacet]: [],
       [CONTRACTS.FeesFacet]: [],
       [CONTRACTS.SwapFacet]: [],
-      [CONTRACTS.GasZipFacet]: [mock.mockGasZip.address],
+      [CONTRACTS.GasZipFacet]: [gasZipDepositor.address],
     })
 
     // deploy diamond, and initialize it
@@ -171,8 +169,8 @@ describe('GasZipFacet.test.ts', async () => {
   beforeEach(async () => {
     await snapshot.revert(snapshotId)
 
-    expect(await contracts.gasZipFacet.getGasZipRouter()).eql(
-      mock.mockGasZip.address
+    expect(await contracts.gasZipFacet.getGasZipDepositAddress()).eql(
+      gasZipDepositor.address
     )
   })
 
@@ -185,7 +183,7 @@ describe('GasZipFacet.test.ts', async () => {
       const integratorAddress = integrator2.address
       const recipient = signers[14]
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -213,48 +211,36 @@ describe('GasZipFacet.test.ts', async () => {
       const value = amounts[0].add(fixedNativeFeeAmount).add(extra)
       // -------------------------------------
 
-      const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+      const gasZipData = {
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
       // -------------------------------------
 
-      const tx = contracts.gasZipFacet
-        .connect(user)
-        .bridgeTokensViaGasZip(transactionId, integratorAddress, gasZipData, {
-          value,
-        })
-
-      await expect(tx).changeEtherBalances(
-        [user, mock.mockGasZip, protoFeeVault, integrator2],
-        [
-          convertBNToNegative(value),
-          amountWithoutFee[0],
-          fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[0].dzapFee),
-          fixedNativeData.integratorNativeFeeAmount.add(
-            tokenFeeData[0].integratorFee
-          ),
-        ]
+      await expect(
+        contracts.gasZipFacet
+          .connect(user)
+          .bridgeTokensViaGasZip(transactionId, integratorAddress, gasZipData, {
+            value,
+          })
       )
-
-      await expect(tx)
+        .changeEtherBalances(
+          [user, gasZipDepositor, protoFeeVault, integrator2],
+          [
+            convertBNToNegative(value),
+            amountWithoutFee[0],
+            fixedNativeData.dzapNativeFeeAmount.add(tokenFeeData[0].dzapFee),
+            fixedNativeData.integratorNativeFeeAmount.add(
+              tokenFeeData[0].integratorFee
+            ),
+          ]
+        )
         .emit(contracts.gasZipFacet, EVENTS.GasZipBridgeTransferStarted)
         .withArgs(transactionId, integratorAddress, user.address, [
-          gasZipData.recipeint.toLowerCase(),
-          gasZipData.destChains,
+          gasZipData.data.toLowerCase(),
           amountWithoutFee[0],
         ])
-
-      await expect(tx)
-        .emit(mock.mockGasZip, EVENTS.Deposit)
-        .withArgs(
-          dZapDiamond.address,
-          gasZipCallData.destChains,
-          amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
-        )
     })
 
     it('1.2 Should allow user to bridge token from one chain to other chain and return extra native', async () => {
@@ -265,7 +251,7 @@ describe('GasZipFacet.test.ts', async () => {
       const integratorAddress = integrator1.address
       const recipient = signers[14]
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -289,9 +275,8 @@ describe('GasZipFacet.test.ts', async () => {
       const value = amounts[0].add(fixedNativeFeeAmount).add(extra)
       // -------------------------------------
 
-      const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+      const gasZipData = {
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -303,7 +288,7 @@ describe('GasZipFacet.test.ts', async () => {
           })
       )
         .changeEtherBalances(
-          [user, mock.mockGasZip, protoFeeVault, integrator1],
+          [user, gasZipDepositor, protoFeeVault, integrator1],
           [
             convertBNToNegative(value.sub(extra)),
             amountWithoutFee[0],
@@ -313,8 +298,7 @@ describe('GasZipFacet.test.ts', async () => {
         )
         .emit(contracts.gasZipFacet, EVENTS.GasZipBridgeTransferStarted)
         .withArgs(transactionId, integratorAddress, user.address, [
-          gasZipData.recipeint.toLowerCase(),
-          gasZipData.destChains,
+          gasZipData.data.toLowerCase(),
           amountWithoutFee[0],
         ])
     })
@@ -327,7 +311,7 @@ describe('GasZipFacet.test.ts', async () => {
       const integratorAddress = integrator1.address
       const recipient = signers[14]
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -352,8 +336,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: ZERO,
       }
 
@@ -364,101 +347,6 @@ describe('GasZipFacet.test.ts', async () => {
             value,
           })
       ).revertedWithCustomError(contracts.gasZipFacet, ERRORS.InvalidAmount)
-    })
-
-    it('1.4 Should revert if chain is same', async () => {
-      // -------------------------------------
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator1.address
-      const recipient = signers[14]
-
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
-        desChainId: [
-          GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
-          GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
-        ],
-        reciever: recipient.address,
-      })
-
-      // -------------------------------------
-      const amounts = [parseUnits('20')]
-
-      const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
-        await getFeeData(
-          dZapDiamond.address,
-          integratorAddress,
-          amounts,
-          FeeType.BRIDGE
-        )
-
-      const extra = parseUnits('0.5')
-      const value = amounts[0].add(fixedNativeFeeAmount).add(extra)
-      // -------------------------------------
-
-      const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: HARDHAT_CHAIN_ID,
-        depositAmount: amounts[0],
-      }
-
-      await expect(
-        contracts.gasZipFacet
-          .connect(user)
-          .bridgeTokensViaGasZip(transactionId, integratorAddress, gasZipData, {
-            value,
-          })
-      ).revertedWithCustomError(
-        contracts.gasZipFacet,
-        ERRORS.CannotBridgeToSameNetwork
-      )
-    })
-
-    it('1.5 Should revert if chain is same', async () => {
-      // -------------------------------------
-      const user = signers[12]
-      const transactionId = ethers.utils.formatBytes32String('dummyId')
-      const integratorAddress = integrator1.address
-      const recipient = signers[14]
-
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
-        desChainId: [
-          GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
-          GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
-        ],
-        reciever: recipient.address,
-      })
-
-      // -------------------------------------
-      const amounts = [parseUnits('20')]
-
-      const { amountWithoutFee, fixedNativeFeeAmount, tokenFeeData } =
-        await getFeeData(
-          dZapDiamond.address,
-          integratorAddress,
-          amounts,
-          FeeType.BRIDGE
-        )
-
-      const extra = parseUnits('0.5')
-      const value = amounts[0].add(fixedNativeFeeAmount).add(extra)
-      // -------------------------------------
-
-      const gasZipData = {
-        recipeint: ethers.utils.hexZeroPad('0x', 32),
-        destChains: gasZipCallData.destChains,
-        depositAmount: amounts[0],
-      }
-
-      await expect(
-        contracts.gasZipFacet
-          .connect(user)
-          .bridgeTokensViaGasZip(transactionId, integratorAddress, gasZipData, {
-            value,
-          })
-      ).revertedWithCustomError(contracts.gasZipFacet, ERRORS.InvalidReceiver)
     })
   })
 
@@ -478,7 +366,7 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
       const rate = await mock.mockExchange.rate()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -540,8 +428,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -560,7 +447,7 @@ describe('GasZipFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, mock.mockGasZip, protoFeeVault, integrator1, dZapDiamond],
+        [user, gasZipDepositor, protoFeeVault, integrator1, dZapDiamond],
         [
           convertBNToNegative(value),
           amountWithoutFee[0], // (amount[0] + swapAmount) - fee
@@ -575,7 +462,7 @@ describe('GasZipFacet.test.ts', async () => {
         [
           user,
           mock.mockExchange,
-          mock.mockGasZip,
+          gasZipDepositor,
           protoFeeVault,
           integrator1,
           dZapDiamond,
@@ -598,20 +485,10 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipData.recipeint.toLowerCase(),
-        BigNumber.from(gasZipData.destChains),
+        gasZipData.data.toLowerCase(),
         amountWithoutFee[0],
       ])
       validateSwapEventData(args.swapInfo[0], swapData[0], swapReturnAmount)
-
-      await expect(tx)
-        .emit(mock.mockGasZip, EVENTS.Deposit)
-        .withArgs(
-          dZapDiamond.address,
-          gasZipCallData.destChains,
-          amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
-        )
     })
 
     it('2.2 Should allow user to swap src token, return leftOver and extra then bridge them to destination chain', async () => {
@@ -624,7 +501,7 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
       const leftOverPercent = await mock.mockExchange.leftOverPercent()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -690,8 +567,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -710,7 +586,7 @@ describe('GasZipFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, mock.mockGasZip, protoFeeVault, integrator1, dZapDiamond],
+        [user, gasZipDepositor, protoFeeVault, integrator1, dZapDiamond],
         [
           convertBNToNegative(value.sub(extra)),
           amountWithoutFee[0], // (amount[0] + swapAmount) - fee
@@ -725,7 +601,7 @@ describe('GasZipFacet.test.ts', async () => {
         [
           user,
           mock.mockExchange,
-          mock.mockGasZip,
+          gasZipDepositor,
           protoFeeVault,
           integrator1,
           dZapDiamond,
@@ -755,8 +631,7 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipCallData.reciever.toLowerCase(),
-        BigNumber.from(gasZipData.destChains),
+        gasZipData.data.toLowerCase(),
         amountWithoutFee[0],
       ])
       validateSwapEventData(
@@ -765,15 +640,6 @@ describe('GasZipFacet.test.ts', async () => {
         swapReturnAmount,
         leftOverFromAmount
       )
-
-      await expect(tx)
-        .emit(mock.mockGasZip, EVENTS.Deposit)
-        .withArgs(
-          dZapDiamond.address,
-          BigNumber.from(gasZipData.destChains),
-          amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
-        )
     })
 
     it('2.3 Should allow user to swap src token, using permit2', async () => {
@@ -785,7 +651,7 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
       const rate = await mock.mockExchange.rate()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -856,8 +722,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -876,7 +741,7 @@ describe('GasZipFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, mock.mockGasZip, protoFeeVault, integrator1, dZapDiamond],
+        [user, gasZipDepositor, protoFeeVault, integrator1, dZapDiamond],
         [
           convertBNToNegative(value),
           amountWithoutFee[0], // (amount[0] + swapAmount) - fee
@@ -891,7 +756,7 @@ describe('GasZipFacet.test.ts', async () => {
         [
           user,
           mock.mockExchange,
-          mock.mockGasZip,
+          gasZipDepositor,
           protoFeeVault,
           integrator1,
           dZapDiamond,
@@ -914,8 +779,7 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipData.recipeint.toLowerCase(),
-        BigNumber.from(gasZipData.destChains),
+        gasZipData.data.toLowerCase(),
         amountWithoutFee[0],
       ])
       validateSwapEventData(args.swapInfo[0], swapData[0], swapReturnAmount)
@@ -934,7 +798,7 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
       const rate = await mock.mockExchange.rate()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -996,8 +860,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -1029,7 +892,7 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
       const rate = await mock.mockExchange.rate()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -1091,8 +954,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 
@@ -1125,7 +987,7 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
       const rate = await mock.mockExchange.rate()
 
-      const gasZipCallData = createGasZipCallDataForContractDeposit({
+      const gasZipCallData = createGasZipCallData({
         recieverType: GasZipReciever.EvmReciver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
@@ -1187,8 +1049,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
-        destChains: gasZipCallData.destChains,
+        data: gasZipCallData,
         depositAmount: amounts[0],
       }
 

@@ -10,6 +10,16 @@ export const CONTRACTS = {
   WithdrawFacet: 'WithdrawFacet',
   SwapFacet: 'SwapFacet',
   CrossChainFacet: 'CrossChainFacet',
+  StargateFacet: 'StargateFacet',
+  // ERC20: 'ERC20',
+  ERC20: '@openzeppelin/contracts/token/ERC20/ERC20.sol:ERC20',
+  WNATIVE: 'WNATIVE',
+  ERC20Mock: 'ERC20Mock',
+  ExchangeMock: 'ExchangeMock',
+  BridgeMock: 'BridgeMock',
+  Permit2: 'Permit2',
+  Executor: 'Executor',
+  Receiver: 'Receiver',
   BridgeManagerFacet: 'BridgeManagerFacet',
   BridgeDynamicTransferFacet: 'BridgeDynamicTransferFacet',
   BatchBridgeCallFacet: 'BatchBridgeCallFacet',
@@ -22,17 +32,6 @@ export const CONTRACTS = {
   GasZipAdapter: 'GasZipAdapter',
   GenericBridgeAdapter: 'GenericBridgeAdapter',
   RelayBridgeAdapter: 'RelayBridgeAdapter',
-  // ERC20: 'ERC20',
-  ERC20: '@openzeppelin/contracts/token/ERC20/ERC20.sol:ERC20',
-  WNATIVE: 'WNATIVE',
-  Permit2: 'Permit2',
-  CreateX: 'CreateX',
-  Executor: 'Executor',
-  Receiver: 'Receiver',
-  ERC20Mock: 'ERC20Mock',
-  ExchangeMock: 'ExchangeMock',
-  BridgeMock: 'BridgeMock',
-  MockGasZipRouter: 'MockGasZipRouter',
 }
 
 export const ERRORS = {
@@ -95,7 +94,6 @@ export const EVENTS = {
   AdaptersRemoved: 'AdaptersRemoved',
   GasZipBridgeTransferStarted: 'GasZipBridgeTransferStarted',
   GasZipSwapBridgeTransferStarted: 'GasZipSwapBridgeTransferStarted',
-  Deposit: 'Deposit', // gasZip
 }
 
 export const FunctionNames = {

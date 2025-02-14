@@ -73,7 +73,6 @@ const config: HardhatUserConfig = {
     morph: getNetworkConfig(CHAIN_IDS.MORPH),
     ontology: getNetworkConfig(CHAIN_IDS.ONTOLOGY),
     merlin: getNetworkConfig(CHAIN_IDS.MERLIN_MAINNET),
-    bera: getNetworkConfig(CHAIN_IDS.BERA_CHAIN_MAINNET),
   },
   solidity: {
     compilers: [
@@ -222,9 +221,6 @@ const config: HardhatUserConfig = {
         },
       },
     ],
-  },
-  sourcify: {
-    enabled: true,
   },
 }
 

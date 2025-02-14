@@ -11,11 +11,6 @@
     "type": "constructor"
   },
   {
-    "inputs": [],
-    "name": "CannotBridgeToSameNetwork",
-    "type": "error"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -57,8 +52,14 @@
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "InvalidReceiver",
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "reason",
+        "type": "bytes"
+      }
+    ],
+    "name": "NativeCallFailed",
     "type": "error"
   },
   {
@@ -153,14 +154,9 @@
       {
         "components": [
           {
-            "internalType": "bytes32",
-            "name": "recipeint",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destChains",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
           },
           {
             "internalType": "uint256",
@@ -201,14 +197,9 @@
       {
         "components": [
           {
-            "internalType": "bytes32",
-            "name": "recipeint",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destChains",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
           },
           {
             "internalType": "uint256",
@@ -278,14 +269,9 @@
       {
         "components": [
           {
-            "internalType": "bytes32",
-            "name": "recipeint",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destChains",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
           },
           {
             "internalType": "uint256",
@@ -305,7 +291,7 @@
   },
   {
     "inputs": [],
-    "name": "getGasZipRouter",
+    "name": "getGasZipDepositAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -378,14 +364,9 @@
       {
         "components": [
           {
-            "internalType": "bytes32",
-            "name": "recipeint",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "uint256",
-            "name": "destChains",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
           },
           {
             "internalType": "uint256",

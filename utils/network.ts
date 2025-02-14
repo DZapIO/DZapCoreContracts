@@ -1,4 +1,3 @@
-import { ethers } from 'ethers'
 import { CHAIN_IDS, NETWORKS, RPC_TYPE } from '../config/networks'
 import { dummyKey } from '../constants/others'
 
@@ -36,9 +35,4 @@ export const getNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {
 
 export const getChainName = (chainId: CHAIN_IDS) => {
   return NETWORKS[chainId].chainName
-}
-
-export async function getProvider(chainId: CHAIN_IDS) {
-  const rpcUrl = getRpcUrl(chainId)
-  return new ethers.providers.JsonRpcProvider(rpcUrl)
 }

@@ -9,10 +9,10 @@ import { NativeCallFailed, Erc20CallFailed } from "../../Shared/ErrorsNew.sol";
 contract RelayBridgeAdapter is IBridgeAdapter {
  
     function bridge(address _srcToken, uint256 _amount, bytes calldata _data) external payable {
-        (address relayReciever, address relaySolver) = IBridgeRelayFacet(address(this)).getRelayAddress();
+        (address relayReceiver, address relaySolver) = IBridgeRelayFacet(address(this)).getRelayAddress();
 
         if (LibAsset.isNativeToken(_srcToken)) {
-            (bool success, bytes memory reason) = relayReciever.call{value: _amount}(_data);
+            (bool success, bytes memory reason) = relayReceiver.call{value: _amount}(_data);
             if (!success) revert NativeCallFailed(reason);
         } else {
             bytes memory transferCallData = bytes.concat(

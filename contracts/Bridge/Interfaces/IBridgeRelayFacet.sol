@@ -15,7 +15,7 @@ interface IBridgeRelayFacet {
 
     /* ========= VIEW ========= */
 
-    function getRelayAddress() external view returns(address reciever, address solver);
+    function getRelayAddress() external view returns(address receiver, address solver);
 
     /* ========= EXTERNAL ========= */
 

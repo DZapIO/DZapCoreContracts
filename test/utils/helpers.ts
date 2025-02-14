@@ -39,7 +39,7 @@ import {
   WNATIVE,
 } from '../../typechain-types'
 import { AccessContractObj, DiamondCut, PermitType } from '../../types'
-import { GasZipReciever } from '../constants/gasZip'
+import { GasZipReceiver } from '../constants/gasZip'
 import { duration, latest } from './time'
 import { getPermit2SignatureAndCalldataForApprove } from './permit'
 import { ERC20 } from '../../typechain-types/contracts/Test/Permit2Mock.sol'
@@ -406,26 +406,26 @@ function encodeGasZipChainIds(shorts) {
 }
 
 export const getEncodedGasZipData = (data: GasZipDataForContract) => {
-  const { destChains, reciever } = createGasZipCallDataForContractDeposit(data)
+  const { destChains, receiver } = createGasZipCallDataForContractDeposit(data)
 
   const encodedData = ethers.utils.defaultAbiCoder.encode(
     ['bytes32', 'uint256'],
-    [reciever, destChains]
+    [receiver, destChains]
   )
 
-  return { encodedData, destChains, reciever }
+  return { encodedData, destChains, receiver }
 }
 
 // Function to create a protected salt
 export const createGasZipCallDataForContractDeposit = (
   data: GasZipDataForContract
 ) => {
-  let reciever = data.reciever
+  let receiver = data.receiver
   let calldata = '0x'
-  if (data.recieverType === GasZipReciever.EvmReciver) {
-    reciever = hexRightPad(data.reciever, 32)
-  } else if (data.reciever.length != 32 * 2 + 2) {
-    throw Error('Non EVM Reciever is not valid')
+  if (data.receiverType === GasZipReceiver.EvmReceiver) {
+    receiver = hexRightPad(data.receiver, 32)
+  } else if (data.receiver.length != 32 * 2 + 2) {
+    throw Error('Non EVM Receiver is not valid')
   }
 
   const destChains = data.desChainId.reduce(
@@ -435,7 +435,7 @@ export const createGasZipCallDataForContractDeposit = (
 
   return {
     destChains,
-    reciever,
+    receiver,
   }
 }
 
@@ -443,14 +443,14 @@ export const createGasZipCallDataForDirectDeposit = (
   data: GasZipDataForDirectDeposit
 ) => {
   let calldata = '0x'
-  if (data.recieverType === GasZipReciever.MsgSender) {
+  if (data.receiverType === GasZipReceiver.MsgSender) {
     calldata += '01'
-  } else if (data.recieverType === GasZipReciever.EvmReciver) {
-    if (!data.reciever || !isEVMAddress(data.reciever))
-      throw Error('Reciever is undefined')
-    const reciever = ethers.utils.getAddress(data.reciever)
+  } else if (data.receiverType === GasZipReceiver.EvmReceiver) {
+    if (!data.receiver || !isEVMAddress(data.receiver))
+      throw Error('Receiver is undefined')
+    const receiver = ethers.utils.getAddress(data.receiver)
 
-    calldata += '02' + reciever.substring(2)
+    calldata += '02' + receiver.substring(2)
   } else {
     throw new Error('Not implemented')
   }

@@ -29,7 +29,7 @@ import {
   feeInfo1,
   feeInfo2,
   GasZipChainIds,
-  GasZipReciever,
+  GasZipReceiver,
   MAX_FIXED_FEE_AMOUNT,
   MAX_TOKEN_FEE,
   TOKEN_A_DECIMAL,
@@ -186,12 +186,12 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -214,7 +214,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -253,7 +253,7 @@ describe('GasZipFacet.test.ts', async () => {
           dZapDiamond.address,
           gasZipCallData.destChains,
           amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
+          gasZipCallData.receiver.toLowerCase()
         )
     })
 
@@ -266,12 +266,12 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -290,7 +290,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -328,12 +328,12 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -352,7 +352,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: ZERO,
       }
@@ -374,12 +374,12 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -398,7 +398,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: HARDHAT_CHAIN_ID,
         depositAmount: amounts[0],
       }
@@ -423,12 +423,12 @@ describe('GasZipFacet.test.ts', async () => {
       const recipient = signers[14]
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -479,12 +479,12 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -540,7 +540,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -610,7 +610,7 @@ describe('GasZipFacet.test.ts', async () => {
           dZapDiamond.address,
           gasZipCallData.destChains,
           amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
+          gasZipCallData.receiver.toLowerCase()
         )
     })
 
@@ -625,12 +625,12 @@ describe('GasZipFacet.test.ts', async () => {
       const leftOverPercent = await mock.mockExchange.leftOverPercent()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -690,7 +690,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -755,7 +755,7 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipCallData.reciever.toLowerCase(),
+        gasZipCallData.receiver.toLowerCase(),
         BigNumber.from(gasZipData.destChains),
         amountWithoutFee[0],
       ])
@@ -772,7 +772,7 @@ describe('GasZipFacet.test.ts', async () => {
           dZapDiamond.address,
           BigNumber.from(gasZipData.destChains),
           amountWithoutFee[0],
-          gasZipCallData.reciever.toLowerCase()
+          gasZipCallData.receiver.toLowerCase()
         )
     })
 
@@ -786,12 +786,12 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -856,7 +856,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -935,12 +935,12 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -996,7 +996,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -1030,12 +1030,12 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -1091,7 +1091,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -1126,12 +1126,12 @@ describe('GasZipFacet.test.ts', async () => {
       const rate = await mock.mockExchange.rate()
 
       const gasZipCallData = createGasZipCallDataForContractDeposit({
-        recieverType: GasZipReciever.EvmReciver,
+        receiverType: GasZipReceiver.EvmReceiver,
         desChainId: [
           GasZipChainIds[CHAIN_IDS.ARBITRUM_MAINNET],
           GasZipChainIds[CHAIN_IDS.BASE_MAINNET],
         ],
-        reciever: recipient.address,
+        receiver: recipient.address,
       })
 
       // -------------------------------------
@@ -1187,7 +1187,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.reciever,
+        recipeint: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }

@@ -61,7 +61,7 @@ let swapManager: SignerWithAddress
 let bridgeManager: SignerWithAddress
 let feeManager: SignerWithAddress
 let withdrawManager: SignerWithAddress
-let relayReciever: SignerWithAddress
+let relayReceiver: SignerWithAddress
 let relaySolver: SignerWithAddress
 
 let snapshotId: string
@@ -79,7 +79,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
     bridgeManager = signers[7]
     feeManager = signers[8]
     withdrawManager = signers[9]
-    relayReciever = signers[10]
+    relayReceiver = signers[10]
     relaySolver = signers[11]
 
     await updateBalance(deployer.address)
@@ -100,7 +100,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       [CONTRACTS.FeesFacet]: [],
       [CONTRACTS.SwapFacet]: [],
       [CONTRACTS.RelayBridgeFacet]: [
-        relayReciever.address,
+        relayReceiver.address,
         relaySolver.address,
       ],
     })
@@ -176,7 +176,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
     await snapshot.revert(snapshotId)
 
     expect(await contracts.relayBridgeFacet.getRelayAddress()).eql([
-      relayReciever.address,
+      relayReceiver.address,
       relaySolver.address,
     ])
   })
@@ -243,7 +243,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, relayReciever, relaySolver, protoFeeVault, integrator2],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator2],
         [
           convertBNToNegative(value),
           amountWithoutFee[0],
@@ -342,7 +342,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, relayReciever, relaySolver, protoFeeVault, integrator2],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator2],
         [
           convertBNToNegative(value),
           0,
@@ -354,7 +354,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
 
       await expect(tx).changeTokenBalances(
         mock.tokenA,
-        [user, relayReciever, relaySolver, protoFeeVault, integrator1],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator1],
         [
           convertBNToNegative(amounts[0]),
           0,
@@ -460,7 +460,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, relayReciever, relaySolver, protoFeeVault, integrator2],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator2],
         [
           convertBNToNegative(value),
           0,
@@ -472,7 +472,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
 
       await expect(tx).changeTokenBalances(
         mock.tokenA,
-        [user, relayReciever, relaySolver, protoFeeVault, integrator1],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator1],
         [
           convertBNToNegative(amounts[0]),
           0,
@@ -564,7 +564,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         )
 
       await expect(tx).changeEtherBalances(
-        [user, relayReciever, relaySolver, protoFeeVault, integrator2],
+        [user, relayReceiver, relaySolver, protoFeeVault, integrator2],
         [
           convertBNToNegative(value.sub(extra)),
           amountWithoutFee[0],
@@ -1097,7 +1097,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -1119,7 +1119,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -1139,7 +1139,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenB,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -1333,7 +1333,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -1355,7 +1355,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -1375,7 +1375,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenB,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -2082,7 +2082,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -2104,7 +2104,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2126,7 +2126,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenB,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2293,7 +2293,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2319,7 +2319,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2482,7 +2482,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2508,7 +2508,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2679,7 +2679,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2705,7 +2705,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -2964,7 +2964,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,
@@ -2991,7 +2991,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenA,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -3013,7 +3013,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
         mock.tokenB,
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           mock.mockExchange,
           protoFeeVault,
@@ -3160,7 +3160,7 @@ describe('RelayBridgeFacet.test.ts', async () => {
       await expect(tx).changeEtherBalances(
         [
           user,
-          relayReciever,
+          relayReceiver,
           relaySolver,
           protoFeeVault,
           integrator2,

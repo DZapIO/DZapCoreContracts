@@ -1,13 +1,13 @@
 import { CHAIN_IDS } from '../../config'
 
-export enum GasZipReciever {
+export enum GasZipReceiver {
   MsgSender,
-  EvmReciver,
-  SolanaReciever,
-  MoveReciever,
-  XrpReciever,
-  InitiaReciever,
-  NonEVMReciever,
+  EvmReceiver,
+  SolanaReceiver,
+  MoveReceiver,
+  XrpReceiver,
+  InitiaReceiver,
+  NonEVMReceiver,
 }
 
 export const GasZipChainIds = {

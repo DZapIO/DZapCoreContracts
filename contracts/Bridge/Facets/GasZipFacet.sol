@@ -10,28 +10,29 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
 
 import { IGasZipFacet } from "../Interfaces/IGasZipFacet.sol";
+import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
 
 import { GasZipData } from "../Types.sol";
 import { FeeType, SwapData, SwapInfo } from "../../Shared/Types.sol";
-import { NativeCallFailed, NotNativeToken, InvalidAmount } from "../../Shared/ErrorsNew.sol";
+import { NativeCallFailed, NotNativeToken, InvalidAmount, CannotBridgeToSameNetwork, InvalidReceiver } from "../../Shared/ErrorsNew.sol";
 
 /// @title GasZipFacet
 /// @notice Provides functionality for bridging tokens across chains using gasZip
 contract GasZipFacet is IGasZipFacet, RefundNative {
     // ------------------- STORAGE ------------------- //
 
-    address private immutable _GAS_ZIP_DEPOSIT_ADDRESS; // for native transfers
+    IGasZipRouter private immutable _GAS_ZIP_ROUTER; // for native transfers
     
     // ------------------- CONSTRUCTOR -------------------//
 
     constructor(address _depositAddress) {
-        _GAS_ZIP_DEPOSIT_ADDRESS = _depositAddress;
+        _GAS_ZIP_ROUTER = IGasZipRouter(_depositAddress);
     }
 
     // ------------------- VIEW -------------------//
 
-    function getGasZipDepositAddress() external view returns(address) {
-        return _GAS_ZIP_DEPOSIT_ADDRESS;
+    function getGasZipRouter() external view returns(address) {
+        return address(_GAS_ZIP_ROUTER);
     }
 
     // ------------------- EXTERNAL -------------------//
@@ -86,10 +87,12 @@ contract GasZipFacet is IGasZipFacet, RefundNative {
         _gasZipData.depositAmount -= tokenFee;
         totalDZapShare += dZapShare;
         uint256 totalIntegratorFee = fixedFee + tokenFee - totalDZapShare;
-        if(_gasZipData.depositAmount == 0) revert InvalidAmount();
 
-        (bool success, bytes memory reason) = _GAS_ZIP_DEPOSIT_ADDRESS.call{value: _gasZipData.depositAmount}(_gasZipData.data);
-        if (!success) revert NativeCallFailed(reason);
+        if (_gasZipData.recipeint == bytes32(0)) revert InvalidReceiver();
+        if(_gasZipData.depositAmount == 0) revert InvalidAmount();
+        if (_gasZipData.destChains == block.chainid) revert CannotBridgeToSameNetwork();
+
+        _GAS_ZIP_ROUTER.deposit{value: _gasZipData.depositAmount}(_gasZipData.destChains, _gasZipData.recipeint);
 
         LibFees.accrueTokenFees(_integrator, LibAsset._NATIVE_TOKEN, totalIntegratorFee, totalDZapShare);
     }

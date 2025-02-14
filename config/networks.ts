@@ -80,6 +80,7 @@ export enum NETWORK_NAMES {
   MINT = 'MINT',
   MORPH = 'MORPH',
   ONTOLOGY = 'ONTOLOGY',
+  BERA_CHAIN_MAINNET = 'BERA_CHAIN_MAINNET',
 }
 
 export enum RPC_TYPE {
@@ -185,6 +186,7 @@ export enum CHAIN_IDS {
   MINT = 185,
   MORPH = 2818,
   ONTOLOGY = 58,
+  BERA_CHAIN_MAINNET = 80094,
 }
 
 export const NETWORKS = {
@@ -495,6 +497,12 @@ export const NETWORKS = {
     chainId: CHAIN_IDS.MERLIN_MAINNET,
     chainName: 'Merlin Mainnet',
     rpcUrl: 'https://rpc.merlinchain.io',
+    rpcType: RPC_TYPE.OTHER,
+  },
+  [CHAIN_IDS.BERA_CHAIN_MAINNET]: {
+    chainId: CHAIN_IDS.BERA_CHAIN_MAINNET,
+    chainName: 'Bera Chain',
+    rpcUrl: 'https://berachain.blockpi.network/v1/rpc/public',
     rpcType: RPC_TYPE.OTHER,
   },
 }

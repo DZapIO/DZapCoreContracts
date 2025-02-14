@@ -28,6 +28,7 @@ import {
   GasZipAdapter,
   GasZipFacet,
   GenericBridgeAdapter,
+  MockGasZipRouter,
   OwnershipFacet,
   Permit2,
   RelayBridgeAdapter,
@@ -44,6 +45,12 @@ import { getPermit2SignatureAndCalldataForApprove } from './permit'
 import { ERC20 } from '../../typechain-types/contracts/Test/Permit2Mock.sol'
 import { calculateOffset, encodePermitData } from '../../scripts/core/helper'
 import { DEFAULT_BYTES } from '../../constants/others'
+import {
+  GasZipData,
+  GasZipDataForContract,
+  GasZipDataForDirectDeposit,
+} from '../types'
+import { hexRightPad } from '../../utils'
 
 export const validateBridgeEventData = (
   eventBridgeData,
@@ -352,6 +359,13 @@ export const getMockContract = async (
   )
   const mockBridge = (await BridgeMock.connect(deployer).deploy()) as BridgeMock
 
+  const MockGasZipRouter = await ethers.getContractFactory(
+    CONTRACTS.MockGasZipRouter
+  )
+  const mockGasZip = (await MockGasZipRouter.connect(deployer).deploy(
+    deployer.address
+  )) as MockGasZipRouter
+
   {
     await tokenA.mint(mockExchange.address, parseUnits('100', TOKEN_A_DECIMAL))
     await tokenB.mint(mockExchange.address, parseUnits('100', TOKEN_B_DECIMAL))
@@ -374,18 +388,12 @@ export const getMockContract = async (
     permit2,
     mockExchange,
     mockBridge,
+    mockGasZip,
   }
 }
 
 function isEVMAddress(address: string): boolean {
   return address.length === 42
-}
-
-interface GasZipData {
-  recieverType: GasZipReciever
-  desChainId: number[]
-  reciever?: string
-  sender?: string
 }
 
 function encodeGasZipChainIds(shorts) {
@@ -397,8 +405,43 @@ function encodeGasZipChainIds(shorts) {
   }, '')
 }
 
+export const getEncodedGasZipData = (data: GasZipDataForContract) => {
+  const { destChains, reciever } = createGasZipCallDataForContractDeposit(data)
+
+  const encodedData = ethers.utils.defaultAbiCoder.encode(
+    ['bytes32', 'uint256'],
+    [reciever, destChains]
+  )
+
+  return { encodedData, destChains, reciever }
+}
+
 // Function to create a protected salt
-export const createGasZipCallData = (data: GasZipData) => {
+export const createGasZipCallDataForContractDeposit = (
+  data: GasZipDataForContract
+) => {
+  let reciever = data.reciever
+  let calldata = '0x'
+  if (data.recieverType === GasZipReciever.EvmReciver) {
+    reciever = hexRightPad(data.reciever, 32)
+  } else if (data.reciever.length != 32 * 2 + 2) {
+    throw Error('Non EVM Reciever is not valid')
+  }
+
+  const destChains = data.desChainId.reduce(
+    (p, c) => (p << BigInt(8)) + BigInt(c),
+    BigInt(0)
+  )
+
+  return {
+    destChains,
+    reciever,
+  }
+}
+
+export const createGasZipCallDataForDirectDeposit = (
+  data: GasZipDataForDirectDeposit
+) => {
   let calldata = '0x'
   if (data.recieverType === GasZipReciever.MsgSender) {
     calldata += '01'

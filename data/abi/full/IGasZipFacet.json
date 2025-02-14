@@ -23,9 +23,14 @@
       {
         "components": [
           {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "internalType": "bytes32",
+            "name": "recipeint",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destChains",
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -66,9 +71,14 @@
       {
         "components": [
           {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "internalType": "bytes32",
+            "name": "recipeint",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destChains",
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -138,9 +148,14 @@
       {
         "components": [
           {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "internalType": "bytes32",
+            "name": "recipeint",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destChains",
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -160,7 +175,7 @@
   },
   {
     "inputs": [],
-    "name": "getGasZipDepositAddress",
+    "name": "getGasZipRouter",
     "outputs": [
       {
         "internalType": "address",
@@ -233,9 +248,14 @@
       {
         "components": [
           {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "internalType": "bytes32",
+            "name": "recipeint",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "destChains",
+            "type": "uint256"
           },
           {
             "internalType": "uint256",

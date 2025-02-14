@@ -1,4 +1,5 @@
 import { CHAIN_IDS } from '../networks'
+import { DEXES } from './dexNames'
 
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
 import { AVALANCHE_DEXES } from './dexes/avalanche'

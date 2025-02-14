@@ -7,6 +7,7 @@ import { BOBA_BNB_DEXES } from './dexes/bobaBnb'
 import { BSC_DEXES } from './dexes/bsc'
 import { ETH_DEXES } from './dexes/ethereum'
 import { POLYGON_DEXES } from './dexes/polygon'
+import { DEXES } from './dexNames'
 
 export const DZAP_DEXES_CONFIG: {
   [x: number]: { dexes?: any }

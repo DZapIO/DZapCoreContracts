@@ -429,9 +429,13 @@ export const createGasZipCallDataForContractDeposit = (
   }
 
   const destChains = data.desChainId.reduce(
-    (p, c) => (p << BigInt(8)) + BigInt(c),
+    (p, c) => (p << BigInt(16)) + BigInt(c),
     BigInt(0)
   )
+  // const destChains = data.desChainId.reduce(
+  //   (p, c) => (p << BigInt(8)) + BigInt(c),
+  //   BigInt(0)
+  // )
 
   return {
     destChains,

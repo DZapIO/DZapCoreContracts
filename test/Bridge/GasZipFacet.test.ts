@@ -214,7 +214,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -242,7 +242,7 @@ describe('GasZipFacet.test.ts', async () => {
       await expect(tx)
         .emit(contracts.gasZipFacet, EVENTS.GasZipBridgeTransferStarted)
         .withArgs(transactionId, integratorAddress, user.address, [
-          gasZipData.recipeint.toLowerCase(),
+          gasZipData.recipient.toLowerCase(),
           gasZipData.destChains,
           amountWithoutFee[0],
         ])
@@ -290,7 +290,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData: GasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -313,7 +313,7 @@ describe('GasZipFacet.test.ts', async () => {
         )
         .emit(contracts.gasZipFacet, EVENTS.GasZipBridgeTransferStarted)
         .withArgs(transactionId, integratorAddress, user.address, [
-          gasZipData.recipeint.toLowerCase(),
+          gasZipData.recipient.toLowerCase(),
           gasZipData.destChains,
           amountWithoutFee[0],
         ])
@@ -352,7 +352,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: ZERO,
       }
@@ -398,7 +398,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: HARDHAT_CHAIN_ID,
         depositAmount: amounts[0],
       }
@@ -447,7 +447,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: ethers.utils.hexZeroPad('0x', 32),
+        recipient: ethers.utils.hexZeroPad('0x', 32),
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -540,7 +540,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -598,7 +598,7 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipData.recipeint.toLowerCase(),
+        gasZipData.recipient.toLowerCase(),
         BigNumber.from(gasZipData.destChains),
         amountWithoutFee[0],
       ])
@@ -690,7 +690,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -856,7 +856,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -914,7 +914,7 @@ describe('GasZipFacet.test.ts', async () => {
       expect(args.sender).eql(user.address)
       expect(args.swapInfo.length).eql(1)
       expect(args.gasZipData).eql([
-        gasZipData.recipeint.toLowerCase(),
+        gasZipData.recipient.toLowerCase(),
         BigNumber.from(gasZipData.destChains),
         amountWithoutFee[0],
       ])
@@ -996,7 +996,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -1091,7 +1091,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }
@@ -1187,7 +1187,7 @@ describe('GasZipFacet.test.ts', async () => {
       // -------------------------------------
 
       const gasZipData = {
-        recipeint: gasZipCallData.receiver,
+        recipient: gasZipCallData.receiver,
         destChains: gasZipCallData.destChains,
         depositAmount: amounts[0],
       }

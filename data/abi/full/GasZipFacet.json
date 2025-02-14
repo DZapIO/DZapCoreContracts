@@ -154,7 +154,7 @@
         "components": [
           {
             "internalType": "bytes32",
-            "name": "recipeint",
+            "name": "recipient",
             "type": "bytes32"
           },
           {
@@ -202,7 +202,7 @@
         "components": [
           {
             "internalType": "bytes32",
-            "name": "recipeint",
+            "name": "recipient",
             "type": "bytes32"
           },
           {
@@ -279,7 +279,7 @@
         "components": [
           {
             "internalType": "bytes32",
-            "name": "recipeint",
+            "name": "recipient",
             "type": "bytes32"
           },
           {
@@ -379,7 +379,7 @@
         "components": [
           {
             "internalType": "bytes32",
-            "name": "recipeint",
+            "name": "recipient",
             "type": "bytes32"
           },
           {

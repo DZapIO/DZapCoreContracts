@@ -37,7 +37,7 @@ export interface RelayData {
 }
 
 export interface GasZipData {
-  recipeint: string
+  recipient: string
   destChains: number | bigint
   depositAmount: BigNumber | number
 }

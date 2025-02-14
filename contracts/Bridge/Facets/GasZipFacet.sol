@@ -14,7 +14,7 @@ import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
 
 import { GasZipData } from "../Types.sol";
 import { FeeType, SwapData, SwapInfo } from "../../Shared/Types.sol";
-import { NativeCallFailed, NotNativeToken, InvalidAmount, CannotBridgeToSameNetwork, InvalidReceiver } from "../../Shared/ErrorsNew.sol";
+import { NotNativeToken, InvalidAmount, CannotBridgeToSameNetwork, InvalidReceiver } from "../../Shared/ErrorsNew.sol";
 
 /// @title GasZipFacet
 /// @notice Provides functionality for bridging tokens across chains using gasZip
@@ -88,11 +88,11 @@ contract GasZipFacet is IGasZipFacet, RefundNative {
         totalDZapShare += dZapShare;
         uint256 totalIntegratorFee = fixedFee + tokenFee - totalDZapShare; 
 
-        if (_gasZipData.recipeint == bytes32(0)) revert InvalidReceiver();
+        if (_gasZipData.recipient == bytes32(0)) revert InvalidReceiver();
         if(_gasZipData.depositAmount == 0) revert InvalidAmount();
         if (_gasZipData.destChains == block.chainid) revert CannotBridgeToSameNetwork();
 
-        _GAS_ZIP_ROUTER.deposit{value: _gasZipData.depositAmount}(_gasZipData.destChains, _gasZipData.recipeint);
+        _GAS_ZIP_ROUTER.deposit{value: _gasZipData.depositAmount}(_gasZipData.destChains, _gasZipData.recipient);
 
         LibFees.accrueTokenFees(_integrator, LibAsset._NATIVE_TOKEN, totalIntegratorFee, totalDZapShare);
     }

@@ -420,7 +420,7 @@
   },
   {
     "inputs": [],
-    "name": "RELAY_RECIEVER",
+    "name": "RELAY_RECEIVER",
     "outputs": [
       {
         "internalType": "address",
@@ -614,7 +614,7 @@
     "outputs": [
       {
         "internalType": "address",
-        "name": "reciever",
+        "name": "receiver",
         "type": "address"
       },
       {

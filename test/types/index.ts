@@ -1,4 +1,5 @@
 import { BigNumber } from 'ethers'
+import { GasZipReceiver } from '../constants'
 
 export interface GenericBridgeData {
   bridge: string
@@ -36,8 +37,22 @@ export interface RelayData {
 }
 
 export interface GasZipData {
-  data: string
-  depositAmount: string
+  recipeint: string
+  destChains: number | bigint
+  depositAmount: BigNumber | number
+}
+
+export interface GasZipDataForContract {
+  receiverType: GasZipReceiver.EvmReceiver | GasZipReceiver.NonEVMReceiver
+  desChainId: number[]
+  receiver: string
+}
+
+export interface GasZipDataForDirectDeposit {
+  receiverType: GasZipReceiver
+  desChainId: number[]
+  receiver?: string
+  sender?: string
 }
 
 export interface AdapterData {

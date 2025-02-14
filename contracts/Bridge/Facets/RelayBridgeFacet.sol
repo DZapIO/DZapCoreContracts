@@ -17,25 +17,25 @@ import { FeeType, SwapData, SwapInfo, FeeInfo } from "../../Shared/Types.sol";
 import { NativeCallFailed, Erc20CallFailed } from "../../Shared/ErrorsNew.sol";
 
 /// @title BridgeRelayFacet
-/// @notice Provides functionality for bridging tokens across chains using repaly bridge
+/// @notice Provides functionality for bridging tokens across chains using relay bridge
 contract RelayBridgeFacet is IBridgeRelayFacet, RefundNative {
     
     // ------------------- Storage ------------------- //
-    address public immutable RELAY_RECIEVER; // for native transfers
+    address public immutable RELAY_RECEIVER; // for native transfers
     address public immutable RELAY_SOLVER;   // for ERC20 transfers
 
     // ------------------- Constructor -------------------//
 
-    function getRelayAddress() external view returns(address reciever, address solver) {
-        return (RELAY_RECIEVER, RELAY_SOLVER);
+    function getRelayAddress() external view returns(address receiver, address solver) {
+        return (RELAY_RECEIVER, RELAY_SOLVER);
     }
 
     constructor(address _relayReceiver, address _relaySolver) {
-        RELAY_RECIEVER = _relayReceiver;
+        RELAY_RECEIVER = _relayReceiver;
         RELAY_SOLVER = _relaySolver;
     }
 
-    // ------------------- Externnal -------------------//
+    // ------------------- External -------------------//
 
     function bridgeViaRelay(bytes32 _transactionId, address _integrator, GenericBridgeData memory _bridgeData, RelayData calldata _relayData) external payable refundExcessNative(msg.sender) {
         LibValidatable.validateData(_bridgeData);
@@ -121,7 +121,7 @@ contract RelayBridgeFacet is IBridgeRelayFacet, RefundNative {
         RelayData calldata _relayData
     ) private {
         if (LibAsset.isNativeToken(_bridgeData.from)) {
-            (bool success, bytes memory reason) = RELAY_RECIEVER.call{value: _bridgeData.minAmountIn}(abi.encode(_relayData.requestId));
+            (bool success, bytes memory reason) = RELAY_RECEIVER.call{value: _bridgeData.minAmountIn}(abi.encode(_relayData.requestId));
             if (!success) revert NativeCallFailed(reason);
         } else {
             bytes memory transferCallData = bytes.concat(

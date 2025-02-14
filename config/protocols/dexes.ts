@@ -1,4 +1,5 @@
 import { CHAIN_IDS } from '../networks'
+import { DEXES } from './dexNames'
 
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
 import { AVALANCHE_DEXES } from './dexes/avalanche'
@@ -7,7 +8,6 @@ import { BOBA_BNB_DEXES } from './dexes/bobaBnb'
 import { BSC_DEXES } from './dexes/bsc'
 import { ETH_DEXES } from './dexes/ethereum'
 import { POLYGON_DEXES } from './dexes/polygon'
-import { DEXES } from './dexNames'
 
 export const DZAP_DEXES_CONFIG: {
   [x: number]: { dexes?: any }

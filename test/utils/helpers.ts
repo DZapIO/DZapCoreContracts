@@ -28,6 +28,7 @@ import {
   GasZipAdapter,
   GasZipFacet,
   GenericBridgeAdapter,
+  MockGasZipRouter,
   OwnershipFacet,
   Permit2,
   RelayBridgeAdapter,
@@ -38,12 +39,18 @@ import {
   WNATIVE,
 } from '../../typechain-types'
 import { AccessContractObj, DiamondCut, PermitType } from '../../types'
-import { GasZipReciever } from '../constants/gasZip'
+import { GasZipReceiver } from '../constants/gasZip'
 import { duration, latest } from './time'
 import { getPermit2SignatureAndCalldataForApprove } from './permit'
 import { ERC20 } from '../../typechain-types/contracts/Test/Permit2Mock.sol'
 import { calculateOffset, encodePermitData } from '../../scripts/core/helper'
 import { DEFAULT_BYTES } from '../../constants/others'
+import {
+  GasZipData,
+  GasZipDataForContract,
+  GasZipDataForDirectDeposit,
+} from '../types'
+import { hexRightPad } from '../../utils'
 
 export const validateBridgeEventData = (
   eventBridgeData,
@@ -352,6 +359,13 @@ export const getMockContract = async (
   )
   const mockBridge = (await BridgeMock.connect(deployer).deploy()) as BridgeMock
 
+  const MockGasZipRouter = await ethers.getContractFactory(
+    CONTRACTS.MockGasZipRouter
+  )
+  const mockGasZip = (await MockGasZipRouter.connect(deployer).deploy(
+    deployer.address
+  )) as MockGasZipRouter
+
   {
     await tokenA.mint(mockExchange.address, parseUnits('100', TOKEN_A_DECIMAL))
     await tokenB.mint(mockExchange.address, parseUnits('100', TOKEN_B_DECIMAL))
@@ -374,18 +388,12 @@ export const getMockContract = async (
     permit2,
     mockExchange,
     mockBridge,
+    mockGasZip,
   }
 }
 
 function isEVMAddress(address: string): boolean {
   return address.length === 42
-}
-
-interface GasZipData {
-  recieverType: GasZipReciever
-  desChainId: number[]
-  reciever?: string
-  sender?: string
 }
 
 function encodeGasZipChainIds(shorts) {
@@ -397,17 +405,52 @@ function encodeGasZipChainIds(shorts) {
   }, '')
 }
 
-// Function to create a protected salt
-export const createGasZipCallData = (data: GasZipData) => {
-  let calldata = '0x'
-  if (data.recieverType === GasZipReciever.MsgSender) {
-    calldata += '01'
-  } else if (data.recieverType === GasZipReciever.EvmReciver) {
-    if (!data.reciever || !isEVMAddress(data.reciever))
-      throw Error('Reciever is undefined')
-    const reciever = ethers.utils.getAddress(data.reciever)
+export const getEncodedGasZipData = (data: GasZipDataForContract) => {
+  const { destChains, receiver } = createGasZipCallDataForContractDeposit(data)
 
-    calldata += '02' + reciever.substring(2)
+  const encodedData = ethers.utils.defaultAbiCoder.encode(
+    ['bytes32', 'uint256'],
+    [receiver, destChains]
+  )
+
+  return { encodedData, destChains, receiver }
+}
+
+// Function to create a protected salt
+export const createGasZipCallDataForContractDeposit = (
+  data: GasZipDataForContract
+) => {
+  let receiver = data.receiver
+  let calldata = '0x'
+  if (data.receiverType === GasZipReceiver.EvmReceiver) {
+    receiver = hexRightPad(data.receiver, 32)
+  } else if (data.receiver.length != 32 * 2 + 2) {
+    throw Error('Non EVM Receiver is not valid')
+  }
+
+  const destChains = data.desChainId.reduce(
+    (p, c) => (p << BigInt(8)) + BigInt(c),
+    BigInt(0)
+  )
+
+  return {
+    destChains,
+    receiver,
+  }
+}
+
+export const createGasZipCallDataForDirectDeposit = (
+  data: GasZipDataForDirectDeposit
+) => {
+  let calldata = '0x'
+  if (data.receiverType === GasZipReceiver.MsgSender) {
+    calldata += '01'
+  } else if (data.receiverType === GasZipReceiver.EvmReceiver) {
+    if (!data.receiver || !isEVMAddress(data.receiver))
+      throw Error('Receiver is undefined')
+    const receiver = ethers.utils.getAddress(data.receiver)
+
+    calldata += '02' + receiver.substring(2)
   } else {
     throw new Error('Not implemented')
   }

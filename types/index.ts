@@ -1,4 +1,5 @@
 import { BigNumber, BigNumberish, ContractFactory } from 'ethers'
+import { CHAIN_IDS, RPC_TYPE } from '../config'
 
 export enum FacetCutAction {
   Add,
@@ -15,6 +16,14 @@ export enum PermitType {
   PERMIT,
   PERMIT2_TRANSFER_FROM,
   PERMIT2_APPROVE,
+}
+
+export enum ApiType {
+  ETHERSCAN_V1,
+  ETHERSCAN_V2,
+  BLOCKSCOUT,
+  SOURCIFY,
+  OTHER,
 }
 
 export interface DiamondCutData {
@@ -114,4 +123,31 @@ export interface AccessContractObj {
     executor: string
     functionNames: string[]
   }
+}
+
+export interface NativeCurrency {
+  name: string
+  symbol: string
+  decimals: number
+}
+
+export interface Network {
+  chainId: CHAIN_IDS
+  chainName: string
+  shortName: string
+  rpcUrl: string[]
+  explorerUrl: string
+  apiUrl?: string
+  apiType: ApiType
+  nativeCurrency: NativeCurrency
+}
+
+export type Networks = {
+  [key in CHAIN_IDS]?: Network
+}
+
+export enum ENVIRONMENT {
+  PRODUCTION = 'production',
+  STAGING = 'staging',
+  DEVELOPMENT = 'development',
 }

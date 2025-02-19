@@ -80,6 +80,10 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd'],
+      selectorInfo: [],
+    },
     [BRIDGES.owlto]: {
       address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
       selectorInfo: [],

@@ -121,6 +121,7 @@ export const ETH_MAINNET = {
         '0x885E415D0836727F8757BfFC093E9728B1Aaf60f',
         '0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7',
         '0xF5027600efEA7491515056866fa1F0303f6C8d09',
+        '0x967EC03DFfdfB4A22C8C4B811B17ac135082fBdc',
       ],
       selectorInfo: [],
     },
@@ -154,7 +155,10 @@ export const ETH_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.wanBridge]: {
-      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      address: [
+        '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+        '0x940f7994921a292A5062dc81C65511FDa79f4Bc9',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {

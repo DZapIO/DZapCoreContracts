@@ -46,6 +46,7 @@ export const ARBITRUM_DEXES = {
       '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
     ],
     [DEXES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+    [DEXES.traderJoe]: ['0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30'], // called through swapKit
     [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
     [DEXES.unizen]: [
       '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',

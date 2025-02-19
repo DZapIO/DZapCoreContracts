@@ -181,6 +181,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x0389879e0156033202C44BF784ac18fC02edeE4f',
         '0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3',
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+        '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
       ],
       [DEXES.omniBtc]: [
         '0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66',
@@ -213,7 +214,10 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.BOBA_ETH]: {
     dexes: {
       [DEXES.iceCreamSwap]: ['0xA608FF30563cEed3f0BC52eFc4abfc9502F1a71C'],
-      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
+      [DEXES.sushi]: [
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+        '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+      ],
       [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },
   },
@@ -426,7 +430,10 @@ export const DZAP_DEXES_CONFIG: {
         '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',
         '0x0DaB5A5294AfAae76Ce990993fC10b896A01DBd1',
       ],
-      [DEXES.sushi]: ['0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55'],
+      [DEXES.sushi]: [
+        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+        '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+      ],
     },
   },
   [CHAIN_IDS.AURORA_MAINNET]: {

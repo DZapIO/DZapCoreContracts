@@ -1,5 +1,7 @@
 import { BigNumber, BigNumberish, ContractFactory } from 'ethers'
 import { CHAIN_IDS, RPC_TYPE } from '../config'
+import { BRIDGES } from '../config/protocols/bridgeNames'
+import { DEXES } from '../config/protocols/dexNames'
 
 export enum FacetCutAction {
   Add,
@@ -150,4 +152,23 @@ export enum ENVIRONMENT {
   PRODUCTION = 'production',
   STAGING = 'staging',
   DEVELOPMENT = 'development',
+}
+
+export interface SelectorInfo {
+  function: string
+  functionSig: string
+  offset: number
+}
+
+export type BridgeConfig = {
+  bridges: {
+    [key in BRIDGES]?: {
+      address: string[]
+      selectorInfo?: SelectorInfo[]
+    }
+  }
+}
+
+export type DexConfig = {
+  dexes: { [key in DEXES]?: string[] }
 }

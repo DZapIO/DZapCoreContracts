@@ -1,21 +1,20 @@
+import { DexConfig } from '../../types'
 import { CHAIN_IDS } from '../networks'
 import { DEXES } from './dexNames'
 
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
 import { AVALANCHE_DEXES } from './dexes/avalanche'
 import { BASE_DEXES } from './dexes/base'
-import { BOBA_BNB_DEXES } from './dexes/bobaBnb'
 import { BSC_DEXES } from './dexes/bsc'
 import { ETH_DEXES } from './dexes/ethereum'
 import { POLYGON_DEXES } from './dexes/polygon'
 
 export const DZAP_DEXES_CONFIG: {
-  [x: number]: { dexes?: any }
+  [x in CHAIN_IDS]?: DexConfig
 } = {
   [CHAIN_IDS.ARBITRUM_MAINNET]: ARBITRUM_DEXES,
   [CHAIN_IDS.AVALANCHE_MAINNET]: AVALANCHE_DEXES,
   [CHAIN_IDS.BASE_MAINNET]: BASE_DEXES,
-  [CHAIN_IDS.BOBA_BNB]: BOBA_BNB_DEXES,
   [CHAIN_IDS.BSC_MAINNET]: BSC_DEXES,
   [CHAIN_IDS.ETH_MAINNET]: ETH_DEXES,
   [CHAIN_IDS.POLYGON_MAINNET]: POLYGON_DEXES,
@@ -374,8 +373,6 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     },
   },
-  [CHAIN_IDS.BOB_MAINNET]: {},
-  [CHAIN_IDS.BEVM_MAINNET]: {},
   [CHAIN_IDS.OPBNB_MAINNET]: {
     dexes: {
       [DEXES.izumi]: ['0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2'],
@@ -516,7 +513,6 @@ export const DZAP_DEXES_CONFIG: {
       // [DEXES.uniswap]: ['0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'],
     },
   },
-  [CHAIN_IDS.FILECOIN_MAINNET]: {},
   [CHAIN_IDS.GRAVITY]: {
     dexes: {
       [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],

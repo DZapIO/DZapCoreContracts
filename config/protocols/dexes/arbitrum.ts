@@ -60,6 +60,7 @@ export const ARBITRUM_DEXES = {
     [DEXES.zeroX]: [
       '0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b',
       '0x6db4d3b89b06d3c8bd2074ee1f1b440baf122ead',
+      '0xB254ee265261675528bdDb0796741c0C65a4C158',
     ],
   },
 }

@@ -304,7 +304,6 @@ export const DZAP_DEXES_CONFIG: {
       ],
       [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
       [DEXES.lifi]: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
-      [DEXES.zeroX]: ['0xc31a8685e042e6018a291b5b31f4674ce679ecf7'],
     },
   },
   [CHAIN_IDS.MODE_MAINNET]: {

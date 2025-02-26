@@ -181,5 +181,9 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.crossCurve]: {
+      address: ['0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74'],
+      selectorInfo: [],
+    },
   },
 }

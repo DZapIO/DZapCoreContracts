@@ -1057,6 +1057,9 @@
       ],
       "relayLink": [
         "0x77a917df7a084b7b3e43517ae28373c2a5492625"
+      ],
+      "crossCurve": [
+        "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
       ]
     },
     "dexes": {
@@ -2474,6 +2477,9 @@
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
         "0x012297F3d1Cb0D685B195A70231730F4c8c86F86"
+      ],
+      "crossCurve": [
+        "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
       ]
     },
     "dexes": {

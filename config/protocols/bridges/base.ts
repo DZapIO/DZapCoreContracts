@@ -64,6 +64,13 @@ export const BASE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: [
+        '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
+        '0xa5F565650890fBA1824Ee0F21EbBbF660a179934',
+      ],
+      selectorInfo: [],
+    },
     [BRIDGES.router]: {
       address: [
         '0xfA14A71F6647bDe075BF16880EE7055C3b553237',

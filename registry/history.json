@@ -335,6 +335,12 @@
       ],
       "owlto": [
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
+      ],
+      "relayLink": [
+        "0x253189069eE1cD00E487298138108936AD9BEEEA"
+      ],
+      "wanBridge": [
+        "0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6"
       ]
     },
     "dexes": {
@@ -1664,6 +1670,9 @@
       ],
       "swing": [
         "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
+      ],
+      "relayLink": [
+        "0xde886df5fbdf59237a51fc8b9d58f34467989d73"
       ]
     },
     "dexes": {
@@ -1939,6 +1948,9 @@
       ],
       "router": [
         "0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5"
+      ],
+      "relayLink": [
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
       ]
     }
   },
@@ -2254,7 +2266,8 @@
       ],
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
-        "0xc55332b1d758e798a8dB1f255B029f045C4958b7"
+        "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "zeroX": [
         "0xa6cafa8c34e581e2876db781cfd5e10f8db081cb"
@@ -2306,6 +2319,9 @@
       ],
       "owlto": [
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ],
+      "relayLink": [
+        "0x9d6dc4a2f637e68393fe4edf7969882d7a1a485c"
       ]
     }
   },
@@ -2480,6 +2496,11 @@
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "relayLink": [
+        "0x253189069eE1cD00E487298138108936AD9BEEEA",
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
+        "0xa5F565650890fBA1824Ee0F21EbBbF660a179934"
       ]
     },
     "dexes": {
@@ -2847,6 +2868,9 @@
       ],
       "orbiter": [
         "0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd"
+      ],
+      "relayLink": [
+        "0x77a917df7a084b7b3e43517ae28373c2a5492625"
       ]
     },
     "dexes": {
@@ -3040,6 +3064,9 @@
       ],
       "swing": [
         "0x05222e273B480e91798961c92B7a35D68A1C0E02"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
       ]
     }
   },
@@ -3493,6 +3520,12 @@
       ],
       "swing": [
         "0xa33db50b90E35378faEE4058DeAab2B392989b65"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "relayLink": [
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
       ]
     }
   },
@@ -3710,6 +3743,9 @@
       ],
       "swing": [
         "0xa33db50b90E35378faEE4058DeAab2B392989b65"
+      ],
+      "relayLink": [
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
       ]
     },
     "integrators": {

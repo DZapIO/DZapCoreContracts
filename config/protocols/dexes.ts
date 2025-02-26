@@ -219,6 +219,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x0389879e0156033202C44BF784ac18fC02edeE4f',
         '0xb46e319390De313B8cc95EA5aa30C7bBFD79Da94',
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+        '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
       ],
     },
   },
@@ -285,6 +286,7 @@ export const DZAP_DEXES_CONFIG: {
       [DEXES.sushi]: [
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
         '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+        '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
       ],
       [DEXES.xyFinance]: ['0x52075Fd1fF67f03beABCb5AcdA9679b02d98cA37'],
       [DEXES.zeroX]: ['0xa6cafa8c34e581e2876db781cfd5e10f8db081cb'],

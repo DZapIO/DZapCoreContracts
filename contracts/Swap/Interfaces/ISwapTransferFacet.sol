@@ -7,11 +7,11 @@ import { SwapData, SwapInfo } from "../../Shared/Types.sol";
 interface ISwapTransferFacet {
     /* ========= EVENTS ========= */
 
-    event Swapped(bytes32 transactionId, address indexed integrator, address indexed sender, address recipient, SwapInfo swapInfo);
+    event Swapped(bytes32 indexed transactionId, address indexed integrator, address indexed sender, address recipient, SwapInfo swapInfo);
 
-    event SwappedSingleToken(bytes32 transactionId, address indexed sender, address recipient, SwapInfo swapInfo);
+    event SwappedSingleToken(bytes32 indexed transactionId, address indexed sender, address recipient, SwapInfo swapInfo);
 
-    event MultiSwapped(bytes32 transactionId, address indexed integrator, address indexed sender, address recipient, SwapInfo[] swapInfo);
+    event MultiSwapped(bytes32 indexed transactionId, address indexed integrator, address indexed sender, address recipient, SwapInfo[] swapInfo);
 
     /* ========= EXTERNAL ========= */
 

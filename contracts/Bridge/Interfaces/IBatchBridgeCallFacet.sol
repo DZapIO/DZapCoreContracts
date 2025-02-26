@@ -7,9 +7,9 @@ import { SwapInfo, SwapData } from "../../Shared/Types.sol";
 interface IBatchBridgeCallFacet {
     /* ========= EVENTS ========= */
 
-    event BatchBridgeTransferStart(bytes32 transactionId, address integrator, address indexed sender, GenericBridgeData[] bridgeData);
+    event BatchBridgeTransferStart(bytes32 indexed transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData);
 
-    event BatchSwapAndBridgeTransferStart(bytes32 transactionId, address integrator, address indexed sender, GenericBridgeData[] bridgeData, SwapInfo[] swapInfo);
+    event BatchSwapAndBridgeTransferStart(bytes32 indexed transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData, SwapInfo[] swapInfo);
 
     /* ========= EXTERNAL ========= */
 

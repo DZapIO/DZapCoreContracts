@@ -21,7 +21,7 @@ contract Executor is IExecutor, ReentrancyGuard {
 
     /* ========= EVENTS ========= */
 
-    event TokenSwapped(bytes32 transactionId, address callTo, address receiver, address fromAssetId, address toAssetId, uint256 fromAmount, uint256 toAmount, uint256 leftoverFromAmount, uint256 timestamp);
+    event TokenSwapped(bytes32 indexed transactionId, address callTo, address receiver, address fromAssetId, address toAssetId, uint256 fromAmount, uint256 toAmount, uint256 leftoverFromAmount, uint256 timestamp);
 
     /* ========= ERRORS ========= */
 

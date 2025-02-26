@@ -106,7 +106,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "bytes32",
         "name": "transactionId",
         "type": "bytes32"

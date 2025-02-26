@@ -8,11 +8,11 @@ import { SwapInfo, SwapData } from "../../Shared/Types.sol";
 interface ICrossChainFacet {
     /* ========= EVENTS ========= */
 
-    event BridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, GenericBridgeData bridgeData);
+    event BridgeTransferStarted(bytes32 indexed transactionId, address indexed integrator, address indexed sender, GenericBridgeData bridgeData);
 
-    event MultiTokenBridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData);
+    event MultiTokenBridgeTransferStarted(bytes32 indexed transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData);
 
-    event SwapBridgeTransferStarted(bytes32 transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData, SwapInfo[] swapInfo);
+    event SwapBridgeTransferStarted(bytes32 indexed transactionId, address indexed integrator, address indexed sender, GenericBridgeData[] bridgeData, SwapInfo[] swapInfo);
 
     /* ========= EXTERNAL ========= */
 

@@ -21,8 +21,9 @@ import {
   WithdrawFacet,
 } from '../typechain-types'
 import { formatUnits } from 'ethers/lib/utils'
-import { AdapterDeploymentConfig } from '../config/adapters'
 import { isAddressSame } from './addressUtils'
+import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
+import { Create3DeploymentConfig } from '../types'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
@@ -139,6 +140,10 @@ export const getAllDiamondFacets = async (
   }
 }
 
+export const getLastCreate3Config = (arr: Create3DeploymentConfig[]) => {
+  return arr[arr.length - 1]
+}
+
 export const getGasPrice = async (
   provider: providers.Provider,
   extraFeePercent = 5 // 5% extra
@@ -227,7 +232,9 @@ export const validateAndEstimateAdapterDeploymentCost = async (
     console.log(`Checking and estimating ${adapterName}...`)
     const ContractFactory = await ethers.getContractFactory(adapterName)
     const creationCode = ContractFactory.getDeployTransaction().data
-    const adapterDeploymentConfig = AdapterDeploymentConfig[adapterName]
+    const adapterDeploymentConfig = getLastCreate3Config(
+      ADAPTERS_DEPLOYMENT_CONFIG[adapterName]
+    )
     const salt = ethers.utils.id(adapterDeploymentConfig.saltKey)
 
     if (!adapterDeploymentConfig)

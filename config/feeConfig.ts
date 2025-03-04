@@ -229,4 +229,28 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.BERA_CHAIN_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '15',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.SONIC_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '200',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.MORPH]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.MERLIN_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.0025',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

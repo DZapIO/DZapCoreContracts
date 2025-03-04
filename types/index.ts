@@ -172,3 +172,22 @@ export type BridgeConfig = {
 export type DexConfig = {
   dexes: { [key in DEXES]?: string[] }
 }
+
+export interface FacetDeployData {
+  facetName: string
+  constructorArgs: any[]
+}
+
+export interface Create3DeploymentConfig {
+  deployer: string
+  saltKey: string
+  contractAddress: string
+  creationCode: string
+}
+
+export interface DiamondInitArgs {
+  permit2: string
+  protocolFeeVault: string
+  maxTokenFee: BigNumberish
+  maxFixedNativeFeeAmount: BigNumberish
+}

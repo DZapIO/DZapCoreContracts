@@ -1,7 +1,10 @@
 import { JsonRpcProvider } from '@ethersproject/providers'
 import { Wallet } from 'ethers'
 import { getAddress } from 'ethers/lib/utils'
-import { DZAP_ADDRESS, DZAP_STAGING_ADDRESS } from '../config/deployment'
+import {
+  DZAP_ADDRESS,
+  DZAP_STAGING_ADDRESS,
+} from '../config/deployment/deployment'
 
 export const isAddressSame = (addressA: string, addressB: string) => {
   return getAddress(addressA) == getAddress(addressB)

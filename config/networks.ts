@@ -104,6 +104,7 @@ export enum CHAIN_IDS {
   ONTOLOGY = 58,
   BERA_CHAIN_MAINNET = 80094,
   HOLESKY_TESTNET = 17000,
+  SONIC_MAINNET = 146,
 }
 
 export const NETWORKS: Networks = {
@@ -661,6 +662,24 @@ export const NETWORKS: Networks = {
     nativeCurrency: {
       name: 'BERA Token',
       symbol: 'BERA',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.SONIC_MAINNET]: {
+    chainId: CHAIN_IDS.SONIC_MAINNET,
+    chainName: 'Sonic',
+    shortName: 'sonic',
+    rpcUrl: [
+      'https://sonic.drpc.org',
+      'https://rpc.ankr.com/sonic_mainnet',
+      'https://rpc.soniclabs.com',
+    ],
+    explorerUrl: 'https://sonicscan.org/',
+    apiUrl: 'https://api.etherscan.io/v2/api?chainid=146',
+    apiType: ApiType.ETHERSCAN_V2,
+    nativeCurrency: {
+      name: 'Sonic Token',
+      symbol: 'S',
       decimals: 18,
     },
   },

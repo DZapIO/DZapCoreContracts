@@ -21,7 +21,6 @@
     "@matterlabs/hardhat-zksync-solc": "^1.2.1",
     "@matterlabs/hardhat-zksync-verify": "1.5.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.5",
-    "@nomicfoundation/hardhat-verify": "^2.0.8",
     "@nomiclabs/hardhat-ethers": "^2.2.1",
     "@nomiclabs/hardhat-etherscan": "^3.1.4",
     "@openzeppelin/contracts": "^4.8.0",

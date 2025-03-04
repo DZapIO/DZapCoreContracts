@@ -66,6 +66,10 @@ const supportedNetworks = [
   CHAIN_IDS.ARTHERA,
   CHAIN_IDS.TAIKO_MAINNET,
   CHAIN_IDS.FIRE_MAINNET,
+  CHAIN_IDS.BERA_CHAIN_MAINNET,
+  CHAIN_IDS.SONIC_MAINNET,
+  CHAIN_IDS.MORPH,
+  CHAIN_IDS.MERLIN_MAINNET,
 ]
 
 const networkConfig = getNetworkConfig(supportedNetworks)
@@ -197,8 +201,14 @@ const config: HardhatUserConfig = {
       clear: true,
     },
   ],
-  etherscan: verificationConfig.etherscan,
-  blockscout: verificationConfig.blockscout,
+  etherscan: {
+    ...verificationConfig.etherscan,
+    enabled: true,
+  },
+  blockscout: {
+    ...verificationConfig.blockscout,
+    enabled: true,
+  },
   sourcify: {
     enabled: true,
     // apiUrl: "https://sourcify.dev/server",

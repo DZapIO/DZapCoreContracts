@@ -11,7 +11,10 @@ export const ZKSYNC_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xde886df5fbdf59237a51fc8b9d58f34467989d73'],
+      address: [
+        '0xde886df5fbdf59237a51fc8b9d58f34467989d73',
+        '0xebd1e414ebb98522cfd932104ba41fac10a4ef35',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.socket]: {

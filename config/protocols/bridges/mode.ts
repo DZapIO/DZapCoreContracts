@@ -27,6 +27,10 @@ export const MODE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0x00000000aa467eba42a3d604b3d74d63b2b6c6cb'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0xf0773508c585246bd09bfb401aa18b72685b03f9',

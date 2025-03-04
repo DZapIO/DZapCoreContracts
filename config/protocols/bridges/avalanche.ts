@@ -48,6 +48,10 @@ export const AVALANCHE_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xe0b062d028236fa09fe33db8019ffeeee6bf79ed'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF',

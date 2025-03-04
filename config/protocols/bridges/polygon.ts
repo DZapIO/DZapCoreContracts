@@ -171,7 +171,10 @@ export const POLYGON_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
-      address: ['0x77a917df7a084b7b3e43517ae28373c2a5492625'],
+      address: [
+        '0x77a917df7a084b7b3e43517ae28373c2a5492625',
+        '0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.wanBridge]: {

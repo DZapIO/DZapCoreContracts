@@ -30,7 +30,10 @@ export const SCROLL_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
-      address: ['0x77A917df7A084b7B3E43517Ae28373C2a5492625'],
+      address: [
+        '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
+        '0x00000000aa467eba42a3d604b3d74d63b2b6c6cb',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {

@@ -168,6 +168,7 @@ export const DZAP_DEXES_CONFIG: {
         '0x734583f62Bb6ACe3c9bA9bd5A53143CA2Ce8C55A',
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
         '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+        '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
       ],
       [DEXES.xyFinance]: [
         '0x22bf2A9fcAab9dc96526097318f459eF74277042',
@@ -231,6 +232,11 @@ export const DZAP_DEXES_CONFIG: {
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
         '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
       ],
+    },
+  },
+  [CHAIN_IDS.KROMA]: {
+    dexes: {
+      [DEXES.izumi]: ['0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2'],
     },
   },
   [CHAIN_IDS.BOBA_ETH]: {

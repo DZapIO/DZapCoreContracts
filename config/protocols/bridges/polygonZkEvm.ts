@@ -15,7 +15,10 @@ export const POLYGON_ZK_EVM_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
-      address: ['0x77A917df7A084b7B3E43517Ae28373C2a5492625'],
+      address: [
+        '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
+        '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {

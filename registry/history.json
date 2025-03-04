@@ -336,9 +336,6 @@
       "owlto": [
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ],
-      "relayLink": [
-        "0x253189069eE1cD00E487298138108936AD9BEEEA"
-      ],
       "wanBridge": [
         "0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6"
       ]
@@ -712,6 +709,9 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+      ],
+      "relayLink": [
+        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
       ]
     },
     "dexes": {
@@ -873,6 +873,9 @@
       ],
       "swing": [
         "0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1"
+      ],
+      "relayLink": [
+        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
       ]
     },
     "dexes": {
@@ -1062,7 +1065,8 @@
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ],
       "relayLink": [
-        "0x77a917df7a084b7b3e43517ae28373c2a5492625"
+        "0x77a917df7a084b7b3e43517ae28373c2a5492625",
+        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
@@ -1544,6 +1548,11 @@
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ]
+    },
+    "dexes": {
+      "izumi": [
+        "0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2"
+      ]
     }
   },
   "288": {
@@ -1672,7 +1681,8 @@
         "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
       ],
       "relayLink": [
-        "0xde886df5fbdf59237a51fc8b9d58f34467989d73"
+        "0xde886df5fbdf59237a51fc8b9d58f34467989d73",
+        "0xebd1e414ebb98522cfd932104ba41fac10a4ef35"
       ]
     },
     "dexes": {
@@ -1950,7 +1960,8 @@
         "0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5"
       ],
       "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
+        "0xa06e1351e2fd2d45b5d35633ca7ecf328684a109"
       ]
     }
   },
@@ -2498,7 +2509,6 @@
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
       ],
       "relayLink": [
-        "0x253189069eE1cD00E487298138108936AD9BEEEA",
         "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
         "0xa5F565650890fBA1824Ee0F21EbBbF660a179934"
       ]
@@ -2740,6 +2750,9 @@
       ],
       "swing": [
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
+      ],
+      "relayLink": [
+        "0x00000000aa467eba42a3d604b3d74d63b2b6c6cb"
       ]
     }
   },
@@ -3154,6 +3167,9 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+      ],
+      "relayLink": [
+        "0xe0b062d028236fa09fe33db8019ffeeee6bf79ed"
       ]
     },
     "dexes": {
@@ -3627,7 +3643,8 @@
         "0x0389879e0156033202C44BF784ac18fC02edeE4f",
         "0x734583f62Bb6ACe3c9bA9bd5A53143CA2Ce8C55A",
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
-        "0xc55332b1d758e798a8dB1f255B029f045C4958b7"
+        "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
@@ -3745,7 +3762,8 @@
         "0xa33db50b90E35378faEE4058DeAab2B392989b65"
       ],
       "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
+        "0x00000000aa467eba42a3d604b3d74d63b2b6c6cb"
       ]
     },
     "integrators": {

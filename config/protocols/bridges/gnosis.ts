@@ -18,10 +18,6 @@ export const GNOSIS_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
-    [BRIDGES.relayLink]: {
-      address: ['0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab'],
-      selectorInfo: [],
-    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],

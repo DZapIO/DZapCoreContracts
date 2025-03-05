@@ -359,8 +359,8 @@ export const NETWORKS: Networks = {
     chainName: 'Rootstock Mainnet',
     shortName: 'rootstock',
     rpcUrl: [
-      'https://rootstock-mainnet.blastapi.io',
       'https://public-node.rsk.co',
+      'https://rootstock-mainnet.blastapi.io',
       'https://mycrypto.rsk.co',
     ],
     explorerUrl: 'https://rootstock.blockscout.com',

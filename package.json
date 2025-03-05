@@ -13,8 +13,12 @@
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
-    "addBridges": "ts-node scripts/others/addMultipleBridges.ts",
-    "addDexes": "ts-node scripts/others/addMultipleDexes.ts"
+    "addMultiBridges": "ts-node scripts/addRemoveProviders/addMultipleBridges.ts",
+    "addMultiDexes": "ts-node scripts/addRemoveProviders/addMultipleDexes.ts",
+    "removeMultiDexes": "ts-node scripts/addRemoveProviders/removeMultipleDexes.ts",
+    "removeMultiBridges": "ts-node scripts/addRemoveProviders/removeMultipleBridges.ts",
+    "syncHistory": "ts-node scripts/addRemoveProviders/syncHistory.ts",
+    "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts"
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "0.11.0",

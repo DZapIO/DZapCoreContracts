@@ -18,10 +18,6 @@ export const BLAST_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
-    [BRIDGES.relayLink]: {
-      address: ['0x77A917df7A084b7B3E43517Ae28373C2a5492625'],
-      selectorInfo: [],
-    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
       selectorInfo: [],

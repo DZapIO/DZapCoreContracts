@@ -93,7 +93,7 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ]
     },
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -220,7 +220,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -230,7 +230,7 @@
     }
   },
   "10": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -443,7 +443,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -475,7 +475,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "4000000000000000000",
           "dzapTokenShare": 0,
@@ -496,7 +496,7 @@
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ]
     },
-    "bridge": {
+    "bridges": {
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
@@ -522,7 +522,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "5000000000000",
           "dzapTokenShare": 0,
@@ -547,7 +547,7 @@
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x7057ab3fb2bee9c18e0cde4240de4ff7f159e365",
         "0xda8057acb94905eb6025120cb2c38415fd81bfeb",
@@ -567,7 +567,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000000",
           "dzapTokenShare": 0,
@@ -596,7 +596,7 @@
         "0x55477d8537ede381784b448876AfAa98aa450E63"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x9b1adec00a25fffd87a5bb17f61916e1c26f6844",
         "0x4949e74094D6F9C06D68e5Ffe388f6542C4b1A34",
@@ -621,7 +621,7 @@
     }
   },
   "56": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -709,9 +709,6 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
-      ],
-      "relayLink": [
-        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
       ]
     },
     "dexes": {
@@ -815,7 +812,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "520000000000000",
           "dzapTokenShare": 0,
@@ -847,7 +844,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "300000000000000000",
           "dzapTokenShare": 0,
@@ -855,7 +852,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -873,9 +870,6 @@
       ],
       "swing": [
         "0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1"
-      ],
-      "relayLink": [
-        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
       ]
     },
     "dexes": {
@@ -915,7 +909,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "11000000000000000000",
           "dzapTokenShare": 0,
@@ -933,7 +927,7 @@
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ]
     },
-    "bridge": {
+    "bridges": {
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ],
@@ -943,7 +937,7 @@
     }
   },
   "137": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -1064,10 +1058,6 @@
         "0x30b8d9e757595B5cbAEcdFD81e9Eeccf4B31e53D",
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ],
-      "relayLink": [
-        "0x77a917df7a084b7b3e43517ae28373c2a5492625",
-        "0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab"
-      ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
       ]
@@ -1183,7 +1173,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "1000000000000000000",
           "dzapTokenShare": 0,
@@ -1229,7 +1219,7 @@
     }
   },
   "169": {
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0xf85FC807D05d3Ab2309364226970aAc57b4e1ea4",
         "0x318C2B9a03C37702742C3d40C72e4056e430135A",
@@ -1301,7 +1291,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1333,7 +1323,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1341,7 +1331,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ],
@@ -1359,7 +1349,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "8000000000000000",
           "dzapTokenShare": 0,
@@ -1396,7 +1386,7 @@
         "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ]
     },
-    "bridge": {
+    "bridges": {
       "okx": [
         "0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD",
         "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
@@ -1445,7 +1435,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "400000000000000000",
           "dzapTokenShare": 0,
@@ -1453,7 +1443,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
@@ -1528,7 +1518,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1536,7 +1526,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "squid": [
         "0xDC3D8e1Abe590BCa428a8a2FC4CfDbD1AcF57Bd9"
       ],
@@ -1572,7 +1562,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1580,7 +1570,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ]
@@ -1614,7 +1604,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1634,7 +1624,7 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
         "0xca506793A420E901BbCa8066be5661E3C52c84c2",
@@ -1662,7 +1652,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1670,7 +1660,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x341e94069f53234fE6DabeF707aD424830525715"
       ],
@@ -1715,10 +1705,6 @@
       ],
       "swing": [
         "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
-      ],
-      "relayLink": [
-        "0xde886df5fbdf59237a51fc8b9d58f34467989d73",
-        "0xebd1e414ebb98522cfd932104ba41fac10a4ef35"
       ]
     },
     "dexes": {
@@ -1798,7 +1784,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "40000000000000000000",
           "dzapTokenShare": 0,
@@ -1830,7 +1816,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "10000000000000000",
           "dzapTokenShare": 0,
@@ -1858,7 +1844,7 @@
         "0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0xf85FC807D05d3Ab2309364226970aAc57b4e1ea4",
         "0xcd7C056b39DdFB568E451923ABEDb9B6a7Aeb885",
@@ -1922,7 +1908,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -1959,7 +1945,7 @@
         "0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080"
       ]
     },
-    "bridge": {
+    "bridges": {
       "routerNitro": [
         "0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce",
         "0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9",
@@ -1994,10 +1980,6 @@
       ],
       "router": [
         "0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5"
-      ],
-      "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
-        "0xa06e1351e2fd2d45b5d35633ca7ecf328684a109"
       ]
     }
   },
@@ -2021,7 +2003,7 @@
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x4ddDD324F205e5989bAF8aD0FFCa41f4E5d9841D",
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
@@ -2042,7 +2024,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "300000000000000000",
           "dzapTokenShare": 0,
@@ -2085,7 +2067,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "2000000000000000000",
           "dzapTokenShare": 0,
@@ -2093,7 +2075,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
       ]
@@ -2127,7 +2109,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "35000000000000000",
           "dzapTokenShare": 0,
@@ -2159,7 +2141,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "10000000000000000000",
           "dzapTokenShare": 0,
@@ -2178,7 +2160,7 @@
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
@@ -2214,7 +2196,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "850000000000000000",
           "dzapTokenShare": 0,
@@ -2222,7 +2204,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0xA7544C409d772944017BB95B99484B6E0d7B6388",
         "0x77Ed285AD9d1c8C0307eA23DcE68B8a5A6AfB39A",
@@ -2351,7 +2333,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "500000000000000000",
           "dzapTokenShare": 0,
@@ -2392,7 +2374,7 @@
         "0xa6cafa8c34e581e2876db781cfd5e10f8db081cb"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0xDd0840118bF9CCCc6d67b2944ddDfbdb995955FD",
         "0xca506793A420E901BbCa8066be5661E3C52c84c2",
@@ -2438,16 +2420,13 @@
       ],
       "owlto": [
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
-      ],
-      "relayLink": [
-        "0x9d6dc4a2f637e68393fe4edf7969882d7a1a485c"
       ]
     }
   },
   "7000": {
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "700000000000000000",
           "dzapTokenShare": 0,
@@ -2489,7 +2468,7 @@
         "0x34bc1b87f60e0a30c0e24FD7Abada70436c71406"
       ]
     },
-    "bridge": {
+    "bridges": {
       "mesonFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
@@ -2502,7 +2481,7 @@
     }
   },
   "8453": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -2615,10 +2594,6 @@
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
-      ],
-      "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
-        "0xa5F565650890fBA1824Ee0F21EbBbF660a179934"
       ]
     },
     "dexes": {
@@ -2721,7 +2696,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -2753,7 +2728,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": 0,
           "dzapTokenShare": 0,
@@ -2761,7 +2736,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "router": [
         "0x27902308573d4F21B4a98Fa7121d04fa7E7bb20E"
       ]
@@ -2790,7 +2765,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -2820,7 +2795,7 @@
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
-    "bridge": {
+    "bridges": {
       "across": [
         "0x3baD7AD0728f9917d1Bf08af5782dCbD516cDd96"
       ],
@@ -2858,14 +2833,11 @@
       ],
       "swing": [
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
-      ],
-      "relayLink": [
-        "0x00000000aa467eba42a3d604b3d74d63b2b6c6cb"
       ]
     }
   },
   "42161": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -2989,9 +2961,6 @@
       ],
       "orbiter": [
         "0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd"
-      ],
-      "relayLink": [
-        "0x77a917df7a084b7b3e43517ae28373c2a5492625"
       ]
     },
     "dexes": {
@@ -3115,7 +3084,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3147,7 +3116,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "700000000000000000",
           "dzapTokenShare": 0,
@@ -3170,7 +3139,7 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
-    "bridge": {
+    "bridges": {
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
       ],
@@ -3192,7 +3161,7 @@
     }
   },
   "43114": {
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -3275,9 +3244,6 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
-      ],
-      "relayLink": [
-        "0xe0b062d028236fa09fe33db8019ffeeee6bf79ed"
       ]
     },
     "dexes": {
@@ -3375,7 +3341,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "12000000000000000",
           "dzapTokenShare": 0,
@@ -3388,7 +3354,7 @@
     "integrators": {
       "0": "DZAP",
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3454,7 +3420,7 @@
         "0x6960B2CE4cDECBaf356646b5C29616D127d949B5"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x9A31bAC4b3B958C835C243800B474818D04393dd",
         "0x83f71AabdDBb9F0E3B6462Cc7635b6fFAD0f2f2e",
@@ -3589,7 +3555,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3649,7 +3615,7 @@
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ]
     },
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
@@ -3683,9 +3649,6 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
-      ],
-      "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
       ]
     }
   },
@@ -3712,7 +3675,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3741,7 +3704,7 @@
         "0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365",
         "0xa0079829B9F1Edc5DD0DE3eC104f281745C4bD81",
@@ -3836,7 +3799,7 @@
         "0xb07986b9"
       ]
     },
-    "bridge": {
+    "bridges": {
       "symbiosis": [
         "0x624FFe62eBa13e6057878bCA1D7A9E35651E1D9c",
         "0x49952ff32FcBc3408D447E1E91Da2b44BD2D1AFE",
@@ -3904,15 +3867,11 @@
       ],
       "swing": [
         "0xa33db50b90E35378faEE4058DeAab2B392989b65"
-      ],
-      "relayLink": [
-        "0x77A917df7A084b7B3E43517Ae28373C2a5492625",
-        "0x00000000aa467eba42a3d604b3d74d63b2b6c6cb"
       ]
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3944,7 +3903,7 @@
     },
     "integrators": {
       "DZAP": {
-        "bridge": {
+        "bridges": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "120000000000000",
           "dzapTokenShare": 0,
@@ -3952,7 +3911,7 @@
         }
       }
     },
-    "bridge": {
+    "bridges": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],

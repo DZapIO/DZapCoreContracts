@@ -62,10 +62,6 @@ export const BSC_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
-    [BRIDGES.relayLink]: {
-      address: ['0xa1bea5fe917450041748dbbbe7e9ac57a4bbebab'],
-      selectorInfo: [],
-    },
     [BRIDGES.router]: {
       address: ['0x2c43992873b4fb841af4941aa0cf5a45598f3e76'],
       selectorInfo: [],

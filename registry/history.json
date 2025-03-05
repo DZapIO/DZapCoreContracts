@@ -883,6 +883,9 @@
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
         "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },
@@ -1946,6 +1949,9 @@
       ],
       "xyFinance": [
         "0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -2375,6 +2381,9 @@
       ],
       "zeroX": [
         "0xa6cafa8c34e581e2876db781cfd5e10f8db081cb"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -2796,6 +2805,9 @@
       "bebop": [
         "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -3421,6 +3433,9 @@
       ],
       "zeroX": [
         "0x6960B2CE4cDECBaf356646b5C29616D127d949B5"
+      ],
+      "lifi": [
+        "0xde1e598b81620773454588b85d6b5d4eec32573e"
       ]
     },
     "bridges": {
@@ -3789,6 +3804,9 @@
       "zeroX": [
         "0x6c403dBA21F072E16b7De2B013f8aDEAE9c2e76E",
         "0x25279bf4e88eC55B3e313Bf14F55E4aab6fc5596"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "executors": {

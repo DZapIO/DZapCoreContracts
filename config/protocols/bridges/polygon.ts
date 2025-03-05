@@ -122,6 +122,10 @@ export const POLYGON_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a',

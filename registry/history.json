@@ -1060,6 +1060,9 @@
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "relayLink": [
+        "0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a"
       ]
     },
     "dexes": {

@@ -670,6 +670,7 @@ export const NETWORKS: Networks = {
     chainName: 'Sonic',
     shortName: 'sonic',
     rpcUrl: [
+      'https://sonic-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
       'https://sonic.drpc.org',
       'https://rpc.ankr.com/sonic_mainnet',
       'https://rpc.soniclabs.com',

@@ -61,6 +61,7 @@ export const ETH_DEXES = {
     [DEXES.zeroX]: [
       '0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710',
       '0x0d0e364aa7852291883c162b22d6d81f6355428f',
+      '0x0000000000001ff3684f28c67538d4d072c22734',
     ],
   },
 }

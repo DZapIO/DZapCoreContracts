@@ -4,7 +4,6 @@ import { HardhatUserConfig, HttpNetworkUserConfig } from 'hardhat/types'
 import { CHAIN_IDS, NETWORKS } from '../config/networks'
 import { ApiType } from '../types'
 import { getAccountKey } from './wallet'
-import { ethers } from 'hardhat'
 import { MulticallWrapper } from 'ethers-multicall-provider'
 
 export const getHardhatNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {

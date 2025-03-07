@@ -54,6 +54,10 @@ export const ZKSYNC_MAINNET = {
       address: ['0x13598FD0986D0E33c402f6907F05Acf720224527'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xebd1e414ebb98522cfd932104ba41fac10a4ef35'],
+      selectorInfo: [],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x7E7D4185D9c3C44D5266eD974493b24811398049',

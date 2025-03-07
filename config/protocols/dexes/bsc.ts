@@ -20,6 +20,7 @@ export const BSC_DEXES = {
       '0xdef1c0ded9bec7f1a1670819833240f027b25eff',
       '0x068BA5d0540e27b39c71a00a1c0c1E669D62Dc10',
       '0x4C6F446dD88fD1be8B80D2940806002777dc12a2',
+      '0x0000000000001ff3684f28c67538d4d072c22734',
     ],
     [DEXES.bebop]: [
       '0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b',

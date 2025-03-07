@@ -364,7 +364,8 @@
       "zeroX": [
         "0xdef1abe32c034e558cdd535791643c58a13acc10",
         "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f",
-        "0x402867b638339ad8bec6e5373cfa95da0b462c85"
+        "0x402867b638339ad8bec6e5373cfa95da0b462c85",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -735,7 +736,8 @@
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0x068BA5d0540e27b39c71a00a1c0c1E669D62Dc10",
-        "0x4C6F446dD88fD1be8B80D2940806002777dc12a2"
+        "0x4C6F446dD88fD1be8B80D2940806002777dc12a2",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xbebebeb035351f58602e0c1c8b59ecbff5d5f47b",
@@ -928,6 +930,9 @@
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
         "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -1223,6 +1228,17 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "enso": [
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ]
     }
   },
   "169": {
@@ -1499,6 +1515,9 @@
       ],
       "odos": [
         "0xD0c22A5435F4E8E5770C1fAFb5374015FC12F7cD"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },
@@ -1543,6 +1562,11 @@
       ],
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ]
+    },
+    "dexes": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },
@@ -1712,6 +1736,9 @@
       ],
       "swing": [
         "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
+      ],
+      "relayLink": [
+        "0xebd1e414ebb98522cfd932104ba41fac10a4ef35"
       ]
     },
     "dexes": {
@@ -2092,7 +2119,11 @@
     },
     "dexes": {
       "sushi": [
-        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },
@@ -2168,6 +2199,9 @@
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -2806,7 +2840,8 @@
       ],
       "zeroX": [
         "0xa601B541f17FB6Bf8db1628E8F3d113b4336434c",
-        "0x5B45200D00BCb0850C56FaB3BCB32a2cc78B289d"
+        "0x5B45200D00BCb0850C56FaB3BCB32a2cc78B289d",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
@@ -2814,6 +2849,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ]
     },
     "bridges": {
@@ -3009,7 +3047,8 @@
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0xf3E01012Ce60BB95AE294D5b24a9Fc3af245b53b",
         "0x6db4d3b89b06d3c8bd2074ee1f1b440baf122ead",
-        "0xB254ee265261675528bdDb0796741c0C65a4C158"
+        "0xB254ee265261675528bdDb0796741c0C65a4C158",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -3291,7 +3330,8 @@
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0xaBB0aBF698ea1879A0B0e309Ee8C8e1056ae8bce",
-        "0xfd15f8c3e40d7575b24bF800786a81A1BCF84B62"
+        "0xfd15f8c3e40d7575b24bF800786a81A1BCF84B62",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -3438,7 +3478,8 @@
         "0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B"
       ],
       "zeroX": [
-        "0x6960B2CE4cDECBaf356646b5C29616D127d949B5"
+        "0x6960B2CE4cDECBaf356646b5C29616D127d949B5",
+        "0x000000000000175a8b9bc6d539b3708eed92ea6c"
       ],
       "lifi": [
         "0xde1e598b81620773454588b85d6b5d4eec32573e"
@@ -3973,6 +4014,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   }

@@ -38,6 +38,7 @@ export const SCROLL_DEXES = {
     [DEXES.zeroX]: [
       '0x6c403dBA21F072E16b7De2B013f8aDEAE9c2e76E',
       '0x25279bf4e88eC55B3e313Bf14F55E4aab6fc5596',
+      '0x0000000000005E88410CcDFaDe4a5EfaE4b49562',
     ],
   },
 }

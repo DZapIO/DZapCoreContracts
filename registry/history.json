@@ -2634,7 +2634,8 @@
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0xBc3c5cA50b6A215edf00815965485527f26F5dA8",
         "0x6A57A0579E91A5B7ce9c2d08b93E1A9b995f974f",
-        "0x5C9bdC801a600c006c388FC032dCb27355154cC9"
+        "0x5C9bdC801a600c006c388FC032dCb27355154cC9",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xbEbEbEb035351f58602E0C1C8B59ECBfF5d5f47b",
@@ -2693,6 +2694,9 @@
       ],
       "conveyor": [
         "0xd5eC61bCa0Af24Ad06BE431585A0920142C98890"
+      ],
+      "swapKit": [
+        "0x68208D99746b805a1Ae41421950A47b711E35681"
       ]
     },
     "executors": {

@@ -21,6 +21,9 @@ export const MANTLE_DEXES = {
       '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
     ],
     [DEXES.xyFinance]: ['0x52075Fd1fF67f03beABCb5AcdA9679b02d98cA37'],
-    [DEXES.zeroX]: ['0xa6cafa8c34e581e2876db781cfd5e10f8db081cb'],
+    [DEXES.zeroX]: [
+      '0xa6cafa8c34e581e2876db781cfd5e10f8db081cb',
+      '0x0000000000005e88410ccdfade4a5efae4b49562',
+    ],
   },
 }

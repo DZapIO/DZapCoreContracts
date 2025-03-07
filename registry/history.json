@@ -364,7 +364,8 @@
       "zeroX": [
         "0xdef1abe32c034e558cdd535791643c58a13acc10",
         "0x70cA548cF343B63E5B0542F0F3EC84c61Ca1086f",
-        "0x402867b638339ad8bec6e5373cfa95da0b462c85"
+        "0x402867b638339ad8bec6e5373cfa95da0b462c85",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -2805,7 +2806,8 @@
       ],
       "zeroX": [
         "0xa601B541f17FB6Bf8db1628E8F3d113b4336434c",
-        "0x5B45200D00BCb0850C56FaB3BCB32a2cc78B289d"
+        "0x5B45200D00BCb0850C56FaB3BCB32a2cc78B289d",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
@@ -2813,6 +2815,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ]
     },
     "bridges": {
@@ -3437,7 +3442,8 @@
         "0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B"
       ],
       "zeroX": [
-        "0x6960B2CE4cDECBaf356646b5C29616D127d949B5"
+        "0x6960B2CE4cDECBaf356646b5C29616D127d949B5",
+        "0x000000000000175a8b9bc6d539b3708eed92ea6c"
       ],
       "lifi": [
         "0xde1e598b81620773454588b85d6b5d4eec32573e"

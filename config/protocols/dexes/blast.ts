@@ -15,6 +15,7 @@ export const BLAST_DEXES = {
       '0x5fD2Dc91FF1dE7FF4AEB1CACeF8E9911bAAECa68',
     ],
     [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+    [DEXES.magpiefi]: ['0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3'],
     [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     [DEXES.routerNitro]: ['0x01B4CE0d48Ce91eB6bcaf5dB33870C65d641b894'],
     [DEXES.sushi]: [

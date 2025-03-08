@@ -24,7 +24,8 @@
       "zeroX": [
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0x70bf6634ee8cb27d04478f184b9b8bb13e5f4710",
-        "0x0d0e364aa7852291883c162b22d6d81f6355428f"
+        "0x0d0e364aa7852291883c162b22d6d81f6355428f",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
@@ -65,7 +66,8 @@
       "okx": [
         "0x7D0CcAa3Fac1e5A943c5168b6CEd828691b46B36",
         "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
-        "0x3b3ae790Df4F312e745D270119c6052904FB6790"
+        "0x3b3ae790Df4F312e745D270119c6052904FB6790",
+        "0x1Ef032a3c471a99CC31578c8007F256D95E89896"
       ],
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687"
@@ -91,6 +93,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "magpiefi": [
+        "0x15392211222B46A0eA85a9A800830486D144848D"
       ]
     },
     "bridges": {
@@ -428,6 +433,9 @@
       ],
       "synapse": [
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
+      ],
+      "magpiefi": [
+        "0x15392211222B46A0eA85a9A800830486D144848D"
       ]
     },
     "executors": {
@@ -803,6 +811,9 @@
       ],
       "pancakeSwap": [
         "0x10ED43C718714eb63d5aA57B78B54704E256024E"
+      ],
+      "magpiefi": [
+        "0x15392211222B46A0eA85a9A800830486D144848D"
       ]
     },
     "executors": {
@@ -1173,6 +1184,9 @@
       ],
       "izumi": [
         "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
+      ],
+      "magpiefi": [
+        "0x15392211222B46A0eA85a9A800830486D144848D"
       ]
     },
     "executors": {
@@ -1505,7 +1519,8 @@
         "0xDEF189DeAEF76E379df891899eb5A00a94cBC250"
       ],
       "sushi": [
-        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55"
+        "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "paraswap": [
         "0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57",
@@ -1522,6 +1537,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "magpiefi": [
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
       ]
     }
   },
@@ -1785,6 +1803,12 @@
       ],
       "izumi": [
         "0x943ac2310D9BC703d6AB5e5e76876e212100f894"
+      ],
+      "magpiefi": [
+        "0x38AE1164Ca61ee7AA395Bb139B3990e347988CE1"
+      ],
+      "sushi": [
+        "0xE6fD46600A97CE06703b58333B9C2399F4bF6FEc"
       ]
     },
     "executors": {
@@ -1880,6 +1904,9 @@
       ],
       "lifi": [
         "0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68"
+      ],
+      "magpiefi": [
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
       ]
     },
     "bridges": {
@@ -1970,7 +1997,8 @@
       ],
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
-        "0xc55332b1d758e798a8dB1f255B029f045C4958b7"
+        "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "paraswap": [
         "0xB83B554730d29cE4Cb55BB42206c3E2c03E4A40A",
@@ -1984,6 +2012,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "magpiefi": [
+        "0xCf32c5bB41F7A302298a2D2072155800871BaaD3"
       ]
     },
     "bridges": {
@@ -2736,6 +2767,9 @@
       ],
       "swapKit": [
         "0x68208D99746b805a1Ae41421950A47b711E35681"
+      ],
+      "magpiefi": [
+        "0xEF42f78d25f4c681dcaD2597fA04877ff802eF4B"
       ]
     },
     "executors": {
@@ -3122,6 +3156,9 @@
       ],
       "traderJoe": [
         "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"
+      ],
+      "magpiefi": [
+        "0x34CdCe58CBdC6C54f2AC808A24561D0AB18Ca8Be"
       ]
     },
     "executors": {
@@ -3391,6 +3428,9 @@
       ],
       "swapKit": [
         "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
+      ],
+      "magpiefi": [
+        "0xF25075d95b5945bCFf394588db3df8B1CacFccF6"
       ]
     },
     "executors": {
@@ -3487,6 +3527,9 @@
       ],
       "lifi": [
         "0xde1e598b81620773454588b85d6b5d4eec32573e"
+      ],
+      "magpiefi": [
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
       ]
     },
     "bridges": {
@@ -3677,11 +3720,15 @@
       ],
       "zeroX": [
         "0xFD91797719b50D8C3F37e02647a88B880162A5c6",
-        "0x02828245C531074b6bC8382cA0d97B0F2dD82677"
+        "0x02828245C531074b6bC8382cA0d97B0F2dD82677",
+        "0x0000000000001ff3684f28c67538d4d072c22734"
       ],
       "bebop": [
         "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
+      ],
+      "magpiefi": [
+        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3"
       ]
     },
     "bridges": {
@@ -3771,6 +3818,12 @@
       ],
       "izumi": [
         "0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148"
+      ],
+      "magpiefi": [
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ]
     },
     "bridges": {
@@ -3859,6 +3912,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "magpiefi": [
+        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3"
       ]
     },
     "executors": {

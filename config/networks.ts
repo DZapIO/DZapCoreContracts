@@ -507,6 +507,7 @@ export const NETWORKS: Networks = {
     chainName: 'Fantom Mainnet',
     shortName: 'fantom',
     rpcUrl: [
+      'https://fantom-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
       'https://rpc.ftm.tools',
       'https://fantom-rpc.publicnode.com',
       'https://fantom.drpc.org',

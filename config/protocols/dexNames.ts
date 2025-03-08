@@ -8,6 +8,7 @@ export enum DEXES {
   izumi = 'izumi',
   kyber = 'kyber',
   lifi = 'lifi',
+  magpiefi = 'magpiefi',
   odos = 'odos',
   okx = 'okx',
   omniBtc = 'omniBtc',

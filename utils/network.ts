@@ -133,6 +133,16 @@ export const getVerificationConfig = (chainIds: CHAIN_IDS[]) => {
         throw new Error(`No API URL defined for chainId ${chainId}`)
       }
 
+      config.etherscan!.apiKey![network.shortName] = 'blockscout'
+      config.etherscan!.customChains!.push({
+        network: network.shortName,
+        chainId: chainId,
+        urls: {
+          apiURL: network.apiUrl,
+          browserURL: network.explorerUrl,
+        },
+      })
+
       config.blockscout!.customChains!.push({
         network: network.shortName,
         chainId: chainId,

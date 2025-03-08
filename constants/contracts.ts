@@ -1,3 +1,41 @@
+export const CONTRACTS_PATH = {
+  DZapDiamond: 'contracts/DZapDiamond.sol:DZapDiamond',
+  DiamondCutFacet:
+    'contracts/Shared/Facets/DiamondCutFacet.sol:DiamondCutFacet',
+  DiamondInit: 'contracts/Shared/Facets/DiamondInit.sol:DiamondInit',
+  DiamondLoupeFacet:
+    'contracts/Shared/Facets/DiamondLoupeFacet.sol:DiamondLoupeFacet',
+  OwnershipFacet: 'contracts/Shared/Facets/OwnershipFacet.sol:OwnershipFacet',
+  AccessManagerFacet:
+    'contracts/Shared/Facets/AccessManagerFacet.sol:AccessManagerFacet',
+  WithdrawFacet: 'contracts/Shared/Facets/WithdrawFacet.sol:WithdrawFacet',
+  FeesFacet: 'contracts/Shared/Facets/FeesFacet.sol:FeesFacet',
+  DexManagerFacet:
+    'contracts/Shared/Facets/DexManagerFacet.sol:DexManagerFacet',
+  SwapFacet: 'contracts/Swap/Facets/SwapFacet.sol:SwapFacet',
+  SwapTransferFacet:
+    'contracts/Swap/Facets/SwapTransferFacet.sol:SwapTransferFacet',
+  BatchSwapFacet: 'contracts/Swap/Facets/BatchSwapFacet.sol:BatchSwapFacet',
+  BridgeManagerFacet:
+    'contracts/Bridge/Facets/BridgeManagerFacet.sol:BridgeManagerFacet',
+  CrossChainFacet:
+    'contracts/Bridge/Facets/CrossChainFacet.sol:CrossChainFacet',
+  BridgeDynamicTransferFacet:
+    'contracts/Bridge/Facets/BridgeDynamicTransferFacet.sol:BridgeDynamicTransferFacet',
+  BatchBridgeCallFacet:
+    'contracts/Bridge/Facets/BatchBridgeCallFacet.sol:BatchBridgeCallFacet',
+  RelayBridgeFacet:
+    'contracts/Bridge/Facets/RelayBridgeFacet.sol:RelayBridgeFacet',
+  GasZipFacet: 'contracts/Bridge/Facets/GasZipFacet.sol:GasZipFacet',
+  DirectTransferAdapter:
+    'contracts/Bridge/Adapters/DirectTransferAdapter.sol:DirectTransferAdapter',
+  GasZipAdapter: 'contracts/Bridge/Adapters/GasZipAdapter.sol:GasZipAdapter',
+  GenericBridgeAdapter:
+    'contracts/Bridge/Adapters/GenericBridgeAdapter.sol:GenericBridgeAdapter',
+  RelayBridgeAdapter:
+    'contracts/Bridge/Adapters/RelayBridgeAdapter.sol:RelayBridgeAdapter',
+}
+
 export const CONTRACTS = {
   DiamondCutFacet: 'DiamondCutFacet',
   DiamondInit: 'DiamondInit',

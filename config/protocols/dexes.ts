@@ -1,6 +1,5 @@
 import { DexConfig } from '../../types'
 import { CHAIN_IDS } from '../networks'
-import { BOBA_ETH } from './bridges/boba'
 import { DEXES } from './dexNames'
 
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
@@ -27,6 +26,7 @@ import { SCROLL_DEXES } from './dexes/scroll'
 import { SONIC_DEXES } from './dexes/sonic'
 import { TELOS_DEXES } from './dexes/telos'
 import { ZKSYNC_DEXES } from './dexes/zksync'
+import { BERACHAIN_DEXES } from './dexes/berachain'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -34,6 +34,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.ARBITRUM_MAINNET]: ARBITRUM_DEXES,
   [CHAIN_IDS.AVALANCHE_MAINNET]: AVALANCHE_DEXES,
   [CHAIN_IDS.BASE_MAINNET]: BASE_DEXES,
+  [CHAIN_IDS.BERA_CHAIN_MAINNET]: BERACHAIN_DEXES,
   [CHAIN_IDS.BLAST_MAINNET]: BLAST_DEXES,
   [CHAIN_IDS.BOBA_ETH]: BOBA_ETH_DEXES,
   [CHAIN_IDS.BSC_MAINNET]: BSC_DEXES,
@@ -46,7 +47,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.KROMA]: KROMA_DEXES,
   [CHAIN_IDS.LINEA_MAINNET]: LINEA_DEXES,
   [CHAIN_IDS.MANTA_MAINNET]: MANTA_DEXES,
-  [CHAIN_IDS.MANTLE_MAINNET]: MANTA_DEXES,
+  [CHAIN_IDS.MANTLE_MAINNET]: MANTLE_DEXES,
   [CHAIN_IDS.MINT]: MINT_DEXES,
   [CHAIN_IDS.OPTIMISM_MAINNET]: OPTIMISM_DEXES,
   [CHAIN_IDS.POLYGON_MAINNET]: POLYGON_DEXES,

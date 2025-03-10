@@ -51,12 +51,15 @@ import { ARTHERA } from './bridges/arthera'
 import { FUSE } from './bridges/fuse'
 import { FIRE_MAINNET } from './bridges/fire'
 import { BridgeConfig } from '../../types'
+import { SONIC_BRIDGES } from './bridges/sonic'
+import { BERACHAIN_BRIDGES } from './bridges/berachain'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
 } = {
   [CHAIN_IDS.ETH_MAINNET]: ETH_MAINNET,
   [CHAIN_IDS.ARBITRUM_MAINNET]: ARBITRUM_MAINNET,
+  [CHAIN_IDS.BERA_CHAIN_MAINNET]: BERACHAIN_BRIDGES,
   [CHAIN_IDS.OPTIMISM_MAINNET]: OPTIMISM_MAINNET,
   [CHAIN_IDS.ZKSYNC_MAINNET]: ZKSYNC_MAINNET,
   [CHAIN_IDS.BASE_MAINNET]: BASE_MAINNET,
@@ -106,4 +109,5 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.OKX_MAINNET]: OKX_MAINNET,
   [CHAIN_IDS.OPBNB_MAINNET]: OPBNB_MAINNET,
   [CHAIN_IDS.SAAKURU_MAINNET]: SAAKURU_MAINNET,
+  [CHAIN_IDS.SONIC_MAINNET]: SONIC_BRIDGES,
 }

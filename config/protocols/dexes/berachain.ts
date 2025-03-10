@@ -1,0 +1,14 @@
+import { DEXES } from '../dexNames'
+
+export const BERACHAIN_DEXES = {
+  dexes: {
+    [DEXES.bebop]: [
+      '0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6',
+      '0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a',
+    ],
+    [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+    [DEXES.iceCreamSwap]: ['0xb4FE60CD05A3e68668007Cee83DDFD9A50A45B36'],
+    [DEXES.lifi]: ['0xf909c4Ae16622898b885B89d7F839E0244851c66'],
+    [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+  },
+}

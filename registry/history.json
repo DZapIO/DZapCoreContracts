@@ -1256,6 +1256,37 @@
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "iceCreamSwap": [
+        "0x2fF506ed9729580EF8Bf04429614beB1baE5F76D"
+      ],
+      "magpiefi": [
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+      ]
+    },
+    "bridges": {
+      "debridge": [
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66",
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "orbiter": [
+        "0xd9d74a29307cc6fc8bf424ee4217f1a587fbc8dc"
+      ],
+      "relayLink": [
+        "0xeeeeee9ec4769a09a76a83c7bc42b185872860ee"
+      ],
+      "router": [
+        "0xD90C818fA7FE477422264B34e7E6988e699DF358"
+      ],
+      "symbiosis": [
+        "0xda8057acB94905eb6025120cB2c38415Fd81BfEB",
+        "0xb7aF032a0C8d350705eD7E4E3802377731a0cA07"
+      ],
+      "synapse": [
+        "0x00cD000000003f7F682BE4813200893d4e690000"
       ]
     }
   },
@@ -3605,6 +3636,9 @@
       ],
       "swing": [
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
+      ],
+      "relayLink": [
+        "0xfd06c0018318bf78705ccff2b961ef8ebc0baca0"
       ]
     }
   },
@@ -3641,6 +3675,32 @@
         "0xc7d3722f",
         "0xba0f6ca5",
         "0xe47b7f8e"
+      ]
+    },
+    "dexes": {
+      "bebop": [
+        "0xbeb0b0623f66bE8cE162EbDfA2ec543A522F4ea6",
+        "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
+      ],
+      "enso": [
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+      ],
+      "iceCreamSwap": [
+        "0xb4FE60CD05A3e68668007Cee83DDFD9A50A45B36"
+      ],
+      "lifi": [
+        "0xf909c4Ae16622898b885B89d7F839E0244851c66"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
+    },
+    "bridges": {
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+      ],
+      "relayLink": [
+        "0xeeeeee9ec4769a09a76a83c7bc42b185872860ee"
       ]
     }
   },

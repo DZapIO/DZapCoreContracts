@@ -48,6 +48,9 @@ export const LINEA_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xfd06c0018318bf78705ccff2b961ef8ebc0baca0'],
+    },
     [BRIDGES.router]: {
       address: ['0x29AE05C93549bb93827cd651C6ee1c25960dB847'],
       selectorInfo: [],

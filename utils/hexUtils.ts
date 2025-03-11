@@ -10,3 +10,12 @@ export const hexRightPad = (hexString: string, targetBytes = 32) => {
 
   return '0x' + s
 }
+
+export function getRandomBytes32() {
+  const randomHexString =
+    '0x' +
+    Math.floor(Math.random() * 16 ** 64)
+      .toString(16)
+      .padStart(64, '0')
+  return randomHexString
+}

@@ -50,8 +50,6 @@ export async function getPermitSignatureAndCalldata(
   const domain = await getDomainSeparator(chainId, token.address, name, version)
   expect(DOMAIN_SEPARATOR === domain, 'domain dont match')
 
-  console.log(nonce.toString(), name, version, chainId)
-
   const message = await wallet._signTypedData(
     {
       name,

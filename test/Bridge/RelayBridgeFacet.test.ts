@@ -1,10 +1,15 @@
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { expect } from 'chai'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
+import { randomBytes } from 'node:crypto'
+
+import { CHAIN_IDS } from '../../config'
 import {
   BPS_DENOMINATOR,
   BPS_MULTIPLIER,
   CONTRACTS,
+  DEFAULT_ENCODDED_PERMIT,
   ERRORS,
   EVENTS,
   FunctionNames,
@@ -12,21 +17,8 @@ import {
   NATIVE_ADDRESS,
   ZERO,
 } from '../../constants'
+import { encodePermitData, getFeeData } from '../../utils'
 import {
-  convertBNToNegative,
-  generateRandomWallet,
-  snapshot,
-  updateBalance,
-} from '../utils'
-
-import { expect } from 'chai'
-import { randomBytes } from 'node:crypto'
-import { CHAIN_IDS } from '../../config'
-import { encodePermitData, getFeeData } from '../../scripts/core/helper'
-import { DZapDiamond } from '../../typechain-types'
-import { AccessContractObj, FeeType, PermitType } from '../../types'
-import {
-  DEFAULT_ENCODDED_PERMIT,
   feeInfo1,
   feeInfo2,
   MAX_FIXED_FEE_AMOUNT,
@@ -34,17 +26,24 @@ import {
   TOKEN_A_DECIMAL,
   TOKEN_B_DECIMAL,
 } from '../constants'
-import { GenericBridgeData, RelayData, SwapData } from '../types'
 import {
+  convertBNToNegative,
   deployAndIntializeDimond,
   deployFacets,
+  generateRandomWallet,
   getAllFacets,
   getMockContract,
   getPermi2ApprovetData,
   setAccessControl,
+  snapshot,
+  updateBalance,
   validateBridgeEventData,
   validateSwapEventData,
-} from '../utils/helpers'
+} from '../utils'
+
+import { DZapDiamond } from '../../typechain-types'
+import { AccessContractObj, FeeType, PermitType } from '../../types'
+import { GenericBridgeData, RelayData, SwapData } from '../types'
 
 let dZapDiamond: DZapDiamond
 let contracts: Awaited<ReturnType<typeof getAllFacets>>

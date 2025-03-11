@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { providers } from 'ethers'
+import { MulticallWrapper } from 'ethers-multicall-provider'
 import { HardhatUserConfig, HttpNetworkUserConfig } from 'hardhat/types'
 import { CHAIN_IDS, NETWORKS } from '../config/networks'
 import { ApiType } from '../types'
-import { getAccountKey } from './wallet'
-import { MulticallWrapper } from 'ethers-multicall-provider'
+import { getAccountKey } from './walletUtils'
 
 export const getHardhatNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {
   if (!accounts) accounts = [getAccountKey()]

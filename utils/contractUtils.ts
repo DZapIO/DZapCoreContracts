@@ -1,10 +1,13 @@
-import { ethers } from 'hardhat'
-import { CONTRACTS, ZERO } from '../constants'
 import { BigNumber, Contract, ContractFactory, providers, Signer } from 'ethers'
+import { formatUnits } from 'ethers/lib/utils'
+import { ethers } from 'hardhat'
+import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
+import { CONTRACTS, ZERO } from '../constants'
 import {
   AccessManagerFacet,
   BatchBridgeCallFacet,
   BatchSwapFacet,
+  BridgeDynamicTransferFacet,
   BridgeManagerFacet,
   CrossChainFacet,
   DexManagerFacet,
@@ -19,12 +22,9 @@ import {
   SwapFacet,
   SwapTransferFacet,
   WithdrawFacet,
-  BridgeDynamicTransferFacet,
 } from '../typechain-types'
-import { formatUnits } from 'ethers/lib/utils'
-import { isAddressSame } from './addressUtils'
-import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
 import { Create3DeploymentConfig } from '../types'
+import { isAddressSame } from './addressUtils'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
@@ -109,6 +109,11 @@ export const getAllDiamondFacets = async (
     contractAddress,
     signer
   )) as BridgeDynamicTransferFacet
+  const batchBridgeCallFacet = (await ethers.getContractAt(
+    CONTRACTS.BatchBridgeCallFacet,
+    contractAddress,
+    signer
+  )) as BatchBridgeCallFacet
   const relayBridgeFacet = (await ethers.getContractAt(
     CONTRACTS.RelayBridgeFacet,
     contractAddress,
@@ -119,11 +124,6 @@ export const getAllDiamondFacets = async (
     contractAddress,
     signer
   )) as GasZipFacet
-  const batchBridgeCallFacet = (await ethers.getContractAt(
-    CONTRACTS.BatchBridgeCallFacet,
-    contractAddress,
-    signer
-  )) as BatchBridgeCallFacet
 
   return {
     dZapDiamond,

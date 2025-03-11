@@ -3065,6 +3065,389 @@
     ]
   },
   {
+    "type": "event",
+    "anonymous": false,
+    "name": "BridgeTransferStarted",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "integrator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "tuple",
+        "name": "bridgeData",
+        "indexed": false,
+        "components": [
+          {
+            "type": "string",
+            "name": "bridge"
+          },
+          {
+            "type": "bytes",
+            "name": "to"
+          },
+          {
+            "type": "bytes",
+            "name": "receiver"
+          },
+          {
+            "type": "address",
+            "name": "from"
+          },
+          {
+            "type": "bool",
+            "name": "hasSourceSwaps"
+          },
+          {
+            "type": "bool",
+            "name": "hasDestinationCall"
+          },
+          {
+            "type": "uint256",
+            "name": "minAmountIn"
+          },
+          {
+            "type": "uint256",
+            "name": "destinationChainId"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "MultiSwapped",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "integrator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "recipient",
+        "indexed": false
+      },
+      {
+        "type": "tuple[]",
+        "name": "swapInfo",
+        "indexed": false,
+        "components": [
+          {
+            "type": "address",
+            "name": "dex"
+          },
+          {
+            "type": "address",
+            "name": "fromToken"
+          },
+          {
+            "type": "address",
+            "name": "toToken"
+          },
+          {
+            "type": "uint256",
+            "name": "fromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "leftOverFromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "returnToAmount"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "MultiTokenBridgeTransferStarted",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "integrator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "tuple[]",
+        "name": "bridgeData",
+        "indexed": false,
+        "components": [
+          {
+            "type": "string",
+            "name": "bridge"
+          },
+          {
+            "type": "bytes",
+            "name": "to"
+          },
+          {
+            "type": "bytes",
+            "name": "receiver"
+          },
+          {
+            "type": "address",
+            "name": "from"
+          },
+          {
+            "type": "bool",
+            "name": "hasSourceSwaps"
+          },
+          {
+            "type": "bool",
+            "name": "hasDestinationCall"
+          },
+          {
+            "type": "uint256",
+            "name": "minAmountIn"
+          },
+          {
+            "type": "uint256",
+            "name": "destinationChainId"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "SwapBridgeTransferStarted",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "integrator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "tuple[]",
+        "name": "bridgeData",
+        "indexed": false,
+        "components": [
+          {
+            "type": "string",
+            "name": "bridge"
+          },
+          {
+            "type": "bytes",
+            "name": "to"
+          },
+          {
+            "type": "bytes",
+            "name": "receiver"
+          },
+          {
+            "type": "address",
+            "name": "from"
+          },
+          {
+            "type": "bool",
+            "name": "hasSourceSwaps"
+          },
+          {
+            "type": "bool",
+            "name": "hasDestinationCall"
+          },
+          {
+            "type": "uint256",
+            "name": "minAmountIn"
+          },
+          {
+            "type": "uint256",
+            "name": "destinationChainId"
+          }
+        ]
+      },
+      {
+        "type": "tuple[]",
+        "name": "swapInfo",
+        "indexed": false,
+        "components": [
+          {
+            "type": "address",
+            "name": "dex"
+          },
+          {
+            "type": "address",
+            "name": "fromToken"
+          },
+          {
+            "type": "address",
+            "name": "toToken"
+          },
+          {
+            "type": "uint256",
+            "name": "fromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "leftOverFromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "returnToAmount"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "Swapped",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "integrator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "recipient",
+        "indexed": false
+      },
+      {
+        "type": "tuple",
+        "name": "swapInfo",
+        "indexed": false,
+        "components": [
+          {
+            "type": "address",
+            "name": "dex"
+          },
+          {
+            "type": "address",
+            "name": "fromToken"
+          },
+          {
+            "type": "address",
+            "name": "toToken"
+          },
+          {
+            "type": "uint256",
+            "name": "fromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "leftOverFromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "returnToAmount"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "SwappedSingleToken",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "transactionId",
+        "indexed": false
+      },
+      {
+        "type": "address",
+        "name": "sender",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "recipient",
+        "indexed": false
+      },
+      {
+        "type": "tuple",
+        "name": "swapInfo",
+        "indexed": false,
+        "components": [
+          {
+            "type": "address",
+            "name": "dex"
+          },
+          {
+            "type": "address",
+            "name": "fromToken"
+          },
+          {
+            "type": "address",
+            "name": "toToken"
+          },
+          {
+            "type": "uint256",
+            "name": "fromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "leftOverFromAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "returnToAmount"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "type": "function",
     "name": "batchBridge",
     "constant": false,

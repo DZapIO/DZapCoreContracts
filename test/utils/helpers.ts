@@ -4,11 +4,19 @@ import { BigNumber, Wallet } from 'ethers'
 import { parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
 import { FacetCutAction } from 'hardhat-deploy/dist/types'
-import { ADDRESS_ZERO, CONTRACTS, ZERO } from '../../constants'
+
+import { ADDRESS_ZERO, CONTRACTS, DEFAULT_BYTES, ZERO } from '../../constants'
 import {
+  calculateOffset,
+  encodePermitData,
   getSelectorsUsingContract,
   getSighash,
-} from '../../scripts/utils/diamond'
+  hexRightPad,
+} from '../../utils'
+import { GasZipReceiver } from '../constants'
+import { getPermit2SignatureAndCalldataForApprove } from './permit'
+import { duration, latest } from './time'
+
 import {
   AccessManagerFacet,
   BatchBridgeCallFacet,
@@ -39,18 +47,7 @@ import {
   WNATIVE,
 } from '../../typechain-types'
 import { AccessContractObj, DiamondCut, PermitType } from '../../types'
-import { GasZipReceiver } from '../constants/gasZip'
-import { duration, latest } from './time'
-import { getPermit2SignatureAndCalldataForApprove } from './permit'
-import { ERC20 } from '../../typechain-types/contracts/Test/Permit2Mock.sol'
-import { calculateOffset, encodePermitData } from '../../scripts/core/helper'
-import { DEFAULT_BYTES } from '../../constants/others'
-import {
-  GasZipData,
-  GasZipDataForContract,
-  GasZipDataForDirectDeposit,
-} from '../types'
-import { hexRightPad } from '../../utils'
+import { GasZipDataForContract, GasZipDataForDirectDeposit } from '../types'
 
 export const validateBridgeEventData = (
   eventBridgeData,

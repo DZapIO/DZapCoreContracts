@@ -1,6 +1,8 @@
-import { BaseProvider, JsonRpcProvider } from '@ethersproject/providers'
+import { JsonRpcProvider } from '@ethersproject/providers'
 import { Wallet } from 'ethers'
-import { dummyKey } from '../constants/others'
+
+const dummyKey =
+  '0x0000000000000000000000000000000000000000000000000000000000000000'
 
 export async function getWallet(privateKey: string, provider: JsonRpcProvider) {
   return new Wallet(privateKey, provider)

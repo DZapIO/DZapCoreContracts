@@ -1,33 +1,32 @@
-import { ethers } from 'hardhat'
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai'
+import { ethers } from 'hardhat'
 
 import {
+  ADDRESS_ZERO,
+  BPS_MULTIPLIER,
   CONTRACTS,
   ERRORS,
   EVENTS,
-  ADDRESS_ZERO,
-  BPS_MULTIPLIER,
 } from '../../constants'
-import { snapshot, updateBalance } from '../utils'
+import { getSelectorsUsingContract } from '../../utils'
+import { snapshot } from '../utils'
 
 import {
   AccessManagerFacet,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
   FeesFacet,
   OwnershipFacet,
+  Permit2,
   SwapFacet,
   WithdrawFacet,
-  DiamondInit,
-  Permit2,
-  CrossChainFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction } from '../../types'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
-import { getSelectorsUsingContract } from '../../scripts/utils/diamond'
-import {} from '../common'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

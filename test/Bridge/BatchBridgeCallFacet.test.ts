@@ -1,27 +1,19 @@
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { expect } from 'chai'
 import { defaultAbiCoder, parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
+
+import { CHAIN_IDS } from '../../config'
 import {
   BPS_DENOMINATOR,
   CONTRACTS,
+  DEFAULT_ENCODDED_PERMIT,
   EVENTS,
   FunctionNames,
   NATIVE_ADDRESS,
 } from '../../constants'
+import { encodePermitData, getFeeData } from '../../utils'
 import {
-  convertBNToNegative,
-  generateRandomWallet,
-  snapshot,
-  updateBalance,
-} from '../utils'
-
-import { expect } from 'chai'
-import { CHAIN_IDS } from '../../config'
-import { encodePermitData, getFeeData } from '../../scripts/core/helper'
-import { DZapDiamond } from '../../typechain-types'
-import { AccessContractObj, FeeType, PermitType } from '../../types'
-import {
-  DEFAULT_ENCODDED_PERMIT,
   feeInfo1,
   feeInfo2,
   GasZipChainIds,
@@ -31,7 +23,12 @@ import {
   TOKEN_A_DECIMAL,
   TOKEN_B_DECIMAL,
 } from '../constants'
-import { AdapterData, GenericBridgeData } from '../types'
+import {
+  convertBNToNegative,
+  generateRandomWallet,
+  snapshot,
+  updateBalance,
+} from '../utils'
 import {
   addBridgeSelectors,
   deployAndAdapters,
@@ -44,6 +41,10 @@ import {
   setAccessControl,
   validateBridgeEventData,
 } from '../utils/helpers'
+
+import { DZapDiamond } from '../../typechain-types'
+import { AccessContractObj, FeeType, PermitType } from '../../types'
+import { AdapterData, GenericBridgeData } from '../types'
 
 let dZapDiamond: DZapDiamond
 let contracts: Awaited<ReturnType<typeof getAllFacets>>

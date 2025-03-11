@@ -1,53 +1,51 @@
-import { ethers } from 'hardhat'
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai'
 import { BigNumber } from 'ethers'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { ethers } from 'hardhat'
 
 import {
+  ADDRESS_ZERO,
+  BPS_DENOMINATOR,
   BPS_MULTIPLIER,
   CONTRACTS,
+  DEFAULT_BYTES,
   DZAP_NATIVE,
   ERRORS,
   EVENTS,
   NATIVE_ADDRESS,
   ZERO,
-  ADDRESS_ZERO,
-  BPS_DENOMINATOR,
 } from '../../constants'
-import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 import {
-  getFeeData,
-  encodePermitData,
   calculateOffset,
-  getRevertMsg,
-} from '../../scripts/core/helper'
-import {
+  encodePermitData,
+  getFeeData,
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
   getSighash,
-} from '../../scripts/utils/diamond'
+} from '../../utils'
+import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 
 import {
   AccessManagerFacet,
+  BridgeManagerFacet,
+  BridgeMock,
+  CrossChainFacet,
   DZapDiamond,
   DexManagerFacet,
   DiamondCutFacet,
+  DiamondInit,
   DiamondLoupeFacet,
+  ERC20Mock,
+  ExchangeMock,
+  Executor,
   FeesFacet,
   OwnershipFacet,
-  SwapFacet,
-  WithdrawFacet,
-  ExchangeMock,
-  ERC20Mock,
-  WNATIVE,
-  DiamondInit,
   Permit2,
-  CrossChainFacet,
-  BridgeMock,
-  Executor,
   Receiver,
-  BridgeManagerFacet,
+  SwapFacet,
+  WNATIVE,
+  WithdrawFacet,
 } from '../../typechain-types'
 import {
   DiamondCut,
@@ -56,7 +54,6 @@ import {
   FeeType,
   PermitType,
 } from '../../types'
-import { DEFAULT_BYTES } from '../../constants/others'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

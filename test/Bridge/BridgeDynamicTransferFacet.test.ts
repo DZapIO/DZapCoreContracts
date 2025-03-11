@@ -1,5 +1,6 @@
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { expect } from 'chai'
+import { randomBytes } from 'crypto'
 import { BigNumber } from 'ethers'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
@@ -8,19 +9,19 @@ import {
   BPS_DENOMINATOR,
   BPS_MULTIPLIER,
   CONTRACTS,
-  DZAP_NATIVE,
   ERRORS,
   EVENTS,
   HARDHAT_CHAIN_ID,
   NATIVE_ADDRESS,
   ZERO,
 } from '../../constants'
-import { encodePermitData, getFeeData } from '../../scripts/core/helper'
 import {
+  encodePermitData,
+  getFeeData,
   getSelectorsUsingContract,
   getSelectorsUsingFunSig,
   getSighash,
-} from '../../scripts/utils/diamond'
+} from '../../utils'
 import { convertBNToNegative, snapshot, updateBalance } from '../utils'
 
 import {
@@ -53,8 +54,6 @@ import {
   FeeType,
   PermitType,
 } from '../../types'
-import { DEFAULT_BYTES } from '../../constants/others'
-import { randomBytes } from 'crypto'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

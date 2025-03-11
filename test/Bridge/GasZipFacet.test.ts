@@ -1,4 +1,5 @@
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { expect } from 'chai'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
 
@@ -15,16 +16,22 @@ import {
 } from '../../constants'
 import {
   convertBNToNegative,
+  createGasZipCallDataForContractDeposit,
+  deployAndIntializeDimond,
+  deployFacets,
   generateRandomWallet,
+  getAllFacets,
+  getMockContract,
+  getPermi2ApprovetData,
+  setAccessControl,
   snapshot,
   updateBalance,
+  validateSwapEventData,
 } from '../utils'
 
-import { expect } from 'chai'
+import { BigNumber } from 'ethers'
 import { CHAIN_IDS } from '../../config'
-import { encodePermitData, getFeeData } from '../../scripts/core/helper'
-import { DZapDiamond } from '../../typechain-types'
-import { AccessContractObj, FeeType, PermitType } from '../../types'
+import { encodePermitData, getFeeData } from '../../utils'
 import {
   feeInfo1,
   feeInfo2,
@@ -35,19 +42,10 @@ import {
   TOKEN_A_DECIMAL,
   TOKEN_B_DECIMAL,
 } from '../constants'
-import {
-  createGasZipCallDataForContractDeposit,
-  deployAndIntializeDimond,
-  deployFacets,
-  getAllFacets,
-  getMockContract,
-  getPermi2ApprovetData,
-  setAccessControl,
-  validateSwapEventData,
-} from '../utils/helpers'
+
+import { DZapDiamond } from '../../typechain-types'
+import { AccessContractObj, FeeType, PermitType } from '../../types'
 import { GasZipData } from '../types'
-import { DEFAULT_BYTES } from '../../constants/others'
-import { BigNumber } from 'ethers'
 
 let dZapDiamond: DZapDiamond
 let contracts: Awaited<ReturnType<typeof getAllFacets>>

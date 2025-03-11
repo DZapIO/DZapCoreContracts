@@ -16,14 +16,15 @@ import 'hardhat-deploy-ethers'
 import 'hardhat-gas-reporter'
 import 'solidity-coverage'
 
-import { CHAIN_IDS } from './config/networks'
 import './tasks/accounts'
 import './tasks/clean'
+
+import { CHAIN_IDS } from './config/networks'
 import {
   getNetworkConfig,
   getRpcUrl,
   getVerificationConfig,
-} from './utils/network'
+} from './utils/networkUtils'
 
 dotenv.config()
 
@@ -31,6 +32,7 @@ const supportedNetworks = [
   CHAIN_IDS.ARBITRUM_MAINNET,
   CHAIN_IDS.AVALANCHE_MAINNET,
   CHAIN_IDS.AURORA_MAINNET,
+  CHAIN_IDS.ABSTRACT_MAINNET,
   CHAIN_IDS.ARTHERA,
   CHAIN_IDS.BASE_MAINNET,
   CHAIN_IDS.BSC_MAINNET,
@@ -85,11 +87,13 @@ const config: HardhatUserConfig = {
       url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),
       ethNetwork: 'sepolia',
       zksync: true,
+      deployPaths: 'scripts/deployZkEVM',
     },
     zkMainnet: {
       url: getRpcUrl(CHAIN_IDS.ZKSYNC_MAINNET),
       ethNetwork: 'mainnet',
       zksync: true,
+      deployPaths: 'scripts/deployZkEVM',
     },
   },
   solidity: {

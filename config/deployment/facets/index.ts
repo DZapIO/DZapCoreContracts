@@ -1,7 +1,7 @@
 import { CONTRACTS } from '../../../constants'
 import { DIAMOND_LOUPE_FACET_DEPLOYMENT_CONFIG } from './diamondLoupeFacet'
 import { OWNERSHIP_FACET_DEPLOYMENT_CONFIG } from './ownershipFacet'
-import { ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG } from './AccessManagerFacet'
+import { ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG } from './accessManagerFacet'
 import { DEX_MANAGER_FACET_DEPLOYMENT_CONFIG } from './dexManagerFacet'
 import { BRIDGE_MANAGER_FACET_DEPLOYMENT_CONFIG } from './bridgeManagerFacet'
 import { FEES_FACET_DEPLOYMENT_CONFIG } from './feesFacet'

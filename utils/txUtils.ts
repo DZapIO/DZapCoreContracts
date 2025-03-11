@@ -1,4 +1,4 @@
-import { getNetwork } from './network'
+import { getNetwork } from './networkUtils'
 
 export const getTxUrl = (chainId: number, txHash: string) => {
   const { explorerUrl } = getNetwork(chainId)

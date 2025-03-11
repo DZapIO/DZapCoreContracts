@@ -7,20 +7,22 @@ import {
   ADDRESS_ZERO,
   BPS_MULTIPLIER,
   CONTRACTS,
+  DEFAULT_BYTES,
   ERRORS,
   EVENTS,
   ZERO,
 } from '../../constants'
 import {
+  calculateOffset,
+  getRpcUrl,
   getSelectorsUsingContract,
   getSighash,
-} from '../../scripts/utils/diamond'
+} from '../../utils'
 import { forkNetwork, impersonate, snapshot, updateBalance } from '../utils'
 
 import { expect } from 'chai'
 import { CHAIN_IDS } from '../../config'
-import { DEFAULT_BYTES } from '../../constants/others'
-import { calculateOffset } from '../../scripts/core/helper'
+
 import {
   AccessManagerFacet,
   BridgeManagerFacet,
@@ -43,7 +45,6 @@ import {
   WithdrawFacet,
 } from '../../typechain-types'
 import { DiamondCut, FacetCutAction, FeeInfo, FeeType } from '../../types'
-import { getRpcUrl } from '../../utils/network'
 
 let dZapDiamond: DZapDiamond
 let diamondInit: DiamondInit

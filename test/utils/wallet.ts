@@ -1,7 +1,7 @@
-import { Wallet } from 'ethers'
-import { ethers, network } from 'hardhat'
-import { parseUnits } from 'ethers/lib/utils'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
+import { Wallet } from 'ethers'
+import { parseUnits } from 'ethers/lib/utils'
+import { ethers, network } from 'hardhat'
 
 export const impersonate = async (address: string) => {
   await network.provider.request({

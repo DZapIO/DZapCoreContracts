@@ -804,7 +804,7 @@ export const INTEGRATOR_CONFIG = {
       ],
     },
   },
-  [CHAIN_IDS.BERA_CHAIN_MAINNET]: {
+  [CHAIN_IDS.BERACHAIN_MAINNET]: {
     [INTEGRATORS.DZAP]: {
       address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
       fee: [

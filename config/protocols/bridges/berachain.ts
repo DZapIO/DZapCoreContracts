@@ -3,10 +3,42 @@ import { BRIDGES } from '../bridgeNames'
 export const BERACHAIN_BRIDGES = {
   bridges: {
     [BRIDGES.deBridge]: {
-      address: ['0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251'],
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+      ],
+    },
+    [BRIDGES.lifi]: {
+      address: ['0xf909c4Ae16622898b885B89d7F839E0244851c66'],
+    },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
     [BRIDGES.relayLink]: {
       address: ['0xeeeeee9ec4769a09a76a83c7bc42b185872860ee'],
+    },
+    [BRIDGES.router]: {
+      address: [
+        '0x397E3e253206BB935d6F0ebfd4CA5941a0bE0dDa',
+        '0xD90C818fA7FE477422264B34e7E6988e699DF358',
+      ],
+    },
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+    },
+    [BRIDGES.stargate]: {
+      address: ['0xAF54BE5B6eEc24d6BFACf1cce4eaF680A8239398'],
+    },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
+        '0xb7aF032a0C8d350705eD7E4E3802377731a0cA07',
+        '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
+        '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
+      ],
+    },
+    [BRIDGES.synapse]: {
+      address: ['0x391E7C679d29bD940d63be94AD22A25d25b5A604'],
     },
   },
 }

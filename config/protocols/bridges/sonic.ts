@@ -15,7 +15,10 @@ export const SONIC_BRIDGES = {
       address: ['0xd9d74a29307cc6fc8bf424ee4217f1a587fbc8dc'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xeeeeee9ec4769a09a76a83c7bc42b185872860ee'],
+      address: [
+        '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',
+        '0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d',
+      ],
     },
     [BRIDGES.router]: {
       address: ['0xD90C818fA7FE477422264B34e7E6988e699DF358'],

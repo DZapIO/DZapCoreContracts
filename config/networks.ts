@@ -25,7 +25,7 @@ export enum CHAIN_IDS {
   BOBA_BNB = 56288,
   BOBA_ETH = 288,
   BOBA_RINKEBY = 28,
-  BERA_CHAIN_MAINNET = 80094,
+  BERACHAIN_MAINNET = 80094,
   BSC_MAINNET = 56,
   BSC_TESTNET = 97,
   BTC_MAINNET = 3652501241,
@@ -649,8 +649,8 @@ export const NETWORKS: Networks = {
     apiType: ApiType.BLOCKSCOUT,
     nativeCurrency: { name: 'BTC', symbol: 'BTC', decimals: 18 },
   },
-  [CHAIN_IDS.BERA_CHAIN_MAINNET]: {
-    chainId: CHAIN_IDS.BERA_CHAIN_MAINNET,
+  [CHAIN_IDS.BERACHAIN_MAINNET]: {
+    chainId: CHAIN_IDS.BERACHAIN_MAINNET,
     chainName: 'Bera Chain',
     shortName: 'bera',
     rpcUrl: [

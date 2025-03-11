@@ -5,7 +5,6 @@ export const ROOTSTOCK_MAINNET = {
     [BRIDGES.symbiosis]: {
       address: [
         '0x7057ab3fb2bee9c18e0cde4240de4ff7f159e365',
-        '0x7057ab3fb2bee9c18e0cde4240de4ff7f159e365',
         '0xda8057acb94905eb6025120cb2c38415fd81bfeb',
         '0x01a3c8e513b758ebb011f7afaf6c37616c9c24d9',
         '0xfffdb2a69abcbbf55ecb2f6b348e0bd3d0f9f2e1',

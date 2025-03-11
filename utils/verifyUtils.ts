@@ -10,7 +10,7 @@ export const verify = async (
   contractConstructorArguments: any[]
 ) => {
   console.log(
-    `\n ${contractName} Verification Started...`
+    `\n ${contractName} Verification Started...`,
     getContractUrl(chainId, contractAddress)
   )
   try {

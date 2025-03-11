@@ -85,4 +85,8 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0x7f4babd2c7d35221e72ab67ea72cba99573a0089',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },
+  [CHAIN_IDS.SONIC_MAINNET]: {
+    relayerReceiver: '0x7f4babd2c7d35221e72ab67ea72cba99573a0089',
+    relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+  },
 }

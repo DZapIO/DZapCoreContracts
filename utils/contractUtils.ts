@@ -19,6 +19,7 @@ import {
   SwapFacet,
   SwapTransferFacet,
   WithdrawFacet,
+  BridgeDynamicTransferFacet,
 } from '../typechain-types'
 import { formatUnits } from 'ethers/lib/utils'
 import { isAddressSame } from './addressUtils'
@@ -103,6 +104,11 @@ export const getAllDiamondFacets = async (
     contractAddress,
     signer
   )) as CrossChainFacet
+  const bridgeDynamicTransferFacet = (await ethers.getContractAt(
+    CONTRACTS.BridgeDynamicTransferFacet,
+    contractAddress,
+    signer
+  )) as BridgeDynamicTransferFacet
   const relayBridgeFacet = (await ethers.getContractAt(
     CONTRACTS.RelayBridgeFacet,
     contractAddress,
@@ -137,6 +143,7 @@ export const getAllDiamondFacets = async (
     relayBridgeFacet,
     gasZipFacet,
     batchBridgeCallFacet,
+    bridgeDynamicTransferFacet,
   }
 }
 

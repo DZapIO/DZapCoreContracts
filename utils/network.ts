@@ -178,3 +178,12 @@ const checkRpc = async (rpcUrl: string): Promise<string> => {
     throw new Error(`RPC endpoint ${rpcUrl} failed: ${error}`)
   }
 }
+
+export const isZkEvm = (chainId: CHAIN_IDS) => {
+  return [
+    CHAIN_IDS.ZKSYNC_MAINNET,
+    CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
+    CHAIN_IDS.ABSTRACT_MAINNET,
+    CHAIN_IDS.ABSTRACT_TESTNET,
+  ].includes(chainId)
+}

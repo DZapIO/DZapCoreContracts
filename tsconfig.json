@@ -18,9 +18,10 @@
     "types/**/*",
     "typechain/**/*",
     "utils/**/*",
-    "deploy/**/*",
     "deploy-args.ts",
     "./scripts"
   ],
-  "files": ["./hardhat.config.ts"]
+  "files": [
+    "./hardhat.config.ts"
+  ]
 }

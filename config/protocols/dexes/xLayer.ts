@@ -1,0 +1,14 @@
+import { DEXES } from '../dexNames'
+
+export const X_LAYER_DEXES = {
+  dexes: {
+    [DEXES.izumi]: ['0xd7de110Bd452AAB96608ac3750c3730A17993DE0'],
+    [DEXES.okx]: [
+      '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',
+      '0x8b773D83bc66Be128c60e07E17C8901f7a64F000',
+    ],
+    [DEXES.sushi]: ['0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5'],
+    [DEXES.xyFinance]: ['0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE'],
+    [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
+  },
+}

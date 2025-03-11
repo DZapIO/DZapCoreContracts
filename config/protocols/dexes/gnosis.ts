@@ -1,0 +1,14 @@
+import { DEXES } from '../dexNames'
+
+export const GNOSIS_DEXES = {
+  dexes: {
+    [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+    [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+    [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+    [DEXES.sushi]: [
+      '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+      '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+      '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
+    ],
+  },
+}

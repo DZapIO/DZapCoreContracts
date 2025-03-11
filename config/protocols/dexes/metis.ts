@@ -1,0 +1,19 @@
+import { DEXES } from '../dexNames'
+
+export const METIS_DEXES = {
+  dexes: {
+    [DEXES.lifi]: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
+    [DEXES.magpiefi]: ['0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2'],
+    [DEXES.okx]: [
+      '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
+      '0x57df6092665eb6058DE53939612413ff4B09114E',
+    ],
+    [DEXES.routerNitro]: ['0x21c1E74CAaDf990E237920d5515955a024031109'],
+    [DEXES.sushi]: [
+      '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+      '0xc55332b1d758e798a8dB1f255B029f045C4958b7',
+      '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
+    ],
+    [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+  },
+}

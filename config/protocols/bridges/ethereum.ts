@@ -69,6 +69,9 @@ export const ETH_MAINNET = {
       address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
       selectorInfo: [],
     },
+    [BRIDGES.optimismBridge]: {
+      address: ['0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1'],
+    },
     [BRIDGES.orbiter]: {
       address: ['0xC741900276CD598060b0FE6594FbE977392928f4'],
       selectorInfo: [],

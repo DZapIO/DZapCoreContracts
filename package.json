@@ -13,11 +13,11 @@
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
-    "addBridges": "ts-node scripts/addRemoveProviders/addMultipleBridges.ts",
-    "addDexes": "ts-node scripts/addRemoveProviders/addMultipleDexes.ts",
-    "removeDexes": "ts-node scripts/addRemoveProviders/removeMultipleDexes.ts",
-    "removeBridges": "ts-node scripts/addRemoveProviders/removeMultipleBridges.ts",
-    "syncHistory": "ts-node scripts/addRemoveProviders/syncHistory.ts",
+    "addBridges": "ts-node scripts/addMultipleBridges.ts",
+    "addDexes": "ts-node scripts/addMultipleDexes.ts",
+    "removeDexes": "ts-node scripts/removeMultipleDexes.ts",
+    "removeBridges": "ts-node scripts/removeMultipleBridges.ts",
+    "syncHistory": "ts-node scripts/syncHistory.ts",
     "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts"
   },
   "devDependencies": {

@@ -16,6 +16,7 @@ export enum BRIDGES {
   mesonFinance = 'mesonFinance',
   okx = 'okx',
   omniBtc = 'omniBtc',
+  optimismBridge = 'optimismBridge',
   orbiter = 'orbiter',
   owlto = 'owlto',
   rango = 'rango',

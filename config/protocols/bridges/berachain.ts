@@ -38,7 +38,10 @@ export const BERACHAIN_BRIDGES = {
       ],
     },
     [BRIDGES.synapse]: {
-      address: ['0x391E7C679d29bD940d63be94AD22A25d25b5A604'],
+      address: [
+        '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
+        '0x00cD000000003f7F682BE4813200893d4e690000',
+      ],
     },
   },
 }

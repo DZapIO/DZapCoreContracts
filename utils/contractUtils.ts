@@ -28,7 +28,7 @@ import { isAddressSame } from './addressUtils'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
-  signer: Signer
+  signer?: Signer
 ) => {
   const dZapDiamond = (await ethers.getContractAt(
     CONTRACTS.DZapDiamond,

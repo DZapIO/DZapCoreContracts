@@ -18,15 +18,16 @@
     "removeDexes": "ts-node scripts/addRemoveProviders/removeMultipleDexes.ts",
     "removeBridges": "ts-node scripts/addRemoveProviders/removeMultipleBridges.ts",
     "syncHistory": "ts-node scripts/addRemoveProviders/syncHistory.ts",
-    "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts"
+    "checkDeployedFacets": "ts-node scripts/others/multiCheckFacetsDeployed.ts",
+    "getDeployedFacetDetails": "ts-node scripts/others/getDeployedFacetDetails.ts"
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "0.11.0",
     "@matterlabs/hardhat-zksync-solc": "^1.2.1",
     "@matterlabs/hardhat-zksync-verify": "1.5.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.5",
+    "@nomicfoundation/hardhat-verify": "^2.0.13",
     "@nomiclabs/hardhat-ethers": "^2.2.1",
-    "@nomiclabs/hardhat-etherscan": "^3.1.4",
     "@openzeppelin/contracts": "^4.8.0",
     "@openzeppelin/contracts-upgradeable": "^4.8.0",
     "@openzeppelin/hardhat-upgrades": "^1.22.0",
@@ -71,8 +72,5 @@
     "viem": "^2.16.3",
     "xdeployer": "^1.2.7",
     "zksync-ethers": "5"
-  },
-  "dependencies": {
-    "ethers-multicall-provider": "3.1.2"
   }
 }

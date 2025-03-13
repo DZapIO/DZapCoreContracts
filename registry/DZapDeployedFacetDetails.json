@@ -1,0 +1,5615 @@
+{
+  "1": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x188f7A02045dD1A4eaAD4009aC639F71D8728797",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "10": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x3a508faf9ca12b17b2F63C7701570dc1fDda4149",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "25": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x9c881932C8b66b4DA4f8B49e8D3ffBB4702c4e5f",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xe044F8DE6c999c45869057b91C8D8C6cb5aFd16B",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xbf7bE9A1c602B43F848213dd7e2Ef3AC6A602456",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x19FED9fD0D5D53f5AdC4318f485217E411147B26",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "30": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1f192ec596D48c0aC431C78532B5536f10069c73",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "40": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x2cF7b5f84b59EcB572E58840C9e7c93726d2EB15",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "56": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xAf5590B3855926Cb7e274B492DE95C3eBc237D05",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "100": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC5A0cDF651639845eDbAd896F8E21717A98B13aa",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "122": {
+    "DiamondLoupeFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x67778Fded55cBcC1892044bB94e1923A2348335B",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "137": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x0eF99019567A5C1E90B5F24AddF2b8A967Fd9f26",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "146": {
+    "DiamondLoupeFacet": {
+      "address": "0xB76a42FdD90AFED90F0a6d143D5847334606b27D",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x90A50A390e7Bb72c7e82937cfc0e7F2D58D6bE5E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x37ac34515Cbb6Be26c55097694bE213fB9DFa356",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8ebb28415e8eDB85030Dd27ABd15De9BFfa28681",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x1A84dA246e76d23DBa9B247Ae37ea91F645d0cAa",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBf912c6711a2702F1AB05E8F9B75A3Bf48505ED1",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "169": {
+    "DiamondLoupeFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x38eeEd285c097Bad30DefA79DfD3BeF452F68563",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "185": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC5A0cDF651639845eDbAd896F8E21717A98B13aa",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "196": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x67778Fded55cBcC1892044bB94e1923A2348335B",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "250": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x21Db758b1D623EAa95C3df1a2247c7657d7755B3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "252": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC5A0cDF651639845eDbAd896F8E21717A98B13aa",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "255": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x2B22684b9FE389A48e3c652C5a1a1Ff918270b4B",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "288": {
+    "DiamondLoupeFacet": {
+      "address": "0x1d4dA9F75492002b55bE6F6CA08C1f516E397058",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xbf7bE9A1c602B43F848213dd7e2Ef3AC6A602456",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "324": {
+    "DiamondLoupeFacet": {
+      "address": "0xdEb5FbA656C6fb38a505D9201aB19b5B32631Bf6",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x92228083B5486e5B10752d091221c3E391e91735",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0xa895c37c51b5cf22EDa22263913E4eE9901D0185",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0xb7Ef73d35d2EbD2f50aDE90EeA2CE026D88D7390",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xf5037f2BE30b8B7CdCc45C0F8392E35E5180fA28",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xB0A822B65bA6CBF7Cc7331B811f4CcbeE74a109C",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x985A30C521F6c03301ff36E2f4c8D6b6BddA7575",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x5a4CE3F9b62322D7ac95DcfF034E606c1aFC74b9",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x4d51e48e9CEc3D4f8e46578e9812320018c4f740",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x368cBc50A547A80021b83225a4E7e721558abDf8",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0xA8eb748964C168869CF3D96B91C5435C87de7542",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0x0c0d99c1Ab76C75a39A5Ee9032bB277fa863bc54",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xFbB9762D4a1c2841eD732E9130b231286914f063",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF7089F9968ecc74686E864250B03033192daa104",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xA208e0C24b9D70C4939a179ba8F7A3ecF4d0AB30",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "1088": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "1101": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x74427ab400e4D46816601F0731EA0c975Fcf342F",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x194524A05a97f8843cb180a8187358573DE802FA",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "1116": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC3E974b942d10548f0B97c282658B9D1D1E9d827",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "1284": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xBDC070c98A7A43120675CB945C64a682E52E94cA",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0x6d2A0d4Fbc43EC54e74066bD881725884AEC1e3f",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0x2B22684b9FE389A48e3c652C5a1a1Ff918270b4B",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "1285": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xBDC070c98A7A43120675CB945C64a682E52E94cA",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0x6d2A0d4Fbc43EC54e74066bD881725884AEC1e3f",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0x2B22684b9FE389A48e3c652C5a1a1Ff918270b4B",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "1625": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC5A0cDF651639845eDbAd896F8E21717A98B13aa",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "1868": {
+    "DiamondLoupeFacet": {
+      "address": "0xB76a42FdD90AFED90F0a6d143D5847334606b27D",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x90A50A390e7Bb72c7e82937cfc0e7F2D58D6bE5E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x37ac34515Cbb6Be26c55097694bE213fB9DFa356",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8ebb28415e8eDB85030Dd27ABd15De9BFfa28681",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x1A84dA246e76d23DBa9B247Ae37ea91F645d0cAa",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBf912c6711a2702F1AB05E8F9B75A3Bf48505ED1",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "2222": {
+    "DiamondLoupeFacet": {
+      "address": "0xcba7947eFaA7886D5582a86022fCc32591FE18Ac",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x1d4dA9F75492002b55bE6F6CA08C1f516E397058",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x21Db758b1D623EAa95C3df1a2247c7657d7755B3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "4200": {
+    "DiamondLoupeFacet": {
+      "address": "0xB76a42FdD90AFED90F0a6d143D5847334606b27D",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x90A50A390e7Bb72c7e82937cfc0e7F2D58D6bE5E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x37ac34515Cbb6Be26c55097694bE213fB9DFa356",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8ebb28415e8eDB85030Dd27ABd15De9BFfa28681",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x1A84dA246e76d23DBa9B247Ae37ea91F645d0cAa",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBf912c6711a2702F1AB05E8F9B75A3Bf48505ED1",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "5000": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x911068dd4da2146bea5b66EA2754eE0B20c727dD",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "7000": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "8453": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x180AdE08A580D34BE9d8F1D14436Ba29325279fD",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "10242": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xC5A0cDF651639845eDbAd896F8E21717A98B13aa",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "34443": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x67778Fded55cBcC1892044bB94e1923A2348335B",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "42161": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x80DBf516f2EaC3A624b345E4a8978c2c984CAB22",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "42220": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "43114": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x7B09F52d366b5Cb5e6b75FACFDA8ac19b44298FD",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "59144": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x911068dd4da2146bea5b66EA2754eE0B20c727dD",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "80094": {
+    "DiamondLoupeFacet": {
+      "address": "0xB76a42FdD90AFED90F0a6d143D5847334606b27D",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x90A50A390e7Bb72c7e82937cfc0e7F2D58D6bE5E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x37ac34515Cbb6Be26c55097694bE213fB9DFa356",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8ebb28415e8eDB85030Dd27ABd15De9BFfa28681",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x1A84dA246e76d23DBa9B247Ae37ea91F645d0cAa",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBf912c6711a2702F1AB05E8F9B75A3Bf48505ED1",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "81457": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x2cF7b5f84b59EcB572E58840C9e7c93726d2EB15",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "167000": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "534352": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x6dcd2689c3B6d4BEEa0b3b4B79752D9a54b39733",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
+    }
+  },
+  "1313161554": {
+    "DiamondLoupeFacet": {
+      "address": "0x661954Fd50F1033eE423E41915d2b83667382eA5",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x8612B07eAbb48A9B84769f23ed30D360C03B5309",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x3E6A7F9b8229f14e273F8F5a21067ca7d31a396E",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8715E14Ed2f3Bca4B4E9da72559a557613f061aC",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  }
+}

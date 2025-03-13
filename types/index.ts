@@ -2,6 +2,7 @@ import { BigNumber, BigNumberish, ContractFactory } from 'ethers'
 import { CHAIN_IDS, RPC_TYPE } from '../config'
 import { BRIDGES } from '../config/protocols/bridgeNames'
 import { DEXES } from '../config/protocols/dexNames'
+import { NODE_ENV_VAR_NAMES } from '../constants'
 
 export enum FacetCutAction {
   Add,
@@ -141,17 +142,12 @@ export interface Network {
   explorerUrl: string
   apiUrl?: string
   apiType: ApiType
+  apiKeyName?: NODE_ENV_VAR_NAMES
   nativeCurrency: NativeCurrency
 }
 
 export type Networks = {
   [key in CHAIN_IDS]?: Network
-}
-
-export enum ENVIRONMENT {
-  PRODUCTION = 'production',
-  STAGING = 'staging',
-  DEVELOPMENT = 'development',
 }
 
 export interface SelectorInfo {
@@ -190,4 +186,10 @@ export interface DiamondInitArgs {
   protocolFeeVault: string
   maxTokenFee: BigNumberish
   maxFixedNativeFeeAmount: BigNumberish
+}
+
+export interface VerificationData {
+  contractName: string
+  contractAddress: string
+  constructorArguments: any[] // as structs can be passed as constructor arguments
 }

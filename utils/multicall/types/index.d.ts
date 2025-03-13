@@ -1,0 +1,3 @@
+export type { Multicall3 } from './Multicall3'
+export * as factories from './factories'
+export { Multicall3__factory } from './factories/Multicall3__factory'

@@ -1,3 +1,4 @@
+import { NODE_ENV_VAR_NAMES } from '../constants'
 import { ApiType, Networks } from '../types'
 
 export enum RPC_TYPE {
@@ -110,6 +111,13 @@ export enum CHAIN_IDS {
   ZKFAIR = 42766,
 }
 
+export const ZK_EVM_CHAINS = {
+  zkTestnet: CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
+  zkMainnet: CHAIN_IDS.ZKSYNC_MAINNET,
+  abstractMainnet: CHAIN_IDS.ABSTRACT_MAINNET,
+  abstractTestnet: CHAIN_IDS.ABSTRACT_TESTNET,
+}
+
 export const NETWORKS: Networks = {
   [CHAIN_IDS.GANACHE]: {
     chainId: CHAIN_IDS.GANACHE,
@@ -135,7 +143,11 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.ETH_MAINNET,
     chainName: 'Ethereum Mainnet',
     shortName: 'ethereum',
-    rpcUrl: ['https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}'],
+    rpcUrl: [
+      'https://rpc.ankr.com/eth',
+      `https://eth-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://eth.llamarpc.com',
+    ],
     explorerUrl: 'https://etherscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=1',
     apiType: ApiType.ETHERSCAN_V2,
@@ -166,8 +178,8 @@ export const NETWORKS: Networks = {
     chainName: 'Arbitrum One',
     shortName: 'arbitrumOne',
     rpcUrl: [
-      'https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
-      'https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}',
+      `https://arb-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      `https://arbitrum-mainnet.infura.io/v3/${NODE_ENV_VAR_NAMES.INFURA_API_KEY}`,
       'https://arb1.arbitrum.io/rpc',
       'https://arbitrum-one-rpc.publicnode.com',
     ],
@@ -180,7 +192,9 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.OPTIMISM_MAINNET,
     shortName: 'optimism',
     chainName: 'Optimism Mainnet',
-    rpcUrl: ['https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}'],
+    rpcUrl: [
+      `https://opt-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+    ],
     explorerUrl: 'https://optimistic.etherscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=10',
     apiType: ApiType.ETHERSCAN_V2,
@@ -211,7 +225,7 @@ export const NETWORKS: Networks = {
     chainName: 'Base',
     shortName: 'base',
     rpcUrl: [
-      'https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
+      `https://base-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://mainnet.base.org/',
     ],
     explorerUrl: 'https://basescan.org',
@@ -224,7 +238,7 @@ export const NETWORKS: Networks = {
     chainName: 'Polygon Mainnet',
     shortName: 'polygon',
     rpcUrl: [
-      'https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
+      `https://polygon-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://polygon-rpc.com/',
       'https://rpc-mainnet.matic.network',
       'https://matic-mainnet.chainstacklabs.com',
@@ -311,7 +325,9 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.LINEA_MAINNET,
     chainName: 'Linea Mainnet',
     shortName: 'linea',
-    rpcUrl: ['https://linea-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}'],
+    rpcUrl: [
+      `https://linea-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+    ],
     explorerUrl: 'https://lineascan.build',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=59144',
     apiType: ApiType.ETHERSCAN_V2,
@@ -322,10 +338,13 @@ export const NETWORKS: Networks = {
     chainName: 'Mantle Mainnet',
     shortName: 'mantle',
     rpcUrl: [
-      'https://mantle-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
-      'https://mantle-mainnet.blastapi.io',
       'https://rpc.mantle.xyz',
+      `https://mantle-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://mantle-mainnet.blastapi.io',
     ],
+    // explorerUrl: 'https://explorer.mantle.xyz/',
+    // apiUrl: 'https://explorer.mantle.xyz/api',
+    // apiType: ApiType.BLOCKSCOUT,
     explorerUrl: 'https://mantlescan.xyz',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=5000',
     apiType: ApiType.ETHERSCAN_V2,
@@ -354,7 +373,9 @@ export const NETWORKS: Networks = {
       'https://core.drpc.org',
     ],
     explorerUrl: 'https://scan.coredao.org',
-    apiType: ApiType.SOURCIFY,
+    apiUrl: 'https://openapi.coredao.org/api',
+    apiType: ApiType.ETHERSCAN_V1,
+    apiKeyName: NODE_ENV_VAR_NAMES.CORE_API_KEY,
     nativeCurrency: { name: 'CORE', symbol: 'CORE', decimals: 18 },
   },
   [CHAIN_IDS.ROOTSTOCK_MAINNET]: {
@@ -381,7 +402,10 @@ export const NETWORKS: Networks = {
     shortName: 'xlayer',
     rpcUrl: ['https://xlayerrpc.okx.com', 'https://rpc.xlayer.tech'],
     explorerUrl: 'https://www.oklink.com/xlayer',
-    apiType: ApiType.SOURCIFY,
+    apiUrl:
+      'https://www.oklink.com/api/v5/explorer/contract/verify-source-code-plugin/XLAYER',
+    apiType: ApiType.ETHERSCAN_V1,
+    apiKeyName: NODE_ENV_VAR_NAMES.X_LAYER_API_KEY,
     nativeCurrency: {
       name: 'X Layer Global Utility Token',
       symbol: 'OKB',
@@ -413,8 +437,8 @@ export const NETWORKS: Networks = {
     chainName: 'Metis Andromeda',
     shortName: 'metis',
     rpcUrl: ['https://andromeda.metis.io/', 'https://metis.drpc.org'],
-    explorerUrl: 'https://andromeda-explorer.metis.io/',
-    apiUrl: 'https://andromeda-explorer.metis.io/api',
+    explorerUrl: 'https://andromeda-explorer.metis.io',
+    apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/1088/etherscan',
     apiType: ApiType.BLOCKSCOUT,
     nativeCurrency: { name: 'Metis', symbol: 'METIS', decimals: 18 },
   },
@@ -457,7 +481,8 @@ export const NETWORKS: Networks = {
     shortName: 'bobaEth',
     rpcUrl: ['https://mainnet.boba.network'],
     explorerUrl: 'https://bobascan.com',
-    apiType: ApiType.SOURCIFY,
+    apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/288/etherscan',
+    apiType: ApiType.BLOCKSCOUT,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
   [CHAIN_IDS.FRAXTAL]: {
@@ -509,12 +534,12 @@ export const NETWORKS: Networks = {
     chainName: 'Fantom Mainnet',
     shortName: 'fantom',
     rpcUrl: [
-      'https://fantom-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
+      'https://rpcapi.fantom.network',
+      `https://fantom-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://rpc.ftm.tools',
       'https://fantom-rpc.publicnode.com',
       'https://fantom.drpc.org',
       'https://rpcapi.fantom.network',
-      'https://rpc.ankr.com/fantom',
     ],
     explorerUrl: 'https://ftmscan.com',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=250',
@@ -556,9 +581,9 @@ export const NETWORKS: Networks = {
     chainName: 'Kava Mainnet',
     shortName: 'kava',
     rpcUrl: ['https://rpc.ankr.com/kava_evm'],
-    explorerUrl: 'https://testnet.kavascan.com',
-    apiUrl: 'https://testnet.kavascan.com/api',
-    apiType: ApiType.BLOCKSCOUT,
+    explorerUrl: 'https://kavascan.com',
+    apiUrl: 'https://api.verify.mintscan.io/evm/api/0x8ae',
+    apiType: ApiType.OTHER,
     nativeCurrency: { name: 'Kava', symbol: 'KAVA', decimals: 18 },
   },
   [CHAIN_IDS.KROMA]: {
@@ -566,7 +591,8 @@ export const NETWORKS: Networks = {
     chainName: 'Kroma',
     shortName: 'kroma',
     rpcUrl: ['https://1rpc.io/kroma'],
-    explorerUrl: 'https://kromascan.com',
+    // explorerUrl: 'https://kromascan.com',
+    explorerUrl: 'https://kroscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=255',
     apiType: ApiType.ETHERSCAN_V2,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
@@ -600,8 +626,8 @@ export const NETWORKS: Networks = {
     chainName: 'Arthera',
     shortName: 'arthera',
     rpcUrl: ['https://rpc.arthera.net'],
-    explorerUrl: 'https://explorer-test.arthera.net',
-    apiUrl: 'https://explorer-test.arthera.net/api',
+    explorerUrl: 'https://explorer.arthera.net/',
+    apiUrl: 'https://explorer.arthera.net/api',
     apiType: ApiType.BLOCKSCOUT,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
@@ -632,7 +658,7 @@ export const NETWORKS: Networks = {
     },
   },
   [CHAIN_IDS.MORPH]: {
-    chainId: CHAIN_IDS.MINT,
+    chainId: CHAIN_IDS.MORPH,
     chainName: 'Morph Mainnet',
     shortName: 'morph',
     rpcUrl: ['https://rpc-quicknode.morphl2.io'],
@@ -674,7 +700,7 @@ export const NETWORKS: Networks = {
     chainName: 'Sonic',
     shortName: 'sonic',
     rpcUrl: [
-      'https://sonic-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
+      `https://sonic-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://sonic.drpc.org',
       'https://rpc.ankr.com/sonic_mainnet',
       'https://rpc.soniclabs.com',

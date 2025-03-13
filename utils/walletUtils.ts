@@ -1,5 +1,7 @@
 import { JsonRpcProvider } from '@ethersproject/providers'
 import { Wallet } from 'ethers'
+import { ENVIRONMENT, NODE_ENV_VAR_NAMES } from '../constants'
+import { getEnvVar } from './envUtils'
 
 const dummyKey =
   '0x0000000000000000000000000000000000000000000000000000000000000000'
@@ -12,21 +14,14 @@ export const getAccountKey = (): string => {
   const environment = process.env.NODE_ENV
 
   switch (environment) {
-    case 'production':
-      if (!process.env.MAINNET_KEY) {
-        throw new Error('MAINNET_KEY is not defined in production environment')
-      }
-      return process.env.MAINNET_KEY
-    case 'staging':
-      if (!process.env.STAGING_KEY) {
-        throw new Error('STAGING_KEY is not defined in staging environment')
-      }
-      return process.env.STAGING_KEY
-    case 'development':
-      // if (!process.env.DEV_KEY) {
-      //   throw new Error('TESTNET_KEY is not defined in development environment')
-      // }
-      return process.env.DEV_KEY || dummyKey
+    case ENVIRONMENT.PRODUCTION:
+      return getEnvVar(NODE_ENV_VAR_NAMES.MAINNET_KEY)
+    case ENVIRONMENT.STAGING:
+      return getEnvVar(NODE_ENV_VAR_NAMES.STAGING_KEY)
+    case ENVIRONMENT.DEVELOPMENT:
+      return getEnvVar(NODE_ENV_VAR_NAMES.DEV_KEY)
+    case ENVIRONMENT.TESTING:
+      return getEnvVar(NODE_ENV_VAR_NAMES.TESTING_KEY)
     default:
       throw new Error(`Unknown environment: ${environment}`)
   }

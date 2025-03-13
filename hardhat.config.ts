@@ -4,7 +4,7 @@ import { HardhatUserConfig } from 'hardhat/config'
 
 import '@matterlabs/hardhat-zksync-deploy'
 import '@matterlabs/hardhat-zksync-solc'
-import '@matterlabs/hardhat-zksync-verify'
+// import '@matterlabs/hardhat-zksync-verify'
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@nomicfoundation/hardhat-verify'
 import '@openzeppelin/hardhat-upgrades'
@@ -29,47 +29,47 @@ import {
 dotenv.config()
 
 const supportedNetworks = [
-  CHAIN_IDS.ARBITRUM_MAINNET,
-  CHAIN_IDS.AVALANCHE_MAINNET,
-  CHAIN_IDS.AURORA_MAINNET,
-  CHAIN_IDS.ABSTRACT_MAINNET,
+  // CHAIN_IDS.ABSTRACT_MAINNET,
   CHAIN_IDS.ARTHERA,
+  CHAIN_IDS.ARBITRUM_MAINNET,
+  CHAIN_IDS.AURORA_MAINNET,
+  CHAIN_IDS.AVALANCHE_MAINNET,
   CHAIN_IDS.BASE_MAINNET,
-  CHAIN_IDS.BSC_MAINNET,
+  CHAIN_IDS.BERACHAIN_MAINNET,
   CHAIN_IDS.BLAST_MAINNET,
   CHAIN_IDS.BOBA_ETH,
-  CHAIN_IDS.BERACHAIN_MAINNET,
-  CHAIN_IDS.CORE_MAINNET,
+  CHAIN_IDS.BSC_MAINNET,
   CHAIN_IDS.CELO_MAINNET,
+  CHAIN_IDS.CORE_MAINNET,
   CHAIN_IDS.CRONOS_MAINNET,
   CHAIN_IDS.ETH_MAINNET,
+  CHAIN_IDS.FANTOM_MAINNET,
+  // CHAIN_IDS.FIRE_MAINNET,
   CHAIN_IDS.FRAXTAL,
   CHAIN_IDS.FUSE,
-  CHAIN_IDS.FANTOM_MAINNET,
-  CHAIN_IDS.FIRE_MAINNET,
-  CHAIN_IDS.GRAVITY,
   CHAIN_IDS.GNOSIS_MAINNET,
+  CHAIN_IDS.GRAVITY,
   CHAIN_IDS.KAVA_MAINNET,
   CHAIN_IDS.KROMA,
   CHAIN_IDS.LINEA_MAINNET,
   CHAIN_IDS.MANTA_MAINNET,
   CHAIN_IDS.MANTLE_MAINNET,
-  CHAIN_IDS.MODE_MAINNET,
-  CHAIN_IDS.METIS_MAINNET,
-  CHAIN_IDS.MORPH,
   CHAIN_IDS.MERLIN_MAINNET,
+  CHAIN_IDS.METIS_MAINNET,
+  CHAIN_IDS.MODE_MAINNET,
   CHAIN_IDS.MOONBEAM_MAINNET,
   CHAIN_IDS.MOONRIVER,
+  CHAIN_IDS.MORPH,
   CHAIN_IDS.MINT,
   CHAIN_IDS.OPTIMISM_MAINNET,
   CHAIN_IDS.POLYGON_MAINNET,
   CHAIN_IDS.POLYGON_ZK_EVM_MAINNET,
   CHAIN_IDS.ROOTSTOCK_MAINNET,
   CHAIN_IDS.SCROLL_MAINNET,
-  CHAIN_IDS.SONIC_MAINNET,
   CHAIN_IDS.SONEIUM_MAINNET,
-  CHAIN_IDS.TELOS_MAINNET,
+  CHAIN_IDS.SONIC_MAINNET,
   CHAIN_IDS.TAIKO_MAINNET,
+  CHAIN_IDS.TELOS_MAINNET,
   CHAIN_IDS.X_LAYER_MAINNET,
   CHAIN_IDS.ZETACHAIN_MAINNET,
   CHAIN_IDS.ZKSYNC_MAINNET,
@@ -87,13 +87,13 @@ const config: HardhatUserConfig = {
       url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),
       ethNetwork: 'sepolia',
       zksync: true,
-      deployPaths: 'scripts/deployZkEVM',
+      deployPaths: 'scripts/deploy/deployZkEVM',
     },
     zkMainnet: {
       url: getRpcUrl(CHAIN_IDS.ZKSYNC_MAINNET),
       ethNetwork: 'mainnet',
       zksync: true,
-      deployPaths: 'scripts/deployZkEVM',
+      deployPaths: 'scripts/deploy/deployZkEVM',
     },
   },
   solidity: {
@@ -130,7 +130,7 @@ const config: HardhatUserConfig = {
     ],
   },
   zksolc: {
-    version: 'latest',
+    version: '1.5.1',
     compilerSource: 'binary',
     settings: {
       optimizer: {

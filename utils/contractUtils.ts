@@ -1,4 +1,11 @@
-import { BigNumber, Contract, ContractFactory, providers, Signer } from 'ethers'
+import {
+  BigNumber,
+  Contract,
+  ContractFactory,
+  providers,
+  Signer,
+  Wallet,
+} from 'ethers'
 import { formatUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
 import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
@@ -28,7 +35,7 @@ import { isAddressSame } from './addressUtils'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
-  signer?: Signer
+  signer?: Signer | Wallet
 ) => {
   const dZapDiamond = (await ethers.getContractAt(
     CONTRACTS.DZapDiamond,
@@ -147,13 +154,18 @@ export const getAllDiamondFacets = async (
   }
 }
 
+export const isContractDeployed = async (contractAddress: string) => {
+  const code = await ethers.provider.getCode(contractAddress)
+  return code !== '0x'
+}
+
 export const getLastCreate3Config = (arr: Create3DeploymentConfig[]) => {
   return arr[arr.length - 1]
 }
 
 export const getGasPrice = async (
   provider: providers.Provider,
-  extraFeePercent = 5 // 5% extra
+  extraFeePercent = 2 // 2% extra
 ) => {
   const { gasPrice } = await provider.getFeeData()
 
@@ -163,11 +175,11 @@ export const getGasPrice = async (
 
   const newGasPrice = gasPrice.add(gasPrice.mul(extraFeePercent).div(100))
 
-  console.log(
-    'Gas Price:',
-    formatUnits(gasPrice, 'gwei'),
-    formatUnits(newGasPrice, 'gwei')
-  )
+  // console.log(
+  //   'Gas Price:',
+  //   formatUnits(gasPrice, 'gwei'),
+  //   formatUnits(newGasPrice, 'gwei')
+  // )
   return newGasPrice
 }
 

@@ -126,6 +126,7 @@ export const POLYGON_MAINNET = {
       address: [
         '0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a',
         '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',
+        '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
       ],
       selectorInfo: [],
     },

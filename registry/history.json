@@ -1089,7 +1089,8 @@
       ],
       "relayLink": [
         "0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a",
-        "0xeeeeee9ec4769a09a76a83c7bc42b185872860ee"
+        "0xeeeeee9ec4769a09a76a83c7bc42b185872860ee",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "dexes": {
@@ -1117,7 +1118,8 @@
         "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
         "0xfF4b330c5BC3811b66d8864CF8078D8F2db20Dd6",
         "0x7f20a7A526D1BAB092e3Be0733D96287E93cEf59",
-        "0x0000000000001ff3684f28c67538d4d072c22734"
+        "0x0000000000001ff3684f28c67538d4d072c22734",
+        "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"
       ],
       "bebop": [
         "0xBeB09000fa59627dc02Bb55448AC1893EAa501A5",
@@ -1292,6 +1294,9 @@
       ],
       "synapse": [
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "owlto": [
+        "0x7CFE8Aa0d8E92CCbBDfB12b95AEB7a54ec40f0F5"
       ]
     }
   },

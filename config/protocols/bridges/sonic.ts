@@ -14,6 +14,9 @@ export const SONIC_BRIDGES = {
     [BRIDGES.orbiter]: {
       address: ['0xd9d74a29307cc6fc8bf424ee4217f1a587fbc8dc'],
     },
+    [BRIDGES.owlto]: {
+      address: ['0x7CFE8Aa0d8E92CCbBDfB12b95AEB7a54ec40f0F5'],
+    },
     [BRIDGES.relayLink]: {
       address: [
         '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',

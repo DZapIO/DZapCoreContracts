@@ -22,6 +22,7 @@ export const POLYGON_DEXES = {
       '0xfF4b330c5BC3811b66d8864CF8078D8F2db20Dd6',
       '0x7f20a7A526D1BAB092e3Be0733D96287E93cEf59', // Polygon settler
       '0x0000000000001ff3684f28c67538d4d072c22734', // Allowance Holder
+      '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
     ],
     [DEXES.bebop]: [
       '0xBeB09000fa59627dc02Bb55448AC1893EAa501A5',

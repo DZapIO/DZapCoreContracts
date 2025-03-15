@@ -4,15 +4,15 @@ export const BOBA_ETH = {
   bridges: {
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [],
     },
     [BRIDGES.rango]: {
       address: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
-      selectorInfo: [],
+    },
+    [BRIDGES.relayLink]: {
+      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
     [BRIDGES.router]: {
       address: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
-      selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -22,7 +22,6 @@ export const BOBA_ETH = {
         '0x506803495B1876FE1fA6Cd9dC65fB060057A4Cc3',
         '0xd92Ca299F1C2518E78E48C207b64591BA6E9b9a8',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.synapse]: {
       address: [
@@ -30,7 +29,6 @@ export const BOBA_ETH = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-      selectorInfo: [],
     },
   },
 }

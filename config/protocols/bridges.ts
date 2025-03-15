@@ -9,7 +9,7 @@ import { BOB_MAINNET } from './bridges/bob'
 import { BEVM_MAINNET } from './bridges/bev'
 import { BOBA_AVALANCHE } from './bridges/bobaAvalanche'
 import { BOBA_BNB } from './bridges/bobaBnb'
-import { BOBA_ETH } from './bridges/boba'
+import { BOBA_ETH } from './bridges/bobaEth'
 import { BSC_MAINNET } from './bridges/bsc'
 import { CELO_MAINNET } from './bridges/celo'
 import { CONFLUX_E_SPACE_MAINNET } from './bridges/conflux'
@@ -29,7 +29,7 @@ import { METIS_MAINNET } from './bridges/metis'
 import { MODE_MAINNET } from './bridges/mode'
 import { MERLIN_MAINNET } from './bridges/merlin'
 import { MOONBEAM_MAINNET } from './bridges/moonbeam'
-import { MOONRIVER } from './bridges/moonriver'
+import { MOONRIVER_BRIDGES } from './bridges/moonriver'
 import { OKX_MAINNET } from './bridges/okx'
 import { OPBNB_MAINNET } from './bridges/opbnb'
 import { OPTIMISM_MAINNET } from './bridges/optimism'
@@ -53,6 +53,7 @@ import { FIRE_MAINNET } from './bridges/fire'
 import { BridgeConfig } from '../../types'
 import { SONIC_BRIDGES } from './bridges/sonic'
 import { BERACHAIN_BRIDGES } from './bridges/berachain'
+import { MORPH_BRIDGES } from './bridges/morph'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -87,7 +88,8 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.FUSE]: FUSE,
   [CHAIN_IDS.FANTOM_MAINNET]: FANTOM_MAINNET,
   [CHAIN_IDS.MOONBEAM_MAINNET]: MOONBEAM_MAINNET,
-  [CHAIN_IDS.MOONRIVER]: MOONRIVER,
+  [CHAIN_IDS.MOONRIVER]: MOONRIVER_BRIDGES,
+  [CHAIN_IDS.MORPH]: MORPH_BRIDGES,
   [CHAIN_IDS.CRONOS_MAINNET]: CRONOS_MAINNET,
   [CHAIN_IDS.KAVA_MAINNET]: KAVA_MAINNET,
   [CHAIN_IDS.KROMA]: KROMA,

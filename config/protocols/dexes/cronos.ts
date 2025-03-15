@@ -9,6 +9,7 @@ export const CRONOS_DEXES = {
     [DEXES.okx]: [
       '0xf332761c673b59B21fF6dfa8adA44d78c12dEF09',
       '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
+      '0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58',
     ],
     [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
   },

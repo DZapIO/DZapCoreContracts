@@ -384,6 +384,7 @@ export const NETWORKS: Networks = {
     shortName: 'rootstock',
     rpcUrl: [
       'https://public-node.rsk.co',
+      'https://rpc.ankr.com/rsk',
       'https://rootstock-mainnet.blastapi.io',
       'https://mycrypto.rsk.co',
     ],

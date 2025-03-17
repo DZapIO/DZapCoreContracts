@@ -17,6 +17,6 @@ export const MANTA_DEXES = {
     [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
     [DEXES.routerNitro]: ['0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06'],
     [DEXES.sushi]: ['0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71'],
-    [DEXES.zeroX]: ['0xa6cafa8c34e581e2876db781cfd5e10f8db081cb'],
+    // [DEXES.zeroX]: ['0xa6cafa8c34e581e2876db781cfd5e10f8db081cb'], // not a contract
   },
 }

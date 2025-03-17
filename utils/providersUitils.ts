@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from 'fs'
 import { BridgeManagerFacet, DexManagerFacet } from '../typechain-types'
 import { Signer, Wallet } from 'ethers'
 import { getGasPrice } from './contractUtils'
-import { getTxUrl } from './txUtils'
+import { getContractUrl, getTxUrl } from './txUtils'
 import { isProd } from './envUtils'
 
 export const getDexConfig = (chainId: CHAIN_IDS) => {
@@ -97,11 +97,14 @@ export const getBridgesToAdd = async (
   const providerToAddress: Record<string, string[]> = {}
   addressToAdd.forEach((bridge) => {
     const bridgeName = addressToBridge[bridge]
-    console.log(`Adding Brides: ${bridge} [${bridgeName}]`)
+    console.log(
+      `Adding Brides: ${getContractUrl(chainId, bridge)} [${bridgeName}]`
+    )
     if (!providerToAddress[bridgeName]) providerToAddress[bridgeName] = []
     providerToAddress[bridgeName].push(bridge)
   })
 
+  console.log({ addressToAdd, providerToAddress })
   return { addressToAdd, providerToAddress }
 }
 
@@ -323,7 +326,7 @@ export const getDexesToAdd = async (
   const providerToAddress: Record<string, string[]> = {}
   addressToAdd.forEach((dex) => {
     const dexName = addressToDex[dex]
-    console.log(`Adding dex: ${dex} [${dexName}]`)
+    console.log(`Adding dex: ${getContractUrl(chainId, dex)} [${dexName}]`)
     if (!providerToAddress[dexName]) providerToAddress[dexName] = []
     providerToAddress[dexName].push(dex)
   })

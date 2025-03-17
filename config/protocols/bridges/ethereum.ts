@@ -14,7 +14,10 @@ export const ETH_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.celer]: {
-      address: ['0x6065A982F04F759b7d2D042D2864e569fad84214'],
+      address: [
+        '0x6065A982F04F759b7d2D042D2864e569fad84214',
+        '0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.comet]: {
@@ -161,6 +164,7 @@ export const ETH_MAINNET = {
       address: [
         '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
         '0x940f7994921a292A5062dc81C65511FDa79f4Bc9',
+        '0xeC0D8Cfd081ccce2D6Ed4E3dd8f248D3cAa3d24B',
       ],
       selectorInfo: [],
     },

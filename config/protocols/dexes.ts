@@ -44,6 +44,7 @@ import { AURORA_DEXES } from './dexes/aurora'
 import { SAAKURU_DEXES } from './dexes/saakuru'
 import { GNOSIS_DEXES } from './dexes/gnosis'
 import { MOONBEAM_DEXES } from './dexes/moonbeam'
+import { MOONRIVER_DEXES } from './dexes/moonriver'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -76,6 +77,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.MINT]: MINT_DEXES,
   [CHAIN_IDS.MODE_MAINNET]: MODE_DEXES,
   [CHAIN_IDS.MOONBEAM_MAINNET]: MOONBEAM_DEXES,
+  [CHAIN_IDS.MOONRIVER]: MOONRIVER_DEXES,
   [CHAIN_IDS.OKX_MAINNET]: OKX_DEXES,
   [CHAIN_IDS.OPBNB_MAINNET]: OP_BNB_DEXES,
   [CHAIN_IDS.OPTIMISM_MAINNET]: OPTIMISM_DEXES,

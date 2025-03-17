@@ -4,11 +4,9 @@ export const AVALANCHE_MAINNET = {
   bridges: {
     [BRIDGES.allbridge]: {
       address: ['0x9068E1C28941D0A680197Cc03be8aFe27ccaeea9'],
-      selectorInfo: [],
     },
     [BRIDGES.celer]: {
       address: ['0x9744ae566c64B6B6f7F9A4dD50f7496Df6Fef990'],
-      selectorInfo: [],
     },
     [BRIDGES.deBridge]: {
       address: [
@@ -16,37 +14,36 @@ export const AVALANCHE_MAINNET = {
         '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
         '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [],
     },
     [BRIDGES.mayanFinance]: {
       address: [
         '0xF3f04555f8FdA510bfC77820FD6eB8446f59E72d',
         '0x0654874eb7F59C6f5b39931FC45dC45337c967c3',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
     },
     [BRIDGES.okx]: {
       address: [
         '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.omniBtc]: {
       address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
-      selectorInfo: [],
     },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
+    },
+    [BRIDGES.relayLink]: {
+      address: [
+        '0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0',
+        '0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed',
+      ],
     },
     [BRIDGES.routerNitro]: {
       address: [
@@ -56,26 +53,21 @@ export const AVALANCHE_MAINNET = {
         '0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B',
         '0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
-      selectorInfo: [],
     },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
-      selectorInfo: [],
     },
     [BRIDGES.stargate]: {
       address: [
         '0x5634c4a5FEd09819E3c46D86A965Dd9447d86e47',
         '0x12dC9256Acc9895B076f6638D628382881e62CeE',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.swing]: {
       address: ['0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274'],
-      selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -85,7 +77,6 @@ export const AVALANCHE_MAINNET = {
         '0x292fC50e4eB66C3f6514b9E402dBc25961824D62',
         '0xDc9a6a26209A450caC415fb78487e907c660cf6a',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.synapse]: {
       address: [
@@ -93,18 +84,15 @@ export const AVALANCHE_MAINNET = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.telosBridge]: {
       address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
-      selectorInfo: [],
     },
     [BRIDGES.unizen]: {
       address: [
         '0x1C7F7e0258c81CF41bcEa31ea4bB5191914Bf7D7',
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.wanBridge]: {
       address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
@@ -115,7 +103,6 @@ export const AVALANCHE_MAINNET = {
         '0x2C86f0FF75673D489b7D72D9986929a2b0Ed596C',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      selectorInfo: [],
     },
   },
 }

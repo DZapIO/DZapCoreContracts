@@ -502,7 +502,8 @@
       ],
       "okx": [
         "0xf332761c673b59B21fF6dfa8adA44d78c12dEF09",
-        "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f"
+        "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
+        "0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58"
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
@@ -890,6 +891,16 @@
       ],
       "swing": [
         "0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
       ]
     },
     "dexes": {
@@ -1625,6 +1636,9 @@
       ],
       "orbiter": [
         "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "dexes": {
@@ -1739,6 +1753,9 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a",
         "0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },
@@ -1850,6 +1867,9 @@
       ],
       "sushi": [
         "0xE6fD46600A97CE06703b58333B9C2399F4bF6FEc"
+      ],
+      "uniswap": [
+        "0x99c56385daBCE3E81d8499d0b8d0257aBC07E8A3"
       ]
     },
     "executors": {
@@ -2093,6 +2113,9 @@
       ],
       "router": [
         "0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },
@@ -2236,6 +2259,14 @@
           "dzapFixedNativeShare": 1000000
         }
       }
+    },
+    "dexes": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ]
     }
   },
   "1625": {
@@ -2974,6 +3005,9 @@
       ],
       "swing": [
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },
@@ -3389,6 +3423,10 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+      ],
+      "relayLink": [
+        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",
+        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed"
       ]
     },
     "dexes": {
@@ -3574,6 +3612,9 @@
       ],
       "magpiefi": [
         "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+      ],
+      "iceCreamSwap": [
+        "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
       ]
     },
     "bridges": {
@@ -3959,6 +4000,9 @@
       ],
       "orbiter": [
         "0x2598d7bc9d3b4b6124f3282e49eee68db270f516"
+      ],
+      "relayLink": [
+        "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
       ]
     }
   },
@@ -4099,6 +4143,9 @@
       ],
       "swing": [
         "0xa33db50b90E35378faEE4058DeAab2B392989b65"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "integrators": {

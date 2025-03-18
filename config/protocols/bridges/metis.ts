@@ -2,39 +2,35 @@ import { BRIDGES } from '../bridgeNames'
 
 export const METIS_MAINNET = {
   bridges: {
+    [BRIDGES.deBridge]: {
+      address: ['0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251'],
+    },
     [BRIDGES.lifi]: {
       address: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
-      selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
     },
     [BRIDGES.okx]: {
       address: [
         '0xa50FD06d2b099a4B06d54177C7d3AB08D3D3F004',
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
-      selectorInfo: [],
     },
     [BRIDGES.router]: {
       address: [
         '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',
         '0x97eec1c29f745dC7c267F90292AA663d997a601D',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
       address: ['0x21c1E74CAaDf990E237920d5515955a024031109'],
-      selectorInfo: [],
     },
     [BRIDGES.stargate]: {
       address: [
@@ -42,7 +38,6 @@ export const METIS_MAINNET = {
         '0x36ed193dc7160D3858EC250e69D12B03Ca087D08',
         '0xD9050e7043102a0391F81462a3916326F86331F0',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -51,7 +46,6 @@ export const METIS_MAINNET = {
         '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
         '0x5Aa5f7f84eD0E5db0a4a85C3947eA16B53352FD4',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.synapse]: {
       address: [
@@ -59,7 +53,6 @@ export const METIS_MAINNET = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-      selectorInfo: [],
     },
   },
 }

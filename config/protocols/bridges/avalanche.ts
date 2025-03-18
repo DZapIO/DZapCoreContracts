@@ -95,7 +95,10 @@ export const AVALANCHE_MAINNET = {
       ],
     },
     [BRIDGES.wanBridge]: {
-      address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
+      address: [
+        '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+        '0x0D4d2595B1d83AB6110b4291816D62d1417C5A8B',
+      ],
     },
     [BRIDGES.xyFinance]: {
       address: [

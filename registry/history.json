@@ -346,6 +346,9 @@
       ],
       "wanBridge": [
         "0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "dexes": {
@@ -1735,7 +1738,8 @@
       ],
       "sushi": [
         "0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55",
-        "0xc55332b1d758e798a8dB1f255B029f045C4958b7"
+        "0xc55332b1d758e798a8dB1f255B029f045C4958b7",
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
@@ -2002,7 +2006,8 @@
         "0xD9050e7043102a0391F81462a3916326F86331F0"
       ],
       "router": [
-        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9"
+        "0xc21e4ebd1d92036cb467b53fe3258f219d909eb9",
+        "0x97eec1c29f745dC7c267F90292AA663d997a601D"
       ],
       "lifi": [
         "0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68"
@@ -2017,6 +2022,9 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
       ]
     }
   },
@@ -2226,6 +2234,9 @@
     "bridges": {
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "dexes": {
@@ -2275,6 +2286,9 @@
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ]
     }
   },
@@ -3345,6 +3359,9 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "relayLink": [
+        "0x1459E4A73c6abd19aca2BC50b30d3f1eD229A329"
       ]
     }
   },
@@ -3431,7 +3448,8 @@
         "0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274"
       ],
       "wanBridge": [
-        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
+        "0x0D4d2595B1d83AB6110b4291816D62d1417C5A8B"
       ],
       "relayLink": [
         "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",

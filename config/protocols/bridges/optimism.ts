@@ -4,18 +4,15 @@ export const OPTIMISM_MAINNET = {
   bridges: {
     [BRIDGES.across]: {
       address: ['0x6f26Bf09B1C792e3228e5467807a900A503c0281'],
-      selectorInfo: [],
     },
     [BRIDGES.allbridge]: {
       address: ['0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab'],
-      selectorInfo: [],
     },
     [BRIDGES.celer]: {
       address: [
         '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',
         '0x697aC93c9263346c5Ad0412F9356D5789a3AA687',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.deBridge]: {
       address: [
@@ -23,7 +20,6 @@ export const OPTIMISM_MAINNET = {
         '0x43dE2d77BF8027e25dBD179B491e8d64f38398aA',
         '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.hop]: {
       address: [
@@ -36,7 +32,6 @@ export const OPTIMISM_MAINNET = {
         '0x19B2162CA4C2C6F08C6942bFB846ce5C396aCB75',
         '0x469147af8Bde580232BE9DC84Bb4EC84d348De24',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
@@ -50,11 +45,9 @@ export const OPTIMISM_MAINNET = {
     },
     [BRIDGES.mayanFinance]: {
       address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
-      selectorInfo: [],
     },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
     },
     [BRIDGES.okx]: {
       address: [
@@ -62,18 +55,15 @@ export const OPTIMISM_MAINNET = {
         '0x68D6B739D2020067D1e2F713b999dA97E4d54812',
         '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.omniBtc]: {
       address: [
         '0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820',
         '0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.orbiter]: {
       address: ['0x3191f40de6991b1bb1f61b7cec43d62bb337786b'],
-      selectorInfo: [],
     },
     [BRIDGES.owlto]: {
       address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
@@ -83,12 +73,14 @@ export const OPTIMISM_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+    },
     [BRIDGES.router]: {
       address: [
         '0x1a2f6171d7e75f06141a953b650c6772055be843',
         '0x0967dc6F203aBc2d1FD75c15033d5f6446C14354',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.routerNitro]: {
       address: [
@@ -96,15 +88,12 @@ export const OPTIMISM_MAINNET = {
         '0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06',
         '0x09a58d77ec86478d373c3173f3673195e4a12c06',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
-      selectorInfo: [],
     },
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
-      selectorInfo: [],
     },
     [BRIDGES.stargate]: {
       address: [
@@ -112,7 +101,6 @@ export const OPTIMISM_MAINNET = {
         '0x19cFCE47eD54a88614648DC3f19A5980097007dD',
         '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.swing]: {
       address: [
@@ -120,7 +108,6 @@ export const OPTIMISM_MAINNET = {
         '0xec42C38412fb4a56f75D706838215588b41701aa',
         '0x3CA700004Aa08dD4C04a1D8595326A1de82Da5bF',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -128,7 +115,6 @@ export const OPTIMISM_MAINNET = {
         '0x200a0fe876421DC49A26508e3Efd0a1008fD12B5',
         '0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.synapse]: {
       address: [
@@ -136,18 +122,15 @@ export const OPTIMISM_MAINNET = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.unizen]: {
       address: [
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',
         '0xa9c430de6a91132330A09BE41f9f19bf45702f74',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.wanBridge]: {
       address: ['0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6'],
-      selectorInfo: [],
     },
     [BRIDGES.xyFinance]: {
       address: [
@@ -156,7 +139,6 @@ export const OPTIMISM_MAINNET = {
         '0xF8d342db903F266de73B10a1e46601Bb08a3c195',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-      selectorInfo: [],
     },
   },
 }

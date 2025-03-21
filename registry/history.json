@@ -2178,7 +2178,11 @@
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
       ],
       "stargate": [
-        "0x45f1A95A4D3f3836523F5c83673c797f4d4d263B"
+        "0x45f1A95A4D3f3836523F5c83673c797f4d4d263B",
+        "0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590"
+      ],
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     },
     "integrators": {

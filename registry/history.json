@@ -1834,7 +1834,8 @@
         "0xD5b3859cbCE1582e7Cb2631db465C0dd94f314d1"
       ],
       "relayLink": [
-        "0xebd1e414ebb98522cfd932104ba41fac10a4ef35"
+        "0xebd1e414ebb98522cfd932104ba41fac10a4ef35",
+        "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98"
       ]
     },
     "dexes": {
@@ -2350,6 +2351,9 @@
       ],
       "comet": [
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },
@@ -3163,6 +3167,9 @@
       ],
       "orbiter": [
         "0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "dexes": {
@@ -3632,7 +3639,8 @@
         "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
       ],
       "dodo": [
-        "0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B"
+        "0x03e89fC55A5ad0531576E5a502c4CA52c8bf391B",
+        "0x6de4d882a84A98f4CCD5D33ea6b3C99A07BAbeB1"
       ],
       "zeroX": [
         "0x6960B2CE4cDECBaf356646b5C29616D127d949B5",

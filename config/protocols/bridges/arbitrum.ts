@@ -92,6 +92,10 @@ export const ARBITRUM_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
       selectorInfo: [],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+      selectorInfo: [],
+    },
     [BRIDGES.router]: {
       address: [
         '0x60b483D521b844e13E3337D304929D0519Bd50C8',

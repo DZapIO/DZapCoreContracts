@@ -20,6 +20,9 @@ export const SCROLL_MAINNET = {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
     },
+    [BRIDGES.omniBtc]: {
+      address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
+    },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
@@ -38,9 +41,6 @@ export const SCROLL_MAINNET = {
     [BRIDGES.squid]: {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
     },
-    [BRIDGES.omniBtc]: {
-      address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
-    },
     [BRIDGES.stargate]: {
       address: [
         '0x3Fc69CC4A842838bCDC9499178740226062b14E4',
@@ -48,7 +48,11 @@ export const SCROLL_MAINNET = {
       ],
     },
     [BRIDGES.swing]: {
-      address: ['0xa33db50b90E35378faEE4058DeAab2B392989b65'],
+      address: [
+        '0xa33db50b90E35378faEE4058DeAab2B392989b65',
+        '0x90f1Ef9D2cDe204C8494Cf73130771B350070B53',
+        '0x97fffFfa57144BBfacF41251bd1763657e646667',
+      ],
     },
     [BRIDGES.symbiosis]: {
       address: [

@@ -52,6 +52,10 @@ export const MANTLE_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swing]: {
+      address: ['0x97fffFfa57144BBfacF41251bd1763657e646667'],
+      selectorInfo: [],
+    },
     [BRIDGES.symbiosis]: {
       address: [
         '0xDd0840118bF9CCCc6d67b2944ddDfbdb995955FD',

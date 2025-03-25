@@ -52,10 +52,14 @@ export const BASE_MAINNET = {
         '0xB5CeDAF172425BdeA4c186f6fCF30b367273DA19',
       ],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+    },
     [BRIDGES.router]: {
       address: [
         '0xfA14A71F6647bDe075BF16880EE7055C3b553237',
         '0x655bca39f907fa391612af4e5980ce0b173976aa',
+        '0x21c1E74CAaDf990E237920d5515955a024031109',
       ],
     },
     [BRIDGES.routerNitro]: {

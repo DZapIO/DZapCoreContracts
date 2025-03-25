@@ -1336,7 +1336,8 @@
       ],
       "router": [
         "0x21c1e74caadf990e237920d5515955a024031109",
-        "0x0233971bd2DE29E81029336C46997055df3B5282"
+        "0x0233971bd2DE29E81029336C46997055df3B5282",
+        "0x9c1da2B647d25B9e71d8aBB83E4DDe236dcb672B"
       ],
       "mayanFinance": [
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
@@ -1352,6 +1353,9 @@
       ],
       "swing": [
         "0xdC81B70a3B8226bF966371748821D1FD4155eb9e"
+      ],
+      "owlto": [
+        "0x936223FA057a7c852d5E7462e7E77DBDb137bff8"
       ]
     },
     "dexes": {
@@ -2772,7 +2776,8 @@
       ],
       "router": [
         "0xfA14A71F6647bDe075BF16880EE7055C3b553237",
-        "0x655bca39f907fa391612af4e5980ce0b173976aa"
+        "0x655bca39f907fa391612af4e5980ce0b173976aa",
+        "0x21c1E74CAaDf990E237920d5515955a024031109"
       ],
       "swing": [
         "0x3F45a223faA0dE47E2d4390c336320c68DC14E4E",
@@ -2787,6 +2792,9 @@
       ],
       "crossCurve": [
         "0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "dexes": {
@@ -3555,6 +3563,9 @@
       ],
       "magpiefi": [
         "0xF25075d95b5945bCFf394588db3df8B1CacFccF6"
+      ],
+      "traderJoe": [
+        "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"
       ]
     },
     "executors": {

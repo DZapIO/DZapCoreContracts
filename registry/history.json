@@ -193,7 +193,8 @@
         "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc"
       ],
       "celer": [
-        "0x6065A982F04F759b7d2D042D2864e569fad84214"
+        "0x6065A982F04F759b7d2D042D2864e569fad84214",
+        "0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820"
       ],
       "orbiter": [
         "0xC741900276CD598060b0FE6594FbE977392928f4"
@@ -203,7 +204,8 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
-        "0x940f7994921a292A5062dc81C65511FDa79f4Bc9"
+        "0x940f7994921a292A5062dc81C65511FDa79f4Bc9",
+        "0xeC0D8Cfd081ccce2D6Ed4E3dd8f248D3cAa3d24B"
       ],
       "swing": [
         "0x885E415D0836727F8757BfFC093E9728B1Aaf60f",
@@ -213,6 +215,12 @@
       ],
       "optimismBridge": [
         "0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "teleSwap": [
+        "0xFA1B28052Bd8087B1CF64eE9429FEB324e95B0ff"
       ]
     },
     "executors": {

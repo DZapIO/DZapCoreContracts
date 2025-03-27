@@ -144,8 +144,8 @@ export const NETWORKS: Networks = {
     chainName: 'Ethereum Mainnet',
     shortName: 'ethereum',
     rpcUrl: [
-      'https://rpc.ankr.com/eth',
       `https://eth-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://rpc.ankr.com/eth',
       'https://eth.llamarpc.com',
     ],
     explorerUrl: 'https://etherscan.io',
@@ -719,7 +719,9 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.SONEIUM_MAINNET,
     chainName: 'Soneium',
     shortName: 'soneium',
-    rpcUrl: ['https://soneium.drpc.org', 'https://rpc.soneium.org'],
+    rpcUrl: [
+      `https://soneium-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+    ],
     explorerUrl: 'https://soneium.blockscout.com',
     apiUrl: 'https://soneium.blockscout.com/api',
     apiType: ApiType.BLOCKSCOUT,

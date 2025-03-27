@@ -54,6 +54,7 @@ import { BridgeConfig } from '../../types'
 import { SONIC_BRIDGES } from './bridges/sonic'
 import { BERACHAIN_BRIDGES } from './bridges/berachain'
 import { MORPH_BRIDGES } from './bridges/morph'
+import { SONEIUM_BRIDGES } from './bridges/soneium'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -112,4 +113,5 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.OPBNB_MAINNET]: OPBNB_MAINNET,
   [CHAIN_IDS.SAAKURU_MAINNET]: SAAKURU_MAINNET,
   [CHAIN_IDS.SONIC_MAINNET]: SONIC_BRIDGES,
+  [CHAIN_IDS.SONEIUM_MAINNET]: SONEIUM_BRIDGES,
 }

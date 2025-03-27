@@ -1,6 +1,5 @@
 import { DexConfig } from '../../types'
 import { CHAIN_IDS } from '../networks'
-import { DEXES } from './dexNames'
 
 import { ARBITRUM_DEXES } from './dexes/arbitrum'
 import { AVALANCHE_DEXES } from './dexes/avalanche'
@@ -45,6 +44,7 @@ import { SAAKURU_DEXES } from './dexes/saakuru'
 import { GNOSIS_DEXES } from './dexes/gnosis'
 import { MOONBEAM_DEXES } from './dexes/moonbeam'
 import { MOONRIVER_DEXES } from './dexes/moonriver'
+import { SONEIUM_DEXES } from './dexes/soneium'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -87,6 +87,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.SAAKURU_MAINNET]: SAAKURU_DEXES,
   [CHAIN_IDS.SCROLL_MAINNET]: SCROLL_DEXES,
   [CHAIN_IDS.SONIC_MAINNET]: SONIC_DEXES,
+  [CHAIN_IDS.SONEIUM_MAINNET]: SONEIUM_DEXES,
   [CHAIN_IDS.TAIKO_MAINNET]: TAIKO_DEXES,
   [CHAIN_IDS.TELOS_MAINNET]: TELOS_DEXES,
   [CHAIN_IDS.X_LAYER_MAINNET]: X_LAYER_DEXES,

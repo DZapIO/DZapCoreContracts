@@ -29,6 +29,7 @@ export enum BRIDGES {
   swing = 'swing',
   symbiosis = 'symbiosis',
   synapse = 'synapse',
+  teleSwap = 'teleSwap',
   telosBridge = 'telosBridge',
   unizen = 'unizen',
   wanBridge = 'wanBridge',

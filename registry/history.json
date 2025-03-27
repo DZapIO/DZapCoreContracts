@@ -2392,6 +2392,19 @@
       "lifi": [
         "0x864b314D4C5a0399368609581d3E8933a63b9232"
       ]
+    },
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
     }
   },
   "2222": {

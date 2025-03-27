@@ -27,6 +27,7 @@ export enum BRIDGES {
   squid = 'squid',
   stargate = 'stargate',
   swing = 'swing',
+  swapKit = 'swapKit',
   symbiosis = 'symbiosis',
   synapse = 'synapse',
   teleSwap = 'teleSwap',

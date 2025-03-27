@@ -3224,6 +3224,9 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "swapKit": [
+        "0x700E97ef07219440487840Dc472E7120A7FF11F4"
       ]
     },
     "dexes": {

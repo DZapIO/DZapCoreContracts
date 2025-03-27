@@ -160,6 +160,10 @@ export const ARBITRUM_MAINNET = {
       ],
       selectorInfo: [],
     },
+    [BRIDGES.swapKit]: {
+      address: ['0x700E97ef07219440487840Dc472E7120A7FF11F4'],
+      selectorInfo: [],
+    },
     [BRIDGES.telosBridge]: {
       address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
       selectorInfo: [],

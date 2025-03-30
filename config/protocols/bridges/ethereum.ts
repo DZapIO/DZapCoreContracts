@@ -107,6 +107,9 @@ export const ETH_MAINNET = {
         '0x77b2043768d28E9C9aB44E1aBfC95944bcE57931',
       ],
     },
+    [BRIDGES.swapKit]: {
+      address: ['0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146'],
+    },
     [BRIDGES.swing]: {
       address: [
         '0x885E415D0836727F8757BfFC093E9728B1Aaf60f',

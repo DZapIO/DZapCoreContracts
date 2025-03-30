@@ -11,6 +11,9 @@ export const SONEIUM_BRIDGES = {
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc'],
+    },
     [BRIDGES.owlto]: {
       address: ['0x0896cc10F7fa09127eE6060AD56D34D2d80306a4'],
     },

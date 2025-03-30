@@ -221,6 +221,9 @@
       ],
       "teleSwap": [
         "0xFA1B28052Bd8087B1CF64eE9429FEB324e95B0ff"
+      ],
+      "swapKit": [
+        "0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146"
       ]
     },
     "executors": {
@@ -2136,7 +2139,8 @@
       ],
       "xyFinance": [
         "0x3689D3B912d4D73FfcAad3a80861e7caF2d4F049",
-        "0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080"
+        "0x218Ef86b88765df568E9D7d7Fd34B5Dc88098080",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "hop": [
         "0xbd72882120508518FCba2AE58E134EceaD18d979"
@@ -2386,6 +2390,9 @@
       ],
       "owlto": [
         "0x0896cc10F7fa09127eE6060AD56D34D2d80306a4"
+      ],
+      "orbiter": [
+        "0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc"
       ]
     },
     "dexes": {
@@ -2837,6 +2844,9 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "swapKit": [
+        "0x68208D99746b805a1Ae41421950A47b711E35681"
       ]
     },
     "dexes": {
@@ -3522,6 +3532,9 @@
       "relayLink": [
         "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",
         "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed"
+      ],
+      "swapKit": [
+        "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
       ]
     },
     "dexes": {

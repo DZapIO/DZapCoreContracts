@@ -73,6 +73,9 @@ export const BASE_MAINNET = {
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     },
+    [BRIDGES.swapKit]: {
+      address: ['0x68208D99746b805a1Ae41421950A47b711E35681'],
+    },
     [BRIDGES.swing]: {
       address: [
         '0x3F45a223faA0dE47E2d4390c336320c68DC14E4E',

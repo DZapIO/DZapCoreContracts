@@ -123,6 +123,9 @@ export const OPTIMISM_MAINNET = {
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
     },
+    [BRIDGES.teleSwap]: {
+      address: ['0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52'],
+    },
     [BRIDGES.unizen]: {
       address: [
         '0xad1D43efCF92133A9a0f33e5936F5ca10f2b012E',

@@ -179,8 +179,8 @@ export const NETWORKS: Networks = {
     shortName: 'arbitrumOne',
     rpcUrl: [
       `https://arb-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
-      `https://arbitrum-mainnet.infura.io/v3/${NODE_ENV_VAR_NAMES.INFURA_API_KEY}`,
       'https://arb1.arbitrum.io/rpc',
+      `https://arbitrum-mainnet.infura.io/v3/${NODE_ENV_VAR_NAMES.INFURA_API_KEY}`,
       'https://arbitrum-one-rpc.publicnode.com',
     ],
     explorerUrl: 'https://arbiscan.io',

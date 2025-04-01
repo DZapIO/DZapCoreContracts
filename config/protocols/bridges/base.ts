@@ -101,6 +101,9 @@ export const BASE_MAINNET = {
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
     },
+    [BRIDGES.teleSwap]: {
+      address: ['0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52'],
+    },
     [BRIDGES.unizen]: {
       address: [
         '0x4F68248ecB782647D1E5981a181bBe1bfFee1040',

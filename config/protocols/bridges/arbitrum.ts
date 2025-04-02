@@ -110,6 +110,9 @@ export const ARBITRUM_MAINNET = {
         '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
     },
+    [BRIDGES.swapKit]: {
+      address: ['0x700E97ef07219440487840Dc472E7120A7FF11F4'],
+    },
     [BRIDGES.swing]: {
       address: [
         '0x2260f6120b634B94A23eF11fa0D615ecf62db3cD',
@@ -136,9 +139,6 @@ export const ARBITRUM_MAINNET = {
         '0xd5a597d6e7ddf373a92C8f477DAAA673b0902F48',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
-    },
-    [BRIDGES.swapKit]: {
-      address: ['0x700E97ef07219440487840Dc472E7120A7FF11F4'],
     },
     [BRIDGES.teleSwap]: {
       address: ['0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52'],

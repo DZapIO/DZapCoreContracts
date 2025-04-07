@@ -528,7 +528,7 @@ export const NETWORKS: Networks = {
     explorerUrl: 'https://explorer.fuse.io',
     apiUrl: 'https://explorer.fuse.io/api',
     apiType: ApiType.BLOCKSCOUT,
-    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    nativeCurrency: { name: 'Fuse', symbol: 'FUSE', decimals: 18 },
   },
   [CHAIN_IDS.FANTOM_MAINNET]: {
     chainId: CHAIN_IDS.FANTOM_MAINNET,
@@ -630,7 +630,7 @@ export const NETWORKS: Networks = {
     explorerUrl: 'https://explorer.arthera.net/',
     apiUrl: 'https://explorer.arthera.net/api',
     apiType: ApiType.BLOCKSCOUT,
-    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    nativeCurrency: { name: 'Arthera', symbol: 'AA', decimals: 18 },
   },
   [CHAIN_IDS.TAIKO_MAINNET]: {
     chainId: CHAIN_IDS.TAIKO_MAINNET,

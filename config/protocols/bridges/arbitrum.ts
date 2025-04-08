@@ -159,6 +159,9 @@ export const ARBITRUM_MAINNET = {
         '0xD4B5f10D61916Bd6E0860144a91Ac658dE8a1437', // cctp
       ],
     },
+    [BRIDGES.xLink]: {
+      address: ['0x4306374f07382b36AAe832A50831C8C5b26Cd41e'],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0x062b1Db694F6A437e3c028FC60dd6feA7444308c',

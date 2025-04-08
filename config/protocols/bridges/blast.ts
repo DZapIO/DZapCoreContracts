@@ -17,6 +17,9 @@ export const BLAST_MAINNET = {
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     },

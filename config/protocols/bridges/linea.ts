@@ -11,7 +11,10 @@ export const LINEA_MAINNET = {
       selectorInfo: [],
     },
     [BRIDGES.deBridge]: {
-      address: ['0xeF4fB24aD0916217251F553c0596F8Edc630EB66'],
+      address: [
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+      ],
       selectorInfo: [],
     },
     [BRIDGES.hop]: {

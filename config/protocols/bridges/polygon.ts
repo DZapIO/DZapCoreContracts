@@ -86,6 +86,7 @@ export const POLYGON_MAINNET = {
       address: [
         '0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d',
         '0x1ba8ca832496f0b66c08ab5f248217eb27b89a25',
+        '0x1aDfED468CED18AeA069bf75E7397faA41B29566', // cctp
       ],
     },
     [BRIDGES.routerNitro]: {

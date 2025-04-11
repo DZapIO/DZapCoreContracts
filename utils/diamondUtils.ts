@@ -2,7 +2,7 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 import { Contract, utils, Wallet } from 'ethers'
 import { FunctionFragment, Interface } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
-import { delay, getProvider, isAddressSame } from '.'
+import { delay, getContractUrl, getProvider, getTxUrl, isAddressSame } from '.'
 import { CHAIN_IDS } from '../config'
 import { FACETS_DEPLOYMENT_CONFIG } from '../config/deployment/facets'
 import { GAS_ZIP_ADDRESS } from '../config/facets/gasZip'
@@ -437,10 +437,11 @@ export const deployUsingCreate3 = async (
     await estimateTxCost(gasLimitFaceCut, provider)
 
     const tx = await create3.connect(deployer).deploy(salt, creationCode)
-    console.log('Tx hash', tx.hash)
+    console.log('Tx hash', getTxUrl(chainId, tx.hash))
+    console.log('Contract address', getContractUrl(chainId, computedAddress))
+
     await tx.wait()
     if (verifyContract) {
-      console.log('Verification afer 15 sec...')
       await delay(15000)
     }
   } catch (error) {
@@ -504,13 +505,9 @@ export const deployFacetsUsingCreate3 = async (
         // gasLimit,
       })
 
-      console.log('Tx hash', tx.hash)
+      console.log('Tx hash', getTxUrl(chainId, tx.hash))
+      console.log('Contract address', getContractUrl(chainId, computedAddress))
       await tx.wait()
-
-      if (verifyContract) {
-        console.log('Verification afer 30 sec...')
-        await delay(15000)
-      }
     } catch (error) {
       // console.log(error)
       console.log('Already Deployed')
@@ -663,10 +660,10 @@ export const deployAdapter = async (
       await estimateTxCost(gasLimitFaceCut, provider)
 
       const tx = await create3.connect(deployer).deploy(salt, creationCode)
-      console.log('Tx hash', tx.hash)
+      console.log('Tx hash', getTxUrl(chainId, tx.hash))
+      console.log('Contract address', getContractUrl(chainId, computedAddress))
       await tx.wait()
       if (verifyContract) {
-        console.log('Verification afer 15 sec...')
         await delay(15000)
       }
     } catch (error) {

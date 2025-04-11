@@ -1,6 +1,12 @@
 import { PermitType } from '../types'
 import { encodePermitData } from '../utils'
 
+export const TASK_VERIFY = 'verify'
+export const TASK_VERIFY_VERIFY = 'verify:verify'
+export const TASK_VERIFY_SOURCIFY = 'verify:sourcify'
+export const TASK_VERIFY_ETHERSCAN = 'verify:etherscan'
+export const TASK_VERIFY_BLOCKSCOUT = 'verify:blockscout'
+
 export const dummyKey =
   '0x0000000000000000000000000000000000000000000000000000000000000000'
 export const DEFAULT_BYTES = '0x'

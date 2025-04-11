@@ -52,6 +52,9 @@ export const BSC_MAINNET = {
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
+    [BRIDGES.relayLink]: {
+      address: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
+    },
     [BRIDGES.router]: {
       address: ['0x2c43992873b4fb841af4941aa0cf5a45598f3e76'],
     },

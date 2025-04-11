@@ -3,7 +3,10 @@ import { BRIDGES } from '../bridgeNames'
 export const METIS_MAINNET = {
   bridges: {
     [BRIDGES.deBridge]: {
-      address: ['0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251'],
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+      ],
     },
     [BRIDGES.lifi]: {
       address: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
@@ -38,6 +41,9 @@ export const METIS_MAINNET = {
         '0x36ed193dc7160D3858EC250e69D12B03Ca087D08',
         '0xD9050e7043102a0391F81462a3916326F86331F0',
       ],
+    },
+    [BRIDGES.swing]: {
+      address: ['0x97fffFfa57144BBfacF41251bd1763657e646667'],
     },
     [BRIDGES.symbiosis]: {
       address: [

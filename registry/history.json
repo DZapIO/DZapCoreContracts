@@ -751,6 +751,9 @@
       ],
       "teleSwap": [
         "0x2787D48e0B74125597DD479978a5DE09Bb9a3C15"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "dexes": {
@@ -1105,7 +1108,8 @@
       ],
       "router": [
         "0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d",
-        "0x1ba8ca832496f0b66c08ab5f248217eb27b89a25"
+        "0x1ba8ca832496f0b66c08ab5f248217eb27b89a25",
+        "0x1aDfED468CED18AeA069bf75E7397faA41B29566"
       ],
       "swing": [
         "0xE684eEDD1F493945d7923E9156401e945211243d",
@@ -1685,6 +1689,9 @@
     "dexes": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "odos": [
+        "0x56c85a254DD12eE8D9C04049a4ab62769Ce98210"
       ]
     }
   },
@@ -2054,7 +2061,11 @@
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
       ],
       "debridge": [
-        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+      ],
+      "swing": [
+        "0x97fffFfa57144BBfacF41251bd1763657e646667"
       ]
     }
   },
@@ -3264,6 +3275,9 @@
       ],
       "teleSwap": [
         "0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52"
+      ],
+      "xLink": [
+        "0x4306374f07382b36AAe832A50831C8C5b26Cd41e"
       ]
     },
     "dexes": {
@@ -3521,7 +3535,8 @@
         "0xF9f4C3dC7ba8f56737a92d74Fd67230c38AF51f2",
         "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785",
         "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B",
-        "0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775"
+        "0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775",
+        "0xAA6C544Ab06CF01388D7960Fb2eead3d989cB8CE"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -3802,7 +3817,8 @@
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
       ],
       "debridge": [
-        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+        "0xeF4fB24aD0916217251F553c0596F8Edc630EB66",
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
       ],
       "hop": [
         "0xC8A4FB931e8D77df8497790381CA7d228E68a41b"
@@ -4048,6 +4064,12 @@
       ],
       "rango": [
         "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "across": [
+        "0x2D509190Ed0172ba588407D4c2df918F955Cc6E1"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },

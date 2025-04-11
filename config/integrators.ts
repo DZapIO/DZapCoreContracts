@@ -909,4 +909,319 @@ export const INTEGRATOR_CONFIG = {
       ],
     },
   },
+  [CHAIN_IDS.KAIA]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 3.5,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.INK]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.0002,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.SEI_EVM_MAINNET]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 2.5,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.BOUNCE_BIT]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 3.5,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.B2SQUARE_NETWORK]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.000005,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.BI_FROST]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 14,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.BITLAYER]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.000005,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.FLARE]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 22,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.HYPER_EVM]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.025,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.HEMI]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.0002,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.IOTA_EVM]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 225,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.OPBNB_MAINNET]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.00065,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.PULSE_CHAIN]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 15000,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.RONIN]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.65,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.STORY]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.085,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
 }

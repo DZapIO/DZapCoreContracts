@@ -22,12 +22,15 @@ export enum PermitType {
 }
 
 export enum ApiType {
+  NONE,
   ETHERSCAN_V1,
   ETHERSCAN_V2,
   BLOCKSCOUT,
   SOURCIFY,
   OTHER,
 }
+
+export type ChainId = CHAIN_IDS | string | number | bigint
 
 export interface DiamondCutData {
   facetName: string

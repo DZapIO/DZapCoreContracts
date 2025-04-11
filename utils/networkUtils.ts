@@ -2,7 +2,7 @@ import axios from 'axios'
 import { providers, Wallet } from 'ethers'
 import { HardhatUserConfig, HttpNetworkUserConfig } from 'hardhat/types'
 import { CHAIN_IDS, NETWORKS } from '../config/networks'
-import { ApiType } from '../types'
+import { ApiType, ChainId } from '../types'
 import { getAccountKey } from './walletUtils'
 import { MulticallWrapper } from './multicall'
 import { getEnvVar, replaceEnvInStr } from './envUtils'
@@ -68,8 +68,21 @@ export const getNetworkConfig = (
   return config
 }
 
-export const getNetwork = (chainId: CHAIN_IDS) => {
-  const network = NETWORKS[chainId]
+export const toChainId = (chainId: string | number | bigint): CHAIN_IDS => {
+  // check is chainId is of type CHAIN_IDS
+  if (!isValidChainId(chainId)) {
+    throw new Error(`Invalid chainId: ${chainId}`)
+  }
+  return chainId as CHAIN_IDS
+}
+
+export const isValidChainId = (chainId: ChainId): boolean => {
+  const chainIdStr = chainId.toString()
+  return Object.values(CHAIN_IDS).map(String).includes(chainIdStr)
+}
+
+export const getNetwork = (chainId: ChainId) => {
+  const network = NETWORKS[toChainId(chainId)]
   if (!network) {
     throw new Error(`Network with chainId ${chainId} not found`)
   }
@@ -214,5 +227,7 @@ export const isZkEvm = (chainId: CHAIN_IDS) => {
     CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
     CHAIN_IDS.ABSTRACT_MAINNET,
     CHAIN_IDS.ABSTRACT_TESTNET,
+    CHAIN_IDS.LENS,
+    CHAIN_IDS.LENS_TESTNET,
   ].includes(chainId)
 }

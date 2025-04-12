@@ -25,6 +25,15 @@ import {
 import { verify } from './verifyUtils'
 import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
 
+const catchCreate3Error = (error: any) => {
+  const reason = error?.reason
+  if (typeof reason === 'string' && reason.includes('DEPLOYMENT_FAILED')) {
+    console.log('Already Deployed')
+  } else {
+    throw error
+  }
+}
+
 export function getSelectorsUsingFunSig(func: string[]) {
   const abiInterface = new utils.Interface(func)
   return func.map((fun) => abiInterface.getSighash(utils.Fragment.from(fun)))
@@ -185,6 +194,7 @@ export async function upgradeDiamond(
     initData.address,
     initData.data
   )
+  await estimateTxCost(gasLimit, provider)
   const gasPrice = await getGasPrice(provider)
   const { data } = await diamondCut.populateTransaction.diamondCut(
     cutData,
@@ -194,8 +204,8 @@ export async function upgradeDiamond(
   const tx = await owner.sendTransaction({
     to: diamondCut.address,
     data,
-    gasPrice,
-    gasLimit,
+    // gasPrice,
+    // gasLimit,
   })
 
   console.log('Diamond cut tx: ', tx.hash)
@@ -341,6 +351,7 @@ export const whitelistAdapters = async (
   bridgeManager: BridgeManagerFacet,
   adaptersAddress: string[]
 ) => {
+  console.log('WhitelistAdapters...')
   const adaptersToAdd: string[] = []
 
   for (let i = 0; i < adaptersAddress.length; ++i) {
@@ -445,8 +456,7 @@ export const deployUsingCreate3 = async (
       await delay(15000)
     }
   } catch (error) {
-    // console.log(error)
-    console.log('Already Deployed')
+    catchCreate3Error(error)
   }
   if (verifyContract) {
     await verify(chainId, contractName, computedAddress, constructorArgs)
@@ -489,9 +499,9 @@ export const deployFacetsUsingCreate3 = async (
     }
 
     try {
-      // const gasLimit = await create3.estimateGas.deploy(salt, creationCode)
       const gasPrice = await getGasPrice(provider)
-      // await estimateTxCost(gasLimit, provider)
+      const gasLimit = await create3.estimateGas.deploy(salt, creationCode)
+      await estimateTxCost(gasLimit, provider)
 
       const { data } = await create3.populateTransaction.deploy(
         salt,
@@ -502,15 +512,14 @@ export const deployFacetsUsingCreate3 = async (
         to: create3.address,
         data,
         gasPrice,
-        // gasLimit,
+        gasLimit,
       })
 
       console.log('Tx hash', getTxUrl(chainId, tx.hash))
       console.log('Contract address', getContractUrl(chainId, computedAddress))
       await tx.wait()
-    } catch (error) {
-      // console.log(error)
-      console.log('Already Deployed')
+    } catch (error: any) {
+      catchCreate3Error(error)
     }
 
     if (verifyContract) {
@@ -586,7 +595,8 @@ export const deployFacetsWithArgsUingCreate3 = async (
         data,
         gasPrice,
       })
-      console.log('Tx hash', tx.hash)
+      console.log('Tx hash', getTxUrl(chainId, tx.hash))
+      console.log('Contract address', getContractUrl(chainId, computedAddress))
       await tx.wait()
 
       if (verifyContract) {
@@ -594,8 +604,7 @@ export const deployFacetsWithArgsUingCreate3 = async (
         await delay(15000)
       }
     } catch (error) {
-      // console.log(error)
-      console.log('Already Deployed')
+      catchCreate3Error(error)
     }
     if (verifyContract) {
       await verify(chainId, facetName, computedAddress, constructorArgs)
@@ -667,7 +676,7 @@ export const deployAdapter = async (
         await delay(15000)
       }
     } catch (error) {
-      console.log('Already Deployed')
+      catchCreate3Error(error)
     }
     if (verifyContract) {
       await verify(chainId, adapterName, computedAddress, [])

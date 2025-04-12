@@ -18,8 +18,8 @@ export const getHardhatNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {
   }
 }
 
-export const getRpcUrl = (chainId: CHAIN_IDS): string => {
-  const network = getNetwork(chainId)
+export const getRpcUrl = (chainId: ChainId): string => {
+  const network = getNetwork(toChainId(chainId))
 
   let rpc = network.rpcUrl[0]
   if (!rpc) {
@@ -89,7 +89,7 @@ export const getNetwork = (chainId: ChainId) => {
   return network
 }
 
-export const getProvider = async (chainId: CHAIN_IDS) => {
+export const getProvider = async (chainId: ChainId) => {
   const rpcUrl = getRpcUrl(chainId)
   return new providers.JsonRpcProvider(rpcUrl)
 }

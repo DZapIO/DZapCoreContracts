@@ -32,6 +32,7 @@ import {
 } from '../typechain-types'
 import { Create3DeploymentConfig } from '../types'
 import { isAddressSame } from './addressUtils'
+import { getNetwork, toChainId } from './networkUtils'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
@@ -191,6 +192,8 @@ export const estimateDeploymentCost = async (
   const deployTransaction = await factory.getDeployTransaction(
     ...constructorArgs
   )
+  const chainId = toChainId((await provider.getNetwork()).chainId)
+  const network = getNetwork(chainId)
 
   try {
     const gasEstimate = await provider.estimateGas(deployTransaction)
@@ -199,8 +202,9 @@ export const estimateDeploymentCost = async (
 
     console.log('Estimated Gas:', gasEstimate.toString())
     console.log(
-      'Estimated Deployment Cost:',
-      formatUnits(deploymentCost, 'ether')
+      `Estimated Deployment Cost: ${formatUnits(deploymentCost, 'ether')} ${
+        network.nativeCurrency.symbol
+      }`
     )
 
     return deploymentCost
@@ -223,14 +227,16 @@ export const estimateTxCost = async (
     }
 
     const deploymentCost = gasEstimate.mul(gasPrice)
+    const chainId = toChainId((await provider.getNetwork()).chainId)
+    const network = getNetwork(chainId)
 
     console.log('Estimated Gas:', gasEstimate.toString())
     console.log('Gas Price:', formatUnits(gasPrice, 'gwei'), 'GWEI')
     console.log(
-      'Estimated Deployment Cost:',
-      formatUnits(deploymentCost, 'ether'),
-      'ETH'
-    ) // Or other currency
+      `Estimated Deployment Cost: ${formatUnits(deploymentCost, 'ether')} ${
+        network.nativeCurrency.symbol
+      }`
+    )
 
     return deploymentCost
   } catch (error) {

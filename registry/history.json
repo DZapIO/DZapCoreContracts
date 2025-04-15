@@ -350,7 +350,8 @@
       "swing": [
         "0xF1c231F59b6b7Ffa68A7Aad43BbD238BF0bFB9C9",
         "0xec42C38412fb4a56f75D706838215588b41701aa",
-        "0x3CA700004Aa08dD4C04a1D8595326A1de82Da5bF"
+        "0x3CA700004Aa08dD4C04a1D8595326A1de82Da5bF",
+        "0xe6F3E069c914ADec62D0E06708cE4E633e256703"
       ],
       "owlto": [
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
@@ -515,6 +516,11 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
     }
   },
   "25": {
@@ -789,7 +795,8 @@
         "0x2787D48e0B74125597DD479978a5DE09Bb9a3C15"
       ],
       "relayLink": [
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "dexes": {
@@ -1347,6 +1354,9 @@
       ],
       "magpiefi": [
         "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+      ],
+      "odos": [
+        "0xaC041Df48dF9791B0654f1Dbbf2CC8450C5f2e9D"
       ]
     },
     "bridges": {
@@ -2588,6 +2598,14 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "bridges": {
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+      ]
     }
   },
   "1625": {
@@ -4228,6 +4246,25 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "magpiefi": [
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+      ]
+    },
+    "bridges": {
+      "across": [
+        "0xeF684C38F94F48775959ECf2012D7E864ffb9dd4"
+      ],
+      "orbiter": [
+        "0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc"
+      ],
+      "relayLink": [
+        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089"
+      ],
+      "socket": [
+        "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
+      ]
     }
   },
   "59144": {
@@ -4741,6 +4778,12 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "dodo": [
+        "0x60019cf4b8d15e28dbF127669A5f0c216f8F2BAe",
+        "0x4c0f6C7AA981099CB7D74E8f08D85832c7FA5640"
+      ]
     }
   },
   "534352": {

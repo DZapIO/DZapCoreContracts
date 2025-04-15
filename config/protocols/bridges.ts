@@ -55,6 +55,10 @@ import { SONIC_BRIDGES } from './bridges/sonic'
 import { BERACHAIN_BRIDGES } from './bridges/berachain'
 import { MORPH_BRIDGES } from './bridges/morph'
 import { SONEIUM_BRIDGES } from './bridges/soneium'
+import { STORY_BRIDGES } from './bridges/story'
+import { INK_BRIDGES } from './bridges/ink'
+import { FLARE_BRIDGES } from './bridges/flare'
+import { BITLAYER_BRIDGES } from './bridges/bitlayer'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -114,4 +118,8 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.SAAKURU_MAINNET]: SAAKURU_MAINNET,
   [CHAIN_IDS.SONIC_MAINNET]: SONIC_BRIDGES,
   [CHAIN_IDS.SONEIUM_MAINNET]: SONEIUM_BRIDGES,
+  [CHAIN_IDS.STORY]: STORY_BRIDGES,
+  [CHAIN_IDS.INK]: INK_BRIDGES,
+  [CHAIN_IDS.BITLAYER]: BITLAYER_BRIDGES,
+  [CHAIN_IDS.FLARE]: FLARE_BRIDGES,
 }

@@ -17,13 +17,6 @@ export const BSC_MAINNET = {
     },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [
-        {
-          function: '',
-          functionSig: '',
-          offset: 0,
-        },
-      ],
     },
     [BRIDGES.mayanFinance]: {
       address: [
@@ -53,7 +46,10 @@ export const BSC_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
+      address: [
+        '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+        '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+      ],
     },
     [BRIDGES.router]: {
       address: ['0x2c43992873b4fb841af4941aa0cf5a45598f3e76'],

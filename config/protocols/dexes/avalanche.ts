@@ -2,7 +2,10 @@ import { DEXES } from '../dexNames'
 
 export const AVALANCHE_DEXES = {
   dexes: {
-    [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+    [DEXES.enso]: [
+      '0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E',
+      '0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf',
+    ],
     [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
     [DEXES.oneInch]: [
       '0x1111111254eeb25477b68fb85ed929f73a960582',

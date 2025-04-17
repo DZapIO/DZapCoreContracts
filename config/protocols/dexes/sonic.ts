@@ -2,7 +2,10 @@ import { DEXES } from '../dexNames'
 
 export const SONIC_DEXES = {
   dexes: {
-    [DEXES.enso]: ['0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E'],
+    [DEXES.enso]: [
+      '0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E',
+      '0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf',
+    ],
     [DEXES.iceCreamSwap]: ['0x2fF506ed9729580EF8Bf04429614beB1baE5F76D'],
     [DEXES.magpiefi]: ['0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104'],
     [DEXES.odos]: ['0xaC041Df48dF9791B0654f1Dbbf2CC8450C5f2e9D'],

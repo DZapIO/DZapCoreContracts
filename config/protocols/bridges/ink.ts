@@ -9,7 +9,10 @@ export const INK_BRIDGES = {
       address: ['0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089'],
+      address: [
+        '0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089',
+        '0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d',
+      ],
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],

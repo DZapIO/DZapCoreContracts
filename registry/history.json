@@ -76,7 +76,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "propeller": [
         "0x14f2b6ca0324cd2B013aD02a7D85541d215e2906"
@@ -445,7 +446,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0x716fcc67dcA500A91B4a28c9255262c398D8f971",
@@ -871,7 +873,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0x0656fD85364d03b103CEEda192FB2D3906A6ac15",
@@ -976,7 +979,8 @@
     },
     "dexes": {
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
@@ -988,6 +992,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "paraswap": [
+        "0x6A000F20005980200259B80c5102003040001068"
       ]
     }
   },
@@ -1264,7 +1271,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0x39E3e49C99834C9573c9FC7Ff5A4B226cD7B0E63",
@@ -1341,7 +1349,8 @@
     },
     "dexes": {
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
@@ -2562,6 +2571,20 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "bridges": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ]
+    },
+    "dexes": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ]
     }
   },
   "1514": {
@@ -2851,6 +2874,21 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "bridges": {
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "orbiter": [
+        "0x13E46b2a3f8512eD4682a8Fb8B560589fE3C2172"
+      ],
+      "owlto": [
+        "0x3F0F0E6411F859Da1A1BbF8bD6217cA93820Bb98"
+      ],
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ]
     }
   },
   "3068": {
@@ -3365,7 +3403,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0x987bFBE33c9cF18cAA665B792Db66339a9c16D32",
@@ -3805,7 +3844,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0xe05dd51e4eB5636f4f0E8e7Fbe82eA31a2ecef16",
@@ -4004,6 +4044,14 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "dodo": [
+        "0xcBF3378D432CB181aae32a6A80AA94CF8e00f534"
+      ],
+      "sushi": [
+        "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ]
     }
   },
   "43114": {
@@ -4166,7 +4214,8 @@
         "0x6a000f20005980200259b80c5102003040001068"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "dodo": [
         "0x1F076a800005c758a505E759720eb6737136e893",
@@ -4260,7 +4309,8 @@
         "0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc"
       ],
       "relayLink": [
-        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089"
+        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089",
+        "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -4325,7 +4375,8 @@
         "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xA146d46823f3F594B785200102Be5385CAfCE9B5"
       ],
       "izumi": [
         "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
@@ -4469,7 +4520,8 @@
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "enso": [
-        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E"
+        "0x80EbA3855878739F4710233A8a19d89Bdd2ffB8E",
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
       ],
       "iceCreamSwap": [
         "0xb4FE60CD05A3e68668007Cee83DDFD9A50A45B36"

@@ -59,6 +59,8 @@ import { STORY_BRIDGES } from './bridges/story'
 import { INK_BRIDGES } from './bridges/ink'
 import { FLARE_BRIDGES } from './bridges/flare'
 import { BITLAYER_BRIDGES } from './bridges/bitlayer'
+import { HEMI_BRIDGES } from './bridges/hemi'
+import { SEI_BRIDGES } from './bridges/sei'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -122,4 +124,6 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.INK]: INK_BRIDGES,
   [CHAIN_IDS.BITLAYER]: BITLAYER_BRIDGES,
   [CHAIN_IDS.FLARE]: FLARE_BRIDGES,
+  [CHAIN_IDS.HEMI]: HEMI_BRIDGES,
+  [CHAIN_IDS.SEI_EVM_MAINNET]: SEI_BRIDGES,
 }

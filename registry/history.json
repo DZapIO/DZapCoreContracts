@@ -151,7 +151,8 @@
         "0xfB375Cdfb975381731be52c05e8e695C8253c319",
         "0x35101b9DeCace6324aaDf65867d695D175c71D59",
         "0xd87Fff92728792F6dFFA5A915Bd4F7BE1A5bb45E",
-        "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc"
+        "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc",
+        "0x1f5dB791f7Ee6026dC0AdcaC48919241Ff8A7140"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -2579,11 +2580,17 @@
       "symbiosis": [
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ],
+      "stargate": [
+        "0x45d417612e177672958dC0537C45a8f8d754Ac2E"
       ]
     },
     "dexes": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "openOcean": [
+        "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ]
     }
   },
@@ -2960,6 +2967,21 @@
         "0xc7d3722f",
         "0xba0f6ca5",
         "0xe47b7f8e"
+      ]
+    },
+    "bridges": {
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278",
+        "0x5523985926Aa12BA58DC5Ad00DDca99678D7227E",
+        "0xb8f275fBf7A959F4BCE59999A2EF122A099e81A8"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "okx": [
+        "0xf956d9fa19656d8e5219fd6fa8ba6cb198094138",
+        "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
       ]
     }
   },

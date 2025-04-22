@@ -14,6 +14,9 @@ export const BASE_MAINNET = {
     [BRIDGES.comet]: {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
     },
+    [BRIDGES.crossCurve]: {
+      address: ['0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74'],
+    },
     [BRIDGES.deBridge]: {
       address: [
         '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
@@ -116,15 +119,15 @@ export const BASE_MAINNET = {
         '0x012297F3d1Cb0D685B195A70231730F4c8c86F86',
       ],
     },
+    [BRIDGES.xLink]: {
+      address: ['0xd15B997505739C02564DE7f0E010B42b2F81520d'],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0x6aCd0Ec9405CcB701c57A88849C4F1CD85a3f3ab',
         '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
         '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
       ],
-    },
-    [BRIDGES.crossCurve]: {
-      address: ['0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74'],
     },
   },
 }

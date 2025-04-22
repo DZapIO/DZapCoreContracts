@@ -800,6 +800,9 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "xLink": [
+        "0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379"
       ]
     },
     "dexes": {
@@ -3356,6 +3359,9 @@
       ],
       "teleSwap": [
         "0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52"
+      ],
+      "xLink": [
+        "0xd15B997505739C02564DE7f0E010B42b2F81520d"
       ]
     },
     "dexes": {
@@ -4157,7 +4163,8 @@
         "0x9744ae566c64B6B6f7F9A4dD50f7496Df6Fef990"
       ],
       "swing": [
-        "0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274"
+        "0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274",
+        "0xdC81B70a3B8226bF966371748821D1FD4155eb9e"
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6",
@@ -4321,6 +4328,9 @@
     "dexes": {
       "magpiefi": [
         "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+      ],
+      "lifi": [
+        "0x864b314D4C5a0399368609581d3E8933a63b9232"
       ]
     },
     "bridges": {
@@ -4498,6 +4508,9 @@
       ],
       "relayLink": [
         "0xfd06c0018318bf78705ccff2b961ef8ebc0baca0"
+      ],
+      "xLink": [
+        "0x0F38ED043A1A2ec79B15d7F4FB8D25036680ce03"
       ]
     }
   },

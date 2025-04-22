@@ -308,6 +308,7 @@ export const NETWORKS: Networks = {
     chainName: 'Avalanche C-Chain',
     shortName: 'avalanche',
     rpcUrl: [
+      `https://avax-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://api.avax.network/ext/bc/C/rpc',
       'https://avalanche-c-chain-rpc.publicnode.com',
     ],

@@ -109,7 +109,10 @@ export const ETH_MAINNET = {
       ],
     },
     [BRIDGES.swapKit]: {
-      address: ['0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146'],
+      address: [
+        '0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146',
+        '0xe3985E6b61b814F7Cdb188766562ba71b446B46d',
+      ],
     },
     [BRIDGES.swing]: {
       address: [
@@ -153,6 +156,9 @@ export const ETH_MAINNET = {
         '0x940f7994921a292A5062dc81C65511FDa79f4Bc9',
         '0xeC0D8Cfd081ccce2D6Ed4E3dd8f248D3cAa3d24B',
       ],
+    },
+    [BRIDGES.xLink]: {
+      address: ['0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5'],
     },
     [BRIDGES.xyFinance]: {
       address: [

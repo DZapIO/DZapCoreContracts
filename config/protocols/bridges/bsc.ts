@@ -104,6 +104,9 @@ export const BSC_MAINNET = {
     [BRIDGES.wanBridge]: {
       address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
     },
+    [BRIDGES.xLink]: {
+      address: ['0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379'],
+    },
     [BRIDGES.xyFinance]: {
       address: [
         '0xDF921bc47aa6eCdB278f8C259D6a7Fef5702f1A9',

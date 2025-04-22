@@ -71,7 +71,10 @@ export const AVALANCHE_MAINNET = {
       address: ['0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549'],
     },
     [BRIDGES.swing]: {
-      address: ['0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274'],
+      address: [
+        '0x344f37C6Ed43FcCF1c96a5772DA449197d4a3274',
+        '0xdC81B70a3B8226bF966371748821D1FD4155eb9e',
+      ],
     },
     [BRIDGES.symbiosis]: {
       address: [

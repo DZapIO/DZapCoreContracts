@@ -152,7 +152,8 @@
         "0x35101b9DeCace6324aaDf65867d695D175c71D59",
         "0xd87Fff92728792F6dFFA5A915Bd4F7BE1A5bb45E",
         "0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc",
-        "0x1f5dB791f7Ee6026dC0AdcaC48919241Ff8A7140"
+        "0x1f5dB791f7Ee6026dC0AdcaC48919241Ff8A7140",
+        "0x5E6C41fbaD3E6D188Cde3703576f083e539E7d9c"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
@@ -213,7 +214,8 @@
         "0x885E415D0836727F8757BfFC093E9728B1Aaf60f",
         "0x800589bDafE1Fd3C47d545b7012B471e7DFbD0a7",
         "0xF5027600efEA7491515056866fa1F0303f6C8d09",
-        "0x967EC03DFfdfB4A22C8C4B811B17ac135082fBdc"
+        "0x967EC03DFfdfB4A22C8C4B811B17ac135082fBdc",
+        "0x72788AF7FC87D14DA73f94e353E52B76e230035B"
       ],
       "optimismBridge": [
         "0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1"
@@ -225,7 +227,11 @@
         "0xFA1B28052Bd8087B1CF64eE9429FEB324e95B0ff"
       ],
       "swapKit": [
-        "0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146"
+        "0xD37BbE5744D730a1d98d8DC97c42F0Ca46aD7146",
+        "0xe3985E6b61b814F7Cdb188766562ba71b446B46d"
+      ],
+      "xLink": [
+        "0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5"
       ]
     },
     "executors": {
@@ -2899,6 +2905,11 @@
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
       ]
+    },
+    "dexes": {
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ]
     }
   },
   "3068": {
@@ -2985,6 +2996,24 @@
       "okx": [
         "0xf956d9fa19656d8e5219fd6fa8ba6cb198094138",
         "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
+      ],
+      "orbiter": [
+        "0x4B8a4641c140B3Aa6bE8D99786FafE47A65869db"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ]
+    },
+    "dexes": {
+      "izumi": [
+        "0x1aFa5D7f89743219576Ef48a9826261bE6378a68"
+      ],
+      "okx": [
+        "0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE",
+        "0x8b773D83bc66Be128c60e07E17C8901f7a64F000"
+      ],
+      "openOcean": [
+        "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
       ]
     }
   },
@@ -3362,6 +3391,9 @@
       ],
       "xLink": [
         "0xd15B997505739C02564DE7f0E010B42b2F81520d"
+      ],
+      "garden": [
+        "0xeaE7721d779276eb0f5837e2fE260118724a2Ba4"
       ]
     },
     "dexes": {

@@ -8,6 +8,7 @@ export enum BRIDGES {
   crossCurve = 'crossCurve',
   comet = 'comet',
   deBridge = 'debridge',
+  garden = 'garden',
   hop = 'hop',
   hyperlane = 'hyperlane',
   izumi = 'izumi',

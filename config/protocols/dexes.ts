@@ -51,6 +51,7 @@ import { FLARE_DEXES } from './dexes/flare'
 import { BITLAYER_DEXES } from './dexes/bitlayer'
 import { HEMI_DEXES } from './dexes/hemi'
 import { SEI_DEXES } from './dexes/sei'
+import { MORPH_DEXES } from './dexes/morph'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -88,6 +89,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.MODE_MAINNET]: MODE_DEXES,
   [CHAIN_IDS.MOONBEAM_MAINNET]: MOONBEAM_DEXES,
   [CHAIN_IDS.MOONRIVER]: MOONRIVER_DEXES,
+  [CHAIN_IDS.MORPH]: MORPH_DEXES,
   [CHAIN_IDS.OKX_MAINNET]: OKX_DEXES,
   [CHAIN_IDS.OPBNB_MAINNET]: OP_BNB_DEXES,
   [CHAIN_IDS.OPTIMISM_MAINNET]: OPTIMISM_DEXES,

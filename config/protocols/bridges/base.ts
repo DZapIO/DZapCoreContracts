@@ -24,6 +24,9 @@ export const BASE_MAINNET = {
         '0xc1656B63D9EEBa6d114f6bE19565177893e5bCBF',
       ],
     },
+    [BRIDGES.garden]: {
+      address: ['0xeaE7721d779276eb0f5837e2fE260118724a2Ba4'],
+    },
     [BRIDGES.hop]: {
       address: [
         '0x7D269D3E0d61A05a0bA976b7DBF8805bF844AF3F',

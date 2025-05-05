@@ -75,6 +75,7 @@ export const ETH_MAINNET = {
       address: [
         '0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d',
         '0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52', // rainbow bridge through rango
+        '0x23Ddd3e3692d1861Ed57EDE224608875809e127f', // rainbow bridge through rango
       ],
     },
     [BRIDGES.relayLink]: {

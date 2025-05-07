@@ -12,7 +12,7 @@ export const MANTA_DEXES = {
     [DEXES.okx]: [
       '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
       '0x57df6092665eb6058DE53939612413ff4B09114E',
-      // '0x4f06A83A803029b3f01c401f2d8b8E82f099f3D4', // not sure about the address, not verified
+      '0x4f06A83A803029b3f01c401f2d8b8E82f099f3D4',
     ],
     [DEXES.omniBtc]: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
     [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],

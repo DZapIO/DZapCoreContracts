@@ -8,6 +8,12 @@ export const BASE_MAINNET = {
     [BRIDGES.allbridge]: {
       address: ['0x001E3f136c2f804854581Da55Ad7660a2b35DEf7'],
     },
+    [BRIDGES.cctp]: {
+      address: ['0x1682Ae6375C4E4A97e4B583BC394c861A46D8962'],
+    },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.celer]: {
       address: ['0x243b40e96c6bF21511E53d85c86F6Ec982f9a879'],
     },

@@ -3,6 +3,7 @@ export enum BRIDGES {
   across = 'across',
   allbridge = 'allbridge',
   cctp = 'cctp',
+  cctpV2 = 'cctpV2',
   celer = 'celer',
   changeNow = 'changeNow',
   crossCurve = 'crossCurve',

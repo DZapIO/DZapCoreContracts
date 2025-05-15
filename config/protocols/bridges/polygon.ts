@@ -12,8 +12,12 @@ export const POLYGON_MAINNET = {
       address: [
         '0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918',
         '0xB876cc05c3C3C8ECBA65dAc4CF69CaF871F2e0DD',
+        '0x9daF8c91AEFAE50b9c0E69629D3F6Ca40cA3B3FE',
       ],
     },
+    // [BRIDGES.cctpV2]: {
+    //   address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    // },
     [BRIDGES.celer]: {
       address: ['0x88DCDC47D2f83a99CF0000FDF667A468bB958a78'],
     },

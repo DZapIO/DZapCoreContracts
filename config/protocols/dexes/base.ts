@@ -25,7 +25,10 @@ export const BASE_DEXES = {
     ],
     [DEXES.izumi]: ['0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2'],
     [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-    [DEXES.magpiefi]: ['0xEF42f78d25f4c681dcaD2597fA04877ff802eF4B'],
+    [DEXES.magpiefi]: [
+      '0xEF42f78d25f4c681dcaD2597fA04877ff802eF4B',
+      '0x5E766616AaBFB588E23a8EA854e9dbd1042afFD3',
+    ],
     [DEXES.odos]: ['0x19cEeAd7105607Cd444F5ad10dd51356436095a1'],
     [DEXES.paraswap]: [
       '0x59C7C832e96D2568bea6db468C1aAdcbbDa08A52',

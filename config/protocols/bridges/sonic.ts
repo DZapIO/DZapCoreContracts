@@ -2,6 +2,12 @@ import { BRIDGES } from '../bridgeNames'
 
 export const SONIC_BRIDGES = {
   bridges: {
+    // [BRIDGES.cctp]: {
+    //   address: ['0x19330d10D9Cc8751218eaf51E8885D058642E08A'],
+    // },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.deBridge]: {
       address: [
         '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',

@@ -129,7 +129,10 @@ export const BASE_MAINNET = {
       ],
     },
     [BRIDGES.xLink]: {
-      address: ['0xd15B997505739C02564DE7f0E010B42b2F81520d'],
+      address: [
+        '0xd15B997505739C02564DE7f0E010B42b2F81520d',
+        '0xa5171F62747dcD8EcB141874e6Ba7828576F1c9E',
+      ],
     },
     [BRIDGES.xyFinance]: {
       address: [

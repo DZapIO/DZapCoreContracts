@@ -5,6 +5,12 @@ export const LINEA_MAINNET = {
     [BRIDGES.across]: {
       address: ['0x7E63A5f1a8F0B4d0934B2f2327DAED3F6bb2ee75'],
     },
+    // [BRIDGES.cctp]: {
+    //   address: ['0x19330d10D9Cc8751218eaf51E8885D058642E08A'],
+    // },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.comet]: {
       address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
     },

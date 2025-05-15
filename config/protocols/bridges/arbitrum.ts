@@ -8,6 +8,12 @@ export const ARBITRUM_MAINNET = {
     [BRIDGES.allbridge]: {
       address: ['0x9Ce3447B58D58e8602B7306316A5fF011B92d189'],
     },
+    [BRIDGES.cctp]: {
+      address: ['0x19330d10D9Cc8751218eaf51E8885D058642E08A'],
+    },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.celer]: {
       address: [
         '0x1619DE6B6B20eD217a58d00f37B9d47C7663feca',
@@ -39,13 +45,6 @@ export const ARBITRUM_MAINNET = {
     },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [
-        {
-          function: '',
-          functionSig: '',
-          offset: 0,
-        },
-      ],
     },
     [BRIDGES.mayanFinance]: {
       address: [

@@ -5,6 +5,12 @@ export const AVALANCHE_MAINNET = {
     [BRIDGES.allbridge]: {
       address: ['0x9068E1C28941D0A680197Cc03be8aFe27ccaeea9'],
     },
+    [BRIDGES.cctp]: {
+      address: ['0x6B25532e1060CE10cc3B0A99e5683b91BFDe6982'],
+    },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.celer]: {
       address: ['0x9744ae566c64B6B6f7F9A4dD50f7496Df6Fef990'],
     },

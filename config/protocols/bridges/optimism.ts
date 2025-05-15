@@ -8,6 +8,12 @@ export const OPTIMISM_MAINNET = {
     [BRIDGES.allbridge]: {
       address: ['0x97E5BF5068eA6a9604Ee25851e6c9780Ff50d5ab'],
     },
+    [BRIDGES.cctp]: {
+      address: ['0x2B4069517957735bE00ceE0fadAE88a26365528f'],
+    },
+    // [BRIDGES.cctpV2]: {
+    //   address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    // },
     [BRIDGES.celer]: {
       address: [
         '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',
@@ -134,7 +140,10 @@ export const OPTIMISM_MAINNET = {
       ],
     },
     [BRIDGES.wanBridge]: {
-      address: ['0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6'],
+      address: [
+        '0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6',
+        '0x88888dd82A91f0406ED42BF750bAF881e64894F6',
+      ],
     },
     [BRIDGES.xyFinance]: {
       address: [

@@ -67,7 +67,8 @@
         "0x7D0CcAa3Fac1e5A943c5168b6CEd828691b46B36",
         "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
         "0x3b3ae790Df4F312e745D270119c6052904FB6790",
-        "0x1Ef032a3c471a99CC31578c8007F256D95E89896"
+        "0x1Ef032a3c471a99CC31578c8007F256D95E89896",
+        "0x156ACd2bc5fC336D59BAAE602a2BD9b5e20D6672"
       ],
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687"
@@ -96,7 +97,8 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ],
       "magpiefi": [
-        "0x15392211222B46A0eA85a9A800830486D144848D"
+        "0x15392211222B46A0eA85a9A800830486D144848D",
+        "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
       ]
     },
     "bridges": {
@@ -233,6 +235,12 @@
       ],
       "xLink": [
         "0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5"
+      ],
+      "cctp": [
+        "0xBd3fa81B58Ba92a82136038B25aDec7066af3155"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "executors": {
@@ -366,13 +374,17 @@
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
       ],
       "wanBridge": [
-        "0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6"
+        "0x592dE30Bebff484B5a43A6E8E3ec1a814902E0b6",
+        "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ],
       "teleSwap": [
         "0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52"
+      ],
+      "cctp": [
+        "0x2B4069517957735bE00ceE0fadAE88a26365528f"
       ]
     },
     "dexes": {
@@ -467,7 +479,8 @@
         "0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a"
       ],
       "magpiefi": [
-        "0x15392211222B46A0eA85a9A800830486D144848D"
+        "0x15392211222B46A0eA85a9A800830486D144848D",
+        "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
       ]
     },
     "executors": {
@@ -1131,7 +1144,8 @@
       ],
       "cctp": [
         "0x3a5A635FD8c6fcEBa7A8b2861c1CBde7ED32A918",
-        "0xB876cc05c3C3C8ECBA65dAc4CF69CaF871F2e0DD"
+        "0xB876cc05c3C3C8ECBA65dAc4CF69CaF871F2e0DD",
+        "0x9daF8c91AEFAE50b9c0E69629D3F6Ca40cA3B3FE"
       ],
       "stargate": [
         "0x9Aa02D4Fae7F58b8E8f34c66E756cC734DAc7fe4",
@@ -1301,7 +1315,8 @@
         "0x032b241De86a8660f1Ae0691a4760B426EA246d7"
       ],
       "magpiefi": [
-        "0x15392211222B46A0eA85a9A800830486D144848D"
+        "0x15392211222B46A0eA85a9A800830486D144848D",
+        "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
       ]
     },
     "executors": {
@@ -1377,7 +1392,8 @@
         "0x2fF506ed9729580EF8Bf04429614beB1baE5F76D"
       ],
       "magpiefi": [
-        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104",
+        "0xc325856e5585823aaC0D1Fd46c35c608D95E65A9"
       ],
       "odos": [
         "0xaC041Df48dF9791B0654f1Dbbf2CC8450C5f2e9D"
@@ -1410,6 +1426,9 @@
       ],
       "owlto": [
         "0x7CFE8Aa0d8E92CCbBDfB12b95AEB7a54ec40f0F5"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     }
   },
@@ -2059,7 +2078,8 @@
         "0x943ac2310D9BC703d6AB5e5e76876e212100f894"
       ],
       "magpiefi": [
-        "0x38AE1164Ca61ee7AA395Bb139B3990e347988CE1"
+        "0x38AE1164Ca61ee7AA395Bb139B3990e347988CE1",
+        "0xB44958Ff91b4b67D8D4db010e38ccfFe52551ecb"
       ],
       "sushi": [
         "0xE6fD46600A97CE06703b58333B9C2399F4bF6FEc"
@@ -3408,7 +3428,8 @@
         "0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52"
       ],
       "xLink": [
-        "0xd15B997505739C02564DE7f0E010B42b2F81520d"
+        "0xd15B997505739C02564DE7f0E010B42b2F81520d",
+        "0xa5171F62747dcD8EcB141874e6Ba7828576F1c9E"
       ],
       "garden": [
         "0xeaE7721d779276eb0f5837e2fE260118724a2Ba4"
@@ -3506,7 +3527,8 @@
         "0x68208D99746b805a1Ae41421950A47b711E35681"
       ],
       "magpiefi": [
-        "0xEF42f78d25f4c681dcaD2597fA04877ff802eF4B"
+        "0xEF42f78d25f4c681dcaD2597fA04877ff802eF4B",
+        "0x5E766616AaBFB588E23a8EA854e9dbd1042afFD3"
       ]
     },
     "executors": {
@@ -3951,7 +3973,8 @@
         "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"
       ],
       "magpiefi": [
-        "0x34CdCe58CBdC6C54f2AC808A24561D0AB18Ca8Be"
+        "0x34CdCe58CBdC6C54f2AC808A24561D0AB18Ca8Be",
+        "0xfB1B08BA6BA284934D817Ea3C9D18f592cc59a50"
       ]
     },
     "executors": {
@@ -4231,6 +4254,12 @@
       ],
       "swapKit": [
         "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
+      ],
+      "cctp": [
+        "0x6B25532e1060CE10cc3B0A99e5683b91BFDe6982"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "dexes": {
@@ -4568,6 +4597,9 @@
       ],
       "xLink": [
         "0x0F38ED043A1A2ec79B15d7F4FB8D25036680ce03"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     }
   },
@@ -4847,7 +4879,8 @@
         "0x04830cfCED9772b8ACbAF76Cfc7A630Ad82c9148"
       ],
       "magpiefi": [
-        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2",
+        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3"
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
@@ -4987,7 +5020,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "magpiefi": [
-        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3"
+        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3",
+        "0x9eE06954418687C6fb3a9966F7c46E0A245F0183"
       ]
     },
     "executors": {

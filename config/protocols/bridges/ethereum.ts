@@ -11,6 +11,12 @@ export const ETH_MAINNET = {
         '0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e',
       ],
     },
+    [BRIDGES.cctp]: {
+      address: ['0xBd3fa81B58Ba92a82136038B25aDec7066af3155'],
+    },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.celer]: {
       address: [
         '0x6065A982F04F759b7d2D042D2864e569fad84214',

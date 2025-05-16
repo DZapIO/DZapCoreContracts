@@ -26,6 +26,12 @@ export const ARBITRUM_MAINNET = {
     [BRIDGES.crossCurve]: {
       address: ['0xA2A786ff9148f7C88EE93372Db8CBe9e94585c74'],
     },
+    [BRIDGES.circleCCTPV1]: {
+      address: ['0x19330d10D9Cc8751218eaf51E8885D058642E08A'],
+    },
+    [BRIDGES.circleCCTPV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.deBridge]: {
       address: [
         '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',

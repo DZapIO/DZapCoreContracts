@@ -3433,6 +3433,12 @@
       ],
       "garden": [
         "0xeaE7721d779276eb0f5837e2fE260118724a2Ba4"
+      ],
+      "circleCCTPV1": [
+        "0x1682Ae6375C4E4A97e4B583BC394c861A46D8962"
+      ],
+      "circleCCTPV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "dexes": {
@@ -3871,6 +3877,12 @@
       ],
       "xLink": [
         "0x4306374f07382b36AAe832A50831C8C5b26Cd41e"
+      ],
+      "circleCCTPV1": [
+        "0x19330d10D9Cc8751218eaf51E8885D058642E08A"
+      ],
+      "circleCCTPV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "dexes": {

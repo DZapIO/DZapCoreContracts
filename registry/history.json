@@ -918,7 +918,8 @@
         "0x10ED43C718714eb63d5aA57B78B54704E256024E"
       ],
       "magpiefi": [
-        "0x15392211222B46A0eA85a9A800830486D144848D"
+        "0x15392211222B46A0eA85a9A800830486D144848D",
+        "0x29Ed0a2F22a92Ff84A7F196785Ca6b0D21AEeC62"
       ]
     },
     "executors": {
@@ -2032,7 +2033,8 @@
       ],
       "relayLink": [
         "0xebd1e414ebb98522cfd932104ba41fac10a4ef35",
-        "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98"
+        "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
+        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1"
       ]
     },
     "dexes": {
@@ -4347,7 +4349,8 @@
         "0x8F66c4AE756BEbC49Ec8B81966DD8bba9f127549"
       ],
       "magpiefi": [
-        "0xF25075d95b5945bCFf394588db3df8B1CacFccF6"
+        "0xF25075d95b5945bCFf394588db3df8B1CacFccF6",
+        "0x3611B82c7B13e72b26eb0E9BE0613bEE7A45aC7c"
       ],
       "traderJoe": [
         "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"

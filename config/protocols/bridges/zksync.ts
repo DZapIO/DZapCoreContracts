@@ -58,6 +58,7 @@ export const ZKSYNC_MAINNET = {
       address: [
         '0xebd1e414ebb98522cfd932104ba41fac10a4ef35',
         '0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98',
+        '0xC7A4a594EF6E834AE75392A62A79638E0b6178C1',
       ],
       selectorInfo: [],
     },

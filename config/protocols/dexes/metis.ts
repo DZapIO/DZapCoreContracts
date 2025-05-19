@@ -3,7 +3,10 @@ import { DEXES } from '../dexNames'
 export const METIS_DEXES = {
   dexes: {
     [DEXES.lifi]: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
-    [DEXES.magpiefi]: ['0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2'],
+    [DEXES.magpiefi]: [
+      '0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2',
+      '0xda52965937213F51Bfe716f338714Afa80fF17BF',
+    ],
     [DEXES.okx]: [
       '0x6b2C0c7be2048Daa9b5527982C29f48062B34D58',
       '0x57df6092665eb6058DE53939612413ff4B09114E',

@@ -1498,7 +1498,8 @@
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ],
       "magpiefi": [
-        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3"
+        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3",
+        "0x6D3C9920c7a2617Ea98C9aFcf7219d0f166Ab758"
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
@@ -1801,7 +1802,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "magpiefi": [
-        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2",
+        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3"
       ]
     }
   },
@@ -2258,7 +2260,8 @@
         "0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68"
       ],
       "magpiefi": [
-        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2"
+        "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2",
+        "0xda52965937213F51Bfe716f338714Afa80fF17BF"
       ]
     },
     "bridges": {
@@ -2344,7 +2347,8 @@
     "dexes": {
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
-        "0x57df6092665eb6058DE53939612413ff4B09114E"
+        "0x57df6092665eb6058DE53939612413ff4B09114E",
+        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6"
       ],
       "paraswapV6": [
         "0x6a000f20005980200259b80c5102003040001068"
@@ -2374,7 +2378,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "magpiefi": [
-        "0xCf32c5bB41F7A302298a2D2072155800871BaaD3"
+        "0xCf32c5bB41F7A302298a2D2072155800871BaaD3",
+        "0x3950bF2ffF93e5D502430f17924aEF4C621eA772"
       ]
     },
     "bridges": {
@@ -4415,7 +4420,8 @@
     },
     "dexes": {
       "magpiefi": [
-        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104",
+        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3"
       ],
       "lifi": [
         "0x864b314D4C5a0399368609581d3E8933a63b9232"
@@ -4514,7 +4520,8 @@
         "0xde1e598b81620773454588b85d6b5d4eec32573e"
       ],
       "magpiefi": [
-        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104",
+        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3"
       ],
       "iceCreamSwap": [
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
@@ -4660,7 +4667,8 @@
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ],
       "magpiefi": [
-        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104"
+        "0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104",
+        "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3"
       ]
     },
     "bridges": {
@@ -4784,7 +4792,8 @@
         "0xC5a350853E4e36b73EB0C24aaA4b8816C9A3579a"
       ],
       "magpiefi": [
-        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3"
+        "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3",
+        "0xC9f1A0ba8071685E3529982B59C8645b27734bd0"
       ]
     },
     "bridges": {

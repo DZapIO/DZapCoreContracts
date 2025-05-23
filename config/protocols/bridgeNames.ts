@@ -2,6 +2,7 @@ export enum BRIDGES {
   ALL = 'ALL',
   across = 'across',
   allbridge = 'allbridge',
+  bungee = 'bungee',
   cctp = 'cctp',
   cctpV2 = 'cctpV2',
   celer = 'celer',

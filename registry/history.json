@@ -458,7 +458,8 @@
       "okx": [
         "0xf332761c673b59B21fF6dfa8adA44d78c12dEF09",
         "0x68D6B739D2020067D1e2F713b999dA97E4d54812",
-        "0x88156aAe243D7E2f8D92965581Ff169183D8355e"
+        "0x88156aAe243D7E2f8D92965581Ff169183D8355e",
+        "0x9b9efa5Efa731EA9Bbb0369E91fA17Abf249CFD4"
       ],
       "routerNitro": [
         "0x5501A36b1313aC5d27e85418acd2AA4564f50b44"
@@ -891,7 +892,8 @@
       "okx": [
         "0x9333C74BDd1E118634fE5664ACA7a9710b108Bab",
         "0x2c34A2Fb1d0b4f55de51E1d0bDEfaDDce6b7cDD6",
-        "0xc44Ad35B5A41C428c0eAE842F20F84D1ff6ed917"
+        "0xc44Ad35B5A41C428c0eAE842F20F84D1ff6ed917",
+        "0x9b9efa5Efa731EA9Bbb0369E91fA17Abf249CFD4"
       ],
       "routerNitro": [
         "0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7"
@@ -1292,7 +1294,8 @@
       "okx": [
         "0xA748D6573acA135aF68F2635BE60CB80278bd855",
         "0x3B86917369B83a6892f553609F3c2F439C184e31",
-        "0x5E8DF5b010D57e525562791717011D496676552A"
+        "0x5E8DF5b010D57e525562791717011D496676552A",
+        "0x9b9efa5Efa731EA9Bbb0369E91fA17Abf249CFD4"
       ],
       "routerNitro": [
         "0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a"
@@ -1599,7 +1602,8 @@
       "okx": [
         "0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE",
         "0x8b773D83bc66Be128c60e07E17C8901f7a64F000",
-        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6"
+        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6",
+        "0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380"
       ],
       "xyFinance": [
         "0x6A816cEE105a9409D8df0A83d8eeaeD9EB4309fE"
@@ -3442,6 +3446,9 @@
       ],
       "garden": [
         "0xeaE7721d779276eb0f5837e2fE260118724a2Ba4"
+      ],
+      "bungee": [
+        "0x3C54883Ce0d86b3abB26A63744bEb853Ea99a403"
       ]
     },
     "dexes": {

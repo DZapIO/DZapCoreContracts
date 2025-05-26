@@ -1,6 +1,10 @@
 import { CHAIN_IDS } from '../networks'
 
 export const RELAYER_ADDRESS = {
+  [CHAIN_IDS.APE_CHAIN]: {
+    relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     relayerReceiver: '0xa5f565650890fba1824ee0f21ebbbf660a179934',
     relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
@@ -122,7 +126,19 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0x7f4babd2c7d35221e72ab67ea72cba99573a0089',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },
+  [CHAIN_IDS.SUPER_POSITION]: {
+    relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
+    relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+  },
+  [CHAIN_IDS.SWELLCHAIN]: {
+    relayerReceiver: '0xf042fcc6bd5cb48b2862d9f22d3de5b342e94f4c',
+    relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+  },
   [CHAIN_IDS.TAIKO_MAINNET]: {
+    relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
+    relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+  },
+  [CHAIN_IDS.WORLD_CHAIN]: {
     relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },

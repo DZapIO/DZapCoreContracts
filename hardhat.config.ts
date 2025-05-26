@@ -30,10 +30,12 @@ dotenv.config()
 
 const supportedNetworks = [
   // CHAIN_IDS.ABSTRACT_MAINNET,
+  CHAIN_IDS.APE_CHAIN,
   CHAIN_IDS.ARTHERA,
   CHAIN_IDS.ARBITRUM_MAINNET,
   CHAIN_IDS.AURORA_MAINNET,
   CHAIN_IDS.AVALANCHE_MAINNET,
+  CHAIN_IDS.BAHAMUT_MAINNET,
   CHAIN_IDS.BASE_MAINNET,
   CHAIN_IDS.BERACHAIN_MAINNET,
   CHAIN_IDS.BLAST_MAINNET,
@@ -54,9 +56,11 @@ const supportedNetworks = [
   CHAIN_IDS.FUSE,
   CHAIN_IDS.GNOSIS_MAINNET,
   CHAIN_IDS.GRAVITY,
+  CHAIN_IDS.GOAT,
   CHAIN_IDS.HYPER_EVM,
   CHAIN_IDS.HEMI,
   CHAIN_IDS.INK,
+  CHAIN_IDS.IMMUTABLE_ZKEVM,
   CHAIN_IDS.IOTA_EVM,
   CHAIN_IDS.KAVA_MAINNET,
   CHAIN_IDS.KROMA,
@@ -83,8 +87,12 @@ const supportedNetworks = [
   CHAIN_IDS.SONIC_MAINNET,
   CHAIN_IDS.SEI_EVM_MAINNET,
   CHAIN_IDS.STORY,
+  CHAIN_IDS.SUPER_POSITION,
+  CHAIN_IDS.SWELLCHAIN,
   CHAIN_IDS.TAIKO_MAINNET,
   CHAIN_IDS.TELOS_MAINNET,
+  CHAIN_IDS.UNICHAIN,
+  CHAIN_IDS.WORLD_CHAIN,
   CHAIN_IDS.X_LAYER_MAINNET,
   CHAIN_IDS.ZETACHAIN_MAINNET,
   CHAIN_IDS.ZKSYNC_MAINNET,
@@ -98,6 +106,25 @@ const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   // defaultNetwork: 'zkTestnet',
   networks: {
+    hardhat: {
+      chains: {
+        [CHAIN_IDS.BASE_MAINNET]: {
+          hardforkHistory: {
+            london: 25120000,
+          },
+        },
+        [CHAIN_IDS.MANTLE_MAINNET]: {
+          hardforkHistory: {
+            london: 76174808,
+          },
+        },
+        [CHAIN_IDS.POLYGON_MAINNET]: {
+          hardforkHistory: {
+            london: 68349300,
+          },
+        },
+      },
+    },
     ...networkConfig,
     zkTestnet: {
       url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),

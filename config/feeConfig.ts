@@ -356,4 +356,52 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.BAHAMUT_MAINNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '100',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.APE_CHAIN]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '200',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.UNICHAIN]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.IMMUTABLE_ZKEVM]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '200',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.SWELLCHAIN]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.SUPER_POSITION]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.WORLD_CHAIN]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.GOAT]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.00125',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

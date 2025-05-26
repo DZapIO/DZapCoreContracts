@@ -8,6 +8,9 @@ export const BASE_MAINNET = {
     [BRIDGES.allbridge]: {
       address: ['0x001E3f136c2f804854581Da55Ad7660a2b35DEf7'],
     },
+    [BRIDGES.bungee]: {
+      address: ['0x3C54883Ce0d86b3abB26A63744bEb853Ea99a403'],
+    },
     [BRIDGES.cctp]: {
       address: ['0x1682Ae6375C4E4A97e4B583BC394c861A46D8962'],
     },
@@ -138,6 +141,7 @@ export const BASE_MAINNET = {
       address: [
         '0xd15B997505739C02564DE7f0E010B42b2F81520d',
         '0xa5171F62747dcD8EcB141874e6Ba7828576F1c9E',
+        '0xe80e0C533D41343b0038a3eA74102B4b9fF13e7e',
       ],
     },
     [BRIDGES.xyFinance]: {

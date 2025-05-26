@@ -10,11 +10,9 @@ export const TELOS_MAINNET = {
         '0x5523985926aa12ba58dc5ad00ddca99678d7227e',
         '0xcB28fbE3E9C0FEA62E0E63ff3f232CECfE555aD4',
       ],
-      selectorInfo: [],
     },
     [BRIDGES.telosBridge]: {
       address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
-      selectorInfo: [],
     },
   },
 }

@@ -18,6 +18,7 @@ export enum DEXES {
   paraswap = 'paraswap', // Should remove this in future and change below v6 to only paraswap
   paraswapV6 = 'paraswapV6',
   propeller = 'propeller',
+  relayLink = 'relayLink',
   rocketX = 'rocketX',
   router = 'router',
   routerNitro = 'routerNitro',

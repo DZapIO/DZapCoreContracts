@@ -2,8 +2,8 @@ import { BRIDGES } from '../bridgeNames'
 
 export const APE_CHAIN_BRIDGES = {
   bridges: {
-    [BRIDGES.lifi]: {
-      //   address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
+    [BRIDGES.relayLink]: {
+      address: ['0xa06e1351E2fD2D45b5D35633ca7eCF328684a109'],
     },
   },
 }

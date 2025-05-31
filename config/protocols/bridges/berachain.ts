@@ -15,7 +15,10 @@ export const BERACHAIN_BRIDGES = {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xeeeeee9ec4769a09a76a83c7bc42b185872860ee'],
+      address: [
+        '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',
+        '0x435bc1Fa302256f0c4B704AE3B7Ff322d5c1490C',
+      ],
     },
     [BRIDGES.router]: {
       address: [

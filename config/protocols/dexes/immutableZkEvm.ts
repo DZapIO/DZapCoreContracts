@@ -2,6 +2,6 @@ import { DEXES } from '../dexNames'
 
 export const IMMUTABLE_ZK_EVM_DEXES = {
   dexes: {
-    // [DEXES.dodo]: ['0xcBF3378D432CB181aae32a6A80AA94CF8e00f534'],
+    [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   },
 }

@@ -47,6 +47,7 @@ export const OPTIMISM_DEXES = {
       '0x216b4b4ba9f3e719726886d34a177484278bfcae',
     ],
     [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
+    [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     [DEXES.routerNitro]: ['0x5501A36b1313aC5d27e85418acd2AA4564f50b44'],
     [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     [DEXES.sushi]: [

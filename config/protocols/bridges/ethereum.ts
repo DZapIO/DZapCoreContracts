@@ -63,6 +63,7 @@ export const ETH_MAINNET = {
       address: [
         '0xFc99f58A8974A4bc36e60E2d490Bb8D72899ee9f',
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
+        '0x7b5ef174b3aE35c9E226A2Ab15b9b29Daa57c330',
       ],
     },
     [BRIDGES.omniBtc]: {

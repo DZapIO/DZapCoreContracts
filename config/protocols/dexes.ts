@@ -38,7 +38,6 @@ import { OKX_DEXES } from './dexes/okx'
 import { CONFLUX_DEXES } from './dexes/conflux'
 import { TAIKO_DEXES } from './dexes/taiko'
 import { X_LAYER_DEXES } from './dexes/xLayer'
-import { ZETACHAIN_DEXES } from './dexes/zetachain'
 import { AURORA_DEXES } from './dexes/aurora'
 import { SAAKURU_DEXES } from './dexes/saakuru'
 import { GNOSIS_DEXES } from './dexes/gnosis'
@@ -52,13 +51,24 @@ import { BITLAYER_DEXES } from './dexes/bitlayer'
 import { HEMI_DEXES } from './dexes/hemi'
 import { SEI_DEXES } from './dexes/sei'
 import { MORPH_DEXES } from './dexes/morph'
+import { WORLDCHAIN_DEXES } from './dexes/worldChain'
+import { ZETACHAIN_DEXES } from './dexes/zetachain'
+import { ZKFAIR_DEXES } from './dexes/zkFair'
+import { APE_CHAIN_DEXES } from './dexes/apeChain'
+import { BAHAMUT_DEXES } from './dexes/bahamut'
+import { IMMUTABLE_ZK_EVM_DEXES } from './dexes/immutableZkEvm'
+import { SUPERPOSITION_DEXES } from './dexes/superposition'
+import { SWELL_CHAIN_DEXES } from './dexes/swellChain'
+import { UNICHAIN_DEXES } from './dexes/unichain'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
 } = {
   [CHAIN_IDS.ARBITRUM_MAINNET]: ARBITRUM_DEXES,
+  [CHAIN_IDS.APE_CHAIN]: APE_CHAIN_DEXES,
   [CHAIN_IDS.AVALANCHE_MAINNET]: AVALANCHE_DEXES,
   [CHAIN_IDS.AURORA_MAINNET]: AURORA_DEXES,
+  [CHAIN_IDS.BAHAMUT_MAINNET]: BAHAMUT_DEXES,
   [CHAIN_IDS.BASE_MAINNET]: BASE_DEXES,
   [CHAIN_IDS.BERACHAIN_MAINNET]: BERACHAIN_DEXES,
   [CHAIN_IDS.BITLAYER]: BITLAYER_DEXES,
@@ -77,7 +87,9 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.GNOSIS_MAINNET]: GNOSIS_DEXES,
   [CHAIN_IDS.GRAVITY]: GRAVITY_DEXES,
   [CHAIN_IDS.HEMI]: HEMI_DEXES,
+  [CHAIN_IDS.IMMUTABLE_ZKEVM]: IMMUTABLE_ZK_EVM_DEXES,
   [CHAIN_IDS.INK]: INK_DEXES,
+  [CHAIN_IDS.KAIA]: KAVA_DEXES,
   [CHAIN_IDS.KAVA_MAINNET]: KAVA_DEXES,
   [CHAIN_IDS.KROMA]: KROMA_DEXES,
   [CHAIN_IDS.LINEA_MAINNET]: LINEA_DEXES,
@@ -101,10 +113,15 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.SEI_EVM_MAINNET]: SEI_DEXES,
   [CHAIN_IDS.SONIC_MAINNET]: SONIC_DEXES,
   [CHAIN_IDS.SONEIUM_MAINNET]: SONEIUM_DEXES,
+  [CHAIN_IDS.SUPER_POSITION]: SUPERPOSITION_DEXES,
+  [CHAIN_IDS.SWELLCHAIN]: SWELL_CHAIN_DEXES,
   [CHAIN_IDS.STORY]: STORY_DEXES,
   [CHAIN_IDS.TAIKO_MAINNET]: TAIKO_DEXES,
   [CHAIN_IDS.TELOS_MAINNET]: TELOS_DEXES,
+  [CHAIN_IDS.UNICHAIN]: UNICHAIN_DEXES,
   [CHAIN_IDS.X_LAYER_MAINNET]: X_LAYER_DEXES,
+  [CHAIN_IDS.WORLD_CHAIN]: WORLDCHAIN_DEXES,
   [CHAIN_IDS.ZETACHAIN_MAINNET]: ZETACHAIN_DEXES,
+  [CHAIN_IDS.ZKFAIR]: ZKFAIR_DEXES,
   [CHAIN_IDS.ZKSYNC_MAINNET]: ZKSYNC_DEXES,
 }

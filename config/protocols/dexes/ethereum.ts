@@ -46,6 +46,7 @@ export const ETH_DEXES = {
     ],
     [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
     [DEXES.propeller]: ['0x14f2b6ca0324cd2B013aD02a7D85541d215e2906'],
+    [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     [DEXES.routerNitro]: ['0x6c45e28a76977a96e263f84f95912b47f927b687'],
     [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     [DEXES.sushi]: [

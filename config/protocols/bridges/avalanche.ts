@@ -37,6 +37,7 @@ export const AVALANCHE_MAINNET = {
       address: [
         '0xf956D9FA19656D8e5219fd6fa8bA6cb198094138',
         '0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f',
+        '0x5C837a8f114548A3C13209068d0241aacdd33EeC',
       ],
     },
     [BRIDGES.omniBtc]: {

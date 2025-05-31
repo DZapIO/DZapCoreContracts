@@ -2,8 +2,8 @@ import { BRIDGES } from '../bridgeNames'
 
 export const SWELLCHAIN__BRIDGES = {
   bridges: {
-    [BRIDGES.lifi]: {
-      //   address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
+    [BRIDGES.relayLink]: {
+      address: ['0xF042fCC6bd5CB48b2862D9F22d3dE5B342e94F4c'],
     },
   },
 }

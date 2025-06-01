@@ -9,5 +9,6 @@ export const MERLIN_DEXES = {
       '0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6',
     ],
     [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
+    [DEXES.relayLink]: ['0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380'],
   },
 }

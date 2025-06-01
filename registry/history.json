@@ -928,6 +928,9 @@
       "magpiefi": [
         "0x15392211222B46A0eA85a9A800830486D144848D",
         "0x29Ed0a2F22a92Ff84A7F196785Ca6b0D21AEeC62"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "executors": {
@@ -1031,6 +1034,9 @@
       ],
       "paraswap": [
         "0x6A000F20005980200259B80c5102003040001068"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     }
   },
@@ -1141,6 +1147,9 @@
       "symbiosis": [
         "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
+      ],
+      "lifi": [
+        "0x864b314D4C5a0399368609581d3E8933a63b9232"
       ]
     },
     "dexes": {
@@ -1152,6 +1161,15 @@
       ],
       "uniswap": [
         "0x73855d06DE49d0fe4A9c42636Ba96c62da12FF9C"
+      ],
+      "enso": [
+        "0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf"
+      ],
+      "lifi": [
+        "0x864b314D4C5a0399368609581d3E8933a63b9232"
+      ],
+      "zeroX": [
+        "0x0000000000001fF3684f28c67538d4D072C22734"
       ]
     }
   },
@@ -1395,6 +1413,9 @@
       "magpiefi": [
         "0x15392211222B46A0eA85a9A800830486D144848D",
         "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "executors": {
@@ -1852,7 +1873,8 @@
       "okx": [
         "0xf332761c673b59B21fF6dfa8adA44d78c12dEF09",
         "0x70cBb871E8f30Fc8Ce23609E9E0Ea87B6b222F58",
-        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6"
+        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6",
+        "0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380"
       ],
       "paraswapV6": [
         "0x6a000f20005980200259b80c5102003040001068"
@@ -2025,6 +2047,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "bridges": {
@@ -2170,6 +2195,9 @@
       ],
       "uniswap": [
         "0x99c56385daBCE3E81d8499d0b8d0257aBC07E8A3"
+      ],
+      "relayLink": [
+        "0xf605a9345401a0A3CAAcBcF9D891949218e0142D"
       ]
     },
     "executors": {
@@ -2266,6 +2294,15 @@
     "dexes": {
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+      ],
+      "uniswap": [
+        "0x091AD9e2e6e5eD44c1c66dB50e49A601F9f36cF6"
+      ],
+      "zeroX": [
+        "0x0000000000001fF3684f28c67538d4D072C22734"
       ]
     }
   },
@@ -2372,7 +2409,8 @@
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
         "0x57df6092665eb6058DE53939612413ff4B09114E",
-        "0x7A7AD9aa93cd0A2D0255326E5Fb145CEc14997FF"
+        "0x7A7AD9aa93cd0A2D0255326E5Fb145CEc14997FF",
+        "0x06f183D52D92c13a5f2B989B8710BA7F00bd6f87"
       ],
       "routerNitro": [
         "0x21c1E74CAaDf990E237920d5515955a024031109"
@@ -2477,7 +2515,8 @@
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
         "0x57df6092665eb6058DE53939612413ff4B09114E",
-        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6"
+        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6",
+        "0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380"
       ],
       "paraswapV6": [
         "0x6a000f20005980200259b80c5102003040001068"
@@ -2811,6 +2850,11 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
+    },
+    "dexes": {
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+      ]
     }
   },
   "1625": {
@@ -2856,6 +2900,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "bridges": {
@@ -2962,6 +3009,14 @@
     "bridges": {
       "relayLink": [
         "0xF042fCC6bd5CB48b2862D9F22d3dE5B342e94F4c"
+      ],
+      "lifi": [
+        "0x76F6937a41910F075024138066708B36139AC104"
+      ]
+    },
+    "dexes": {
+      "lifi": [
+        "0x76F6937a41910F075024138066708B36139AC104"
       ]
     }
   },
@@ -3261,6 +3316,9 @@
       ],
       "openOcean": [
         "0x6352a56caadc4f1e25cd6c75970fa768a3304e64"
+      ],
+      "relayLink": [
+        "0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380"
       ]
     }
   },
@@ -3555,6 +3613,11 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "izumi": [
+        "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ]
     }
   },
   "8453": {
@@ -3991,6 +4054,9 @@
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "relayLink": [
+        "0x48b62137EdfA95a428D35C09E44256a739F6B557"
       ]
     }
   },
@@ -4055,6 +4121,9 @@
       ],
       "okx": [
         "0xD1b8997AaC08c619d40Be2e4284c9C72cAB33954"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "bridges": {
@@ -4428,6 +4497,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "relayLink": [
+        "0xaAaAAF3bA19413A906fDDD49d489b6908F730600"
       ]
     },
     "bridges": {
@@ -4488,6 +4560,16 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "izumi": [
+        "0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2"
+      ]
+    },
+    "bridges": {
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ]
     }
   },
   "43111": {
@@ -4731,6 +4813,9 @@
       ],
       "traderJoe": [
         "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"
+      ],
+      "relayLink": [
+        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed"
       ]
     },
     "executors": {
@@ -4793,6 +4878,14 @@
     "bridges": {
       "relayLink": [
         "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109"
+      ],
+      "lifi": [
+        "0x03d55A7896097801B1dE90b4E3E0392CE279180A"
+      ]
+    },
+    "dexes": {
+      "lifi": [
+        "0x03d55A7896097801B1dE90b4E3E0392CE279180A"
       ]
     }
   },
@@ -4838,6 +4931,9 @@
       ],
       "lifi": [
         "0x864b314D4C5a0399368609581d3E8933a63b9232"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "bridges": {
@@ -5163,7 +5259,8 @@
         "0xbbbbbBB520d69a9775E85b458C58c648259FAD5F",
         "0x2E86f54943faFD2cB62958c3deed36C879e3E944",
         "0x5fD2Dc91FF1dE7FF4AEB1CACeF8E9911bAAECa68",
-        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6"
+        "0x411d2C093e4c2e69Bf0D8E94be1bF13DaDD879c6",
+        "0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380"
       ],
       "kyber": [
         "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
@@ -5212,6 +5309,9 @@
       "magpiefi": [
         "0x5AFfa5312aDE198d9527ACf058fee1C8eD8Fe9f3",
         "0xC9f1A0ba8071685E3529982B59C8645b27734bd0"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "bridges": {
@@ -5314,6 +5414,9 @@
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "relayLink": [
+        "0x6B7b5E5A75Eb1c26689618C571143D255694c134"
       ]
     },
     "bridges": {
@@ -5413,7 +5516,8 @@
       "okx": [
         "0x6b2C0c7be2048Daa9b5527982C29f48062B34D58",
         "0x57df6092665eb6058DE53939612413ff4B09114E",
-        "0x88EDbF47032fB84E45D6CD6d8199F28C7aa77076"
+        "0x88EDbF47032fB84E45D6CD6d8199F28C7aa77076",
+        "0x9b9efa5Efa731EA9Bbb0369E91fA17Abf249CFD4"
       ],
       "routerNitro": [
         "0x5546dA2bCdCFF39b187723434cDE10D4eE99C566"
@@ -5452,6 +5556,9 @@
       "magpiefi": [
         "0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3",
         "0x9eE06954418687C6fb3a9966F7c46E0A245F0183"
+      ],
+      "relayLink": [
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "executors": {

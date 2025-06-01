@@ -7,5 +7,6 @@ export const INK_DEXES = {
       '0xba7bAC71a8Ee550d89B827FE6d67bc3dCA07b104',
       '0x52BeBb970697476313AE2B3383F40d4aFD4aD9D3',
     ],
+    [DEXES.relayLink]: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
   },
 }

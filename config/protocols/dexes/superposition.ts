@@ -2,6 +2,6 @@ import { DEXES } from '../dexNames'
 
 export const SUPERPOSITION_DEXES = {
   dexes: {
-    // [DEXES.dodo]: ['0xcBF3378D432CB181aae32a6A80AA94CF8e00f534'],
+    [DEXES.lifi]: ['0x03d55A7896097801B1dE90b4E3E0392CE279180A'],
   },
 }

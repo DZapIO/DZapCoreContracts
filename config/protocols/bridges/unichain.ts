@@ -8,6 +8,9 @@ export const UNICHAIN_BRIDGES = {
     [BRIDGES.cctp]: {
       address: ['0x4e744b28E787c3aD0e810eD65A24461D4ac5a762'],
     },
+    [BRIDGES.lifi]: {
+      address: ['0x864b314D4C5a0399368609581d3E8933a63b9232'],
+    },
     [BRIDGES.orbiter]: {
       address: ['0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc'],
     },

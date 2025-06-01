@@ -2,8 +2,11 @@ import { DEXES } from '../dexNames'
 
 export const UNICHAIN_DEXES = {
   dexes: {
+    [DEXES.enso]: ['0xF75584eF6673aD213a685a1B58Cc0330B8eA22Cf'],
+    [DEXES.lifi]: ['0x864b314D4C5a0399368609581d3E8933a63b9232'],
     [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
     [DEXES.relayLink]: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
     [DEXES.uniswap]: ['0x73855d06DE49d0fe4A9c42636Ba96c62da12FF9C'],
+    [DEXES.zeroX]: ['0x0000000000001fF3684f28c67538d4D072C22734'],
   },
 }

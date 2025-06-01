@@ -60,6 +60,7 @@ import { IMMUTABLE_ZK_EVM_DEXES } from './dexes/immutableZkEvm'
 import { SUPERPOSITION_DEXES } from './dexes/superposition'
 import { SWELL_CHAIN_DEXES } from './dexes/swellChain'
 import { UNICHAIN_DEXES } from './dexes/unichain'
+import { KAIA_DEXES } from './dexes/kaia'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -89,7 +90,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.HEMI]: HEMI_DEXES,
   [CHAIN_IDS.IMMUTABLE_ZKEVM]: IMMUTABLE_ZK_EVM_DEXES,
   [CHAIN_IDS.INK]: INK_DEXES,
-  [CHAIN_IDS.KAIA]: KAVA_DEXES,
+  [CHAIN_IDS.KAIA]: KAIA_DEXES,
   [CHAIN_IDS.KAVA_MAINNET]: KAVA_DEXES,
   [CHAIN_IDS.KROMA]: KROMA_DEXES,
   [CHAIN_IDS.LINEA_MAINNET]: LINEA_DEXES,

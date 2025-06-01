@@ -14,6 +14,7 @@ export const MODE_DEXES = {
       '0xD1b8997AaC08c619d40Be2e4284c9C72cAB33954',
     ],
     [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+    [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     [DEXES.routerNitro]: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
     [DEXES.sushi]: ['0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71'],
     [DEXES.zeroX]: [

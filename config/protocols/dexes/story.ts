@@ -2,6 +2,6 @@ import { DEXES } from '../dexNames'
 
 export const STORY_DEXES = {
   dexes: {
-    [DEXES.bebop]: [''],
+    [DEXES.relayLink]: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
   },
 }

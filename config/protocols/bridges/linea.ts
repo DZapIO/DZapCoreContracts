@@ -51,7 +51,10 @@ export const LINEA_MAINNET = {
       address: ['0xfd06c0018318bf78705ccff2b961ef8ebc0baca0'],
     },
     [BRIDGES.router]: {
-      address: ['0x29AE05C93549bb93827cd651C6ee1c25960dB847'],
+      address: [
+        '0x29AE05C93549bb93827cd651C6ee1c25960dB847',
+        '0x44D4691Bb6fe61491E4E00BAb78C56A545820097',
+      ],
     },
     [BRIDGES.routerNitro]: {
       address: [

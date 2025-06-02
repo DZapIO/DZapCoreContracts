@@ -163,7 +163,6 @@ export type BridgeConfig = {
   bridges: {
     [key in BRIDGES]?: {
       address: string[]
-      selectorInfo?: SelectorInfo[]
     }
   }
 }

@@ -4418,6 +4418,10 @@
       "magpiefi": [
         "0x34CdCe58CBdC6C54f2AC808A24561D0AB18Ca8Be",
         "0xfB1B08BA6BA284934D817Ea3C9D18f592cc59a50"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1"
       ]
     },
     "executors": {
@@ -4815,7 +4819,8 @@
         "0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30"
       ],
       "relayLink": [
-        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed"
+        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed",
+        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0"
       ]
     },
     "executors": {
@@ -5110,7 +5115,8 @@
         "0xA562e2510ECDACAa1DB482fd287454AD2B979fa6"
       ],
       "router": [
-        "0x29AE05C93549bb93827cd651C6ee1c25960dB847"
+        "0x29AE05C93549bb93827cd651C6ee1c25960dB847",
+        "0x44D4691Bb6fe61491E4E00BAb78C56A545820097"
       ],
       "swing": [
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"

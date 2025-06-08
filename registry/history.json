@@ -100,6 +100,10 @@
       "magpiefi": [
         "0x15392211222B46A0eA85a9A800830486D144848D",
         "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
+      ],
+      "relayLink": [
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "bridges": {
@@ -146,7 +150,8 @@
       "okx": [
         "0x7D0CcAa3Fac1e5A943c5168b6CEd828691b46B36",
         "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
-        "0xFc99f58A8974A4bc36e60E2d490Bb8D72899ee9f"
+        "0xFc99f58A8974A4bc36e60E2d490Bb8D72899ee9f",
+        "0x7b5ef174b3aE35c9E226A2Ab15b9b29Daa57c330"
       ],
       "routerNitro": [
         "0x6c45e28a76977a96e263f84f95912b47f927b687",
@@ -1415,7 +1420,8 @@
         "0xA6E941eaB67569ca4522f70d343714fF51d571c4"
       ],
       "relayLink": [
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "executors": {
@@ -3860,7 +3866,8 @@
         "0x5E766616AaBFB588E23a8EA854e9dbd1042afFD3"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "executors": {
@@ -5317,7 +5324,8 @@
         "0xC9f1A0ba8071685E3529982B59C8645b27734bd0"
       ],
       "relayLink": [
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     },
     "bridges": {

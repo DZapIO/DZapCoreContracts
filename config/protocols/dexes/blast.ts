@@ -24,7 +24,10 @@ export const BLAST_DEXES = {
       '0xd30D8CA2E7715eE6804a287eB86FAfC0839b1380',
     ],
     [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
-    [DEXES.relayLink]: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
+    [DEXES.relayLink]: [
+      '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+      '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    ],
     [DEXES.routerNitro]: ['0x01B4CE0d48Ce91eB6bcaf5dB33870C65d641b894'],
     [DEXES.sushi]: [
       '0x46b3fdf7b5cde91ac049936bf0bdb12c5d22202e',

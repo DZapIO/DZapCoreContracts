@@ -44,7 +44,10 @@ export const BASE_DEXES = {
       '0x93aAAe79a53759cD164340E4C8766E4Db5331cD7',
     ],
     [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
-    [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+    [DEXES.relayLink]: [
+      '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+      '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+    ],
     [DEXES.routerNitro]: ['0x02D728B9C1513478a6b6de77a92648e1D8F801e7'],
     [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     [DEXES.sushi]: [

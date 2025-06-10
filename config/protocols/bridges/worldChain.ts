@@ -2,11 +2,17 @@ import { BRIDGES } from '../bridgeNames'
 
 export const WORLDCHAIN_BRIDGES = {
   bridges: {
+    [BRIDGES.across]: {
+      address: ['0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64'],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xa06e1351E2fD2D45b5D35633ca7eCF328684a109'],
+      address: [
+        '0xa06e1351E2fD2D45b5D35633ca7eCF328684a109',
+        '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+      ],
     },
   },
 }

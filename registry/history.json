@@ -2294,7 +2294,11 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "relayLink": [
-        "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109"
+        "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "across": [
+        "0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64"
       ]
     },
     "dexes": {
@@ -2302,7 +2306,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "relayLink": [
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ],
       "uniswap": [
         "0x091AD9e2e6e5eD44c1c66dB50e49A601F9f36cF6"
@@ -4063,7 +4068,8 @@
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
       ],
       "relayLink": [
-        "0x48b62137EdfA95a428D35C09E44256a739F6B557"
+        "0x48b62137EdfA95a428D35C09E44256a739F6B557",
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     }
   },

@@ -45,7 +45,10 @@ export const BSC_DEXES = {
       '0x216b4b4ba9f3e719726886d34a177484278bfcae',
     ],
     [DEXES.paraswapV6]: ['0x6a000f20005980200259b80c5102003040001068'],
-    [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+    [DEXES.relayLink]: [
+      '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+      '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+    ],
     [DEXES.routerNitro]: ['0x2F301d3b045544A9D7Ec3FA090CD78986F11f2E7'],
     [DEXES.socket]: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     [DEXES.sushi]: [

@@ -935,7 +935,8 @@
         "0x29Ed0a2F22a92Ff84A7F196785Ca6b0D21AEeC62"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "executors": {
@@ -2440,6 +2441,9 @@
       "magpiefi": [
         "0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2",
         "0xda52965937213F51Bfe716f338714Afa80fF17BF"
+      ],
+      "relayLink": [
+        "0x82B3995ebE539CBed760bE089E33484fE12830F9"
       ]
     },
     "bridges": {
@@ -3402,6 +3406,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "relayLink": [
+        "0x90bc1FE7561423D51D77fF56F4790805D3B5d885"
       ]
     },
     "bridges": {
@@ -4069,7 +4076,8 @@
       ],
       "relayLink": [
         "0x48b62137EdfA95a428D35C09E44256a739F6B557",
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ]
     }
   },
@@ -4833,7 +4841,8 @@
       ],
       "relayLink": [
         "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed",
-        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0"
+        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",
+        "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
       ]
     },
     "executors": {

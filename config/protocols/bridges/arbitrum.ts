@@ -86,6 +86,9 @@ export const ARBITRUM_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x10417734001162Ea139e8b044DFe28DbB8B28ad0'],
+    },
     [BRIDGES.router]: {
       address: [
         '0x60b483D521b844e13E3337D304929D0519Bd50C8',

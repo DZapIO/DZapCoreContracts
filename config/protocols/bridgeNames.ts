@@ -24,6 +24,7 @@ export enum BRIDGES {
   optimismBridge = 'optimismBridge',
   orbiter = 'orbiter',
   owlto = 'owlto',
+  rhinoFi = 'rhinoFi',
   rango = 'rango',
   relayLink = 'relayLink',
   router = 'router',

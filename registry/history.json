@@ -392,6 +392,9 @@
       ],
       "cctp": [
         "0x2B4069517957735bE00ceE0fadAE88a26365528f"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "dexes": {
@@ -2313,6 +2316,9 @@
       ],
       "across": [
         "0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64"
+      ],
+      "cctpV2": [
+        "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
       ]
     },
     "dexes": {

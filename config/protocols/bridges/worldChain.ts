@@ -5,6 +5,9 @@ export const WORLDCHAIN_BRIDGES = {
     [BRIDGES.across]: {
       address: ['0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64'],
     },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },

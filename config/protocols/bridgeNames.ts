@@ -9,8 +9,6 @@ export enum BRIDGES {
   changeNow = 'changeNow',
   crossCurve = 'crossCurve',
   comet = 'comet',
-  circleCCTPV1 = 'circleCCTPV1',
-  circleCCTPV2 = 'circleCCTPV2',
   deBridge = 'debridge',
   garden = 'garden',
   hop = 'hop',

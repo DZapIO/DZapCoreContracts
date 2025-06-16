@@ -11,9 +11,9 @@ export const OPTIMISM_MAINNET = {
     [BRIDGES.cctp]: {
       address: ['0x2B4069517957735bE00ceE0fadAE88a26365528f'],
     },
-    // [BRIDGES.cctpV2]: {
-    //   address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
-    // },
+    [BRIDGES.cctpV2]: {
+      address: ['0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d'],
+    },
     [BRIDGES.celer]: {
       address: [
         '0x9D39Fc627A6d9d9F8C831c16995b209548cc3401',

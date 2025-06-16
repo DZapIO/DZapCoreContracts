@@ -1521,7 +1521,8 @@
         "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d"
       ],
       "router": [
-        "0xD90C818fA7FE477422264B34e7E6988e699DF358"
+        "0xD90C818fA7FE477422264B34e7E6988e699DF358",
+        "0x9FDE2ca2147882A1a9423B19e86f4E280edb5Cdb"
       ],
       "symbiosis": [
         "0xda8057acB94905eb6025120cB2c38415Fd81BfEB",
@@ -1535,6 +1536,18 @@
       ],
       "cctpV2": [
         "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
+      ],
+      "stargate": [
+        "0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9"
+      ],
+      "xyFinance": [
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ]
     }
   },
@@ -2952,6 +2965,16 @@
       ],
       "orbiter": [
         "0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
+      ],
+      "stargate": [
+        "0x45f1A95A4D3f3836523F5c83673c797f4d4d263B"
+      ],
+      "symbiosis": [
+        "0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C",
+        "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
       ]
     },
     "dexes": {
@@ -3779,6 +3802,9 @@
       ],
       "bungee": [
         "0x3C54883Ce0d86b3abB26A63744bEb853Ea99a403"
+      ],
+      "rhinoFi": [
+        "0x2f59E9086ec8130E21BD052065a9E6B2497bb102"
       ]
     },
     "dexes": {
@@ -4445,7 +4471,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1"
+        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
       ]
     },
     "executors": {
@@ -5249,6 +5276,15 @@
       "synapse": [
         "0x391E7C679d29bD940d63be94AD22A25d25b5A604",
         "0x00cD000000003f7F682BE4813200893d4e690000"
+      ],
+      "rango": [
+        "0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
+      ],
+      "xyFinance": [
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ]
     }
   },

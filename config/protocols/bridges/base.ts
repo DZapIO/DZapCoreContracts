@@ -76,6 +76,9 @@ export const BASE_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x2f59E9086ec8130E21BD052065a9E6B2497bb102'],
+    },
     [BRIDGES.router]: {
       address: [
         '0xfA14A71F6647bDe075BF16880EE7055C3b553237',

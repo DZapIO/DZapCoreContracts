@@ -14,11 +14,17 @@ export const BERACHAIN_BRIDGES = {
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    },
     [BRIDGES.relayLink]: {
       address: [
         '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',
         '0x435bc1Fa302256f0c4B704AE3B7Ff322d5c1490C',
       ],
+    },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
     },
     [BRIDGES.router]: {
       address: [
@@ -45,6 +51,9 @@ export const BERACHAIN_BRIDGES = {
         '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
         '0x00cD000000003f7F682BE4813200893d4e690000',
       ],
+    },
+    [BRIDGES.xyFinance]: {
+      address: ['0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5'],
     },
   },
 }

@@ -17,5 +17,17 @@ export const SONEIUM_BRIDGES = {
     [BRIDGES.owlto]: {
       address: ['0x0896cc10F7fa09127eE6060AD56D34D2d80306a4'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
+    [BRIDGES.stargate]: {
+      address: ['0x45f1A95A4D3f3836523F5c83673c797f4d4d263B'],
+    },
+    [BRIDGES.symbiosis]: {
+      address: [
+        '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
+        '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
+      ],
+    },
   },
 }

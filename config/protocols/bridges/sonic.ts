@@ -23,14 +23,28 @@ export const SONIC_BRIDGES = {
     [BRIDGES.owlto]: {
       address: ['0x7CFE8Aa0d8E92CCbBDfB12b95AEB7a54ec40f0F5'],
     },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    },
     [BRIDGES.relayLink]: {
       address: [
         '0xeeeeee9ec4769a09a76a83c7bc42b185872860ee',
         '0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
     [BRIDGES.router]: {
-      address: ['0xD90C818fA7FE477422264B34e7E6988e699DF358'],
+      address: [
+        '0xD90C818fA7FE477422264B34e7E6988e699DF358',
+        '0x9FDE2ca2147882A1a9423B19e86f4E280edb5Cdb',
+      ],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9', // bus
+      ],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -40,6 +54,9 @@ export const SONIC_BRIDGES = {
     },
     [BRIDGES.synapse]: {
       address: ['0x00cD000000003f7F682BE4813200893d4e690000'],
+    },
+    [BRIDGES.xyFinance]: {
+      address: ['0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5'],
     },
   },
 }

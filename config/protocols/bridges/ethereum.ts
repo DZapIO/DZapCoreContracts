@@ -88,6 +88,9 @@ export const ETH_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0xBCA3039a18c0d2f2F84BA8a028c67290bc045AFa'],
+    },
     [BRIDGES.router]: {
       address: ['0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc'],
     },

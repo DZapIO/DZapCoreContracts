@@ -247,6 +247,9 @@
       ],
       "cctpV2": [
         "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
+      ],
+      "rhinoFi": [
+        "0xBCA3039a18c0d2f2F84BA8a028c67290bc045AFa"
       ]
     },
     "executors": {
@@ -840,6 +843,9 @@
       ],
       "xLink": [
         "0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379"
+      ],
+      "rhinoFi": [
+        "0xB80A582fa430645A043bB4f6135321ee01005fEf"
       ]
     },
     "dexes": {

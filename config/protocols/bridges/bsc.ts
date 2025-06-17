@@ -51,6 +51,9 @@ export const BSC_MAINNET = {
         '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0xB80A582fa430645A043bB4f6135321ee01005fEf'],
+    },
     [BRIDGES.router]: {
       address: ['0x2c43992873b4fb841af4941aa0cf5a45598f3e76'],
     },

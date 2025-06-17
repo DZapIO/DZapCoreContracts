@@ -52,6 +52,9 @@ export const ZKSYNC_MAINNET = {
         '0xC7A4a594EF6E834AE75392A62A79638E0b6178C1',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x1fa66e2B38d0cC496ec51F81c3e05E6A6708986F'],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x7E7D4185D9c3C44D5266eD974493b24811398049',

@@ -17,6 +17,9 @@ export const UNICHAIN_BRIDGES = {
     [BRIDGES.relayLink]: {
       address: ['0x47eB64e17a6D2Fd559b608695E6d308cCED918Dd'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0xb0D7040b93fE5b099D3ce02Ea86C4a1b695732D0'],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     },

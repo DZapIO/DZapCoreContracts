@@ -398,6 +398,9 @@
       ],
       "cctpV2": [
         "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
+      ],
+      "rhinoFi": [
+        "0x0bCa65bf4b4c8803d2f0B49353ed57CAAF3d66Dc"
       ]
     },
     "dexes": {
@@ -1165,6 +1168,9 @@
       ],
       "lifi": [
         "0x864b314D4C5a0399368609581d3E8933a63b9232"
+      ],
+      "rhinoFi": [
+        "0xb0D7040b93fE5b099D3ce02Ea86C4a1b695732D0"
       ]
     },
     "dexes": {
@@ -1322,6 +1328,9 @@
       ],
       "teleSwap": [
         "0x0009876C47F6b2f0BCB41eb9729736757486c75f"
+      ],
+      "rhinoFi": [
+        "0xBA4EEE20F434bC3908A0B18DA496348657133A7E"
       ]
     },
     "dexes": {
@@ -1599,6 +1608,12 @@
       ],
       "owlto": [
         "0x936223FA057a7c852d5E7462e7E77DBDb137bff8"
+      ],
+      "relayLink": [
+        "0xaf810080131072968E5Cab00B33e6C7df4eb4E71"
+      ],
+      "rhinoFi": [
+        "0x2B4553122D960CA98075028d68735cC6b15DeEB5"
       ]
     },
     "dexes": {
@@ -1631,6 +1646,9 @@
       ],
       "sushi": [
         "0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71"
+      ],
+      "relayLink": [
+        "0xaf810080131072968E5Cab00B33e6C7df4eb4E71"
       ]
     },
     "executors": {
@@ -1766,6 +1784,9 @@
       ],
       "wanBridge": [
         "0x88888dd82A91f0406ED42BF750bAF881e64894F6"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     }
   },
@@ -2170,6 +2191,9 @@
         "0xebd1e414ebb98522cfd932104ba41fac10a4ef35",
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
         "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1"
+      ],
+      "rhinoFi": [
+        "0x1fa66e2B38d0cC496ec51F81c3e05E6A6708986F"
       ]
     },
     "dexes": {
@@ -2226,7 +2250,8 @@
         "0x99c56385daBCE3E81d8499d0b8d0257aBC07E8A3"
       ],
       "relayLink": [
-        "0xf605a9345401a0A3CAAcBcF9D891949218e0142D"
+        "0xf605a9345401a0A3CAAcBcF9D891949218e0142D",
+        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1"
       ]
     },
     "executors": {
@@ -2629,6 +2654,9 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "rhinoFi": [
+        "0x65A4b8A0927c7FD899aed24356BF83810f7b9A3f"
       ]
     }
   },
@@ -2889,6 +2917,9 @@
       ],
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     },
     "dexes": {
@@ -3498,6 +3529,9 @@
       ],
       "swing": [
         "0x97fffFfa57144BBfacF41251bd1763657e646667"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     }
   },
@@ -4102,7 +4136,11 @@
     },
     "bridges": {
       "relayLink": [
-        "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109"
+        "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "lifi": [
+        "0x2dea447e7dc6cd2f10b31bF10dCB30F87E838417"
       ]
     },
     "dexes": {
@@ -4226,6 +4264,9 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     }
   },
@@ -4787,6 +4828,9 @@
       ],
       "cctpV2": [
         "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     },
     "dexes": {
@@ -5018,6 +5062,9 @@
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     }
   },
@@ -5106,7 +5153,8 @@
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
       ],
       "relayLink": [
-        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed"
+        "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed",
+        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0"
       ]
     },
     "bridges": {
@@ -5193,6 +5241,9 @@
       ],
       "cctpV2": [
         "0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d"
+      ],
+      "rhinoFi": [
+        "0xcF68a2721394dcf5dCF66F6265C1819720F24528"
       ]
     }
   },
@@ -5434,6 +5485,9 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "rhinoFi": [
+        "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
       ]
     }
   },
@@ -5532,6 +5586,9 @@
       ],
       "relayLink": [
         "0x77A917df7A084b7B3E43517Ae28373C2a5492625"
+      ],
+      "rhinoFi": [
+        "0x1Df2De291F909baA50C1456C87C71Edf9Fb199D5"
       ]
     }
   },
@@ -5719,10 +5776,15 @@
         "0x6446C9f678764c8b69A75AEdd5b505E239dffB63"
       ],
       "swing": [
-        "0xa33db50b90E35378faEE4058DeAab2B392989b65"
+        "0xa33db50b90E35378faEE4058DeAab2B392989b65",
+        "0x90f1Ef9D2cDe204C8494Cf73130771B350070B53",
+        "0x97fffFfa57144BBfacF41251bd1763657e646667"
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+      ],
+      "rhinoFi": [
+        "0x87627c7E586441EeF9eE3C28B66662e897513f33"
       ]
     },
     "integrators": {

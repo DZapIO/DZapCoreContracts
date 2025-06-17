@@ -20,6 +20,9 @@ export const MANTLE_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xF7dc16A5b374f5a7b70E601f1B96bDcF69840832'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
     [BRIDGES.router]: {
       address: ['0xC21e4ebD1d92036Cb467b53fE3258F219d909Eb9'],
     },

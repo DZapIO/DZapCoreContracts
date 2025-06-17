@@ -50,6 +50,9 @@ export const LINEA_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xfd06c0018318bf78705ccff2b961ef8ebc0baca0'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0xcF68a2721394dcf5dCF66F6265C1819720F24528'],
+    },
     [BRIDGES.router]: {
       address: [
         '0x29AE05C93549bb93827cd651C6ee1c25960dB847',

@@ -14,6 +14,9 @@ export const POLYGON_ZK_EVM_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x65A4b8A0927c7FD899aed24356BF83810f7b9A3f'],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x6a0fd5577c540e16a3a49c40b51e0880a2a528ce',

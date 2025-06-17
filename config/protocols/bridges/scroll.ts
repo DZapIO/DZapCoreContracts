@@ -29,6 +29,9 @@ export const SCROLL_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x87627c7E586441EeF9eE3C28B66662e897513f33'],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x5546dA2bCdCFF39b187723434cDE10D4eE99C566',

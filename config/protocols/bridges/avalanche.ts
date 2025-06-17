@@ -52,6 +52,9 @@ export const AVALANCHE_MAINNET = {
         '0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
     [BRIDGES.routerNitro]: {
       address: [
         '0x4406ebEb7028fc0fc06bB7706A736AC6ada8D2bF',

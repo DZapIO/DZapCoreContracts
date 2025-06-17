@@ -11,11 +11,14 @@ export const TAIKO_MAINNET = {
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
     },
-    [BRIDGES.router]: {
-      address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
-    },
     [BRIDGES.relayLink]: {
       address: ['0x77A917df7A084b7B3E43517Ae28373C2a5492625'],
+    },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x1Df2De291F909baA50C1456C87C71Edf9Fb199D5'],
+    },
+    [BRIDGES.router]: {
+      address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
     },
     [BRIDGES.symbiosis]: {
       address: [

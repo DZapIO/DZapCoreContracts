@@ -14,6 +14,9 @@ export const INK_BRIDGES = {
         '0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
     },

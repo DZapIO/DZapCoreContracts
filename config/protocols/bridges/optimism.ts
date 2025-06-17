@@ -83,6 +83,9 @@ export const OPTIMISM_MAINNET = {
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x0bCa65bf4b4c8803d2f0B49353ed57CAAF3d66Dc'],
+    },
     [BRIDGES.router]: {
       address: [
         '0x1a2f6171d7e75f06141a953b650c6772055be843',

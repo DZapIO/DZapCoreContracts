@@ -8,5 +8,8 @@ export const STORY_BRIDGES = {
     [BRIDGES.relayLink]: {
       address: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
+    },
   },
 }

@@ -86,6 +86,9 @@ export const POLYGON_MAINNET = {
         '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
       ],
     },
+    [BRIDGES.rhinoFi]: {
+      address: ['0xBA4EEE20F434bC3908A0B18DA496348657133A7E'],
+    },
     [BRIDGES.router]: {
       address: [
         '0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d',

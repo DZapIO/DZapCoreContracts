@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.multicall3Address = "0xcA11bde05977b3631167028862bE2a173976CA11";
 exports.multicall3ZkSyncAddress = "0xF9cda624FBC7e059355ce98a31693d299FACd963";
 exports.multicall3MerlinAddress = "0xa8dcebad1ea2fcf86de386462c14d7629237cc88";
+exports.dZapMulticall3 = "0xd74bAE15b413e0a90A7B2C1723F4A9c15cb49f73";
+exports.multicall3LensAddress = "0x6b6dEa4D80e3077D076733A04c48F63c3BA49320";
 exports.multicallAddresses = new Set([
     exports.multicall3Address.toLowerCase(),
     exports.multicall3MerlinAddress.toLowerCase(),
@@ -13,6 +15,9 @@ exports.multicall3ChainAddress = {
     280: exports.multicall3ZkSyncAddress,
     324: exports.multicall3ZkSyncAddress, // zkSync Era
     4200: exports.multicall3MerlinAddress, // zkSync Era
+    5165: exports.dZapMulticall3, 
+    2741: exports.multicall3ZkSyncAddress,  // abstract
+    232: exports.multicall3LensAddress,  // lens
 };
 exports.multicall3DeploymentBlockNumbers = {
     1: 14353601,

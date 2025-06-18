@@ -146,6 +146,7 @@ export interface Network {
   apiUrl?: string
   apiType: ApiType
   apiKeyName?: NODE_ENV_VAR_NAMES
+  verifyKeyName?: string
   nativeCurrency: NativeCurrency
 }
 
@@ -183,6 +184,13 @@ export interface Create3DeploymentConfig {
   creationCode: string
 }
 
+export interface ZKCreate2DeploymentConfig {
+  deployer: string
+  saltKey: string
+  contractAddress: string
+  bytecode: string
+}
+
 export interface DiamondInitArgs {
   permit2: string
   protocolFeeVault: string
@@ -194,4 +202,23 @@ export interface VerificationData {
   contractName: string
   contractAddress: string
   constructorArguments: any[] // as structs can be passed as constructor arguments
+}
+
+export type ZKNetworks = {
+  url: string
+  chainId: CHAIN_IDS
+  ethNetwork: string
+  zksync: true
+  verifyURL?: string
+  enableVerifyURL?: boolean
+  deployPaths: string
+}
+
+export type ZKChainConfig = {
+  name: string
+  shortName: string
+  shortNameZk: string
+  verifyKeyName?: string
+  verifyURL?: string
+  isTestnet: boolean
 }

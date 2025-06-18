@@ -137,4 +137,28 @@ export const GAS_ZIP_ADDRESS = {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0x252fb662e4d7435d2a5ded8ec94d8932cf76c178',
   },
+  [CHAIN_IDS.X_LAYER_MAINNET]: {
+    depositAddress: '',
+    contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
+  },
+  [CHAIN_IDS.MORPH]: {
+    depositAddress: '',
+    contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
+  },
+  [CHAIN_IDS.SONIC_MAINNET]: {
+    depositAddress: '',
+    contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
+  },
+  [CHAIN_IDS.SONEIUM_MAINNET]: {
+    depositAddress: '',
+    contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
+  },
+  [CHAIN_IDS.BERACHAIN_MAINNET]: {
+    depositAddress: '',
+    contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
+  },
+  [CHAIN_IDS.RONIN]: {
+    depositAddress: '',
+    contractAddress: '0x31030df252cb281d8b94863af6af4af8774adb7e',
+  },
 }

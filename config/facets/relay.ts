@@ -37,6 +37,10 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0x7f4babd2c7d35221e72ab67ea72cba99573a0089',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },
+  [CHAIN_IDS.CRONOS_MAINNET]: {
+    relayerReceiver: '0xc56043daac3a26ad451abc7610f04f53cc4412e5',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
   [CHAIN_IDS.ETH_MAINNET]: {
     relayerReceiver: '0xa5f565650890fba1824ee0f21ebbbf660a179934',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
@@ -136,6 +140,10 @@ export const RELAYER_ADDRESS = {
   },
   [CHAIN_IDS.TAIKO_MAINNET]: {
     relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
+    relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
+  },
+  [CHAIN_IDS.UNICHAIN]: {
+    relayerReceiver: '0x47eb64e17a6d2fd559b608695e6d308cced918dd',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },
   [CHAIN_IDS.WORLD_CHAIN]: {

@@ -30,7 +30,7 @@ import {
   SwapTransferFacet,
   WithdrawFacet,
 } from '../typechain-types'
-import { Create3DeploymentConfig } from '../types'
+import { Create3DeploymentConfig, ZKCreate2DeploymentConfig } from '../types'
 import { isAddressSame } from './addressUtils'
 import { getNetwork, toChainId } from './networkUtils'
 
@@ -164,6 +164,10 @@ export const getLastCreate3Config = (arr: Create3DeploymentConfig[]) => {
   return arr[arr.length - 1]
 }
 
+export const getLastZkCreateConfig = (arr: ZKCreate2DeploymentConfig[]) => {
+  return arr[arr.length - 1]
+}
+
 export const getGasPrice = async (
   provider: providers.Provider,
   extraFeePercent = 2 // 2% extra
@@ -259,7 +263,7 @@ export const validateAndEstimateAdapterDeploymentCost = async (
     const creationCode = ContractFactory.getDeployTransaction().data
     const adapterDeploymentConfig = getLastCreate3Config(
       ADAPTERS_DEPLOYMENT_CONFIG[adapterName]
-    )
+    ) as Create3DeploymentConfig
     const salt = ethers.utils.id(adapterDeploymentConfig.saltKey)
 
     if (!adapterDeploymentConfig)

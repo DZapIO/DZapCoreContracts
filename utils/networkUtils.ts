@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { providers, Wallet } from 'ethers'
 import { HardhatUserConfig, HttpNetworkUserConfig } from 'hardhat/types'
-import { CHAIN_IDS, NETWORKS } from '../config/networks'
-import { ApiType, ChainId } from '../types'
+import { CHAIN_IDS, NETWORKS, ZK_EVM_CHAINS } from '../config/networks'
+import { ApiType, ChainId, ZKNetworks } from '../types'
 import { getAccountKey } from './walletUtils'
 import { MulticallWrapper } from './multicall'
 import { getEnvVar, replaceEnvInStr } from './envUtils'
@@ -73,7 +73,7 @@ export const toChainId = (chainId: string | number | bigint): CHAIN_IDS => {
   if (!isValidChainId(chainId)) {
     throw new Error(`Invalid chainId: ${chainId}`)
   }
-  return chainId as CHAIN_IDS
+  return Number(chainId) as CHAIN_IDS
 }
 
 export const isValidChainId = (chainId: ChainId): boolean => {
@@ -221,13 +221,36 @@ const checkRpc = async (rpcUrl: string): Promise<string> => {
   }
 }
 
-export const isZkEvm = (chainId: CHAIN_IDS) => {
-  return [
-    CHAIN_IDS.ZKSYNC_MAINNET,
-    CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
-    CHAIN_IDS.ABSTRACT_MAINNET,
-    CHAIN_IDS.ABSTRACT_TESTNET,
-    CHAIN_IDS.LENS,
-    CHAIN_IDS.LENS_TESTNET,
-  ].includes(chainId)
+export const isZkEvm = (chainId: ChainId) => {
+  return Object.keys(ZK_EVM_CHAINS).includes(toChainId(chainId).toString())
+}
+
+export const getZkChainConfig = (chainId: CHAIN_IDS) => {
+  const config = ZK_EVM_CHAINS[chainId]
+  console.log(config)
+  if (!config) throw `zk config for chainId ${chainId} is not defined`
+  return config
+}
+
+export const getZKNetworks = () => {
+  const network: { [networkName: string]: ZKNetworks } = {}
+
+  for (const [chainId, info] of Object.entries(ZK_EVM_CHAINS)) {
+    const chainIdNum = toChainId(chainId)
+    network[info.shortNameZk] = {
+      url: getRpcUrl(chainIdNum),
+      chainId: chainIdNum,
+      ethNetwork: info.isTestnet ? 'sepolia' : 'mainnet',
+      zksync: true,
+      // deployPaths: 'scripts/deployZkEVM',
+      deployPaths: 'scripts/deployZkEVM/create2',
+    }
+
+    if (info.verifyURL) {
+      network[info.shortNameZk].verifyURL = info.verifyURL
+      network[info.shortNameZk].enableVerifyURL = true
+    }
+  }
+
+  return network
 }

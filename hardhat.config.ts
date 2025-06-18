@@ -2,9 +2,6 @@ import * as dotenv from 'dotenv'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
-import '@matterlabs/hardhat-zksync-deploy'
-import '@matterlabs/hardhat-zksync-solc'
-// import '@matterlabs/hardhat-zksync-verify'
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@nomicfoundation/hardhat-verify'
 import '@openzeppelin/hardhat-upgrades'
@@ -16,20 +13,25 @@ import 'hardhat-deploy-ethers'
 import 'hardhat-gas-reporter'
 import 'solidity-coverage'
 
+// zk
+import '@matterlabs/hardhat-zksync-deploy'
+import '@matterlabs/hardhat-zksync-solc'
+// import '@matterlabs/hardhat-zksync-verify'
+
 import './tasks/accounts'
 import './tasks/clean'
 
-import { CHAIN_IDS } from './config/networks'
+import { CHAIN_IDS, ZK_EVM_CHAINS } from './config/networks'
 import {
   getNetworkConfig,
-  getRpcUrl,
   getVerificationConfig,
+  getZKNetworks,
 } from './utils/networkUtils'
 
 dotenv.config()
 
 const supportedNetworks = [
-  // CHAIN_IDS.ABSTRACT_MAINNET,
+  CHAIN_IDS.ABSTRACT_MAINNET,
   CHAIN_IDS.APE_CHAIN,
   CHAIN_IDS.ARTHERA,
   CHAIN_IDS.ARBITRUM_MAINNET,
@@ -66,6 +68,7 @@ const supportedNetworks = [
   CHAIN_IDS.KROMA,
   CHAIN_IDS.KAIA,
   CHAIN_IDS.LINEA_MAINNET,
+  CHAIN_IDS.LENS,
   CHAIN_IDS.MANTA_MAINNET,
   CHAIN_IDS.MANTLE_MAINNET,
   CHAIN_IDS.MERLIN_MAINNET,
@@ -100,13 +103,18 @@ const supportedNetworks = [
 ]
 
 const networkConfig = getNetworkConfig(supportedNetworks)
+// const networkConfig = getNetworkConfig([CHAIN_IDS.LENS])
+const zkNetworkConfig = getZKNetworks()
 const verificationConfig = getVerificationConfig(supportedNetworks)
+// console.log({ zkNetworkConfig, networkConfig })
+// console.dir({ verificationConfig }, { depth: null })
 
 const config: HardhatUserConfig = {
-  defaultNetwork: 'hardhat',
-  // defaultNetwork: 'zkTestnet',
+  // defaultNetwork: 'hardhat',
+  // defaultNetwork: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortNameZk,
   networks: {
     hardhat: {
+      zksync: true,
       chains: {
         [CHAIN_IDS.BASE_MAINNET]: {
           hardforkHistory: {
@@ -126,30 +134,7 @@ const config: HardhatUserConfig = {
       },
     },
     ...networkConfig,
-    zkTestnet: {
-      url: getRpcUrl(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET),
-      ethNetwork: 'sepolia',
-      zksync: true,
-      deployPaths: 'scripts/deploy/deployZkEVM',
-    },
-    zkSyncMainnet: {
-      url: getRpcUrl(CHAIN_IDS.ZKSYNC_MAINNET),
-      ethNetwork: 'mainnet',
-      zksync: true,
-      deployPaths: 'scripts/deploy/deployZkEVM',
-    },
-    abstractZk: {
-      url: getRpcUrl(CHAIN_IDS.ABSTRACT_MAINNET),
-      ethNetwork: 'mainnet',
-      zksync: true,
-      deployPaths: 'scripts/deploy/deployZkEVM',
-    },
-    lensZk: {
-      url: getRpcUrl(CHAIN_IDS.LENS),
-      ethNetwork: 'lens',
-      zksync: true,
-      deployPaths: 'scripts/deploy/deployZkEVM',
-    },
+    ...zkNetworkConfig,
   },
   solidity: {
     compilers: [
@@ -185,12 +170,13 @@ const config: HardhatUserConfig = {
     ],
   },
   zksolc: {
-    version: '1.5.1',
+    version: '1.5.12',
     compilerSource: 'binary',
     settings: {
+      enableEraVMExtensions: true,
       optimizer: {
         enabled: true,
-        mode: '3',
+        mode: 'z',
       },
     },
   },
@@ -271,8 +257,7 @@ const config: HardhatUserConfig = {
   // },
   // sourcify: {
   //   enabled: true,
-  //   // apiUrl: "https://sourcify.dev/server",
-  //   // browserUrl: "https://repo.sourcify.dev",
+  //   apiUrl: "",
   // },
 }
 

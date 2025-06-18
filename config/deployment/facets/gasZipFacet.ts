@@ -1,3 +1,12 @@
+export const ZK_GAS_ZIP_FACET_DEPLOYMENT_CONFIG = [
+  {
+    deployer: '0x45679CDF728abdcdfce0F03A8f1D22BA49BAbC72',
+    saltKey: 'GasZipFacet',
+    contractAddress: '',
+    bytecode: '',
+  },
+]
+
 export const GAS_ZIP_FACET_DEPLOYMENT_CONFIG = [
   {
     deployer: '0x45679CDF728abdcdfce0F03A8f1D22BA49BAbC72',

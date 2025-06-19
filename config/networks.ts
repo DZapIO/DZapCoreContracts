@@ -1,5 +1,6 @@
 import { NODE_ENV_VAR_NAMES } from '../constants'
 import { ApiType, Networks, ZKChainConfig } from '../types'
+import { getZkChainConfig } from '../utils/networkUtils'
 
 export enum RPC_TYPE {
   ALCHEMY,
@@ -22,6 +23,7 @@ export enum CHAIN_IDS {
   AI_LAYER = 2649,
   BAHAMUT_MAINNET = 5165,
   BASE_MAINNET = 8453,
+  BASE_SEPOLIA = 84532,
   BEVM_MAINNET = 11501,
   BLAST_MAINNET = 81457,
   BOB_MAINNET = 60808,
@@ -49,6 +51,7 @@ export enum CHAIN_IDS {
   ETH_KOVAN = 42,
   ETH_MAINNET = 1,
   ETH_RINKEBY = 4,
+  ETH_SEPOLIA = 11155111,
   ECLIPSE = 1000002,
   FANTOM_MAINNET = 250,
   FILECOIN_MAINNET = 314,
@@ -99,6 +102,7 @@ export enum CHAIN_IDS {
   OKX_X1_TESTNET = 195,
   OPBNB_MAINNET = 204,
   OPTIMISM_MAINNET = 10,
+  OP_SEPOLIA = 11155420,
   POLYGON_MAINNET = 137,
   POLYGON_MUMBAI = 80001,
   POLYGON_ZK_EVM_MAINNET = 1101,
@@ -111,7 +115,6 @@ export enum CHAIN_IDS {
   SCROLL_MAINNET = 534352,
   SCROLL_SEPOLIA = 534351,
   SEI_EVM_MAINNET = 1329,
-  SEPOLIA_TESTNET = 11155111,
   SHARDEUM_TESTNET_2 = 8081,
   SONIC_MAINNET = 146,
   SONEIUM_MAINNET = 1868,
@@ -125,6 +128,7 @@ export enum CHAIN_IDS {
   TRON_MAINNET = 728126428,
   TRON_TESTNET = 2494104990,
   UNICHAIN = 130,
+  UNICHAIN_SEPOLIA = 1301,
   VELAS = 106,
   WORLD_CHAIN = 480,
   X_LAYER_MAINNET = 196,
@@ -138,12 +142,31 @@ export enum CHAIN_IDS {
 }
 
 // const SourcifyUrls = [
-//   "https://sourcify.roninchain.com/server",
-//   "https://sourcify.parsec.finance",
-//   "https://sourcify-api.bbscan.io",
 //   "https://sourcify.dev/server",
 //   "https://repo.sourcify.dev",
 // ];
+export const SourcifyVerificationConfig = {
+  [CHAIN_IDS.MONAD_TESTNET]: {
+    apiUrl: 'https://sourcify-api-monad.blockvision.org',
+    browserUrl: 'https://testnet.monadexplorer.com',
+  },
+  [CHAIN_IDS.RONIN]: {
+    apiUrl: 'https://sourcify.roninchain.com/server',
+    browserUrl: 'https://app.roninchain.com',
+  },
+  [CHAIN_IDS.HYPER_EVM]: {
+    apiUrl: 'https://sourcify.parsec.finance',
+    browserUrl: 'https://hyperscan.gas.zip',
+  },
+  [CHAIN_IDS.BOUNCE_BIT]: {
+    apiUrl: 'https://sourcify-api.bbscan.io',
+    browserUrl: 'https://bbscan.io',
+  },
+  [CHAIN_IDS.TELOS_MAINNET]: {
+    apiUrl: 'https://repo.sourcify.dev', // default
+    browserUrl: 'https://teloscan.io',
+  },
+}
 
 export const ZK_EVM_CHAINS: { [key in CHAIN_IDS]?: ZKChainConfig } = {
   [CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]: {
@@ -235,11 +258,16 @@ export const NETWORKS: Networks = {
     apiType: ApiType.ETHERSCAN_V2,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
-  [CHAIN_IDS.SEPOLIA_TESTNET]: {
-    chainId: CHAIN_IDS.SEPOLIA_TESTNET,
+  [CHAIN_IDS.ETH_SEPOLIA]: {
+    chainId: CHAIN_IDS.ETH_SEPOLIA,
     chainName: 'Sepolia Testnet',
-    shortName: 'sepolia',
-    rpcUrl: ['https://rpc.sepolia.org'],
+    shortName: 'ethSepolia',
+    rpcUrl: [
+      'https://eth-sepolia.public.blastapi.io',
+      'https://eth-sepolia.g.alchemy.com/v2/demo',
+      'https://ethereum-sepolia-rpc.publicnode.com',
+      'https://rpc.sepolia.org',
+    ],
     explorerUrl: 'https://sepolia.etherscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=11155111',
     apiType: ApiType.ETHERSCAN_V2,
@@ -282,10 +310,23 @@ export const NETWORKS: Networks = {
     apiType: ApiType.ETHERSCAN_V2,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
+  [CHAIN_IDS.OP_SEPOLIA]: {
+    chainId: CHAIN_IDS.OP_SEPOLIA,
+    shortName: 'opSepolia',
+    chainName: 'Op Sepolia',
+    rpcUrl: [
+      'https://sepolia.optimism.io',
+      `https://endpoints.omniatech.io/v1/op/sepolia/public`,
+    ],
+    explorerUrl: 'https://sepolia-optimism.etherscan.io',
+    apiUrl: 'https://api.etherscan.io/v2/api?chainid=11155420',
+    apiType: ApiType.ETHERSCAN_V2,
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+  },
   [CHAIN_IDS.ZKSYNC_MAINNET]: {
     chainId: CHAIN_IDS.ZKSYNC_MAINNET,
     chainName: 'ZkSync Era',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.ZKSYNC_MAINNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.ZKSYNC_MAINNET).shortName,
     rpcUrl: ['https://mainnet.era.zksync.io', 'https://zksync.drpc.org'],
     explorerUrl: 'https://explorer.zksync.io',
     // apiUrl: "https://api.etherscan.io/v2/api?chainid=324",
@@ -293,21 +334,22 @@ export const NETWORKS: Networks = {
     // apiType: ApiType.ETHERSCAN_V2,
     apiType: ApiType.ETHERSCAN_V1,
     apiKeyName: NODE_ENV_VAR_NAMES.ZKSYNC_API_KEY,
-    verifyKeyName: ZK_EVM_CHAINS[CHAIN_IDS.ZKSYNC_MAINNET]!.verifyKeyName,
+    verifyKeyName: getZkChainConfig(CHAIN_IDS.ZKSYNC_MAINNET).verifyKeyName,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
   [CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]: {
     chainId: CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET,
     chainName: 'ZkSync Sepolia Mainnet',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET).shortName,
     rpcUrl: ['https://sepolia.era.zksync.dev'],
     explorerUrl: 'https://sepolia-era.zksync.network',
     // apiUrl: "https://api.etherscan.io/v2/api?chainid=300",
     // apiUrl: "https://explorer.sepolia.era.zksync.dev/contract_verification",
+    // apiType: ApiType.NONE,
     apiType: ApiType.ETHERSCAN_V1,
     apiKeyName: NODE_ENV_VAR_NAMES.ZKSYNC_API_KEY,
-    verifyKeyName:
-      ZK_EVM_CHAINS[CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET]!.verifyKeyName,
+    verifyKeyName: getZkChainConfig(CHAIN_IDS.ZKSYNC_SEPOLIA_TESTNET)
+      .verifyKeyName,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
   [CHAIN_IDS.BASE_MAINNET]: {
@@ -320,6 +362,20 @@ export const NETWORKS: Networks = {
     ],
     explorerUrl: 'https://basescan.org',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=8453',
+    apiType: ApiType.ETHERSCAN_V2,
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    chainId: CHAIN_IDS.BASE_SEPOLIA,
+    chainName: 'Base Sepolia',
+    shortName: 'baseSepolia',
+    rpcUrl: [
+      'https://sepolia.base.org',
+      'https://base-sepolia.gateway.tenderly.co',
+      `https://base-sepolia.drpc.org`,
+    ],
+    explorerUrl: 'https://sepolia.basescan.org/',
+    apiUrl: 'https://api.etherscan.io/v2/api?chainid=84532',
     apiType: ApiType.ETHERSCAN_V2,
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   },
@@ -652,7 +708,10 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.MOONRIVER,
     chainName: 'MoonRiver',
     shortName: 'moonriver',
-    rpcUrl: ['https://moonriver.public.blastapi.io'],
+    rpcUrl: [
+      'https://rpc.api.moonriver.moonbeam.network',
+      'https://moonriver.public.blastapi.io',
+    ],
     explorerUrl: 'https://moonriver.moonscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=1285',
     apiType: ApiType.ETHERSCAN_V2,
@@ -825,7 +884,7 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.ABSTRACT_MAINNET]: {
     chainId: CHAIN_IDS.ABSTRACT_MAINNET,
     chainName: 'Abstract',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.ABSTRACT_MAINNET).shortName,
     rpcUrl: ['https://api.mainnet.abs.xyz', 'https://abstract.drpc.org'],
     explorerUrl: 'https://abscan.org',
     // apiType: ApiType.NONE,
@@ -834,7 +893,7 @@ export const NETWORKS: Networks = {
     apiType: ApiType.ETHERSCAN_V1,
     apiUrl: 'https://api.abscan.org/api',
     apiKeyName: NODE_ENV_VAR_NAMES.ABSTRACT_API_KEY,
-    verifyKeyName: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortNameZk,
+    verifyKeyName: getZkChainConfig(CHAIN_IDS.ABSTRACT_MAINNET).shortNameZk,
     nativeCurrency: {
       name: 'Ether',
       symbol: 'ETH',
@@ -844,14 +903,14 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.ABSTRACT_TESTNET]: {
     chainId: CHAIN_IDS.ABSTRACT_TESTNET,
     chainName: 'Abstract Testnet',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_TESTNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.ABSTRACT_TESTNET).shortName,
     rpcUrl: ['https://api.testnet.abs.xyz'],
     explorerUrl: 'https://explorer.testnet.abs.xyz',
     apiUrl: 'https://api-sepolia.abscan.org/api',
     // apiUrl: "https://api.etherscan.io/v2/api?chainid=11124",
     apiType: ApiType.ETHERSCAN_V1,
     apiKeyName: NODE_ENV_VAR_NAMES.ABSTRACT_API_KEY,
-    // verifyKeyName: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_TESTNET]!.shortNameZk,
+    // verifyKeyName: getZkChainConfig(CHAIN_IDS.ABSTRACT_TESTNET).shortNameZk,
     nativeCurrency: {
       name: 'Ether',
       symbol: 'ETH',
@@ -875,14 +934,12 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.LENS]: {
     chainId: CHAIN_IDS.LENS,
     chainName: 'Lens',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.LENS]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.LENS).shortName,
     rpcUrl: ['https://rpc.lens.xyz', 'https://api.lens.matterhosted.dev'],
     explorerUrl: 'https://explorer.lens.xyz',
     apiType: ApiType.NONE,
-    // apiUrl: '',
-    // apiUrl: 'https://verify.lens.xyz/contract_verification',
-    // apiUrl:
-    //   'https://api-explorer-verify.lens.matterhosted.dev/contract_verification',
+    // apiUrl: "https://verify.lens.xyz/contract_verification",
+    // apiUrl: "https://api-explorer-verify.lens.matterhosted.dev/contract_verification",
     nativeCurrency: {
       name: 'Gho',
       symbol: 'GHO',
@@ -892,7 +949,7 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.LENS_TESTNET]: {
     chainId: CHAIN_IDS.LENS_TESTNET,
     chainName: 'Lens Testnet',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.LENS_TESTNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.LENS_TESTNET).shortName,
     rpcUrl: ['https://rpc.testnet.lens.xyz'],
     explorerUrl: 'https://explorer.testnet.lens.xyz',
     apiType: ApiType.NONE,
@@ -923,8 +980,8 @@ export const NETWORKS: Networks = {
     shortName: 'kaia',
     rpcUrl: ['https://public-en.node.kaia.io/'],
     explorerUrl: 'https://kaiascan.io',
-    // apiUrl: 'https://mainnet-api.kaiascan.io/hardhat-verify',
-    apiType: ApiType.SOURCIFY,
+    apiUrl: 'https://mainnet-api.kaiascan.io/hardhat-verify',
+    apiType: ApiType.OTHER,
     nativeCurrency: {
       name: 'Kaia',
       symbol: 'KAIA',
@@ -1224,6 +1281,24 @@ export const NETWORKS: Networks = {
       decimals: 18,
     },
   },
+  [CHAIN_IDS.UNICHAIN_SEPOLIA]: {
+    chainId: CHAIN_IDS.UNICHAIN_SEPOLIA,
+    chainName: 'Unichian Sepolia',
+    shortName: 'uniSepolia',
+    rpcUrl: [
+      'https://unichain-sepolia-rpc.publicnode.com',
+      'https://sepolia.unichain.org',
+    ],
+    explorerUrl: 'https://sepolia.uniscan.xyz',
+    apiUrl: 'https://api.etherscan.io/v2/api?chainid=1301',
+    apiType: ApiType.ETHERSCAN_V2,
+    apiKeyName: NODE_ENV_VAR_NAMES.ETHERSCAN_V2_API_KEY,
+    nativeCurrency: {
+      name: 'Ethereum',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+  },
   [CHAIN_IDS.BAHAMUT_MAINNET]: {
     chainId: CHAIN_IDS.BAHAMUT_MAINNET,
     chainName: 'Bahamut',
@@ -1336,7 +1411,7 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.MONAD_TESTNET]: {
     chainId: CHAIN_IDS.MONAD_TESTNET,
     chainName: 'Monad Testnet',
-    shortName: 'monadTest',
+    shortName: 'monadTestnet',
     rpcUrl: ['https://testnet-rpc.monad.xyz'],
     explorerUrl: 'https://testnet.monadexplorer.com',
     apiUrl: 'https://sourcify-api-monad.blockvision.org',
@@ -1350,7 +1425,7 @@ export const NETWORKS: Networks = {
   [CHAIN_IDS.CRONOS_ZKEVM_MAINNET]: {
     chainId: CHAIN_IDS.CRONOS_ZKEVM_MAINNET,
     chainName: 'Cronos ZKEVM',
-    shortName: ZK_EVM_CHAINS[CHAIN_IDS.CRONOS_ZKEVM_MAINNET]!.shortName,
+    shortName: getZkChainConfig(CHAIN_IDS.CRONOS_ZKEVM_MAINNET).shortName,
     rpcUrl: [
       'https://mainnet.zkevm.cronos.org',
       'https://cronos-zkevm.drpc.org',

@@ -73,7 +73,10 @@ export const ETH_MAINNET = {
       address: ['0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1'],
     },
     [BRIDGES.orbiter]: {
-      address: ['0xC741900276CD598060b0FE6594FbE977392928f4'],
+      address: [
+        '0xC741900276CD598060b0FE6594FbE977392928f4',
+        '0xe530d28960d48708ccf3e62aa7b42a80bc427aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],

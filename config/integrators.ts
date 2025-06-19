@@ -1455,4 +1455,109 @@ export const INTEGRATOR_CONFIG = {
       ],
     },
   },
+  [CHAIN_IDS.MONAD_TESTNET]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.ETH_SEPOLIA]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.OP_SEPOLIA]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
+  [CHAIN_IDS.UNICHAIN_SEPOLIA]: {
+    [INTEGRATORS.DZAP]: {
+      address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+      ],
+    },
+  },
 }

@@ -583,8 +583,8 @@ export const deployFacetsWithArgsUingCreate3 = async (
 
       // const tx = await create3
       //   .connect(deployer)
-      //   .deploy(salt, creationCode, { gasPrice })
-      // // .deploy(salt, creationCode, { gasPrice, gasLimit: gasLimitFaceCut })
+      // .deploy(salt, creationCode, { gasPrice })
+      // .deploy(salt, creationCode, { gasPrice, gasLimit })
 
       const { data } = await create3.populateTransaction.deploy(
         salt,
@@ -600,8 +600,8 @@ export const deployFacetsWithArgsUingCreate3 = async (
       await tx.wait()
 
       if (verifyContract) {
-        console.log('Verification afer 15 sec...')
-        await delay(15000)
+        console.log('Verification afer 5 sec...')
+        await delay(5000)
       }
     } catch (error) {
       catchCreate3Error(error)

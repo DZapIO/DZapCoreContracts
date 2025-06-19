@@ -227,7 +227,6 @@ export const isZkEvm = (chainId: ChainId) => {
 
 export const getZkChainConfig = (chainId: CHAIN_IDS) => {
   const config = ZK_EVM_CHAINS[chainId]
-  console.log(config)
   if (!config) throw `zk config for chainId ${chainId} is not defined`
   return config
 }

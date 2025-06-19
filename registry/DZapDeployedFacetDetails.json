@@ -358,7 +358,7 @@
       ]
     },
     "SwapFacet": {
-      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
       "selectors": [
         "0x95455cbb",
         "0x509724c6",
@@ -369,7 +369,7 @@
       ]
     },
     "SwapTransferFacet": {
-      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
       "selectors": [
         "0xface6916",
         "0xf68394ed",
@@ -377,13 +377,13 @@
       ]
     },
     "BatchSwapFacet": {
-      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
       "selectors": [
         "0xfd00fd22"
       ]
     },
     "CrossChainFacet": {
-      "address": "0x9c881932C8b66b4DA4f8B49e8D3ffBB4702c4e5f",
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
       "selectors": [
         "0x9560c279",
         "0x73de905e",
@@ -391,7 +391,7 @@
       ]
     },
     "BridgeDynamicTransferFacet": {
-      "address": "0xe044F8DE6c999c45869057b91C8D8C6cb5aFd16B",
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
       "selectors": [
         "0x69a0ad82",
         "0x82957953",
@@ -399,18 +399,25 @@
       ]
     },
     "BatchBridgeCallFacet": {
-      "address": "0xbf7bE9A1c602B43F848213dd7e2Ef3AC6A602456",
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
       "selectors": [
         "0x1a492902",
         "0xf3fd15a4"
       ]
     },
     "RelayBridgeFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
     },
     "GasZipFacet": {
-      "address": "0x19FED9fD0D5D53f5AdC4318f485217E411147B26",
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
       "selectors": [
         "0xea894183",
         "0xb7079bc8",
@@ -1375,8 +1382,12 @@
       ]
     },
     "GasZipFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
     }
   },
   "169": {
@@ -1782,8 +1793,12 @@
       "selectors": []
     },
     "GasZipFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
     }
   },
   "250": {
@@ -2946,7 +2961,7 @@
       ]
     },
     "SwapFacet": {
-      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
       "selectors": [
         "0x95455cbb",
         "0x509724c6",
@@ -2957,7 +2972,7 @@
       ]
     },
     "SwapTransferFacet": {
-      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
       "selectors": [
         "0xface6916",
         "0xf68394ed",
@@ -2965,13 +2980,13 @@
       ]
     },
     "BatchSwapFacet": {
-      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
       "selectors": [
         "0xfd00fd22"
       ]
     },
     "CrossChainFacet": {
-      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
       "selectors": [
         "0x9560c279",
         "0x73de905e",
@@ -2979,7 +2994,7 @@
       ]
     },
     "BridgeDynamicTransferFacet": {
-      "address": "0x6d2A0d4Fbc43EC54e74066bD881725884AEC1e3f",
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
       "selectors": [
         "0x69a0ad82",
         "0x82957953",
@@ -2987,7 +3002,7 @@
       ]
     },
     "BatchBridgeCallFacet": {
-      "address": "0x2B22684b9FE389A48e3c652C5a1a1Ff918270b4B",
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
       "selectors": [
         "0x1a492902",
         "0xf3fd15a4"
@@ -3077,7 +3092,7 @@
       ]
     },
     "SwapFacet": {
-      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
       "selectors": [
         "0x95455cbb",
         "0x509724c6",
@@ -3088,7 +3103,7 @@
       ]
     },
     "SwapTransferFacet": {
-      "address": "0xE81e71390177eD88E9deC5B1f67F7dBCE4C0203C",
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
       "selectors": [
         "0xface6916",
         "0xf68394ed",
@@ -3096,13 +3111,13 @@
       ]
     },
     "BatchSwapFacet": {
-      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
       "selectors": [
         "0xfd00fd22"
       ]
     },
     "CrossChainFacet": {
-      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
       "selectors": [
         "0x9560c279",
         "0x73de905e",
@@ -3110,7 +3125,7 @@
       ]
     },
     "BridgeDynamicTransferFacet": {
-      "address": "0x6d2A0d4Fbc43EC54e74066bD881725884AEC1e3f",
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
       "selectors": [
         "0x69a0ad82",
         "0x82957953",
@@ -3118,7 +3133,7 @@
       ]
     },
     "BatchBridgeCallFacet": {
-      "address": "0x2B22684b9FE389A48e3c652C5a1a1Ff918270b4B",
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
       "selectors": [
         "0x1a492902",
         "0xf3fd15a4"
@@ -3398,12 +3413,23 @@
       ]
     },
     "RelayBridgeFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
     },
     "GasZipFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
     }
   },
   "2222": {
@@ -3481,7 +3507,7 @@
       ]
     },
     "SwapFacet": {
-      "address": "0xE54287bb4006367e15B212c9b8Bd6ec7b27AC9fE",
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
       "selectors": [
         "0x95455cbb",
         "0x509724c6",
@@ -3492,7 +3518,7 @@
       ]
     },
     "SwapTransferFacet": {
-      "address": "0x145dF99eee04B371453A4623031eB0b596da8678",
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
       "selectors": [
         "0xface6916",
         "0xf68394ed",
@@ -3500,13 +3526,13 @@
       ]
     },
     "BatchSwapFacet": {
-      "address": "0x9eb4AF1054889fF682E027194133F944f88c2B64",
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
       "selectors": [
         "0xfd00fd22"
       ]
     },
     "CrossChainFacet": {
-      "address": "0xf848754C097eAE0ea4b47A60f198874A75FaF623",
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
       "selectors": [
         "0x9560c279",
         "0x73de905e",
@@ -3514,7 +3540,7 @@
       ]
     },
     "BridgeDynamicTransferFacet": {
-      "address": "0xd6655742bAa9c5c1Ae31B41E71023045477fAFef",
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
       "selectors": [
         "0x69a0ad82",
         "0x82957953",
@@ -3522,7 +3548,7 @@
       ]
     },
     "BatchBridgeCallFacet": {
-      "address": "0x33178c0312d1abdb337b49FcD8742834881D81E3",
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
       "selectors": [
         "0x1a492902",
         "0xf3fd15a4"
@@ -3535,6 +3561,279 @@
     "GasZipFacet": {
       "address": "0x0000000000000000000000000000000000000000",
       "selectors": []
+    }
+  },
+  "2741": {
+    "DiamondLoupeFacet": {
+      "address": "0x99974374bC637bC5D5a10D268495FFF72e5bF8Cf",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x3acA78E8eF6EBF38790ba33571909319552B9B59",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0xE3293fAcdfD2965BF2a3520D18DDaeE6DBecb5A9",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x0296072B3720e1FfEc6193BafDdc0A696edEEF68",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0xe6E216ebc8Ea9100b40D9377D404373e2065407D",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0xFB7ab3e9300CCcDaC03917920eC5bb2a43161FeB",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBb3d55E589b3d7d70e12AB804642a6b50AB13A34",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x841433B245874B3E45b68AeE42ecd969725faFd3",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0xe187b61D6328E7A3ceDAfe7e322dAA9b960Af4D8",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0xc2fDFe0572B85D727336549A1BDbecb7dA17aBD7",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x12233bD24fE492129359435F1eABf90702cDD2eD",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0x87a34dD6793b021702e736D0eE674D198707b31E",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xf9B85BaffC503844FA0D043a95cAE4563983f61b",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    },
+    "GasZipFacet": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "selectors": []
+    }
+  },
+  "2818": {
+    "DiamondLoupeFacet": {
+      "address": "0xB76a42FdD90AFED90F0a6d143D5847334606b27D",
+      "selectors": [
+        "0xcdffacc6",
+        "0x52ef6b2c",
+        "0xadfca15e",
+        "0x7a0ed627",
+        "0x01ffc9a7"
+      ]
+    },
+    "OwnershipFacet": {
+      "address": "0x90A50A390e7Bb72c7e82937cfc0e7F2D58D6bE5E",
+      "selectors": [
+        "0x8da5cb5b",
+        "0xf2fde38b"
+      ]
+    },
+    "AccessManagerFacet": {
+      "address": "0x37ac34515Cbb6Be26c55097694bE213fB9DFa356",
+      "selectors": [
+        "0x612ad9cb",
+        "0x5b1be424",
+        "0xa4c3366e"
+      ]
+    },
+    "DexManagerFacet": {
+      "address": "0x8ebb28415e8eDB85030Dd27ABd15De9BFfa28681",
+      "selectors": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x9afc19c7",
+        "0xba41a89b",
+        "0x070d39d9",
+        "0xe94dfcfd",
+        "0x124f1ead",
+        "0x8f1d3486"
+      ]
+    },
+    "BridgeManagerFacet": {
+      "address": "0x1fECC1e676D44136fD917e6C2e18Dad87d69D5B8",
+      "selectors": [
+        "0x67458cca",
+        "0xc7d3722f",
+        "0xaf583985",
+        "0xf6f38e7c",
+        "0xb70baeb6",
+        "0x64eb7ada",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "FeesFacet": {
+      "address": "0x1A84dA246e76d23DBa9B247Ae37ea91F645d0cAa",
+      "selectors": [
+        "0x380b1b18",
+        "0x58fc9081",
+        "0x35e926ac",
+        "0x87a38d9b",
+        "0x4ec7d3b5",
+        "0x340a15fd",
+        "0xaf1af3b9",
+        "0xb07986b9",
+        "0xd3dfad66",
+        "0x88e95c47"
+      ]
+    },
+    "WithdrawFacet": {
+      "address": "0xBf912c6711a2702F1AB05E8F9B75A3Bf48505ED1",
+      "selectors": [
+        "0x1458d7ad",
+        "0xd9caed12"
+      ]
+    },
+    "SwapFacet": {
+      "address": "0x81b98D50b4D4e5671Da0F95cf381bE38ac960a9D",
+      "selectors": [
+        "0x95455cbb",
+        "0x509724c6",
+        "0x4ce8e27d",
+        "0x6022b00b",
+        "0xbdddd008",
+        "0xce40c7c6"
+      ]
+    },
+    "SwapTransferFacet": {
+      "address": "0x7919414296dAc6dC2a66284f2f8Ed8635d6aE913",
+      "selectors": [
+        "0xface6916",
+        "0xf68394ed",
+        "0xed8dd1c4"
+      ]
+    },
+    "BatchSwapFacet": {
+      "address": "0x43b98BbE47158a3235b6d855A8f7Ba77f4AfeFcb",
+      "selectors": [
+        "0xfd00fd22"
+      ]
+    },
+    "CrossChainFacet": {
+      "address": "0x49269bc7B0ef90fB4A00810ABf8C9338c2C2B09a",
+      "selectors": [
+        "0x9560c279",
+        "0x73de905e",
+        "0xf2bfe6d4"
+      ]
+    },
+    "BridgeDynamicTransferFacet": {
+      "address": "0xdcC93362b28A41D490fB5d956416A68093629AA7",
+      "selectors": [
+        "0x69a0ad82",
+        "0x82957953",
+        "0x2e0a9e32"
+      ]
+    },
+    "BatchBridgeCallFacet": {
+      "address": "0xc7ca846261fE0B26552dCCb66d23CAdaFF10C605",
+      "selectors": [
+        "0x1a492902",
+        "0xf3fd15a4"
+      ]
+    },
+    "RelayBridgeFacet": {
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
+    },
+    "GasZipFacet": {
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
     }
   },
   "4200": {
@@ -4621,8 +4920,15 @@
       ]
     },
     "RelayBridgeFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xF5Efa699679103CDFA24e71CF8E6f372D57Ff7f3",
+      "selectors": [
+        "0xd4e0811c",
+        "0xcde17705",
+        "0x7b4f0b3d",
+        "0x8ef704c1",
+        "0x32deedc6",
+        "0x42fb9dd7"
+      ]
     },
     "GasZipFacet": {
       "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
@@ -5051,8 +5357,12 @@
       ]
     },
     "GasZipFacet": {
-      "address": "0x0000000000000000000000000000000000000000",
-      "selectors": []
+      "address": "0xedcDd9a6f12c689D9Fc81F94a6D9c4Abafe8e717",
+      "selectors": [
+        "0xea894183",
+        "0xb7079bc8",
+        "0x8a3cddb0"
+      ]
     }
   },
   "81457": {

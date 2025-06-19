@@ -416,4 +416,34 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
+  [CHAIN_IDS.MONAD_TESTNET]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '200',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.ETH_SEPOLIA]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.OP_SEPOLIA]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.UNICHAIN_SEPOLIA]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
+    maxFixedFeeAmount: '0.1',
+    maxTokenFeePercent: 5,
+    nativeDecimal: 18,
+  },
 }

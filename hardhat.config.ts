@@ -21,12 +21,17 @@ import '@matterlabs/hardhat-zksync-solc'
 import './tasks/accounts'
 import './tasks/clean'
 
-import { CHAIN_IDS, ZK_EVM_CHAINS } from './config/networks'
+import {
+  CHAIN_IDS,
+  SourcifyVerificationConfig,
+  ZK_EVM_CHAINS,
+} from './config/networks'
 import {
   getNetworkConfig,
   getVerificationConfig,
   getZKNetworks,
 } from './utils/networkUtils'
+import { monadTestnet } from 'viem/chains'
 
 dotenv.config()
 
@@ -100,6 +105,12 @@ const supportedNetworks = [
   CHAIN_IDS.ZETACHAIN_MAINNET,
   CHAIN_IDS.ZKSYNC_MAINNET,
   CHAIN_IDS.ZKFAIR,
+
+  CHAIN_IDS.MONAD_TESTNET,
+  CHAIN_IDS.ETH_SEPOLIA,
+  CHAIN_IDS.OP_SEPOLIA,
+  CHAIN_IDS.BASE_SEPOLIA,
+  CHAIN_IDS.UNICHAIN_SEPOLIA,
 ]
 
 const networkConfig = getNetworkConfig(supportedNetworks)
@@ -110,11 +121,11 @@ const verificationConfig = getVerificationConfig(supportedNetworks)
 // console.dir({ verificationConfig }, { depth: null })
 
 const config: HardhatUserConfig = {
-  // defaultNetwork: 'hardhat',
+  defaultNetwork: 'hardhat',
   // defaultNetwork: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortNameZk,
   networks: {
     hardhat: {
-      zksync: true,
+      // zksync: true,
       chains: {
         [CHAIN_IDS.BASE_MAINNET]: {
           hardforkHistory: {
@@ -257,7 +268,7 @@ const config: HardhatUserConfig = {
   // },
   // sourcify: {
   //   enabled: true,
-  //   apiUrl: "",
+  //   ...SourcifyVerificationConfig[CHAIN_IDS.MONAD_TESTNET],
   // },
 }
 

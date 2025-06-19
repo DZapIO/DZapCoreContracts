@@ -209,7 +209,8 @@
         "0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820"
       ],
       "orbiter": [
-        "0xC741900276CD598060b0FE6594FbE977392928f4"
+        "0xC741900276CD598060b0FE6594FbE977392928f4",
+        "0xe530d28960d48708ccf3e62aa7b42a80bc427aef"
       ],
       "owlto": [
         "0x0e83DEd9f80e1C92549615D96842F5cB64A08762"
@@ -2820,6 +2821,42 @@
       ]
     }
   },
+  "1301": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
   "1329": {
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
@@ -4007,6 +4044,42 @@
         "0": {
           "tokenFee": 0,
           "fixedNativeFeeAmount": "225000000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
+  "10143": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 0
         }
@@ -5491,6 +5564,42 @@
       ]
     }
   },
+  "84532": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
   "167000": {
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
@@ -5794,6 +5903,78 @@
           "fixedNativeFeeAmount": "200000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
+        }
+      }
+    }
+  },
+  "11155111": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
+  "11155420": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
         }
       }
     }

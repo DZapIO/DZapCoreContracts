@@ -37,7 +37,10 @@ export const BSC_MAINNET = {
       address: ['0x2967E7Bb9DaA5711Ac332cAF874BD47ef99B3820'],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      address: [
+        '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
@@ -72,7 +75,13 @@ export const BSC_MAINNET = {
       address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
     },
     [BRIDGES.stargate]: {
-      address: ['0x138EB30f73BC423c6455C53df6D89CB01d9eBc63'],
+      address: [
+        '0x138EB30f73BC423c6455C53df6D89CB01d9eBc63',
+        '0x962Bd449E630b0d928f308Ce63f1A21F02576057',
+      ],
+    },
+    [BRIDGES.swapKit]: {
+      address: ['0xb30eC53F98ff5947EDe720D32aC2da7e52A5f56b'],
     },
     [BRIDGES.symbiosis]: {
       address: [
@@ -108,7 +117,10 @@ export const BSC_MAINNET = {
       address: ['0x88888dd82A91f0406ED42BF750bAF881e64894F6'],
     },
     [BRIDGES.xLink]: {
-      address: ['0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379'],
+      address: [
+        '0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379',
+        '0x5298718429046b1d38106864bBfDc9326C840092',
+      ],
     },
     [BRIDGES.xyFinance]: {
       address: [

@@ -6,7 +6,10 @@ export const IMMUTABLE_ZK_EVM_BRIDGES = {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },
     [BRIDGES.squid]: {
-      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+      address: [
+        '0xce16F69375520ab01377ce7B88f5BA8C48F8D666',
+        '0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6',
+      ],
     },
   },
 }

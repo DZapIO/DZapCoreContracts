@@ -41,13 +41,6 @@ export const OPTIMISM_MAINNET = {
     },
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-      selectorInfo: [
-        {
-          function: '',
-          functionSig: '',
-          offset: 0,
-        },
-      ],
     },
     [BRIDGES.mayanFinance]: {
       address: ['0x0654874eb7F59C6f5b39931FC45dC45337c967c3'],
@@ -70,15 +63,16 @@ export const OPTIMISM_MAINNET = {
       ],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x3191f40de6991b1bb1f61b7cec43d62bb337786b'],
+      address: [
+        '0x3191f40de6991b1bb1f61b7cec43d62bb337786b',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
-      selectorInfo: [],
     },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-      selectorInfo: [],
     },
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],

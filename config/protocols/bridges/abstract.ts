@@ -2,11 +2,36 @@ import { BRIDGES } from '../bridgeNames'
 
 export const ABSTRACT_BRIDGES = {
   bridges: {
+    [BRIDGES.deBridge]: {
+      address: [
+        '0xA13771CAbd2e44dcA8DeA846cc954D1FbAc0623b',
+        '0xE59cD1f9867B051fa7e6Ba692521EfbF8C301387',
+      ],
+    },
     [BRIDGES.lifi]: {
       address: ['0x4f8C9056bb8A3616693a76922FA35d53C056E5b3'],
     },
     [BRIDGES.rhinoFi]: {
       address: ['0xDd6A084B563731BE8eD039df29fA73beBdAAea2C'],
+    },
+    [BRIDGES.relayLink]: {
+      address: [
+        '0xDd6A084B563731BE8eD039df29fA73beBdAAea2C',
+        '0x634E831cE6D460c2CD5067Af98D6452Eb280E374',
+      ],
+    },
+    [BRIDGES.socket]: {
+      address: ['0xf8291B7c7fDaa275a0B17DA1a756D1fbE4d3A13d'],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0x221F0E1280Ec657503ca55c708105F1e1529527D',
+        '0x943C484278b8bE05D119DfC73CfAa4c9D8f11A76',
+        '0x91a5Fe991ccB876d22847967CEd24dCd7A426e0E',
+      ],
+    },
+    [BRIDGES.xyFinance]: {
+      address: ['0xe832F2De733d899053B36A2d9466B1f837F0b9bc'],
     },
   },
 }

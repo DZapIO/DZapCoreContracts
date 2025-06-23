@@ -59,13 +59,19 @@ export const BASE_MAINNET = {
       ],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      address: [
+        '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: [
         '0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7',
         '0xB5CeDAF172425BdeA4c186f6fCF30b367273DA19',
       ],
+    },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
@@ -90,6 +96,15 @@ export const BASE_MAINNET = {
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0xdc181Bd607330aeeBEF6ea62e03e5e1Fb4B6F7C7',
+        '0x27a16dc786820B16E5c9028b75B99F6f604b5d26',
+      ],
     },
     [BRIDGES.swapKit]: {
       address: ['0x68208D99746b805a1Ae41421950A47b711E35681'],

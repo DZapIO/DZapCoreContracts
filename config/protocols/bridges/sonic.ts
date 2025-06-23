@@ -14,11 +14,17 @@ export const SONIC_BRIDGES = {
         '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
       ],
     },
+    [BRIDGES.lifi]: {
+      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+    },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
     [BRIDGES.orbiter]: {
-      address: ['0xd9d74a29307cc6fc8bf424ee4217f1a587fbc8dc'],
+      address: [
+        '0xd9d74a29307cc6fc8bf424ee4217f1a587fbc8dc',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0x7CFE8Aa0d8E92CCbBDfB12b95AEB7a54ec40f0F5'],
@@ -41,10 +47,14 @@ export const SONIC_BRIDGES = {
         '0x9FDE2ca2147882A1a9423B19e86f4E280edb5Cdb',
       ],
     },
+    [BRIDGES.socket]: {
+      address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+    },
+    // [BRIDGES.squid]: {
+    //   address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+    // },
     [BRIDGES.stargate]: {
-      address: [
-        '0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9', // bus
-      ],
+      address: ['0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9'],
     },
     [BRIDGES.symbiosis]: {
       address: [

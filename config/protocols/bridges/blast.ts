@@ -11,8 +11,14 @@ export const BLAST_MAINNET = {
     [BRIDGES.lifi]: {
       address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
     },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+    },
     [BRIDGES.okx]: {
       address: ['0xf956d9fa19656d8e5219fd6fa8ba6cb198094138'],
+    },
+    [BRIDGES.orbiter]: {
+      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
     },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],

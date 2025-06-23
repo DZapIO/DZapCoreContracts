@@ -21,7 +21,7 @@ export enum CHAIN_IDS {
   ABSTRACT_TESTNET = 11124,
   ARTHERA = 10242,
   AI_LAYER = 2649,
-  BAHAMUT_MAINNET = 5165,
+  BAHUMAT_MAINNET = 5165,
   BASE_MAINNET = 8453,
   BASE_SEPOLIA = 84532,
   BEVM_MAINNET = 11501,
@@ -1299,8 +1299,8 @@ export const NETWORKS: Networks = {
       decimals: 18,
     },
   },
-  [CHAIN_IDS.BAHAMUT_MAINNET]: {
-    chainId: CHAIN_IDS.BAHAMUT_MAINNET,
+  [CHAIN_IDS.BAHUMAT_MAINNET]: {
+    chainId: CHAIN_IDS.BAHUMAT_MAINNET,
     chainName: 'Bahamut',
     shortName: 'bahamut',
     rpcUrl: ['https://rpc.ankr.com/bahamut'],

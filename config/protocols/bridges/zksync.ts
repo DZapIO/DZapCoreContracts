@@ -42,6 +42,9 @@ export const ZKSYNC_MAINNET = {
     [BRIDGES.orbiter]: {
       address: ['0xb4AB2FF34faDC774aFF45f1C4566Cb5E16bD4867'],
     },
+    [BRIDGES.owlto]: {
+      address: ['0x95cDd9632C924d2cb5586168Cf0Ba7640dF30598'],
+    },
     [BRIDGES.rango]: {
       address: ['0x13598FD0986D0E33c402f6907F05Acf720224527'],
     },

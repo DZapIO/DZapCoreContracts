@@ -14,11 +14,17 @@ export const MANTLE_MAINNET = {
         '0x57df6092665eb6058DE53939612413ff4B09114E',
       ],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
+    },
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xF7dc16A5b374f5a7b70E601f1B96bDcF69840832'],
+      address: [
+        '0xF7dc16A5b374f5a7b70E601f1B96bDcF69840832',
+        '0x610F3927901C41c219A1AD267Df8073DBc883464',
+      ],
     },
     [BRIDGES.rhinoFi]: {
       address: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
@@ -43,10 +49,10 @@ export const MANTLE_MAINNET = {
     [BRIDGES.stargate]: {
       address: [
         '0xAc290Ad4e0c891FDc295ca4F0a6214cf6dC6acDC',
+        '0xB715B85682B731dB9D5063187C450095c91C57FC',
         '0xa81274AFac523D639DbcA2C32c1470f1600cCEBe',
         '0x4c1d3Fc3fC3c177c3b633427c2F769276c547463',
         '0xF7628d84a2BbD9bb9c8E686AC95BB5d55169F3F1',
-        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
     },
     [BRIDGES.swing]: {

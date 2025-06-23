@@ -71,7 +71,10 @@ export const POLYGON_MAINNET = {
       ],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x653f25dc641544675338cb47057f8ea530c69b78'],
+      address: [
+        '0x653f25dc641544675338cb47057f8ea530c69b78',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
@@ -94,10 +97,6 @@ export const POLYGON_MAINNET = {
         '0xa62ec33abd6d7ebdf8ec98ce874820517ae71e4d',
         '0x1ba8ca832496f0b66c08ab5f248217eb27b89a25',
         '0x1aDfED468CED18AeA069bf75E7397faA41B29566', // cctp
-      ],
-    },
-    [BRIDGES.routerNitro]: {
-      address: [
         '0xc57133521ffbd729cb81cc8ddc12d9e9f61e0f6a',
         '0x1396F41d89b96Eaf29A7Ef9EE01ad36E452235aE',
         '0xfd30C690631592712F1A6927ebaF59581953B494',

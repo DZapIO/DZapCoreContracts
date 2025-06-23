@@ -3,7 +3,10 @@ import { BRIDGES } from '../bridgeNames'
 export const GNOSIS_MAINNET = {
   bridges: {
     [BRIDGES.deBridge]: {
-      address: ['0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251'],
+      address: [
+        '0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251',
+        '0xeF4fB24aD0916217251F553c0596F8Edc630EB66',
+      ],
     },
     [BRIDGES.hop]: {
       address: ['0x49094a1B3463c4e2E82ca41b8e6A023bdd6E222f'],
@@ -18,10 +21,22 @@ export const GNOSIS_MAINNET = {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+      address: [
+        '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+        '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+      ],
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0xe9aBA835f813ca05E50A6C0ce65D0D74390F7dE7',
+        '0xB1EeAD6959cb5bB9B20417d6689922523B2B86C3',
+      ],
     },
     [BRIDGES.swing]: {
       address: ['0x0cABE7a2965c3C442caEE92e4bC0d0523fa916d1'],

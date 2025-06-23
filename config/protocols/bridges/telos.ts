@@ -2,6 +2,13 @@ import { BRIDGES } from '../bridgeNames'
 
 export const TELOS_MAINNET = {
   bridges: {
+    [BRIDGES.stargate]: {
+      address: [
+        '0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9',
+        '0x2086f755A6d9254045C257ea3d382ef854849B0f',
+        '0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f',
+      ],
+    },
     [BRIDGES.symbiosis]: {
       address: [
         '0x9b1adec00a25fffd87a5bb17f61916e1c26f6844',

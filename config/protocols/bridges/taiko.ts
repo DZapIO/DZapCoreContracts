@@ -2,6 +2,9 @@ import { BRIDGES } from '../bridgeNames'
 
 export const TAIKO_MAINNET = {
   bridges: {
+    [BRIDGES.lifi]: {
+      address: ['0x3A9A5dBa8FE1C4Da98187cE4755701BCA182f63b'],
+    },
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
@@ -11,14 +14,26 @@ export const TAIKO_MAINNET = {
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
     },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    },
     [BRIDGES.relayLink]: {
-      address: ['0x77A917df7A084b7B3E43517Ae28373C2a5492625'],
+      address: [
+        '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
+        '0x82B3995ebE539CBed760bE089E33484fE12830F9',
+      ],
     },
     [BRIDGES.rhinoFi]: {
       address: ['0x1Df2De291F909baA50C1456C87C71Edf9Fb199D5'],
     },
     [BRIDGES.router]: {
       address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0x1C10CC06DC6D35970d1D53B2A23c76ef370d4135',
+        '0x77C71633C34C3784ede189d74223122422492a0f',
+      ],
     },
     [BRIDGES.symbiosis]: {
       address: [

@@ -2,8 +2,24 @@ import { BRIDGES } from '../bridgeNames'
 
 export const KAIA_BRIDGES = {
   bridges: {
-    // [BRIDGES.lifi]: {
-    //   address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-    // },
+    [BRIDGES.lifi]: {
+      address: ['0x1255d17c1BC2f764d087536410879F2d0D8772fD'],
+    },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+    },
+    [BRIDGES.orbiter]: {
+      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
+    },
+    [BRIDGES.stargate]: {
+      address: [
+        '0xBB4957E44401a31ED81Cab33539d9e8993FA13Ce',
+        '0x01A7c805cc47AbDB254CD8AaD29dE5e447F59224',
+        '0x8619bA1B324e099CB2227060c4BC5bDEe14456c6',
+      ],
+    },
+    [BRIDGES.xyFinance]: {
+      address: ['0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5'],
+    },
   },
 }

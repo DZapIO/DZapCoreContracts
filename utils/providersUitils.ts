@@ -215,15 +215,17 @@ export const removeDexes = async (
   console.log('\nRemoving DEXes...')
 
   try {
-    const gasPrice = await getGasPrice(dexManagerFacet.provider)
+    // const gasPrice = await getGasPrice(dexManagerFacet.provider)
 
+    console.log({ addressesToRemove })
+    console.log(dexManagerFacet.address)
     const { data } = await dexManagerFacet.populateTransaction.batchRemoveDex(
       addressesToRemove
     )
+    console.log({ data })
     const tx = await sender.sendTransaction({
       to: dexManagerFacet.address,
       data,
-      gasPrice,
     })
 
     // const gasLimit =

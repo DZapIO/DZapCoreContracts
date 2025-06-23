@@ -24,7 +24,10 @@ export const MANTA_MAINNET = {
       address: ['0x936223FA057a7c852d5E7462e7E77DBDb137bff8'],
     },
     [BRIDGES.relayLink]: {
-      address: ['0xaf810080131072968E5Cab00B33e6C7df4eb4E71'],
+      address: [
+        '0xaf810080131072968E5Cab00B33e6C7df4eb4E71',
+        '0xd71e5C1D217D12855B37fe60299273aaD91d6Cec',
+      ],
     },
     [BRIDGES.rhinoFi]: {
       address: ['0x2B4553122D960CA98075028d68735cC6b15DeEB5'],

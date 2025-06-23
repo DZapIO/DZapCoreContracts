@@ -23,6 +23,12 @@ export const SCROLL_MAINNET = {
     [BRIDGES.omniBtc]: {
       address: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
     },
+    [BRIDGES.orbiter]: {
+      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
+    },
+    [BRIDGES.owlto]: {
+      address: ['0x575Dbe0023d2602515a73d4f0B5Ee857E8EbA805'],
+    },
     [BRIDGES.rango]: {
       address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },

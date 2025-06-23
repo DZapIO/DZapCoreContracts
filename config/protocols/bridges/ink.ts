@@ -5,8 +5,14 @@ export const INK_BRIDGES = {
     [BRIDGES.across]: {
       address: ['0xeF684C38F94F48775959ECf2012D7E864ffb9dd4'],
     },
+    [BRIDGES.lifi]: {
+      address: ['0x864b314D4C5a0399368609581d3E8933a63b9232'],
+    },
     [BRIDGES.orbiter]: {
-      address: ['0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc'],
+      address: [
+        '0xD9D74a29307cc6Fc8BF424ee4217f1A587FBc8Dc',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.relayLink]: {
       address: [
@@ -19,6 +25,9 @@ export const INK_BRIDGES = {
     },
     [BRIDGES.socket]: {
       address: ['0x3a23F943181408EAC424116Af7b7790c94Cb97a5'],
+    },
+    [BRIDGES.stargate]: {
+      address: ['0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590'],
     },
   },
 }

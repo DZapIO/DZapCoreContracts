@@ -75,7 +75,7 @@ export const ETH_MAINNET = {
     [BRIDGES.orbiter]: {
       address: [
         '0xC741900276CD598060b0FE6594FbE977392928f4',
-        '0xe530d28960d48708ccf3e62aa7b42a80bc427aef',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
       ],
     },
     [BRIDGES.owlto]: {
@@ -121,6 +121,8 @@ export const ETH_MAINNET = {
         '0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D',
         '0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3',
         '0x77b2043768d28E9C9aB44E1aBfC95944bcE57931',
+        '0xc026395860Db2d07ee33e05fE50ed7bD583189C7',
+        '0x933597a323Eb81cAe705C5bC29985172fd5A3973',
       ],
     },
     [BRIDGES.swapKit]: {
@@ -174,7 +176,10 @@ export const ETH_MAINNET = {
       ],
     },
     [BRIDGES.xLink]: {
-      address: ['0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5'],
+      address: [
+        '0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5',
+        '0xB1c34A9F630eDb880f289683cFac2f923B31C94d',
+      ],
     },
     [BRIDGES.xyFinance]: {
       address: [

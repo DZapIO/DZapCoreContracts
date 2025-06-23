@@ -39,7 +39,10 @@ export const LINEA_MAINNET = {
       ],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172'],
+      address: [
+        '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0xA562e2510ECDACAa1DB482fd287454AD2B979fa6'],

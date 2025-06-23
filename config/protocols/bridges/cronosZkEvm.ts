@@ -2,8 +2,8 @@ import { BRIDGES } from '../bridgeNames'
 
 export const CRONOS_ZK_EVM_BRIDGES = {
   bridges: {
-    [BRIDGES.lifi]: {
-      //   address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
+    [BRIDGES.xyFinance]: {
+      address: ['0x936fef4245f281ED4f2eE303060A8656399dCc32'],
     },
   },
 }

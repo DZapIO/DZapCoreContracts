@@ -2,13 +2,17 @@ import { BRIDGES } from '../bridgeNames'
 
 export const KAVA_MAINNET = {
   bridges: {
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-      selectorInfo: [],
-    },
     [BRIDGES.celer]: {
       address: ['0xb51541df05DE07be38dcfc4a80c05389A54502BB'],
-      selectorInfo: [],
+    },
+    [BRIDGES.mesonFinance]: {
+      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+    },
+    [BRIDGES.squid]: {
+      address: ['0xce16F69375520ab01377ce7B88f5BA8C48F8D666'],
+    },
+    [BRIDGES.stargate]: {
+      address: ['0x41A5b0470D96656Fb3e8f68A218b39AdBca3420b'],
     },
   },
 }

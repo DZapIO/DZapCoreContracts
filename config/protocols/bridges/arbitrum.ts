@@ -69,7 +69,10 @@ export const ARBITRUM_MAINNET = {
       ],
     },
     [BRIDGES.orbiter]: {
-      address: ['0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd'],
+      address: [
+        '0x6a065083886EC63d274b8E1fE19aE2ddF498bFDd',
+        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+      ],
     },
     [BRIDGES.owlto]: {
       address: ['0x0e83DEd9f80e1C92549615D96842F5cB64A08762'],
@@ -90,10 +93,6 @@ export const ARBITRUM_MAINNET = {
         '0x09a58d77ec86478d373c3173f3673195e4a12c06',
         '0x0Fa205c0446cD9EeDCc7538c9E24BC55AD08207f',
         '0xb7ea6Ee9647Bef9f7bd672b459bd3799fffb26a1',
-      ],
-    },
-    [BRIDGES.routerNitro]: {
-      address: [
         '0xCA94d8C245601B152C904f42fE788B4125f5b46B',
         '0xC1a40F3e8cAC90a9f8fA427Ccc75653440DD5130',
       ],
@@ -109,7 +108,6 @@ export const ARBITRUM_MAINNET = {
         '0xe8CDF27AcD73a434D661C84887215F7598e7d0d3',
         '0xcE8CcA271Ebc0533920C83d39F417ED6A0abB7D0',
         '0xA45B5130f36CDcA45667738e2a258AB09f4A5f7F',
-        '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
       ],
     },
     [BRIDGES.swapKit]: {

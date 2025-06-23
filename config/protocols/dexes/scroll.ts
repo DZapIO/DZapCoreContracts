@@ -28,7 +28,10 @@ export const SCROLL_DEXES = {
       '0x88EDbF47032fB84E45D6CD6d8199F28C7aa77076',
       '0x9b9efa5Efa731EA9Bbb0369E91fA17Abf249CFD4',
     ],
-    [DEXES.relayLink]: ['0xeeeeee9eC4769A09a76A83C7bC42b185872860eE'],
+    [DEXES.relayLink]: [
+      '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+      '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    ],
     [DEXES.routerNitro]: ['0x5546dA2bCdCFF39b187723434cDE10D4eE99C566'],
     [DEXES.sushi]: [
       '0x33d91116e0370970444B0281AB117e161fEbFcdD',

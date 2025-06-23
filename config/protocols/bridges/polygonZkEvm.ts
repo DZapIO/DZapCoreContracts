@@ -11,6 +11,18 @@ export const POLYGON_ZK_EVM_MAINNET = {
     [BRIDGES.mesonFinance]: {
       address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
     },
+    [BRIDGES.okx]: {
+      address: [
+        '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
+        '0x57df6092665eb6058DE53939612413ff4B09114E',
+      ],
+    },
+    [BRIDGES.orbiter]: {
+      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
+    },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    },
     [BRIDGES.relayLink]: {
       address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
     },
@@ -26,15 +38,6 @@ export const POLYGON_ZK_EVM_MAINNET = {
     },
     [BRIDGES.router]: {
       address: ['0xf77f06C8FD415316DDF2fd65a03d2800A99f2ce5'],
-    },
-    [BRIDGES.okx]: {
-      address: [
-        '0x5965851f21DAE82eA7C62f87fb7C57172E9F2adD',
-        '0x57df6092665eb6058DE53939612413ff4B09114E',
-      ],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
     [BRIDGES.symbiosis]: {
       address: [

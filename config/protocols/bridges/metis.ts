@@ -23,14 +23,17 @@ export const METIS_MAINNET = {
     [BRIDGES.owlto]: {
       address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
     },
+    [BRIDGES.rango]: {
+      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+    },
+    [BRIDGES.relayLink]: {
+      address: ['0x82B3995ebE539CBed760bE089E33484fE12830F9'],
+    },
     [BRIDGES.router]: {
       address: [
         '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',
         '0x97eec1c29f745dC7c267F90292AA663d997a601D',
       ],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
     },
     [BRIDGES.routerNitro]: {
       address: ['0x21c1E74CAaDf990E237920d5515955a024031109'],

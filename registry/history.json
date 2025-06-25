@@ -177,7 +177,9 @@
       "stargate": [
         "0x77b2043768d28E9C9aB44E1aBfC95944bcE57931",
         "0x268Ca24DAefF1FaC2ed883c598200CcbB79E931D",
-        "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3"
+        "0xcDafB1b2dB43f366E48e6F614b8DCCBFeeFEEcD3",
+        "0xc026395860Db2d07ee33e05fE50ed7bD583189C7",
+        "0x933597a323Eb81cAe705C5bC29985172fd5A3973"
       ],
       "allbridge": [
         "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5",
@@ -241,7 +243,8 @@
         "0xe3985E6b61b814F7Cdb188766562ba71b446B46d"
       ],
       "xLink": [
-        "0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5"
+        "0x1A86fF397B58DB43ab019D336931E6a71CC56Ce5",
+        "0xB1c34A9F630eDb880f289683cFac2f923B31C94d"
       ],
       "cctp": [
         "0xBd3fa81B58Ba92a82136038B25aDec7066af3155"
@@ -641,7 +644,8 @@
       ],
       "xyFinance": [
         "0xF103b5B479d2A629F422C42bb35E7eEceE1ad55E",
-        "0x5d6e7E537cb4a8858C8B733A2A307B4aAFDc42ca"
+        "0x5d6e7E537cb4a8858C8B733A2A307B4aAFDc42ca",
+        "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
       ]
     }
   },
@@ -740,6 +744,11 @@
       ],
       "telosBridge": [
         "0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76"
+      ],
+      "stargate": [
+        "0xA272fFe20cFfe769CdFc4b63088DCD2C82a2D8F9",
+        "0x2086f755A6d9254045C257ea3d382ef854849B0f",
+        "0x3a1293Bdb83bBbDd5Ebf4fAc96605aD2021BbC0f"
       ]
     },
     "executors": {
@@ -5113,7 +5122,8 @@
         "0x6E1db4cCf2B4Be978cC97D1FC9A3492a61FE8785",
         "0x8C4aCd74Ff4385f3B7911432FA6787Aa14406f8B",
         "0x30b8eB0Eeb0b4E3927B78E45327278c05Bf24775",
-        "0xAA6C544Ab06CF01388D7960Fb2eead3d989cB8CE"
+        "0xAA6C544Ab06CF01388D7960Fb2eead3d989cB8CE",
+        "0x9Ae5C1847f558DFbB9bd2d8Abb6284EaBFC66726"
       ],
       "squid": [
         "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"

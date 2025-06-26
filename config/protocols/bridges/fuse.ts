@@ -1,22 +1,14 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const FUSE = {
-  bridges: {
-    [BRIDGES.lifi]: {
-      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-    },
-    [BRIDGES.orbiter]: {
-      address: [
-        '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172',
-        '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
-      ],
-    },
-    [BRIDGES.stargate]: {
-      address: [
-        '0x45f1A95A4D3f3836523F5c83673c797f4d4d263B',
-        '0xAF54BE5B6eEc24d6BFACf1cce4eaF680A8239398',
-        '0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6',
-      ],
-    },
-  },
+  [BRIDGES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+  [BRIDGES.orbiter]: [
+    '0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172',
+    '0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef',
+  ],
+  [BRIDGES.stargate]: [
+    '0x45f1A95A4D3f3836523F5c83673c797f4d4d263B',
+    '0xAF54BE5B6eEc24d6BFACf1cce4eaF680A8239398',
+    '0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6',
+  ],
 }

@@ -21,7 +21,7 @@ export const getBridgeConfig = (chainId: CHAIN_IDS) => {
   const config = DZAP_BRIDGES_CONFIG[chainId]
   if (!config) throw Error(`Bridge config not found for ${chainId}`)
 
-  return config.bridges
+  return config
 }
 
 export const getBridgesToRemove = async (
@@ -76,7 +76,7 @@ export const getBridgesToAdd = async (
   const addressToBridge: Record<string, string> = {}
 
   for (const [bridgeName, config] of Object.entries(bridges)) {
-    config.address.forEach((address) => {
+    config.forEach((address) => {
       addressToBridge[address] = bridgeName
     })
   }

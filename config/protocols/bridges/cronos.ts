@@ -1,30 +1,18 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const CRONOS_MAINNET = {
-  bridges: {
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
-        '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
-        '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
-        '0x292fC50e4eB66C3f6514b9E402dBc25961824D62',
-      ],
-    },
-    [BRIDGES.synapse]: {
-      address: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
-    },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0xF103b5B479d2A629F422C42bb35E7eEceE1ad55E',
-        '0x5d6e7E537cb4a8858C8B733A2A307B4aAFDc42ca',
-        '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
-      ],
-    },
-  },
+  [BRIDGES.mesonFinance]: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+  [BRIDGES.rango]: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+  [BRIDGES.symbiosis]: [
+    '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
+    '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
+    '0x5523985926Aa12BA58DC5Ad00DDca99678D7227E',
+    '0x292fC50e4eB66C3f6514b9E402dBc25961824D62',
+  ],
+  [BRIDGES.synapse]: ['0x7E7A0e201FD38d3ADAA9523Da6C109a07118C96a'],
+  [BRIDGES.xyFinance]: [
+    '0xF103b5B479d2A629F422C42bb35E7eEceE1ad55E',
+    '0x5d6e7E537cb4a8858C8B733A2A307B4aAFDc42ca',
+    '0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5',
+  ],
 }

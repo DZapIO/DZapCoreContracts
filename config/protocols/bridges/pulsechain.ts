@@ -1,9 +1,5 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const PULSECHAIN_BRIDGES = {
-  bridges: {
-    [BRIDGES.lifi]: {
-      //   address: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
-    },
-  },
+  // [BRIDGES.lifi]: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
 }

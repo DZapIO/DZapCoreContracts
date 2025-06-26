@@ -1,58 +1,32 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const TAIKO_MAINNET = {
-  bridges: {
-    [BRIDGES.lifi]: {
-      address: ['0x3A9A5dBa8FE1C4Da98187cE4755701BCA182f63b'],
-    },
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-    },
-    [BRIDGES.orbiter]: {
-      address: ['0x2598d7bc9d3b4b6124f3282e49eee68db270f516'],
-    },
-    [BRIDGES.owlto]: {
-      address: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
-    },
-    [BRIDGES.rango]: {
-      address: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
-    },
-    [BRIDGES.relayLink]: {
-      address: [
-        '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
-        '0x82B3995ebE539CBed760bE089E33484fE12830F9',
-      ],
-    },
-    [BRIDGES.rhinoFi]: {
-      address: ['0x1Df2De291F909baA50C1456C87C71Edf9Fb199D5'],
-    },
-    [BRIDGES.router]: {
-      address: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
-    },
-    [BRIDGES.stargate]: {
-      address: [
-        '0x1C10CC06DC6D35970d1D53B2A23c76ef370d4135',
-        '0x77C71633C34C3784ede189d74223122422492a0f',
-      ],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365',
-        '0xa0079829B9F1Edc5DD0DE3eC104f281745C4bD81',
-        '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
-        '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
-      ],
-    },
-    [BRIDGES.swing]: {
-      address: ['0x90f1Ef9D2cDe204C8494Cf73130771B350070B53'],
-    },
-    [BRIDGES.xyFinance]: {
-      address: [
-        '0xedC061306A79257f15108200C5B82ACc874C239d',
-        '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
-        '0x6bE1fE9Dd10a4fBFCE5552Ca9AdD122341eC6C04',
-        '0xcf446713ddf0e83f7527a260047f8ae89efae3e5',
-      ],
-    },
-  },
+  [BRIDGES.lifi]: ['0x3A9A5dBa8FE1C4Da98187cE4755701BCA182f63b'],
+  [BRIDGES.mesonFinance]: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+  [BRIDGES.orbiter]: ['0x2598d7bc9d3b4b6124f3282e49eee68db270f516'],
+  [BRIDGES.owlto]: ['0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7'],
+  [BRIDGES.rango]: ['0x69460570c93f9DE5E2edbC3052bf10125f0Ca22d'],
+  [BRIDGES.relayLink]: [
+    '0x77A917df7A084b7B3E43517Ae28373C2a5492625',
+    '0x82B3995ebE539CBed760bE089E33484fE12830F9',
+  ],
+  [BRIDGES.rhinoFi]: ['0x1Df2De291F909baA50C1456C87C71Edf9Fb199D5'],
+  [BRIDGES.router]: ['0x7BD616192fB2B364f9d29B2026165281a5f2ff2F'],
+  [BRIDGES.stargate]: [
+    '0x1C10CC06DC6D35970d1D53B2A23c76ef370d4135',
+    '0x77C71633C34C3784ede189d74223122422492a0f',
+  ],
+  [BRIDGES.symbiosis]: [
+    '0x7057aB3fB2BeE9c18e0cDe4240DE4ff7f159E365',
+    '0xa0079829B9F1Edc5DD0DE3eC104f281745C4bD81',
+    '0xda8057acB94905eb6025120cB2c38415Fd81BfEB',
+    '0x01A3c8E513B758EBB011F7AFaf6C37616c9C24d9',
+  ],
+  [BRIDGES.swing]: ['0x90f1Ef9D2cDe204C8494Cf73130771B350070B53'],
+  [BRIDGES.xyFinance]: [
+    '0xedC061306A79257f15108200C5B82ACc874C239d',
+    '0x73Ce60416035B8D7019f6399778c14ccf5C9c7A1',
+    '0x6bE1fE9Dd10a4fBFCE5552Ca9AdD122341eC6C04',
+    '0xcf446713ddf0e83f7527a260047f8ae89efae3e5',
+  ],
 }

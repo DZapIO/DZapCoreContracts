@@ -1,31 +1,17 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const GRAVITY = {
-  bridges: {
-    [BRIDGES.comet]: {
-      address: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
-    },
-    [BRIDGES.lifi]: {
-      address: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
-    },
-    [BRIDGES.orbiter]: {
-      address: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
-    },
-    [BRIDGES.relayLink]: {
-      address: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
-    },
-    [BRIDGES.stargate]: {
-      address: [
-        '0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2',
-        '0xC1B8045A6ef2934Cf0f78B0dbD489969Fa9Be7E4',
-        '0x0B38e83B86d491735fEaa0a791F65c2B99535396',
-      ],
-    },
-    [BRIDGES.symbiosis]: {
-      address: [
-        '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
-        '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
-      ],
-    },
-  },
+  [BRIDGES.comet]: ['0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846'],
+  [BRIDGES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
+  [BRIDGES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
+  [BRIDGES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+  [BRIDGES.stargate]: [
+    '0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2',
+    '0xC1B8045A6ef2934Cf0f78B0dbD489969Fa9Be7E4',
+    '0x0B38e83B86d491735fEaa0a791F65c2B99535396',
+  ],
+  [BRIDGES.symbiosis]: [
+    '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',
+    '0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278',
+  ],
 }

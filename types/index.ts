@@ -161,11 +161,7 @@ export interface SelectorInfo {
 }
 
 export type BridgeConfig = {
-  bridges: {
-    [key in BRIDGES]?: {
-      address: string[]
-    }
-  }
+  [key in BRIDGES]?: string[]
 }
 
 export type DexConfig = {

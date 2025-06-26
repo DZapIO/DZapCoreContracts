@@ -1,7 +1,5 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const CONFLUX_E_SPACE_MAINNET = {
-  bridges: {
-    // Add your CONFLUX_E_SPACE_MAINNET configuration here
-  },
+  // [BRIDGES.lifi]: ['0x9c5ebCbE531aA81bD82013aBF97401f5C6111d76'],
 }

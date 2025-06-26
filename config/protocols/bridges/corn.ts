@@ -1,12 +1,6 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const CORN_BRIDGES = {
-  bridges: {
-    [BRIDGES.mesonFinance]: {
-      address: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-    },
-    [BRIDGES.stargate]: {
-      address: [''],
-    },
-  },
+  [BRIDGES.mesonFinance]: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
+  [BRIDGES.stargate]: [''],
 }

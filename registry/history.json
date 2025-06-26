@@ -4320,6 +4320,20 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "izumi": [
+        "0xF6FFe4f3FdC8BBb7F70FFD48e61f17D1e343dDfD"
+      ],
+      "uniswap": [
+        "0x4c4eABd5Fb1D1A7234A48692551eAECFF8194CA7"
+      ],
+      "zeroX": [
+        "0x0000000000001fF3684f28c67538d4D072C22734"
+      ]
     }
   },
   "10242": {
@@ -4848,6 +4862,9 @@
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
         "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+      ],
+      "orbiter": [
+        "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
       ]
     },
     "executors": {

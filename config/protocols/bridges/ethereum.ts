@@ -11,6 +11,12 @@ export const ETH_MAINNET = {
         '0x609c690e8F7D68a59885c9132e812eEbDaAf0c9e',
       ],
     },
+    [BRIDGES.bridgers]: {
+      address: [
+        '0xB685760EBD368a891F27ae547391F4E2A289895b', // through rango
+        '0xF9a521579c09aC3aDdc2fCf7B705284E15b5e579', // through rango
+      ],
+    },
     [BRIDGES.cctp]: {
       address: ['0xBd3fa81B58Ba92a82136038B25aDec7066af3155'],
     },

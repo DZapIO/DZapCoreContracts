@@ -40,6 +40,7 @@ export const ARBITRUM_DEXES = {
       '0x111111125421ca6dc452d289314280a0f8842a65',
     ],
     [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
+    [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
     [DEXES.paraswap]: [
       '0xDEF171Fe48CF0115B1d80b88dc8eAB59176FEe57',
       '0x216b4b4ba9f3e719726886d34a177484278bfcae',

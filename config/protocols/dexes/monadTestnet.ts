@@ -1,0 +1,10 @@
+import { DEXES } from '../dexNames'
+
+export const MONAD_TESTNET_DEXES = {
+  dexes: {
+    [DEXES.izumi]: ['0xF6FFe4f3FdC8BBb7F70FFD48e61f17D1e343dDfD'],
+    [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+    [DEXES.uniswap]: ['0x4c4eABd5Fb1D1A7234A48692551eAECFF8194CA7'],
+    [DEXES.zeroX]: ['0x0000000000001fF3684f28c67538d4D072C22734'],
+  },
+}

@@ -14,6 +14,7 @@ export enum DEXES {
   omniBtc = 'omniBtc',
   oneInch = 'oneInch',
   openOcean = 'openOcean',
+  orbiter = 'orbiter',
   pancakeSwap = 'pancakeSwap', // through swapKit
   paraswap = 'paraswap', // Should remove this in future and change below v6 to only paraswap
   paraswapV6 = 'paraswapV6',

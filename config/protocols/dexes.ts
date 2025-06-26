@@ -55,13 +55,14 @@ import { WORLDCHAIN_DEXES } from './dexes/worldChain'
 import { ZETACHAIN_DEXES } from './dexes/zetachain'
 import { ZKFAIR_DEXES } from './dexes/zkFair'
 import { APE_CHAIN_DEXES } from './dexes/apeChain'
-import { BAHAMUT_DEXES as BAHUMAT_DEXES } from './dexes/bahumat'
+import { BAHAMUT_DEXES as BAHAMUT_DEXES } from './dexes/bahumat'
 import { IMMUTABLE_ZK_EVM_DEXES } from './dexes/immutableZkEvm'
 import { SUPERPOSITION_DEXES } from './dexes/superposition'
 import { SWELL_CHAIN_DEXES } from './dexes/swellChain'
 import { UNICHAIN_DEXES } from './dexes/unichain'
 import { KAIA_DEXES } from './dexes/kaia'
 import { ABSTRACT_DEXES } from './dexes/abstract'
+import { MONAD_TESTNET_DEXES } from './dexes/monadTestnet'
 
 export const DZAP_DEXES_CONFIG: {
   [x in CHAIN_IDS]?: DexConfig
@@ -71,7 +72,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.APE_CHAIN]: APE_CHAIN_DEXES,
   [CHAIN_IDS.AVALANCHE_MAINNET]: AVALANCHE_DEXES,
   [CHAIN_IDS.AURORA_MAINNET]: AURORA_DEXES,
-  [CHAIN_IDS.BAHUMAT_MAINNET]: BAHUMAT_DEXES,
+  [CHAIN_IDS.BAHAMUT_MAINNET]: BAHAMUT_DEXES,
   [CHAIN_IDS.BASE_MAINNET]: BASE_DEXES,
   [CHAIN_IDS.BERACHAIN_MAINNET]: BERACHAIN_DEXES,
   [CHAIN_IDS.BITLAYER]: BITLAYER_DEXES,
@@ -127,4 +128,7 @@ export const DZAP_DEXES_CONFIG: {
   [CHAIN_IDS.ZETACHAIN_MAINNET]: ZETACHAIN_DEXES,
   [CHAIN_IDS.ZKFAIR]: ZKFAIR_DEXES,
   [CHAIN_IDS.ZKSYNC_MAINNET]: ZKSYNC_DEXES,
+
+  // Testnets
+  [CHAIN_IDS.MONAD_TESTNET]: MONAD_TESTNET_DEXES,
 }

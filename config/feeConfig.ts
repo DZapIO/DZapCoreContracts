@@ -356,7 +356,7 @@ export const DZAP_FEE_CONFIG = {
     maxTokenFeePercent: 5,
     nativeDecimal: 18,
   },
-  [CHAIN_IDS.BAHUMAT_MAINNET]: {
+  [CHAIN_IDS.BAHAMUT_MAINNET]: {
     protocolFeeVault: '0x545044020ffa4611fb0f2b7ede12d13becfceca3',
     maxFixedFeeAmount: '100',
     maxTokenFeePercent: 5,

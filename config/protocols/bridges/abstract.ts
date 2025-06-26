@@ -16,8 +16,8 @@ export const ABSTRACT_BRIDGES = {
     },
     [BRIDGES.relayLink]: {
       address: [
-        '0xDd6A084B563731BE8eD039df29fA73beBdAAea2C',
         '0x634E831cE6D460c2CD5067Af98D6452Eb280E374',
+        '0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98',
       ],
     },
     [BRIDGES.socket]: {

@@ -11,6 +11,12 @@ export const MORPH_BRIDGES = {
     [BRIDGES.owlto]: {
       address: ['0x3F0F0E6411F859Da1A1BbF8bD6217cA93820Bb98'],
     },
+    // [BRIDGES.relayLink]: {
+    //   address: [
+    //     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    //     '0xd71e5C1D217D12855B37fe60299273aaD91d6Cec',
+    //   ],
+    // },
     [BRIDGES.symbiosis]: {
       address: [
         '0xcE8f24A58D85eD5c5A6824f7be1F8d4711A0eb4C',

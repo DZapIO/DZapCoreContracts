@@ -1,12 +1,10 @@
 import { DEXES } from '../dexNames'
 
 export const KAVA_DEXES = {
-  dexes: {
-    [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
-    [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
-    [DEXES.sushi]: [
-      '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
-      '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
-    ],
-  },
+  [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
+  [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+  [DEXES.sushi]: [
+    '0xf2614A233c7C3e7f08b1F887Ba133a13f1eb2c55',
+    '0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71',
+  ],
 }

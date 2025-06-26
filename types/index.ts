@@ -169,7 +169,7 @@ export type BridgeConfig = {
 }
 
 export type DexConfig = {
-  dexes: { [key in DEXES]?: string[] }
+  [key in DEXES]?: string[]
 }
 
 export interface FacetDeployData {

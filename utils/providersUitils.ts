@@ -14,7 +14,7 @@ export const getDexConfig = (chainId: CHAIN_IDS) => {
   const config = DZAP_DEXES_CONFIG[chainId]
   if (!config) throw Error(`Dex config not found for ${chainId}`)
 
-  return config.dexes
+  return config
 }
 
 export const getBridgeConfig = (chainId: CHAIN_IDS) => {

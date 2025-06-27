@@ -5309,6 +5309,26 @@
           "fixedNativeFeeAmount": "22000000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      },
+      "ARENA": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "22000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
         }
       }
     }

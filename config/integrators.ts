@@ -2,6 +2,7 @@ import { CHAIN_IDS } from './networks'
 
 export const INTEGRATORS = {
   DZAP: 'DZAP',
+  ARENA: 'ARENA',
 }
 
 export const INTEGRATOR_CONFIG = {
@@ -134,6 +135,25 @@ export const INTEGRATOR_CONFIG = {
   [CHAIN_IDS.AVALANCHE_MAINNET]: {
     [INTEGRATORS.DZAP]: {
       address: '0x45dd5ec28dbf5296dffae428d7f484ab02ee7bad',
+      fee: [
+        {
+          type: 1,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 0,
+        },
+        {
+          type: 0,
+          tokenFee: 0,
+          fixedNativeFeeAmount: 0.022,
+          dzapTokenShare: 0,
+          dzapFixedNativeShare: 100,
+        },
+      ],
+    },
+    [INTEGRATORS.ARENA]: {
+      address: '0xaebe8Fb47A0902a52a288A725b1525C66AB5f7DB',
       fee: [
         {
           type: 1,

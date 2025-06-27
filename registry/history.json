@@ -254,6 +254,10 @@
       ],
       "rhinoFi": [
         "0xBCA3039a18c0d2f2F84BA8a028c67290bc045AFa"
+      ],
+      "bridgers": [
+        "0xB685760EBD368a891F27ae547391F4E2A289895b",
+        "0xF9a521579c09aC3aDdc2fCf7B705284E15b5e579"
       ]
     },
     "executors": {
@@ -1225,7 +1229,8 @@
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
       ],
       "relayLink": [
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
       ],
       "uniswap": [
         "0x73855d06DE49d0fe4A9c42636Ba96c62da12FF9C"

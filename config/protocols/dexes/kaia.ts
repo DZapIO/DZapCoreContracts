@@ -2,4 +2,6 @@ import { DEXES } from '../dexNames'
 
 export const KAIA_DEXES = {
   [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
+  [DEXES.lifi]: ['0x1255d17c1BC2f764d087536410879F2d0D8772fD'],
+  [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
 }

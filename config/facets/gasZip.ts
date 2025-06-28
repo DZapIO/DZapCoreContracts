@@ -5,6 +5,10 @@ export const GAS_ZIP_ADDRESS = {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
   },
+  [CHAIN_IDS.ABSTRACT_MAINNET]: {
+    depositAddress: '',
+    contractAddress: '0x252fb662e4D7435D2a5DED8EC94d8932CF76C178',
+  },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0x2a37D63EAdFe4b4682a3c28C1c2cD4F109Cc2762',
@@ -72,6 +76,11 @@ export const GAS_ZIP_ADDRESS = {
   [CHAIN_IDS.LINEA_MAINNET]: {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0xA60768b03eB14d940F6c9a8553329B7F9037C91b',
+  },
+  [CHAIN_IDS.LENS]: {
+    depositAddress: '',
+    // contractAddress: '0x252fb662e4D7435D2a5DED8EC94d8932CF76C178',
+    contractAddress: '0xDeb8609F3f6c1A3EA814ED571C7d7C61a9Cfa76A',
   },
   [CHAIN_IDS.MINT]: {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',

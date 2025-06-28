@@ -5,6 +5,10 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0xa06e1351e2fd2d45b5d35633ca7ecf328684a109',
     relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
   },
+  [CHAIN_IDS.ABSTRACT_MAINNET]: {
+    relayerReceiver: '0x634e831ce6d460c2cd5067af98d6452eb280e374',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
   [CHAIN_IDS.ARBITRUM_MAINNET]: {
     relayerReceiver: '0xa5f565650890fba1824ee0f21ebbbf660a179934',
     relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',

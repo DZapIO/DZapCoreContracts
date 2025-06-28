@@ -12,6 +12,7 @@ export const SONIC_DEXES = {
   ],
   [DEXES.odos]: ['0xaC041Df48dF9791B0654f1Dbbf2CC8450C5f2e9D'],
   [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
+  [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
   [DEXES.relayLink]: [
     '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',

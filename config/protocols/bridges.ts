@@ -72,6 +72,7 @@ import { ABSTRACT_BRIDGES } from './bridges/abstract'
 import { CRONOS_ZK_EVM_BRIDGES } from './bridges/cronosZkEvm'
 import { B2SQUARE_NETWORK_BRIDGES } from './bridges/b2SquaredNetwork'
 import { MONAD_TESTNET_BRIDGES } from './bridges/monadTestnet'
+import { LENS_BRIDGES } from './bridges/lens'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -114,6 +115,7 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.KAIA]: KAIA_BRIDGES,
   [CHAIN_IDS.KAVA_MAINNET]: KAVA_MAINNET,
   [CHAIN_IDS.KROMA]: KROMA,
+  [CHAIN_IDS.LENS]: LENS_BRIDGES,
   [CHAIN_IDS.LINEA_MAINNET]: LINEA_MAINNET,
   [CHAIN_IDS.LISK_MAINNET]: LISK_MAINNET,
   [CHAIN_IDS.MANTA_MAINNET]: MANTA_MAINNET,

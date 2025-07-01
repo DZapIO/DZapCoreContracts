@@ -19,7 +19,10 @@ export const MANTA_DEXES = {
   ],
   [DEXES.omniBtc]: ['0xd600d94d0812f7EdfA47D0Cf02a767b1DD14A01B'],
   [DEXES.openOcean]: ['0x6352a56caadc4f1e25cd6c75970fa768a3304e64'],
-  [DEXES.relayLink]: ['0xaf810080131072968E5Cab00B33e6C7df4eb4E71'],
+  [DEXES.relayLink]: [
+    '0xaf810080131072968E5Cab00B33e6C7df4eb4E71',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+  ],
   [DEXES.routerNitro]: ['0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06'],
   [DEXES.sushi]: ['0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71'],
   // [DEXES.zeroX]: ['0xa6cafa8c34e581e2876db781cfd5e10f8db081cb'], // not a contract

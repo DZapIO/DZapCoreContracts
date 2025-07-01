@@ -6,5 +6,8 @@ export const GRAVITY_DEXES = {
   [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
   [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
   [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
-  [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+  [DEXES.relayLink]: [
+    '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+  ],
 }

@@ -162,4 +162,21 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0xa5f565650890fba1824ee0f21ebbbf660a179934',
     relayerSolver: '0xf70da97812CB96acDF810712Aa562db8dfA3dbEF',
   },
+
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    relayerReceiver: '0x4cec3461dd63f22554b7fa2abba5bbfe9e86ddfd',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.ETH_SEPOLIA]: {
+    relayerReceiver: '0x4cec3461dd63f22554b7fa2abba5bbfe9e86ddfd',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.OP_SEPOLIA]: {
+    relayerReceiver: '0x4cec3461dd63f22554b7fa2abba5bbfe9e86ddfd',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.UNICHAIN_SEPOLIA]: {
+    relayerReceiver: '0x4cec3461dd63f22554b7fa2abba5bbfe9e86ddfd',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
 }

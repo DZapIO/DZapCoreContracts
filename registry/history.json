@@ -403,7 +403,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "teleSwap": [
         "0xec4A7D93750BbcE2A07fd1bc748507ea645e9d52"
@@ -516,7 +517,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -5283,6 +5285,9 @@
       ],
       "rhinoFi": [
         "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
+      ],
+      "orbiter": [
+        "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
       ]
     },
     "dexes": {
@@ -5383,6 +5388,9 @@
         "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
         "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
         "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
+      ],
+      "orbiter": [
+        "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
       ]
     },
     "executors": {

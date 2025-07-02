@@ -18,7 +18,7 @@
     "removeDexes": "ts-node scripts/removeMultipleDexes.ts",
     "removeBridges": "ts-node scripts/removeMultipleBridges.ts",
     "syncHistory": "ts-node scripts/syncHistory.ts",
-    "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts",
+    "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts"
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "0.11.0",

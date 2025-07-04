@@ -6,6 +6,7 @@ export const SONEIUM_DEXES = {
   [DEXES.relayLink]: [
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
     '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
   ],
   [DEXES.uniswap]: ['0x7E40dB01736f88464e5f4E42394F3d5bbb6705B9'],
 }

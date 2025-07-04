@@ -640,6 +640,9 @@
       ],
       "openOcean": [
         "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     },
     "bridges": {
@@ -662,6 +665,9 @@
         "0xF103b5B479d2A629F422C42bb35E7eEceE1ad55E",
         "0x5d6e7E537cb4a8858C8B733A2A307B4aAFDc42ca",
         "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ]
     }
   },
@@ -2337,7 +2343,8 @@
       "relayLink": [
         "0xebd1e414ebb98522cfd932104ba41fac10a4ef35",
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
-        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1"
+        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "rhinoFi": [
         "0x1fa66e2B38d0cC496ec51F81c3e05E6A6708986F"
@@ -2401,7 +2408,8 @@
       ],
       "relayLink": [
         "0xf605a9345401a0A3CAAcBcF9D891949218e0142D",
-        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1"
+        "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ]
     },
     "executors": {
@@ -2498,7 +2506,8 @@
       ],
       "relayLink": [
         "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109",
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "across": [
         "0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64"
@@ -2508,6 +2517,12 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "router": [
+        "0x397E3e253206BB935d6F0ebfd4CA5941a0bE0dDa"
+      ],
+      "swing": [
+        "0x97fffFfa57144BBfacF41251bd1763657e646667"
       ]
     },
     "dexes": {
@@ -2516,7 +2531,8 @@
       ],
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "uniswap": [
         "0x091AD9e2e6e5eD44c1c66dB50e49A601F9f36cF6"
@@ -2654,7 +2670,8 @@
         "0xda52965937213F51Bfe716f338714Afa80fF17BF"
       ],
       "relayLink": [
-        "0x82B3995ebE539CBed760bE089E33484fE12830F9"
+        "0x82B3995ebE539CBed760bE089E33484fE12830F9",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "bridges": {
@@ -2705,7 +2722,8 @@
         "0x97fffFfa57144BBfacF41251bd1763657e646667"
       ],
       "relayLink": [
-        "0x82B3995ebE539CBed760bE089E33484fE12830F9"
+        "0x82B3995ebE539CBed760bE089E33484fE12830F9",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     }
   },
@@ -3194,7 +3212,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -3212,7 +3231,8 @@
         "0x0fbCf4a62036E96C4F6770B38a9B536Aa14d1846"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -3254,7 +3274,8 @@
         "0xAdB2d3b711Bb8d8Ea92ff70292c466140432c278"
       ],
       "relayLink": [
-        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089"
+        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "dexes": {
@@ -3263,7 +3284,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE"
+        "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "uniswap": [
         "0x7E40dB01736f88464e5f4E42394F3d5bbb6705B9"
@@ -3537,7 +3559,8 @@
       ],
       "relayLink": [
         "0xDd6A084B563731BE8eD039df29fA73beBdAAea2C",
-        "0x634E831cE6D460c2CD5067Af98D6452Eb280E374"
+        "0x634E831cE6D460c2CD5067Af98D6452Eb280E374",
+        "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98"
       ],
       "socket": [
         "0xf8291B7c7fDaa275a0B17DA1a756D1fbE4d3A13d"
@@ -3788,7 +3811,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "relayLink": [
-        "0x90bc1FE7561423D51D77fF56F4790805D3B5d885"
+        "0x90bc1FE7561423D51D77fF56F4790805D3B5d885",
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
       ],
       "odos": [
         "0xD9F4e85489aDCD0bAF0Cd63b4231c6af58c26745"
@@ -3847,7 +3871,8 @@
       ],
       "relayLink": [
         "0xF7dc16A5b374f5a7b70E601f1B96bDcF69840832",
-        "0x610F3927901C41c219A1AD267Df8073DBc883464"
+        "0x610F3927901C41c219A1AD267Df8073DBc883464",
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
       ],
       "swing": [
         "0x97fffFfa57144BBfacF41251bd1763657e646667"
@@ -4178,7 +4203,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "swapKit": [
         "0x68208D99746b805a1Ae41421950A47b711E35681"
@@ -4306,7 +4332,8 @@
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -4546,7 +4573,8 @@
     "bridges": {
       "relayLink": [
         "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109",
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "lifi": [
         "0x2dea447e7dc6cd2f10b31bF10dCB30F87E838417"
@@ -6203,6 +6231,14 @@
       "dodo": [
         "0x60019cf4b8d15e28dbF127669A5f0c216f8F2BAe",
         "0x4c0f6C7AA981099CB7D74E8f08D85832c7FA5640"
+      ]
+    },
+    "bridges": {
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "orbiter": [
+        "0x13e46b2a3f8512ed4682a8fb8b560589fe3c2172"
       ]
     }
   },

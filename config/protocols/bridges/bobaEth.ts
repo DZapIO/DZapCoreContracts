@@ -3,7 +3,10 @@ import { BRIDGES } from '../bridgeNames'
 export const BOBA_ETH = {
   [BRIDGES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   [BRIDGES.rango]: ['0xd9BdD77E9017C4727D3CdB87D91b7a0Fc7d63da4'],
-  [BRIDGES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+  [BRIDGES.relayLink]: [
+    '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+  ],
   [BRIDGES.router]: ['0xc21e4ebd1d92036cb467b53fe3258f219d909eb9'],
   [BRIDGES.symbiosis]: [
     '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',

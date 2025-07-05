@@ -2252,7 +2252,8 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "bridges": {
@@ -2278,7 +2279,8 @@
         "0x00cD000000003f7F682BE4813200893d4e690000"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     }
   },
@@ -2344,7 +2346,8 @@
         "0xebd1e414ebb98522cfd932104ba41fac10a4ef35",
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
         "0xC7A4a594EF6E834AE75392A62A79638E0b6178C1",
-        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "rhinoFi": [
         "0x1fa66e2B38d0cC496ec51F81c3e05E6A6708986F"
@@ -3275,7 +3278,8 @@
       ],
       "relayLink": [
         "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ]
     },
     "dexes": {
@@ -3285,7 +3289,8 @@
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "uniswap": [
         "0x7E40dB01736f88464e5f4E42394F3d5bbb6705B9"
@@ -5674,7 +5679,8 @@
       ],
       "relayLink": [
         "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed",
-        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0"
+        "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -5758,7 +5764,8 @@
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
       ],
       "relayLink": [
-        "0xfd06c0018318bf78705ccff2b961ef8ebc0baca0"
+        "0xfd06c0018318bf78705ccff2b961ef8ebc0baca0",
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
       ],
       "xLink": [
         "0x0F38ED043A1A2ec79B15d7F4FB8D25036680ce03"

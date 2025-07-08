@@ -1,6 +1,7 @@
 import { BRIDGES } from '../bridgeNames'
 
 export const ROOTSTOCK_MAINNET = {
+  [BRIDGES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   [BRIDGES.mesonFinance]: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
   [BRIDGES.router]: [
     '0xc21e4ebd1d92036cb467b53fe3258f219d909eb9',

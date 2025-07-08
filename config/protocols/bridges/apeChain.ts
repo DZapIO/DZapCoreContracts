@@ -5,6 +5,7 @@ export const APE_CHAIN_BRIDGES = {
   [BRIDGES.relayLink]: [
     '0xa06e1351E2fD2D45b5D35633ca7eCF328684a109',
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
   ],
   [BRIDGES.stargate]: [
     '0x28E0f0eed8d6A6a96033feEe8b2D7F32EB5CCc48',

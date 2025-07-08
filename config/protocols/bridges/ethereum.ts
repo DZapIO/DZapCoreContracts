@@ -50,7 +50,10 @@ export const ETH_MAINNET = {
     '0x6bfad42cfc4efc96f529d786d643ff4a8b89fa52', // rainbow bridge through rango
     '0x23Ddd3e3692d1861Ed57EDE224608875809e127f', // rainbow bridge through rango
   ],
-  [BRIDGES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+  [BRIDGES.relayLink]: [
+    '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+  ],
   [BRIDGES.rhinoFi]: ['0xBCA3039a18c0d2f2F84BA8a028c67290bc045AFa'],
   [BRIDGES.router]: ['0xBC5D5fB38227c8DA51FAD6f5F5AC6652585B6cBc'],
   [BRIDGES.routerNitro]: [

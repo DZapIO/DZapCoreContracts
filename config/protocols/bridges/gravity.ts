@@ -7,6 +7,7 @@ export const GRAVITY = {
   [BRIDGES.relayLink]: [
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
     '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+    '0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222',
   ],
   [BRIDGES.stargate]: [
     '0x17d65bF79E77B6Ab21d8a0afed3bC8657d8Ee0B2',

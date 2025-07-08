@@ -31,6 +31,7 @@ export const SCROLL_DEXES = {
   [DEXES.relayLink]: [
     '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
   ],
   [DEXES.routerNitro]: ['0x5546dA2bCdCFF39b187723434cDE10D4eE99C566'],
   [DEXES.sushi]: [

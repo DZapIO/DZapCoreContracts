@@ -53,6 +53,10 @@ export const GAS_ZIP_ADDRESS = {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0xA60768b03eB14d940F6c9a8553329B7F9037C91b',
   },
+  [CHAIN_IDS.FLARE]: {
+    depositAddress: '',
+    contractAddress: '0x431F08321d06e41CB062D370cc4Ba2BAc39Ffef0',
+  },
   [CHAIN_IDS.GRAVITY]: {
     depositAddress: '0x391E7C679d29bD940d63be94AD22A25d25b5A604',
     contractAddress: '0x6Efc6Ead40786bD87A884382b6EA4BcA3C985e99',

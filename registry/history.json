@@ -6352,6 +6352,9 @@
       ],
       "cctp": [
         "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
+      ],
+      "cctpV2": [
+        "0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA"
       ]
     }
   },
@@ -6563,6 +6566,17 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "bridges": {
+      "across": [
+        "0x5ef6C01E11889d86803e0B23e3cB3F9E9d97B662"
+      ],
+      "cctp": [
+        "0x9f3B8679c73C2Fef8b59B4f3444d4e156fb70AA5"
+      ],
+      "cctpV2": [
+        "0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA"
+      ]
     }
   },
   "11155420": {

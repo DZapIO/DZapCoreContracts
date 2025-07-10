@@ -75,6 +75,7 @@ import { MONAD_TESTNET_BRIDGES } from './bridges/monadTestnet'
 import { LENS_BRIDGES } from './bridges/lens'
 import { ARBITRUM_SEPOLIA_BRIDGES } from './bridges/arbitrumSepolia'
 import { ETHEREUM_SEPOLIA_BRIDGES } from './bridges/ethereumSepolia'
+import { HYPER_EVM_BRIDGES } from './bridges/hyperEVM'
 
 export const DZAP_BRIDGES_CONFIG: {
   [x in CHAIN_IDS]?: BridgeConfig
@@ -114,6 +115,7 @@ export const DZAP_BRIDGES_CONFIG: {
   [CHAIN_IDS.GRAVITY]: GRAVITY,
   [CHAIN_IDS.HECO_MAINNET]: HECO_MAINNET,
   [CHAIN_IDS.HEMI]: HEMI_BRIDGES,
+  [CHAIN_IDS.HYPER_EVM]: HYPER_EVM_BRIDGES,
   [CHAIN_IDS.IMMUTABLE_ZKEVM]: IMMUTABLE_ZK_EVM_BRIDGES,
   [CHAIN_IDS.INK]: INK_BRIDGES,
   [CHAIN_IDS.KAIA]: KAIA_BRIDGES,

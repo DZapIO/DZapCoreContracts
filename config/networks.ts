@@ -838,6 +838,7 @@ export const NETWORKS: Networks = {
     chainName: 'Bera Chain',
     shortName: 'bera',
     rpcUrl: [
+      `https://berachain-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://berachain.blockpi.network/v1/rpc/public',
       'https://bartio.rpc.berachain.com',
       'https://bera-testnet.nodeinfra.com',

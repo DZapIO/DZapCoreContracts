@@ -38,6 +38,7 @@ export enum BRIDGES {
   teleSwap = 'teleSwap',
   telosBridge = 'telosBridge',
   unizen = 'unizen',
+  usdt0 = 'usdt0',
   wanBridge = 'wanBridge',
   xLink = 'xLink',
   xyFinance = 'xyFinance',

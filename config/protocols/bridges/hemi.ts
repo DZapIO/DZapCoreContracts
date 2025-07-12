@@ -2,7 +2,11 @@ import { BRIDGES } from '../bridgeNames'
 
 export const HEMI_BRIDGES = {
   [BRIDGES.mesonFinance]: ['0x25aB3Efd52e6470681CE037cD546Dc60726948D3'],
-  [BRIDGES.relayLink]: ['0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d'],
+  [BRIDGES.relayLink]: [
+    '0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+    '0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089',
+  ],
   [BRIDGES.stargate]: [
     '0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590',
     '0x45f1A95A4D3f3836523F5c83673c797f4d4d263B',

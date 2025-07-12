@@ -677,6 +677,9 @@
       ],
       "lifi": [
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "bridgers": [
+        "0x332fae8fA47941305E5De262AE3587aD6Dca0A78"
       ]
     }
   },
@@ -1738,10 +1741,14 @@
       ],
       "relayLink": [
         "0xaf810080131072968E5Cab00B33e6C7df4eb4E71",
-        "0xd71e5C1D217D12855B37fe60299273aaD91d6Cec"
+        "0xd71e5C1D217D12855B37fe60299273aaD91d6Cec",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "rhinoFi": [
         "0x2B4553122D960CA98075028d68735cC6b15DeEB5"
+      ],
+      "stargate": [
+        "0x9895D81bB462A195b4922ED7De0e3ACD007c32CB"
       ]
     },
     "dexes": {
@@ -2873,6 +2880,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "bridgers": [
+        "0x8F957Ed3F969D7b6e5d6dF81e61A5Ff45F594dD1"
       ]
     }
   },
@@ -4934,7 +4944,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "swapKit": [
         "0x700E97ef07219440487840Dc472E7120A7FF11F4"
@@ -5066,7 +5077,8 @@
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
         "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -5151,7 +5163,11 @@
         "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
       ],
       "relayLink": [
-        "0xaAaAAF3bA19413A906fDDD49d489b6908F730600"
+        "0xaAaAAF3bA19413A906fDDD49d489b6908F730600",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+      ],
+      "orbiter": [
+        "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
       ]
     },
     "bridges": {
@@ -5175,7 +5191,8 @@
       ],
       "relayLink": [
         "0x1459E4A73c6abd19aca2BC50b30d3f1eD229A329",
-        "0xaAaAAF3bA19413A906fDDD49d489b6908F730600"
+        "0xaAaAAF3bA19413A906fDDD49d489b6908F730600",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -5275,6 +5292,9 @@
       ],
       "izumi": [
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ],
+      "relayLink": [
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "bridges": {
@@ -5282,7 +5302,9 @@
         "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
       ],
       "relayLink": [
-        "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d"
+        "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089"
       ],
       "stargate": [
         "0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590",
@@ -5645,7 +5667,8 @@
       ],
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "zeroX": [
         "0x0000000000001fF3684f28c67538d4D072C22734"
@@ -5664,7 +5687,8 @@
       ],
       "relayLink": [
         "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089",
-        "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d"
+        "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -5770,7 +5794,8 @@
       "relayLink": [
         "0xE0B062D028236FA09Fe33dB8019FFEEEe6bF79Ed",
         "0xfD06C0018318BF78705ccFf2b961Ef8eBC0bacA0",
-        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38",
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -5855,7 +5880,8 @@
       ],
       "relayLink": [
         "0xfd06c0018318bf78705ccff2b961ef8ebc0baca0",
-        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38",
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
       ],
       "xLink": [
         "0x0F38ED043A1A2ec79B15d7F4FB8D25036680ce03"
@@ -6243,6 +6269,9 @@
       "relayLink": [
         "0x6B7b5E5A75Eb1c26689618C571143D255694c134",
         "0x82B3995ebE539CBed760bE089E33484fE12830F9"
+      ],
+      "lifi": [
+        "0x3A9A5dBa8FE1C4Da98187cE4755701BCA182f63b"
       ]
     },
     "bridges": {

@@ -16,7 +16,9 @@
     "addBridges": "ts-node scripts/addMultipleBridges.ts",
     "addDexes": "ts-node scripts/addMultipleDexes.ts",
     "removeDexes": "ts-node scripts/removeMultipleDexes.ts",
+    "removeDex": "ts-node scripts/removeDexesByAddress.ts",
     "removeBridges": "ts-node scripts/removeMultipleBridges.ts",
+    "removeBridge": "ts-node scripts/removeBridgesByAddress.ts",
     "syncHistory": "ts-node scripts/syncHistory.ts",
     "checkDeployedFacets": "ts-node scripts/facet/multiCheckFacetsDeployed.ts"
   },

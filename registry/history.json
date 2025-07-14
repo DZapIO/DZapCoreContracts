@@ -420,6 +420,9 @@
       ],
       "rhinoFi": [
         "0x0bCa65bf4b4c8803d2f0B49353ed57CAAF3d66Dc"
+      ],
+      "usdt0": [
+        "0xF03b4d9AC1D5d1E7c4cEf54C2A313b9fe051A0aD"
       ]
     },
     "dexes": {
@@ -894,7 +897,8 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "xLink": [
         "0x46b20F3106b8BfFb9bF63633a854A7A96DFC6379",

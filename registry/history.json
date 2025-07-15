@@ -1963,6 +1963,31 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "bridges": {
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "mesonFinance": [
+        "0x25aB3Efd52e6470681CE037cD546Dc60726948D3"
+      ],
+      "owlto": [
+        "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ],
+      "rhinoFi": [
+        "0x2B4553122D960CA98075028d68735cC6b15DeEB5"
+      ]
+    },
+    "dexes": {
+      "izumi": [
+        "0x02F55D53DcE23B4AA962CC68b0f685f26143Bdb2"
+      ],
+      "lifi": [
+        "0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE"
+      ],
+      "openOcean": [
+        "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+      ]
     }
   },
   "223": {
@@ -3598,7 +3623,8 @@
         "0x0649F2dAa72a6524f0eb7f5f65e13CFfc8082b10",
         "0x3439153EB7AF838Ad19d56E1571FBD09333C2809",
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
-        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "bridges": {
@@ -3613,7 +3639,8 @@
         "0xDd6A084B563731BE8eD039df29fA73beBdAAea2C",
         "0x634E831cE6D460c2CD5067Af98D6452Eb280E374",
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
-        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "socket": [
         "0xf8291B7c7fDaa275a0B17DA1a756D1fbE4d3A13d"
@@ -3865,7 +3892,8 @@
       ],
       "relayLink": [
         "0x90bc1FE7561423D51D77fF56F4790805D3B5d885",
-        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861",
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
       ],
       "odos": [
         "0xD9F4e85489aDCD0bAF0Cd63b4231c6af58c26745"
@@ -3925,7 +3953,8 @@
       "relayLink": [
         "0xF7dc16A5b374f5a7b70E601f1B96bDcF69840832",
         "0x610F3927901C41c219A1AD267Df8073DBc883464",
-        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861"
+        "0xCd740B0E005cb8647F9BaF4FeBEDC8753CEeF861",
+        "0x113a327221D2C4660684449bfc39Bc14aD1aAf38"
       ],
       "swing": [
         "0x97fffFfa57144BBfacF41251bd1763657e646667"

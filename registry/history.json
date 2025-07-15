@@ -1293,6 +1293,9 @@
       ],
       "orbiter": [
         "0x70f6060Fc8b01B56869fEba8361df468F98c2900"
+      ],
+      "unizen": [
+        "0x4039942b38241D62cA8460Ea54A096a5B3e2bf61"
       ]
     }
   },
@@ -2538,7 +2541,8 @@
       "relayLink": [
         "0xa06e1351E2fD2D45b5D35633ca7eCF328684a109",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "across": [
         "0x09aea4b2242abC8bb4BB78D537A67a245A7bEC64"
@@ -2563,7 +2567,8 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "uniswap": [
         "0x091AD9e2e6e5eD44c1c66dB50e49A601F9f36cF6"
@@ -4756,7 +4761,8 @@
         "0xD1b8997AaC08c619d40Be2e4284c9C72cAB33954"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -4802,7 +4808,8 @@
         "0x72bbeF4Eb5f72f7876cB76E42646D59E8b16BF22"
       ],
       "relayLink": [
-        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d"
+        "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ],
       "rhinoFi": [
         "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"

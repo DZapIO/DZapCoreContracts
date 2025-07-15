@@ -14,7 +14,10 @@ export const MODE_DEXES = {
   ],
   [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
   [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
-  [DEXES.relayLink]: ['0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d'],
+  [DEXES.relayLink]: [
+    '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
+    '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+  ],
   [DEXES.routerNitro]: ['0xf0773508c585246bd09bfb401aa18b72685b03f9'],
   [DEXES.sushi]: ['0x85CD07Ea01423b1E937929B44E4Ad8c40BbB5E71'],
   [DEXES.zeroX]: [

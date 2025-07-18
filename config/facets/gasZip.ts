@@ -174,4 +174,12 @@ export const GAS_ZIP_ADDRESS = {
     depositAddress: '',
     contractAddress: '0x31030df252cb281d8b94863af6af4af8774adb7e',
   },
+  [CHAIN_IDS.MONAD_TESTNET]: {
+    depositAddress: '',
+    contractAddress: '0xBA98a2792e64732B14Ad9AF168766d410046C16a',
+  },
+  [CHAIN_IDS.ETH_SEPOLIA]: {
+    depositAddress: '',
+    contractAddress: '0x208c2039ef8b2753bb6d9a9b96fd8654e6ee5569',
+  },
 }

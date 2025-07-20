@@ -1,0 +1,5 @@
+[
+  "event RelayBridgeTransferStarted(bytes indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bool hasDestinationCall)",
+  "function bridgeViaRelay(bool _updateAmountIn, address _from, bytes _transactionId, bytes _receiver, bytes _to, tuple(uint256 amountIn, bytes32 requestId) _relayData, uint256 _destinationChainId, address _user, bool _hasDestinationCall) payable",
+  "function getRelayAddress() view returns (address receiver, address solver)"
+]

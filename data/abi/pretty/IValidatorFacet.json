@@ -1,0 +1,6 @@
+[
+  "event FeeValidatorUpdated(address indexed feeValidator)",
+  "function getFeeValidator() view returns (address)",
+  "function getNonce(address _user) view returns (uint256)",
+  "function setFeeValidator(address _feeValidator)"
+]

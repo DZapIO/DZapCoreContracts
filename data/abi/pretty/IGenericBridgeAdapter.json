@@ -1,0 +1,3 @@
+[
+  "function bridgeViaGeneric(bool _updateAmountIn, address _from, bytes _transactionId, bytes _callData, bytes _receiver, bytes _to, string _bridge, uint256 _amountIn, uint256 _offset, uint256 _extraNative, uint256 _destinationChainId, address _user, address _callTo, address _approveTo, bool _hasDestinationCall) payable"
+]

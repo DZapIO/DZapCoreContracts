@@ -3,7 +3,6 @@
   "error NativeTransferFailed()",
   "error NoTransferToNullAddress()",
   "error NotAContract()",
-  "error NullAddrIsNotAnERC20Token()",
   "error ReentrancyError()",
   "error UnAuthorized()",
   "error WithdrawFailed()",

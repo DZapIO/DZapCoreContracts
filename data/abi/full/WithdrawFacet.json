@@ -32,11 +32,6 @@
   },
   {
     "inputs": [],
-    "name": "NullAddrIsNotAnERC20Token",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "ReentrancyError",
     "type": "error"
   },

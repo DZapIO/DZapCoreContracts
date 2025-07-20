@@ -6,12 +6,7 @@
   },
   {
     "inputs": [],
-    "name": "FeeTooHigh",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidFee",
+    "name": "CannotAuthorizeSelf",
     "type": "error"
   },
   {
@@ -28,23 +23,23 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_permit2",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
         "name": "_protocolFeeVault",
         "type": "address"
       },
       {
-        "internalType": "uint256",
-        "name": "_maxTokenFee",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_feeValidator",
+        "type": "address"
       },
       {
-        "internalType": "uint256",
-        "name": "_maxFixedNativeFeeAmount",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_refundVault",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_permit2",
+        "type": "address"
       }
     ],
     "name": "initialize",

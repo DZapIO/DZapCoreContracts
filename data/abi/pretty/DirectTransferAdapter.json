@@ -1,0 +1,12 @@
+[
+  "error CannotBridgeToSameNetwork()",
+  "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
+  "error InvalidEncodedAddress()",
+  "error NativeTransferFailed()",
+  "error NoBridgeFromZeroAmount()",
+  "error NoTransferToNullAddress()",
+  "error TransferAmountMismatch()",
+  "event BridgeStarted(bytes indexed transactionId, address indexed user, bytes receiver, string bridge, address bridgeAddress, address from, bytes to, uint256 amount, uint256 destinationChainId, bool hasDestinationCall)",
+  "event DZapBridgeStarted(bytes indexed transactionId, address indexed user, address indexed integrator)",
+  "function bridgeViaTransfer(bool _updateAmountIn, address _from, bytes _transactionId, bytes _receiver, bytes _to, string _bridge, uint256 _amountIn, uint256 _destinationChainId, address _user, address _transferTo, bool _hasDestinationCall) payable"
+]

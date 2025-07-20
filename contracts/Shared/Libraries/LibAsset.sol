@@ -1,13 +1,13 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-import { LibFees } from "../Libraries/LibFees.sol";
 import { LibPermit } from "../Libraries/LibPermit.sol";
-
-import { FeeType, SwapData, PermitType, FeeInfo } from "../Types.sol";
-import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, NullAddrIsNotAnERC20Token, InvalidAmount, IntegratorNotAllowed } from "../ErrorsNew.sol";
+import { PermitType, InputToken } from "../Types.sol";
+import { PermitBatchTransferFrom } from "../Interfaces/IPermit2.sol";
+import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, InvalidPermitType, TransferAmountMismatch } from "../Errors.sol";
 
 /// @title LibAsset
 /// @notice This library contains helpers for dealing with onchain transfers
@@ -21,17 +21,23 @@ library LibAsset {
         return _token == _NATIVE_TOKEN ? address(this).balance : IERC20(_token).balanceOf(address(this));
     }
 
+    /// @notice Gets the balance of the given asset for the given recipient
     function getBalance(address _token, address _recipient) internal view returns (uint256) {
         return _token == _NATIVE_TOKEN ? _recipient.balance : IERC20(_token).balanceOf(_recipient);
     }
 
-    /// @notice If the current allowance is insufficient, the allowance for a given spender
-    function approveERC20(address _token, address _spender, uint256 _amount) internal {
+    /// @notice Gets the balance of the given erc20 token for the given recipient
+    function getErc20Balance(address _token, address _recipient) internal view returns (uint256) {
+        return IERC20(_token).balanceOf(_recipient);
+    }
+
+    /// @notice If the current allowance is insufficient, then MAX_UINT allowance for a given spender
+    function maxApproveERC20(address _token, address _spender, uint256 _amount) internal {
         if (_spender == address(0)) revert NullAddrIsNotAValidSpender();
-
         uint256 allowance = IERC20(_token).allowance(address(this), _spender);
-
-        if (allowance < _amount) SafeERC20.safeIncreaseAllowance(IERC20(_token), _spender, _amount - allowance);
+        if (allowance < _amount) {
+            SafeERC20.forceApprove(IERC20(_token), _spender, type(uint256).max);
+        }
     }
 
     /// @notice Transfers ether from the inheriting contract to a given recipient
@@ -44,22 +50,41 @@ library LibAsset {
 
     /// @notice Transfers tokens from the inheriting contract to a given recipient
     function transferERC20(address _token, address _recipient, uint256 _amount) internal {
-        if (isNativeToken(_token)) revert NullAddrIsNotAnERC20Token();
-
+        if (_recipient == address(0)) revert NoTransferToNullAddress();
         uint256 assetBalance = IERC20(_token).balanceOf(address(this));
         if (_amount > assetBalance) revert InsufficientBalance(_amount, assetBalance);
         SafeERC20.safeTransfer(IERC20(_token), _recipient, _amount);
     }
 
-    /// @notice Transfers tokens from a sender to a given recipient
-    function transferFromERC20(address _token, address _from, address _to, uint256 _amount) internal {
-        IERC20 token = IERC20(_token);
+    function transferERC20WithBalanceCheck(address _token, address _recipient, uint256 _amount) internal {
+        if (_recipient == address(0)) revert NoTransferToNullAddress();
 
-        uint256 prevBalance = token.balanceOf(_to);
-        SafeERC20.safeTransferFrom(token, _from, _to, _amount);
-        if (token.balanceOf(_to) - prevBalance != _amount) {
-            revert InvalidAmount();
+        IERC20 token = IERC20(_token);
+        uint256 assetBalance = token.balanceOf(address(this));
+        if (_amount > assetBalance) revert InsufficientBalance(_amount, assetBalance);
+
+        uint256 prevBalance = token.balanceOf(_recipient);
+        SafeERC20.safeTransfer(token, _recipient, _amount);
+        if (token.balanceOf(_recipient) - prevBalance != _amount) {
+            revert TransferAmountMismatch();
         }
+    }
+
+    /// @notice Transfers tokens from a sender to a given recipient
+    function transferFromERC20WithBalanceCheck(address _token, address _sender, address _recipient, uint256 _amount) internal {
+        IERC20 token = IERC20(_token);
+        uint256 prevBalance = token.balanceOf(_recipient);
+
+        SafeERC20.safeTransferFrom(token, _sender, _recipient, _amount);
+        if (token.balanceOf(_recipient) - prevBalance != _amount) {
+            revert TransferAmountMismatch();
+        }
+    }
+
+    /// @notice Transfers tokens from a sender to a given recipient without checking the final balance
+    /// @dev need to handle deflationary, rebasing or share based tokens
+    function transferFromERC20(address _token, address _from, address _to, uint256 _amount) internal {
+        SafeERC20.safeTransferFrom(IERC20(_token), _from, _to, _amount);
     }
 
     /// @notice Wrapper function to transfer a given asset (native or erc20) to
@@ -72,37 +97,41 @@ library LibAsset {
         }
     }
 
-    /// @dev Use permit2 to approve token
-    function permitAndTransferFromErc20(address _token, address _from, address _to, uint256 _amount, bytes calldata permit_) internal {
-        (PermitType permitType, bytes memory data) = abi.decode(permit_, (PermitType, bytes));
-
-        if (permitType == PermitType.PERMIT2_APPROVE) {
-            LibPermit.permit2ApproveAndTransfer(_from, _to, uint160(_amount), _token, data);
-        } else if (permitType == PermitType.PERMIT) {
-            if (data.length != 0) LibPermit.permit(_token, data);
-            transferFromERC20(_token, _from, _to, _amount);
-        } else {
-            LibPermit.permit2TransferFrom(_token, data, _amount);
+    /// @notice Deposits tokens from a sender to the inheriting contract
+    /// @dev only handles erc20 token
+    function deposit(address _from, address _token, uint256 _amount, bytes calldata _permit) internal {
+        if (!isNativeToken(_token)) {
+            (PermitType permitType, bytes memory data) = abi.decode(_permit, (PermitType, bytes));
+            if (permitType == PermitType.PERMIT2_WITNESS_TRANSFER) {
+                LibPermit.permit2WitnessTransferFrom(_from, address(this), _token, _amount, data);
+            } else if (permitType == PermitType.PERMIT) {
+                if (data.length != 0) LibPermit.eip2612Permit(_from, address(this), _token, _amount, data);
+                transferFromERC20(_token, _from, address(this), _amount);
+            } else if (permitType == PermitType.PERMIT2_APPROVE) {
+                LibPermit.permit2ApproveAndTransfer(_from, address(this), _token, uint160(_amount), data);
+            } else {
+                revert InvalidPermitType();
+            }
         }
     }
 
-    function deposit(FeeInfo memory feeInfo, address _token, uint256 _amount, bytes calldata _permit) internal returns (uint256 totalFee, uint256 dZapShare) {
-        if (!LibAsset.isNativeToken(_token)) {
-            permitAndTransferFromErc20(_token, msg.sender, address(this), _amount, _permit);
+    /// @notice Deposits tokens from a sender to the inheriting contract
+    function depositBatch(address _from, InputToken[] calldata erc20Tokens) internal {
+        uint256 i;
+        uint256 length = erc20Tokens.length;
+        for (i; i < length; ) {
+            deposit(_from, erc20Tokens[i].token, erc20Tokens[i].amount, erc20Tokens[i].permit);
+            unchecked {
+                ++i;
+            }
         }
-
-        (totalFee, dZapShare) = LibFees.calculateTokenFees(_amount, feeInfo);
     }
 
-    function deposit(FeeInfo memory feeInfo, SwapData calldata _swap) internal returns (uint256 totalFee, uint256 dZapShare) {
-        if (!LibAsset.isNativeToken(_swap.from)) {
-            permitAndTransferFromErc20(_swap.from, msg.sender, address(this), _swap.fromAmount, _swap.permit);
-        }
-
-        (totalFee, dZapShare) = LibFees.calculateTokenFees(_swap.fromAmount, feeInfo);
+    function depositBatch(address _from, PermitBatchTransferFrom calldata permit, bytes calldata permitSignature) internal {
+        LibPermit.permit2BatchWitnessTransferFrom(_from, address(this), permit, permitSignature);
     }
 
-    // @notice Determines whether the given token is the native token
+    /// @notice Determines whether the given token is the native token
     function isNativeToken(address _token) internal pure returns (bool) {
         return _token == _NATIVE_TOKEN;
     }
@@ -116,6 +145,4 @@ library LibAsset {
         }
         return size != 0;
     }
-
-    /* ========= INTERNAL ========= */
 }

@@ -1,0 +1,9 @@
+[
+  "constructor(address _depositAddress)",
+  "error NativeTokenNotSupported()",
+  "error NoBridgeFromZeroAmount()",
+  "error NullAddrIsNotAValidRecipient()",
+  "event GasZipBridgeTransferStarted(bytes indexed transactionId, address indexed user, tuple(bytes32 recipient, uint256 destChains, uint256 depositAmount) gasZipData, bool hasDestinationCall)",
+  "function bridgeViaGasZip(bool _updateAmountIn, address _from, bytes _transactionId, tuple(bytes32 recipient, uint256 destChains, uint256 depositAmount) _gasZipData, address _user, bool _hasDestinationCall) payable",
+  "function getGasZipRouter() view returns (address)"
+]

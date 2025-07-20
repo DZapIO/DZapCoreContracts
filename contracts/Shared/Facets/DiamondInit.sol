@@ -2,35 +2,34 @@
 pragma solidity 0.8.19;
 
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
-import { LibFees, FeesStorage } from "../Libraries/LibFees.sol";
-import { LibPermit, PermitStorage } from "../Libraries/LibPermit.sol";
+import { LibGlobalStorage, GlobalStorage } from "../Libraries/LibGlobalStorage.sol";
 import { IDiamondInit } from "../Interfaces/IDiamondInit.sol";
-
-import { ZeroAddress, FeeTooHigh, InvalidFee, AlreadyInitialized } from "../Errors.sol";
+import { ZeroAddress, AlreadyInitialized, CannotAuthorizeSelf } from "../Errors.sol";
 
 /// @title DiamondInit Facet
 /// @notice Initialize the init variables
 contract DiamondInit is IDiamondInit {
-    function initialize(address _permit2, address _protocolFeeVault, uint256 _maxTokenFee, uint256 _maxFixedNativeFeeAmount) external {
+    // solhint-disable-next-line code-complexity
+    function initialize(address _protocolFeeVault, address _feeValidator, address _refundVault, address _permit2) external {
         LibDiamond.enforceIsContractOwner();
 
-        if (_permit2 == address(0)) revert ZeroAddress();
         if (_protocolFeeVault == address(0)) revert ZeroAddress();
-        if (_maxTokenFee == 0) revert InvalidFee();
-        if (_maxTokenFee > LibFees._BPS_DENOMINATOR) revert FeeTooHigh();
+        if (_feeValidator == address(0)) revert ZeroAddress();
+        if (_permit2 == address(0)) revert ZeroAddress();
+        if (_refundVault == address(0)) revert ZeroAddress();
 
-        PermitStorage storage ps = LibPermit.permitStorage();
-        FeesStorage storage fs = LibFees.feesStorage();
+        if (_protocolFeeVault == address(this)) revert CannotAuthorizeSelf();
+        if (_refundVault == address(this)) revert CannotAuthorizeSelf();
 
-        if (ps.initialized) revert AlreadyInitialized();
-        if (fs.initialized) revert AlreadyInitialized();
+        GlobalStorage storage gs = LibGlobalStorage.globalStorage();
 
-        ps.permit2 = _permit2;
-        ps.initialized = true;
+        if (gs.initialized) revert AlreadyInitialized();
 
-        fs.protocolFeeVault = _protocolFeeVault;
-        fs.maxTokenFee = _maxTokenFee;
-        fs.maxFixedNativeFeeAmount = _maxFixedNativeFeeAmount;
-        fs.initialized = true;
+        gs.permit2 = _permit2;
+        gs.protocolFeeVault = _protocolFeeVault;
+        gs.feeValidator = _feeValidator;
+        gs.refundVault = _refundVault;
+
+        gs.initialized = true;
     }
 }

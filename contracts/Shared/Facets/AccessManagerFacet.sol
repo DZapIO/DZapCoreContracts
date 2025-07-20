@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { LibAccess } from "../Libraries/LibAccess.sol";
 import { IAccessManagerFacet } from "../Interfaces/IAccessManagerFacet.sol";
-import { CannotAuthorizeSelf } from "../ErrorsNew.sol";
+import { CannotAuthorizeSelf } from "../Errors.sol";
 
 /// @title Access Manager Facet
 /// @notice Provides functionality for managing method level access control

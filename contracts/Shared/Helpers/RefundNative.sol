@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
 import { LibAsset } from "../Libraries/LibAsset.sol";
@@ -12,6 +12,6 @@ abstract contract RefundNative {
         _;
         uint256 finalBalance = address(this).balance;
 
-        if (finalBalance > initialBalance) LibAsset.transferToken(LibAsset._NATIVE_TOKEN, _refundee, finalBalance - initialBalance);
+        if (finalBalance > initialBalance) LibAsset.transferNativeToken(_refundee, finalBalance - initialBalance);
     }
 }

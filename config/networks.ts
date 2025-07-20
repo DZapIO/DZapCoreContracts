@@ -658,7 +658,10 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.FRAXTAL,
     chainName: 'Fraxtal',
     shortName: 'fraxtal',
-    rpcUrl: ['https://rpc.frax.com'],
+    rpcUrl: [
+      `https://frax-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://rpc.frax.com',
+    ],
     explorerUrl: 'https://fraxscan.com',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=252',
     apiType: ApiType.ETHERSCAN_V2,

@@ -182,4 +182,12 @@ export const GAS_ZIP_ADDRESS = {
     depositAddress: '',
     contractAddress: '0x208c2039ef8b2753bb6d9a9b96fd8654e6ee5569',
   },
+  [CHAIN_IDS.PLUME]: {
+    depositAddress: '',
+    contractAddress: '0xc62155f48D2aEE12FFF6Bb3b7946385d3A98854C',
+  },
+  [CHAIN_IDS.KATANA]: {
+    depositAddress: '',
+    contractAddress: '0x9E22ebeC84c7e4C4bD6D4aE7FF6f4D436D6D8390',
+  },
 }

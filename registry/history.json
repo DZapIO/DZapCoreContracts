@@ -805,6 +805,48 @@
       ]
     }
   },
+  "50": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "7500000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
   "56": {
     "bridges": {
       "lifi": [
@@ -5621,6 +5663,48 @@
       }
     }
   },
+  "48900": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "200000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
   "55244": {
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
@@ -6263,6 +6347,48 @@
       }
     }
   },
+  "98866": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "7000000000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
+        }
+      }
+    }
+  },
   "167000": {
     "executors": {
       "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
@@ -6660,6 +6786,48 @@
           "fixedNativeFeeAmount": "200000000000000",
           "dzapTokenShare": 0,
           "dzapFixedNativeShare": 1000000
+        }
+      }
+    }
+  },
+  "747474": {
+    "executors": {
+      "0x13CDD11d7C5Cc00769f8bFd2Ca102408D00AD453": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ],
+      "0x235Af64F2cf2BD709C82336f3ad63d7DDe240cB5": [
+        "0x536db266",
+        "0xfcd8e49e",
+        "0x124f1ead",
+        "0x9afc19c7",
+        "0x67458cca",
+        "0x64eb7ada",
+        "0xc7d3722f",
+        "0xba0f6ca5",
+        "0xe47b7f8e"
+      ]
+    },
+    "integrators": {
+      "DZAP": {
+        "0": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": "200000000000000",
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 1000000
+        },
+        "1": {
+          "tokenFee": 0,
+          "fixedNativeFeeAmount": 0,
+          "dzapTokenShare": 0,
+          "dzapFixedNativeShare": 0
         }
       }
     }

@@ -16,6 +16,7 @@ exports.multicall3ChainAddress = {
     324: exports.multicall3ZkSyncAddress, // zkSync Era
     4200: exports.multicall3MerlinAddress, // zkSync Era
     5165: exports.dZapMulticall3, 
+    50: exports.dZapMulticall3, 
     2741: exports.multicall3ZkSyncAddress,  // abstract
     232: exports.multicall3LensAddress,  // lens
 };

@@ -179,4 +179,20 @@ export const RELAYER_ADDRESS = {
     relayerReceiver: '0x4cec3461dd63f22554b7fa2abba5bbfe9e86ddfd',
     relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
   },
+  [CHAIN_IDS.PLUME]: {
+    relayerReceiver: '0x7f4babd2c7d35221e72ab67ea72cba99573a0089',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.KATANA]: {
+    relayerReceiver: '0x9ff28846cd0640ba4aac04d3ebbe651cac5fe609',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.ZIRCUIT]: {
+    relayerReceiver: '0xb4528b01af9c92f49435f88890a82b0b0ce90479',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
+  [CHAIN_IDS.ZERO]: {
+    relayerReceiver: '0x634e831ce6d460c2cd5067af98d6452eb280e374',
+    relayerSolver: '0xf70da97812cb96acdf810712aa562db8dfa3dbef',
+  },
 }

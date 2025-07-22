@@ -104,7 +104,8 @@
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
@@ -238,7 +239,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "teleSwap": [
         "0xFA1B28052Bd8087B1CF64eE9429FEB324e95B0ff"
@@ -1075,6 +1077,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "executors": {
@@ -2737,6 +2742,24 @@
     "bridges": {
       "usdt0": [
         "0x904861a24F30EC96ea7CFC3bE9EA4B476d237e98"
+      ],
+      "debridge": [
+        "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+      ],
+      "relayLink": [
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xd71e5C1D217D12855B37fe60299273aaD91d6Cec"
+      ]
+    },
+    "dexes": {
+      "eisen": [
+        "0xCCa029C1ebbc720E9c463Cb8430ddce0Dd6bfdBD"
+      ],
+      "relayLink": [
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xd71e5C1D217D12855B37fe60299273aaD91d6Cec"
       ]
     }
   },
@@ -2996,6 +3019,9 @@
       ],
       "izumi": [
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
+      ],
+      "eisen": [
+        "0x74cE5Ba62DDAd075c49652dF9a47185ce1F744e6"
       ]
     },
     "bridges": {
@@ -3429,6 +3455,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x43d2B5A2D0fb68c9CcE455bB5dA770542F655Cf7"
       ]
     },
     "executors": {
@@ -3686,6 +3715,9 @@
         "0x187d5c41C2423A40F68df1A5c561A5f2E1BAaA98",
         "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222",
         "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+      ],
+      "eisen": [
+        "0x6e0E6714Fff9A64E611D67ff23CCA0Ec921aCb54"
       ]
     },
     "bridges": {
@@ -3961,6 +3993,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "bridges": {
@@ -4858,10 +4893,14 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "bridges": {
@@ -4905,7 +4944,8 @@
       ],
       "relayLink": [
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "rhinoFi": [
         "0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1"
@@ -5186,6 +5226,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "executors": {
@@ -5398,7 +5441,11 @@
         "0x3EF68D3f7664b2805D4E88381b64868a56f88bC4"
       ],
       "relayLink": [
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
+      ],
+      "eisen": [
+        "0x568D790f27aCDA870614222b4849F0Ec85417e95"
       ]
     },
     "bridges": {
@@ -5814,7 +5861,8 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "zeroX": [
         "0x0000000000001fF3684f28c67538d4D072C22734"
@@ -5834,7 +5882,8 @@
       "relayLink": [
         "0x7F4babd2C7D35221e72Ab67Ea72Cba99573A0089",
         "0xaaaaaaae92cc1ceef79a038017889fdd26d23d4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ],
       "socket": [
         "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
@@ -5945,6 +5994,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0xC8553C0e1DABB257f405740454810fE8702d8F41"
       ]
     },
     "bridges": {
@@ -6110,6 +6162,9 @@
       ],
       "xyFinance": [
         "0xCF446713DDf0E83F7527A260047f8Ae89eFaE3e5"
+      ],
+      "eisen": [
+        "0x74cE5Ba62DDAd075c49652dF9a47185ce1F744e6"
       ]
     },
     "bridges": {
@@ -6266,6 +6321,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "bridges": {
@@ -6464,6 +6522,9 @@
       ],
       "lifi": [
         "0x3A9A5dBa8FE1C4Da98187cE4755701BCA182f63b"
+      ],
+      "eisen": [
+        "0xC8553C0e1DABB257f405740454810fE8702d8F41"
       ]
     },
     "bridges": {
@@ -6693,6 +6754,9 @@
       ],
       "orbiter": [
         "0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef"
+      ],
+      "eisen": [
+        "0x2E3933F1B9b24D7E8edd6a94D1F2553084ff3cfB"
       ]
     },
     "executors": {

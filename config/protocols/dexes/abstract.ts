@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const ABSTRACT_DEXES = {
+  [DEXES.eisen]: ['0x6e0E6714Fff9A64E611D67ff23CCA0Ec921aCb54'],
   [DEXES.lifi]: ['0x4f8C9056bb8A3616693a76922FA35d53C056E5b3'],
   [DEXES.relayLink]: [
     '0x0649F2dAa72a6524f0eb7f5f65e13CFfc8082b10',

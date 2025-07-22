@@ -14,6 +14,7 @@ export const MODE_MAINNET = {
   [BRIDGES.relayLink]: [
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',
     '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',
+    '0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222',
   ],
   [BRIDGES.rhinoFi]: ['0x5e023c31E1d3dCd08a1B3e8c96f6EF8Aa8FcaCd1'],
   [BRIDGES.routerNitro]: [

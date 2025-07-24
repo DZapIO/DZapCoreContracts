@@ -1169,6 +1169,8 @@ export const NETWORKS: Networks = {
     chainName: 'Hyper EVM',
     shortName: 'hyperevm',
     rpcUrl: [
+      'https://hyperliquid.drpc.org',
+      'https://rpc.hypurrscan.io',
       'https://rpc.hyperliquid.xyz/evm',
       'https://hyperliquid-json-rpc.stakely.io',
     ],

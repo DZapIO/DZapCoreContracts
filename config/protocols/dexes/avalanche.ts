@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const AVALANCHE_DEXES = {
+  [DEXES.bebop]: ['0xbbbbbBB520d69a9775E85b458C58c648259FAD5F'],
   [DEXES.dodo]: [
     '0x1F076a800005c758a505E759720eb6737136e893',
     '0x3a64Ec3606FF7310E8fAd6FcC008e39705fB496d',

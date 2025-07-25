@@ -277,6 +277,7 @@ export const NETWORKS: Networks = {
     chainName: 'Sepolia Testnet',
     shortName: 'ethSepolia',
     rpcUrl: [
+      `https://eth-sepolia.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://eth-sepolia.public.blastapi.io',
       'https://eth-sepolia.g.alchemy.com/v2/demo',
       'https://ethereum-sepolia-rpc.publicnode.com',
@@ -1525,7 +1526,10 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.ARBITRUM_SEPOLIA_TESTNET,
     chainName: 'Arbitrum Sepolia Testnet',
     shortName: 'arbitrumSepolia',
-    rpcUrl: ['https://arbitrum-sepolia.gateway.tenderly.co'],
+    rpcUrl: [
+      `https://arb-sepolia.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://arbitrum-sepolia.gateway.tenderly.co',
+    ],
     explorerUrl: 'https://sepolia.arbiscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=421614',
     apiType: ApiType.ETHERSCAN_V2,

@@ -727,6 +727,9 @@
       ],
       "iceCreamSwap": [
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ],
+      "eisen": [
+        "0x2FfB74709591dBd0e898c1D67977b00F5000Bf9a"
       ]
     },
     "bridges": {
@@ -4683,6 +4686,9 @@
       ],
       "zeroX": [
         "0x0000000000001fF3684f28c67538d4D072C22734"
+      ],
+      "eisen": [
+        "0xfC985A550f7c29EC5266E6591b029FE2509E1D0d"
       ]
     }
   },
@@ -6478,6 +6484,11 @@
           "dzapFixedNativeShare": 0
         }
       }
+    },
+    "dexes": {
+      "eisen": [
+        "0xB4e25c71c7A4BeAD9B4bD06DcE0F45B0A9221403"
+      ]
     }
   },
   "167000": {

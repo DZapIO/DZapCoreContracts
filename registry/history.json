@@ -268,6 +268,9 @@
       ],
       "usdt0": [
         "0x6C96dE32CEa08842dcc4058c14d3aaAD7Fa41dee"
+      ],
+      "mayanMCTP": [
+        "0x337685fdaB40D39bd02028545a4FfA7D287cC3E2"
       ]
     },
     "executors": {
@@ -425,6 +428,9 @@
       ],
       "usdt0": [
         "0xF03b4d9AC1D5d1E7c4cEf54C2A313b9fe051A0aD"
+      ],
+      "mayanMCTP": [
+        "0x337685fdaB40D39bd02028545a4FfA7D287cC3E2"
       ]
     },
     "dexes": {
@@ -1921,11 +1927,17 @@
       ],
       "owlto": [
         "0xC626845BF4E6a5802Ef774dA0B3DfC6707F015F7"
+      ],
+      "relayLink": [
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     },
     "dexes": {
       "iceCreamSwap": [
         "0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5"
+      ],
+      "relayLink": [
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
       ]
     }
   },
@@ -2655,6 +2667,9 @@
       ],
       "swing": [
         "0x97fffFfa57144BBfacF41251bd1763657e646667"
+      ],
+      "socket": [
+        "0x3a23F943181408EAC424116Af7b7790c94Cb97a5"
       ]
     },
     "dexes": {
@@ -3338,7 +3353,8 @@
       "relayLink": [
         "0xeeeeee9eC4769A09a76A83C7bC42b185872860eE",
         "0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d",
-        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98"
+        "0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98",
+        "0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222"
       ]
     }
   },

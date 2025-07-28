@@ -982,8 +982,8 @@ export const NETWORKS: Networks = {
     chainName: 'Lens',
     shortName: getZkChainConfig(CHAIN_IDS.LENS).shortName,
     rpcUrl: [
-      `https://lens-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://rpc.lens.xyz',
+      `https://lens-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://api.lens.matterhosted.dev',
     ],
     explorerUrl: 'https://explorer.lens.xyz',

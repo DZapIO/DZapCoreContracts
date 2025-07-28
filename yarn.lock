@@ -638,7 +638,7 @@
     sinon-chai "^3.7.0"
     ts-morph "^22.0.0"
 
-"@matterlabs/hardhat-zksync-solc@^1.2.0", "@matterlabs/hardhat-zksync-solc@^1.2.1":
+"@matterlabs/hardhat-zksync-solc@^1.2.0":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@matterlabs/hardhat-zksync-solc/-/hardhat-zksync-solc-1.2.5.tgz#fbeeabc3fea0dd232fa3c8cb31bd93c103eba11a"
   integrity sha512-iZyznWl1Hoe/Z46hnUe1s2drBZBjJOS/eN+Ql2lIBX9B6NevBl9DYzkKzH5HEIMCLGnX9sWpRAJqUQJWy9UB6w==
@@ -655,7 +655,7 @@
     sinon-chai "^3.7.0"
     undici "^6.18.2"
 
-"@matterlabs/hardhat-zksync-solc@^1.3.2":
+"@matterlabs/hardhat-zksync-solc@^1.3.2", "@matterlabs/hardhat-zksync-solc@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@matterlabs/hardhat-zksync-solc/-/hardhat-zksync-solc-1.4.0.tgz#ae5c3e4b007998df629a1666df18a359f7d212de"
   integrity sha512-g3rTEUql1qK2mePU8NrggvxkpvmkL5ljR++lioqluCQT7mjI9RHV5Cylh2UOAH+7aFUYir8dwYnlRHJ3OK7SGw==

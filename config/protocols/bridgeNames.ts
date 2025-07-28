@@ -17,6 +17,7 @@ export enum BRIDGES {
   izumi = 'izumi',
   lifi = 'lifi',
   mayanFinance = 'mayanFinance',
+  mayanMCTP = 'mayanMCTP',
   mesonFinance = 'mesonFinance',
   okx = 'okx',
   omniBtc = 'omniBtc',

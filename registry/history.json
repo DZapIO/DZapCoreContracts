@@ -2152,6 +2152,19 @@
         "0xba0f6ca5",
         "0xe47b7f8e"
       ]
+    },
+    "dexes": {
+      "lifi": [
+        "0xF3B20515d9B193531c48E47c18aF16d1e5d28f9a"
+      ]
+    },
+    "bridges": {
+      "across": [
+        "0xe7cb3e167e7475dE1331Cf6E0CEb187654619E12"
+      ],
+      "lifi": [
+        "0xF3B20515d9B193531c48E47c18aF16d1e5d28f9a"
+      ]
     }
   },
   "250": {

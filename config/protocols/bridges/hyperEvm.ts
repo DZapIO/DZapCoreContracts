@@ -2,6 +2,7 @@ import { BRIDGES } from '../bridgeNames'
 
 export const HYPER_EVM_BRIDGES = {
   [BRIDGES.deBridge]: ['0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251'],
+  [BRIDGES.lifi]: ['0x0a0758d937d1059c356D4714e57F5df0239bce1A'],
   [BRIDGES.relayLink]: [
     '0xF5042e6ffaC5a625D4E7848e0b01373D8eB9e222',
     '0xBBbfD134E9b44BfB5123898BA36b01dE7ab93d98',

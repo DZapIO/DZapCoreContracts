@@ -3,6 +3,7 @@ export enum DEXES {
   conveyor = 'conveyor',
   dodo = 'dodo',
   enso = 'enso',
+  eisen = 'eisen',
   fluid = 'fluid',
   iceCreamSwap = 'iceCreamSwap',
   izumi = 'izumi',

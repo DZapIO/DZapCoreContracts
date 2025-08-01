@@ -1,38 +1,34 @@
 import {
-  BigNumber,
   Contract,
   ContractFactory,
-  providers,
+  formatUnits,
+  JsonRpcProvider,
+  Provider,
   Signer,
   Wallet,
 } from 'ethers'
-import { formatUnits } from 'ethers/lib/utils'
 import { ethers } from 'hardhat'
 import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
 import { CONTRACTS, ZERO } from '../constants'
 import {
   AccessManagerFacet,
-  BatchBridgeCallFacet,
-  BatchSwapFacet,
-  BridgeDynamicTransferFacet,
-  BridgeManagerFacet,
-  CrossChainFacet,
-  DexManagerFacet,
   DiamondCutFacet,
   DiamondInit,
   DiamondLoupeFacet,
   DZapDiamond,
-  FeesFacet,
-  GasZipFacet,
   OwnershipFacet,
-  RelayBridgeFacet,
   SwapFacet,
-  SwapTransferFacet,
+  BridgeFacet,
   WithdrawFacet,
+  GasLessFacet,
+  ValidatorFacet,
+  Permit2ManagerFacet,
+  WhitelistingManagerFacet,
+  VaultManagerFacet,
 } from '../typechain-types'
 import { Create3DeploymentConfig, ZKCreate2DeploymentConfig } from '../types'
 import { isAddressSame } from './addressUtils'
-import { getNetwork, toChainId } from './networkUtils'
+import { getNetwork, getProvider, toChainId } from './networkUtils'
 
 export const getAllDiamondFacets = async (
   contractAddress: string,
@@ -42,116 +38,90 @@ export const getAllDiamondFacets = async (
     CONTRACTS.DZapDiamond,
     contractAddress,
     signer
-  )) as DZapDiamond
+  )) as unknown as DZapDiamond
   const diamondCutFacet = (await ethers.getContractAt(
     CONTRACTS.DiamondCutFacet,
     contractAddress,
     signer
-  )) as DiamondCutFacet
+  )) as unknown as DiamondCutFacet
   const diamondInit = (await ethers.getContractAt(
     CONTRACTS.DiamondInit,
     contractAddress,
     signer
-  )) as DiamondInit
+  )) as unknown as DiamondInit
   const diamondLoupeFacet = (await ethers.getContractAt(
     CONTRACTS.DiamondLoupeFacet,
     contractAddress,
     signer
-  )) as DiamondLoupeFacet
-
-  const feesFacet = (await ethers.getContractAt(
-    CONTRACTS.FeesFacet,
+  )) as unknown as DiamondLoupeFacet
+  const validatorFacet = (await ethers.getContractAt(
+    CONTRACTS.ValidatorFacet,
     contractAddress,
     signer
-  )) as FeesFacet
+  )) as unknown as ValidatorFacet
+  const whitelistingManagerFacet = (await ethers.getContractAt(
+    CONTRACTS.WhitelistingManagerFacet,
+    contractAddress,
+    signer
+  )) as unknown as WhitelistingManagerFacet
   const accessManagerFacet = (await ethers.getContractAt(
     CONTRACTS.AccessManagerFacet,
     contractAddress,
     signer
-  )) as AccessManagerFacet
+  )) as unknown as AccessManagerFacet
+  const permit2ManagerFacet = (await ethers.getContractAt(
+    CONTRACTS.Permit2ManagerFacet,
+    contractAddress,
+    signer
+  )) as unknown as Permit2ManagerFacet
+  const vaultManagerFacet = (await ethers.getContractAt(
+    CONTRACTS.VaultManagerFacet,
+    contractAddress,
+    signer
+  )) as unknown as VaultManagerFacet
   const withdrawFacet = (await ethers.getContractAt(
     CONTRACTS.WithdrawFacet,
     contractAddress,
     signer
-  )) as WithdrawFacet
+  )) as unknown as WithdrawFacet
   const ownershipFacet = (await ethers.getContractAt(
     CONTRACTS.OwnershipFacet,
     contractAddress,
     signer
-  )) as OwnershipFacet
-
-  const dexManagerFacet = (await ethers.getContractAt(
-    CONTRACTS.DexManagerFacet,
-    contractAddress,
-    signer
-  )) as DexManagerFacet
-  const bridgeManagerFacet = (await ethers.getContractAt(
-    CONTRACTS.BridgeManagerFacet,
-    contractAddress,
-    signer
-  )) as BridgeManagerFacet
+  )) as unknown as OwnershipFacet
 
   const swapFacet = (await ethers.getContractAt(
     CONTRACTS.SwapFacet,
     contractAddress,
     signer
-  )) as SwapFacet
-  const swapTransferFacet = (await ethers.getContractAt(
-    CONTRACTS.SwapTransferFacet,
+  )) as unknown as SwapFacet
+  const bridgeFacet = (await ethers.getContractAt(
+    CONTRACTS.BridgeFacet,
     contractAddress,
     signer
-  )) as SwapTransferFacet
-  const batchSwapFacet = (await ethers.getContractAt(
-    CONTRACTS.BatchSwapFacet,
-    contractAddress,
-    signer
-  )) as BatchSwapFacet
+  )) as unknown as BridgeFacet
 
-  const crossChainFacet = (await ethers.getContractAt(
-    CONTRACTS.CrossChainFacet,
+  const gasLessFacet = (await ethers.getContractAt(
+    CONTRACTS.GasLessFacet,
     contractAddress,
     signer
-  )) as CrossChainFacet
-  const bridgeDynamicTransferFacet = (await ethers.getContractAt(
-    CONTRACTS.BridgeDynamicTransferFacet,
-    contractAddress,
-    signer
-  )) as BridgeDynamicTransferFacet
-  const batchBridgeCallFacet = (await ethers.getContractAt(
-    CONTRACTS.BatchBridgeCallFacet,
-    contractAddress,
-    signer
-  )) as BatchBridgeCallFacet
-  const relayBridgeFacet = (await ethers.getContractAt(
-    CONTRACTS.RelayBridgeFacet,
-    contractAddress,
-    signer
-  )) as RelayBridgeFacet
-  const gasZipFacet = (await ethers.getContractAt(
-    CONTRACTS.GasZipFacet,
-    contractAddress,
-    signer
-  )) as GasZipFacet
+  )) as unknown as GasLessFacet
 
   return {
     dZapDiamond,
     diamondCutFacet,
     diamondInit,
     diamondLoupeFacet,
-    feesFacet,
-    dexManagerFacet,
-    bridgeManagerFacet,
+    validatorFacet,
+    whitelistingManagerFacet,
     accessManagerFacet,
+    permit2ManagerFacet,
+    vaultManagerFacet,
     withdrawFacet,
     ownershipFacet,
     swapFacet,
-    swapTransferFacet,
-    batchSwapFacet,
-    crossChainFacet,
-    relayBridgeFacet,
-    gasZipFacet,
-    batchBridgeCallFacet,
-    bridgeDynamicTransferFacet,
+    bridgeFacet,
+    gasLessFacet,
   }
 }
 
@@ -169,7 +139,7 @@ export const getLastZkCreateConfig = (arr: ZKCreate2DeploymentConfig[]) => {
 }
 
 export const getGasPrice = async (
-  provider: providers.Provider,
+  provider: Provider,
   extraFeePercent = 2 // 2% extra
 ) => {
   const { gasPrice } = await provider.getFeeData()
@@ -178,7 +148,8 @@ export const getGasPrice = async (
     throw new Error('Could not get gasPrice')
   }
 
-  const newGasPrice = gasPrice.add(gasPrice.mul(extraFeePercent).div(100))
+  const newGasPrice =
+    gasPrice + (gasPrice * BigInt(extraFeePercent)) / BigInt(100)
 
   // console.log(
   //   'Gas Price:',
@@ -190,7 +161,7 @@ export const getGasPrice = async (
 
 export const estimateDeploymentCost = async (
   factory: ContractFactory,
-  provider: providers.JsonRpcProvider,
+  provider: JsonRpcProvider,
   constructorArgs: any[] = []
 ) => {
   const deployTransaction = await factory.getDeployTransaction(
@@ -202,7 +173,7 @@ export const estimateDeploymentCost = async (
   try {
     const gasEstimate = await provider.estimateGas(deployTransaction)
     const gasPrice = await getGasPrice(provider)
-    const deploymentCost = gasEstimate.mul(gasPrice)
+    const deploymentCost = gasEstimate * gasPrice
 
     console.log('Estimated Gas:', gasEstimate.toString())
     console.log(
@@ -219,18 +190,22 @@ export const estimateDeploymentCost = async (
 }
 
 export const estimateTxCost = async (
-  gasEstimate: BigNumber,
-  provider: providers.JsonRpcProvider
+  gasEstimate: bigint,
+  provider?: JsonRpcProvider
 ) => {
   try {
-    // const gasEstimate = await provider.estimateGas(txRequest);
+    if (!provider) {
+      provider = await getProvider(
+        (await ethers.provider.getNetwork()).chainId.toString()
+      )
+    }
     const { gasPrice } = await provider.getFeeData()
 
     if (gasPrice === null) {
       throw new Error('Could not get gasPrice')
     }
 
-    const deploymentCost = gasEstimate.mul(gasPrice)
+    const deploymentCost = gasEstimate * gasPrice
     const chainId = toChainId((await provider.getNetwork()).chainId)
     const network = getNetwork(chainId)
 
@@ -260,11 +235,11 @@ export const validateAndEstimateAdapterDeploymentCost = async (
     const adapterName = adaptersToDeploy[i]
     console.log(`Checking and estimating ${adapterName}...`)
     const ContractFactory = await ethers.getContractFactory(adapterName)
-    const creationCode = ContractFactory.getDeployTransaction().data
+    const creationCode = (await ContractFactory.getDeployTransaction()).data
     const adapterDeploymentConfig = getLastCreate3Config(
       ADAPTERS_DEPLOYMENT_CONFIG[adapterName]
     ) as Create3DeploymentConfig
-    const salt = ethers.utils.id(adapterDeploymentConfig.saltKey)
+    const salt = ethers.id(adapterDeploymentConfig.saltKey)
 
     if (!adapterDeploymentConfig)
       throw Error(`Adapter ${adapterName} not found in AdapterDeploymentConfig`)
@@ -281,14 +256,14 @@ export const validateAndEstimateAdapterDeploymentCost = async (
     ) {
       throw new Error(`${adapterName} Address not matched`)
     }
-    const gasEstimate = await create3.estimateGas.deploy(
+    const gasEstimate = await create3.deploy.estimateGas(
       salt,
       adapterDeploymentConfig.creationCode
     )
 
-    const deploymentCost = await estimateTxCost(gasEstimate, ethers.provider)
+    const deploymentCost = await estimateTxCost(gasEstimate)
     if (deploymentCost)
-      totalDeploymentCost = totalDeploymentCost.add(deploymentCost)
+      totalDeploymentCost = totalDeploymentCost + deploymentCost
   }
   return totalDeploymentCost
 }

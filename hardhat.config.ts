@@ -4,14 +4,13 @@ import { HardhatUserConfig } from 'hardhat/config'
 
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@nomicfoundation/hardhat-verify'
-import '@openzeppelin/hardhat-upgrades'
 import '@typechain/hardhat'
-import 'hardhat-abi-exporter'
 import 'hardhat-contract-sizer'
-import 'hardhat-deploy'
-import 'hardhat-deploy-ethers'
 import 'hardhat-gas-reporter'
 import 'solidity-coverage'
+// import 'hardhat-deploy'
+// import 'hardhat-deploy-ethers'
+import 'hardhat-abi-exporter'
 
 // zk
 import '@matterlabs/hardhat-zksync-deploy'
@@ -21,17 +20,13 @@ import '@matterlabs/hardhat-zksync-solc'
 import './tasks/accounts'
 import './tasks/clean'
 
-import {
-  CHAIN_IDS,
-  SourcifyVerificationConfig,
-  ZK_EVM_CHAINS,
-} from './config/networks'
+import { CHAIN_IDS } from './config/networks'
+import { CONTRACTS } from './constants'
 import {
   getNetworkConfig,
   getVerificationConfig,
   getZKNetworks,
 } from './utils/networkUtils'
-import { monadTestnet } from 'viem/chains'
 
 dotenv.config()
 
@@ -114,17 +109,17 @@ const supportedNetworks = [
 ]
 
 const networkConfig = getNetworkConfig(supportedNetworks)
-// const networkConfig = getNetworkConfig([CHAIN_IDS.LENS])
 const zkNetworkConfig = getZKNetworks()
 const verificationConfig = getVerificationConfig(supportedNetworks)
-// console.log({ zkNetworkConfig, networkConfig })
-// console.dir({ verificationConfig }, { depth: null })
 
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
   // defaultNetwork: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortNameZk,
   networks: {
     hardhat: {
+      accounts: {
+        count: 30,
+      },
       // zksync: true,
       chains: {
         [CHAIN_IDS.BASE_MAINNET]: {
@@ -204,26 +199,25 @@ const config: HardhatUserConfig = {
       runOnCompile: true,
       path: 'data/abi/full',
       only: [
-        'DZapDiamond',
-        'DiamondCutFacet',
-        'DiamondInit',
-        'DiamondLoupeFacet',
-        'OwnershipFacet',
-        'AccessManagerFacet',
-        'DexManagerFacet',
-        'FeesFacet',
-        'WithdrawFacet',
-        'SwapFacet',
-        'BatchSwapFacet',
-        'SwapTransferFacet',
-        'CrossChainFacet',
-        'BatchBridgeCallFacet',
-        'BridgeDynamicTransferFacet',
-        'BridgeManagerFacet',
-        'RelayBridgeFacet',
-        'GasZipFacet',
-        'DynamicBatchBridgeCallFacet',
-        'IBridgeAdapter',
+        CONTRACTS.DZapDiamond,
+        CONTRACTS.DiamondCutFacet,
+        CONTRACTS.DiamondInit,
+        CONTRACTS.DiamondLoupeFacet,
+        CONTRACTS.OwnershipFacet,
+        CONTRACTS.WithdrawFacet,
+        CONTRACTS.AccessManagerFacet,
+        CONTRACTS.VaultManagerFacet,
+        CONTRACTS.ValidatorFacet,
+        CONTRACTS.Permit2ManagerFacet,
+        CONTRACTS.WhitelistingManagerFacet,
+        CONTRACTS.SwapFacet,
+        CONTRACTS.BridgeFacet,
+        CONTRACTS.GasLessFacet,
+        CONTRACTS.GenericBridgeAdapter,
+        CONTRACTS.DirectTransferAdapter,
+        CONTRACTS.GasZipAdapter,
+        CONTRACTS.RelayBridgeAdapter,
+        CONTRACTS.TokenWrapper,
       ],
       flat: true,
       clear: true,
@@ -233,26 +227,25 @@ const config: HardhatUserConfig = {
       path: 'data/abi/pretty',
       format: 'fullName',
       only: [
-        'DZapDiamond',
-        'DiamondCutFacet',
-        'DiamondInit',
-        'DiamondLoupeFacet',
-        'OwnershipFacet',
-        'AccessManagerFacet',
-        'DexManagerFacet',
-        'FeesFacet',
-        'WithdrawFacet',
-        'SwapFacet',
-        'SwapTransferFacet',
-        'SwapFacetTransfer',
-        'CrossChainFacet',
-        'BatchBridgeCallFacet',
-        'BridgeDynamicTransferFacet',
-        'BridgeManagerFacet',
-        'RelayBridgeFacet',
-        'GasZipFacet',
-        'DynamicBatchBridgeCallFacet',
-        'IBridgeAdapter',
+        CONTRACTS.DZapDiamond,
+        CONTRACTS.DiamondCutFacet,
+        CONTRACTS.DiamondInit,
+        CONTRACTS.DiamondLoupeFacet,
+        CONTRACTS.OwnershipFacet,
+        CONTRACTS.WithdrawFacet,
+        CONTRACTS.AccessManagerFacet,
+        CONTRACTS.VaultManagerFacet,
+        CONTRACTS.ValidatorFacet,
+        CONTRACTS.Permit2ManagerFacet,
+        CONTRACTS.WhitelistingManagerFacet,
+        CONTRACTS.SwapFacet,
+        CONTRACTS.BridgeFacet,
+        CONTRACTS.GasLessFacet,
+        CONTRACTS.GenericBridgeAdapter,
+        CONTRACTS.DirectTransferAdapter,
+        CONTRACTS.GasZipAdapter,
+        CONTRACTS.RelayBridgeAdapter,
+        CONTRACTS.TokenWrapper,
       ],
       flat: true,
       clear: true,

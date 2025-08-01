@@ -1,8 +1,25 @@
-import { BigNumber, BigNumberish, ContractFactory } from 'ethers'
-import { CHAIN_IDS, RPC_TYPE } from '../config'
+import { HardhatEthersSigner } from '@nomicfoundation/hardhat-ethers/signers'
+import { BigNumberish, ContractFactory, Wallet } from 'ethers'
+import { CHAIN_IDS } from '../config'
 import { BRIDGES } from '../config/protocols/bridgeNames'
 import { DEXES } from '../config/protocols/dexNames'
 import { NODE_ENV_VAR_NAMES } from '../constants'
+import {
+  DirectTransferAdapter,
+  GasZipAdapter,
+  GenericBridgeAdapter,
+  MockERC20,
+  Permit2,
+  RelayBridgeAdapter,
+  WNATIVE,
+} from '../typechain-types'
+
+// ----------------
+
+export * from './encoding'
+export * from './signatures'
+
+// ----------------
 
 export enum FacetCutAction {
   Add,
@@ -10,15 +27,11 @@ export enum FacetCutAction {
   Remove,
 }
 
-export enum FeeType {
-  BRIDGE,
-  SWAP,
-}
-
 export enum PermitType {
-  PERMIT,
-  PERMIT2_TRANSFER_FROM,
+  PERMIT, // EIP2612
   PERMIT2_APPROVE,
+  PERMIT2_WITNESS_TRANSFER,
+  BATCH_PERMIT2_WITNESS_TRANSFER,
 }
 
 export enum ApiType {
@@ -39,9 +52,9 @@ export interface DiamondCutData {
 }
 
 export interface FeeData {
-  totalFee: BigNumber
-  dzapFee: BigNumber
-  integratorFee: BigNumber
+  totalFee: bigint
+  dzapFee: bigint
+  integratorFee: bigint
 }
 
 export interface FeeInfo {
@@ -57,61 +70,67 @@ export interface DiamondCut {
   functionSelectors: string[]
 }
 
-export interface OneInchSwapParams {
-  fromTokenAddress: string
-  toTokenAddress: string
-  amount: BigNumberish
-  fromAddress: string
-  slippage: number
-  destReceiver: string
-  disableEstimate: boolean
-  compatibility: boolean
-}
-
-export interface DzapSwapData {
-  callTo: string
-  approveTo: string
+export interface SwapData {
+  recipient: string
   from: string
   to: string
-  fromAmount: BigNumber
-  minToAmount: BigNumber
+  fromAmount: bigint
+  minToAmount: bigint
+}
+
+export interface BridgeSwapData {
+  recipient: string
+  from: string
+  to: string
+  fromAmount: bigint
+  minToAmount: bigint
+  updateBridgeInAmount: boolean
+}
+
+export interface SwapExecutionData {
+  dex: string
+  callTo: string
+  approveTo: string
   swapCallData: string
-  permit: string
+  isDirectTransfer: boolean
 }
 
-export interface LifiParams {
-  fromChain: number
-  toChain: number
-  fromToken: string
-  toToken: string
-  fromAddress: string
-  toAddress: string
-  fromAmount: BigNumber
-  slippage: number
-  enableSlippageProtection: boolean
-  toContractCallData?: string
-  toContractGasLimit?: string
-  toApprovalAddress?: string
-  toFallbackAddress?: string
-  allowBridges?: string[]
+export interface AdapterInfo {
+  adapter: string
+  adapterData: string
 }
 
-export interface OpenOceanParams {
-  inTokenAddress: string
-  outTokenAddress: string
-  amount: BigNumberish
-  slippage: BigNumberish
-  account: string
-  gasPrice: number
+export interface RelayData {
+  amountIn: bigint
+  requestId: string
 }
 
-export interface ParaswapParams {
-  fromToken: string
-  toToken: string
-  fromAmount: BigNumber
-  sender: string
-  receiver: string
+export interface GasZipData {
+  depositAmount: bigint
+  destChains: BigNumberish
+  recipient: string
 }
+
+export interface Fees {
+  token: string
+  integratorFeeAmount: bigint
+  protocolFeeAmount: bigint
+}
+
+export interface DZapFeeData {
+  integrator: string
+  fees: Fees[]
+}
+
+export type SwapInfoTuple = [
+  string, // dex
+  string, // callTo
+  string, // recipient
+  string, // from
+  string, // to
+  bigint, // fromAmount
+  bigint // minToAmount
+]
 
 // Step 2: Define the interface for the inner objects
 export interface FacetCut {
@@ -187,11 +206,11 @@ export interface ZKCreate2DeploymentConfig {
   bytecode: string
 }
 
-export interface DiamondInitArgs {
-  permit2: string
+export interface DZapDiamondInitArgs {
   protocolFeeVault: string
-  maxTokenFee: BigNumberish
-  maxFixedNativeFeeAmount: BigNumberish
+  feeValidator: string
+  refundVault: string
+  permit2: string
 }
 
 export interface VerificationData {
@@ -217,4 +236,341 @@ export type ZKChainConfig = {
   verifyKeyName?: string
   verifyURL?: string
   isTestnet: boolean
+}
+
+export interface DZapDiamondInitArgs {
+  protocolFeeVault: string
+  feeValidator: string
+  refundVault: string
+  permit2: string
+}
+
+export interface PermitDetails {
+  token: string
+  amount: BigNumberish
+  expiration: BigNumberish
+  nonce: BigNumberish
+}
+
+export interface PermitSingle {
+  details: PermitDetails
+  spender: string
+  sigDeadline: BigNumberish
+}
+
+export interface TokenPermissions {
+  token: string
+  amount: BigNumberish
+}
+
+export interface TokenInfo {
+  token: string
+  amount: bigint
+}
+
+export interface InputToken {
+  token: string
+  amount: BigNumberish
+  permit: string
+}
+
+export interface DZapTransferWitness {
+  owner: string
+  recipient: string
+}
+
+export interface PermitTransferFrom {
+  permitted: TokenPermissions
+  nonce: BigNumberish
+  deadline: BigNumberish
+}
+
+export interface SignatureTransferDetails {
+  to: string
+  requestedAmount: BigNumberish
+}
+
+export interface DZapSwapWitness {
+  txId: string
+  user: string
+  executorFeesHash: string
+  swapDataHash: string
+}
+
+export interface DZapBridgeWitness {
+  txId: string
+  user: string
+  executorFeesHash: string
+  swapDataHash: string
+  adapterDataHash: string
+}
+
+export interface PermitBatchTransferFrom {
+  permitted: TokenPermissions[]
+  nonce: BigNumberish
+  deadline: BigNumberish
+}
+
+export interface DZapPermit2TranferWitness extends PermitTransferFrom {
+  spender: string
+  witness: DZapTransferWitness
+}
+
+export interface DZapPermit2BatchTranferWitness
+  extends PermitBatchTransferFrom {
+  spender: string
+  witness: DZapTransferWitness
+}
+
+export interface DZapPermit2BatchSwapWitness extends PermitBatchTransferFrom {
+  spender: string
+  witness: DZapSwapWitness
+}
+
+export interface DZapPermit2BatchBridgeWitness extends PermitBatchTransferFrom {
+  spender: string
+  witness: DZapBridgeWitness
+}
+
+/// ------------
+
+export interface Eip2612SigArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  token: MockERC20
+  spender: string
+  amount: BigInt
+  deadline: bigint
+  version?: string
+  nonce?: BigNumberish
+  name?: string
+}
+
+export interface Permit2ApproveSigArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  permit2: Permit2
+  token: string
+  spender: string
+  amount: bigint
+  sigDeadline: bigint
+  expiration: bigint
+  userNonce?: number | bigint
+}
+
+export interface Permit2TransferFromWitnessSigArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  permit2: Permit2
+  token: string
+  recipient: string
+  spender: string
+  amount: BigNumberish
+  deadline: BigNumberish
+  nonce?: BigNumberish
+}
+
+export interface Permit2BatchTransferFromWitnessSigArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  permit2: Permit2
+  tokenInfo: TokenPermissions[]
+  recipient: string
+  spender: string
+  deadline: BigNumberish
+  nonce?: BigNumberish
+}
+
+export interface DZapFeeSignatureArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  dZapAddress: string
+  userAddress: string
+  transactionId: string
+  feeData: DZapFeeData
+  adapterInfo: AdapterInfo | AdapterInfo[]
+  deadline: bigint
+  version?: string
+  nonce?: bigint
+  salt?: string
+}
+
+export interface DZapGasLessSwapSignatureArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  dZapAddress: string
+  transactionId: string
+  executorFeeInfo: TokenInfo | TokenInfo[]
+  swapData: SwapData | SwapData[]
+  deadline: bigint
+  version?: string
+  nonce?: bigint
+  salt?: string
+}
+
+export interface DZapGasLessSwapBridgeSignatureArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  dZapAddress: string
+  transactionId: string
+  executorFeeInfo: TokenInfo | TokenInfo[]
+  swapData?: BridgeSwapData | BridgeSwapData[]
+  adapterInfo: AdapterInfo | AdapterInfo[]
+  deadline: bigint
+  version?: string
+  nonce?: bigint
+  salt?: string
+}
+
+export interface GasLessPermit2SwapWitnessArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  permit2: Permit2
+  spender: string
+  transactionId: string
+  executorFeeInfo: TokenInfo[]
+  tokenInfo: TokenPermissions[]
+  swapData: SwapData[]
+  deadline: BigNumberish
+  nonce?: bigint
+}
+
+export interface GasLessPermit2BridgeWitnessArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  permit2: Permit2
+  spender: string
+  transactionId: string
+  executorFeeInfo: TokenInfo[]
+  tokenInfo: TokenPermissions[]
+  swapData: BridgeSwapData[]
+  adapterInfo: AdapterInfo[]
+  deadline: BigNumberish
+  nonce?: bigint
+}
+
+export interface SignedGasLessBridgeDataArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  dZapAddress: string
+  transactionId: string
+  executorFeeInfo: TokenInfo
+  adapterInfo: AdapterInfo
+  deadline: bigint
+  version?: string
+  nonce?: bigint
+  salt?: string
+}
+
+export interface SignedGasLessSwapBridgeDataArgs {
+  chainId: number
+  signer: Wallet | HardhatEthersSigner
+  dZapAddress: string
+  transactionId: string
+  executorFeeInfo: TokenInfo
+  swapData: SwapData | SwapData[]
+  adapterInfo: AdapterInfo | AdapterInfo[]
+  deadline: bigint
+  version?: string
+  nonce?: bigint
+  salt?: string
+}
+
+/// ------------
+
+export interface GenericBridgeData {
+  updateAmountIn: boolean
+  from: string
+  transactionId: string
+  callData: string
+  receiver: string
+  to: string
+  bridge: string
+  amountIn: bigint
+  offset: bigint | number
+  extraNative: bigint
+  destinationChainId: number
+  user: string
+  callTo: string
+  approveTo: string
+  hasDestinationCall: boolean
+}
+
+export interface DirectTransferAdapterData {
+  updateAmountIn: boolean
+  from: string
+  transactionId: string
+  receiver: string
+  to: string
+  bridge: string
+  amountIn: bigint
+  destinationChainId: number
+  user: string
+  transferTo: string
+  hasDestinationCall: boolean
+}
+
+export interface RelayBridgeAdapterData {
+  updateAmountIn: boolean
+  from: string
+  transactionId: string
+  receiver: string
+  to: string
+  relayData: RelayData
+  destinationChainId: number
+  user: string
+  hasDestinationCall: boolean
+}
+
+export interface GasZipAdapterData {
+  updateAmountIn: boolean
+  from: string
+  transactionId: string
+  gasZipData: GasZipData
+  user: string
+  hasDestinationCall: boolean
+}
+
+export type BridgeAdapterData =
+  | GenericBridgeData
+  | DirectTransferAdapterData
+  | RelayBridgeAdapterData
+  | GasZipAdapterData
+export enum BridgeAdapterType {
+  GenericBridgeAdapter,
+  DirectTransferAdapter,
+  RelayBridgeAdapter,
+  GasZipAdapter,
+}
+
+export type AdapterInfoArgs =
+  | {
+      type: BridgeAdapterType.GenericBridgeAdapter
+      adapter: GenericBridgeAdapter
+      bridgeData: GenericBridgeData
+    }
+  | {
+      type: BridgeAdapterType.DirectTransferAdapter
+      adapter: DirectTransferAdapter
+      bridgeData: DirectTransferAdapterData
+    }
+  | {
+      type: BridgeAdapterType.RelayBridgeAdapter
+      adapter: RelayBridgeAdapter
+      bridgeData: RelayBridgeAdapterData
+    }
+  | {
+      type: BridgeAdapterType.GasZipAdapter
+      adapter: GasZipAdapter
+      bridgeData: GasZipAdapterData
+    }
+
+/// ------------
+
+export interface Erc20Token extends MockERC20 {
+  address: string
+}
+
+export interface WNativeToken extends WNATIVE {
+  address: string
 }

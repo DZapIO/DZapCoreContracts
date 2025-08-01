@@ -10,6 +10,7 @@ scripts
 stagingHistory.json
 .env
 /scripts
+/test
 
 temp
 .vscode

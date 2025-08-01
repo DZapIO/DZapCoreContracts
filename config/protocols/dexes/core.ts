@@ -2,7 +2,10 @@ import { DEXES } from '../dexNames'
 
 export const CORE_DEXES = {
   [DEXES.eisen]: ['0x74cE5Ba62DDAd075c49652dF9a47185ce1F744e6'],
-  [DEXES.iceCreamSwap]: ['0xBd8BB286Cd14124720F3f8C5F3fdD7fa13735Dc2'],
+  [DEXES.iceCreamSwap]: [
+    '0xBd8BB286Cd14124720F3f8C5F3fdD7fa13735Dc2',
+    '0x3FFc2315A992b01dc4B3f79C8EEa1921091Ee24f',
+  ],
   [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
   [DEXES.omniBtc]: [
     '0x0B77E63db1cd9F4f7cdAfb4a1C39f6ABEB764B66',

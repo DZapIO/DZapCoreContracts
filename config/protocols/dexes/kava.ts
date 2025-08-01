@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const KAVA_DEXES = {
+  [DEXES.iceCreamSwap]: ['0xC87De04e2EC1F4282dFF2933A2D58199f688fC3d'],
   [DEXES.izumi]: ['0x3EF68D3f7664b2805D4E88381b64868a56f88bC4'],
   [DEXES.openOcean]: ['0x6352a56caadC4F1E25CD6c75970Fa768A3304e64'],
   [DEXES.sushi]: [

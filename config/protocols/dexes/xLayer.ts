@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const X_LAYER_DEXES = {
+  [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
   [DEXES.izumi]: ['0xd7de110Bd452AAB96608ac3750c3730A17993DE0'],
   [DEXES.okx]: [
     '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',

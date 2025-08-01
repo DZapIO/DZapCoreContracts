@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const WORLDCHAIN_DEXES = {
+  [DEXES.iceCreamSwap]: ['0xC87De04e2EC1F4282dFF2933A2D58199f688fC3d'],
   [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   [DEXES.orbiter]: ['0xe530d28960d48708CcF3e62Aa7B42A80bC427Aef'],
   [DEXES.relayLink]: [

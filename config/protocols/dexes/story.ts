@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const STORY_DEXES = {
+  [DEXES.iceCreamSwap]: ['0xC87De04e2EC1F4282dFF2933A2D58199f688fC3d'],
   [DEXES.relayLink]: [
     '0xeeeeee9eC4769A09a76A83C7bC42b185872860eE',
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',

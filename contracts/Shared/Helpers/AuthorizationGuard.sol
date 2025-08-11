@@ -4,6 +4,8 @@ pragma solidity 0.8.19;
 import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { LibAccess } from "../Libraries/LibAccess.sol";
 
+/// @title DZap Authorization Guard
+/// @notice Abstract contract to provide authorization functionality
 abstract contract AuthorizationGuard {
     modifier onlyAuthorized() {
         if (msg.sender != LibDiamond.contractOwner()) LibAccess.enforceAccessControl();

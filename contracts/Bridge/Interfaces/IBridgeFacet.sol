@@ -81,7 +81,7 @@ interface IBridgeFacet is IBridge {
     /// @param _transactionId The transaction ID
     /// @param _feeData The fee data
     /// @param _feeVerificationSignature The fee verification signature
-    /// @param _batchDepositSignature The batch deposit signature
+    /// @param _batchDepositSignature Permit2 batchWitnessTransferFrom signature
     /// @param _deadline The deadline of fee signature
     /// @param _tokenDepositDetails The token deposit details
     /// @param _swapData The swap data

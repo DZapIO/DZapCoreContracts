@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+// DZap Common Errors
+
 error OnlyContractOwner();
 error UnauthorizedCaller();
 error UnAuthorized();

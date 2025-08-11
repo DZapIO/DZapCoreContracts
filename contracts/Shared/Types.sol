@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+/// @title DZap Types
+
 enum PermitType {
     PERMIT, // EIP2612
     PERMIT2_APPROVE,

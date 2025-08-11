@@ -14,7 +14,7 @@ import { IBridgeFacet } from "../Interfaces/IBridgeFacet.sol";
 
 import { InputToken, BridgeSwapData, SwapExecutionData, AdapterInfo } from "../../Shared/Types.sol";
 
-/// @title BridgeFacet
+/// @title DZap BridgeFacet
 /// @notice Provides functionality for bridging tokens across chains
 contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */

@@ -6,6 +6,8 @@ import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
 import { IGasZipAdapter, GasZipData } from "../Interfaces/adapters/IGasZipAdapter.sol";
 import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSupported } from "../../Shared/Errors.sol";
 
+/// @title DZap GasZipAdapter
+/// @notice Adapter for gaszip
 contract GasZipAdapter is IGasZipAdapter {
     // ------------------- STORAGE ------------------- //
 

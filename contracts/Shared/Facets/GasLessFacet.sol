@@ -17,6 +17,8 @@ import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
 
 import { SwapData, BridgeSwapData, SwapExecutionData, TokenInfo, InputToken, AdapterInfo } from "../Types.sol";
 
+/// @title DZap GasLess Facet
+/// @notice Provides functionality for executing gasless swaps and bridges
 contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= STORAGE ========= */
 

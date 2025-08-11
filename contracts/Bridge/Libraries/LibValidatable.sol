@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { LibBridge } from "../../Shared/Libraries/LibBridge.sol";
 import { NoBridgeFromZeroAmount, BridgeNotWhitelisted, CannotBridgeToSameNetwork, InvalidEncodedAddress } from "../../Shared/Errors.sol";
 
-/// @title LibValidatable
+/// @title DZap LibValidatable
 /// @notice This library contains helpers for validating bridge data
 library LibValidatable {
     uint256 internal constant _MAX_ADDRESS_LENGTH = 255;

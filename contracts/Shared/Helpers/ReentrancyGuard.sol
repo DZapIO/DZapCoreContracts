@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-/// @title Reentrancy Guard
+/// @title DZap Reentrancy Guard
 /// @notice Abstract contract to provide protection against reentrancy
 abstract contract ReentrancyGuard {
     /* ========= Storage ========= */

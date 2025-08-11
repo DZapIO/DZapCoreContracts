@@ -10,7 +10,7 @@ interface IWrapper is IERC20 {
     function withdraw(uint256 amount) external;
 }
 
-/// @title TokenWrapper
+/// @title DZap TokenWrapper
 /// @notice Provides functionality for wrapping and unwrapping tokens
 contract TokenWrapper is Ownable {
     address internal constant _NATIVE_TOKEN = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;

@@ -6,7 +6,7 @@ import { AuthorizationGuard } from "../Helpers/AuthorizationGuard.sol";
 import { IPermit2ManagerFacet } from "../Interfaces/IPermit2ManagerFacet.sol";
 import { ZeroAddress } from "../Errors.sol";
 
-/// @title Permit2 Manager Facet
+/// @title DZap Permit2 Manager Facet
 /// @notice Provides functionality for updating permit2
 contract Permit2ManagerFacet is IPermit2ManagerFacet, AuthorizationGuard {
     /* ========= EXTERNAL ========= */

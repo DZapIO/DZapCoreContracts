@@ -9,7 +9,7 @@ import { PermitType, InputToken } from "../Types.sol";
 import { PermitBatchTransferFrom } from "../Interfaces/IPermit2.sol";
 import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, InvalidPermitType, TransferAmountMismatch } from "../Errors.sol";
 
-/// @title LibAsset
+/// @title DZap LibAsset
 /// @notice This library contains helpers for dealing with onchain transfers
 ///         of assets, including accounting for the native asset `assetId`
 ///         conventions and any noncompliant ERC20 transfers

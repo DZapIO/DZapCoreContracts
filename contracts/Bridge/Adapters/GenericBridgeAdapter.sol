@@ -7,6 +7,8 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IGenericBridgeAdapter } from "../Interfaces/adapters/IGenericBridgeAdapter.sol";
 import { BridgeCallFailed } from "../../Shared/Errors.sol";
 
+/// @title DZap GenericBridgeAdapter
+/// @notice Adapter for generic bridge
 contract GenericBridgeAdapter is IBridge, IGenericBridgeAdapter {
     function bridgeViaGeneric(
         bool _updateAmountIn,

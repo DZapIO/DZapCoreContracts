@@ -2,7 +2,7 @@
 pragma solidity 0.8.19;
 
 struct GlobalStorage {
-    bool initialized; // Single flag for entire diamond
+    bool initialized;
     address protocolFeeVault;
     address feeValidator;
     address permit2;
@@ -10,9 +10,8 @@ struct GlobalStorage {
     bool paused;
 }
 
-/// @title LibFees
-/// @notice This library contains helpers for calculating and transferring fees
-/// @dev Old Fees library, cant be removed due to diamond initialization
+/// @title DZap LibGlobalStorage
+/// @notice This library provides functionality for managing global storage
 library LibGlobalStorage {
     bytes32 internal constant _GLOBAL_NAMESPACE = keccak256("dzap.storage.library.global");
 

@@ -6,6 +6,8 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IBridge } from "../../Shared/Interfaces/IBridge.sol";
 import { IDirectTransferAdapter } from "../Interfaces/adapters/IDirectTransferAdapter.sol";
 
+/// @title DZap DirectTransferAdapter
+/// @notice Adapter for direct transfer
 contract DirectTransferAdapter is IBridge, IDirectTransferAdapter {
     function bridgeViaTransfer(
         bool _updateAmountIn,

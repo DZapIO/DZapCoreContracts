@@ -6,6 +6,8 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IRelayBridgeAdapter, RelayData } from "../Interfaces/adapters/IRelayBridgeAdapter.sol";
 import { NativeCallFailed, Erc20CallFailed } from "../../Shared/Errors.sol";
 
+/// @title DZap RelayBridgeAdapter
+/// @notice Adapter for relay bridge
 contract RelayBridgeAdapter is IRelayBridgeAdapter {
     // ------------------- Storage ------------------- //
 

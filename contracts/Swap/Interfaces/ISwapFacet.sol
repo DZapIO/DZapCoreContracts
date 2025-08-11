@@ -8,6 +8,11 @@ import { SwapData, SwapExecutionData, InputToken } from "../../Shared/Types.sol"
 interface ISwapFacet {
     /* ========= EXTERNAL ========= */
 
+    /// @notice Swaps tokens
+    /// @param _transactionId The transaction ID
+    /// @param _tokenApprovalData The token approval data
+    /// @param _swapData The swap data
+    /// @param _swapExecutionData The swap execution data
     function swap(
         bytes calldata _transactionId,
         bytes calldata _tokenApprovalData,
@@ -15,6 +20,12 @@ interface ISwapFacet {
         SwapExecutionData calldata _swapExecutionData
     ) external payable;
 
+    /// @notice Swaps tokens
+    /// @param _transactionId The transaction ID
+    /// @param _inputTokens The input tokens
+    /// @param _swapData The swap data
+    /// @param _swapExecutionData The swap execution data
+    /// @param withoutRevert Whether to revert on failure
     function swap(
         bytes calldata _transactionId,
         InputToken[] calldata _inputTokens,
@@ -23,6 +34,13 @@ interface ISwapFacet {
         bool withoutRevert
     ) external payable;
 
+    /// @notice Swaps tokens
+    /// @param _transactionId The transaction ID
+    /// @param _batchDepositSignature Permit2 batchWitnessTransferFrom signature
+    /// @param _tokenDepositDetails The token deposit details
+    /// @param _swapData The swap data
+    /// @param _swapExecutionData The swap execution data
+    /// @param withoutRevert Whether to revert on failure
     function swap(
         bytes calldata _transactionId,
         bytes calldata _batchDepositSignature,

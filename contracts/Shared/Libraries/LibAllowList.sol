@@ -10,7 +10,7 @@ struct AllowListStorage {
     mapping(address => bool) bridgeAllowlist;
 }
 
-/// @title Lib Allow List
+/// @title DZap Lib Allow List
 /// @notice Library for managing and accessing the conract address allow list
 library LibAllowList {
     bytes32 internal constant ALLOWLIST_NAMESPACE = keccak256("dzap.library.allow.whitelist");

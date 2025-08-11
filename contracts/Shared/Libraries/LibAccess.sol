@@ -7,7 +7,7 @@ struct AccessStorage {
     mapping(bytes4 => mapping(address => bool)) execAccess;
 }
 
-/// @title Access Library
+/// @title DZap Access Library
 /// @notice Provides functionality for managing method level access control
 library LibAccess {
     /// Types ///

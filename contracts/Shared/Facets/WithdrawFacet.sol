@@ -10,7 +10,7 @@ import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
 
 import { NotAContract, NoTransferToNullAddress } from "../Errors.sol";
 
-/// @title Withdraw Facet
+/// @title DZap Withdraw Facet
 /// @notice Provides functionality for withdrawing assets
 contract WithdrawFacet is IWithdrawFacet, ReentrancyGuard {
     error WithdrawFailed();

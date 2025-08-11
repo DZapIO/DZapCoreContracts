@@ -13,12 +13,13 @@ import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 
 import { SwapData, SwapExecutionData, InputToken } from "../../Shared/Types.sol";
 
-/// @title Swap Facet
+/// @title DZap Swap Facet
 /// @notice Provides functionality for swapping through ANY APPROVED DEX
 /// @dev Uses calldata to execute APPROVED arbitrary methods on DEXs
 contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */
 
+    /// @inheritdoc ISwapFacet
     function swap(
         bytes calldata _transactionId,
         bytes calldata _tokenApprovalData,
@@ -32,6 +33,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
         _executeSwap(_transactionId, msg.sender, _swapData, _swapExecutionData, false);
     }
 
+    /// @inheritdoc ISwapFacet
     function swap(
         bytes calldata _transactionId,
         InputToken[] calldata _inputTokens,
@@ -44,6 +46,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
         _executeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, withoutRevert);
     }
 
+    /// @inheritdoc ISwapFacet
     function swap(
         bytes calldata _transactionId,
         bytes calldata _batchDepositSignature,

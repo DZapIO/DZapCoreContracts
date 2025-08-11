@@ -16,6 +16,7 @@ import {
   Create3DeploymentConfig,
   DiamondCut,
   DiamondCutData,
+  DiamondCutDetails,
   FacetCutAction,
   FacetDeployData,
 } from '../types'
@@ -26,6 +27,7 @@ import {
   getLastCreate3Config,
 } from './contractUtils'
 import { verify } from './verifyUtils'
+import { ABIS } from '../config/abis'
 
 const catchCreate3Error = (error: any) => {
   let reason = error?.reason
@@ -199,7 +201,7 @@ export const checkSelector = async (
 // -------------------------------------
 
 export async function upgradeDiamond(
-  chainId,
+  chainId: CHAIN_IDS,
   owner: SignerWithAddress | Wallet,
   cutData: DiamondCut[],
   diamondAddress: string,
@@ -243,7 +245,7 @@ export async function upgradeDiamond(
     throw Error(`Diamond upgrade failed: ${tx.hash}`)
   }
   console.log('Completed diamond cut')
-  return tx.hash
+  return { txHash: tx.hash, blockNumber: receipt?.blockNumber }
 }
 
 export async function deployFacetsToReplace(facetNames: string[]) {
@@ -498,12 +500,19 @@ export const deployUsingCreate3 = async (
 
 export const deployFacetsUsingCreate3 = async (
   chainId: CHAIN_IDS,
-  create3: any,
+  create3Address: string,
   deployer: SignerWithAddress | Wallet,
   facetsToDeploy: string[],
   verifyContract = true
 ) => {
-  let faceCut: DiamondCut[] = []
+  const create3 = await ethers.getContractAt(
+    ABIS.Create3FactoryAbi,
+    create3Address,
+    deployer
+  )
+
+  let faceCutData: DiamondCut[] = []
+  let faceCutDetails: DiamondCutDetails[] = []
   const provider = await getProvider(chainId)
 
   for (let i = 0; i < facetsToDeploy.length; i++) {
@@ -559,26 +568,41 @@ export const deployFacetsUsingCreate3 = async (
       await verify(chainId, facetName, computedAddress, [])
     }
 
-    faceCut.push({
+    const functionSelectors = getAllFunSelectorsUsingInterface(
+      ContractFactory.interface
+    )
+
+    faceCutData.push({
       facetAddress: computedAddress,
       action: FacetCutAction.Add,
-      functionSelectors: getAllFunSelectorsUsingInterface(
-        ContractFactory.interface
-      ),
+      functionSelectors,
+    })
+
+    faceCutDetails.push({
+      facetAddress: computedAddress,
+      action: FacetCutAction.Add,
+      functionSelectors,
+      facetName,
     })
   }
 
-  return faceCut
+  return { faceCutData, faceCutDetails }
 }
 
 export const deployWithArgsUsingCreate3 = async (
   chainId: CHAIN_IDS,
-  create3: any,
+  create3Address: string,
   deployer: SignerWithAddress | Wallet,
   args: FacetDeployData[],
   create3DeploymentConfig: { [key: string]: Create3DeploymentConfig[] },
   verifyContract = true
 ) => {
+  const create3 = await ethers.getContractAt(
+    ABIS.Create3FactoryAbi,
+    create3Address,
+    deployer
+  )
+
   let faceCut: DiamondCut[] = []
   const provider = await getProvider(chainId)
   const contractsAddress: string[] = []

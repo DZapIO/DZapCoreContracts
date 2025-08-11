@@ -12,14 +12,16 @@ export const approveToken = async (
   signer: Signer,
   tokenAddress: string,
   spender: string,
-  approveAmount: BigNumberish,
+  approveAmount: BigNumberish
 ) => {
   const erc20 = (await ethers.getContractAt(
     CONTRACTS.ERC20,
-    tokenAddress,
+    tokenAddress
   )) as unknown as ERC20
 
-  const allowance = await erc20.connect(signer).allowance(spender, spender)
+  const allowance = await erc20
+    .connect(signer)
+    .allowance(await signer.getAddress(), spender)
   approveAmount = BigInt(approveAmount)
 
   if (allowance < approveAmount) {

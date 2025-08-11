@@ -58,9 +58,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "hasDestinationCall",
-        "type": "bool"
+        "internalType": "bytes",
+        "name": "destinationCalldata",
+        "type": "bytes"
       }
     ],
     "name": "RelayBridgeTransferStarted",
@@ -79,6 +79,11 @@
         "type": "address"
       },
       {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bytes",
         "name": "_transactionId",
         "type": "bytes"
@@ -91,6 +96,11 @@
       {
         "internalType": "bytes",
         "name": "_to",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_destinationCalldata",
         "type": "bytes"
       },
       {
@@ -114,16 +124,6 @@
         "internalType": "uint256",
         "name": "_destinationChainId",
         "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "_hasDestinationCall",
-        "type": "bool"
       }
     ],
     "name": "bridgeViaRelay",

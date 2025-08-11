@@ -8,13 +8,15 @@ import { ISwapFacet } from "../Interfaces/ISwapFacet.sol";
 
 import { Swapper } from "../../Shared/Helpers/Swapper.sol";
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
+import { Pausable } from "../../Shared/Helpers/Pausable.sol";
+import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 
 import { SwapData, SwapExecutionData, InputToken } from "../../Shared/Types.sol";
 
 /// @title Swap Facet
 /// @notice Provides functionality for swapping through ANY APPROVED DEX
 /// @dev Uses calldata to execute APPROVED arbitrary methods on DEXs
-contract SwapFacet is ISwapFacet, Swapper, RefundNative {
+contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */
 
     function swap(
@@ -22,7 +24,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         bytes calldata _tokenApprovalData,
         SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         if (!LibAsset.isNativeToken(_swapData.from)) {
             LibAsset.deposit(msg.sender, _swapData.from, _swapData.fromAmount, _tokenApprovalData);
         }
@@ -36,7 +38,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         bool withoutRevert
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibAsset.depositBatch(msg.sender, _inputTokens);
 
         _executeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, withoutRevert);
@@ -49,7 +51,7 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative {
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         bool withoutRevert
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibAsset.depositBatch(msg.sender, _tokenDepositDetails, _batchDepositSignature);
 
         _executeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, withoutRevert);

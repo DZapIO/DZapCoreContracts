@@ -16,6 +16,6 @@ interface IBridge {
         bytes to,
         uint256 amount,
         uint256 destinationChainId,
-        bool hasDestinationCall
+        bytes destinationCalldata
     );
 }

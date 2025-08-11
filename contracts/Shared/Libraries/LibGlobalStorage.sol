@@ -7,6 +7,7 @@ struct GlobalStorage {
     address feeValidator;
     address permit2;
     address refundVault;
+    bool paused;
 }
 
 /// @title LibFees
@@ -36,5 +37,9 @@ library LibGlobalStorage {
 
     function getPermit2() internal view returns (address) {
         return globalStorage().permit2;
+    }
+
+    function getPaused() internal view returns (bool) {
+        return globalStorage().paused;
     }
 }

@@ -18,7 +18,7 @@ interface IRelayBridgeAdapter {
         bytes to,
         RelayData relayData,
         uint256 destinationChainId,
-        bool hasDestinationCall
+        bytes destinationCalldata
     );
 
     /* ========= VIEW ========= */
@@ -30,12 +30,12 @@ interface IRelayBridgeAdapter {
     function bridgeViaRelay(
         bool _updateAmountIn,
         address _from,
+        address _user,
         bytes calldata _transactionId,
         bytes calldata _receiver,
         bytes calldata _to,
+        bytes calldata _destinationCalldata,
         RelayData memory _relayData,
-        uint256 _destinationChainId,
-        address _user,
-        bool _hasDestinationCall
+        uint256 _destinationChainId
     ) external payable;
 }

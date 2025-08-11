@@ -28,10 +28,10 @@ contract GasZipAdapter is IGasZipAdapter {
     function bridgeViaGasZip(
         bool _updateAmountIn,
         address _from,
-        bytes calldata _transactionId,
-        GasZipData memory _gasZipData,
         address _user,
-        bool _hasDestinationCall
+        bytes calldata _transactionId,
+        bytes calldata _destinationCalldata,
+        GasZipData memory _gasZipData
     ) external payable {
         if (!LibAsset.isNativeToken(_from)) revert NativeTokenNotSupported();
         if (_updateAmountIn) {
@@ -39,7 +39,7 @@ contract GasZipAdapter is IGasZipAdapter {
         }
         _startBridge(_gasZipData);
 
-        emit GasZipBridgeTransferStarted(_transactionId, _user, _gasZipData, _hasDestinationCall);
+        emit GasZipBridgeTransferStarted(_transactionId, _user, _gasZipData, _destinationCalldata);
     }
 
     function _startBridge(GasZipData memory _gasZipData) private {

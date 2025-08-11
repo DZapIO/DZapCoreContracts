@@ -11,9 +11,8 @@ export const CONTRACTS_PATH = {
   WithdrawFacet: 'contracts/Shared/Facets/WithdrawFacet.sol:WithdrawFacet',
   Permit2ManagerFacet:
     'contracts/Shared/Facets/Permit2ManagerFacet.sol:Permit2ManagerFacet',
-  ValidatorFacet: 'contracts/Shared/Facets/ValidatorFacet.sol:ValidatorFacet',
-  VaultManagerFacet:
-    'contracts/Shared/Facets/VaultManagerFacet.sol:VaultManagerFacet',
+  GlobalConfigFacet:
+    'contracts/Shared/Facets/GlobalConfigFacet.sol:GlobalConfigFacet',
   WhitelistingManagerFacet:
     'contracts/Shared/Facets/WhitelistingManagerFacet.sol:WhitelistingManagerFacet',
   SwapFacet: 'contracts/Swap/Facets/SwapFacet.sol:SwapFacet',
@@ -37,8 +36,7 @@ export const CONTRACTS = {
   AccessManagerFacet: 'AccessManagerFacet',
   WithdrawFacet: 'WithdrawFacet',
   Permit2ManagerFacet: 'Permit2ManagerFacet',
-  ValidatorFacet: 'ValidatorFacet',
-  VaultManagerFacet: 'VaultManagerFacet',
+  GlobalConfigFacet: 'GlobalConfigFacet',
   WhitelistingManagerFacet: 'WhitelistingManagerFacet',
   SwapFacet: 'SwapFacet',
   BridgeFacet: 'BridgeFacet',
@@ -103,6 +101,8 @@ export const ERRORS = {
   InvalidNonce: 'InvalidNonce',
   SignatureExpired: 'SignatureExpired',
   BridgeCallFailedFromRouter: 'BridgeCallFailedFromRouter',
+  ContractIsPaused: 'ContractIsPaused',
+  ContractIsNotPaused: 'ContractIsNotPaused',
 }
 
 export const EVENTS = {
@@ -137,6 +137,8 @@ export const EVENTS = {
   AdapterRemoved: 'AdapterRemoved',
   AdaptersAdded: 'AdaptersAdded',
   AdaptersRemoved: 'AdaptersRemoved',
+  Paused: 'Paused',
+  Unpaused: 'Unpaused',
 }
 
 export const FunctionNames = {

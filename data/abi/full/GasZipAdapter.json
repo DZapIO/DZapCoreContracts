@@ -65,9 +65,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "hasDestinationCall",
-        "type": "bool"
+        "internalType": "bytes",
+        "name": "destinationCalldata",
+        "type": "bytes"
       }
     ],
     "name": "GasZipBridgeTransferStarted",
@@ -86,8 +86,18 @@
         "type": "address"
       },
       {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bytes",
         "name": "_transactionId",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_destinationCalldata",
         "type": "bytes"
       },
       {
@@ -111,16 +121,6 @@
         "internalType": "struct GasZipData",
         "name": "_gasZipData",
         "type": "tuple"
-      },
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "_hasDestinationCall",
-        "type": "bool"
       }
     ],
     "name": "bridgeViaGasZip",

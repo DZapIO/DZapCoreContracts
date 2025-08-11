@@ -30,13 +30,13 @@ contract RelayBridgeAdapter is IRelayBridgeAdapter {
     function bridgeViaRelay(
         bool _updateAmountIn,
         address _from,
+        address _user,
         bytes calldata _transactionId,
         bytes calldata _receiver,
         bytes calldata _to,
+        bytes calldata _destinationCalldata,
         RelayData memory _relayData,
-        uint256 _destinationChainId,
-        address _user,
-        bool _hasDestinationCall
+        uint256 _destinationChainId
     ) external payable {
         LibValidatable.validateData(_to, _receiver, _relayData.amountIn, _destinationChainId);
 
@@ -56,6 +56,6 @@ contract RelayBridgeAdapter is IRelayBridgeAdapter {
             if (!success) revert Erc20CallFailed(reason);
         }
 
-        emit RelayBridgeTransferStarted(_transactionId, _user, _receiver, _from, _to, _relayData, _destinationChainId, _hasDestinationCall);
+        emit RelayBridgeTransferStarted(_transactionId, _user, _receiver, _from, _to, _relayData, _destinationChainId, _destinationCalldata);
     }
 }

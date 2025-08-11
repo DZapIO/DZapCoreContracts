@@ -27,6 +27,16 @@
     "type": "error"
   },
   {
+    "inputs": [],
+    "name": "ContractIsNotPaused",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ContractIsPaused",
+    "type": "error"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -92,6 +102,11 @@
   {
     "inputs": [],
     "name": "NullAddrIsNotAValidSpender",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyError",
     "type": "error"
   },
   {
@@ -200,9 +215,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "hasDestinationCall",
-        "type": "bool"
+        "internalType": "bytes",
+        "name": "destinationCalldata",
+        "type": "bytes"
       }
     ],
     "name": "BridgeStarted",

@@ -7,7 +7,8 @@ import { LibValidator } from "../../Shared/Libraries/LibValidator.sol";
 
 import { Swapper } from "../../Shared/Helpers/Swapper.sol";
 import { RefundNative } from "../../Shared/Helpers/RefundNative.sol";
-
+import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
+import { Pausable } from "../../Shared/Helpers/Pausable.sol";
 import { PermitBatchTransferFrom } from "../../Shared/Interfaces/IPermit2.sol";
 import { IBridgeFacet } from "../Interfaces/IBridgeFacet.sol";
 
@@ -15,7 +16,7 @@ import { InputToken, BridgeSwapData, SwapExecutionData, AdapterInfo } from "../.
 
 /// @title BridgeFacet
 /// @notice Provides functionality for bridging tokens across chains
-contract BridgeFacet is IBridgeFacet, Swapper, RefundNative {
+contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */
 
     /// @inheritdoc IBridgeFacet
@@ -26,7 +27,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative {
         uint256 _deadline,
         InputToken calldata _intputTokens,
         AdapterInfo calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
@@ -59,7 +60,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative {
         BridgeSwapData memory _swapData,
         SwapExecutionData memory _swapExecutionData,
         AdapterInfo calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
@@ -94,7 +95,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative {
         BridgeSwapData[] memory _swapData,
         SwapExecutionData[] memory _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
@@ -128,7 +129,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative {
         BridgeSwapData[] memory _swapData,
         SwapExecutionData[] memory _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,

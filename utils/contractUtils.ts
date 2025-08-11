@@ -21,10 +21,9 @@ import {
   BridgeFacet,
   WithdrawFacet,
   GasLessFacet,
-  ValidatorFacet,
   Permit2ManagerFacet,
   WhitelistingManagerFacet,
-  VaultManagerFacet,
+  GlobalConfigFacet,
 } from '../typechain-types'
 import { Create3DeploymentConfig, ZKCreate2DeploymentConfig } from '../types'
 import { isAddressSame } from './addressUtils'
@@ -54,11 +53,11 @@ export const getAllDiamondFacets = async (
     contractAddress,
     signer
   )) as unknown as DiamondLoupeFacet
-  const validatorFacet = (await ethers.getContractAt(
-    CONTRACTS.ValidatorFacet,
+  const globalConfigFacet = (await ethers.getContractAt(
+    CONTRACTS.GlobalConfigFacet,
     contractAddress,
     signer
-  )) as unknown as ValidatorFacet
+  )) as unknown as GlobalConfigFacet
   const whitelistingManagerFacet = (await ethers.getContractAt(
     CONTRACTS.WhitelistingManagerFacet,
     contractAddress,
@@ -74,11 +73,6 @@ export const getAllDiamondFacets = async (
     contractAddress,
     signer
   )) as unknown as Permit2ManagerFacet
-  const vaultManagerFacet = (await ethers.getContractAt(
-    CONTRACTS.VaultManagerFacet,
-    contractAddress,
-    signer
-  )) as unknown as VaultManagerFacet
   const withdrawFacet = (await ethers.getContractAt(
     CONTRACTS.WithdrawFacet,
     contractAddress,
@@ -112,11 +106,10 @@ export const getAllDiamondFacets = async (
     diamondCutFacet,
     diamondInit,
     diamondLoupeFacet,
-    validatorFacet,
+    globalConfigFacet,
     whitelistingManagerFacet,
     accessManagerFacet,
     permit2ManagerFacet,
-    vaultManagerFacet,
     withdrawFacet,
     ownershipFacet,
     swapFacet,

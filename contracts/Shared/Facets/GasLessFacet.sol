@@ -12,10 +12,12 @@ import { IGasLessFacet } from "../Interfaces/IGasLessFacet.sol";
 
 import { Swapper } from "../Helpers/Swapper.sol";
 import { RefundNative } from "../Helpers/RefundNative.sol";
+import { Pausable } from "../Helpers/Pausable.sol";
+import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
 
 import { SwapData, BridgeSwapData, SwapExecutionData, TokenInfo, InputToken, AdapterInfo } from "../Types.sol";
 
-contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
+contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= STORAGE ========= */
 
     string internal constant _SWAP_WITNESS_TYPE_STRING =
@@ -39,7 +41,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         TokenInfo calldata _executorFeeInfo,
         SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
-    ) external {
+    ) external whenNotPaused nonReentrant {
         LibValidator.handleGasLessSwapVerification(
             _user,
             _userIntentDeadline,
@@ -67,7 +69,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         TokenInfo[] calldata _executorFeeInfo,
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData
-    ) external {
+    ) external whenNotPaused nonReentrant {
         LibValidator.handleGasLessSwapVerification(
             _user,
             _userIntentDeadline,
@@ -94,7 +96,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         TokenInfo[] calldata _executorFeeInfo,
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData
-    ) external {
+    ) external whenNotPaused nonReentrant {
         bytes32 witness = _createSwapWitnessHash(_transactionId, _user, _executorFeeInfo, _swapData);
 
         LibPermit.permit2BatchWitnessTransferFrom(
@@ -124,7 +126,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         InputToken calldata _inputToken,
         TokenInfo calldata _executorFeeInfo,
         AdapterInfo calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
 
@@ -171,7 +173,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         BridgeSwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
 
@@ -220,7 +222,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative {
         BridgeSwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
-    ) external payable refundExcessNative(msg.sender) {
+    ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
 

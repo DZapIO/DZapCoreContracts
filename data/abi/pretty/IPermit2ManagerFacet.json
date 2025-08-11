@@ -1,5 +1,4 @@
 [
   "event Permit2Updated(address indexed permit2)",
-  "function getPermit2() view returns (address)",
   "function updatePermit2(address _permit2)"
 ]

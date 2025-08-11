@@ -1,4 +1,6 @@
 [
+  "error ContractIsNotPaused()",
+  "error ContractIsPaused()",
   "error DexNotWhitelised(address dex)",
   "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error InvalidPermit(string)",
@@ -8,6 +10,7 @@
   "error NoTransferToNullAddress()",
   "error NullAddrIsNotAValidRecipient()",
   "error NullAddrIsNotAValidSpender()",
+  "error ReentrancyError()",
   "error SlippageTooHigh(uint256 minAmount, uint256 returnAmount)",
   "error SwapCallFailed(address target, bytes4 funSig, bytes reason)",
   "event DZapBatchTokenSwapped(bytes indexed transactionId, address indexed sender, tuple(string dex, address callTo, address recipient, address fromToken, address toToken, uint256 fromAmount, uint256 returnToAmount)[] swapInfo)",

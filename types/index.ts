@@ -70,6 +70,16 @@ export interface DiamondCut {
   functionSelectors: string[]
 }
 
+export interface DiamondCutDetails extends DiamondCut {
+  facetName: string
+}
+
+export interface FacetDetails {
+  facetName: string
+  facetAddress: string
+  functionSelectors: string[]
+}
+
 export interface SwapData {
   recipient: string
   from: string
@@ -490,10 +500,10 @@ export interface GenericBridgeData {
   offset: bigint | number
   extraNative: bigint
   destinationChainId: number
+  destinationCalldata: string
   user: string
   callTo: string
   approveTo: string
-  hasDestinationCall: boolean
 }
 
 export interface DirectTransferAdapterData {
@@ -507,7 +517,7 @@ export interface DirectTransferAdapterData {
   destinationChainId: number
   user: string
   transferTo: string
-  hasDestinationCall: boolean
+  destinationCalldata: string
 }
 
 export interface RelayBridgeAdapterData {
@@ -519,7 +529,7 @@ export interface RelayBridgeAdapterData {
   relayData: RelayData
   destinationChainId: number
   user: string
-  hasDestinationCall: boolean
+  destinationCalldata: string
 }
 
 export interface GasZipAdapterData {
@@ -528,7 +538,7 @@ export interface GasZipAdapterData {
   transactionId: string
   gasZipData: GasZipData
   user: string
-  hasDestinationCall: boolean
+  destinationCalldata: string
 }
 
 export type BridgeAdapterData =

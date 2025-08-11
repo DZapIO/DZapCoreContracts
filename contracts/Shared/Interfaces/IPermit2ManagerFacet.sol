@@ -11,9 +11,4 @@ interface IPermit2ManagerFacet {
 
     /// @dev Sets address of the protocols fee vault
     function updatePermit2(address _permit2) external;
-
-    /* ========= VIEW FUNCTIONS ========= */
-
-    /// @dev Returns address of the permit2
-    function getPermit2() external view returns (address);
 }

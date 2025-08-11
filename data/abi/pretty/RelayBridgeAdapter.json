@@ -5,9 +5,9 @@
   "error InvalidEncodedAddress()",
   "error NativeCallFailed(bytes reason)",
   "error NoBridgeFromZeroAmount()",
-  "event RelayBridgeTransferStarted(bytes indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bool hasDestinationCall)",
+  "event RelayBridgeTransferStarted(bytes indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bytes destinationCalldata)",
   "function _RELAY_RECEIVER() view returns (address)",
   "function _RELAY_SOLVER() view returns (address)",
-  "function bridgeViaRelay(bool _updateAmountIn, address _from, bytes _transactionId, bytes _receiver, bytes _to, tuple(uint256 amountIn, bytes32 requestId) _relayData, uint256 _destinationChainId, address _user, bool _hasDestinationCall) payable",
+  "function bridgeViaRelay(bool _updateAmountIn, address _from, address _user, bytes _transactionId, bytes _receiver, bytes _to, bytes _destinationCalldata, tuple(uint256 amountIn, bytes32 requestId) _relayData, uint256 _destinationChainId) payable",
   "function getRelayAddress() view returns (address receiver, address solver)"
 ]

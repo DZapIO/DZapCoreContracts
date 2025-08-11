@@ -11,19 +11,19 @@ contract GenericBridgeAdapter is IBridge, IGenericBridgeAdapter {
     function bridgeViaGeneric(
         bool _updateAmountIn,
         address _from,
+        address _user,
         bytes calldata _transactionId,
         bytes calldata _callData,
         bytes calldata _receiver,
         bytes calldata _to,
+        bytes calldata _destinationCalldata,
         string calldata _bridge,
         uint256 _amountIn,
         uint256 _offset,
         uint256 _extraNative,
         uint256 _destinationChainId,
-        address _user,
         address _callTo,
-        address _approveTo,
-        bool _hasDestinationCall
+        address _approveTo
     ) external payable {
         LibValidatable.validateData(_callTo, _amountIn, _destinationChainId);
 
@@ -48,6 +48,6 @@ contract GenericBridgeAdapter is IBridge, IGenericBridgeAdapter {
             revert BridgeCallFailed(_callTo, bytes4(_callData), res);
         }
 
-        emit BridgeStarted(_transactionId, _user, _receiver, _bridge, _callTo, _from, _to, _amountIn, _destinationChainId, _hasDestinationCall);
+        emit BridgeStarted(_transactionId, _user, _receiver, _bridge, _callTo, _from, _to, _amountIn, _destinationChainId, _destinationCalldata);
     }
 }

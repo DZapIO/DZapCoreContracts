@@ -19,9 +19,4 @@ contract Permit2ManagerFacet is IPermit2ManagerFacet, AuthorizationGuard {
         gs.permit2 = _permit2;
         emit Permit2Updated(_permit2);
     }
-
-    /// @inheritdoc IPermit2ManagerFacet
-    function getPermit2() external view returns (address) {
-        return LibGlobalStorage.getPermit2();
-    }
 }

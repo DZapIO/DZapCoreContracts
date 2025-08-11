@@ -1,9 +1,0 @@
-[
-  "event BridgeStarted(bytes indexed transactionId, address indexed user, bytes receiver, string bridge, address bridgeAddress, address from, bytes to, uint256 amount, uint256 destinationChainId, bool hasDestinationCall)",
-  "event DZapBatchTokenSwapped(bytes indexed transactionId, address indexed sender, (string dex, address callTo, address recipient, address fromToken, address toToken, uint256 fromAmount, uint256 returnToAmount)[] swapInfo)",
-  "event DZapBridgeStarted(bytes indexed transactionId, address indexed user, address indexed integrator)",
-  "event DZapTokenSwapped(bytes indexed transactionId, address indexed sender, (string dex, address callTo, address recipient, address fromToken, address toToken, uint256 fromAmount, uint256 returnToAmount) swapInfo)",
-  "event DZapGasLessStarted(bytes indexed _transactionId, address indexed executor, address indexed _user)",
-  "event RelayBridgeTransferStarted(bytes indexed transactionId, address indexed user, bytes reciever, address from, bytes to, (uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bool hasDestinationCall)",
-  "event GasZipBridgeTransferStarted(bytes indexed transactionId, address indexed user, (bytes32 recipient, uint256 destChains, uint256 depositAmount) gasZipData, bool hasDestinationCall)"
-]

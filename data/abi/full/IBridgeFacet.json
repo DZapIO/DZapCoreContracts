@@ -58,9 +58,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "hasDestinationCall",
-        "type": "bool"
+        "internalType": "bytes",
+        "name": "destinationCalldata",
+        "type": "bytes"
       }
     ],
     "name": "BridgeStarted",

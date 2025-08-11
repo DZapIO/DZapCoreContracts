@@ -4,7 +4,7 @@
   "error CannotBridgeToSameNetwork()",
   "error NoBridgeFromZeroAmount()",
   "error NullAddrIsNotAValidSpender()",
-  "event BridgeStarted(bytes indexed transactionId, address indexed user, bytes receiver, string bridge, address bridgeAddress, address from, bytes to, uint256 amount, uint256 destinationChainId, bool hasDestinationCall)",
+  "event BridgeStarted(bytes indexed transactionId, address indexed user, bytes receiver, string bridge, address bridgeAddress, address from, bytes to, uint256 amount, uint256 destinationChainId, bytes destinationCalldata)",
   "event DZapBridgeStarted(bytes indexed transactionId, address indexed user, address indexed integrator)",
-  "function bridgeViaGeneric(bool _updateAmountIn, address _from, bytes _transactionId, bytes _callData, bytes _receiver, bytes _to, string _bridge, uint256 _amountIn, uint256 _offset, uint256 _extraNative, uint256 _destinationChainId, address _user, address _callTo, address _approveTo, bool _hasDestinationCall) payable"
+  "function bridgeViaGeneric(bool _updateAmountIn, address _from, address _user, bytes _transactionId, bytes _callData, bytes _receiver, bytes _to, bytes _destinationCalldata, string _bridge, uint256 _amountIn, uint256 _offset, uint256 _extraNative, uint256 _destinationChainId, address _callTo, address _approveTo) payable"
 ]

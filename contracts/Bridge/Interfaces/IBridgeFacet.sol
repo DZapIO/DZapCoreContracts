@@ -17,7 +17,7 @@ interface IBridgeFacet is IBridge {
     /// @param _intputTokens Input tokens needed for bridge
     /// @param _adapterInfo The adapter info
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -39,7 +39,7 @@ interface IBridgeFacet is IBridge {
     /// @param _swapExecutionData The swap execution data
     /// @param _adapterInfo The adapter info
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -63,7 +63,7 @@ interface IBridgeFacet is IBridge {
     /// @param _swapExecutionData The swap execution data
     /// @param _adapterInfo The adapter info
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -88,7 +88,7 @@ interface IBridgeFacet is IBridge {
     /// @param _swapExecutionData The swap execution data
     /// @param _adapterInfo The adapter info
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         bytes calldata _batchDepositSignature,

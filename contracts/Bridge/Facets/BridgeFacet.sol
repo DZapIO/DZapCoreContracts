@@ -21,7 +21,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
     /// @inheritdoc IBridgeFacet
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -31,7 +31,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(_feeData),
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
@@ -52,7 +52,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
     /// @inheritdoc IBridgeFacet
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -64,7 +64,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(_feeData),
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
@@ -78,7 +78,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
         address integrator = LibBridge.takeFee(_feeData);
 
-        _executeBridgeSwap(_transactionId, msg.sender, _swapData, _swapExecutionData, false);
+        _executeBridgeSwap(_transactionId, msg.sender, integrator, _swapData, _swapExecutionData, false);
 
         LibBridge.bridge(_adapterInfo);
 
@@ -87,7 +87,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
     /// @inheritdoc IBridgeFacet
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         uint256 _deadline,
@@ -99,7 +99,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(_feeData),
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
@@ -111,7 +111,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
         address integrator = LibBridge.takeFee(_feeData);
 
-        if (_swapData.length > 0) _executeBridgeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, false);
+        if (_swapData.length > 0) _executeBridgeSwaps(_transactionId, msg.sender, integrator, _swapData, _swapExecutionData, false);
 
         LibBridge.bridge(_adapterInfo);
 
@@ -120,7 +120,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
     /// @inheritdoc IBridgeFacet
     function bridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _feeData,
         bytes calldata _feeVerificationSignature,
         bytes calldata _batchDepositSignature,
@@ -133,7 +133,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
         LibValidator.handleFeeVerification(
             msg.sender,
             _deadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(_feeData),
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
@@ -145,7 +145,7 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
 
         address integrator = LibBridge.takeFee(_feeData);
 
-        if (_swapData.length > 0) _executeBridgeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, false);
+        if (_swapData.length > 0) _executeBridgeSwaps(_transactionId, msg.sender, integrator, _swapData, _swapExecutionData, false);
 
         LibBridge.bridge(_adapterInfo);
 

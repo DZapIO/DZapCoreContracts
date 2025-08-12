@@ -57,9 +57,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
@@ -148,6 +148,16 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
         "name": "_updateAmountIn",
         "type": "bool"
@@ -158,14 +168,9 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_transactionId",
-        "type": "bytes"
+        "internalType": "uint256",
+        "name": "_destinationChainId",
+        "type": "uint256"
       },
       {
         "internalType": "bytes",
@@ -198,11 +203,6 @@
         "internalType": "struct RelayData",
         "name": "_relayData",
         "type": "tuple"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_destinationChainId",
-        "type": "uint256"
       }
     ],
     "name": "bridgeViaRelay",

@@ -21,7 +21,8 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
 
     /// @inheritdoc ISwapFacet
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         bytes calldata _tokenApprovalData,
         SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
@@ -30,12 +31,13 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
             LibAsset.deposit(msg.sender, _swapData.from, _swapData.fromAmount, _tokenApprovalData);
         }
 
-        _executeSwap(_transactionId, msg.sender, _swapData, _swapExecutionData, false);
+        _executeSwap(_transactionId, msg.sender, _integrator, _swapData, _swapExecutionData, false);
     }
 
     /// @inheritdoc ISwapFacet
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         InputToken[] calldata _inputTokens,
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
@@ -43,12 +45,13 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibAsset.depositBatch(msg.sender, _inputTokens);
 
-        _executeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, withoutRevert);
+        _executeSwaps(_transactionId, msg.sender, _integrator, _swapData, _swapExecutionData, withoutRevert);
     }
 
     /// @inheritdoc ISwapFacet
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         bytes calldata _batchDepositSignature,
         PermitBatchTransferFrom calldata _tokenDepositDetails,
         SwapData[] calldata _swapData,
@@ -57,6 +60,6 @@ contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGua
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         LibAsset.depositBatch(msg.sender, _tokenDepositDetails, _batchDepositSignature);
 
-        _executeSwaps(_transactionId, msg.sender, _swapData, _swapExecutionData, withoutRevert);
+        _executeSwaps(_transactionId, msg.sender, _integrator, _swapData, _swapExecutionData, withoutRevert);
     }
 }

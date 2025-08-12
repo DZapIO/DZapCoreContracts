@@ -2,6 +2,16 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
         "name": "_updateAmountIn",
         "type": "bool"
@@ -13,38 +23,13 @@
       },
       {
         "internalType": "address",
-        "name": "_user",
+        "name": "_callTo",
         "type": "address"
       },
       {
-        "internalType": "bytes",
-        "name": "_transactionId",
-        "type": "bytes"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_callData",
-        "type": "bytes"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_receiver",
-        "type": "bytes"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_to",
-        "type": "bytes"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_destinationCalldata",
-        "type": "bytes"
-      },
-      {
-        "internalType": "string",
-        "name": "_bridge",
-        "type": "string"
+        "internalType": "address",
+        "name": "_approveTo",
+        "type": "address"
       },
       {
         "internalType": "uint256",
@@ -67,14 +52,29 @@
         "type": "uint256"
       },
       {
-        "internalType": "address",
-        "name": "_callTo",
-        "type": "address"
+        "internalType": "string",
+        "name": "_bridge",
+        "type": "string"
       },
       {
-        "internalType": "address",
-        "name": "_approveTo",
-        "type": "address"
+        "internalType": "bytes",
+        "name": "_receiver",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_to",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_callData",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_destinationCalldata",
+        "type": "bytes"
       }
     ],
     "name": "bridgeViaGeneric",

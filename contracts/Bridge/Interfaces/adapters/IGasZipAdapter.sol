@@ -11,7 +11,7 @@ struct GasZipData {
 interface IGasZipAdapter {
     /* ========= EVENT ========= */
 
-    event GasZipBridgeTransferStarted(bytes indexed transactionId, address indexed user, GasZipData gasZipData, bytes destinationCalldata);
+    event GasZipBridgeTransferStarted(bytes32 indexed transactionId, address indexed user, GasZipData gasZipData, bytes destinationCalldata);
 
     /* ========= VIEW ========= */
 
@@ -20,10 +20,10 @@ interface IGasZipAdapter {
     /* ========= EXTERNAL ========= */
 
     function bridgeViaGasZip(
+        bytes32 _transactionId,
+        address _user,
         bool _updateAmountIn,
         address _from,
-        address _user,
-        bytes calldata _transactionId,
         bytes calldata _destinationCalldata,
         GasZipData memory _gasZipData
     ) external payable;

@@ -8,7 +8,7 @@ import { SwapData, BridgeSwapData, SwapExecutionData, TokenInfo, InputToken, Ada
 interface IGasLessFacet {
     /* ========= EVENTS ========= */
 
-    event DZapGasLessStarted(bytes indexed _transactionId, address indexed executor, address indexed _user);
+    event DZapGasLessStarted(bytes32 indexed _transactionId, address indexed executor, address indexed _user);
 
     /* ========= EXTERNAL ========= */
 
@@ -19,16 +19,17 @@ interface IGasLessFacet {
     /// @param _userIntentDeadline The user intent deadline
     /// @param _user The user
     /// @param _executorFeeInfo The executor fee info
-    /// @param _BridgeswapData The swap data
+    /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     function executeSwap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _user,
+        address _integrator,
+        uint256 _userIntentDeadline,
         bytes calldata _userIntentSignature,
         bytes calldata _tokenApprovalData,
-        uint256 _userIntentDeadline,
-        address _user,
         TokenInfo calldata _executorFeeInfo,
-        SwapData calldata _BridgeswapData,
+        SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
     ) external;
 
@@ -39,16 +40,17 @@ interface IGasLessFacet {
     /// @param _user The user
     /// @param _inputTokens Input tokens needed for swaps
     /// @param _executorFeeInfo The executor fee info
-    /// @param _BridgeswapData The swap data
+    /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     function executeMultiSwap(
-        bytes calldata _transactionId,
-        bytes calldata _userIntentSignature,
-        uint256 _userIntentDeadline,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
+        uint256 _userIntentDeadline,
+        bytes calldata _userIntentSignature,
         InputToken[] calldata _inputTokens,
         TokenInfo[] calldata _executorFeeInfo,
-        SwapData[] calldata _BridgeswapData,
+        SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData
     ) external;
 
@@ -58,15 +60,16 @@ interface IGasLessFacet {
     /// @param _user The user
     /// @param _tokenDepositDetails The token deposit details
     /// @param _executorFeeInfo The executor fee info
-    /// @param _BridgeswapData The swap data
+    /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     function executeMultiSwapWithPermit2Witness(
-        bytes calldata _transactionId,
-        bytes calldata _userIntentSignature,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
+        bytes calldata _userIntentSignature,
         PermitBatchTransferFrom calldata _tokenDepositDetails,
         TokenInfo[] calldata _executorFeeInfo,
-        SwapData[] calldata _BridgeswapData,
+        SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData
     ) external;
 
@@ -82,7 +85,7 @@ interface IGasLessFacet {
     /// @param _executorFeeInfo The executor fee info
     /// @param _adapterInfo The adapter info
     function executeBridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -104,11 +107,11 @@ interface IGasLessFacet {
     /// @param _user The user
     /// @param _inputTokens Input tokens needed for bridges
     /// @param _executorFeeInfo The executor fee info
-    /// @param _BridgeswapData The swap data
+    /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     /// @param _adapterInfo The adapter info
     function executeMultiBridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -117,7 +120,7 @@ interface IGasLessFacet {
         address _user,
         InputToken[] calldata _inputTokens,
         TokenInfo[] calldata _executorFeeInfo,
-        BridgeSwapData[] calldata _BridgeswapData,
+        BridgeSwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
     ) external payable;
@@ -131,11 +134,11 @@ interface IGasLessFacet {
     /// @param _user The user
     /// @param _tokenDepositDetails The token deposit details
     /// @param _executorFeeInfo The executor fee info
-    /// @param _BridgeswapData The swap data
+    /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     /// @param _adapterInfo The adapter info
     function executeMultiBridgeBatchWithPermit2Witness(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -143,7 +146,7 @@ interface IGasLessFacet {
         address _user,
         PermitBatchTransferFrom calldata _tokenDepositDetails,
         TokenInfo[] calldata _executorFeeInfo,
-        BridgeSwapData[] calldata _BridgeswapData,
+        BridgeSwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
     ) external payable;

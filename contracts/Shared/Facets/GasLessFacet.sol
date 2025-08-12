@@ -35,11 +35,12 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     /* ========= EXTERNAL ========= */
 
     function executeSwap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _user,
+        address _integrator,
+        uint256 _userIntentDeadline,
         bytes calldata _userIntentSignature,
         bytes calldata _tokenApprovalData,
-        uint256 _userIntentDeadline,
-        address _user,
         TokenInfo calldata _executorFeeInfo,
         SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
@@ -47,7 +48,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         LibValidator.handleGasLessSwapVerification(
             _user,
             _userIntentDeadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(abi.encode(_executorFeeInfo)),
             keccak256(abi.encode(_swapData)),
             _userIntentSignature
@@ -57,16 +58,17 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         if (_executorFeeInfo.token != address(0)) LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
 
-        _executeSwap(_transactionId, _user, _swapData, _swapExecutionData, false);
+        _executeSwap(_transactionId, _user, _integrator, _swapData, _swapExecutionData, false);
 
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
     function executeMultiSwap(
-        bytes calldata _transactionId,
-        bytes calldata _userIntentSignature,
-        uint256 _userIntentDeadline,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
+        uint256 _userIntentDeadline,
+        bytes calldata _userIntentSignature,
         InputToken[] calldata _inputTokens,
         TokenInfo[] calldata _executorFeeInfo,
         SwapData[] calldata _swapData,
@@ -75,7 +77,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         LibValidator.handleGasLessSwapVerification(
             _user,
             _userIntentDeadline,
-            keccak256(_transactionId),
+            _transactionId,
             keccak256(abi.encode(_executorFeeInfo)),
             keccak256(abi.encode(_swapData)),
             _userIntentSignature
@@ -85,15 +87,16 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         _transferExecutorFees(_executorFeeInfo);
 
-        _executeSwaps(_transactionId, _user, _swapData, _swapExecutionData, false);
+        _executeSwaps(_transactionId, _user, _integrator, _swapData, _swapExecutionData, false);
 
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
     function executeMultiSwapWithPermit2Witness(
-        bytes calldata _transactionId,
-        bytes calldata _userIntentSignature,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
+        bytes calldata _userIntentSignature,
         PermitBatchTransferFrom calldata _tokenDepositDetails,
         TokenInfo[] calldata _executorFeeInfo,
         SwapData[] calldata _swapData,
@@ -112,13 +115,13 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         _transferExecutorFees(_executorFeeInfo);
 
-        _executeSwaps(_transactionId, _user, _swapData, _swapExecutionData, false);
+        _executeSwaps(_transactionId, _user, _integrator, _swapData, _swapExecutionData, false);
 
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
     function executeBridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -129,32 +132,33 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         TokenInfo calldata _executorFeeInfo,
         AdapterInfo calldata _adapterInfo
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
-        bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
 
         LibValidator.handleGasLessBridgeVerification(
             _user,
             _userIntentDeadline,
-            transactionIdHash,
+            _transactionId,
             keccak256(abi.encode(_executorFeeInfo)),
             adapterInfoHash,
             _userIntentSignature
+        );
+
+        LibValidator.handleFeeVerification(
+            _user,
+            _bridgeFeeDeadline,
+            _transactionId,
+            keccak256(_bridgeFeeData),
+            adapterInfoHash,
+            _feeVerificationSignature
         );
 
         LibBridge.refundExcessTokens(_adapterInfo);
 
         LibAsset.deposit(_user, _inputToken.token, _inputToken.amount, _inputToken.permit);
 
-        if (_executorFeeInfo.token != address(0)) LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
+        LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
 
-        address integrator = LibBridge.verifyAndTakeFee(
-            _user,
-            _bridgeFeeDeadline,
-            transactionIdHash,
-            adapterInfoHash,
-            _bridgeFeeData,
-            _feeVerificationSignature
-        );
+        address integrator = LibBridge.takeFee(_bridgeFeeData);
 
         LibBridge.bridge(_adapterInfo);
 
@@ -163,7 +167,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     }
 
     function executeMultiBridge(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -176,17 +180,25 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
-        bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
 
         LibValidator.handleGasLessSwapBridgeVerification(
             _user,
             _userIntentDeadline,
-            transactionIdHash,
+            _transactionId,
             keccak256(abi.encode(_executorFeeInfo)),
             keccak256(abi.encode(_swapData)),
             adapterInfoHash,
             _userIntentSignature
+        );
+
+        LibValidator.handleFeeVerification(
+            _user,
+            _bridgeFeeDeadline,
+            _transactionId,
+            keccak256(_bridgeFeeData),
+            adapterInfoHash,
+            _feeVerificationSignature
         );
 
         LibBridge.refundExcessTokens(_adapterInfo);
@@ -195,16 +207,9 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         _transferExecutorFees(_executorFeeInfo);
 
-        _executeBridgeSwaps(_transactionId, _user, _swapData, _swapExecutionData, false);
+        address integrator = LibBridge.takeFee(_bridgeFeeData);
 
-        address integrator = LibBridge.verifyAndTakeFee(
-            _user,
-            _bridgeFeeDeadline,
-            transactionIdHash,
-            adapterInfoHash,
-            _bridgeFeeData,
-            _feeVerificationSignature
-        );
+        _executeBridgeSwaps(_transactionId, _user, integrator, _swapData, _swapExecutionData, false);
 
         LibBridge.bridge(_adapterInfo);
 
@@ -213,7 +218,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     }
 
     function executeMultiBridgeBatchWithPermit2Witness(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,
         bytes calldata _feeVerificationSignature,
@@ -225,10 +230,9 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         SwapExecutionData[] calldata _swapExecutionData,
         AdapterInfo[] calldata _adapterInfo
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
-        bytes32 transactionIdHash = keccak256(_transactionId);
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
+        bytes32 witness = _createBridgeWitnessHash(_user, _transactionId, _executorFeeInfo, _swapData, adapterInfoHash);
 
-        bytes32 witness = _createBridgeWitnessHash(_user, transactionIdHash, _executorFeeInfo, _swapData, adapterInfoHash);
         LibBridge.refundExcessTokens(_adapterInfo);
 
         LibPermit.permit2BatchWitnessTransferFrom(
@@ -240,18 +244,18 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
             _BRIDGE_WITNESS_TYPE_STRING
         );
 
-        _transferExecutorFees(_executorFeeInfo);
-
-        _executeBridgeSwaps(_transactionId, _user, _swapData, _swapExecutionData, false);
-
         address integrator = LibBridge.verifyAndTakeFee(
             _user,
             _bridgeFeeDeadline,
-            transactionIdHash,
+            _transactionId,
             adapterInfoHash,
             _bridgeFeeData,
             _feeVerificationSignature
         );
+
+        _transferExecutorFees(_executorFeeInfo);
+
+        _executeBridgeSwaps(_transactionId, _user, integrator, _swapData, _swapExecutionData, false);
 
         LibBridge.bridge(_adapterInfo);
 
@@ -271,20 +275,14 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     }
 
     function _createSwapWitnessHash(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
         address _user,
         TokenInfo[] calldata _executorFeeInfo,
         SwapData[] calldata _swapData
     ) internal pure returns (bytes32) {
         return
             keccak256(
-                abi.encode(
-                    _SWAP_WITNESS_TYPEHASH,
-                    keccak256(_transactionId),
-                    _user,
-                    keccak256(abi.encode(_executorFeeInfo)),
-                    keccak256(abi.encode(_swapData))
-                )
+                abi.encode(_SWAP_WITNESS_TYPEHASH, _transactionId, _user, keccak256(abi.encode(_executorFeeInfo)), keccak256(abi.encode(_swapData)))
             );
     }
 

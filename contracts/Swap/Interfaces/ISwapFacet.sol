@@ -10,11 +10,13 @@ interface ISwapFacet {
 
     /// @notice Swaps tokens
     /// @param _transactionId The transaction ID
+    /// @param _integrator The integrator id
     /// @param _tokenApprovalData The token approval data
     /// @param _swapData The swap data
     /// @param _swapExecutionData The swap execution data
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         bytes calldata _tokenApprovalData,
         SwapData calldata _swapData,
         SwapExecutionData calldata _swapExecutionData
@@ -27,7 +29,8 @@ interface ISwapFacet {
     /// @param _swapExecutionData The swap execution data
     /// @param withoutRevert Whether to revert on failure
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         InputToken[] calldata _inputTokens,
         SwapData[] calldata _swapData,
         SwapExecutionData[] calldata _swapExecutionData,
@@ -42,7 +45,8 @@ interface ISwapFacet {
     /// @param _swapExecutionData The swap execution data
     /// @param withoutRevert Whether to revert on failure
     function swap(
-        bytes calldata _transactionId,
+        bytes32 _transactionId,
+        address _integrator,
         bytes calldata _batchDepositSignature,
         PermitBatchTransferFrom calldata _tokenDepositDetails,
         SwapData[] calldata _swapData,

@@ -1,5 +1,5 @@
 [
-  "event RelayBridgeTransferStarted(bytes indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bytes destinationCalldata)",
-  "function bridgeViaRelay(bool _updateAmountIn, address _from, address _user, bytes _transactionId, bytes _receiver, bytes _to, bytes _destinationCalldata, tuple(uint256 amountIn, bytes32 requestId) _relayData, uint256 _destinationChainId) payable",
+  "event RelayBridgeTransferStarted(bytes32 indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bytes destinationCalldata)",
+  "function bridgeViaRelay(bytes32 _transactionId, address _user, bool _updateAmountIn, address _from, uint256 _destinationChainId, bytes _receiver, bytes _to, bytes _destinationCalldata, tuple(uint256 amountIn, bytes32 requestId) _relayData) payable",
   "function getRelayAddress() view returns (address receiver, address solver)"
 ]

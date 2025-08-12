@@ -4,9 +4,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
@@ -27,9 +27,9 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "internalType": "bytes",
@@ -126,9 +126,9 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "internalType": "bytes",
@@ -233,7 +233,7 @@
           }
         ],
         "internalType": "struct BridgeSwapData[]",
-        "name": "_BridgeswapData",
+        "name": "_swapData",
         "type": "tuple[]"
       },
       {
@@ -294,9 +294,9 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "internalType": "bytes",
@@ -408,7 +408,7 @@
           }
         ],
         "internalType": "struct BridgeSwapData[]",
-        "name": "_BridgeswapData",
+        "name": "_swapData",
         "type": "tuple[]"
       },
       {
@@ -469,14 +469,19 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
-        "internalType": "bytes",
-        "name": "_userIntentSignature",
-        "type": "bytes"
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
       },
       {
         "internalType": "uint256",
@@ -484,9 +489,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
+        "internalType": "bytes",
+        "name": "_userIntentSignature",
+        "type": "bytes"
       },
       {
         "components": [
@@ -556,7 +561,7 @@
           }
         ],
         "internalType": "struct SwapData[]",
-        "name": "_BridgeswapData",
+        "name": "_swapData",
         "type": "tuple[]"
       },
       {
@@ -600,19 +605,24 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_userIntentSignature",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "internalType": "address",
         "name": "_user",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_userIntentSignature",
+        "type": "bytes"
       },
       {
         "components": [
@@ -694,7 +704,7 @@
           }
         ],
         "internalType": "struct SwapData[]",
-        "name": "_BridgeswapData",
+        "name": "_swapData",
         "type": "tuple[]"
       },
       {
@@ -738,9 +748,24 @@
   {
     "inputs": [
       {
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "_transactionId",
-        "type": "bytes"
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_integrator",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_userIntentDeadline",
+        "type": "uint256"
       },
       {
         "internalType": "bytes",
@@ -751,16 +776,6 @@
         "internalType": "bytes",
         "name": "_tokenApprovalData",
         "type": "bytes"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_userIntentDeadline",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
       },
       {
         "components": [
@@ -808,7 +823,7 @@
           }
         ],
         "internalType": "struct SwapData",
-        "name": "_BridgeswapData",
+        "name": "_swapData",
         "type": "tuple"
       },
       {

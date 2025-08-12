@@ -90,7 +90,7 @@ library LibBridge {
 
     /// @notice Refunds excess tokens
     function refundExcessTokens(AdapterInfo calldata _adapterInfo) internal {
-        (bool _updateAmountIn, address _from) = abi.decode(_adapterInfo.adapterData[4:], (bool, address));
+        (, , bool _updateAmountIn, address _from) = abi.decode(_adapterInfo.adapterData[4:], (bytes32, address, bool, address));
         if (_updateAmountIn) {
             if (LibAsset.isNativeToken(_from)) {
                 uint256 initialBalance = address(this).balance - msg.value;

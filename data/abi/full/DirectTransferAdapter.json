@@ -50,9 +50,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
@@ -117,9 +117,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
@@ -140,6 +140,16 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
         "name": "_updateAmountIn",
         "type": "bool"
@@ -151,13 +161,23 @@
       },
       {
         "internalType": "address",
-        "name": "_user",
+        "name": "_transferTo",
         "type": "address"
       },
       {
-        "internalType": "bytes",
-        "name": "_transactionId",
-        "type": "bytes"
+        "internalType": "uint256",
+        "name": "_amountIn",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_destinationChainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_bridge",
+        "type": "string"
       },
       {
         "internalType": "bytes",
@@ -173,26 +193,6 @@
         "internalType": "bytes",
         "name": "_destinationCalldata",
         "type": "bytes"
-      },
-      {
-        "internalType": "string",
-        "name": "_bridge",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amountIn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_destinationChainId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_transferTo",
-        "type": "address"
       }
     ],
     "name": "bridgeViaTransfer",

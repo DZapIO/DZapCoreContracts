@@ -143,17 +143,17 @@ export const EVENTS = {
 
 export const FunctionNames = {
   singleSwap:
-    'swap(bytes,bytes,(address,address,address,uint256,uint256),(string,address,address,bytes,bool))',
+    'swap(bytes32,address,bytes,(address,address,address,uint256,uint256),(string,address,address,bytes,bool))',
   batchSwap:
-    'swap(bytes,(address,uint256,bytes)[],(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[],bool)',
+    'swap(bytes32,address,(address,uint256,bytes)[],(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[],bool)',
   batchSwapWithBatchPermit2:
-    'swap(bytes,bytes,((address,uint256)[],uint256,uint256),(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[],bool)',
+    'swap(bytes32,address,bytes,((address,uint256)[],uint256,uint256),(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[],bool)',
   singleBridge:
-    'bridge(bytes,bytes,bytes,uint256,(address,uint256,bytes),(address,bytes))',
+    'bridge(bytes32,bytes,bytes,uint256,(address,uint256,bytes),(address,bytes))',
   singleSwapAndBridge:
-    'bridge(bytes,bytes,bytes,uint256,(address,uint256,bytes),(address,address,address,uint256,uint256,bool),(string,address,address,bytes,bool),(address,bytes))',
+    'bridge(bytes32,bytes,bytes,uint256,(address,uint256,bytes),(address,address,address,uint256,uint256,bool),(string,address,address,bytes,bool),(address,bytes))',
   batchSwapAndBridge:
-    'bridge(bytes,bytes,bytes,uint256,(address,uint256,bytes)[],(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
+    'bridge(bytes32,bytes,bytes,uint256,(address,uint256,bytes)[],(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
   batchSwapAndBridgeWithPermit2BatchWitnessTransfer:
-    'bridge(bytes,bytes,bytes,bytes,uint256,((address,uint256)[],uint256,uint256),(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
+    'bridge(bytes32,bytes,bytes,bytes,uint256,((address,uint256)[],uint256,uint256),(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
 } as const

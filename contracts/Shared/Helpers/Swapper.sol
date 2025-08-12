@@ -13,8 +13,8 @@ import { DexNotWhitelised, NullAddrIsNotAValidRecipient, NoSwapFromZeroAmount } 
 abstract contract Swapper {
     /* ========= EVENTS ========= */
 
-    event DZapTokenSwapped(bytes indexed transactionId, address indexed sender, SwapInfo swapInfo);
-    event DZapBatchTokenSwapped(bytes indexed transactionId, address indexed sender, SwapInfo[] swapInfo);
+    event DZapTokenSwapped(bytes32 indexed transactionId, address indexed sender, address indexed integrator, SwapInfo swapInfo);
+    event DZapBatchTokenSwapped(bytes32 indexed transactionId, address indexed sender, address indexed integrator, SwapInfo[] swapInfo);
 
     /* ========= INTERNAL ========= */
 
@@ -27,8 +27,9 @@ abstract contract Swapper {
 
     /// @notice Executes a swap
     function _executeSwap(
-        bytes memory _transactionId,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
         SwapData memory _swapData,
         SwapExecutionData memory _swapExecutionData,
         bool _withoutRevert
@@ -48,6 +49,7 @@ abstract contract Swapper {
         emit DZapTokenSwapped(
             _transactionId,
             _user,
+            _integrator,
             SwapInfo(
                 _swapExecutionData.dex,
                 _swapExecutionData.callTo,
@@ -62,8 +64,9 @@ abstract contract Swapper {
 
     /// @notice Executes multiple swaps
     function _executeSwaps(
-        bytes memory _transactionId,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
         SwapData[] memory _swapData,
         SwapExecutionData[] memory _swapExecutionData,
         bool _withoutRevert
@@ -103,14 +106,15 @@ abstract contract Swapper {
             }
         }
 
-        if (length > 0) emit DZapBatchTokenSwapped(_transactionId, _user, swapInfo);
+        if (length > 0) emit DZapBatchTokenSwapped(_transactionId, _user, _integrator, swapInfo);
     }
 
     /// @notice Executes a bridge swap
     /// @dev Sweep dust if full return amount is not going to be used in bridge
     function _executeBridgeSwap(
-        bytes memory _transactionId,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
         BridgeSwapData memory _swapData,
         SwapExecutionData memory _swapExecutionData,
         bool _withoutRevert
@@ -135,6 +139,7 @@ abstract contract Swapper {
         emit DZapTokenSwapped(
             _transactionId,
             _user,
+            _integrator,
             SwapInfo(
                 _swapExecutionData.dex,
                 _swapExecutionData.callTo,
@@ -150,8 +155,9 @@ abstract contract Swapper {
     /// @notice Executes multiple bridge swaps
     /// @dev Sweep dust if full return amount is not going to be used in bridge
     function _executeBridgeSwaps(
-        bytes memory _transactionId,
+        bytes32 _transactionId,
         address _user,
+        address _integrator,
         BridgeSwapData[] memory _swapData,
         SwapExecutionData[] memory _swapExecutionData,
         bool _withoutRevert
@@ -195,6 +201,6 @@ abstract contract Swapper {
             }
         }
 
-        if (length > 0) emit DZapBatchTokenSwapped(_transactionId, _user, swapInfo);
+        if (length > 0) emit DZapBatchTokenSwapped(_transactionId, _user, _integrator, swapInfo);
     }
 }

@@ -11,7 +11,7 @@ import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSup
 contract GasZipAdapter is IGasZipAdapter {
     // ------------------- STORAGE ------------------- //
 
-    IGasZipRouter private immutable _GAS_ZIP_ROUTER; // for native transfers
+    IGasZipRouter private immutable _GAS_ZIP_ROUTER;
 
     // ------------------- CONSTRUCTOR -------------------//
 
@@ -28,10 +28,10 @@ contract GasZipAdapter is IGasZipAdapter {
     // ------------------- EXTERNAL -------------------//
 
     function bridgeViaGasZip(
+        bytes32 _transactionId,
+        address _user,
         bool _updateAmountIn,
         address _from,
-        address _user,
-        bytes calldata _transactionId,
         bytes calldata _destinationCalldata,
         GasZipData memory _gasZipData
     ) external payable {

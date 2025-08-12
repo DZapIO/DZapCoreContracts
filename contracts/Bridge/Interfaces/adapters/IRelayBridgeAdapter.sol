@@ -11,7 +11,7 @@ interface IRelayBridgeAdapter {
     /* ========= EVENT ========= */
 
     event RelayBridgeTransferStarted(
-        bytes indexed transactionId,
+        bytes32 indexed transactionId,
         address indexed user,
         bytes reciever,
         address from,
@@ -28,14 +28,14 @@ interface IRelayBridgeAdapter {
     /* ========= EXTERNAL ========= */
 
     function bridgeViaRelay(
+        bytes32 _transactionId,
+        address _user,
         bool _updateAmountIn,
         address _from,
-        address _user,
-        bytes calldata _transactionId,
+        uint256 _destinationChainId,
         bytes calldata _receiver,
         bytes calldata _to,
         bytes calldata _destinationCalldata,
-        RelayData memory _relayData,
-        uint256 _destinationChainId
+        RelayData memory _relayData
     ) external payable;
 }

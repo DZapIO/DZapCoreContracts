@@ -4,9 +4,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "bytes",
+        "internalType": "bytes32",
         "name": "transactionId",
-        "type": "bytes"
+        "type": "bytes32"
       },
       {
         "indexed": true,
@@ -50,6 +50,16 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
         "name": "_updateAmountIn",
         "type": "bool"
@@ -58,16 +68,6 @@
         "internalType": "address",
         "name": "_from",
         "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes",
-        "name": "_transactionId",
-        "type": "bytes"
       },
       {
         "internalType": "bytes",

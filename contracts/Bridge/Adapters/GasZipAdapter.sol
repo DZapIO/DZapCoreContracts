@@ -6,8 +6,11 @@ import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
 import { IGasZipAdapter, GasZipData } from "../Interfaces/adapters/IGasZipAdapter.sol";
 import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSupported } from "../../Shared/Errors.sol";
 
-/// @title DZap GasZipAdapter
-/// @notice Adapter for gaszip
+/**
+ * @title GasZipAdapter
+ * @author DZap
+ * @notice Contract for GasZip bridge adapter
+ */
 contract GasZipAdapter is IGasZipAdapter {
     // ------------------- STORAGE ------------------- //
 
@@ -21,12 +24,14 @@ contract GasZipAdapter is IGasZipAdapter {
 
     // ------------------- VIEW -------------------//
 
+    /// @inheritdoc IGasZipAdapter
     function getGasZipRouter() external view returns (address) {
         return address(_GAS_ZIP_ROUTER);
     }
 
     // ------------------- EXTERNAL -------------------//
 
+    /// @inheritdoc IGasZipAdapter
     function bridgeViaGasZip(
         bytes32 _transactionId,
         address _user,

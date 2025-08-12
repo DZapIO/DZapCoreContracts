@@ -6,8 +6,11 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IRelayBridgeAdapter, RelayData } from "../Interfaces/adapters/IRelayBridgeAdapter.sol";
 import { NativeCallFailed, Erc20CallFailed } from "../../Shared/Errors.sol";
 
-/// @title DZap RelayBridgeAdapter
-/// @notice Adapter for relay bridge
+/**
+ * @title RelayBridgeAdapter
+ * @author DZap
+ * @notice Contract for Relay protocol bridge adapter
+ */
 contract RelayBridgeAdapter is IRelayBridgeAdapter {
     // ------------------- Storage ------------------- //
 
@@ -23,12 +26,14 @@ contract RelayBridgeAdapter is IRelayBridgeAdapter {
 
     // ------------------- VIEW -------------------//
 
+    /// @inheritdoc IRelayBridgeAdapter
     function getRelayAddress() external view returns (address receiver, address solver) {
         return (_RELAY_RECEIVER, _RELAY_SOLVER);
     }
 
     // ------------------- EXTERNAL -------------------//
 
+    /// @inheritdoc IRelayBridgeAdapter
     function bridgeViaRelay(
         bytes32 _transactionId,
         address _user,

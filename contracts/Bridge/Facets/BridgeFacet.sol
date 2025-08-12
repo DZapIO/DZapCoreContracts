@@ -14,8 +14,25 @@ import { IBridgeFacet } from "../Interfaces/IBridgeFacet.sol";
 
 import { InputToken, BridgeSwapData, SwapExecutionData, AdapterInfo } from "../../Shared/Types.sol";
 
-/// @title DZap BridgeFacet
-/// @notice Provides functionality for bridging tokens across chains
+/**
+ * @title BridgeFacet
+ * @author DZap
+ * @dev Provide comprehensive bridging solutions with optional pre-bridge token swaps.
+ *     Supports multiple bridge adapters and execution patterns.
+ *
+ *      Key Features:
+ *      - Direct token bridging
+ *      - Swap-then-bridge operations
+ *      - Multi-token batch bridging
+ *      - Permit2 integration
+ *      - Dynamic fee for integrators
+ *      - Support bridging to non evm chains
+ *
+ *      Bridge Adapters:
+ *      - Generic bridges (most protocols)
+ *      - Specialized adapters (Relay, GasZip, etc.)
+ *      - Direct transfers (Near, Changenow, etc.)
+ */
 contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */
 

@@ -3,8 +3,11 @@ pragma solidity 0.8.19;
 
 import { LibAsset } from "../Libraries/LibAsset.sol";
 
-/// @title DZap RefundNative
-/// @notice Abstract contract to provide functionality to refund native tokens
+/**
+ * @title RefundNative
+ * @author DZap
+ * @notice Abstract contract to provide functionality to refund native tokens
+ */
 abstract contract RefundNative {
     /// @dev Refunds any excess native asset sent to the contract after the main function
     /// @notice Refunds any excess native asset sent to the contract after the main function

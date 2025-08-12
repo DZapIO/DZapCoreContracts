@@ -6,8 +6,13 @@ import { AuthorizationGuard } from "../Helpers/AuthorizationGuard.sol";
 import { IPermit2ManagerFacet } from "../Interfaces/IPermit2ManagerFacet.sol";
 import { ZeroAddress } from "../Errors.sol";
 
-/// @title DZap Permit2 Manager Facet
-/// @notice Provides functionality for updating permit2
+/**
+ * @title Permit2ManagerFacet
+ * @author DZap
+ * @notice Provides functionality for updating Permit2 contract address
+ * @dev On some chains Uniswap Permit2 is not deployed, so this allows
+ *      updating the Permit2 address to uniswap permit2 address in future
+ */
 contract Permit2ManagerFacet is IPermit2ManagerFacet, AuthorizationGuard {
     /* ========= EXTERNAL ========= */
 

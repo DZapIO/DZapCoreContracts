@@ -2,6 +2,10 @@
 
 pragma solidity 0.8.19;
 
+/**
+ * @title IGlobalConfigFacet
+ * @author DZap
+ */
 interface IGlobalConfigFacet {
     /* ========= EVENTS ========= */
 

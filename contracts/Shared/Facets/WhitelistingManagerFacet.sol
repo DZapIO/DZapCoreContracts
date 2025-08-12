@@ -5,8 +5,11 @@ import { AuthorizationGuard } from "../Helpers/AuthorizationGuard.sol";
 import { LibAllowList } from "../Libraries/LibAllowList.sol";
 import { IWhitelistingManagerFacet } from "../Interfaces/IWhitelistingManagerFacet.sol";
 
-/// @title DZap Whitelisting Manager Facet
-/// @notice Facet contract for managing approved DEXs to be used in swaps.
+/**
+ * @title WhitelistingManagerFacet
+ * @author DZap
+ * @notice Facet contract for managing approved DEXs, Bridges and Adapters
+ */
 contract WhitelistingManagerFacet is IWhitelistingManagerFacet, AuthorizationGuard {
     // Events for transparency and monitoring
 

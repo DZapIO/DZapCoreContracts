@@ -6,9 +6,15 @@ import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IBridge } from "../../Shared/Interfaces/IBridge.sol";
 import { IDirectTransferAdapter } from "../Interfaces/adapters/IDirectTransferAdapter.sol";
 
-/// @title DZap DirectTransferAdapter
-/// @notice Adapter for direct transfer
+/**
+ * @title DirectTransferAdapter
+ * @author DZap
+ * @notice Contract for direct token transfers
+ * @dev Handles bridges where deposit address changes every time.
+ *      example: Near, Changenow
+ */
 contract DirectTransferAdapter is IBridge, IDirectTransferAdapter {
+    /// @inheritdoc IDirectTransferAdapter
     function bridgeViaTransfer(
         bytes32 _transactionId,
         address _user,

@@ -9,10 +9,13 @@ import { PermitType, InputToken } from "../Types.sol";
 import { PermitBatchTransferFrom } from "../Interfaces/IPermit2.sol";
 import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, InvalidPermitType, TransferAmountMismatch } from "../Errors.sol";
 
-/// @title DZap LibAsset
-/// @notice This library contains helpers for dealing with onchain transfers
-///         of assets, including accounting for the native asset `assetId`
-///         conventions and any noncompliant ERC20 transfers
+/**
+ * @title LibAsset
+ * @author DZap
+ * @notice This library contains helpers for dealing with onchain transfers
+ *         of assets, including accounting for the native asset `assetId`
+ *         conventions and any noncompliant ERC20 transfers
+ */
 library LibAsset {
     address internal constant _NATIVE_TOKEN = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 

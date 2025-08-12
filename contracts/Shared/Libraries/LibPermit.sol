@@ -7,8 +7,11 @@ import { IERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/IER
 import { LibGlobalStorage } from "./LibGlobalStorage.sol";
 import { PermitTransferFrom, PermitBatchTransferFrom, SignatureTransferDetails, PermitSingle, PermitDetails, TokenPermissions, IPermit2 } from "../Interfaces/IPermit2.sol";
 
-/// @title DZap LibPermit
-/// @notice This library contains helpers for using permit and permit2
+/**
+ * @title LibPermit
+ * @author DZap
+ * @notice This library contains helpers for using permit and permit2
+ */
 library LibPermit {
     error InvalidPermit(string);
 

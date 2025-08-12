@@ -17,8 +17,19 @@ import { ReentrancyGuard } from "../Helpers/ReentrancyGuard.sol";
 
 import { SwapData, BridgeSwapData, SwapExecutionData, TokenInfo, InputToken, AdapterInfo } from "../Types.sol";
 
-/// @title DZap GasLess Facet
-/// @notice Provides functionality for executing gasless swaps and bridges
+/**
+ * @title GasLessFacet
+ * @author DZap
+ * @dev This contract enables meta-transactions for swaps and bridges, allowing users to interact with DeFi
+ *      protocols without holding native tokens for gas fees. Executors are compensated through fees.
+ *
+ *      Key Features:
+ *      - Gasless swaps (single and multi-token)
+ *      - Gasless bridges (single and multi-token)
+ *      - Support for Permit2 batch transfers
+ *      - Intent-based execution with signature verification
+ *      - Executor fee compensation mechanism
+ */
 contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= STORAGE ========= */
 
@@ -34,6 +45,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
     /* ========= EXTERNAL ========= */
 
+    /// @inheritdoc IGasLessFacet
     function executeSwap(
         bytes32 _transactionId,
         address _user,
@@ -63,6 +75,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
+    /// @inheritdoc IGasLessFacet
     function executeMultiSwap(
         bytes32 _transactionId,
         address _user,
@@ -92,6 +105,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
+    /// @inheritdoc IGasLessFacet
     function executeMultiSwapWithPermit2Witness(
         bytes32 _transactionId,
         address _user,
@@ -120,6 +134,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
+    /// @inheritdoc IGasLessFacet
     function executeBridge(
         bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
@@ -166,6 +181,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
+    /// @inheritdoc IGasLessFacet
     function executeMultiBridge(
         bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
@@ -217,6 +233,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
         emit DZapGasLessStarted(_transactionId, msg.sender, _user);
     }
 
+    /// @inheritdoc IGasLessFacet
     function executeMultiBridgeBatchWithPermit2Witness(
         bytes32 _transactionId,
         bytes calldata _bridgeFeeData,

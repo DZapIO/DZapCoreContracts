@@ -8,8 +8,11 @@ import { LibSwap } from "../Libraries/LibSwap.sol";
 import { SwapData, SwapExecutionData, SwapInfo, BridgeSwapData } from "../Types.sol";
 import { DexNotWhitelised, NullAddrIsNotAValidRecipient, NoSwapFromZeroAmount } from "../Errors.sol";
 
-/// @title DZap Swapper
-/// @notice Abstract contract to provide swap functionality
+/**
+ * @title Swapper
+ * @author DZap
+ * @notice Abstract contract to provide swap functionality
+ */
 abstract contract Swapper {
     /* ========= EVENTS ========= */
 

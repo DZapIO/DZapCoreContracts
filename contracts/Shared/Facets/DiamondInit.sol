@@ -6,8 +6,11 @@ import { LibGlobalStorage, GlobalStorage } from "../Libraries/LibGlobalStorage.s
 import { IDiamondInit } from "../Interfaces/IDiamondInit.sol";
 import { ZeroAddress, AlreadyInitialized, CannotAuthorizeSelf } from "../Errors.sol";
 
-/// @title DiamondInit Facet
-/// @notice Initialize the init variables
+/**
+ * @title DiamondInit
+ * @author DZap
+ * @notice Initialize the init variables for dZap diamond contract
+ */
 contract DiamondInit is IDiamondInit {
     // solhint-disable-next-line code-complexity
     function initialize(address _protocolFeeVault, address _feeValidator, address _refundVault, address _permit2) external {

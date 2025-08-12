@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+/**
+ * @title IWhitelistingManagerFacet
+ * @author DZap
+ */
 interface IWhitelistingManagerFacet {
     event DexAdded(address indexed dex);
     event DexRemoved(address indexed dex);

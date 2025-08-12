@@ -10,8 +10,11 @@ import { AdapterInfo } from "../Types.sol";
 import { FeeConfig } from "../../Shared/Types.sol";
 import { AdapterNotWhitelisted, AdapterCallFailed } from "../../Shared/Errors.sol";
 
-/// @title DZap LibBridge
-/// @notice This library contains helpers for bridging tokens
+/**
+ * @title LibBridge
+ * @author DZap
+ * @notice This library contains helpers for bridging tokens
+ */
 library LibBridge {
     /// @notice Returns true if the adapter is whitelisted
     function isAdapterWhitelisted(address _adapter) internal view returns (bool) {

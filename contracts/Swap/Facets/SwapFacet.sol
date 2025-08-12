@@ -13,9 +13,18 @@ import { ReentrancyGuard } from "../../Shared/Helpers/ReentrancyGuard.sol";
 
 import { SwapData, SwapExecutionData, InputToken } from "../../Shared/Types.sol";
 
-/// @title DZap Swap Facet
-/// @notice Provides functionality for swapping through ANY APPROVED DEX
-/// @dev Uses calldata to execute APPROVED arbitrary methods on DEXs
+/**
+ * @title SwapFacet
+ * @author DZap
+ * @notice Contract for executing token swaps with various input methods
+ * @dev Provides multiple swap execution patterns to optimize for different use cases.
+ *
+ *      Key Features:
+ *      - Traditional approval-based swaps
+ *      - Permit2-based swaps for gas efficiency
+ *      - Multi-token batch swaps
+ *      - Graceful failure handling for partial execution
+ */
 contract SwapFacet is ISwapFacet, Swapper, RefundNative, Pausable, ReentrancyGuard {
     /* ========= EXTERNAL ========= */
 

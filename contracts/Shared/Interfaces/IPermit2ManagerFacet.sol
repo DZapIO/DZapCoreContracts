@@ -2,6 +2,10 @@
 
 pragma solidity 0.8.19;
 
+/**
+ * @title IPermit2ManagerFacet
+ * @author DZap
+ */
 interface IPermit2ManagerFacet {
     /* ========= EVENTS ========= */
 

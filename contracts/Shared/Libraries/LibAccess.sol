@@ -7,8 +7,11 @@ struct AccessStorage {
     mapping(bytes4 => mapping(address => bool)) execAccess;
 }
 
-/// @title DZap Access Library
-/// @notice Provides functionality for managing method level access control
+/**
+ * @title LibAccess
+ * @author DZap
+ * @notice Provides functionality for managing method level access control
+ */
 library LibAccess {
     /// Types ///
     bytes32 internal constant _ACCESS_STORAGE_SLOT = keccak256("dzap.library.access.management");

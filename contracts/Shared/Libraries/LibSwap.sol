@@ -5,8 +5,11 @@ import { LibAsset } from "../Libraries/LibAsset.sol";
 import { SwapExecutionData } from "../Types.sol";
 import { SwapCallFailed, SlippageTooHigh } from "../Errors.sol";
 
-/// @title DZap LibSwap
-/// @notice This library contains helpers for doing swap
+/**
+ * @title LibSwap
+ * @author DZap
+ * @notice This library contains helpers for doing swap
+ */
 library LibSwap {
     function swap(
         address _user,

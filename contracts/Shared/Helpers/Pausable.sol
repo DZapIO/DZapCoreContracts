@@ -3,9 +3,12 @@ pragma solidity 0.8.19;
 
 import { LibGlobalStorage } from "../Libraries/LibGlobalStorage.sol";
 
-/// @title DZap Pausable
-/// @notice Abstract contract that restricts function execution based on a global pause state.
-/// @dev Intended for use with a global storage library (LibGlobalStorage) that manages the pause flag.
+/**
+ * @title Pausable
+ * @author DZap
+ * @notice Abstract contract that restricts function execution based on a global pause state.
+ * @dev Intended for use with a global storage library (LibGlobalStorage) that manages the pause flag.
+ */
 abstract contract Pausable {
     /* ========= Errors ========= */
 

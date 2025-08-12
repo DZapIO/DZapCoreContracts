@@ -8,8 +8,11 @@ import { Pausable } from "../Helpers/Pausable.sol";
 import { IGlobalConfigFacet } from "../Interfaces/IGlobalConfigFacet.sol";
 import { ZeroAddress, CannotAuthorizeSelf } from "../Errors.sol";
 
-/// @title DZap GlobalConfig Facet
-/// @notice Provides functionality for managing global config
+/**
+ * @title GlobalConfigFacet
+ * @author DZap
+ * @notice Provides functionality for managing global config
+ */
 contract GlobalConfigFacet is IGlobalConfigFacet, AuthorizationGuard, Pausable {
     /* ========= RESTRICTED ========= */
 

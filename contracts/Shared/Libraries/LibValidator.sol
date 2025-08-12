@@ -8,8 +8,11 @@ struct ValidatorStorage {
     mapping(address => uint256) nonce;
 }
 
-/// @title DZap LibValidator
-/// @notice This library contains helpers for validating signatures
+/**
+ * @title LibValidator
+ * @author DZap
+ * @notice This library contains helpers for validating signatures
+ */
 library LibValidator {
     error SigDeadlineExpired();
     error UnauthorizedSigner();

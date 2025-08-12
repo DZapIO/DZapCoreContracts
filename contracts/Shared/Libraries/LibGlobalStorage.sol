@@ -10,8 +10,11 @@ struct GlobalStorage {
     bool paused;
 }
 
-/// @title DZap LibGlobalStorage
-/// @notice This library provides functionality for managing global storage
+/**
+ * @title LibGlobalStorage
+ * @author DZap
+ * @notice This library provides functionality for managing global storage
+ */
 library LibGlobalStorage {
     bytes32 internal constant _GLOBAL_NAMESPACE = keccak256("dzap.storage.library.global");
 

@@ -70,18 +70,6 @@ library LibBridge {
         }
     }
 
-    /// @notice Refunds excess tokens
-    function refundExcessTokens(AdapterInfo[] calldata _adapterInfo) internal {
-        uint256 i;
-        uint256 length = _adapterInfo.length;
-        for (i; i < length; ) {
-            refundExcessTokens(_adapterInfo[i]);
-            unchecked {
-                ++i;
-            }
-        }
-    }
-
     /// @notice Bridges tokens
     function bridge(AdapterInfo calldata _adapterInfo) internal {
         address adapter = _adapterInfo.adapter;
@@ -89,19 +77,5 @@ library LibBridge {
 
         (bool success, bytes memory res) = adapter.delegatecall(_adapterInfo.adapterData);
         if (!success) revert AdapterCallFailed(adapter, res);
-    }
-
-    /// @notice Refunds excess tokens
-    function refundExcessTokens(AdapterInfo calldata _adapterInfo) internal {
-        (, , bool _updateAmountIn, address _from) = abi.decode(_adapterInfo.adapterData[4:], (bytes32, address, bool, address));
-        if (_updateAmountIn) {
-            if (LibAsset.isNativeToken(_from)) {
-                uint256 initialBalance = address(this).balance - msg.value;
-                LibAsset.transferNativeToken(LibGlobalStorage.getRefundVault(), initialBalance);
-            } else {
-                uint256 initialBalance = LibAsset.getErc20Balance(_from, address(this));
-                LibAsset.transferERC20(_from, LibGlobalStorage.getRefundVault(), initialBalance);
-            }
-        }
     }
 }

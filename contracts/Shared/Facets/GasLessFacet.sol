@@ -167,8 +167,6 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
             _feeVerificationSignature
         );
 
-        LibBridge.refundExcessTokens(_adapterInfo);
-
         LibAsset.deposit(_user, _inputToken.token, _inputToken.amount, _inputToken.permit);
 
         LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
@@ -217,8 +215,6 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
             _feeVerificationSignature
         );
 
-        LibBridge.refundExcessTokens(_adapterInfo);
-
         LibAsset.depositBatch(_user, _inputTokens);
 
         _transferExecutorFees(_executorFeeInfo);
@@ -249,8 +245,6 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     ) external payable refundExcessNative(msg.sender) whenNotPaused nonReentrant {
         bytes32 adapterInfoHash = keccak256(abi.encode(_adapterInfo));
         bytes32 witness = _createBridgeWitnessHash(_user, _transactionId, _executorFeeInfo, _swapData, adapterInfoHash);
-
-        LibBridge.refundExcessTokens(_adapterInfo);
 
         LibPermit.permit2BatchWitnessTransferFrom(
             _user,

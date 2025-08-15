@@ -54,8 +54,6 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
             _feeVerificationSignature
         );
 
-        LibBridge.refundExcessTokens(_adapterInfo);
-
         if (!LibAsset.isNativeToken(_intputTokens.token)) {
             LibAsset.deposit(msg.sender, _intputTokens.token, _intputTokens.amount, _intputTokens.permit);
         }
@@ -86,8 +84,6 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
         );
-
-        LibBridge.refundExcessTokens(_adapterInfo);
 
         if (!LibAsset.isNativeToken(_intputTokens.token)) {
             LibAsset.deposit(msg.sender, _intputTokens.token, _intputTokens.amount, _intputTokens.permit);
@@ -122,8 +118,6 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
             _feeVerificationSignature
         );
 
-        LibBridge.refundExcessTokens(_adapterInfo);
-
         LibAsset.depositBatch(msg.sender, _erc20Token);
 
         address integrator = LibBridge.takeFee(_feeData);
@@ -155,8 +149,6 @@ contract BridgeFacet is IBridgeFacet, Swapper, RefundNative, Pausable, Reentranc
             keccak256(abi.encode(_adapterInfo)),
             _feeVerificationSignature
         );
-
-        LibBridge.refundExcessTokens(_adapterInfo);
 
         LibAsset.depositBatch(msg.sender, _tokenDepositDetails, _batchDepositSignature);
 

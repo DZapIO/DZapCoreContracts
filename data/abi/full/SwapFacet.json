@@ -40,7 +40,7 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "",
+        "name": "reason",
         "type": "string"
       }
     ],

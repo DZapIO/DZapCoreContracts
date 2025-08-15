@@ -156,4 +156,12 @@ export const FunctionNames = {
     'bridge(bytes32,bytes,bytes,uint256,(address,uint256,bytes)[],(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
   batchSwapAndBridgeWithPermit2BatchWitnessTransfer:
     'bridge(bytes32,bytes,bytes,bytes,uint256,((address,uint256)[],uint256,uint256),(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
+  executeMultiSwap:
+    'executeMultiSwap(bytes32,address,address,uint256,bytes,(address,uint256,bytes)[],(address,uint256)[],(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[])',
+  executeMultiSwapWithPermit2BatchWitnessTransfer:
+    'executeMultiSwap(bytes32,address,address,bytes,((address,uint256)[],uint256,uint256),(address,uint256)[],(address,address,address,uint256,uint256)[],(string,address,address,bytes,bool)[])',
+  executeMultiBridge:
+    'executeMultiBridge(bytes32,bytes,bytes,bytes,uint256,uint256,address,(address,uint256,bytes)[],(address,uint256)[],(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
+  executeMultiBridgeWithPermit2BatchWitnessTransfer:
+    'executeMultiBridge(bytes32,bytes,bytes,bytes,uint256,address,((address,uint256)[],uint256,uint256),(address,uint256)[],(address,address,address,uint256,uint256,bool)[],(string,address,address,bytes,bool)[],(address,bytes)[])',
 } as const

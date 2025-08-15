@@ -3,7 +3,7 @@
   "error ContractIsPaused()",
   "error DexNotWhitelised(address dex)",
   "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
-  "error InvalidPermit(string)",
+  "error InvalidPermit(string reason)",
   "error InvalidPermitType()",
   "error NativeTransferFailed()",
   "error NoSwapFromZeroAmount()",

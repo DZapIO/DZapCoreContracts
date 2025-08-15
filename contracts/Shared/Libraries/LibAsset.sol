@@ -17,7 +17,11 @@ import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, Nul
  *         conventions and any noncompliant ERC20 transfers
  */
 library LibAsset {
+    // ============= CONSTANTS =============
+
     address internal constant _NATIVE_TOKEN = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
+
+    // ============= BALANCE QUERY FUNCTIONS =============
 
     /// @notice Gets the balance of the inheriting contract for the given asset
     function getOwnBalance(address _token) internal view returns (uint256) {
@@ -34,6 +38,8 @@ library LibAsset {
         return IERC20(_token).balanceOf(_recipient);
     }
 
+    // ============= APPROVAL FUNCTIONS =============
+
     /// @notice If the current allowance is insufficient, then MAX_UINT allowance for a given spender
     function maxApproveERC20(address _token, address _spender, uint256 _amount) internal {
         if (_spender == address(0)) revert NullAddrIsNotAValidSpender();
@@ -42,6 +48,8 @@ library LibAsset {
             SafeERC20.forceApprove(IERC20(_token), _spender, type(uint256).max);
         }
     }
+
+    // ============= TRANSFER FUNCTIONS =============
 
     /// @notice Transfers ether from the inheriting contract to a given recipient
     function transferNativeToken(address _recipient, uint256 _amount) internal {
@@ -100,6 +108,8 @@ library LibAsset {
         }
     }
 
+    // ============= DEPOSIT FUNCTIONS =============
+
     /// @notice Deposits tokens from a sender to the inheriting contract
     /// @dev only handles erc20 token
     function deposit(address _from, address _token, uint256 _amount, bytes calldata _permit) internal {
@@ -133,6 +143,8 @@ library LibAsset {
     function depositBatch(address _from, PermitBatchTransferFrom calldata permit, bytes calldata permitSignature) internal {
         LibPermit.permit2BatchWitnessTransferFrom(_from, address(this), permit, permitSignature);
     }
+
+    // ============= UTILITY FUNCTIONS =============
 
     /// @notice Determines whether the given token is the native token
     function isNativeToken(address _token) internal pure returns (bool) {

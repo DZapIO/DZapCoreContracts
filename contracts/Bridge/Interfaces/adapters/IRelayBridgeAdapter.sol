@@ -45,7 +45,7 @@ interface IRelayBridgeAdapter {
      * @notice Executes bridge transfer through Relay protocol
      * @param _transactionId DZap transaction identifier
      * @param _user User address for tracking and events
-     * @param _updateAmountIn Whether to update amount based on previous operation
+     * @param _maxAmountIn Maximum amount to bridge (swapOutAmount cap) - prevents bridging more than desired even if available
      * @param _from Source token address to bridge
      * @param _destinationChainId Target chain ID
      * @param _receiver Encoded receiver address on destination
@@ -56,7 +56,7 @@ interface IRelayBridgeAdapter {
     function bridgeViaRelay(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         uint256 _destinationChainId,
         bytes calldata _receiver,

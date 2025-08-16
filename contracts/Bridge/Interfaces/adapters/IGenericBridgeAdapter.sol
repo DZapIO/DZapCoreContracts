@@ -16,7 +16,10 @@ interface IGenericBridgeAdapter {
      *
      * @param _transactionId DZap transaction identifier
      * @param _user User address for tracking purposes
-     * @param _updateAmountIn Whether to use dynamic amount from previous operation
+     * @param _maxAmountIn Maximum amount to bridge (swapOutAmount cap) - prevents bridging more than desired even if available
+     *                      Examples:
+     *                      - Balance: 14.9, Max: 10 → Use 10 (don't bridge more than max)
+     *                      - Balance: 9.9, Max: 10 → Use 9.9 (bridge all available)
      * @param _from Source token address
      * @param _callTo Target contract for bridge execution
      * @param _approveTo Address that needs token approval (usually bridge contract)
@@ -33,7 +36,7 @@ interface IGenericBridgeAdapter {
     function bridgeViaGeneric(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         address _callTo,
         address _approveTo,

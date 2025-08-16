@@ -5,6 +5,7 @@ import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IBridge } from "../../Shared/Interfaces/IBridge.sol";
 import { IDirectTransferAdapter } from "../Interfaces/adapters/IDirectTransferAdapter.sol";
+import { InsufficientBalance, AmountExceedsMaximum } from "../../Shared/Errors.sol";
 
 /**
  * @title DirectTransferAdapter
@@ -18,7 +19,7 @@ contract DirectTransferAdapter is IBridge, IDirectTransferAdapter {
     function bridgeViaTransfer(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         address _transferTo,
         uint256 _amountIn,
@@ -29,8 +30,12 @@ contract DirectTransferAdapter is IBridge, IDirectTransferAdapter {
         bytes calldata _destinationCalldata
     ) external payable {
         LibValidatable.validateData(_to, _receiver, _amountIn, _destinationChainId);
-        if (_updateAmountIn) {
-            _amountIn = LibAsset.getOwnBalance(_from);
+
+        if (_maxAmountIn > 0) {
+            uint256 contractBalance = LibAsset.getOwnBalance(_from);
+            if (_amountIn > _maxAmountIn) revert AmountExceedsMaximum();
+            if (contractBalance < _amountIn) revert InsufficientBalance(_amountIn, contractBalance);
+            _amountIn = contractBalance > _maxAmountIn ? _maxAmountIn : contractBalance;
         }
 
         if (LibAsset.isNativeToken(_from)) {

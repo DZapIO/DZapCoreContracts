@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { LibValidatable } from "../Libraries/LibValidatable.sol";
 import { IRelayBridgeAdapter, RelayData } from "../Interfaces/adapters/IRelayBridgeAdapter.sol";
-import { NativeCallFailed, Erc20CallFailed } from "../../Shared/Errors.sol";
+import { NativeCallFailed, Erc20CallFailed, InsufficientBalance, AmountExceedsMaximum } from "../../Shared/Errors.sol";
 
 /**
  * @title RelayBridgeAdapter
@@ -37,7 +37,7 @@ contract RelayBridgeAdapter is IRelayBridgeAdapter {
     function bridgeViaRelay(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         uint256 _destinationChainId,
         bytes calldata _receiver,
@@ -47,8 +47,11 @@ contract RelayBridgeAdapter is IRelayBridgeAdapter {
     ) external payable {
         LibValidatable.validateData(_to, _receiver, _relayData.amountIn, _destinationChainId);
 
-        if (_updateAmountIn) {
-            _relayData.amountIn = LibAsset.getOwnBalance(_from);
+        if (_maxAmountIn > 0) {
+            uint256 contractBalance = LibAsset.getOwnBalance(_from);
+            if (_relayData.amountIn > _maxAmountIn) revert AmountExceedsMaximum();
+            if (contractBalance < _relayData.amountIn) revert InsufficientBalance(_relayData.amountIn, contractBalance);
+            _relayData.amountIn = contractBalance > _maxAmountIn ? _maxAmountIn : contractBalance;
         }
 
         if (LibAsset.isNativeToken(_from)) {

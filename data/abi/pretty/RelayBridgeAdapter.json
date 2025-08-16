@@ -1,13 +1,15 @@
 [
   "constructor(address _relayReceiver, address _relaySolver)",
+  "error AmountExceedsMaximum()",
   "error CannotBridgeToSameNetwork()",
   "error Erc20CallFailed(bytes reason)",
+  "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error InvalidEncodedAddress()",
   "error NativeCallFailed(bytes reason)",
   "error NoBridgeFromZeroAmount()",
   "event RelayBridgeTransferStarted(bytes32 indexed transactionId, address indexed user, bytes reciever, address from, bytes to, tuple(uint256 amountIn, bytes32 requestId) relayData, uint256 destinationChainId, bytes destinationCalldata)",
   "function _RELAY_RECEIVER() view returns (address)",
   "function _RELAY_SOLVER() view returns (address)",
-  "function bridgeViaRelay(bytes32 _transactionId, address _user, bool _updateAmountIn, address _from, uint256 _destinationChainId, bytes _receiver, bytes _to, bytes _destinationCalldata, tuple(uint256 amountIn, bytes32 requestId) _relayData) payable",
+  "function bridgeViaRelay(bytes32 _transactionId, address _user, uint256 _maxAmountIn, address _from, uint256 _destinationChainId, bytes _receiver, bytes _to, bytes _destinationCalldata, tuple(uint256 amountIn, bytes32 requestId) _relayData) payable",
   "function getRelayAddress() view returns (address receiver, address solver)"
 ]

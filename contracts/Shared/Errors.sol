@@ -12,6 +12,7 @@ error AlreadyInitialized();
 
 error InsufficientBalance(uint256 amount, uint256 contractBalance);
 error SlippageTooHigh(uint256 minAmount, uint256 returnAmount);
+error AmountExceedsMaximum();
 
 error TransferAmountMismatch();
 error NoBridgeFromZeroAmount();

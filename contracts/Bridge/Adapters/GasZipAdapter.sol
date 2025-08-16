@@ -4,7 +4,7 @@ pragma solidity 0.8.19;
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
 import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
 import { IGasZipAdapter, GasZipData } from "../Interfaces/adapters/IGasZipAdapter.sol";
-import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSupported } from "../../Shared/Errors.sol";
+import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSupported, InsufficientBalance, AmountExceedsMaximum } from "../../Shared/Errors.sol";
 
 /**
  * @title GasZipAdapter
@@ -35,15 +35,20 @@ contract GasZipAdapter is IGasZipAdapter {
     function bridgeViaGasZip(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         bytes calldata _destinationCalldata,
         GasZipData memory _gasZipData
     ) external payable {
         if (!LibAsset.isNativeToken(_from)) revert NativeTokenNotSupported();
-        if (_updateAmountIn) {
-            _gasZipData.depositAmount = address(this).balance;
+
+        if (_maxAmountIn > 0) {
+            uint256 contractBalance = address(this).balance;
+            if (_gasZipData.depositAmount > _maxAmountIn) revert AmountExceedsMaximum();
+            if (contractBalance < _gasZipData.depositAmount) revert InsufficientBalance(_gasZipData.depositAmount, contractBalance);
+            _gasZipData.depositAmount = contractBalance > _maxAmountIn ? _maxAmountIn : contractBalance;
         }
+
         _startBridge(_gasZipData);
 
         emit GasZipBridgeTransferStarted(_transactionId, _user, _gasZipData, _destinationCalldata);

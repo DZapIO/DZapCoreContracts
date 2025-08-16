@@ -16,7 +16,7 @@ interface IDirectTransferAdapter {
      *
      * @param _transactionId DZap transaction identifier
      * @param _user User address for tracking and events
-     * @param _updateAmountIn Whether to use dynamic amount from previous operation
+     * @param _maxAmountIn Maximum amount to bridge (swapOutAmount cap) - prevents bridging more than desired even if available
      * @param _from Source token address to transfer
      * @param _transferTo Token deposit address
      * @param _amountIn Amount of tokens to transfer
@@ -29,7 +29,7 @@ interface IDirectTransferAdapter {
     function bridgeViaTransfer(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         address _transferTo,
         uint256 _amountIn,

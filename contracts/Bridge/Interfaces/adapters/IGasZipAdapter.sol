@@ -35,10 +35,19 @@ interface IGasZipAdapter {
 
     /* ========= EXTERNAL ========= */
 
+    /**
+     * @notice Executes bridge transfer through GasZip protocol
+     * @param _transactionId DZap transaction identifier
+     * @param _user User address for tracking and events
+     * @param _maxAmountIn Maximum amount to bridge (swapOutAmount cap) - prevents bridging more than desired even if available
+     * @param _from Source token address to bridge
+     * @param _destinationCalldata Optional calldata for destination execution
+     * @param _gasZipData GasZip-specific configuration and request data
+     */
     function bridgeViaGasZip(
         bytes32 _transactionId,
         address _user,
-        bool _updateAmountIn,
+        uint256 _maxAmountIn,
         address _from,
         bytes calldata _destinationCalldata,
         GasZipData memory _gasZipData

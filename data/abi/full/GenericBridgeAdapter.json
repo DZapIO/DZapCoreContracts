@@ -1,5 +1,10 @@
 [
   {
+    "inputs": [],
+    "name": "AmountExceedsMaximum",
+    "type": "error"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -34,6 +39,22 @@
   {
     "inputs": [],
     "name": "CannotBridgeToSameNetwork",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "contractBalance",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientBalance",
     "type": "error"
   },
   {
@@ -151,9 +172,9 @@
         "type": "address"
       },
       {
-        "internalType": "bool",
-        "name": "_updateAmountIn",
-        "type": "bool"
+        "internalType": "uint256",
+        "name": "_maxAmountIn",
+        "type": "uint256"
       },
       {
         "internalType": "address",

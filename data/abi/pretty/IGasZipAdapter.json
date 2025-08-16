@@ -1,5 +1,5 @@
 [
   "event GasZipBridgeTransferStarted(bytes32 indexed transactionId, address indexed user, tuple(bytes32 recipient, uint256 destChains, uint256 depositAmount) gasZipData, bytes destinationCalldata)",
-  "function bridgeViaGasZip(bytes32 _transactionId, address _user, bool _updateAmountIn, address _from, bytes _destinationCalldata, tuple(bytes32 recipient, uint256 destChains, uint256 depositAmount) _gasZipData) payable",
+  "function bridgeViaGasZip(bytes32 _transactionId, address _user, uint256 _maxAmountIn, address _from, bytes _destinationCalldata, tuple(bytes32 recipient, uint256 destChains, uint256 depositAmount) _gasZipData) payable",
   "function getGasZipRouter() view returns (address)"
 ]

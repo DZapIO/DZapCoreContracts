@@ -60,9 +60,9 @@
         "type": "address"
       },
       {
-        "internalType": "bool",
-        "name": "_updateAmountIn",
-        "type": "bool"
+        "internalType": "uint256",
+        "name": "_maxAmountIn",
+        "type": "uint256"
       },
       {
         "internalType": "address",

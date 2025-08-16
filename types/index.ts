@@ -489,7 +489,7 @@ export interface SignedGasLessSwapBridgeDataArgs {
 /// ------------
 
 export interface GenericBridgeData {
-  updateAmountIn: boolean
+  maxAmountIn: bigint
   from: string
   transactionId: string
   callData: string
@@ -507,7 +507,7 @@ export interface GenericBridgeData {
 }
 
 export interface DirectTransferAdapterData {
-  updateAmountIn: boolean
+  maxAmountIn: bigint
   from: string
   transactionId: string
   receiver: string
@@ -521,7 +521,7 @@ export interface DirectTransferAdapterData {
 }
 
 export interface RelayBridgeAdapterData {
-  updateAmountIn: boolean
+  maxAmountIn: bigint
   from: string
   transactionId: string
   receiver: string
@@ -533,7 +533,7 @@ export interface RelayBridgeAdapterData {
 }
 
 export interface GasZipAdapterData {
-  updateAmountIn: boolean
+  maxAmountIn: bigint
   from: string
   transactionId: string
   gasZipData: GasZipData

@@ -1,48 +1,41 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+// DZap Common Errors
+
 error OnlyContractOwner();
+error UnauthorizedCaller();
+error UnAuthorized();
+error CannotAuthorizeSelf();
 
-error NoTransferToNullAddress();
-error NativeTransferFailed();
-error NullAddrIsNotAValidSpender();
-error NullAddrIsNotAnERC20Token();
-error InvalidAmount();
-error InsufficientBalance(uint256 amount, uint256 contractBalance);
-
-error ZeroAddress();
 error AlreadyInitialized();
 
-error NotAContract();
-error InvalidContract();
+error InsufficientBalance(uint256 amount, uint256 contractBalance);
+error SlippageTooHigh(uint256 minAmount, uint256 returnAmount);
+error AmountExceedsMaximum();
 
-error CannotAuthorizeSelf();
-error UnAuthorized();
+error TransferAmountMismatch();
+error NoBridgeFromZeroAmount();
+error NoSwapFromZeroAmount();
 
-error InvalidFee();
-error InvalidFixedNativeFee();
-
-error InvalidReceiver();
-error InformationMismatch();
-error InvalidSendingToken();
+error ZeroAddress();
+error NoTransferToNullAddress();
+error NullAddrIsNotAValidSpender();
+error NullAddrIsNotAValidRecipient();
 error NativeTokenNotSupported();
-error InvalidDestinationChain();
+error InvalidEncodedAddress();
+
+error NotAContract();
+error BridgeNotWhitelisted(address bridge);
+error AdapterNotWhitelisted(address adapter);
+error DexNotWhitelised(address dex);
+
+error InvalidPermitType();
 error CannotBridgeToSameNetwork();
 
-error IntegratorNotAllowed();
-
-error ContractCallNotAllowed();
-error NoSwapFromZeroBalance();
-error SlippageTooHigh(uint256 minAmount, uint256 returnAmount);
-error SwapCallFailed(bytes reason);
-
-error BridgeCallFailed(bytes reason);
-error UnAuthorizedCallToFunction();
-error TokenInformationMismatch();
-
-error FeeTooHigh();
-
-error NotInitialized();
-error UnauthorizedCaller();
-
-error InvalidSwapDetails();
+error SwapCallFailed(address target, bytes4 funSig, bytes reason);
+error BridgeCallFailed(address target, bytes4 funSig, bytes reason);
+error AdapterCallFailed(address adapter, bytes res);
+error NativeCallFailed(bytes reason);
+error Erc20CallFailed(bytes reason);
+error NativeTransferFailed();

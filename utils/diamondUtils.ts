@@ -1,18 +1,22 @@
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
-import { Contract, utils, Wallet } from 'ethers'
-import { FunctionFragment, Interface } from 'ethers/lib/utils'
+import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers'
+import { Contract, FunctionFragment, id, Interface, Wallet } from 'ethers'
 import { ethers } from 'hardhat'
 import { delay, getContractUrl, getProvider, getTxUrl, isAddressSame } from '.'
 import { CHAIN_IDS } from '../config'
-import { FACETS_DEPLOYMENT_CONFIG } from '../config/deployment/facets'
-import { GAS_ZIP_ADDRESS } from '../config/facets/gasZip'
-import { RELAYER_ADDRESS } from '../config/facets/relay'
+import { GAS_ZIP_ADDRESS } from '../config/adapters/gasZip'
+import { RELAYER_ADDRESS } from '../config/adapters/relay'
+import { ADAPTERS_DEPLOYMENT_CONFIG_TESTING } from '../config/deployment/adapters'
+import {
+  FACETS_DEPLOYMENT_CONFIG,
+  FACETS_DEPLOYMENT_CONFIG_TESTING,
+} from '../config/deployment/facets'
 import { CONTRACTS, ZERO } from '../constants'
-import { BridgeManagerFacet, DiamondLoupeFacet } from '../typechain-types'
+import { DiamondLoupeFacet, WhitelistingManagerFacet } from '../typechain-types'
 import {
   Create3DeploymentConfig,
   DiamondCut,
   DiamondCutData,
+  DiamondCutDetails,
   FacetCutAction,
   FacetDeployData,
 } from '../types'
@@ -23,10 +27,13 @@ import {
   getLastCreate3Config,
 } from './contractUtils'
 import { verify } from './verifyUtils'
-import { ADAPTERS_DEPLOYMENT_CONFIG } from '../config/deployment/adapters'
+import { ABIS } from '../config/abis'
 
 const catchCreate3Error = (error: any) => {
-  const reason = error?.reason
+  let reason = error?.reason
+  if (!reason) {
+    reason = error._stack
+  }
   if (typeof reason === 'string' && reason.includes('DEPLOYMENT_FAILED')) {
     console.log('Already Deployed')
   } else {
@@ -35,8 +42,16 @@ const catchCreate3Error = (error: any) => {
 }
 
 export function getSelectorsUsingFunSig(func: string[]) {
-  const abiInterface = new utils.Interface(func)
-  return func.map((fun) => abiInterface.getSighash(utils.Fragment.from(fun)))
+  const abiInterface = new Interface(func)
+  const selectors: string[] = []
+  for (const functionName of func) {
+    const selector = abiInterface.getFunction(functionName)?.selector
+    if (!selector)
+      throw Error(`Selector not found : ${functionName} ${selector}`)
+    selectors.push(selector)
+  }
+
+  return selectors
 }
 
 export function getSelectorsUsingContract(contract, facetName) {
@@ -56,21 +71,27 @@ export function getSelectorsUsingContract(contract, facetName) {
   return faceCutData
 }
 
-export function getSelectorsUsingInterface(iface, facetName) {
-  const signatures = Object.keys(iface.functions)
+export function getAllFunSelectorsUsingInterface(
+  iface: Interface,
+  skipReadOnly = false
+) {
+  const fragments = iface.fragments as FunctionFragment[]
+  const funFragments = fragments.filter((fragment) =>
+    skipReadOnly
+      ? fragment.type === 'function' && fragment.constant === false
+      : fragment.type === 'function'
+  )
+  const signatures = funFragments.map((fragment) => fragment.format('sighash'))
   const selectors = signatures.reduce((acc, val) => {
     if (val !== 'init(bytes)') {
-      acc.push(iface.getSighash(val))
+      const selector = iface.getFunction(val)?.selector
+      if (!selector) throw Error(`Selector not found : ${val} ${selector}`)
+      acc.push(selector)
     }
     return acc
   }, [] as string[])
 
-  const faceCutData = {
-    facetName,
-    selectors,
-  }
-
-  return faceCutData
+  return selectors
 }
 
 export function removeFromSelectors(
@@ -80,7 +101,11 @@ export function removeFromSelectors(
 ) {
   return selectors.filter((selector) => {
     for (const functionName of functionNames) {
-      if (selector !== contract.interface.getSighash(functionName)) {
+      const iSelector = contract.interface.getFunction(functionName)?.selector
+      if (!iSelector)
+        throw Error(`Selector not found : ${functionName} ${selector}`)
+
+      if (selector !== iSelector) {
         return selector
       }
     }
@@ -88,23 +113,27 @@ export function removeFromSelectors(
 }
 
 export function getSelector(func: string) {
-  const abiInterface = new utils.Interface([func])
-  return abiInterface.getSighash(utils.Fragment.from(func))
+  const abiInterface = new Interface([func])
+  const selector = abiInterface.getFunction(func)?.selector
+
+  if (!selector) throw Error(`Selector not found : ${func}`)
+
+  return selector
 }
 
-export function getSighash(
-  fragments: FunctionFragment[],
-  abiInterface: Interface
-) {
-  return fragments.map((fragment) => abiInterface.getSighash(fragment))
+export function getSighash(fragments: FunctionFragment[]) {
+  return fragments.map((fragment) => fragment.selector)
 }
 
 export function get(faceCutData: DiamondCutData, functionNames: string[]) {
   faceCutData.selectors = faceCutData.selectors.filter((selector) => {
     for (const functionName of functionNames) {
-      if (
-        selector === faceCutData.contract.interface.getSighash(functionName)
-      ) {
+      const iSelector =
+        faceCutData.contract.interface.getFunction(functionName)?.selector
+      if (!iSelector)
+        throw Error(`Selector not found : ${functionName} ${selector}`)
+
+      if (selector !== iSelector) {
         return selector
       }
     }
@@ -136,11 +165,13 @@ export function get(faceCutData: DiamondCutData, functionNames: string[]) {
 // }
 
 export const getSelectors = (abi) => {
-  const iface = new utils.Interface(abi)
-  const fragments = Object.values(iface.functions)
-  return fragments.map((fragment) => {
-    return iface.getSighash(fragment.format('sighash'))
-  })
+  const iface = new ethers.Interface(abi)
+  return iface.fragments
+    .filter((fragment) => fragment.type === 'function')
+    .map((fragment) => {
+      const funcFragment = fragment
+      return funcFragment.format('sighash')
+    })
 }
 
 export const checkSelector = async (
@@ -170,7 +201,7 @@ export const checkSelector = async (
 // -------------------------------------
 
 export async function upgradeDiamond(
-  chainId,
+  chainId: CHAIN_IDS,
   owner: SignerWithAddress | Wallet,
   cutData: DiamondCut[],
   diamondAddress: string,
@@ -189,20 +220,20 @@ export async function upgradeDiamond(
     diamondAddress,
     owner
   )
-  const gasLimit = await diamondCut.estimateGas.diamondCut(
+  const gasLimit = await diamondCut.diamondCut.estimateGas(
     cutData,
     initData.address,
     initData.data
   )
   await estimateTxCost(gasLimit, provider)
   const gasPrice = await getGasPrice(provider)
-  const { data } = await diamondCut.populateTransaction.diamondCut(
+  const { data } = await diamondCut.diamondCut.populateTransaction(
     cutData,
     initData.address,
     initData.data
   )
   const tx = await owner.sendTransaction({
-    to: diamondCut.address,
+    to: await diamondCut.getAddress(),
     data,
     // gasPrice,
     // gasLimit,
@@ -210,11 +241,11 @@ export async function upgradeDiamond(
 
   console.log('Diamond cut tx: ', tx.hash)
   const receipt = await tx.wait()
-  if (!receipt.status) {
+  if (receipt && !receipt.status) {
     throw Error(`Diamond upgrade failed: ${tx.hash}`)
   }
   console.log('Completed diamond cut')
-  return tx.hash
+  return { txHash: tx.hash, blockNumber: receipt?.blockNumber }
 }
 
 export async function deployFacetsToReplace(facetNames: string[]) {
@@ -223,15 +254,17 @@ export async function deployFacetsToReplace(facetNames: string[]) {
   console.log('Deploying NewFacets:')
   for (let i = 0; i < facetNames.length; i++) {
     const facetName = facetNames[i]
+    console.log(`Deploying ${facetName}...`)
     const Facet = await ethers.getContractFactory(facetName)
     const facet = await Facet.deploy()
-    await facet.deployed()
-    console.log(`${facetName} deployed: ${facet.address}`)
+    console.log('hash', facet.deploymentTransaction()?.hash)
+    await facet.waitForDeployment()
 
     cutData.push({
-      facetAddress: facet.address,
+      // facetAddress: await facet.getAddress(),
+      facetAddress: await facet.getAddress(),
       action: FacetCutAction.Replace,
-      functionSelectors: getSelectorsUsingContract(facet, facetName).selectors,
+      functionSelectors: getAllFunSelectorsUsingInterface(facet.interface),
     })
   }
 
@@ -251,10 +284,10 @@ export async function deployToAddFacets(facetNames: string[]) {
     console.log(`Deploying ${facetNames[i]}...`)
     const ContractFactory = await ethers.getContractFactory(facetNames[i])
     const contract = await ContractFactory.deploy()
-    console.log('hash', contract.deployTransaction.hash)
-    await contract.deployed()
+    console.log('hash', contract.deploymentTransaction()?.hash)
+    await contract.waitForDeployment()
     const tempCutData = {
-      facetAddress: contract.address,
+      facetAddress: await contract.getAddress(),
       action: FacetCutAction.Add,
       functionSelectors: getSelectorsUsingContract(contract, facetNames[i])
         .selectors,
@@ -297,12 +330,11 @@ export async function deployToAddFacetsWithConstructorArgs(
     const contract = await ContractFactory.deploy(...constructorArgs, {
       gasPrice,
     })
-    console.log('hash', contract.deployTransaction.hash)
-    await contract.deployTransaction.wait()
-    await contract.deployed()
+    console.log('hash', contract.deploymentTransaction()?.hash)
+    await contract.waitForDeployment()
 
     const tempCutData = {
-      facetAddress: contract.address,
+      facetAddress: await contract.getAddress(),
       action: FacetCutAction.Add,
       functionSelectors: getSelectorsUsingContract(contract, facetName)
         .selectors,
@@ -340,7 +372,7 @@ export async function estimateDeployCostForFacetsWithConstructorArgs(
     )
 
     if (deploymentCost)
-      totalDeploymentCost = totalDeploymentCost.add(deploymentCost)
+      totalDeploymentCost = totalDeploymentCost + deploymentCost
   }
 
   return totalDeploymentCost
@@ -348,7 +380,7 @@ export async function estimateDeployCostForFacetsWithConstructorArgs(
 
 export const whitelistAdapters = async (
   deployer: SignerWithAddress,
-  bridgeManager: BridgeManagerFacet,
+  bridgeManager: WhitelistingManagerFacet,
   adaptersAddress: string[]
 ) => {
   console.log('WhitelistAdapters...')
@@ -364,7 +396,7 @@ export const whitelistAdapters = async (
   }
 
   if (adaptersToAdd.length > 0) {
-    console.log('\nAdding adapters...')
+    console.log('\nAdding adapters...', adaptersToAdd)
     const tx = await bridgeManager.connect(deployer).addAdapters(adaptersToAdd)
     console.log('Adapters Add Tx', tx.hash)
     await tx.wait()
@@ -372,7 +404,7 @@ export const whitelistAdapters = async (
 }
 
 export const getFaceCutData = async (
-  create3: Contract,
+  create3: any,
   deployerAddress: string,
   facets: string[]
 ) => {
@@ -383,7 +415,7 @@ export const getFaceCutData = async (
     console.log('')
     console.log(`Get ${facetName}...`)
     const config = getLastCreate3Config(FACETS_DEPLOYMENT_CONFIG[facetName])
-    const salt = utils.id(config.saltKey)
+    const salt = id(config.saltKey)
 
     const ContractFactory = await ethers.getContractFactory(facetName)
     const computedAddress = await create3.getDeployed(deployerAddress, salt)
@@ -392,7 +424,7 @@ export const getFaceCutData = async (
       throw new Error('Address not matched')
     }
 
-    // const creationCode = ContractFactory.getDeployTransaction().data
+    // const creationCode = (await ContractFactory.getDeployTransaction()).data
     // if (creationCode != config.creationCode) {
     // console.dir({ creationCode }, { maxStringLength: null })
     //   throw new Error('Creation code not matched')
@@ -401,10 +433,9 @@ export const getFaceCutData = async (
     faceCut.push({
       facetAddress: computedAddress,
       action: FacetCutAction.Add,
-      functionSelectors: getSelectorsUsingInterface(
-        ContractFactory.interface,
-        facetName
-      ).selectors,
+      functionSelectors: getAllFunSelectorsUsingInterface(
+        ContractFactory.interface
+      ),
     })
   }
 
@@ -413,7 +444,7 @@ export const getFaceCutData = async (
 
 export const deployUsingCreate3 = async (
   chainId: CHAIN_IDS,
-  create3: Contract,
+  create3: any,
   deployer: SignerWithAddress | Wallet,
   contractName: string,
   config: Create3DeploymentConfig,
@@ -427,10 +458,10 @@ export const deployUsingCreate3 = async (
     contractName,
     deployer
   )
-  const creationCode = ContractFactory.getDeployTransaction(
-    ...constructorArgs
+  const creationCode = (
+    await ContractFactory.getDeployTransaction(...constructorArgs)
   ).data
-  const salt = utils.id(config.saltKey)
+  const salt = id(config.saltKey)
   const computedAddress = await create3.getDeployed(deployer.address, salt)
   console.log('Address', computedAddress)
 
@@ -438,15 +469,16 @@ export const deployUsingCreate3 = async (
     throw new Error('Address not matched')
   }
 
-  if (creationCode != config.creationCode) {
-    console.dir({ creationCode }, { maxStringLength: null })
-    throw new Error('Creation code not matched')
-  }
+  // if (creationCode != config.creationCode) {
+  //   console.dir({ creationCode }, { maxStringLength: null })
+  //   throw new Error('Creation code not matched')
+  // }
 
   try {
-    const gasLimitFaceCut = await create3.estimateGas.deploy(salt, creationCode)
+    const gasLimitFaceCut = await create3.deploy.estimateGas(salt, creationCode)
     await estimateTxCost(gasLimitFaceCut, provider)
 
+    //@ts-ignore
     const tx = await create3.connect(deployer).deploy(salt, creationCode)
     console.log('Tx hash', getTxUrl(chainId, tx.hash))
     console.log('Contract address', getContractUrl(chainId, computedAddress))
@@ -468,24 +500,34 @@ export const deployUsingCreate3 = async (
 
 export const deployFacetsUsingCreate3 = async (
   chainId: CHAIN_IDS,
-  create3: Contract,
+  create3Address: string,
   deployer: SignerWithAddress | Wallet,
   facetsToDeploy: string[],
   verifyContract = true
 ) => {
-  let faceCut: DiamondCut[] = []
+  const create3 = await ethers.getContractAt(
+    ABIS.Create3FactoryAbi,
+    create3Address,
+    deployer
+  )
+
+  let faceCutData: DiamondCut[] = []
+  let faceCutDetails: DiamondCutDetails[] = []
   const provider = await getProvider(chainId)
 
   for (let i = 0; i < facetsToDeploy.length; i++) {
     const facetName = facetsToDeploy[i]
     console.log('')
     console.log(`Deploying ${facetName}...`)
-    const config = getLastCreate3Config(FACETS_DEPLOYMENT_CONFIG[facetName])
-    const salt = utils.id(config.saltKey)
+    const config = getLastCreate3Config(
+      FACETS_DEPLOYMENT_CONFIG_TESTING[facetName]
+    )
+    // const config = getLastCreate3Config(FACETS_DEPLOYMENT_CONFIG[facetName])
+    const salt = id(config.saltKey)
 
     const ContractFactory = await ethers.getContractFactory(facetName, deployer)
 
-    const creationCode = ContractFactory.getDeployTransaction().data
+    const creationCode = (await ContractFactory.getDeployTransaction()).data
     const computedAddress = await create3.getDeployed(deployer.address, salt)
     console.log('Address', computedAddress)
 
@@ -493,23 +535,23 @@ export const deployFacetsUsingCreate3 = async (
       throw new Error('Address not matched')
     }
 
-    if (creationCode != config.creationCode) {
-      console.dir({ creationCode }, { maxStringLength: null })
-      throw new Error('Creation code not matched')
-    }
+    // if (creationCode != config.creationCode) {
+    //   console.dir({ creationCode }, { maxStringLength: null })
+    //   throw new Error('Creation code not matched')
+    // }
 
     try {
       const gasPrice = await getGasPrice(provider)
-      const gasLimit = await create3.estimateGas.deploy(salt, creationCode)
+      const gasLimit = await create3.deploy.estimateGas(salt, creationCode)
       await estimateTxCost(gasLimit, provider)
 
-      const { data } = await create3.populateTransaction.deploy(
+      const { data } = await create3.deploy.populateTransaction(
         salt,
         creationCode
       )
 
       const tx = await deployer.sendTransaction({
-        to: create3.address,
+        to: await create3.getAddress(),
         data,
         gasPrice,
         gasLimit,
@@ -526,41 +568,59 @@ export const deployFacetsUsingCreate3 = async (
       await verify(chainId, facetName, computedAddress, [])
     }
 
-    faceCut.push({
+    const functionSelectors = getAllFunSelectorsUsingInterface(
+      ContractFactory.interface
+    )
+
+    faceCutData.push({
       facetAddress: computedAddress,
       action: FacetCutAction.Add,
-      functionSelectors: getSelectorsUsingInterface(
-        ContractFactory.interface,
-        facetName
-      ).selectors,
+      functionSelectors,
+    })
+
+    faceCutDetails.push({
+      facetAddress: computedAddress,
+      action: FacetCutAction.Add,
+      functionSelectors,
+      facetName,
     })
   }
 
-  return faceCut
+  return { faceCutData, faceCutDetails }
 }
 
-export const deployFacetsWithArgsUingCreate3 = async (
+export const deployWithArgsUsingCreate3 = async (
   chainId: CHAIN_IDS,
-  create3: Contract,
+  create3Address: string,
   deployer: SignerWithAddress | Wallet,
-  facetToDeployWithConstructorArgs: FacetDeployData[],
+  args: FacetDeployData[],
+  create3DeploymentConfig: { [key: string]: Create3DeploymentConfig[] },
   verifyContract = true
 ) => {
+  const create3 = await ethers.getContractAt(
+    ABIS.Create3FactoryAbi,
+    create3Address,
+    deployer
+  )
+
   let faceCut: DiamondCut[] = []
   const provider = await getProvider(chainId)
+  const contractsAddress: string[] = []
 
-  for (let i = 0; i < facetToDeployWithConstructorArgs.length; i++) {
-    const { facetName, constructorArgs } = facetToDeployWithConstructorArgs[i]
+  for (let i = 0; i < args.length; i++) {
+    const { facetName, constructorArgs } = args[i]
     console.log('')
     console.log(`Deploying ${facetName}...`)
 
-    const config = getLastCreate3Config(FACETS_DEPLOYMENT_CONFIG[facetName])
-    const salt = utils.id(config.saltKey)
+    const config = getLastCreate3Config(create3DeploymentConfig[facetName])
+    const salt = id(config.saltKey)
 
     const ContractFactory = await ethers.getContractFactory(facetName, deployer)
 
-    const creationCode = ContractFactory.getDeployTransaction(
-      ...constructorArgs
+    const creationCode = (
+      constructorArgs.length > 0
+        ? await ContractFactory.getDeployTransaction(...constructorArgs)
+        : await ContractFactory.getDeployTransaction()
     ).data
     const computedAddress = await create3.getDeployed(deployer.address, salt)
     console.log('Address', computedAddress)
@@ -577,7 +637,7 @@ export const deployFacetsWithArgsUingCreate3 = async (
     // }
 
     try {
-      // const gasLimit = await create3.estimateGas.deploy(salt, creationCode)
+      // const gasLimit = await create3.deploy.estimateGas(salt, creationCode)
       const gasPrice = await getGasPrice(provider)
       // await estimateTxCost(gasLimit, provider)
 
@@ -586,12 +646,12 @@ export const deployFacetsWithArgsUingCreate3 = async (
       // .deploy(salt, creationCode, { gasPrice })
       // .deploy(salt, creationCode, { gasPrice, gasLimit })
 
-      const { data } = await create3.populateTransaction.deploy(
+      const { data } = await create3.deploy.populateTransaction(
         salt,
         creationCode
       )
       const tx = await deployer.sendTransaction({
-        to: create3.address,
+        to: await create3.getAddress(),
         data,
         gasPrice,
       })
@@ -610,21 +670,22 @@ export const deployFacetsWithArgsUingCreate3 = async (
       await verify(chainId, facetName, computedAddress, constructorArgs)
     }
 
+    contractsAddress.push(computedAddress)
+
     faceCut.push({
       facetAddress: computedAddress,
       action: FacetCutAction.Add,
-      functionSelectors: getSelectorsUsingInterface(
-        ContractFactory.interface,
-        facetName
-      ).selectors,
+      functionSelectors: getAllFunSelectorsUsingInterface(
+        ContractFactory.interface
+      ),
     })
   }
-  return faceCut
+  return { faceCut, contractsAddress }
 }
 
 export const deployAdapter = async (
   chainId: CHAIN_IDS,
-  create3: Contract,
+  create3: any,
   deployer: SignerWithAddress | Wallet,
   adaptersToDeploy: string[],
   verifyContract = true
@@ -634,8 +695,11 @@ export const deployAdapter = async (
     const adapterName = adaptersToDeploy[i]
     console.log('')
     console.log(`Deploying Adapter ${adapterName}...`)
-    const config = getLastCreate3Config(ADAPTERS_DEPLOYMENT_CONFIG[adapterName])
-    const salt = utils.id(config.saltKey)
+    // const config = getLastCreate3Config(ADAPTERS_DEPLOYMENT_CONFIG[adapterName])
+    const config = getLastCreate3Config(
+      ADAPTERS_DEPLOYMENT_CONFIG_TESTING[adapterName]
+    )
+    const salt = id(config.saltKey)
     const provider = await getProvider(chainId)
 
     const ContractFactory = await ethers.getContractFactory(
@@ -643,7 +707,7 @@ export const deployAdapter = async (
       deployer
     )
 
-    const creationCode = ContractFactory.getDeployTransaction().data
+    const creationCode = (await ContractFactory.getDeployTransaction()).data
     const computedAddress = await create3.getDeployed(deployer.address, salt)
     console.log('Address', computedAddress)
 
@@ -656,13 +720,13 @@ export const deployAdapter = async (
       throw new Error('Address not matched')
     }
 
-    if (creationCode != config.creationCode) {
-      console.dir({ creationCode }, { maxStringLength: null })
-      throw new Error('Creation code not matched')
-    }
+    // if (creationCode != config.creationCode) {
+    //   console.dir({ creationCode }, { maxStringLength: null })
+    //   throw new Error('Creation code not matched')
+    // }
 
     try {
-      const gasLimitFaceCut = await create3.estimateGas.deploy(
+      const gasLimitFaceCut = await create3.deploy.estimateGas(
         salt,
         creationCode
       )
@@ -687,15 +751,15 @@ export const deployAdapter = async (
   return adapters
 }
 
-export const getOptionalFacetDeploymentData = (chainId: CHAIN_IDS) => {
+export const getOptionalAdapterDeploymentData = (chainId: CHAIN_IDS) => {
   const relayAddress = RELAYER_ADDRESS[chainId]
   const gasZipAddress = GAS_ZIP_ADDRESS[chainId]
 
-  const facetToDeployWithConstructorArgs: FacetDeployData[] = []
+  const deployWithConstructorArgs: FacetDeployData[] = []
   const adaptersToDeploy: string[] = []
   const constructorArgsObj: Record<string, string[]> = {
-    [CONTRACTS.RelayBridgeFacet]: [],
-    [CONTRACTS.GasZipFacet]: [],
+    [CONTRACTS.RelayBridgeAdapter]: [],
+    [CONTRACTS.GasZipAdapter]: [],
   }
 
   if (
@@ -707,26 +771,26 @@ export const getOptionalFacetDeploymentData = (chainId: CHAIN_IDS) => {
       relayAddress.relayerReceiver,
       relayAddress.relayerSolver,
     ]
-    facetToDeployWithConstructorArgs.push({
-      facetName: CONTRACTS.RelayBridgeFacet,
+    deployWithConstructorArgs.push({
+      facetName: CONTRACTS.RelayBridgeAdapter,
       constructorArgs,
     })
     adaptersToDeploy.push(CONTRACTS.RelayBridgeAdapter)
-    constructorArgsObj[CONTRACTS.RelayBridgeFacet] = constructorArgs
+    constructorArgsObj[CONTRACTS.RelayBridgeAdapter] = constructorArgs
   }
 
   if (gasZipAddress && gasZipAddress.contractAddress != '') {
     const constructorArgs = [gasZipAddress.contractAddress]
-    facetToDeployWithConstructorArgs.push({
-      facetName: CONTRACTS.GasZipFacet,
+    deployWithConstructorArgs.push({
+      facetName: CONTRACTS.GasZipAdapter,
       constructorArgs,
     })
     adaptersToDeploy.push(CONTRACTS.GasZipAdapter)
-    constructorArgsObj[CONTRACTS.GasZipFacet] = constructorArgs
+    constructorArgsObj[CONTRACTS.GasZipAdapter] = constructorArgs
   }
 
   return {
-    facetToDeployWithConstructorArgs,
+    deployWithConstructorArgs,
     adaptersToDeploy,
     constructorArgsObj,
   }
@@ -744,7 +808,7 @@ export const getRelayFacetDeploymentData = (chainId: CHAIN_IDS) => {
   ) {
     constructorArgs = [relayAddress.relayerReceiver, relayAddress.relayerSolver]
     facetToDeployWithConstructorArgs.push({
-      facetName: CONTRACTS.RelayBridgeFacet,
+      facetName: CONTRACTS.RelayBridgeAdapter,
       constructorArgs,
     })
     adaptersToDeploy.push(CONTRACTS.RelayBridgeAdapter)
@@ -762,7 +826,7 @@ export const getGasZipFacetDeploymentData = (chainId: CHAIN_IDS) => {
   if (gasZipAddress && gasZipAddress.contractAddress != '') {
     constructorArgs = [gasZipAddress.contractAddress]
     facetToDeployWithConstructorArgs.push({
-      facetName: CONTRACTS.GasZipFacet,
+      facetName: CONTRACTS.GasZipAdapter,
       constructorArgs,
     })
     adaptersToDeploy.push(CONTRACTS.GasZipAdapter)

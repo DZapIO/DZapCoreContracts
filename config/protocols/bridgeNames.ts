@@ -16,6 +16,7 @@ export enum BRIDGES {
   hyperlane = 'hyperlane',
   izumi = 'izumi',
   lifi = 'lifi',
+  mayanMCTP = 'mayanMCTP',
   mayanFinance = 'mayanFinance',
   mayanMCTP = 'mayanMCTP',
   mesonFinance = 'mesonFinance',

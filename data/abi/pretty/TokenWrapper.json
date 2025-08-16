@@ -1,0 +1,16 @@
+[
+  "constructor(address _wrappedToken, address _owner)",
+  "error ExternalCallFailed()",
+  "error NativeTransferFailed()",
+  "error UnauthorizedCaller()",
+  "error WithdrawFailure()",
+  "error ZeroAddress()",
+  "event OwnershipTransferred(address indexed oldOwner, address indexed newOwner)",
+  "event TokensWithdrawn(address indexed assetId, address indexed receiver, uint256 amount)",
+  "function deposit() payable",
+  "function owner() view returns (address)",
+  "function transferOwnership(address _newOwner)",
+  "function withdraw(uint256 amount)",
+  "function withdrawToken(address assetId, address receiver, uint256 amount)",
+  "function wrappedToken() view returns (address)"
+]

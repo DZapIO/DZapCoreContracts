@@ -1,14 +1,13 @@
 import path from 'path'
 import { CHAIN_IDS, DZAP_BRIDGES_CONFIG, DZAP_DEXES_CONFIG } from '../config'
 import { readFileSync, writeFileSync } from 'fs'
-import { BridgeManagerFacet, DexManagerFacet } from '../typechain-types'
-import { Signer, Wallet } from 'ethers'
+import { WhitelistingManagerFacet } from '../typechain-types'
+import { formatUnits, Signer, Wallet } from 'ethers'
 import { getGasPrice } from './contractUtils'
 import { getContractUrl, getTxUrl } from './txUtils'
 import { isProd } from './envUtils'
 import { ChainId } from '../types'
 import { getNetwork, getProvider } from './networkUtils'
-import { formatUnits } from 'ethers/lib/utils'
 
 export const getDexConfig = (chainId: CHAIN_IDS) => {
   const config = DZAP_DEXES_CONFIG[chainId]
@@ -27,7 +26,7 @@ export const getBridgeConfig = (chainId: CHAIN_IDS) => {
 export const getBridgesToRemove = async (
   chainId: CHAIN_IDS,
   chainName: string,
-  bridgeManagerFacet: BridgeManagerFacet,
+  bridgeManagerFacet: WhitelistingManagerFacet,
   providersToRemove: string[]
 ) => {
   const bridges = getBridgeConfig(chainId)
@@ -70,7 +69,7 @@ export const getBridgesToRemove = async (
 export const getBridgesToAdd = async (
   chainId: CHAIN_IDS,
   chainName: string,
-  bridgeManagerFacet: BridgeManagerFacet
+  bridgeManagerFacet: WhitelistingManagerFacet
 ) => {
   const bridges = getBridgeConfig(chainId)
   const addressToBridge: Record<string, string> = {}
@@ -83,7 +82,8 @@ export const getBridgesToAdd = async (
   const bridgeAddresses: string[] = Object.keys(addressToBridge)
 
   console.log(`Checking and adding bridges on ${chainName}`)
-  if (bridgeAddresses.length === 0) return { bridgeAddress: [] }
+  if (bridgeAddresses.length === 0)
+    return { addressToAdd: [], providerToAddress: {} }
 
   // Batch all calls using the multicall provider
   const isWhitelistedResults = await Promise.all(
@@ -114,22 +114,22 @@ export const getBridgesToAdd = async (
 export const addBridges = async (
   chainId: CHAIN_IDS,
   addressToAdd: string[],
-  bridgeManagerFacet: BridgeManagerFacet,
+  bridgeManagerFacet: WhitelistingManagerFacet,
   sender: Wallet | Signer
 ) => {
   if (addressToAdd.length == 0) throw Error('Address array length is 0')
   console.log('\nAdding Bridges...')
 
   try {
-    const gasPrice = await getGasPrice(bridgeManagerFacet.provider)
+    if (!sender.provider) throw Error('Provider not found')
+    const gasPrice = await getGasPrice(sender.provider)
 
-    const { data } =
-      await bridgeManagerFacet.populateTransaction.addAggregatorsAndBridges(
-        addressToAdd
-      )
+    const { data } = await bridgeManagerFacet.addBridges.populateTransaction(
+      addressToAdd
+    )
 
     const tx = await sender.sendTransaction({
-      to: bridgeManagerFacet.address,
+      to: await bridgeManagerFacet.getAddress(),
       data,
       gasPrice,
     })
@@ -149,7 +149,7 @@ export const addBridges = async (
     console.log({ tx: getTxUrl(chainId, tx.hash) })
 
     const receipt = await tx.wait()
-    if (!receipt.status) {
+    if (receipt && !receipt.status) {
       throw new Error(`Adding Bridge failed: ${tx.hash}`)
     }
   } catch (error) {
@@ -161,21 +161,21 @@ export const addBridges = async (
 export const removeBridges = async (
   chainId: CHAIN_IDS,
   addressesToRemove: string[],
-  bridgeManagerFacet: BridgeManagerFacet,
+  bridgeManagerFacet: WhitelistingManagerFacet,
   sender: Wallet | Signer
 ) => {
   if (addressesToRemove.length == 0) throw Error('Address array length is 0')
   console.log('\nRemoving Bridges...')
 
   try {
-    const gasPrice = await getGasPrice(bridgeManagerFacet.provider)
+    if (!sender.provider) throw Error('Provider not found')
+    const gasPrice = await getGasPrice(sender.provider)
 
-    const { data } =
-      await bridgeManagerFacet.populateTransaction.removeAggregatorsAndBridges(
-        addressesToRemove
-      )
+    const { data } = await bridgeManagerFacet.removeBridges.populateTransaction(
+      addressesToRemove
+    )
     const tx = await sender.sendTransaction({
-      to: bridgeManagerFacet.address,
+      to: await bridgeManagerFacet.getAddress(),
       data,
       gasPrice,
     })
@@ -196,7 +196,7 @@ export const removeBridges = async (
     console.log({ tx: getTxUrl(chainId, tx.hash) })
 
     const receipt = await tx.wait()
-    if (!receipt.status) {
+    if (receipt && !receipt.status) {
       throw new Error(`Removing Bridge failed: ${tx.hash}`)
     }
   } catch (error) {
@@ -208,7 +208,7 @@ export const removeBridges = async (
 export const removeDexes = async (
   chainId: CHAIN_IDS,
   addressesToRemove: string[],
-  dexManagerFacet: DexManagerFacet,
+  dexManagerFacet: WhitelistingManagerFacet,
   sender: Wallet | Signer
 ) => {
   if (addressesToRemove.length == 0) throw Error('Address array length is 0')
@@ -218,13 +218,12 @@ export const removeDexes = async (
     // const gasPrice = await getGasPrice(dexManagerFacet.provider)
 
     console.log({ addressesToRemove })
-    console.log(dexManagerFacet.address)
-    const { data } = await dexManagerFacet.populateTransaction.batchRemoveDex(
+    const { data } = await dexManagerFacet.removeDexs.populateTransaction(
       addressesToRemove
     )
     console.log({ data })
     const tx = await sender.sendTransaction({
-      to: dexManagerFacet.address,
+      to: await dexManagerFacet.getAddress(),
       data,
     })
 
@@ -244,7 +243,7 @@ export const removeDexes = async (
     console.log({ tx: getTxUrl(chainId, tx.hash) })
 
     const receipt = await tx.wait()
-    if (!receipt.status) {
+    if (receipt && !receipt.status) {
       throw new Error(`Removing Dexes failed: ${tx.hash}`)
     }
   } catch (error) {
@@ -256,7 +255,7 @@ export const removeDexes = async (
 export const getDexesToRemove = async (
   chainId: CHAIN_IDS,
   chainName: string,
-  dexManagerFacet: DexManagerFacet,
+  dexManagerFacet: WhitelistingManagerFacet,
   providersToRemove: string[]
 ) => {
   const dexes = getDexConfig(chainId)
@@ -279,7 +278,7 @@ export const getDexesToRemove = async (
 
   // Batch all calls using the multicall provider
   const isWhitelistedResults = await Promise.all(
-    dexAddresses.map((address) => dexManagerFacet.isContractApproved(address))
+    dexAddresses.map((address) => dexManagerFacet.isDexWhitelisted(address))
   )
 
   // Filter only non-whitelisted dexes
@@ -297,8 +296,11 @@ export const getDexesToRemove = async (
 export const getDexesToAdd = async (
   chainId: CHAIN_IDS,
   chainName: string,
-  dexManagerFacet: DexManagerFacet
-) => {
+  dexManagerFacet: WhitelistingManagerFacet
+): Promise<{
+  addressToAdd: string[]
+  providerToAddress: Record<string, string[]>
+}> => {
   console.log(`Checking and adding dexes on ${chainName}`)
 
   const dexes = getDexConfig(chainId)
@@ -312,14 +314,15 @@ export const getDexesToAdd = async (
 
   const dexAddresses: string[] = Object.keys(addressToDex)
 
-  if (dexAddresses.length === 0) return { dexAddress: [] }
+  if (dexAddresses.length === 0)
+    return { addressToAdd: [], providerToAddress: {} }
 
   /* ------------------------------------------- */
 
   // Batch `isContractApproved` calls using `callStatic`
   const isApprovedResults = await Promise.all(
     dexAddresses.map(
-      (dexAddress) => dexManagerFacet.callStatic.isContractApproved(dexAddress) // Using callStatic for batching
+      (dexAddress) => dexManagerFacet.isDexWhitelisted.staticCall(dexAddress) // Using callStatic for batching
     )
   )
 
@@ -343,7 +346,7 @@ export const getDexesToAdd = async (
 export const addDexes = async (
   chainId: CHAIN_IDS,
   addressToAdd: string[],
-  dexManagerFacet: DexManagerFacet,
+  dexManagerFacet: WhitelistingManagerFacet,
   sender: Wallet | Signer
 ) => {
   if (addressToAdd.length == 0) throw Error('Dex array length is 0')
@@ -351,18 +354,16 @@ export const addDexes = async (
   console.log('\nAdding Dex...')
 
   try {
-    const gasPrice = await getGasPrice(dexManagerFacet.provider)
+    if (!sender.provider) throw Error('Provider not found')
+    const gasPrice = await getGasPrice(sender.provider)
 
-    const { data } =
-      addressToAdd.length == 1
-        ? await dexManagerFacet.populateTransaction.addDex(addressToAdd[0], {})
-        : await dexManagerFacet.populateTransaction.batchAddDex(
-            addressToAdd,
-            {}
-          )
+    const { data } = await dexManagerFacet.addDexs.populateTransaction(
+      addressToAdd,
+      {}
+    )
 
     const tx = await sender.sendTransaction({
-      to: dexManagerFacet.address,
+      to: await dexManagerFacet.getAddress(),
       data,
       gasPrice,
     })
@@ -380,13 +381,66 @@ export const addDexes = async (
 
     // Wait for confirmation
     const receipt = await tx.wait()
-    if (!receipt.status) {
+    if (receipt && !receipt.status) {
       throw new Error(`Adding Dex failed: ${tx.hash}`)
     }
 
     console.log('Completed Adding Dex')
   } catch (error) {
     console.error('Dex addition failed:', error)
+    throw error
+  }
+}
+
+export const addDexesAndBridges = async (
+  chainId: CHAIN_IDS,
+  dexesToAdd: string[],
+  bridgesToAdd: string[],
+  dexManagerFacet: WhitelistingManagerFacet,
+  sender: Wallet | Signer
+) => {
+  if (dexesToAdd.length == 0) throw Error('Dex array length is 0')
+  if (bridgesToAdd.length == 0) throw Error('Bridge array length is 0')
+
+  console.log('\nAdding Dexs And Bridges ...')
+
+  try {
+    if (!sender.provider) throw Error('Provider not found')
+    const gasPrice = await getGasPrice(sender.provider)
+
+    const { data } =
+      await dexManagerFacet.addDexesAndBridges.populateTransaction(
+        dexesToAdd,
+        bridgesToAdd,
+        {}
+      )
+
+    const tx = await sender.sendTransaction({
+      to: await dexManagerFacet.getAddress(),
+      data,
+      gasPrice,
+    })
+
+    // const tx =
+    //   dexAddress.length == 1
+    //     ? await dexManagerFacet.addDex(dexAddress[0], {})
+    //     : await dexManagerFacet.batchAddDex(dexAddress, {})
+    // const tx =
+    //   dexAddress.length == 1
+    //     ? await dexManagerFacet.addDex(dexAddress[0], { gasLimit, gasPrice })
+    //     : await dexManagerFacet.batchAddDex(dexAddress, { gasLimit, gasPrice })
+
+    console.log({ tx: getTxUrl(chainId, tx.hash) })
+
+    // Wait for confirmation
+    const receipt = await tx.wait()
+    if (receipt && !receipt.status) {
+      throw new Error(`Adding Dexs And Bridges failed: ${tx.hash}`)
+    }
+
+    console.log('Completed Adding Dexs And Bridges')
+  } catch (error) {
+    console.error('Dexs And Bridges addition failed:', error)
     throw error
   }
 }

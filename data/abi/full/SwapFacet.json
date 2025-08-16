@@ -1,12 +1,23 @@
 [
   {
     "inputs": [],
-    "name": "AllSwapsFailed",
+    "name": "ContractIsNotPaused",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "ContractCallNotAllowed",
+    "name": "ContractIsPaused",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "dex",
+        "type": "address"
+      }
+    ],
+    "name": "DexNotWhitelised",
     "type": "error"
   },
   {
@@ -26,28 +37,19 @@
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "IntegratorNotAllowed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidAmount",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidContract",
-    "type": "error"
-  },
-  {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "reason",
+        "type": "string"
+      }
+    ],
     "name": "InvalidPermit",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "InvalidPermitData",
+    "name": "InvalidPermitType",
     "type": "error"
   },
   {
@@ -57,7 +59,7 @@
   },
   {
     "inputs": [],
-    "name": "NoSwapFromZeroBalance",
+    "name": "NoSwapFromZeroAmount",
     "type": "error"
   },
   {
@@ -67,12 +69,17 @@
   },
   {
     "inputs": [],
+    "name": "NullAddrIsNotAValidRecipient",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "NullAddrIsNotAValidSpender",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "NullAddrIsNotAnERC20Token",
+    "name": "ReentrancyError",
     "type": "error"
   },
   {
@@ -88,11 +95,21 @@
         "type": "uint256"
       }
     ],
-    "name": "SlippageTooLow",
+    "name": "SlippageTooHigh",
     "type": "error"
   },
   {
     "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes4",
+        "name": "funSig",
+        "type": "bytes4"
+      },
       {
         "internalType": "bytes",
         "name": "reason",
@@ -100,11 +117,6 @@
       }
     ],
     "name": "SwapCallFailed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "ZeroAddress",
     "type": "error"
   },
   {
@@ -119,26 +131,30 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "integrator",
+        "name": "sender",
         "type": "address"
       },
       {
         "indexed": true,
         "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "recipient",
+        "name": "integrator",
         "type": "address"
       },
       {
         "components": [
           {
-            "internalType": "address",
+            "internalType": "string",
             "name": "dex",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
             "type": "address"
           },
           {
@@ -154,11 +170,6 @@
           {
             "internalType": "uint256",
             "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "leftOverFromAmount",
             "type": "uint256"
           },
           {
@@ -173,7 +184,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "MultiSwapped",
+    "name": "DZapBatchTokenSwapped",
     "type": "event"
   },
   {
@@ -184,6 +195,12 @@
         "internalType": "bytes32",
         "name": "transactionId",
         "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       },
       {
         "indexed": true,
@@ -192,22 +209,20 @@
         "type": "address"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "recipient",
-        "type": "address"
-      },
-      {
         "components": [
           {
-            "internalType": "address",
+            "internalType": "string",
             "name": "dex",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
             "type": "address"
           },
           {
@@ -227,11 +242,6 @@
           },
           {
             "internalType": "uint256",
-            "name": "leftOverFromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
             "name": "returnToAmount",
             "type": "uint256"
           }
@@ -242,91 +252,82 @@
         "type": "tuple"
       }
     ],
-    "name": "Swapped",
+    "name": "DZapTokenSwapped",
     "type": "event"
   },
   {
-    "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
         "internalType": "bytes32",
-        "name": "transactionId",
+        "name": "_transactionId",
         "type": "bytes32"
       },
       {
-        "indexed": true,
         "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "recipient",
+        "name": "_integrator",
         "type": "address"
       },
       {
         "components": [
           {
             "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "permit",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct InputToken[]",
+        "name": "_inputTokens",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fromAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minToAmount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SwapData[]",
+        "name": "_swapData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
             "name": "dex",
-            "type": "address"
+            "type": "string"
           },
-          {
-            "internalType": "address",
-            "name": "fromToken",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "toToken",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "leftOverFromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "returnToAmount",
-            "type": "uint256"
-          }
-        ],
-        "indexed": false,
-        "internalType": "struct SwapInfo",
-        "name": "swapInfo",
-        "type": "tuple"
-      }
-    ],
-    "name": "SwappedSingleToken",
-    "type": "event"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_recipient",
-        "type": "address"
-      },
-      {
-        "components": [
           {
             "internalType": "address",
             "name": "callTo",
@@ -338,179 +339,24 @@
             "type": "address"
           },
           {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minToAmount",
-            "type": "uint256"
-          },
-          {
             "internalType": "bytes",
             "name": "swapCallData",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
+            "internalType": "bool",
+            "name": "isDirectTransfer",
+            "type": "bool"
           }
         ],
-        "internalType": "struct SwapData[]",
-        "name": "_data",
+        "internalType": "struct SwapExecutionData[]",
+        "name": "_swapExecutionData",
         "type": "tuple[]"
-      }
-    ],
-    "name": "multiSwap",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
       },
       {
-        "internalType": "address",
-        "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_recipient",
-        "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "callTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "approveTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minToAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes",
-            "name": "swapCallData",
-            "type": "bytes"
-          },
-          {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
-          }
-        ],
-        "internalType": "struct SwapData[]",
-        "name": "_data",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "multiSwapWithoutRevert",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "_integrator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_recipient",
-        "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "callTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "approveTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minToAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes",
-            "name": "swapCallData",
-            "type": "bytes"
-          },
-          {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
-          }
-        ],
-        "internalType": "struct SwapData",
-        "name": "_data",
-        "type": "tuple"
+        "internalType": "bool",
+        "name": "withoutRevert",
+        "type": "bool"
       }
     ],
     "name": "swap",
@@ -527,19 +373,53 @@
       },
       {
         "internalType": "address",
-        "name": "_recipient",
+        "name": "_integrator",
         "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_batchDepositSignature",
+        "type": "bytes"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct TokenPermissions[]",
+            "name": "permitted",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PermitBatchTransferFrom",
+        "name": "_tokenDepositDetails",
+        "type": "tuple"
       },
       {
         "components": [
           {
             "internalType": "address",
-            "name": "callTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "approveTo",
+            "name": "recipient",
             "type": "address"
           },
           {
@@ -561,6 +441,28 @@
             "internalType": "uint256",
             "name": "minToAmount",
             "type": "uint256"
+          }
+        ],
+        "internalType": "struct SwapData[]",
+        "name": "_swapData",
+        "type": "tuple[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "dex",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "callTo",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "approveTo",
+            "type": "address"
           },
           {
             "internalType": "bytes",
@@ -568,19 +470,24 @@
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
+            "internalType": "bool",
+            "name": "isDirectTransfer",
+            "type": "bool"
           }
         ],
-        "internalType": "struct SwapData",
-        "name": "_data",
-        "type": "tuple"
+        "internalType": "struct SwapExecutionData[]",
+        "name": "_swapExecutionData",
+        "type": "tuple[]"
+      },
+      {
+        "internalType": "bool",
+        "name": "withoutRevert",
+        "type": "bool"
       }
     ],
-    "name": "swapErc20ToErc20",
+    "name": "swap",
     "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -592,19 +499,19 @@
       },
       {
         "internalType": "address",
-        "name": "_recipient",
+        "name": "_integrator",
         "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_tokenApprovalData",
+        "type": "bytes"
       },
       {
         "components": [
           {
             "internalType": "address",
-            "name": "callTo",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "approveTo",
+            "name": "recipient",
             "type": "address"
           },
           {
@@ -626,42 +533,19 @@
             "internalType": "uint256",
             "name": "minToAmount",
             "type": "uint256"
-          },
-          {
-            "internalType": "bytes",
-            "name": "swapCallData",
-            "type": "bytes"
-          },
-          {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
           }
         ],
         "internalType": "struct SwapData",
-        "name": "_data",
+        "name": "_swapData",
         "type": "tuple"
-      }
-    ],
-    "name": "swapErc20ToNative",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "_recipient",
-        "type": "address"
       },
       {
         "components": [
+          {
+            "internalType": "string",
+            "name": "dex",
+            "type": "string"
+          },
           {
             "internalType": "address",
             "name": "callTo",
@@ -673,42 +557,22 @@
             "type": "address"
           },
           {
-            "internalType": "address",
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "fromAmount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "minToAmount",
-            "type": "uint256"
-          },
-          {
             "internalType": "bytes",
             "name": "swapCallData",
             "type": "bytes"
           },
           {
-            "internalType": "bytes",
-            "name": "permit",
-            "type": "bytes"
+            "internalType": "bool",
+            "name": "isDirectTransfer",
+            "type": "bool"
           }
         ],
-        "internalType": "struct SwapData",
-        "name": "_data",
+        "internalType": "struct SwapExecutionData",
+        "name": "_swapExecutionData",
         "type": "tuple"
       }
     ],
-    "name": "swapNativeToErc20",
+    "name": "swap",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

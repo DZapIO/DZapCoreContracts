@@ -4,6 +4,7 @@ export enum DEXES {
   dodo = 'dodo',
   eisen = 'eisen',
   enso = 'enso',
+  eisen = 'eisen',
   fluid = 'fluid',
   iceCreamSwap = 'iceCreamSwap',
   izumi = 'izumi',

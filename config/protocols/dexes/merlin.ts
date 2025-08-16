@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const MERLIN_DEXES = {
+  [DEXES.iceCreamSwap]: ['0xE578184bC88EB48485Bba23a37B5509578d2aE38'],
   [DEXES.izumi]: ['0x1aFa5D7f89743219576Ef48a9826261bE6378a68'],
   [DEXES.okx]: [
     '0x127a986cE31AA2ea8E1a6a0F0D5b7E5dbaD7b0bE',

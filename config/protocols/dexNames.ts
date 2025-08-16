@@ -2,6 +2,7 @@ export enum DEXES {
   bebop = 'bebop',
   conveyor = 'conveyor',
   dodo = 'dodo',
+  eisen = 'eisen',
   enso = 'enso',
   eisen = 'eisen',
   fluid = 'fluid',

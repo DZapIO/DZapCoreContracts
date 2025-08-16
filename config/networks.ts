@@ -78,6 +78,7 @@ export enum CHAIN_IDS {
   KROMA = 255,
   KYOTO_MAINNET = 1997,
   KAIA = 8217,
+  KATANA = 747474,
   LINEA_MAINNET = 59144,
   LINEA_TESTNET = 59140,
   LISK_MAINNET = 1135,
@@ -107,6 +108,7 @@ export enum CHAIN_IDS {
   OPBNB_MAINNET = 204,
   OPTIMISM_MAINNET = 10,
   OP_SEPOLIA = 11155420,
+  PLUME = 98866,
   POLYGON_MAINNET = 137,
   POLYGON_MUMBAI = 80001,
   POLYGON_ZK_EVM_MAINNET = 1101,
@@ -136,6 +138,7 @@ export enum CHAIN_IDS {
   UNICHAIN_SEPOLIA = 1301,
   VELAS = 106,
   WORLD_CHAIN = 480,
+  XDC = 50,
   X_LAYER_MAINNET = 196,
   X_LAYER_TESTNET = 195,
   ZETACHAIN_ATHENS_2 = 7001,
@@ -144,6 +147,8 @@ export enum CHAIN_IDS {
   ZKSYNC_MAINNET = 324,
   ZKSYNC_SEPOLIA_TESTNET = 300,
   ZKFAIR = 42766,
+  ZIRCUIT = 48900,
+  ZERO = 543210,
 }
 
 // const SourcifyUrls = [
@@ -170,6 +175,10 @@ export const SourcifyVerificationConfig = {
   [CHAIN_IDS.TELOS_MAINNET]: {
     apiUrl: 'https://repo.sourcify.dev', // default
     browserUrl: 'https://teloscan.io',
+  },
+  [CHAIN_IDS.ZIRCUIT]: {
+    apiUrl: 'https://sourcify.dev/server', // default
+    browserUrl: 'https://repo.sourcify.dev',
   },
 }
 
@@ -268,6 +277,7 @@ export const NETWORKS: Networks = {
     chainName: 'Sepolia Testnet',
     shortName: 'ethSepolia',
     rpcUrl: [
+      `https://eth-sepolia.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://eth-sepolia.public.blastapi.io',
       'https://eth-sepolia.g.alchemy.com/v2/demo',
       'https://ethereum-sepolia-rpc.publicnode.com',
@@ -658,7 +668,10 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.FRAXTAL,
     chainName: 'Fraxtal',
     shortName: 'fraxtal',
-    rpcUrl: ['https://rpc.frax.com'],
+    rpcUrl: [
+      `https://frax-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://rpc.frax.com',
+    ],
     explorerUrl: 'https://fraxscan.com',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=252',
     apiType: ApiType.ETHERSCAN_V2,
@@ -969,8 +982,8 @@ export const NETWORKS: Networks = {
     chainName: 'Lens',
     shortName: getZkChainConfig(CHAIN_IDS.LENS).shortName,
     rpcUrl: [
-      `https://lens-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://rpc.lens.xyz',
+      `https://lens-mainnet.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
       'https://api.lens.matterhosted.dev',
     ],
     explorerUrl: 'https://explorer.lens.xyz',
@@ -1157,6 +1170,8 @@ export const NETWORKS: Networks = {
     chainName: 'Hyper EVM',
     shortName: 'hyperevm',
     rpcUrl: [
+      'https://hyperliquid.drpc.org',
+      'https://rpc.hypurrscan.io',
       'https://rpc.hyperliquid.xyz/evm',
       'https://hyperliquid-json-rpc.stakely.io',
     ],
@@ -1511,7 +1526,10 @@ export const NETWORKS: Networks = {
     chainId: CHAIN_IDS.ARBITRUM_SEPOLIA_TESTNET,
     chainName: 'Arbitrum Sepolia Testnet',
     shortName: 'arbitrumSepolia',
-    rpcUrl: ['https://arbitrum-sepolia.gateway.tenderly.co'],
+    rpcUrl: [
+      `https://arb-sepolia.g.alchemy.com/v2/<${NODE_ENV_VAR_NAMES.ALCHEMY_API_KEY}>`,
+      'https://arbitrum-sepolia.gateway.tenderly.co',
+    ],
     explorerUrl: 'https://sepolia.arbiscan.io',
     apiUrl: 'https://api.etherscan.io/v2/api?chainid=421614',
     apiType: ApiType.ETHERSCAN_V2,
@@ -1579,6 +1597,79 @@ export const NETWORKS: Networks = {
     apiType: ApiType.BLOCKSCOUT,
     nativeCurrency: {
       name: 'Eth',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.PLUME]: {
+    chainId: CHAIN_IDS.PLUME,
+    chainName: 'Plume',
+    shortName: 'plume',
+    rpcUrl: ['https://rpc.plume.org'],
+    explorerUrl: 'https://explorer.plume.org',
+    apiUrl: 'https://explorer.plume.org/api',
+    apiType: ApiType.BLOCKSCOUT,
+    nativeCurrency: {
+      name: 'Plume',
+      symbol: 'PLUME',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.KATANA]: {
+    chainId: CHAIN_IDS.KATANA,
+    chainName: 'Katana',
+    shortName: 'katana',
+    rpcUrl: ['https://rpc.katana.network'],
+    explorerUrl: 'https://explorer.katanarpc.com/',
+    apiUrl: 'https://explorer.katanarpc.com/api',
+    apiType: ApiType.BLOCKSCOUT,
+    nativeCurrency: {
+      name: 'Eth',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.ZIRCUIT]: {
+    chainId: CHAIN_IDS.ZIRCUIT,
+    chainName: 'Zircuit',
+    shortName: 'zircuit',
+    rpcUrl: ['https://mainnet.zircuit.com'],
+    explorerUrl: 'https://explorer.zircuit.com/',
+    apiType: ApiType.SOURCIFY,
+    nativeCurrency: {
+      name: 'Eth',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.XDC]: {
+    chainId: CHAIN_IDS.XDC,
+    chainName: 'XDC',
+    shortName: 'xdc',
+    rpcUrl: [
+      'https://rpc.ankr.com/xdc',
+      'https://rpc1.xinfin.network',
+      'https://rpc.xdc.org',
+    ],
+    explorerUrl: 'https://xdcscan.com/',
+    apiUrl: 'https://api.etherscan.io/v2/api?chainid=50',
+    apiType: ApiType.ETHERSCAN_V2,
+    nativeCurrency: {
+      name: 'XDC',
+      symbol: 'XDC',
+      decimals: 18,
+    },
+  },
+  [CHAIN_IDS.ZERO]: {
+    chainId: CHAIN_IDS.ZERO,
+    chainName: 'Zero',
+    shortName: 'zero',
+    rpcUrl: ['https://rpc.zerion.io/v1/zero'],
+    explorerUrl: 'https://explorer.zero.network',
+    apiUrl: 'https://explorer.zero.network/api',
+    apiType: ApiType.BLOCKSCOUT,
+    nativeCurrency: {
+      name: 'eth',
       symbol: 'ETH',
       decimals: 18,
     },

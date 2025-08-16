@@ -1,7 +1,10 @@
 import { DEXES } from '../dexNames'
 
 export const BOBA_ETH_DEXES = {
-  [DEXES.iceCreamSwap]: ['0xA608FF30563cEed3f0BC52eFc4abfc9502F1a71C'],
+  [DEXES.iceCreamSwap]: [
+    '0xA608FF30563cEed3f0BC52eFc4abfc9502F1a71C',
+    '0xC87De04e2EC1F4282dFF2933A2D58199f688fC3d',
+  ],
   [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   [DEXES.relayLink]: [
     '0xaaaaaaae92Cc1cEeF79a038017889fDd26D23D4d',

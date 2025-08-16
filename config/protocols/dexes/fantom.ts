@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const FANTOM_DEXES = {
+  [DEXES.iceCreamSwap]: ['0x16A3247Db4588176c24C6A5F6d3fd2C174122DF5'],
   [DEXES.kyber]: ['0x6131B5fae19EA4f9D964eAc0408E4408b66337b5'],
   [DEXES.lifi]: ['0x1231DEB6f5749EF6cE6943a275A1D3E7486F4EaE'],
   [DEXES.magpiefi]: [

@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const ZETACHAIN_DEXES = {
+  [DEXES.iceCreamSwap]: ['0xC87De04e2EC1F4282dFF2933A2D58199f688fC3d'],
   [DEXES.izumi]: ['0x34bc1b87f60e0a30c0e24FD7Abada70436c71406'],
   [DEXES.okx]: [
     '0x03B5ACdA01207824cc7Bc21783Ee5aa2B8d1D2fE',

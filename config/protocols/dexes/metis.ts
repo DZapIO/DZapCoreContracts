@@ -1,6 +1,7 @@
 import { DEXES } from '../dexNames'
 
 export const METIS_DEXES = {
+  [DEXES.iceCreamSwap]: ['0x3FFc2315A992b01dc4B3f79C8EEa1921091Ee24f'],
   [DEXES.lifi]: ['0x24ca98fB6972F5eE05f0dB00595c7f68D9FaFd68'],
   [DEXES.magpiefi]: [
     '0x2b14763c27B9661182c2503f6C9C4d47BA747Dd2',

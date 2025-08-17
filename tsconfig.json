@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2021",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
@@ -11,12 +11,17 @@
   },
   "include": [
     "test/**/*",
+    "constants/**/*",
+    "config/**/*",
     "scripts/**/*",
     "tasks/**/*",
     "types/**/*",
     "typechain/**/*",
     "utils/**/*",
-    "deploy-args.ts"
+    "deploy-args.ts",
+    "./scripts"
   ],
-  "files": ["./hardhat.config.ts"]
+  "files": [
+    "./hardhat.config.ts"
+  ]
 }

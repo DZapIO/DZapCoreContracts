@@ -1,4 +1,5 @@
 module.exports = {
+ 
   singleQuote: true,
   bracketSpacing: true,
   semi: false,
@@ -6,10 +7,19 @@ module.exports = {
     {
       files: '*.sol',
       options: {
-        printWidth: 500,
+        printWidth: 150,
         tabWidth: 4,
         singleQuote: false,
-        explicitTypes: 'always',
+        explicitTypes: 'preserve'
+      },
+    },
+    {
+      files: '*.json',
+      options: {
+        tabWidth: 2,
+        useTabs: false,
+        printWidth: 20,
+        singleQuote: true
       },
     },
   ],

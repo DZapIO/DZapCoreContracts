@@ -1,0 +1,49 @@
+import { CONTRACTS } from '../../../constants'
+import {
+  Create3DeploymentConfig,
+  ZKCreate2DeploymentConfig,
+} from '../../../types'
+import {
+  ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG,
+  ZK_ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG,
+} from './accessManagerFacet'
+import {
+  DIAMOND_INIT_DEPLOYMENT_CONFIG,
+  ZK_DIAMOND_INIT_DEPLOYMENT_CONFIG,
+} from './diamondInit'
+import {
+  DIAMOND_LOUPE_FACET_DEPLOYMENT_CONFIG,
+  ZK_DIAMOND_LOUPE_FACET_DEPLOYMENT_CONFIG,
+} from './diamondLoupeFacet'
+import {
+  OWNERSHIP_FACET_DEPLOYMENT_CONFIG,
+  ZK_OWNERSHIP_FACET_DEPLOYMENT_CONFIG,
+} from './ownershipFacet'
+import {
+  WITHDRAW_FACET_DEPLOYMENT_CONFIG,
+  ZK_WITHDRAW_FACET_DEPLOYMENT_CONFIG,
+} from './withdrawFacet'
+
+export const FACETS_DEPLOYMENT_CONFIG: {
+  [key: string]: Create3DeploymentConfig[]
+} = {
+  [CONTRACTS.DiamondInit]: DIAMOND_INIT_DEPLOYMENT_CONFIG,
+  [CONTRACTS.DiamondLoupeFacet]: DIAMOND_LOUPE_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.OwnershipFacet]: OWNERSHIP_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.AccessManagerFacet]: ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.WithdrawFacet]: WITHDRAW_FACET_DEPLOYMENT_CONFIG,
+}
+
+export const ZK_FACETS_DEPLOYMENT_CONFIG: {
+  [key: string]: ZKCreate2DeploymentConfig[]
+} = {
+  [CONTRACTS.DiamondInit]: ZK_DIAMOND_INIT_DEPLOYMENT_CONFIG,
+  [CONTRACTS.DiamondLoupeFacet]: ZK_DIAMOND_LOUPE_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.OwnershipFacet]: ZK_OWNERSHIP_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.AccessManagerFacet]: ZK_ACCESS_MANAGER_FACET_DEPLOYMENT_CONFIG,
+  [CONTRACTS.WithdrawFacet]: ZK_WITHDRAW_FACET_DEPLOYMENT_CONFIG,
+}
+
+export const FACETS_DEPLOYMENT_CONFIG_TESTING: {
+  [key: string]: Create3DeploymentConfig[]
+} = {}

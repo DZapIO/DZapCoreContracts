@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+/**
+ * @title IAccessManagerFacet
+ * @author DZap
+ */
 interface IAccessManagerFacet {
     event ExecutionAllowed(address indexed account, bytes4 indexed method);
     event ExecutionDenied(address indexed account, bytes4 indexed method);

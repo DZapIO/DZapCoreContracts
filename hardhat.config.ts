@@ -2,105 +2,160 @@ import * as dotenv from 'dotenv'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
-import '@nomiclabs/hardhat-etherscan'
 import '@nomicfoundation/hardhat-chai-matchers'
-import '@openzeppelin/hardhat-upgrades'
+import '@nomicfoundation/hardhat-verify'
 import '@typechain/hardhat'
-import 'hardhat-gas-reporter'
 import 'hardhat-contract-sizer'
+import 'hardhat-gas-reporter'
 import 'solidity-coverage'
-import 'hardhat-deploy'
-import 'hardhat-deploy-ethers'
+// import 'hardhat-deploy'
+// import 'hardhat-deploy-ethers'
 import 'hardhat-abi-exporter'
+
+// zk
+import '@matterlabs/hardhat-zksync-deploy'
+import '@matterlabs/hardhat-zksync-solc'
+// import '@matterlabs/hardhat-zksync-verify'
 
 import './tasks/accounts'
 import './tasks/clean'
 
+import { CHAIN_IDS } from './config/networks'
+import { CONTRACTS } from './constants'
+import {
+  getNetworkConfig,
+  getVerificationConfig,
+  getZKNetworks,
+} from './utils/networkUtils'
+
 dotenv.config()
 
-const dummyApiKey = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
-const dummyKey =
-  '0x0000000000000000000000000000000000000000000000000000000000000000'
+const supportedNetworks = [
+  CHAIN_IDS.ABSTRACT_MAINNET,
+  CHAIN_IDS.APE_CHAIN,
+  CHAIN_IDS.ARTHERA,
+  CHAIN_IDS.ARBITRUM_MAINNET,
+  CHAIN_IDS.AURORA_MAINNET,
+  CHAIN_IDS.AVALANCHE_MAINNET,
+  CHAIN_IDS.BAHAMUT_MAINNET,
+  CHAIN_IDS.BASE_MAINNET,
+  CHAIN_IDS.BERACHAIN_MAINNET,
+  CHAIN_IDS.BLAST_MAINNET,
+  CHAIN_IDS.BOBA_ETH,
+  CHAIN_IDS.BSC_MAINNET,
+  CHAIN_IDS.BOUNCE_BIT,
+  CHAIN_IDS.B2SQUARE_NETWORK,
+  CHAIN_IDS.BI_FROST,
+  CHAIN_IDS.BITLAYER,
+  CHAIN_IDS.CELO_MAINNET,
+  CHAIN_IDS.CORE_MAINNET,
+  CHAIN_IDS.CRONOS_MAINNET,
+  CHAIN_IDS.ETH_MAINNET,
+  CHAIN_IDS.FANTOM_MAINNET,
+  CHAIN_IDS.FLARE,
+  // CHAIN_IDS.FIRE_MAINNET,
+  CHAIN_IDS.FRAXTAL,
+  CHAIN_IDS.FUSE,
+  CHAIN_IDS.GNOSIS_MAINNET,
+  CHAIN_IDS.GRAVITY,
+  CHAIN_IDS.GOAT,
+  CHAIN_IDS.HYPER_EVM,
+  CHAIN_IDS.HEMI,
+  CHAIN_IDS.INK,
+  CHAIN_IDS.IMMUTABLE_ZKEVM,
+  CHAIN_IDS.IOTA_EVM,
+  CHAIN_IDS.KAVA_MAINNET,
+  CHAIN_IDS.KROMA,
+  CHAIN_IDS.KAIA,
+  CHAIN_IDS.LINEA_MAINNET,
+  CHAIN_IDS.LENS,
+  CHAIN_IDS.MANTA_MAINNET,
+  CHAIN_IDS.MANTLE_MAINNET,
+  CHAIN_IDS.MERLIN_MAINNET,
+  CHAIN_IDS.METIS_MAINNET,
+  CHAIN_IDS.MODE_MAINNET,
+  CHAIN_IDS.MOONBEAM_MAINNET,
+  CHAIN_IDS.MOONRIVER,
+  CHAIN_IDS.MORPH,
+  CHAIN_IDS.MINT,
+  CHAIN_IDS.OPTIMISM_MAINNET,
+  CHAIN_IDS.OPBNB_MAINNET,
+  CHAIN_IDS.POLYGON_MAINNET,
+  CHAIN_IDS.POLYGON_ZK_EVM_MAINNET,
+  CHAIN_IDS.PULSE_CHAIN,
+  CHAIN_IDS.ROOTSTOCK_MAINNET,
+  CHAIN_IDS.RONIN,
+  CHAIN_IDS.SCROLL_MAINNET,
+  CHAIN_IDS.SONEIUM_MAINNET,
+  CHAIN_IDS.SONIC_MAINNET,
+  CHAIN_IDS.SEI_EVM_MAINNET,
+  CHAIN_IDS.STORY,
+  CHAIN_IDS.SUPER_POSITION,
+  CHAIN_IDS.SWELLCHAIN,
+  CHAIN_IDS.TAIKO_MAINNET,
+  CHAIN_IDS.TELOS_MAINNET,
+  CHAIN_IDS.UNICHAIN,
+  CHAIN_IDS.WORLD_CHAIN,
+  CHAIN_IDS.X_LAYER_MAINNET,
+  CHAIN_IDS.ZETACHAIN_MAINNET,
+  CHAIN_IDS.ZKSYNC_MAINNET,
+  CHAIN_IDS.ZKFAIR,
 
-const mainnetKey: string = process.env.MAINNET_KEY || dummyKey
-const testnetKey: string = process.env.TESTNET_KEY || dummyKey
-const testnetKeyOld: string = process.env.TESTNET_KEY_OLD || dummyKey
-const alchemyApiKey: string = process.env.ALCHEMY_API_KEY || dummyApiKey
-const scanApiKey: string = process.env.BSCSCAN_API_KEY || dummyApiKey
+  CHAIN_IDS.MONAD_TESTNET,
+  CHAIN_IDS.ETH_SEPOLIA,
+  CHAIN_IDS.OP_SEPOLIA,
+  CHAIN_IDS.BASE_SEPOLIA,
+  CHAIN_IDS.UNICHAIN_SEPOLIA,
+]
+
+const networkConfig = getNetworkConfig(supportedNetworks)
+const zkNetworkConfig = getZKNetworks()
+const verificationConfig = getVerificationConfig(supportedNetworks)
 
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
+  // defaultNetwork: ZK_EVM_CHAINS[CHAIN_IDS.ABSTRACT_MAINNET]!.shortNameZk,
   networks: {
-    mainnet: {
-      chainId: 1,
-      url: `https://eth-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
+    hardhat: {
+      accounts: {
+        count: 30,
+      },
+      // zksync: true,
+      chains: {
+        [CHAIN_IDS.BASE_MAINNET]: {
+          hardforkHistory: {
+            london: 25120000,
+          },
+        },
+        [CHAIN_IDS.MANTLE_MAINNET]: {
+          hardforkHistory: {
+            london: 76174808,
+          },
+        },
+        [CHAIN_IDS.POLYGON_MAINNET]: {
+          hardforkHistory: {
+            london: 68349300,
+          },
+        },
+      },
     },
-    polygonMainnet: {
-      chainId: 137,
-      url: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    polygonTestnet: {
-      chainId: 80001,
-      url: `https://rpc-mumbai.maticvigil.com`,
-      accounts: [testnetKey],
-    },
-    arbitrum: {
-      chainId: 42161,
-      url: `https://arb-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    optimism: {
-      chainId: 10,
-      url: `https://opt-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
-      accounts: [testnetKey],
-    },
-    bscMainnet: {
-      chainId: 56,
-      url: 'https://bscrpc.com',
-      accounts: [testnetKey],
-    },
-    avalanche: {
-      chainId: 43114,
-      url: `https://api.avax.network/ext/bc/C/rpc`,
-      accounts: [testnetKey],
-    },
-    scroll: {
-      chainId: 534352,
-      url: `https://rpc.scroll.io`,
-      accounts: [testnetKey],
-    },
-    base: {
-      chainId: 8453,
-      url: `https://mainnet.base.org`,
-      accounts: [testnetKey],
-    },
-    zk: {
-      chainId: 324,
-      url: `https://mainnet.era.zksync.io`,
-      accounts: [testnetKey],
-    },
-    mantel: {
-      chainId: 5000,
-      url: `https://mantle-rpc.publicnode.com`,
-      accounts: [testnetKey],
-    },
-    manta: {
-      chainId: 169,
-      url: `https://pacific-rpc.manta.network/http`,
-      accounts: [testnetKey],
-    },
-    blast: {
-      chainId: 81457,
-      url: `https://mantle-rpc.publicnode.com`,
-      accounts: [testnetKey],
-    },
+    ...networkConfig,
+    ...zkNetworkConfig,
   },
   solidity: {
     compilers: [
       {
         version: '0.8.19',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 300,
+          },
+          viaIR: true,
+        },
+      },
+      {
+        version: '0.8.23',
         settings: {
           optimizer: {
             enabled: true,
@@ -120,6 +175,17 @@ const config: HardhatUserConfig = {
       },
     ],
   },
+  zksolc: {
+    version: '1.5.12',
+    compilerSource: 'binary',
+    settings: {
+      enableEraVMExtensions: true,
+      optimizer: {
+        enabled: true,
+        mode: 'z',
+      },
+    },
+  },
   mocha: {
     timeout: 400000,
   },
@@ -133,20 +199,24 @@ const config: HardhatUserConfig = {
       runOnCompile: true,
       path: 'data/abi/full',
       only: [
-        'DZapDiamond',
-        'DiamondCutFacet',
-        'DiamondInit',
-        'DiamondLoupeFacet',
-        'OwnershipFacet',
-        'AccessManagerFacet',
-        'DexManagerFacet',
-        'FeesFacet',
-        'WithdrawFacet',
-        'SwapFacet',
-        'CrossChainFacet',
-        'BatchBridgeCallFacet',
-        'BridgeDynamicTransferFacet',
-        'BridgeManagerFacet',
+        CONTRACTS.DZapDiamond,
+        CONTRACTS.DiamondCutFacet,
+        CONTRACTS.DiamondInit,
+        CONTRACTS.DiamondLoupeFacet,
+        CONTRACTS.OwnershipFacet,
+        CONTRACTS.WithdrawFacet,
+        CONTRACTS.AccessManagerFacet,
+        CONTRACTS.GlobalConfigFacet,
+        CONTRACTS.Permit2ManagerFacet,
+        CONTRACTS.WhitelistingManagerFacet,
+        CONTRACTS.SwapFacet,
+        CONTRACTS.BridgeFacet,
+        CONTRACTS.GasLessFacet,
+        CONTRACTS.GenericBridgeAdapter,
+        CONTRACTS.DirectTransferAdapter,
+        CONTRACTS.GasZipAdapter,
+        CONTRACTS.RelayBridgeAdapter,
+        CONTRACTS.TokenWrapper,
       ],
       flat: true,
       clear: true,
@@ -156,25 +226,41 @@ const config: HardhatUserConfig = {
       path: 'data/abi/pretty',
       format: 'fullName',
       only: [
-        'DZapDiamond',
-        'DiamondCutFacet',
-        'DiamondInit',
-        'DiamondLoupeFacet',
-        'OwnershipFacet',
-        'AccessManagerFacet',
-        'DexManagerFacet',
-        'FeesFacet',
-        'WithdrawFacet',
-        'SwapFacet',
-        'CrossChainFacet',
-        'BatchBridgeCallFacet',
-        'BridgeDynamicTransferFacet',
-        'BridgeManagerFacet',
+        CONTRACTS.DZapDiamond,
+        CONTRACTS.DiamondCutFacet,
+        CONTRACTS.DiamondInit,
+        CONTRACTS.DiamondLoupeFacet,
+        CONTRACTS.OwnershipFacet,
+        CONTRACTS.WithdrawFacet,
+        CONTRACTS.AccessManagerFacet,
+        CONTRACTS.GlobalConfigFacet,
+        CONTRACTS.Permit2ManagerFacet,
+        CONTRACTS.WhitelistingManagerFacet,
+        CONTRACTS.SwapFacet,
+        CONTRACTS.BridgeFacet,
+        CONTRACTS.GasLessFacet,
+        CONTRACTS.GenericBridgeAdapter,
+        CONTRACTS.DirectTransferAdapter,
+        CONTRACTS.GasZipAdapter,
+        CONTRACTS.RelayBridgeAdapter,
+        CONTRACTS.TokenWrapper,
       ],
       flat: true,
       clear: true,
     },
   ],
+  etherscan: {
+    ...verificationConfig.etherscan,
+    enabled: true,
+  },
+  // blockscout: {
+  //   ...verificationConfig.blockscout,
+  //   enabled: true,
+  // },
+  // sourcify: {
+  //   enabled: true,
+  //   ...SourcifyVerificationConfig[CHAIN_IDS.MONAD_TESTNET],
+  // },
 }
 
 export default config

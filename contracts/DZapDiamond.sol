@@ -1,16 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-/******************************************************************************\
-* Author: Nick Mudge <nick@perfectabstractions.com> (https://twitter.com/mudgen)
-* EIP-2535 Diamonds: https://eips.ethereum.org/EIPS/eip-2535
-*
-* Implementation of a diamond.
-/******************************************************************************/
-
 import { LibDiamond } from "./Shared/Libraries/LibDiamond.sol";
 import { IDiamondCut } from "./Shared/Interfaces/IDiamondCut.sol";
 import { ZeroAddress } from "./Shared/Errors.sol";
+
+/*  
+---------------------------------------------------------
+---------------------------------------------------------
+
+ /$$$$$$$  /$$$$$$$$  /$$$$$$  /$$$$$$$ 
+| $$__  $$|_____ $$  /$$__  $$| $$__  $$
+| $$  \ $$     /$$/ | $$  \ $$| $$  \ $$
+| $$  | $$    /$$/  | $$$$$$$$| $$$$$$$/
+| $$  | $$   /$$/   | $$__  $$| $$____/ 
+| $$  | $$  /$$/    | $$  | $$| $$      
+| $$$$$$$/ /$$$$$$$$| $$  | $$| $$      
+|_______/ |________/|__/  |__/|__/      
+
+
+Author: DZap <https://dzap.io> (https://x.com/dzap_io)
+
+---------------------------------------------------------
+---------------------------------------------------------
+*/
 
 contract DZapDiamond {
     constructor(address _contractOwner, address _diamondCutFacet) payable {

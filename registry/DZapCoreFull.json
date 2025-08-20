@@ -671,7 +671,7 @@
         "type": "address"
       }
     ],
-    "name": "DexNotWhitelised",
+    "name": "DexNotWhitelisted",
     "type": "error"
   },
   {

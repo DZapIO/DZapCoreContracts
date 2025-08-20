@@ -51,7 +51,7 @@
   "unpause()",
   "AdapterNotWhitelisted(address)",
   "BridgeNotWhitelisted(address)",
-  "DexNotWhitelised(address)",
+  "DexNotWhitelisted(address)",
   "NotAContract()",
   "AdapterAdded(address)",
   "AdapterRemoved(address)",

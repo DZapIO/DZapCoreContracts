@@ -6,7 +6,7 @@ import { LibAsset } from "../Libraries/LibAsset.sol";
 import { LibSwap } from "../Libraries/LibSwap.sol";
 
 import { SwapData, SwapExecutionData, SwapInfo, BridgeSwapData } from "../Types.sol";
-import { DexNotWhitelised, NullAddrIsNotAValidRecipient, NoSwapFromZeroAmount } from "../Errors.sol";
+import { DexNotWhitelisted, NullAddrIsNotAValidRecipient, NoSwapFromZeroAmount } from "../Errors.sol";
 
 /**
  * @title Swapper
@@ -23,7 +23,7 @@ abstract contract Swapper {
 
     /// @notice Validates the swap data
     function _validateSwapData(address _recipient, uint256 _fromAmount, SwapExecutionData memory _swapExecutionData) internal view {
-        if (!LibAllowList.isDexWhitelisted(_swapExecutionData.callTo)) revert DexNotWhitelised(_swapExecutionData.callTo);
+        if (!LibAllowList.isDexWhitelisted(_swapExecutionData.callTo)) revert DexNotWhitelisted(_swapExecutionData.callTo);
         if (_recipient == address(0)) revert NullAddrIsNotAValidRecipient();
         if (_fromAmount == 0) revert NoSwapFromZeroAmount();
     }

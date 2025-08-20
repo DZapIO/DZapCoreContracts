@@ -1,7 +1,7 @@
 [
   "error ContractIsNotPaused()",
   "error ContractIsPaused()",
-  "error DexNotWhitelised(address dex)",
+  "error DexNotWhitelisted(address dex)",
   "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error InvalidPermit(string reason)",
   "error InvalidPermitType()",

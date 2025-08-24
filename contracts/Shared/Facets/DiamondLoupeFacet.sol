@@ -5,13 +5,9 @@ import { LibDiamond } from "../Libraries/LibDiamond.sol";
 import { IDiamondLoupe } from "../Interfaces/IDiamondLoupe.sol";
 import { IERC165 } from "../Interfaces/IERC165.sol";
 
-/******************************************************************************\
-* Author: Nick Mudge <nick@perfectabstractions.com> (https://twitter.com/mudgen)
-* EIP-2535 Diamonds: https://eips.ethereum.org/EIPS/eip-2535
-/******************************************************************************/
-
 // A loupe is a small magnifying glass used to look at diamonds.
 // These functions look at diamonds
+// EIP-2535 Diamonds: https://eips.ethereum.org/EIPS/eip-2535
 contract DiamondLoupeFacet is IDiamondLoupe, IERC165 {
     /// @notice Gets all facets and their selectors.
     /// @return facets_ Facet

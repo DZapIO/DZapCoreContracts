@@ -3,8 +3,13 @@ pragma solidity 0.8.19;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 
-import { UnauthorizedCaller, ZeroAddress } from "../ErrorsNew.sol";
+import { UnauthorizedCaller, ZeroAddress } from "../Errors.sol";
 
+/**
+ * @title Ownable
+ * @author DZap
+ * @notice Abstract contract to provide ownership functionality
+ */
 abstract contract Ownable is Context {
     address private _owner;
 

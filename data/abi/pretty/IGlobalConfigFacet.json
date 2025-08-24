@@ -1,0 +1,18 @@
+[
+  "event FeeValidatorUpdated(address indexed feeValidator)",
+  "event Paused()",
+  "event ProtocolFeeVaultUpdated(address indexed protocolFeeVault)",
+  "event RefundVaultUpdated(address indexed refundVault)",
+  "event Unpaused()",
+  "function getFeeValidator() view returns (address)",
+  "function getNonce(address _user) view returns (uint256)",
+  "function getPaused() view returns (bool)",
+  "function getPermit2() view returns (address)",
+  "function getProtocolFeeVault() view returns (address)",
+  "function getRefundVault() view returns (address)",
+  "function pause()",
+  "function setFeeValidator(address _feeValidator)",
+  "function setProtocolFeeVault(address _protocolFeeVault)",
+  "function setRefundVault(address _refundVault)",
+  "function unpause()"
+]

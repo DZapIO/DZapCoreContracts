@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+/**
+ * @title IWithdrawFacet
+ * @author DZap
+ */
 interface IWithdrawFacet {
     event LogWithdraw(address indexed tokenAddress, address to, uint256 amount);
 

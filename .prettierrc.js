@@ -7,10 +7,10 @@ module.exports = {
     {
       files: '*.sol',
       options: {
-        printWidth: 500,
+        printWidth: 150,
         tabWidth: 4,
         singleQuote: false,
-        explicitTypes: 'always',
+        explicitTypes: 'preserve'
       },
     },
     {

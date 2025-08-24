@@ -1,12 +1,13 @@
 import axios from 'axios'
-import { providers, Wallet } from 'ethers'
+import { JsonRpcProvider, Wallet } from 'ethers'
 import { HardhatUserConfig, HttpNetworkUserConfig } from 'hardhat/types'
 import { CHAIN_IDS, NETWORKS, ZK_EVM_CHAINS } from '../config/networks'
 import { ApiType, ChainId, ZKNetworks } from '../types'
 import { getAccountKey } from './walletUtils'
-import { MulticallWrapper } from './multicall'
+// import { MulticallWrapper } from './multicall'
 import { getEnvVar, replaceEnvInStr } from './envUtils'
 import { dummyKey, NODE_ENV_VAR_NAMES } from '../constants'
+import { MulticallWrapper } from 'ethers-multicall-provider'
 
 export const getHardhatNetworkConfig = (chainId: CHAIN_IDS, accounts?: any) => {
   if (!accounts) accounts = [getAccountKey()]
@@ -47,7 +48,7 @@ export const getWorkingRpcUrl = async (chainId: CHAIN_IDS): Promise<string> => {
 
 export const getNetworkConfig = (
   chainIds: CHAIN_IDS[],
-  accounts?: string[]
+  accounts?: string[],
 ) => {
   const config: { [networkName: string]: HttpNetworkUserConfig } = {}
   if (!accounts) {
@@ -91,12 +92,12 @@ export const getNetwork = (chainId: ChainId) => {
 
 export const getProvider = async (chainId: ChainId) => {
   const rpcUrl = getRpcUrl(chainId)
-  return new providers.JsonRpcProvider(rpcUrl)
+  return new JsonRpcProvider(rpcUrl)
 }
 
-export const getMultiCallProvider = (chainId: CHAIN_IDS) => {
+export const getMultiCallProvider = (chainId: ChainId) => {
   const rpcUrl = getRpcUrl(chainId)
-  return MulticallWrapper.wrap(new providers.JsonRpcProvider(rpcUrl))
+  return MulticallWrapper.wrap(new JsonRpcProvider(rpcUrl))
 }
 
 export const getVerificationConfig = (chainIds: CHAIN_IDS[]) => {
@@ -157,7 +158,7 @@ export const getVerificationConfig = (chainIds: CHAIN_IDS[]) => {
       }
 
       config.etherscan!.apiKey![network.shortName] = getEnvVar(
-        NODE_ENV_VAR_NAMES.ETHERSCAN_V2_API_KEY
+        NODE_ENV_VAR_NAMES.ETHERSCAN_V2_API_KEY,
       )
 
       config.etherscan!.customChains!.push({
@@ -209,7 +210,7 @@ const checkRpc = async (rpcUrl: string): Promise<string> => {
         method: 'eth_blockNumber',
         params: [],
       },
-      { timeout: 3000 } // adjust timeout as needed
+      { timeout: 3000 }, // adjust timeout as needed
     )
 
     if (response.data && response.data.result) {

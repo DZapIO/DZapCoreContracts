@@ -1,0 +1,6 @@
+[
+  "error UnAuthorized()",
+  "error ZeroAddress()",
+  "event Permit2Updated(address indexed permit2)",
+  "function updatePermit2(address _permit2)"
+]

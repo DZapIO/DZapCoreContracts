@@ -1,12 +1,12 @@
 import { JsonRpcProvider } from '@ethersproject/providers'
-import { Wallet } from 'ethers'
 import { ENVIRONMENT, NODE_ENV_VAR_NAMES } from '../constants'
 import { getEnvVar } from './envUtils'
+import { ethers, Wallet } from 'ethers'
 
 const dummyKey =
   '0x0000000000000000000000000000000000000000000000000000000000000000'
 
-export async function getWallet(privateKey: string, provider: JsonRpcProvider) {
+export async function getWallet(privateKey: string, provider: ethers.Provider) {
   return new Wallet(privateKey, provider)
 }
 

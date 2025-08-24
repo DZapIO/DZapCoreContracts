@@ -2,16 +2,48 @@
 pragma solidity 0.8.19;
 
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
-import { IBridgeAdapter } from "../Interfaces/IBridgeAdapter.sol";
+import { LibValidatable } from "../Libraries/LibValidatable.sol";
+import { IBridge } from "../../Shared/Interfaces/IBridge.sol";
+import { IDirectTransferAdapter } from "../Interfaces/adapters/IDirectTransferAdapter.sol";
+import { InsufficientBalance, AmountExceedsMaximum } from "../../Shared/Errors.sol";
 
-contract DirectTransferAdapter is IBridgeAdapter {
+/**
+ * @title DirectTransferAdapter
+ * @author DZap
+ * @notice Contract for direct token transfers
+ * @dev Handles bridges where deposit address changes every time.
+ *      example: Near, Changenow
+ */
+contract DirectTransferAdapter is IBridge, IDirectTransferAdapter {
+    /// @inheritdoc IDirectTransferAdapter
+    function bridgeViaTransfer(
+        bytes32 _transactionId,
+        address _user,
+        uint256 _maxAmountIn,
+        address _from,
+        address _transferTo,
+        uint256 _amountIn,
+        uint256 _destinationChainId,
+        string calldata _bridge,
+        bytes calldata _receiver,
+        bytes calldata _to,
+        bytes calldata _destinationCalldata
+    ) external payable {
+        LibValidatable.validateData(_to, _receiver, _amountIn, _destinationChainId);
 
-    function bridge(address _srcToken, uint256 _amount, bytes calldata _data) external payable {
-        address transferTo = abi.decode(_data, (address));
-        if (LibAsset.isNativeToken(_srcToken)) {
-            LibAsset.transferNativeToken(transferTo, _amount);
-        } else {
-            LibAsset.transferERC20(_srcToken, transferTo, _amount);
+        if (_maxAmountIn > 0) {
+            uint256 contractBalance = LibAsset.getOwnBalance(_from);
+            if (_amountIn > _maxAmountIn) revert AmountExceedsMaximum();
+            if (contractBalance < _amountIn) revert InsufficientBalance(_amountIn, contractBalance);
+            _amountIn = contractBalance > _maxAmountIn ? _maxAmountIn : contractBalance;
         }
+
+        if (LibAsset.isNativeToken(_from)) {
+            LibAsset.transferNativeToken(_transferTo, _amountIn);
+        } else {
+            LibAsset.transferERC20WithBalanceCheck(_from, _transferTo, _amountIn);
+        }
+
+        emit BridgeStarted(_transactionId, _user, _receiver, _bridge, _transferTo, _from, _to, _amountIn, _destinationChainId, _destinationCalldata);
     }
 }

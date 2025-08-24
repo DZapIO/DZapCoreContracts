@@ -1,10 +1,10 @@
-import { ethers } from 'hardhat'
-import { DZAP_NATIVE, NATIVE_ADDRESS } from '../constants'
 import { BigNumberish, Signer } from 'ethers'
+import { ethers } from 'hardhat'
+import { CONTRACTS, DZAP_NATIVE, NATIVE_ADDRESS } from '../constants'
 import { ERC20 } from '../typechain-types'
 
 export const isNative = (token: string) => {
-  token = ethers.utils.getAddress(token)
+  token = ethers.getAddress(token)
   return token == NATIVE_ADDRESS || token == DZAP_NATIVE
 }
 
@@ -15,13 +15,16 @@ export const approveToken = async (
   approveAmount: BigNumberish
 ) => {
   const erc20 = (await ethers.getContractAt(
-    '@openzeppelin/contracts/token/ERC20/ERC20.sol:ERC20',
+    CONTRACTS.ERC20,
     tokenAddress
-  )) as ERC20
+  )) as unknown as ERC20
 
-  const allowance = await erc20.connect(signer).allowance(spender, spender)
+  const allowance = await erc20
+    .connect(signer)
+    .allowance(await signer.getAddress(), spender)
+  approveAmount = BigInt(approveAmount)
 
-  if (!allowance.gt(0)) {
+  if (allowance < approveAmount) {
     const tx = await erc20.connect(signer).approve(spender, approveAmount)
     console.log('Approving token tx', tx.hash)
     await tx.wait()

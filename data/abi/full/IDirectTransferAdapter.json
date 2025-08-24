@@ -1,0 +1,65 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_transactionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_maxAmountIn",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_transferTo",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amountIn",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_destinationChainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_bridge",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_receiver",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_to",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_destinationCalldata",
+        "type": "bytes"
+      }
+    ],
+    "name": "bridgeViaTransfer",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

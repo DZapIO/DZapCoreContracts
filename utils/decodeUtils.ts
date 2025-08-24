@@ -1,4 +1,4 @@
-import { ethers } from 'ethers'
+import { AbiCoder, ethers } from 'ethers'
 
 export const getRevertMsg = (res) => {
   // console.log('getRevertMsg', res)
@@ -8,7 +8,7 @@ export const getRevertMsg = (res) => {
     // return ethers.utils.toUtf8String(res)
   }
   const revertData = '0x' + res.slice(10)
-  const msg = ethers.utils.defaultAbiCoder.decode(['string'], revertData)[0]
+  const msg = AbiCoder.defaultAbiCoder().decode(['string'], revertData)[0]
   // console.log('msg', msg)
   return msg
 }

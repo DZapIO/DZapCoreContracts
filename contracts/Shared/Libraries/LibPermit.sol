@@ -2,55 +2,133 @@
 
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
-import "../Interfaces/IPermit2.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol";
+import { LibGlobalStorage } from "./LibGlobalStorage.sol";
+import { PermitTransferFrom, PermitBatchTransferFrom, SignatureTransferDetails, PermitSingle, PermitDetails, TokenPermissions, IPermit2 } from "../Interfaces/IPermit2.sol";
 
-struct PermitStorage {
-    address permit2;
-    bool initialized;
-}
-
-/// @title LibPermit
-/// @notice This library contains helpers for using permit and permit2
+/**
+ * @title LibPermit
+ * @author DZap
+ * @notice This library contains helpers for using permit and permit2
+ */
 library LibPermit {
-    error InvalidPermitData();
-    error InvalidPermit();
+    // ============= ERRORS =============
 
-    bytes32 internal constant _PERMIT_STORAGE_SLOT = keccak256("dzap.storage.library.permit");
+    error InvalidPermit(string reason);
 
-    function permitStorage() internal pure returns (PermitStorage storage ps) {
-        bytes32 slot = _PERMIT_STORAGE_SLOT;
-        assembly {
-            ps.slot := slot
+    // ============= CONSTANTS =============
+
+    string internal constant _DZAP_TRANSFER_WITNESS_TYPE_STRING =
+        "DZapTransferWitness witness)DZapTransferWitness(address owner,address recipient)TokenPermissions(address token,uint256 amount)";
+    bytes32 internal constant _DZAP_TRANSFER_WITNESS_TYPEHASH = keccak256("DZapTransferWitness(address owner,address recipient)");
+
+    // ============= VIEW =============
+
+    /// @notice Returns the permit2 address
+    function permit2() private view returns (address) {
+        return LibGlobalStorage.getPermit2();
+    }
+
+    // ============= EIP-2612 PERMIT FUNCTIONS =============
+
+    /// @notice Handles eip2612 permit
+    function eip2612Permit(address _owner, address _spender, address _token, uint256 _amount, bytes memory _data) internal {
+        (uint256 deadline, uint8 v, bytes32 r, bytes32 s) = abi.decode(_data, (uint256, uint8, bytes32, bytes32));
+        try IERC20Permit(_token).permit(_owner, _spender, _amount, deadline, v, r, s) {} catch Error(string memory reason) {
+            if (IERC20(_token).allowance(_owner, _spender) < _amount) {
+                revert InvalidPermit(reason);
+            }
         }
     }
 
-    function permit2() internal view returns (address) {
-        return permitStorage().permit2;
+    // ============= PERMIT2 FUNCTIONS =============
+
+    /// @notice Handles permit2 approve and transfer
+    function permit2ApproveAndTransfer(address _owner, address _spender, address _token, uint160 _amount, bytes memory data) internal {
+        permit2Approve(_owner, _spender, _token, _amount, data);
+        IPermit2(permit2()).transferFrom(_owner, _spender, uint160(_amount), _token);
     }
 
-    function permit2ApproveAndTransfer(address _from, address _to, uint160 _amount, address _token, bytes memory data) internal {
-        permit2Approve(_token, data);
-        IPermit2(permit2()).transferFrom(_from, _to, uint160(_amount), _token);
-    }
+    /// @notice Handles permit2 approve
+    function permit2Approve(address _owner, address _spender, address _token, uint160 _amount, bytes memory _data) internal {
+        if (_data.length == 0) return;
+        IPermit2 permit2Contract = IPermit2(permit2());
+        (uint48 nonce, uint48 expiration, uint256 sigDeadline, bytes memory signature) = abi.decode(_data, (uint48, uint48, uint256, bytes));
 
-    function permit2Approve(address _token, bytes memory _data) internal {
-        IPermit2 _permit2 = IPermit2(permit2());
-        if (_data.length != 0) {
-            (uint160 allowanceAmount, uint48 nonce, uint48 expiration, uint256 sigDeadline, bytes memory signature) = abi.decode(_data, (uint160, uint48, uint48, uint256, bytes));
-            _permit2.permit(msg.sender, IPermit2.PermitSingle(IPermit2.PermitDetails(_token, allowanceAmount, expiration, nonce), address(this), sigDeadline), signature);
+        try
+            permit2Contract.permit(_owner, PermitSingle(PermitDetails(_token, _amount, expiration, nonce), _spender, sigDeadline), signature)
+        {} catch Error(string memory reason) {
+            (uint256 currentAllowance, uint256 allowanceExpiration, ) = permit2Contract.allowance(_owner, _token, _spender);
+            if (currentAllowance < _amount || allowanceExpiration < block.timestamp) revert InvalidPermit(reason);
         }
     }
 
-    function permit2TransferFrom(address _token, bytes memory _data, uint256 amount_) internal {
-        (uint256 nonce, uint256 deadline, bytes memory signature) = abi.decode(_data, (uint256, uint256, bytes));
-        IPermit2(permit2()).permitTransferFrom(IPermit2.PermitTransferFrom(IPermit2.TokenPermissions(_token, amount_), nonce, deadline), IPermit2.SignatureTransferDetails(address(this), amount_), msg.sender, signature);
+    /// @notice Handles permit2 witness transfer from
+    function permit2WitnessTransferFrom(address _owner, address _recipient, address _token, uint256 _amount, bytes memory _data) internal {
+        (uint256 nonce, uint256 deadline, bytes memory _signature) = abi.decode(_data, (uint256, uint256, bytes));
+        IPermit2(permit2()).permitWitnessTransferFrom(
+            PermitTransferFrom(TokenPermissions(_token, _amount), nonce, deadline),
+            SignatureTransferDetails(_recipient, _amount),
+            _owner,
+            _createWitnessTransferFromHash(_owner, _recipient),
+            _DZAP_TRANSFER_WITNESS_TYPE_STRING,
+            _signature
+        );
     }
 
-    function permit(address _token, bytes memory _data) internal {
-        if (_data.length == 32 * 7) {
-            (bool success, ) = _token.call(abi.encodePacked(IERC20Permit.permit.selector, _data));
-            if (!success) revert InvalidPermit();
-        } else revert InvalidPermitData();
+    /// @notice Handles permit2 batch witness transfer from
+    function permit2BatchWitnessTransferFrom(
+        address _owner,
+        address _recipient,
+        PermitBatchTransferFrom calldata permit,
+        bytes calldata _signature
+    ) internal {
+        uint256 length = permit.permitted.length;
+        SignatureTransferDetails[] memory details = new SignatureTransferDetails[](length);
+
+        for (uint256 i; i < length; ) {
+            details[i] = SignatureTransferDetails(_recipient, permit.permitted[i].amount);
+            unchecked {
+                ++i;
+            }
+        }
+
+        IPermit2(permit2()).permitWitnessTransferFrom(
+            permit,
+            details,
+            _owner,
+            _createWitnessTransferFromHash(_owner, _recipient),
+            _DZAP_TRANSFER_WITNESS_TYPE_STRING,
+            _signature
+        );
+    }
+
+    /// @notice Handles permit2 batch witness transfer from
+    function permit2BatchWitnessTransferFrom(
+        address _owner,
+        address _recipient,
+        bytes32 _witness,
+        PermitBatchTransferFrom calldata permit,
+        bytes calldata _signature,
+        string memory _witnessTypeString
+    ) internal {
+        uint256 length = permit.permitted.length;
+        SignatureTransferDetails[] memory details = new SignatureTransferDetails[](length);
+
+        for (uint256 i; i < length; ) {
+            details[i] = SignatureTransferDetails(_recipient, permit.permitted[i].amount);
+            unchecked {
+                ++i;
+            }
+        }
+
+        IPermit2(permit2()).permitWitnessTransferFrom(permit, details, _owner, _witness, _witnessTypeString, _signature);
+    }
+
+    /* ========= PRIVATE ========= */
+
+    function _createWitnessTransferFromHash(address _owner, address _recipient) private pure returns (bytes32) {
+        return keccak256(abi.encode(_DZAP_TRANSFER_WITNESS_TYPEHASH, _owner, _recipient));
     }
 }

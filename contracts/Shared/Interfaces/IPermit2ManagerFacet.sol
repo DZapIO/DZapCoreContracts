@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.19;
+
+/**
+ * @title IPermit2ManagerFacet
+ * @author DZap
+ */
+interface IPermit2ManagerFacet {
+    /* ========= EVENTS ========= */
+
+    event Permit2Updated(address indexed permit2);
+
+    /* ========= RESTRICTED ========= */
+
+    /// @dev Updates the Permit2 contract address used by the protocol.
+    function updatePermit2(address _permit2) external;
+}

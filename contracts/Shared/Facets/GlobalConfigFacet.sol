@@ -40,6 +40,7 @@ contract GlobalConfigFacet is IGlobalConfigFacet, AuthorizationGuard, Pausable {
     /// @inheritdoc IGlobalConfigFacet
     function setFeeValidator(address _feeValidator) external onlyAuthorized {
         if (_feeValidator == address(0)) revert ZeroAddress();
+        if (_feeValidator == address(this)) revert CannotAuthorizeSelf();
 
         GlobalStorage storage gs = LibGlobalStorage.globalStorage();
         gs.feeValidator = _feeValidator;

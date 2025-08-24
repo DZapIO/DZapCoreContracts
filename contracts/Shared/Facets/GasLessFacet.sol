@@ -68,7 +68,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         LibAsset.deposit(_user, _swapData.from, _swapData.fromAmount + _executorFeeInfo.amount, _tokenApprovalData);
 
-        if (_executorFeeInfo.token != address(0)) LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
+        if (_executorFeeInfo.token != address(0)) LibAsset.transferERC20WithoutChecks(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
 
         _executeSwap(_transactionId, _user, _integrator, _swapData, _swapExecutionData, false);
 
@@ -169,7 +169,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
         LibAsset.deposit(_user, _inputToken.token, _inputToken.amount, _inputToken.permit);
 
-        LibAsset.transferERC20(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
+        if (_executorFeeInfo.token != address(0)) LibAsset.transferERC20WithoutChecks(_executorFeeInfo.token, msg.sender, _executorFeeInfo.amount);
 
         address integrator = LibBridge.takeFee(_bridgeFeeData);
 
@@ -278,7 +278,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
 
     function _transferExecutorFees(TokenInfo[] calldata _executorFeeInfo) internal {
         for (uint256 i = 0; i < _executorFeeInfo.length; ) {
-            LibAsset.transferERC20(_executorFeeInfo[i].token, msg.sender, _executorFeeInfo[i].amount);
+            LibAsset.transferERC20WithoutChecks(_executorFeeInfo[i].token, msg.sender, _executorFeeInfo[i].amount);
             unchecked {
                 ++i;
             }

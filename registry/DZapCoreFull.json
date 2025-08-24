@@ -671,7 +671,7 @@
         "type": "address"
       }
     ],
-    "name": "DexNotWhitelised",
+    "name": "DexNotWhitelisted",
     "type": "error"
   },
   {
@@ -1083,22 +1083,6 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "contractBalance",
-        "type": "uint256"
-      }
-    ],
-    "name": "InsufficientBalance",
-    "type": "error"
   },
   {
     "inputs": [],
@@ -3221,6 +3205,22 @@
       }
     ],
     "name": "Erc20CallFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "contractBalance",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientBalance",
     "type": "error"
   },
   {

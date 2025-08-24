@@ -28,7 +28,7 @@ error InvalidEncodedAddress();
 error NotAContract();
 error BridgeNotWhitelisted(address bridge);
 error AdapterNotWhitelisted(address adapter);
-error DexNotWhitelised(address dex);
+error DexNotWhitelisted(address dex);
 
 error InvalidPermitType();
 error CannotBridgeToSameNetwork();

@@ -13,6 +13,6 @@ interface IPermit2ManagerFacet {
 
     /* ========= RESTRICTED ========= */
 
-    /// @dev Sets address of the protocols fee vault
+    /// @dev Updates the Permit2 contract address used by the protocol.
     function updatePermit2(address _permit2) external;
 }

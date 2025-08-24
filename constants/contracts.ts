@@ -81,7 +81,7 @@ export const ERRORS = {
   NotAContract: 'NotAContract',
   BridgeNotWhitelisted: 'BridgeNotWhitelisted',
   AdapterNotWhitelisted: 'AdapterNotWhitelisted',
-  DexNotWhitelised: 'DexNotWhitelised',
+  DexNotWhitelisted: 'DexNotWhitelisted',
   InvalidPermitType: 'InvalidPermitType',
   CannotBridgeToSameNetwork: 'CannotBridgeToSameNetwork',
   SwapCallFailed: 'SwapCallFailed',

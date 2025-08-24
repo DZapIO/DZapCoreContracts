@@ -2,7 +2,7 @@
 pragma solidity 0.8.19;
 
 import { LibAsset } from "../Libraries/LibAsset.sol";
-import { BridgeNotWhitelisted, AdapterNotWhitelisted, DexNotWhitelised, CannotAuthorizeSelf, NotAContract, ZeroAddress } from "../Errors.sol";
+import { BridgeNotWhitelisted, AdapterNotWhitelisted, DexNotWhitelisted, CannotAuthorizeSelf, NotAContract, ZeroAddress } from "../Errors.sol";
 
 struct AllowListStorage {
     mapping(address => bool) dexAllowlist;
@@ -64,7 +64,7 @@ library LibAllowList {
     function removeDex(address _dex) internal {
         AllowListStorage storage als = allowListStorage();
         if (!als.dexAllowlist[_dex]) {
-            revert DexNotWhitelised(_dex);
+            revert DexNotWhitelisted(_dex);
         }
         als.dexAllowlist[_dex] = false;
     }
@@ -73,7 +73,7 @@ library LibAllowList {
         AllowListStorage storage als = allowListStorage();
         for (uint256 i; i < _dexes.length; ++i) {
             if (!als.dexAllowlist[_dexes[i]]) {
-                revert DexNotWhitelised(_dexes[i]);
+                revert DexNotWhitelisted(_dexes[i]);
             }
             als.dexAllowlist[_dexes[i]] = false;
         }

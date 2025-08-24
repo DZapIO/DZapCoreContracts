@@ -2,7 +2,7 @@
   "error AdapterNotWhitelisted(address adapter)",
   "error BridgeNotWhitelisted(address bridge)",
   "error CannotAuthorizeSelf()",
-  "error DexNotWhitelised(address dex)",
+  "error DexNotWhitelisted(address dex)",
   "error NotAContract()",
   "error UnAuthorized()",
   "error ZeroAddress()",

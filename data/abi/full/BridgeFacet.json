@@ -44,23 +44,7 @@
         "type": "address"
       }
     ],
-    "name": "DexNotWhitelised",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "contractBalance",
-        "type": "uint256"
-      }
-    ],
-    "name": "InsufficientBalance",
+    "name": "DexNotWhitelisted",
     "type": "error"
   },
   {

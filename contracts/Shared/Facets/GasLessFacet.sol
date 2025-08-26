@@ -106,7 +106,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     }
 
     /// @inheritdoc IGasLessFacet
-    function executeMultiSwap(
+    function executeMultiSwapWithWitness(
         bytes32 _transactionId,
         address _user,
         address _integrator,
@@ -230,7 +230,7 @@ contract GasLessFacet is IBridge, IGasLessFacet, Swapper, RefundNative, Pausable
     }
 
     /// @inheritdoc IGasLessFacet
-    function executeMultiBridge(
+    function executeMultiBridgeWithWitness(
         bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,

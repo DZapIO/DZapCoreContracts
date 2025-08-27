@@ -1,9 +1,7 @@
 [
-  "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error NativeTransferFailed()",
   "error NoTransferToNullAddress()",
   "error NotAContract()",
-  "error NullAddrIsNotAnERC20Token()",
   "error ReentrancyError()",
   "error UnAuthorized()",
   "error WithdrawFailed()",

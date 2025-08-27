@@ -1,31 +1,13 @@
-import { CONTRACTS } from '../../../constants'
-import {
-  DIRECT_TRANSFER_DEPLOYMENT_CONFIG,
-  ZK_DIRECT_TRANSFER_DEPLOYMENT_CONFIG,
-} from './directTransfer'
-import {
-  GAS_ZIP_DEPLOYMENT_CONFIG,
-  ZK_GAS_ZIP_DEPLOYMENT_CONFIG,
-} from './gasZip'
-import {
-  GENERIC_BRIDGE_DEPLOYMENT_CONFIG,
-  ZK_GENERIC_BRIDGE_DEPLOYMENT_CONFIG,
-} from './genericBridge'
-import {
-  RELAYER_DEPLOYMENT_CONFIG,
-  ZK_RELAYER_DEPLOYMENT_CONFIG,
-} from './relayer'
+import { Create3DeploymentConfig } from '../../../types'
 
-export const ADAPTERS_DEPLOYMENT_CONFIG = {
-  [CONTRACTS.GenericBridgeAdapter]: GENERIC_BRIDGE_DEPLOYMENT_CONFIG,
-  [CONTRACTS.DirectTransferAdapter]: DIRECT_TRANSFER_DEPLOYMENT_CONFIG,
-  [CONTRACTS.GasZipAdapter]: GAS_ZIP_DEPLOYMENT_CONFIG,
-  [CONTRACTS.RelayBridgeAdapter]: RELAYER_DEPLOYMENT_CONFIG,
-}
+export const ADAPTERS_DEPLOYMENT_CONFIG: {
+  [key: string]: Create3DeploymentConfig[]
+} = {}
 
-export const ZK_ADAPTERS_DEPLOYMENT_CONFIG = {
-  [CONTRACTS.GenericBridgeAdapter]: ZK_GENERIC_BRIDGE_DEPLOYMENT_CONFIG,
-  [CONTRACTS.DirectTransferAdapter]: ZK_DIRECT_TRANSFER_DEPLOYMENT_CONFIG,
-  [CONTRACTS.GasZipAdapter]: ZK_GAS_ZIP_DEPLOYMENT_CONFIG,
-  [CONTRACTS.RelayBridgeAdapter]: ZK_RELAYER_DEPLOYMENT_CONFIG,
-}
+export const ZK_ADAPTERS_DEPLOYMENT_CONFIG: {
+  [key: string]: Create3DeploymentConfig[]
+} = {}
+
+export const ADAPTERS_DEPLOYMENT_CONFIG_TESTING: {
+  [key: string]: Create3DeploymentConfig[]
+} = {}

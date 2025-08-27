@@ -1,80 +1,153 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import { InvalidContract } from "../ErrorsNew.sol";
-import { AllowList } from "../Types.sol";
+import { LibAsset } from "../Libraries/LibAsset.sol";
+import { BridgeNotWhitelisted, AdapterNotWhitelisted, DexNotWhitelisted, CannotAuthorizeSelf, NotAContract, ZeroAddress } from "../Errors.sol";
 
 struct AllowListStorage {
-    mapping(address => AllowList) allowlist;
+    mapping(address => bool) dexAllowlist;
+    mapping(address => bool) adaptersAllowlist;
+    mapping(address => bool) bridgeAllowlist;
 }
 
-/// @title Lib Allow List
-/// @notice Library for managing and accessing the conract address allow list
+/**
+ * @title LibAllowList
+ * @author DZap
+ * @notice Library for managing and accessing the conract address allow list
+ */
 library LibAllowList {
-    bytes32 internal constant NAMESPACE = keccak256("dzap.library.allow.list");
-
-    /// @dev Adds a contract address to the allow list
-    /// @param _contract the contract address to add
-    function addAllowedContract(address _contract) internal {
-        _checkAddress(_contract);
-
-        AllowListStorage storage als = _getStorage();
-
-        if (als.allowlist[_contract].isAllowed) return;
-
-        als.allowlist[_contract].isAllowed = true;
-    }
-
-    /// @dev Remove a contract address from the allow list
-    /// @param _contract the contract address to remove
-    function removeAllowedContract(address _contract) internal {
-        AllowListStorage storage als = _getStorage();
-
-        if (!als.allowlist[_contract].isAllowed) {
-            return;
-        }
-
-        als.allowlist[_contract].isAllowed = false;
-    }
-
-    /// @dev Add a selector to the allow list
-    /// @param _selector the selector to add
-    function addAllowedSelector(address _contract, bytes4 _selector) internal {
-        _checkAddress(_contract);
-
-        _getStorage().allowlist[_contract].selectorAllowList[_selector] = true;
-    }
-
-    /// @dev Removes a selector from the allow list
-    /// @param _selector the selector to remove
-    function removeAllowedSelector(address _contract, bytes4 _selector) internal {
-        _getStorage().allowlist[_contract].selectorAllowList[_selector] = false;
-    }
-
-    /// @dev Checks whether a contract address has been added to the allow list
-    /// @param _contract the contract address to check
-    function contractIsAllowed(address _contract) internal view returns (bool) {
-        return _getStorage().allowlist[_contract].isAllowed;
-    }
-
-    /// @dev Returns if selector has been added to the allow list
-    /// @param _selector the selector to check
-    function selectorIsAllowed(address _contract, bytes4 _selector) internal view returns (bool) {
-        return _getStorage().allowlist[_contract].selectorAllowList[_selector];
-    }
+    bytes32 internal constant ALLOWLIST_NAMESPACE = keccak256("dzap.library.allow.whitelist");
 
     /// @dev Fetch local storage struct
-    function _getStorage() internal pure returns (AllowListStorage storage als) {
-        bytes32 position = NAMESPACE;
+    function allowListStorage() internal pure returns (AllowListStorage storage als) {
+        bytes32 position = ALLOWLIST_NAMESPACE;
         // solhint-disable-next-line no-inline-assembly
         assembly {
             als.slot := position
         }
     }
 
-    /// @dev Contains business logic for validating a contract address.
-    /// @param _contract address of the dex to check
-    function _checkAddress(address _contract) private view {
-        if (_contract == address(0) || _contract.code.length == 0) revert InvalidContract();
+    /* ========= VIEWS ========= */
+
+    function isDexWhitelisted(address _dex) internal view returns (bool) {
+        return allowListStorage().dexAllowlist[_dex];
+    }
+
+    function isAdapterWhitelisted(address _adapter) internal view returns (bool) {
+        return allowListStorage().adaptersAllowlist[_adapter];
+    }
+
+    function isBridgeWhitelisted(address _bridge) internal view returns (bool) {
+        return allowListStorage().bridgeAllowlist[_bridge];
+    }
+
+    /* ========= MUTATIONS ========= */
+
+    function addDex(address _dex) internal {
+        if (_dex == address(0)) revert ZeroAddress();
+        if (_dex == address(this)) revert CannotAuthorizeSelf();
+        if (!LibAsset.isContract(_dex)) revert NotAContract();
+        allowListStorage().dexAllowlist[_dex] = true;
+    }
+
+    function addDexes(address[] memory _dexes) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _dexes.length; ++i) {
+            address dex = _dexes[i];
+            if (dex == address(0)) revert ZeroAddress();
+            if (dex == address(this)) revert CannotAuthorizeSelf();
+            if (!LibAsset.isContract(dex)) revert NotAContract();
+            als.dexAllowlist[dex] = true;
+        }
+    }
+
+    function removeDex(address _dex) internal {
+        AllowListStorage storage als = allowListStorage();
+        if (!als.dexAllowlist[_dex]) {
+            revert DexNotWhitelisted(_dex);
+        }
+        als.dexAllowlist[_dex] = false;
+    }
+
+    function removeDexes(address[] memory _dexes) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _dexes.length; ++i) {
+            if (!als.dexAllowlist[_dexes[i]]) {
+                revert DexNotWhitelisted(_dexes[i]);
+            }
+            als.dexAllowlist[_dexes[i]] = false;
+        }
+    }
+
+    function addBridge(address _bridge) internal {
+        if (_bridge == address(0)) revert ZeroAddress();
+        if (_bridge == address(this)) revert CannotAuthorizeSelf();
+        if (!LibAsset.isContract(_bridge)) revert NotAContract();
+        allowListStorage().bridgeAllowlist[_bridge] = true;
+    }
+
+    function addBridges(address[] memory _bridges) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _bridges.length; ++i) {
+            address bridge = _bridges[i];
+            if (bridge == address(0)) revert ZeroAddress();
+            if (bridge == address(this)) revert CannotAuthorizeSelf();
+            if (!LibAsset.isContract(bridge)) revert NotAContract();
+            als.bridgeAllowlist[bridge] = true;
+        }
+    }
+
+    function removeBridge(address _bridge) internal {
+        AllowListStorage storage als = allowListStorage();
+        if (!als.bridgeAllowlist[_bridge]) {
+            revert BridgeNotWhitelisted(_bridge);
+        }
+        als.bridgeAllowlist[_bridge] = false;
+    }
+
+    function removeBridges(address[] memory _bridges) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _bridges.length; ++i) {
+            if (!als.bridgeAllowlist[_bridges[i]]) {
+                revert BridgeNotWhitelisted(_bridges[i]);
+            }
+            als.bridgeAllowlist[_bridges[i]] = false;
+        }
+    }
+
+    function addAdapter(address _adapter) internal {
+        if (_adapter == address(0)) revert ZeroAddress();
+        if (_adapter == address(this)) revert CannotAuthorizeSelf();
+        if (!LibAsset.isContract(_adapter)) revert NotAContract();
+        allowListStorage().adaptersAllowlist[_adapter] = true;
+    }
+
+    function addAdapters(address[] memory _adapters) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _adapters.length; ++i) {
+            address adapter = _adapters[i];
+            if (adapter == address(0)) revert ZeroAddress();
+            if (adapter == address(this)) revert CannotAuthorizeSelf();
+            if (!LibAsset.isContract(adapter)) revert NotAContract();
+            als.adaptersAllowlist[adapter] = true;
+        }
+    }
+
+    function removeAdapter(address _adapter) internal {
+        AllowListStorage storage als = allowListStorage();
+        if (!als.adaptersAllowlist[_adapter]) {
+            revert AdapterNotWhitelisted(_adapter);
+        }
+        als.adaptersAllowlist[_adapter] = false;
+    }
+
+    function removeAdapters(address[] memory _adapters) internal {
+        AllowListStorage storage als = allowListStorage();
+        for (uint256 i; i < _adapters.length; ++i) {
+            if (!als.adaptersAllowlist[_adapters[i]]) {
+                revert AdapterNotWhitelisted(_adapters[i]);
+            }
+            als.adaptersAllowlist[_adapters[i]] = false;
+        }
     }
 }

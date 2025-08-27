@@ -2,22 +2,62 @@
 pragma solidity 0.8.19;
 
 import { LibAsset } from "../../Shared/Libraries/LibAsset.sol";
-import { IGasZipFacet } from "../Interfaces/IGasZipFacet.sol";
-import { IBridgeAdapter } from "../Interfaces/IBridgeAdapter.sol";
 import { IGasZipRouter } from "../Interfaces/external/IGasZipRouter.sol";
-import { NotNativeToken, InvalidReceiver, CannotBridgeToSameNetwork } from "../../Shared/ErrorsNew.sol";
+import { IGasZipAdapter, GasZipData } from "../Interfaces/adapters/IGasZipAdapter.sol";
+import { NullAddrIsNotAValidRecipient, NoBridgeFromZeroAmount, NativeTokenNotSupported, InsufficientBalance, AmountExceedsMaximum } from "../../Shared/Errors.sol";
 
-contract GasZipAdapter is IBridgeAdapter {
+/**
+ * @title GasZipAdapter
+ * @author DZap
+ * @notice Contract for GasZip bridge adapter
+ */
+contract GasZipAdapter is IGasZipAdapter {
+    // ------------------- STORAGE ------------------- //
 
-    function bridge(address _srcToken, uint256 _amount, bytes calldata _data) external payable {
-        (bytes32 recipient,uint256 destChains) = abi.decode(_data, (bytes32, uint256));
-        
-        if(!LibAsset.isNativeToken(_srcToken)) revert NotNativeToken();
-        if (recipient == bytes32(0)) revert InvalidReceiver();
-        if (destChains == block.chainid) revert CannotBridgeToSameNetwork();
+    IGasZipRouter private immutable _GAS_ZIP_ROUTER;
 
-        address gasZipRouter = IGasZipFacet(address(this)).getGasZipRouter();
+    // ------------------- CONSTRUCTOR -------------------//
 
-        IGasZipRouter(gasZipRouter).deposit{value: _amount}(destChains, recipient);
+    constructor(address _depositAddress) {
+        _GAS_ZIP_ROUTER = IGasZipRouter(_depositAddress);
+    }
+
+    // ------------------- VIEW -------------------//
+
+    /// @inheritdoc IGasZipAdapter
+    function getGasZipRouter() external view returns (address) {
+        return address(_GAS_ZIP_ROUTER);
+    }
+
+    // ------------------- EXTERNAL -------------------//
+
+    /// @inheritdoc IGasZipAdapter
+    function bridgeViaGasZip(
+        bytes32 _transactionId,
+        address _user,
+        uint256 _maxAmountIn,
+        address _from,
+        bytes calldata _destinationCalldata,
+        GasZipData memory _gasZipData
+    ) external payable {
+        if (!LibAsset.isNativeToken(_from)) revert NativeTokenNotSupported();
+
+        if (_maxAmountIn > 0) {
+            uint256 contractBalance = address(this).balance;
+            if (_gasZipData.depositAmount > _maxAmountIn) revert AmountExceedsMaximum();
+            if (contractBalance < _gasZipData.depositAmount) revert InsufficientBalance(_gasZipData.depositAmount, contractBalance);
+            _gasZipData.depositAmount = contractBalance > _maxAmountIn ? _maxAmountIn : contractBalance;
+        }
+
+        _startBridge(_gasZipData);
+
+        emit GasZipBridgeTransferStarted(_transactionId, _user, _gasZipData, _destinationCalldata);
+    }
+
+    function _startBridge(GasZipData memory _gasZipData) private {
+        if (_gasZipData.recipient == bytes32(0)) revert NullAddrIsNotAValidRecipient();
+        if (_gasZipData.depositAmount == 0) revert NoBridgeFromZeroAmount();
+
+        _GAS_ZIP_ROUTER.deposit{ value: _gasZipData.depositAmount }(_gasZipData.destChains, _gasZipData.recipient);
     }
 }

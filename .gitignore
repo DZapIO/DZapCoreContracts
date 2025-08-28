@@ -6,13 +6,8 @@ cache-zk
 artifacts
 artifacts-zk
 deployments-zk
-scripts
-stagingHistory.json
 .env
-/scripts
-/test
 
-temp
 .vscode
 .DS_Store
 typechain

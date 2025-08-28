@@ -1,5 +1,4 @@
 [
-  "error InsufficientBalance(uint256 amount, uint256 contractBalance)",
   "error NativeTransferFailed()",
   "error NoTransferToNullAddress()",
   "error NotAContract()",

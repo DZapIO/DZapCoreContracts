@@ -16,6 +16,9 @@ contract DiamondInit is IDiamondInit {
     function initialize(address _protocolFeeVault, address _feeValidator, address _refundVault, address _permit2) external {
         LibDiamond.enforceIsContractOwner();
 
+        GlobalStorage storage gs = LibGlobalStorage.globalStorage();
+        if (gs.initialized) revert AlreadyInitialized();
+
         if (_protocolFeeVault == address(0)) revert ZeroAddress();
         if (_feeValidator == address(0)) revert ZeroAddress();
         if (_permit2 == address(0)) revert ZeroAddress();
@@ -23,10 +26,6 @@ contract DiamondInit is IDiamondInit {
 
         if (_protocolFeeVault == address(this)) revert CannotAuthorizeSelf();
         if (_refundVault == address(this)) revert CannotAuthorizeSelf();
-
-        GlobalStorage storage gs = LibGlobalStorage.globalStorage();
-
-        if (gs.initialized) revert AlreadyInitialized();
 
         gs.permit2 = _permit2;
         gs.protocolFeeVault = _protocolFeeVault;

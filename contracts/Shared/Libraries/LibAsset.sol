@@ -7,7 +7,7 @@ import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.s
 import { LibPermit } from "../Libraries/LibPermit.sol";
 import { PermitType, InputToken } from "../Types.sol";
 import { PermitBatchTransferFrom } from "../Interfaces/IPermit2.sol";
-import { NoTransferToNullAddress, InsufficientBalance, NativeTransferFailed, NullAddrIsNotAValidSpender, InvalidPermitType, TransferAmountMismatch } from "../Errors.sol";
+import { NoTransferToNullAddress, NativeTransferFailed, NullAddrIsNotAValidSpender, InvalidPermitType, TransferAmountMismatch } from "../Errors.sol";
 
 /**
  * @title LibAsset
@@ -54,7 +54,6 @@ library LibAsset {
     /// @notice Transfers ether from the inheriting contract to a given recipient
     function transferNativeToken(address _recipient, uint256 _amount) internal {
         if (_recipient == address(0)) revert NoTransferToNullAddress();
-        if (_amount > address(this).balance) revert InsufficientBalance(_amount, address(this).balance);
         (bool success, ) = _recipient.call{ value: _amount }("");
         if (!success) revert NativeTransferFailed();
     }
@@ -62,40 +61,44 @@ library LibAsset {
     /// @notice Transfers tokens from the inheriting contract to a given recipient
     function transferERC20(address _token, address _recipient, uint256 _amount) internal {
         if (_recipient == address(0)) revert NoTransferToNullAddress();
-        uint256 assetBalance = IERC20(_token).balanceOf(address(this));
-        if (_amount > assetBalance) revert InsufficientBalance(_amount, assetBalance);
         SafeERC20.safeTransfer(IERC20(_token), _recipient, _amount);
     }
 
-    function transferERC20WithBalanceCheck(address _token, address _recipient, uint256 _amount) internal {
-        if (_recipient == address(0)) revert NoTransferToNullAddress();
-
-        IERC20 token = IERC20(_token);
-        uint256 assetBalance = token.balanceOf(address(this));
-        if (_amount > assetBalance) revert InsufficientBalance(_amount, assetBalance);
-
-        uint256 prevBalance = token.balanceOf(_recipient);
-        SafeERC20.safeTransfer(token, _recipient, _amount);
-        if (token.balanceOf(_recipient) - prevBalance != _amount) {
-            revert TransferAmountMismatch();
-        }
-    }
-
-    /// @notice Transfers tokens from a sender to a given recipient
-    function transferFromERC20WithBalanceCheck(address _token, address _sender, address _recipient, uint256 _amount) internal {
-        IERC20 token = IERC20(_token);
-        uint256 prevBalance = token.balanceOf(_recipient);
-
-        SafeERC20.safeTransferFrom(token, _sender, _recipient, _amount);
-        if (token.balanceOf(_recipient) - prevBalance != _amount) {
-            revert TransferAmountMismatch();
-        }
+    /// @notice Transfers tokens from the inheriting contract to a given recipient without checks
+    function transferERC20WithoutChecks(address _token, address _recipient, uint256 _amount) internal {
+        SafeERC20.safeTransfer(IERC20(_token), _recipient, _amount);
     }
 
     /// @notice Transfers tokens from a sender to a given recipient without checking the final balance
     /// @dev need to handle deflationary, rebasing or share based tokens
-    function transferFromERC20(address _token, address _from, address _to, uint256 _amount) internal {
+    function transferFromERC20WithoutChecks(address _token, address _from, address _to, uint256 _amount) internal {
         SafeERC20.safeTransferFrom(IERC20(_token), _from, _to, _amount);
+    }
+
+    /// @notice Transfers tokens from the inheriting contract to a given recipient with balance check
+    function transferERC20WithBalanceCheck(address _token, address _recipient, uint256 _amount) internal {
+        if (_recipient == address(0)) revert NoTransferToNullAddress();
+
+        IERC20 token = IERC20(_token);
+        uint256 prevBalance = token.balanceOf(_recipient);
+        SafeERC20.safeTransfer(token, _recipient, _amount);
+        uint256 curr = token.balanceOf(_recipient);
+        if (curr < prevBalance || curr - prevBalance != _amount) {
+            revert TransferAmountMismatch();
+        }
+    }
+
+    /// @notice Transfers tokens from a sender to a given recipient with balance check
+    function transferFromERC20WithBalanceCheck(address _token, address _sender, address _recipient, uint256 _amount) internal {
+        if (_recipient == address(0)) revert NoTransferToNullAddress();
+
+        IERC20 token = IERC20(_token);
+        uint256 prevBalance = token.balanceOf(_recipient);
+        SafeERC20.safeTransferFrom(token, _sender, _recipient, _amount);
+        uint256 curr = token.balanceOf(_recipient);
+        if (curr < prevBalance || curr - prevBalance != _amount) {
+            revert TransferAmountMismatch();
+        }
     }
 
     /// @notice Wrapper function to transfer a given asset (native or erc20) to
@@ -113,18 +116,17 @@ library LibAsset {
     /// @notice Deposits tokens from a sender to the inheriting contract
     /// @dev only handles erc20 token
     function deposit(address _from, address _token, uint256 _amount, bytes calldata _permit) internal {
-        if (!isNativeToken(_token)) {
-            (PermitType permitType, bytes memory data) = abi.decode(_permit, (PermitType, bytes));
-            if (permitType == PermitType.PERMIT2_WITNESS_TRANSFER) {
-                LibPermit.permit2WitnessTransferFrom(_from, address(this), _token, _amount, data);
-            } else if (permitType == PermitType.PERMIT) {
-                if (data.length != 0) LibPermit.eip2612Permit(_from, address(this), _token, _amount, data);
-                transferFromERC20(_token, _from, address(this), _amount);
-            } else if (permitType == PermitType.PERMIT2_APPROVE) {
-                LibPermit.permit2ApproveAndTransfer(_from, address(this), _token, uint160(_amount), data);
-            } else {
-                revert InvalidPermitType();
-            }
+        (PermitType permitType, bytes memory data) = abi.decode(_permit, (PermitType, bytes));
+
+        if (permitType == PermitType.PERMIT2_WITNESS_TRANSFER) {
+            LibPermit.permit2WitnessTransferFrom(_from, address(this), _token, _amount, data);
+        } else if (permitType == PermitType.PERMIT) {
+            if (data.length != 0) LibPermit.eip2612Permit(_from, address(this), _token, _amount, data);
+            transferFromERC20WithoutChecks(_token, _from, address(this), _amount);
+        } else if (permitType == PermitType.PERMIT2_APPROVE) {
+            LibPermit.permit2ApproveAndTransfer(_from, address(this), _token, uint160(_amount), data);
+        } else {
+            revert InvalidPermitType();
         }
     }
 

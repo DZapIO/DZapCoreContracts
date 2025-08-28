@@ -84,7 +84,7 @@ interface IGasLessFacet {
      * @param _swapData Array of swap configurations
      * @param _swapExecutionData Array of execution data for each swap
      */
-    function executeMultiSwap(
+    function executeMultiSwapWithWitness(
         bytes32 _transactionId,
         address _user,
         address _integrator,
@@ -177,7 +177,7 @@ interface IGasLessFacet {
      * @param _swapExecutionData Array of swap execution parameters
      * @param _adapterInfo Array of bridge adapter configurations
      */
-    function executeMultiBridge(
+    function executeMultiBridgeWithWitness(
         bytes32 _transactionId,
         bytes calldata _bridgeFeeData,
         bytes calldata _userIntentSignature,

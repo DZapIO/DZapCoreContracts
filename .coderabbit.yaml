@@ -1,13 +1,9 @@
-language: "en-US"
-profile: "assertive"
+language: 'en-US'
+profile: 'assertive'
 high_level_summary: true
 eslint:
   enabled: true
 auto_reply: true
 reviews:
   path_filters:
-    - "contracts/adapters/**"
-    - "contracts/interfaces/**"
-    - "contracts/shared/**"
-    - "contracts/wallet/**"
-    - "contracts/zap/**"
+    - 'contracts/**'
